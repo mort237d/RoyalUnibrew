@@ -12,5 +12,6 @@ namespace ModelLibrary
         public DateTime Date { get; set; }
         public int FinishedProduct_No { get; set; }
         public string Note { get; set; }
+        //Test
     }
 }
