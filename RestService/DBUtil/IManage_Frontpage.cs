@@ -14,6 +14,6 @@ namespace RestService.DBUtil
 
         bool UpdateFrontpage(Frontpage frontpage, int processOrderNo);
 
-        void DeleteFrontpage(int processOrderNo);
+        bool DeleteFrontpage(int processOrderNo);
     }
 }
