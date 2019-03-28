@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using ModelLibrary;
 
 namespace RestService.DBUtil
 {
     public class ManageProduct : IManageProduct
     {
+        Connection connection = new Connection();
+
         public List<Product> GetAllProducts()
         {
             List<Product> products = new List<Product>();
             string queryString = "SELECT * FROM Product";
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 command.Connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -51,9 +51,9 @@ namespace RestService.DBUtil
             string queryString = $"SELECT * FROM Product WHERE FinishedProduct_No = {finishedProductNo}";
             Product product = new Product();
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 command.Connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -83,9 +83,9 @@ namespace RestService.DBUtil
         {
             string queryString = "INSERT INTO Product (FinishedProduct_No, ProductName) VALUES (@FinishedProduct_No, @ProductName)";
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 
                 command.Parameters.AddWithValue("@FinishedProduct_No", product.FinishedProduct_No);
                 command.Parameters.AddWithValue("@ProductName", product.ProductName);
@@ -112,9 +112,9 @@ namespace RestService.DBUtil
         {
             string queryString = $"UPDATE Product SET FinishedProduct_No = @FinishedProduct_No, ProductName = @ProductName WHERE FinishedProduct_No = {finishedProductNo}";
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
 
                 command.Parameters.AddWithValue("@FinishedProduct_No", product.FinishedProduct_No);
                 command.Parameters.AddWithValue("@ProductName", product.ProductName);
@@ -141,9 +141,9 @@ namespace RestService.DBUtil
         {
             string queryString = $"DELETE FROM Product WHERE FinishedProduct_No = {finishedProductNo}";
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 command.Connection.Open();
                 try
                 {

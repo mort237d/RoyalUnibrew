@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using ModelLibrary;
 
 namespace RestService.DBUtil
 {
     public class Manage_Frontpage : IManage_Frontpage
     {
+        Connection connection = new Connection();
+
         public List<Frontpage> GetAllFrontpages()
         {
             List<Frontpage> frontpages = new List<Frontpage>();
             string queryString = "SELECT * FROM Frontpage";
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 command.Connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -53,9 +53,9 @@ namespace RestService.DBUtil
             string queryString = $"SELECT * FROM Frontpage WHERE ProcessOrder_No = {processOrderNo}";
             Frontpage frontpage = new Frontpage();
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 command.Connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -87,9 +87,9 @@ namespace RestService.DBUtil
         {
             string queryString = "INSERT INTO Frontpage (ProcessOrder_No, Date, FinishedProduct_No, Note) VALUES (@ProcessOrder_No, @Date, @FinishedProduct_No, @Note)";
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 
                 command.Parameters.AddWithValue("@ProcessOrder_No", frontpage.ProcessOrder_No);
                 command.Parameters.AddWithValue("@Date", frontpage.Date);
@@ -118,9 +118,9 @@ namespace RestService.DBUtil
         {
             string queryString = $"UPDATE Frontpage SET ProcessOrder_No = @ProcessOrder_No, Date = @Date, FinishedProduct_No = @FinishedProduct_No, Note = @Note WHERE ProcessOrder_No = {processOrderNo}";
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
 
                 command.Parameters.AddWithValue("@ProcessOrder_No", frontpage.ProcessOrder_No);
                 command.Parameters.AddWithValue("@Date", frontpage.Date);
@@ -149,9 +149,9 @@ namespace RestService.DBUtil
         {
             string queryString = $"DELETE FROM Frontpage WHERE ProcessOrder_No = {processOrderNo}";
 
-            using (Connection.MyConnection)
+            using (connection.MyConnection)
             {
-                SqlCommand command = new SqlCommand(queryString, Connection.MyConnection);
+                SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 command.Connection.Open();
                 try
                 {
