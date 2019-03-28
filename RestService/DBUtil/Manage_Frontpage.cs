@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using ModelLibrary;
 
-namespace RestService.DBUtil.K2
+namespace RestService.DBUtil
 {
     public class Manage_Frontpage : IManage_Frontpage
     {
