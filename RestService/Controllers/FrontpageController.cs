@@ -1,41 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using ModelLibrary;
+﻿using ModelLibrary;
 using RestService.DBUtil;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace RestService.Controllers
 {
     public class FrontpageController : ApiController
     {
-        Manage_Frontpage mngFrontpage = new Manage_Frontpage();
+        private Manage_Frontpage _mngFrontpage = new Manage_Frontpage();
 
         public IEnumerable<Frontpage> Get()
         {
-            return mngFrontpage.GetAllFrontpages();
+            return _mngFrontpage.GetAllFrontpages();
         }
 
         public Frontpage Get(int id)
         {
-            return mngFrontpage.GetFrontpageFromID(id);
+            return _mngFrontpage.GetFrontpageFromID(id);
         }
 
-        public void Post([FromBody]Frontpage value)
+        public bool Post([FromBody]Frontpage value)
         {
-            mngFrontpage.CreateFrontpage(value);
+            return _mngFrontpage.CreateFrontpage(value);
         }
 
-        public void Put([FromBody]Frontpage value, int id)
+        public bool Put([FromBody]Frontpage value, int id)
         {
-            mngFrontpage.UpdateFrontpage(value, id);
+            return _mngFrontpage.UpdateFrontpage(value, id);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            mngFrontpage.DeleteFrontpage(id);
+            return _mngFrontpage.DeleteFrontpage(id);
         }
     }
 }

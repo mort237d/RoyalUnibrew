@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using ModelLibrary;
@@ -34,6 +35,10 @@ namespace RestService.DBUtil
                         frontpages.Add(frontpage);
                     }
                 }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
                 finally
                 {
                     reader.Close();
@@ -64,6 +69,10 @@ namespace RestService.DBUtil
                         frontpage.Note = reader.GetString(3);
                     }
                 }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
                 finally
                 {
                     reader.Close();
@@ -93,8 +102,9 @@ namespace RestService.DBUtil
                     command.ExecuteNonQuery();
                     return true;
                 }
-                catch
+                catch (Exception e)
                 {
+                    Debug.WriteLine(e);
                     return false;
                 }
                 finally
@@ -123,8 +133,9 @@ namespace RestService.DBUtil
                     command.ExecuteNonQuery();
                     return true;
                 }
-                catch
+                catch (Exception e)
                 {
+                    Debug.WriteLine(e);
                     return false;
                 }
                 finally
@@ -134,7 +145,7 @@ namespace RestService.DBUtil
             }
         }
 
-        public void DeleteFrontpage(int processOrderNo)
+        public bool DeleteFrontpage(int processOrderNo)
         {
             string queryString = $"DELETE FROM Frontpage WHERE ProcessOrder_No = {processOrderNo}";
 
@@ -145,6 +156,12 @@ namespace RestService.DBUtil
                 try
                 {
                     command.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    return false;
                 }
                 finally
                 {
