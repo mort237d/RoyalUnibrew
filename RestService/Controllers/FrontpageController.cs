@@ -7,7 +7,7 @@ namespace RestService.Controllers
 {
     public class FrontpageController : ApiController
     {
-        private Manage_Frontpage _mngFrontpage = new Manage_Frontpage();
+        Manage_Frontpage _mngFrontpage = new Manage_Frontpage();
 
         public IEnumerable<Frontpage> Get()
         {
