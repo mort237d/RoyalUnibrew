@@ -1,7 +1,7 @@
-﻿using ModelLibrary;
-using RestService.DBUtil;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
+using ModelLibrary;
+using RestService.DBUtil;
 
 namespace RestService.Controllers
 {

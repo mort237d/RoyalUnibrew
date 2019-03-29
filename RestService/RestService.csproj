@@ -163,9 +163,12 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\FrontpageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DBUtil\Connection.cs" />
+    <Compile Include="DBUtil\IManageProduct.cs" />
     <Compile Include="DBUtil\IManage_Frontpage.cs" />
+    <Compile Include="DBUtil\ManageProduct.cs" />
     <Compile Include="DBUtil\Manage_Frontpage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

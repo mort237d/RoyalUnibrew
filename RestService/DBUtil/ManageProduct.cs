@@ -6,14 +6,14 @@ using ModelLibrary;
 
 namespace RestService.DBUtil
 {
-    public class Manage_Frontpage : IManage_Frontpage
+    public class ManageProduct : IManageProduct
     {
         Connection connection = new Connection();
 
-        public List<Frontpage> GetAllFrontpages()
+        public List<Product> GetAllProducts()
         {
-            List<Frontpage> frontpages = new List<Frontpage>();
-            string queryString = "SELECT * FROM Frontpage";
+            List<Product> products = new List<Product>();
+            string queryString = "SELECT * FROM Product";
 
             using (connection.MyConnection)
             {
@@ -25,14 +25,12 @@ namespace RestService.DBUtil
                 {
                     while (reader.Read())
                     {
-                        Frontpage frontpage = new Frontpage();
+                        Product product = new Product();
 
-                        frontpage.ProcessOrder_No = reader.GetInt32(0);
-                        frontpage.Date = reader.GetDateTime(1);
-                        frontpage.FinishedProduct_No = reader.GetInt32(2);
-                        frontpage.Note = reader.GetString(3);
+                        product.FinishedProduct_No = reader.GetInt32(0);
+                        product.ProductName = reader.GetString(1);
 
-                        frontpages.Add(frontpage);
+                        products.Add(product);
                     }
                 }
                 catch (Exception e)
@@ -45,13 +43,13 @@ namespace RestService.DBUtil
                     command.Connection.Close();
                 }
             }
-            return frontpages;
+            return products;
         }
 
-        public Frontpage GetFrontpageFromID(int processOrderNo)
+        public Product GetProductFromID(int finishedProductNo)
         {
-            string queryString = $"SELECT * FROM Frontpage WHERE ProcessOrder_No = {processOrderNo}";
-            Frontpage frontpage = new Frontpage();
+            string queryString = $"SELECT * FROM Product WHERE FinishedProduct_No = {finishedProductNo}";
+            Product product = new Product();
 
             using (connection.MyConnection)
             {
@@ -63,10 +61,8 @@ namespace RestService.DBUtil
                 {
                     while (reader.Read())
                     {
-                        frontpage.ProcessOrder_No = reader.GetInt32(0);
-                        frontpage.Date = reader.GetDateTime(1);
-                        frontpage.FinishedProduct_No = reader.GetInt32(2);
-                        frontpage.Note = reader.GetString(3);
+                        product.FinishedProduct_No = reader.GetInt32(0);
+                        product.ProductName = reader.GetString(1);
                     }
                 }
                 catch (Exception e)
@@ -79,22 +75,20 @@ namespace RestService.DBUtil
                     command.Connection.Close();
                 }
 
-                return frontpage;
+                return product;
             }
         }
 
-        public bool CreateFrontpage(Frontpage frontpage)
+        public bool CreateProduct(Product product)
         {
-            string queryString = "INSERT INTO Frontpage (ProcessOrder_No, Date, FinishedProduct_No, Note) VALUES (@ProcessOrder_No, @Date, @FinishedProduct_No, @Note)";
+            string queryString = "INSERT INTO Product (FinishedProduct_No, ProductName) VALUES (@FinishedProduct_No, @ProductName)";
 
             using (connection.MyConnection)
             {
                 SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
                 
-                command.Parameters.AddWithValue("@ProcessOrder_No", frontpage.ProcessOrder_No);
-                command.Parameters.AddWithValue("@Date", frontpage.Date);
-                command.Parameters.AddWithValue("@FinishedProduct_No", frontpage.FinishedProduct_No);
-                command.Parameters.AddWithValue("@Note", frontpage.Note);
+                command.Parameters.AddWithValue("@FinishedProduct_No", product.FinishedProduct_No);
+                command.Parameters.AddWithValue("@ProductName", product.ProductName);
 
                 command.Connection.Open();
                 try
@@ -114,18 +108,16 @@ namespace RestService.DBUtil
             }
         }
 
-        public bool UpdateFrontpage(Frontpage frontpage, int processOrderNo)
+        public bool UpdateProduct(Product product, int finishedProductNo)
         {
-            string queryString = $"UPDATE Frontpage SET ProcessOrder_No = @ProcessOrder_No, Date = @Date, FinishedProduct_No = @FinishedProduct_No, Note = @Note WHERE ProcessOrder_No = {processOrderNo}";
+            string queryString = $"UPDATE Product SET FinishedProduct_No = @FinishedProduct_No, ProductName = @ProductName WHERE FinishedProduct_No = {finishedProductNo}";
 
             using (connection.MyConnection)
             {
                 SqlCommand command = new SqlCommand(queryString, connection.MyConnection);
 
-                command.Parameters.AddWithValue("@ProcessOrder_No", frontpage.ProcessOrder_No);
-                command.Parameters.AddWithValue("@Date", frontpage.Date);
-                command.Parameters.AddWithValue("@FinishedProduct_No", frontpage.FinishedProduct_No);
-                command.Parameters.AddWithValue("@Note", frontpage.Note);
+                command.Parameters.AddWithValue("@FinishedProduct_No", product.FinishedProduct_No);
+                command.Parameters.AddWithValue("@ProductName", product.ProductName);
 
                 command.Connection.Open();
                 try
@@ -145,9 +137,9 @@ namespace RestService.DBUtil
             }
         }
 
-        public bool DeleteFrontpage(int processOrderNo)
+        public bool DeleteProduct(int finishedProductNo)
         {
-            string queryString = $"DELETE FROM Frontpage WHERE ProcessOrder_No = {processOrderNo}";
+            string queryString = $"DELETE FROM Product WHERE FinishedProduct_No = {finishedProductNo}";
 
             using (connection.MyConnection)
             {
