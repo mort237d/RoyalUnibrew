@@ -6,7 +6,7 @@ using ModelLibrary;
 
 namespace RestService.DBUtil
 {
-    public class ManageProduct : IManageProduct
+    public class ManageProduct
     {
         Connection connection = new Connection();
 

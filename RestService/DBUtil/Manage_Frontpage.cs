@@ -6,7 +6,7 @@ using ModelLibrary;
 
 namespace RestService.DBUtil
 {
-    public class Manage_Frontpage : IManage_Frontpage
+    public class Manage_Frontpage
     {
         Connection connection = new Connection();
 
