@@ -23,7 +23,7 @@ namespace UniBase
             return JsonConvert.DeserializeObject<T>(resTask.Result);
         }
 
-        private static bool DeleteFacility<T>(T type, int id)
+        private static bool DeleteById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
 
@@ -38,9 +38,9 @@ namespace UniBase
             return false;
         }
 
-        private bool CreateFacility(Facility facility)
+        private static bool CreateByObject<T>(T type, T obj)
         {
-            String jsonStr = JsonConvert.SerializeObject(facility);
+            String jsonStr = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(jsonStr, Encoding.ASCII, "application/json");
 
             Task<HttpResponseMessage> postAsync = client.PostAsync(URI, content);
@@ -54,9 +54,9 @@ namespace UniBase
             return false;
         }
 
-        private bool UpdateFacility(int id, Facility facility)
+        private static bool UpdateByObjectAndId<T>(T type,int id, T obj)
         {
-            String jsonStr = JsonConvert.SerializeObject(facility);
+            String jsonStr = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
 
             Task<HttpResponseMessage> putAsync = client.PutAsync(URI + "/" + id, content);
