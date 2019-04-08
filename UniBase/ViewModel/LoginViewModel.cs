@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 
-namespace UniBase.ModelView
+namespace UniBase.ViewModel
 {
     class LoginViewModel
     {

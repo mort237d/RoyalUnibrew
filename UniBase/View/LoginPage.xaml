@@ -5,11 +5,12 @@
     xmlns:local="using:UniBase.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:UniBase.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.DataContext>
-        <local:LoginPage/>
+        <viewModel:LoginViewModel/>
     </Page.DataContext>
     <Grid>
 
