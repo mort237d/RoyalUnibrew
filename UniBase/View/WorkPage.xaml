@@ -12,7 +12,9 @@
     <Page.DataContext>
         <viewModel:WorkViewModel/>
     </Page.DataContext>
+
     <Grid>
 
+        <TextBlock Height="200" Width=" 200" Text="{Binding Test, Mode=TwoWay}"/>
     </Grid>
 </Page>
