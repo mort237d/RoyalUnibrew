@@ -17,11 +17,13 @@ namespace UniBase.ViewModel
 
         public WorkViewModel()
         {
-            Product v = GetOneFacility(1);
+            
+            Product v = ModelGenerics.GetById(new Product(), 1);
 
             test = v.ProductName;
         }
 
+        
 
         private Product GetOneFacility(int id)
         {
