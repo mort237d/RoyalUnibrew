@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GalaSoft.MvvmLight.Command;
 
 namespace UniBase.ModelView
 {
     class LoginViewModel
     {
+        public RelayCommand GetDataRelayCommand { get; set; }
+
+        public LoginViewModel()
+        {
+            //GetDataRelayCommand = new RelayCommand();
+        }
     }
 }
