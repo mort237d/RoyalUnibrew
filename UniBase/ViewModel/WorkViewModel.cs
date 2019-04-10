@@ -13,8 +13,8 @@ namespace UniBase.ViewModel
 
         public WorkViewModel()
         {
-            Product testProduct = new Product(){BedstBeforeDateLength = 2222, ProductName = "TestProduct", FinishedProduct_No = 2222};
-            Product changedProduct = new Product() { BedstBeforeDateLength = 1111, ProductName = "TestProduct", FinishedProduct_No = 2222 };
+            Product testProduct = new Product(2222, "TestProduct", 2222);
+            Product changedProduct = new Product(1111, "TestProduct", 2222);
 
             ModelGenerics.CreateByObject(testProduct);
             Product v = ModelGenerics.GetById(new Product(), 2222);
