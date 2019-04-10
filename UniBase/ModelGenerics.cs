@@ -25,8 +25,9 @@ namespace UniBase
         public static T GetById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
+            string httpUrl = URI + "/" + typeName[1] + "/" + id;
 
-            Task<string> resTask = client.GetStringAsync(URI + "/" + typeName[1] + "/" + id);
+            Task<string> resTask = client.GetStringAsync(httpUrl);
 
             return JsonConvert.DeserializeObject<T>(resTask.Result);
         }
@@ -38,11 +39,12 @@ namespace UniBase
         /// <param name="type">The type name</param>
         /// <param name="id">The ID of the type</param>
         /// <returns></returns>
-        private static bool DeleteById<T>(T type, int id)
+        public static bool DeleteById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
+            string httpUrl = URI + "/" + typeName[1] + "/" + id;
 
-            Task<HttpResponseMessage> deleteAsync = client.DeleteAsync(URI + "/" + typeName[1] + "/" + id);
+            Task<HttpResponseMessage> deleteAsync = client.DeleteAsync(httpUrl);
 
             HttpResponseMessage resp = deleteAsync.Result;
             if (resp.IsSuccessStatusCode)
@@ -57,10 +59,9 @@ namespace UniBase
         /// Generic method to create a specific type
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
-        /// <param name="type">The type name</param>
         /// <param name="obj">The object of the type you want to create</param>
         /// <returns></returns>
-        private static bool CreateByObject<T>(T type, T obj)
+        public static bool CreateByObject<T>(T obj)
         {
             String jsonStr = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(jsonStr, Encoding.ASCII, "application/json");
@@ -80,11 +81,10 @@ namespace UniBase
         /// Generic method to update a specific type by its ID
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
-        /// <param name="type">The type name</param>
         /// <param name="id">The ID of the type</param>
         /// <param name="obj">The object of the type you want to create</param>
         /// <returns></returns>
-        private static bool UpdateByObjectAndId<T>(T type,int id, T obj)
+        public static bool UpdateByObjectAndId<T>(int id, T obj)
         {
             String jsonStr = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
