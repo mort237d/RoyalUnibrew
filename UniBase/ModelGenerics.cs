@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace UniBase
 {
-    static class ModelGenerics
+    public static class ModelGenerics
     {
         private const string URI = "http://localhost:12736/api/";
         private static HttpClient client = new HttpClient();
