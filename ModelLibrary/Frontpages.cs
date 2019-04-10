@@ -2,7 +2,7 @@
 
 namespace ModelLibrary
 {
-    public class Frontpage
+    public class Frontpages
     {
         public int ProcessOrder_No { get; set; } //PK
         public int FinishedProduct_No { get; set; } //FK

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace UniBase
             if (resp.IsSuccessStatusCode)
             {
                 String jsonStr = resp.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<bool>(jsonStr);
+                return true; //JsonConvert.DeserializeObject<bool>(jsonStr);
             }
             return false;
         }
@@ -60,16 +61,19 @@ namespace UniBase
         /// <returns></returns>
         public static bool CreateByObject<T>(T obj)
         {
+            String[] typeName = obj.ToString().Split('.');
+            string httpUrl = URI + "/" + typeName[1];
+
             String jsonStr = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(jsonStr, Encoding.ASCII, "application/json");
 
-            Task<HttpResponseMessage> postAsync = client.PostAsync(URI, content);
+            Task<HttpResponseMessage> postAsync = client.PostAsync(httpUrl, content);
 
             HttpResponseMessage resp = postAsync.Result;
             if (resp.IsSuccessStatusCode)
             {
                 String jsonResStr = resp.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<bool>(jsonResStr);
+                return true; //JsonConvert.DeserializeObject<bool>(jsonResStr);
             }
             return false;
         }
@@ -83,16 +87,19 @@ namespace UniBase
         /// <returns></returns>
         public static bool UpdateByObjectAndId<T>(int id, T obj)
         {
+            String[] typeName = obj.ToString().Split('.');
+            string httpUrl = URI + "/" + typeName[1] + "/" + id;
+
             String jsonStr = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
 
-            Task<HttpResponseMessage> putAsync = client.PutAsync(URI + "/" + id, content);
+            Task<HttpResponseMessage> putAsync = client.PutAsync(httpUrl, content);
 
             HttpResponseMessage resp = putAsync.Result;
             if (resp.IsSuccessStatusCode)
             {
                 String jsonResStr = resp.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<bool>(jsonResStr);
+                return true; //JsonConvert.DeserializeObject<bool>(jsonResStr);
             }
             return false;
         }

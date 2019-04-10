@@ -1,15 +1,15 @@
 ﻿namespace ModelLibrary
 {
-    public class Product
+    public class Products
     {
-        public Product(int finishedProduct_No, string productName, int bedstBeforeDateLength)
+        public Products(int finishedProduct_No, string productName, int bedstBeforeDateLength)
         {
             FinishedProduct_No = finishedProduct_No;
             ProductName = productName;
             BedstBeforeDateLength = bedstBeforeDateLength;
         }
 
-        public Product()
+        public Products()
         {
             
         }

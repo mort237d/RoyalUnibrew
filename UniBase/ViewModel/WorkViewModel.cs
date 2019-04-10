@@ -13,20 +13,22 @@ namespace UniBase.ViewModel
 
         public WorkViewModel()
         {
-            Product testProduct = new Product(2222, "TestProduct", 2222);
-            Product changedProduct = new Product(1111, "TestProduct", 2222);
+            Products testProduct = new Products(222222, "TesttProduct", 222222);
+            Products changedProduct = new Products(1, "Royal Beer", 10);
 
             ModelGenerics.CreateByObject(testProduct);
-            Product v = ModelGenerics.GetById(new Product(), 2222);
+            Products v = ModelGenerics.GetById(new Products(), 222222);
             Debug.WriteLine(v.ProductName);
-
-            //ModelGenerics.UpdateByObjectAndId(2222, changedProduct);
+            test = v.ProductName;
+            //ModelGenerics.UpdateByObjectAndId(1, changedProduct);
+            // v = ModelGenerics.GetById(new Product(), 1);
+            //test = v.BedstBeforeDateLength.ToString();
             //v = ModelGenerics.GetById(new Product(), 2222);
             //Debug.WriteLine(v.ProductName);
 
-            //ModelGenerics.DeleteById(new Product(), 2222);
-            //v = ModelGenerics.GetById(new Product(), 2222);
-            //Debug.WriteLine(v.ProductName);
+            ModelGenerics.DeleteById(new Products(), 2222);
+            v = ModelGenerics.GetById(new Products(), 2222);
+            Debug.WriteLine(v.ProductName);
 
         }
         
