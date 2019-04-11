@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -17,18 +18,13 @@ namespace UniBase.ViewModel
             Products changedProduct = new Products(1, "Royal Beer", 10);
 
             ModelGenerics.CreateByObject(testProduct);
-            Products v = ModelGenerics.GetById(new Products(), 222222);
-            Debug.WriteLine(v.ProductName);
-            test = v.ProductName;
-            //ModelGenerics.UpdateByObjectAndId(1, changedProduct);
-            // v = ModelGenerics.GetById(new Product(), 1);
-            //test = v.BedstBeforeDateLength.ToString();
-            //v = ModelGenerics.GetById(new Product(), 2222);
-            //Debug.WriteLine(v.ProductName);
+            List<Products> v = ModelGenerics.GetAll(new Products());
+            foreach (var va in v)
+            {
+                Debug.WriteLine(va.ProductName);
+            }
+            
 
-            ModelGenerics.DeleteById(new Products(), 2222);
-            v = ModelGenerics.GetById(new Products(), 2222);
-            Debug.WriteLine(v.ProductName);
 
         }
         
