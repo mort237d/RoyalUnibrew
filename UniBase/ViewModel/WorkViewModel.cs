@@ -13,17 +13,7 @@ namespace UniBase.ViewModel
         private string test = "hej";
 
         public WorkViewModel()
-        {
-            Products testProduct = new Products(222222, "TesttProduct", 222222);
-            Products changedProduct = new Products(1, "Royal Beer", 10);
-
-            ModelGenerics.CreateByObject(testProduct);
-            List<Products> v = ModelGenerics.GetAll(new Products());
-            foreach (var va in v)
-            {
-                Debug.WriteLine(va.ProductName);
-            }
-            
+        {       
 
 
         }

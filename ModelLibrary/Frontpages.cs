@@ -15,5 +15,7 @@ namespace ModelLibrary
         public string Note { get; set; }
         public int Column { get; set; }
         public int WeekNo { get; set; }
+        public virtual Products Product { get; set; }
+
     }
 }
