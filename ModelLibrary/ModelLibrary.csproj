@@ -40,8 +40,8 @@
   <ItemGroup>
     <Compile Include="ControlRegistration.cs" />
     <Compile Include="ControlSchedule.cs" />
-    <Compile Include="Frontpage.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Frontpages.cs" />
+    <Compile Include="Products.cs" />
     <Compile Include="Production.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShiftRegistration.cs" />

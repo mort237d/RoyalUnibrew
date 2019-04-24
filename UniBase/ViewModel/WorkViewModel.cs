@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -12,21 +13,8 @@ namespace UniBase.ViewModel
         private string test = "hej";
 
         public WorkViewModel()
-        {
-            Product testProduct = new Product(2222, "TestProduct", 2222);
-            Product changedProduct = new Product(1111, "TestProduct", 2222);
+        {       
 
-            ModelGenerics.CreateByObject(testProduct);
-            Product v = ModelGenerics.GetById(new Product(), 2222);
-            Debug.WriteLine(v.ProductName);
-
-            //ModelGenerics.UpdateByObjectAndId(2222, changedProduct);
-            //v = ModelGenerics.GetById(new Product(), 2222);
-            //Debug.WriteLine(v.ProductName);
-
-            //ModelGenerics.DeleteById(new Product(), 2222);
-            //v = ModelGenerics.GetById(new Product(), 2222);
-            //Debug.WriteLine(v.ProductName);
 
         }
         
