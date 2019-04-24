@@ -17,6 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <CommandBar Background="DarkCyan">
@@ -32,9 +33,29 @@
             <PivotItem Header="K2">
                 <Pivot>
                     <PivotItem Header="Forside">
+                        <GridView ItemsSource="{Binding Strings}">
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBox Text=""/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </PivotItem>
+                    <PivotItem Header="Kontrol regristering">
 
                     </PivotItem>
-                    <PivotItem Header="Forside">
+                    <PivotItem Header="Kontrol skema">
+
+                    </PivotItem>
+                    <PivotItem Header="Produktion">
+
+                    </PivotItem>
+                    <PivotItem Header="Vagt registering">
+
+                    </PivotItem>
+                    <PivotItem Header="TU">
 
                     </PivotItem>
 
@@ -50,6 +71,6 @@
 
             </PivotItem>
         </Pivot>
-
+        <Button Grid.Row="2" Margin="16,16" Height="80" Width="160" VerticalAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding SaveWorkCommand}" Content="Save" FontSize="32" Background="DarkCyan"/>
     </Grid>
 </Page>

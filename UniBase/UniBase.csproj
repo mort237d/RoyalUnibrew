@@ -122,7 +122,8 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModelGenerics.cs" />
+    <Compile Include="Model\ManageTables.cs" />
+    <Compile Include="Model\ModelGenerics.cs" />
     <Compile Include="Model\ManageLogin.cs" />
     <Compile Include="Model\ManageUser.cs" />
     <Compile Include="Model\Message.cs" />
