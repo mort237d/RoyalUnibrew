@@ -21,7 +21,6 @@ namespace UniBase.Model
         public string PassWord { get; set; }
         private string _wrongLogin, _wrongLoginColor;
         private ManageUser _manageUser = ManageUser.Instance;
-        private ObservableCollection<string> _logInLogOutList;
 
         #endregion
 
@@ -45,12 +44,6 @@ namespace UniBase.Model
                 _wrongLoginColor = value;
                 OnPropertyChanged();
             }
-        }
-
-        public ObservableCollection<string> LogInLogOutList
-        {
-            get { return _logInLogOutList; }
-            set { _logInLogOutList = value; }
         }
 
         #endregion
@@ -81,7 +74,6 @@ namespace UniBase.Model
 
         public void LogOffMethod()
         {
-            LogInLogOutList.Add(_manageUser.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
             Frame currentFrame = Window.Current.Content as Frame;
             currentFrame?.Navigate(typeof(LoginPage));
@@ -92,10 +84,9 @@ namespace UniBase.Model
             bool temp = false;
             foreach (var user in _manageUser.Users)
             {
-                if (user.UserName == UserName && user.Password == PassWord)
+                if (user.Password == PassWord)
                 {
                     _manageUser.CurrentUser = user;
-                    LogInLogOutList.Add(UserName + " logged in at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
                     _manageUser.ButtonVisibility(user);
 

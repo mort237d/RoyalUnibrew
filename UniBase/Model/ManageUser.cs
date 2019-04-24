@@ -178,6 +178,9 @@ namespace UniBase.Model
 
         private ManageUser()
         {
+            Users = new ObservableCollection<User>();
+            Users.Add(new User("1", "1", "1", "1", "1", "1"));
+
             _message = new Message(this);
         }
 
@@ -198,6 +201,8 @@ namespace UniBase.Model
         }
 
         #endregion
+
+        
 
         #region ButtonMethods
 
@@ -231,8 +236,8 @@ namespace UniBase.Model
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, StandardImage, ""));
-                            else Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, ImageTb, ""));
+                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, ""));
+                            else Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, ""));
 
                             ShowAddUserPopUp = false;
 
