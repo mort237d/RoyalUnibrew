@@ -123,6 +123,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ModelGenerics.cs" />
+    <Compile Include="Model\ManageLogin.cs" />
+    <Compile Include="Model\ManageUser.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\WorkViewModel.cs" />
@@ -179,9 +183,7 @@
       <Version>12.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj">
       <Project>{80f76c9b-b055-4167-84b9-0ea512c987a3}</Project>
