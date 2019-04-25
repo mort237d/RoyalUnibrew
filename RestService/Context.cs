@@ -1,3 +1,5 @@
+using RestService.Models;
+
 namespace RestService
 {
     using System;
@@ -7,9 +9,9 @@ namespace RestService
 
     public partial class Context : DbContext
     {
-        public Context()
-            : base("name=ContextConnectionSettings")
+        public Context() : base("name=ContextConnectionSettings")
         {
+            base.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<ControlRegistration> ControlRegistrations { get; set; }
