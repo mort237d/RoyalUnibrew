@@ -179,7 +179,7 @@ namespace UniBase.Model
         private ManageUser()
         {
             Users = new ObservableCollection<User>();
-            Users.Add(new User("1", "1", "1", "1", "1", "1"));
+            Users.Add(new User("1", "1", "1", "1", "1"));
 
             _message = new Message(this);
         }
@@ -236,8 +236,8 @@ namespace UniBase.Model
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, ""));
-                            else Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, ""));
+                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage));
+                            else Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
 
                             ShowAddUserPopUp = false;
 
@@ -264,8 +264,7 @@ namespace UniBase.Model
 
         public void ButtonVisibility(User userToCheck)
         {
-            if (userToCheck.Admin == "Admin") Visible = "Visible";
-            else Visible = "Collapsed";
+            Visible = userToCheck is Administrator ? "Visible" : "Collapsed";
         }
 
         public async void ChangeAdmin()

@@ -21,6 +21,9 @@ namespace UniBase.ViewModel
 
         public WorkViewModel()
         {
+            Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
+            Debug.WriteLine("\n \t" + a.Name, "Admin");
+            Debug.WriteLine("\n \tError Message", "Category");
             for (int i = 0; i < 50; i++)
             {
                 Strings.Add(i.ToString());

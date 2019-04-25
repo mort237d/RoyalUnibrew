@@ -13,20 +13,19 @@ namespace UniBase.Model
     {
         #region Field
 
-        private string _name, _email, _telephoneNumber, _password, _imageSource, _admin;
+        private string _name, _email, _telephoneNumber, _password, _imageSource;
 
         #endregion
 
         #region Constructors
         //TODO Admin skal ændres til en int eller andet.
-        public User(string name, string email, string telephoneNumber, string password, string imageSource, string admin)
+        public User(string name, string email, string telephoneNumber, string password, string imageSource)
         {
             Name = name;
             Email = email;
             TelephoneNumber = telephoneNumber;
             Password = password;
             ImageSource = imageSource;
-            Admin = admin;
         }
 
         public User()
@@ -84,16 +83,6 @@ namespace UniBase.Model
             set
             {
                 _imageSource = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Admin
-        {
-            get { return _admin; }
-            set
-            {
-                _admin = value;
                 OnPropertyChanged();
             }
         }
