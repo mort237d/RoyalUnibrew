@@ -9,8 +9,8 @@ namespace ModelLibrary
         public DateTime ProductionDate { get; set; }
         public string CommentsOnChangedDate { get; set; }
         public bool ControlAlacholSpearDispenser { get; set; }
-        public int Cap_No { get; set; }
-        public int Etiquette_No { get; set; }
+        public int CapNo { get; set; }
+        public int EtiquetteNo { get; set; }
         public int KegSize { get; set; }
         public string Signature { get; set; }
         public DateTime FirstPalletDepalletizing { get; set; }

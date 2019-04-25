@@ -21,6 +21,8 @@ namespace UniBase.ViewModel
 
         public WorkViewModel()
         {
+            var test = ModelGenerics.GetById(new Frontpages(), 1);
+            Debug.WriteLine(test.Date);
             for (int i = 0; i < 50; i++)
             {
                 Strings.Add(i.ToString());

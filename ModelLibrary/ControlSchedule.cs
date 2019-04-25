@@ -6,7 +6,7 @@ namespace ModelLibrary
     {
         public int Control_ID { get; set; } //PK
         public DateTime Time { get; set; }
-        public DateTime WeightControl { get; set; } //Tidspunktet hvor vægten blev kontroleret
+        public DateTime WeightControlTime { get; set; } //Tidspunktet hvor vægten blev kontroleret
         public double Weight { get; set; }
         public string ReceiptForTest { get; set; }
         public string KegTest { get; set; }
