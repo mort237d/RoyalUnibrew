@@ -3,14 +3,22 @@
     public class TU
     {
         public int TU_ID { get; set; } //PK
-        public int FirstDayStartTU { get; set; }
-        public int FirstDayEndTU { get; set; }
-        public int FirstDayTotal { get; set; }
-        public int SecondDayStartTU { get; set; }
-        public int SecondDayEndTU { get; set; }
-        public int SecondDayTotal { get; set; }
-        public int ThirdDayStartTU { get; set; }
-        public int ThirdDayEndTU { get; set; }
-        public int ThirdDayEnd { get; set; }
+        public int FirstDayStart_TU { get; set; }
+
+        public int FirstDayEnd_TU { get; set; }
+
+        public int FirstDay_Total { get; set; }
+
+        public int SecoundDayStart_TU { get; set; }
+
+        public int SecoundDayEnd_TU { get; set; }
+
+        public int SecoundDay_Total { get; set; }
+
+        public int ThirdDayStart_TU { get; set; }
+
+        public int ThirdDayEnd_TU { get; set; }
+
+        public int ThirdDay_Total { get; set; }
     }
 }

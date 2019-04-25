@@ -14,7 +14,7 @@ namespace ModelLibrary
         public DateTime Date { get; set; }
         public string Note { get; set; }
         public int Column { get; set; }
-        public int WeekNo { get; set; }
+        public int Week_No { get; set; }
         public virtual Products Product { get; set; }
 
     }
