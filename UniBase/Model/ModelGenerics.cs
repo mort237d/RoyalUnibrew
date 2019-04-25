@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Text;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace UniBase
+namespace UniBase.Model
 {
     public static class ModelGenerics
     {
@@ -28,6 +28,22 @@ namespace UniBase
             Task<string> resTask = client.GetStringAsync(httpUrl);
 
             return JsonConvert.DeserializeObject<T>(resTask.Result);
+        }
+
+        /// <summary>
+        /// Generic method to call a specific type from its ID
+        /// </summary>
+        /// <typeparam name="T">The specific type</typeparam>
+        /// <param name="type">The type name</param>
+        /// <returns></returns>
+        public static List<T> GetAll<T>(T type)
+        {
+            String[] typeName = type.ToString().Split('.');
+            string httpUrl = URI + "/" + typeName[1];
+
+            Task<string> resTask = client.GetStringAsync(httpUrl);
+
+            return JsonConvert.DeserializeObject<List<T>>(resTask.Result);
         }
 
         /// <summary>
@@ -57,14 +73,14 @@ namespace UniBase
         /// Generic method to create a specific type
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
-        /// <param name="obj">The object of the type you want to create</param>
+        /// <param name="type">The object of the type you want to create</param>
         /// <returns></returns>
-        public static bool CreateByObject<T>(T obj)
+        public static bool CreateByObject<T>(T type)
         {
-            String[] typeName = obj.ToString().Split('.');
+            String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1];
 
-            String jsonStr = JsonConvert.SerializeObject(obj);
+            String jsonStr = JsonConvert.SerializeObject(type);
             StringContent content = new StringContent(jsonStr, Encoding.ASCII, "application/json");
 
             Task<HttpResponseMessage> postAsync = client.PostAsync(httpUrl, content);
@@ -83,14 +99,14 @@ namespace UniBase
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
         /// <param name="id">The ID of the type</param>
-        /// <param name="obj">The object of the type you want to create</param>
+        /// <param name="type">The object of the type you want to create</param>
         /// <returns></returns>
-        public static bool UpdateByObjectAndId<T>(int id, T obj)
+        public static bool UpdateByObjectAndId<T>(int id, T type)
         {
-            String[] typeName = obj.ToString().Split('.');
+            String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1] + "/" + id;
 
-            String jsonStr = JsonConvert.SerializeObject(obj);
+            String jsonStr = JsonConvert.SerializeObject(type);
             StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
 
             Task<HttpResponseMessage> putAsync = client.PutAsync(httpUrl, content);

@@ -14,7 +14,63 @@
     </Page.DataContext>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <TextBlock Height="200" Width=" 200" Text="{Binding Test, Mode=TwoWay}"/>
+        <CommandBar Background="DarkCyan">
+            <CommandBar.SecondaryCommands>
+                <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
+                <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
+            </CommandBar.SecondaryCommands>
+            <AppBarSeparator/>
+            <AppBarButton Icon="Help" Label="Help" Command="{Binding GoToHelpPageCommand}"/>
+        </CommandBar>
+
+        <Pivot Grid.Row="1" Name="ColumnPivot">
+            <PivotItem Header="K2">
+                <Pivot>
+                    <PivotItem Header="Forside">
+                        <GridView ItemsSource="{Binding Strings}">
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBox Text=""/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </PivotItem>
+                    <PivotItem Header="Kontrol regristering">
+
+                    </PivotItem>
+                    <PivotItem Header="Kontrol skema">
+
+                    </PivotItem>
+                    <PivotItem Header="Produktion">
+
+                    </PivotItem>
+                    <PivotItem Header="Vagt registering">
+
+                    </PivotItem>
+                    <PivotItem Header="TU">
+
+                    </PivotItem>
+
+                </Pivot>
+            </PivotItem>
+            <PivotItem Header="K3">
+
+            </PivotItem>
+            <PivotItem Header="K4">
+
+            </PivotItem>
+            <PivotItem Header="K5">
+
+            </PivotItem>
+        </Pivot>
+        <Button Grid.Row="2" Margin="16,16" Height="80" Width="160" VerticalAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding SaveWorkCommand}" Content="Save" FontSize="32" Background="DarkCyan"/>
     </Grid>
 </Page>

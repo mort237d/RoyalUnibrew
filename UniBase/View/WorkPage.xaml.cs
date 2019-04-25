@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,7 +23,7 @@ namespace UniBase.View
     /// </summary>
     public sealed partial class WorkPage : Page
     {
-        public WorkPage()
+    public WorkPage()
         {
             this.InitializeComponent();
         }
