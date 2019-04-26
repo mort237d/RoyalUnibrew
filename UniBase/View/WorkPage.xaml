@@ -18,7 +18,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition />
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -35,21 +35,73 @@
             <PivotItem Header="K2">
                 <Pivot>
                     <PivotItem Header="Forside">
-                        <GridView ItemsSource="{Binding Strings}">
-                            <GridView.ItemTemplate>
+                        <ListView ItemsSource="{Binding ListFrontpages}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <ListViewItemPresenter ContentMargin="0" Padding="0" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.HeaderTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <TextBox Text=""/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" MinWidth="50"/>
+                                            <ColumnDefinition Width="2*" MinWidth="50"/>
+                                            <ColumnDefinition Width="2*" MinWidth="50"/>
+                                            <ColumnDefinition Width="2*" MinWidth="50"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
+                                            <TextBlock Text="Race Date" Margin="5,0,0,0" />
+                                        </Border>
+                                        <Border Grid.Column="1" BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
+                                            <TextBlock Text="Circuit" Margin="5,0,0,0"/>
+                                        </Border>
+                                        <Border Grid.Column="2" BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
+                                            <TextBlock Text="Laps" Margin="0,0,5,0"/>
+                                        </Border>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.HeaderTemplate>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox Text="{Binding Date}"></TextBox>
+                                        <TextBox Text="{Binding Column}"></TextBox>
                                     </StackPanel>
                                 </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </PivotItem>
                     <PivotItem Header="Kontrol regristering">
 
                     </PivotItem>
                     <PivotItem Header="Kontrol skema">
-
+                        <ListView ItemsSource="{Binding ListControlScheduleses}" Margin="0,5,0,0" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Height="auto">
+                                            <TextBox Text="{Binding Time}"/>
+                                            <TextBox Text="{Binding WeightControlTime}"/>
+                                            <TextBox Text="{Binding Weight}"/>
+                                            <TextBox Text="{Binding ReceiptForTest}"/>
+                                            <TextBox Text="{Binding KegTest}"/>
+                                            <TextBox Text="{Binding LudKoncentration}"/>
+                                            <TextBox Text="{Binding MipMA}"/>
+                                            <TextBox Text="{Binding Signature}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </PivotItem>
                     <PivotItem Header="Produktion">
 
@@ -57,7 +109,7 @@
                     <PivotItem Header="Vagt registering">
 
                     </PivotItem>
-                    <PivotItem Header="TU">
+                    <PivotItem Header="TUs">
 
                     </PivotItem>
                     
