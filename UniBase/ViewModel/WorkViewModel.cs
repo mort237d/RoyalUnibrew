@@ -16,6 +16,7 @@ namespace UniBase.ViewModel
     {
         private string test = "hej";
         public List<string> Strings { get; set; } = new List<string>{"Du dør", "død"};
+        public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
         public RelayCommand SaveWorkCommand { get; set; }
         
 
@@ -44,6 +45,12 @@ namespace UniBase.ViewModel
                 test = value; 
                 OnPropertyChanged();
             }
+        }
+
+        public TrendAdminstrator TrendAdminstrator
+        {
+            get { return _trendAdminstrator; }
+            set { _trendAdminstrator = value; }
         }
 
         #region InotifyPropertyChanged
