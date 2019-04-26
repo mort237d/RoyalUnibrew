@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,14 +37,14 @@ namespace UniBase.Model
         /// <typeparam name="T">The specific type</typeparam>
         /// <param name="type">The type name</param>
         /// <returns></returns>
-        public static List<T> GetAll<T>(T type)
+        public static ObservableCollection<T> GetAll<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1];
 
             Task<string> resTask = client.GetStringAsync(httpUrl);
 
-            return JsonConvert.DeserializeObject<List<T>>(resTask.Result);
+            return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
         }
 
         /// <summary>
