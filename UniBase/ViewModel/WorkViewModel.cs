@@ -19,7 +19,7 @@ namespace UniBase.ViewModel
         public List<string> Strings { get; set; } = new List<string>{"Du dør", "død"};
         public List<Frontpages> ListFrontpages { get; set; } = new List<Frontpages>{new Frontpages(2, 2, 2, 2, 2, 2, 2, DateTime.Today, "Hej", 2, 2, new Products()), new Frontpages(1, 1, 1, 1, 1, 1, 1, DateTime.Today, "Test", 2, 2, new Products()) };
         public RelayCommand SaveWorkCommand { get; set; }
-        ManageTables mngTables = ManageTables.Instance;
+        //ManageTables mngTables = ManageTables.Instance;
 
         public WorkViewModel()
         {
