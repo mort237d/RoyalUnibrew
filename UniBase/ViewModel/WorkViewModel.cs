@@ -15,7 +15,8 @@ namespace UniBase.ViewModel
     class WorkViewModel : INotifyPropertyChanged
     {
         private string test = "hej";
-        public List<string> Strings { get; set; } = new List<string>{"Du dør", "død"};
+        public List<string> Strings { get; set; } = new List<string> { "Du dør", "død" };
+        public List<Frontpages> FrontpageList { get; set; } = new List<Frontpages> { new Frontpages(), new Frontpages() };
         public RelayCommand SaveWorkCommand { get; set; }
         
 
