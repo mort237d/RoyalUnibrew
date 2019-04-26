@@ -1,11 +1,9 @@
-namespace RestService
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace RestService.Models
+{
     [Table("Frontpage")]
     public partial class Frontpage
     {
@@ -35,6 +33,16 @@ namespace RestService
 
         public int Week_No { get; set; }
 
+        public virtual ControlRegistration ControlRegistration { get; set; }
+
+        public virtual ControlSchedule ControlSchedule { get; set; }
+
         public virtual Product Product { get; set; }
+
+        public virtual Production Production { get; set; }
+
+        public virtual ShiftRegistration ShiftRegistration { get; set; }
+
+        public virtual TU TU { get; set; }
     }
 }

@@ -13,44 +13,44 @@ using RestService.Models;
 
 namespace RestService.Controllers
 {
-    public class FrontpagesController : ApiController
+    public class ShiftRegistrationsController : ApiController
     {
         private Context db = new Context();
 
-        // GET: api/Frontpages
-        public IQueryable<Frontpage> GetFrontpages()
+        // GET: api/ShiftRegistrations
+        public IQueryable<ShiftRegistration> GetShiftRegistrations()
         {
-            return db.Frontpages;
+            return db.ShiftRegistrations;
         }
 
-        // GET: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult GetFrontpage(int id)
+        // GET: api/ShiftRegistrations/5
+        [ResponseType(typeof(ShiftRegistration))]
+        public IHttpActionResult GetShiftRegistration(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
-            if (frontpage == null)
+            ShiftRegistration shiftRegistration = db.ShiftRegistrations.Find(id);
+            if (shiftRegistration == null)
             {
                 return NotFound();
             }
 
-            return Ok(frontpage);
+            return Ok(shiftRegistration);
         }
 
-        // PUT: api/Frontpages/5
+        // PUT: api/ShiftRegistrations/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFrontpage(int id, Frontpage frontpage)
+        public IHttpActionResult PutShiftRegistration(int id, ShiftRegistration shiftRegistration)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != frontpage.ProcessOrder_No)
+            if (id != shiftRegistration.Shift_Reg)
             {
                 return BadRequest();
             }
 
-            db.Entry(frontpage).State = EntityState.Modified;
+            db.Entry(shiftRegistration).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FrontpageExists(id))
+                if (!ShiftRegistrationExists(id))
                 {
                     return NotFound();
                 }
@@ -71,16 +71,16 @@ namespace RestService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Frontpages
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult PostFrontpage(Frontpage frontpage)
+        // POST: api/ShiftRegistrations
+        [ResponseType(typeof(ShiftRegistration))]
+        public IHttpActionResult PostShiftRegistration(ShiftRegistration shiftRegistration)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Frontpages.Add(frontpage);
+            db.ShiftRegistrations.Add(shiftRegistration);
 
             try
             {
@@ -88,7 +88,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (FrontpageExists(frontpage.ProcessOrder_No))
+                if (ShiftRegistrationExists(shiftRegistration.Shift_Reg))
                 {
                     return Conflict();
                 }
@@ -98,23 +98,23 @@ namespace RestService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = frontpage.ProcessOrder_No }, frontpage);
+            return CreatedAtRoute("DefaultApi", new { id = shiftRegistration.Shift_Reg }, shiftRegistration);
         }
 
-        // DELETE: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult DeleteFrontpage(int id)
+        // DELETE: api/ShiftRegistrations/5
+        [ResponseType(typeof(ShiftRegistration))]
+        public IHttpActionResult DeleteShiftRegistration(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
-            if (frontpage == null)
+            ShiftRegistration shiftRegistration = db.ShiftRegistrations.Find(id);
+            if (shiftRegistration == null)
             {
                 return NotFound();
             }
 
-            db.Frontpages.Remove(frontpage);
+            db.ShiftRegistrations.Remove(shiftRegistration);
             db.SaveChanges();
 
-            return Ok(frontpage);
+            return Ok(shiftRegistration);
         }
 
         protected override void Dispose(bool disposing)
@@ -126,9 +126,9 @@ namespace RestService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool FrontpageExists(int id)
+        private bool ShiftRegistrationExists(int id)
         {
-            return db.Frontpages.Count(e => e.ProcessOrder_No == id) > 0;
+            return db.ShiftRegistrations.Count(e => e.Shift_Reg == id) > 0;
         }
     }
 }

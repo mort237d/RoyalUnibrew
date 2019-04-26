@@ -13,44 +13,44 @@ using RestService.Models;
 
 namespace RestService.Controllers
 {
-    public class FrontpagesController : ApiController
+    public class ProductionsController : ApiController
     {
         private Context db = new Context();
 
-        // GET: api/Frontpages
-        public IQueryable<Frontpage> GetFrontpages()
+        // GET: api/Productions
+        public IQueryable<Production> GetProductions()
         {
-            return db.Frontpages;
+            return db.Productions;
         }
 
-        // GET: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult GetFrontpage(int id)
+        // GET: api/Productions/5
+        [ResponseType(typeof(Production))]
+        public IHttpActionResult GetProduction(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
-            if (frontpage == null)
+            Production production = db.Productions.Find(id);
+            if (production == null)
             {
                 return NotFound();
             }
 
-            return Ok(frontpage);
+            return Ok(production);
         }
 
-        // PUT: api/Frontpages/5
+        // PUT: api/Productions/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFrontpage(int id, Frontpage frontpage)
+        public IHttpActionResult PutProduction(int id, Production production)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != frontpage.ProcessOrder_No)
+            if (id != production.Production_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(frontpage).State = EntityState.Modified;
+            db.Entry(production).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FrontpageExists(id))
+                if (!ProductionExists(id))
                 {
                     return NotFound();
                 }
@@ -71,16 +71,16 @@ namespace RestService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Frontpages
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult PostFrontpage(Frontpage frontpage)
+        // POST: api/Productions
+        [ResponseType(typeof(Production))]
+        public IHttpActionResult PostProduction(Production production)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Frontpages.Add(frontpage);
+            db.Productions.Add(production);
 
             try
             {
@@ -88,7 +88,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (FrontpageExists(frontpage.ProcessOrder_No))
+                if (ProductionExists(production.Production_ID))
                 {
                     return Conflict();
                 }
@@ -98,23 +98,23 @@ namespace RestService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = frontpage.ProcessOrder_No }, frontpage);
+            return CreatedAtRoute("DefaultApi", new { id = production.Production_ID }, production);
         }
 
-        // DELETE: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult DeleteFrontpage(int id)
+        // DELETE: api/Productions/5
+        [ResponseType(typeof(Production))]
+        public IHttpActionResult DeleteProduction(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
-            if (frontpage == null)
+            Production production = db.Productions.Find(id);
+            if (production == null)
             {
                 return NotFound();
             }
 
-            db.Frontpages.Remove(frontpage);
+            db.Productions.Remove(production);
             db.SaveChanges();
 
-            return Ok(frontpage);
+            return Ok(production);
         }
 
         protected override void Dispose(bool disposing)
@@ -126,9 +126,9 @@ namespace RestService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool FrontpageExists(int id)
+        private bool ProductionExists(int id)
         {
-            return db.Frontpages.Count(e => e.ProcessOrder_No == id) > 0;
+            return db.Productions.Count(e => e.Production_ID == id) > 0;
         }
     }
 }

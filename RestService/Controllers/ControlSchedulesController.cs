@@ -13,44 +13,44 @@ using RestService.Models;
 
 namespace RestService.Controllers
 {
-    public class FrontpagesController : ApiController
+    public class ControlSchedulesController : ApiController
     {
         private Context db = new Context();
 
-        // GET: api/Frontpages
-        public IQueryable<Frontpage> GetFrontpages()
+        // GET: api/ControlSchedules
+        public IQueryable<ControlSchedule> GetControlSchedules()
         {
-            return db.Frontpages;
+            return db.ControlSchedules;
         }
 
-        // GET: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult GetFrontpage(int id)
+        // GET: api/ControlSchedules/5
+        [ResponseType(typeof(ControlSchedule))]
+        public IHttpActionResult GetControlSchedule(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
-            if (frontpage == null)
+            ControlSchedule controlSchedule = db.ControlSchedules.Find(id);
+            if (controlSchedule == null)
             {
                 return NotFound();
             }
 
-            return Ok(frontpage);
+            return Ok(controlSchedule);
         }
 
-        // PUT: api/Frontpages/5
+        // PUT: api/ControlSchedules/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFrontpage(int id, Frontpage frontpage)
+        public IHttpActionResult PutControlSchedule(int id, ControlSchedule controlSchedule)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != frontpage.ProcessOrder_No)
+            if (id != controlSchedule.Control_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(frontpage).State = EntityState.Modified;
+            db.Entry(controlSchedule).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FrontpageExists(id))
+                if (!ControlScheduleExists(id))
                 {
                     return NotFound();
                 }
@@ -71,16 +71,16 @@ namespace RestService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Frontpages
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult PostFrontpage(Frontpage frontpage)
+        // POST: api/ControlSchedules
+        [ResponseType(typeof(ControlSchedule))]
+        public IHttpActionResult PostControlSchedule(ControlSchedule controlSchedule)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Frontpages.Add(frontpage);
+            db.ControlSchedules.Add(controlSchedule);
 
             try
             {
@@ -88,7 +88,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (FrontpageExists(frontpage.ProcessOrder_No))
+                if (ControlScheduleExists(controlSchedule.Control_ID))
                 {
                     return Conflict();
                 }
@@ -98,23 +98,23 @@ namespace RestService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = frontpage.ProcessOrder_No }, frontpage);
+            return CreatedAtRoute("DefaultApi", new { id = controlSchedule.Control_ID }, controlSchedule);
         }
 
-        // DELETE: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult DeleteFrontpage(int id)
+        // DELETE: api/ControlSchedules/5
+        [ResponseType(typeof(ControlSchedule))]
+        public IHttpActionResult DeleteControlSchedule(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
-            if (frontpage == null)
+            ControlSchedule controlSchedule = db.ControlSchedules.Find(id);
+            if (controlSchedule == null)
             {
                 return NotFound();
             }
 
-            db.Frontpages.Remove(frontpage);
+            db.ControlSchedules.Remove(controlSchedule);
             db.SaveChanges();
 
-            return Ok(frontpage);
+            return Ok(controlSchedule);
         }
 
         protected override void Dispose(bool disposing)
@@ -126,9 +126,9 @@ namespace RestService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool FrontpageExists(int id)
+        private bool ControlScheduleExists(int id)
         {
-            return db.Frontpages.Count(e => e.ProcessOrder_No == id) > 0;
+            return db.ControlSchedules.Count(e => e.Control_ID == id) > 0;
         }
     }
 }

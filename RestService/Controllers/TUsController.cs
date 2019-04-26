@@ -13,44 +13,44 @@ using RestService.Models;
 
 namespace RestService.Controllers
 {
-    public class FrontpagesController : ApiController
+    public class TUsController : ApiController
     {
         private Context db = new Context();
 
-        // GET: api/Frontpages
-        public IQueryable<Frontpage> GetFrontpages()
+        // GET: api/TUs
+        public IQueryable<TU> GetTUs()
         {
-            return db.Frontpages;
+            return db.TUs;
         }
 
-        // GET: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult GetFrontpage(int id)
+        // GET: api/TUs/5
+        [ResponseType(typeof(TU))]
+        public IHttpActionResult GetTU(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
-            if (frontpage == null)
+            TU tU = db.TUs.Find(id);
+            if (tU == null)
             {
                 return NotFound();
             }
 
-            return Ok(frontpage);
+            return Ok(tU);
         }
 
-        // PUT: api/Frontpages/5
+        // PUT: api/TUs/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFrontpage(int id, Frontpage frontpage)
+        public IHttpActionResult PutTU(int id, TU tU)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != frontpage.ProcessOrder_No)
+            if (id != tU.TU_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(frontpage).State = EntityState.Modified;
+            db.Entry(tU).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FrontpageExists(id))
+                if (!TUExists(id))
                 {
                     return NotFound();
                 }
@@ -71,16 +71,16 @@ namespace RestService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Frontpages
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult PostFrontpage(Frontpage frontpage)
+        // POST: api/TUs
+        [ResponseType(typeof(TU))]
+        public IHttpActionResult PostTU(TU tU)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Frontpages.Add(frontpage);
+            db.TUs.Add(tU);
 
             try
             {
@@ -88,7 +88,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (FrontpageExists(frontpage.ProcessOrder_No))
+                if (TUExists(tU.TU_ID))
                 {
                     return Conflict();
                 }
@@ -98,23 +98,23 @@ namespace RestService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = frontpage.ProcessOrder_No }, frontpage);
+            return CreatedAtRoute("DefaultApi", new { id = tU.TU_ID }, tU);
         }
 
-        // DELETE: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult DeleteFrontpage(int id)
+        // DELETE: api/TUs/5
+        [ResponseType(typeof(TU))]
+        public IHttpActionResult DeleteTU(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
-            if (frontpage == null)
+            TU tU = db.TUs.Find(id);
+            if (tU == null)
             {
                 return NotFound();
             }
 
-            db.Frontpages.Remove(frontpage);
+            db.TUs.Remove(tU);
             db.SaveChanges();
 
-            return Ok(frontpage);
+            return Ok(tU);
         }
 
         protected override void Dispose(bool disposing)
@@ -126,9 +126,9 @@ namespace RestService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool FrontpageExists(int id)
+        private bool TUExists(int id)
         {
-            return db.Frontpages.Count(e => e.ProcessOrder_No == id) > 0;
+            return db.TUs.Count(e => e.TU_ID == id) > 0;
         }
     }
 }
