@@ -2,7 +2,7 @@
 
 namespace ModelLibrary
 {
-    public class Production
+    public class Productions
     {
         public int Production_ID { get; set; } //PK
 

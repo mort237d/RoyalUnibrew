@@ -2,7 +2,7 @@
 
 namespace ModelLibrary
 {
-    public class ControlRegistration
+    public class ControlRegistrations
     {
         public int LabelContro_ID { get; set; } //PK
         public DateTime Time { get; set; }

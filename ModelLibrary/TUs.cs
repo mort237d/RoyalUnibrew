@@ -1,6 +1,6 @@
 ﻿namespace ModelLibrary
 {
-    public class TU
+    public class TUs
     {
         public int TU_ID { get; set; } //PK
         public int FirstDayStart_TU { get; set; }

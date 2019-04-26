@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using Windows.UI.Xaml.Controls;
@@ -17,12 +18,16 @@ namespace UniBase.ViewModel
     {
         private string test = "hej";
         public List<string> Strings { get; set; } = new List<string>{"Du dør", "død"};
-        public List<Frontpages> ListFrontpages { get; set; } = new List<Frontpages>{new Frontpages(2, 2, 2, 2, 2, 2, 2, DateTime.Today, "Hej", 2, 2, new Products()), new Frontpages(1, 1, 1, 1, 1, 1, 1, DateTime.Today, "Test", 2, 2, new Products()) };
+        public ObservableCollection<Frontpages> ListFrontpages { get; set; } //= new ObservableCollection<Frontpages>{new Frontpages(2, 2, 2, 2, 2, 2, 2, DateTime.Today, "Hej", 2, 2, new Products()), new Frontpages(1, 1, 1, 1, 1, 1, 1, DateTime.Today, "Test", 2, 2, new Products()) };
+        public ObservableCollection<ControlSchedules> ListControlScheduleses { get; set; }
+
         public RelayCommand SaveWorkCommand { get; set; }
         ManageTables mngTables = ManageTables.Instance;
 
         public WorkViewModel()
         {
+            ListFrontpages = mngTables._frontpagesList;
+            ListControlScheduleses = mngTables._controlSchedulesList;
             Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
             Debug.WriteLine("\n \t" + a.Name, "Admin");
             Debug.WriteLine("\n \tError Message", "Category");

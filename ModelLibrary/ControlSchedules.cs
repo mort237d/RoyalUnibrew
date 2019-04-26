@@ -2,7 +2,7 @@
 
 namespace ModelLibrary
 {
-    public class ControlSchedule
+    public class ControlSchedules
     {
         public int Control_ID { get; set; } //PK
         public DateTime Time { get; set; }

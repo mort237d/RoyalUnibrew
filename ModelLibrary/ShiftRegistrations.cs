@@ -2,7 +2,7 @@
 
 namespace ModelLibrary
 {
-    public class ShiftRegistration
+    public class ShiftRegistrations
     {
         public int Shift_Reg { get; set; } //PK
         public DateTime Start_Time { get; set; }

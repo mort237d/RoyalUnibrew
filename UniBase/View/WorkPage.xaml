@@ -47,14 +47,19 @@
 
                     </PivotItem>
                     <PivotItem Header="Kontrol skema">
-                        <ListView ItemsSource="{Binding ListFrontpages}" Margin="0,5,0,0" >
+                        <ListView ItemsSource="{Binding ListControlScheduleses}" Margin="0,5,0,0" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" Height="auto">
-                                            <TextBox Text="{Binding FinishedProduct_No}"/>
-                                            <TextBox Text="{Binding Column}"/>
-                                            <TextBox Text="{Binding Date}"/>
+                                            <TextBox Text="{Binding Time}"/>
+                                            <TextBox Text="{Binding WeightControlTime}"/>
+                                            <TextBox Text="{Binding Weight}"/>
+                                            <TextBox Text="{Binding ReceiptForTest}"/>
+                                            <TextBox Text="{Binding KegTest}"/>
+                                            <TextBox Text="{Binding LudKoncentration}"/>
+                                            <TextBox Text="{Binding MipMA}"/>
+                                            <TextBox Text="{Binding Signature}"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>
@@ -67,7 +72,7 @@
                     <PivotItem Header="Vagt registering">
 
                     </PivotItem>
-                    <PivotItem Header="TU">
+                    <PivotItem Header="TUs">
 
                     </PivotItem>
 
