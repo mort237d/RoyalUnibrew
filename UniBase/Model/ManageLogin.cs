@@ -16,8 +16,6 @@ namespace UniBase.Model
     class ManageLogin : INotifyPropertyChanged
     {
         #region Field
-
-        public string UserName { get; set; }
         public string PassWord { get; set; }
         private string _wrongLogin, _wrongLoginColor;
         private ManageUser _manageUser = ManageUser.Instance;
@@ -103,11 +101,13 @@ namespace UniBase.Model
             }
             else
             {
-                WrongLogin = "Forkert Password eller Username";
+                WrongLogin = "Kodeord stemmer ikke overens";
             }
         }
 
         #endregion
+
+        #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -116,5 +116,7 @@ namespace UniBase.Model
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }
