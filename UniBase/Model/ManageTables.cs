@@ -9,13 +9,23 @@ namespace UniBase.Model
 {
     public class ManageTables
     {
-
+        private List<ControlRegistration> _controlRegistrationsList;
+        private List<ControlSchedule> controlSchedulesList;
         private List<Frontpages> _frontpagesList;
+        private List<Production> _productionsList;
         private List<Products> _productsList;
-        private List<Frontpages> _allFrontpages;
+        private List<ShiftRegistration> _shiftRegistrationsList;
+        private List<TU> _tuList;
+
         public ManageTables()
         {
-            _allFrontpages = ModelGenerics.GetAll(new Frontpages());
+            _controlRegistrationsList = ModelGenerics.GetAll(new ControlRegistration());
+            _controlRegistrationsList = ModelGenerics.GetAll(new ControlRegistration());
+            _frontpagesList = ModelGenerics.GetAll(new Frontpages());
+            _productionsList = ModelGenerics.GetAll(new Production());
+            _productsList = ModelGenerics.GetAll(new Products());
+            _shiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistration());
+            _tuList = ModelGenerics.GetAll(new TU());
         }
 
         private static ManageTables _instance;

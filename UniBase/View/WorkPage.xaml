@@ -16,7 +16,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition />
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -47,7 +47,19 @@
 
                     </PivotItem>
                     <PivotItem Header="Kontrol skema">
-
+                        <ListView ItemsSource="{Binding ListFrontpages}" Margin="0,5,0,0" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Height="auto">
+                                            <TextBox Text="{Binding FinishedProduct_No}"/>
+                                            <TextBox Text="{Binding Column}"/>
+                                            <TextBox Text="{Binding Date}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </PivotItem>
                     <PivotItem Header="Produktion">
 

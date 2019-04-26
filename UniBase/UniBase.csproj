@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\Leader.cs" />
+    <Compile Include="Model\ManageFrontpage.cs" />
     <Compile Include="Model\ManageTables.cs" />
     <Compile Include="Model\ModelGenerics.cs" />
     <Compile Include="Model\ManageLogin.cs" />
