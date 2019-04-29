@@ -25,17 +25,17 @@ namespace ModelLibrary
             Product = product;
         }
 
+        public int ProcessOrder_No { get; set; } //PK
+        public DateTime Date { get; set; }
+        public int FinishedProduct_No { get; set; } //FK
+        public int Column { get; set; }
         public string Note { get; set; }
+        public int Week_No { get; set; }
         public int Control_ID { get; set; }
         public int LabelControl_ID { get; set; }
         public int Shift_Reg { get; set; }
         public int Production_ID { get; set; }
         public int TU_ID { get; set; }
-        public int Week_No { get; set; }
-        public int ProcessOrder_No { get; set; } //PK
-        public int FinishedProduct_No { get; set; } //FK
-        public DateTime Date { get; set; }
-        public int Column { get; set; }
         public virtual ControlRegistrations ControlRegistration { get; set; }
         public virtual ControlSchedules ControlSchedule { get; set; }
         public virtual Products Product { get; set; }

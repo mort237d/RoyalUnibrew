@@ -52,6 +52,7 @@ namespace UniBase.Model
         private void CompleteLists()
         {
             FrontPageProps = GetProperties(new Frontpages());
+            FrontPageProps.RemoveRange(6, FrontPageProps.Count-6);
         }
 
         private static ManageTables _instance;
