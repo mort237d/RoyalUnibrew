@@ -36,11 +36,19 @@
                 <Pivot>
                     <PivotItem Header="Forside">
                         <StackPanel>
-                            <ListView Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding MngTables.FrontPageProps}">
+                            <ListView Height="42" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding MngTables.FrontPageProps}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Width="140" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
+                                            <Button Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
+                                            <Line></Line>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
