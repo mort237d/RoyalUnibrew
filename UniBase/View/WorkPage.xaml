@@ -36,7 +36,7 @@
                 <Pivot>
                     <PivotItem Header="Forside">
                         <StackPanel>
-                            <ListView Height="42" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding MngTables.FrontPageProps}">
+                            <ListView Width="690" Height="42" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding MngTables.FrontPageProps}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="Padding" Value="0"/>
@@ -53,12 +53,23 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <ListView ItemsSource="{Binding ListFrontpages}">
+                            <ListView Width="690" ItemsSource="{Binding ListFrontpages}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBox Text="{Binding Date}"></TextBox>
-                                            <TextBox Text="{Binding Column}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Date}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Column}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Note}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Week_No}"></TextBox>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
