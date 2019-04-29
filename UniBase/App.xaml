@@ -5,7 +5,7 @@
     xmlns:local="using:UniBase">
     <Application.Resources>
         <Style x:Key="ButtonListViewStyle" TargetType="ListView">
-            <Setter Property="IsHitTestVisible" Value="False"/>
+            <Setter Property="IsHitTestVisible" Value="true"/>
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="TabNavigation" Value="Once"/>
             <Setter Property="IsSwipeEnabled" Value="True"/>

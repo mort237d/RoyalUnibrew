@@ -23,6 +23,7 @@ namespace UniBase.ViewModel
 
         public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
         public RelayCommand SaveWorkCommand { get; set; }
+        public RelayCommand TestCommand { get; set; }
 
         public ManageTables MngTables { get; set; }
 
@@ -40,11 +41,12 @@ namespace UniBase.ViewModel
                 Strings.Add(i.ToString());
             }
             SaveWorkCommand = new RelayCommand(TempMethod);
+            TestCommand = new RelayCommand(TempMethod);
         }
 
         private void TempMethod()
         {
-
+            Debug.WriteLine("CLicked", "Button");
         }
 
         public string Test
