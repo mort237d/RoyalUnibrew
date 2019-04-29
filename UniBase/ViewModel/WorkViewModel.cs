@@ -18,13 +18,35 @@ namespace UniBase.ViewModel
     {
         public ObservableCollection<Frontpages> ListFrontpages { get; set; } 
         public ObservableCollection<ControlSchedules> ListControlScheduleses { get; set; }
-        public ObservableCollection<>
 
         public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
+        private string _graphCombobox;
         public RelayCommand SaveWorkCommand { get; set; }
         public RelayCommand TestCommand { get; set; }
 
         public ManageTables MngTables { get; set; }
+
+        public string GraphCombobox
+        {
+            get { return _graphCombobox; }
+            set
+            {
+                _graphCombobox = value; 
+                OnPropertyChanged();
+                if (_graphCombobox == "Weight")
+                {
+                    _trendAdminstrator.CreateWeightGraph();
+                }
+                else if (_graphCombobox == "MipMa")
+                {
+                    _trendAdminstrator.CreateMipMAGraph();
+                }
+                else if (_graphCombobox == "Lud Koncentration")
+                {
+                    _trendAdminstrator.CreateLudKoncentrationGraph();
+                }
+            }
+        }
 
         public WorkViewModel()
         {
