@@ -22,25 +22,28 @@ namespace UniBase.ViewModel
 
         public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
         public RelayCommand SaveWorkCommand { get; set; }
-        ManageTables mngTables = ManageTables.Instance;
+        public RelayCommand TestCommand { get; set; }
+
+        public ManageTables MngTables { get; set; }
 
         public WorkViewModel()
         {
-            ListFrontpages = mngTables._frontpagesList;
-            ListControlScheduleses = mngTables._controlSchedulesList;
+            MngTables = ManageTables.Instance;
+
+            ListFrontpages = MngTables._frontpagesList;
+            ListControlScheduleses = MngTables._controlSchedulesList;
             Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
             Debug.WriteLine("\n \t" + a.Name, "Admin");
             Debug.WriteLine("\n \tError Message", "Category");
             Debug.WriteLine("\n \tError Message", ListFrontpages[1].Product.ProductName);
 
             SaveWorkCommand = new RelayCommand(TempMethod);
-
-
+            TestCommand = new RelayCommand(TempMethod);
         }
 
         private void TempMethod()
         {
-
+            Debug.WriteLine("CLicked", "Button");
         }
 
         #region Propeties

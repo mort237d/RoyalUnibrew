@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page x:Name="WorkPageName"
     x:Class="UniBase.View.WorkPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -35,50 +35,35 @@
             <PivotItem Header="K2">
                 <Pivot>
                     <PivotItem Header="Forside">
-                        <ListView ItemsSource="{Binding ListFrontpages}">
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="ListViewItem">
-                                                <ListViewItemPresenter ContentMargin="0" Padding="0" />
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                            <ListView.HeaderTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2*" MinWidth="50"/>
-                                            <ColumnDefinition Width="2*" MinWidth="50"/>
-                                            <ColumnDefinition Width="2*" MinWidth="50"/>
-                                            <ColumnDefinition Width="2*" MinWidth="50"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Border BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
-                                            <TextBlock Text="Race Date" Margin="5,0,0,0" />
-                                        </Border>
-                                        <Border Grid.Column="1" BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
-                                            <TextBlock Text="Circuit" Margin="5,0,0,0"/>
-                                        </Border>
-                                        <Border Grid.Column="2" BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
-                                            <TextBlock Text="Laps" Margin="0,0,5,0"/>
-                                        </Border>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.HeaderTemplate>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBox Text="{Binding Date}"></TextBox>
-                                        <TextBox Text="{Binding Column}"></TextBox>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                        <StackPanel>
+                            <ListView Height="42" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding MngTables.FrontPageProps}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
+                                            <Line></Line>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding ListFrontpages}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Text="{Binding Date}"></TextBox>
+                                            <TextBox Text="{Binding Column}"></TextBox>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
                     </PivotItem>
                     <PivotItem Header="Kontrol regristering">
 
@@ -127,17 +112,24 @@
             </PivotItem>
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel>
-                    <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="500" Height="500">
-                       
-                        <charting:LineSeries Title="Chart Name" 
-                                             IndependentValuePath="Months" 
-                                             DependentValuePath="Size" 
-                                             ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}" />
-                    </charting:Chart>
+                    <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1000" Height="500"  >
+                        <charting:LineSeries Title="Size" 
+                                             IndependentValuePath="Date" 
+                                             DependentValuePath="Size"     
+                                             ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}" >
+                        </charting:LineSeries>
 
+                        <charting:LineSeries Title="Weight" 
+                                             IndependentValuePath="Date"
+                                             DependentValuePath="Weight"
+                                             ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
+                    </charting:Chart>
+                  
 
                     <charting:Chart Width="480" >
-                        <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
+                        <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" 
+                                               IndependentValuePath="ProfitType" 
+                                               DependentValuePath="TotalIncome"/>
                     </charting:Chart>
                 </StackPanel>
                 
