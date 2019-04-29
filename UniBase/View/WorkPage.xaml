@@ -35,50 +35,27 @@
             <PivotItem Header="K2">
                 <Pivot>
                     <PivotItem Header="Forside">
-                        <ListView ItemsSource="{Binding ListFrontpages}">
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="ListViewItem">
-                                                <ListViewItemPresenter ContentMargin="0" Padding="0" />
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                            <ListView.HeaderTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2*" MinWidth="50"/>
-                                            <ColumnDefinition Width="2*" MinWidth="50"/>
-                                            <ColumnDefinition Width="2*" MinWidth="50"/>
-                                            <ColumnDefinition Width="2*" MinWidth="50"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Border BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
-                                            <TextBlock Text="Race Date" Margin="5,0,0,0" />
-                                        </Border>
-                                        <Border Grid.Column="1" BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
-                                            <TextBlock Text="Circuit" Margin="5,0,0,0"/>
-                                        </Border>
-                                        <Border Grid.Column="2" BorderBrush="AntiqueWhite" BorderThickness="0,0,0,0.5">
-                                            <TextBlock Text="Laps" Margin="0,0,5,0"/>
-                                        </Border>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.HeaderTemplate>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBox Text="{Binding Date}"></TextBox>
-                                        <TextBox Text="{Binding Column}"></TextBox>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                        <StackPanel>
+                            <ListView Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding MngTables.FrontPageProps}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Content="{Binding}"></Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding ListFrontpages}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Text="{Binding Date}"></TextBox>
+                                            <TextBox Text="{Binding Column}"></TextBox>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
                     </PivotItem>
                     <PivotItem Header="Kontrol regristering">
 
