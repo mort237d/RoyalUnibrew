@@ -40,7 +40,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
+                                            <Button Width="140" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
