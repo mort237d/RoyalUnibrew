@@ -27,8 +27,8 @@ namespace UniBase.ViewModel
 
         public WorkViewModel()
         {
-            ListFrontpages = mngTables._frontpagesList;
-            ListControlScheduleses = mngTables._controlSchedulesList;
+            //ListFrontpages = mngTables._frontpagesList;
+            //ListControlScheduleses = mngTables._controlSchedulesList;
             Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
             Debug.WriteLine("\n \t" + a.Name, "Admin");
             Debug.WriteLine("\n \tError Message", "Category");
