@@ -9,9 +9,9 @@ namespace ModelLibrary
             
         }
 
-        public ControlRegistrations(int labelContro_ID, DateTime time, DateTime productionDate, string commentsOnChangedDate, bool controlAlacholSpearDispenser, int capNo, int etiquetteNo, int kegSize, string signature, DateTime firstPalletDepalletizing, DateTime lastPalletDepalletizing)
+        public ControlRegistrations(int labelControl_ID, DateTime time, DateTime productionDate, string commentsOnChangedDate, bool controlAlacholSpearDispenser, int capNo, int etiquetteNo, int kegSize, string signature, DateTime firstPalletDepalletizing, DateTime lastPalletDepalletizing)
         {
-            LabelContro_ID = labelContro_ID;
+            LabelControl_ID = labelControl_ID;
             Time = time;
             ProductionDate = productionDate;
             CommentsOnChangedDate = commentsOnChangedDate;
@@ -24,7 +24,7 @@ namespace ModelLibrary
             LastPalletDepalletizing = lastPalletDepalletizing;
         }
 
-        public int LabelContro_ID { get; set; } //PK
+        public int LabelControl_ID { get; set; } //PK
         public DateTime Time { get; set; }
         public DateTime ProductionDate { get; set; }
         public string CommentsOnChangedDate { get; set; }
