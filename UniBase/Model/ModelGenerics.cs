@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,20 @@ namespace UniBase.Model
             String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1] + "/" + id;
 
-            Task<string> resTask = client.GetStringAsync(httpUrl);
+            var endResult = type;
+            try
+            {
+                Task<string> resTask = client.GetStringAsync(httpUrl);
+                string result = resTask.Result;
+                endResult = JsonConvert.DeserializeObject<T>(result);
+            }
+            catch (Exception e)
+            {
+                
+                Debug.WriteLine(e);
+            }
 
-            return JsonConvert.DeserializeObject<T>(resTask.Result);
+            return endResult;
         }
 
         /// <summary>
