@@ -10,18 +10,18 @@ namespace UniBase.Model
 {
     public class ManageTables
     {
-        public static ObservableCollection<ControlRegistrations> _controlRegistrationsList;
-        public static ObservableCollection<ControlSchedules> _controlSchedulesList;
-        public static ObservableCollection<Frontpages> _frontpagesList;
-        public static ObservableCollection<Productions> _productionsList;
-        public static ObservableCollection<Products> _productsList;
-        public static ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
-        public static ObservableCollection<TUs> _tuList;
+        public ObservableCollection<ControlRegistrations> _controlRegistrationsList;
+        public ObservableCollection<ControlSchedules> _controlSchedulesList;
+        public ObservableCollection<Frontpages> _frontpagesList;
+        public ObservableCollection<Productions> _productionsList;
+        public ObservableCollection<Products> _productsList;
+        public ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
+        public ObservableCollection<TUs> _tuList;
 
         public ManageTables()
         {
             _controlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            _controlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            _controlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
             _frontpagesList = ModelGenerics.GetAll(new Frontpages());
             _productionsList = ModelGenerics.GetAll(new Productions());
             _productsList = ModelGenerics.GetAll(new Products());

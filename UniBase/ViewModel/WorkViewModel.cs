@@ -16,10 +16,9 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-        private string test = "hej";
-        public List<string> Strings { get; set; } = new List<string>{"Du dør", "død"};
-        public ObservableCollection<Frontpages> ListFrontpages { get; set; } //= new ObservableCollection<Frontpages>{new Frontpages(2, 2, 2, 2, 2, 2, 2, DateTime.Today, "Hej", 2, 2, new Products()), new Frontpages(1, 1, 1, 1, 1, 1, 1, DateTime.Today, "Test", 2, 2, new Products()) };
+        public ObservableCollection<Frontpages> ListFrontpages { get; set; } 
         public ObservableCollection<ControlSchedules> ListControlScheduleses { get; set; }
+        public ObservableCollection<>
 
         public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
         public RelayCommand SaveWorkCommand { get; set; }
@@ -27,8 +26,8 @@ namespace UniBase.ViewModel
 
         public WorkViewModel()
         {
-            //ListFrontpages = mngTables._frontpagesList;
-            //ListControlScheduleses = mngTables._controlSchedulesList;
+            ListFrontpages = mngTables._frontpagesList;
+            ListControlScheduleses = mngTables._controlSchedulesList;
             Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
             Debug.WriteLine("\n \t" + a.Name, "Admin");
             Debug.WriteLine("\n \tError Message", "Category");
@@ -44,21 +43,14 @@ namespace UniBase.ViewModel
 
         }
 
-        public string Test
-        {
-            get => test;
-            set
-            {
-                test = value; 
-                OnPropertyChanged();
-            }
-        }
+        #region Propeties
 
         public TrendAdminstrator TrendAdminstrator
         {
             get { return _trendAdminstrator; }
             set { _trendAdminstrator = value; }
         }
+        #endregion
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

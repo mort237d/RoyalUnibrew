@@ -72,7 +72,6 @@ namespace UniBase.Model
 
         public void LogOffMethod()
         {
-
             Frame currentFrame = Window.Current.Content as Frame;
             currentFrame?.Navigate(typeof(LoginPage));
         }
