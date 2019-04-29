@@ -4,15 +4,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ModelLibrary;
 
 namespace UniBase.Model
 {
     class TrendAdminstrator
     {
         public ObservableCollection<Trends> _trendList = new ObservableCollection<Trends>();
-
+        ManageTables MngTables;
         public TrendAdminstrator()
         {
+            MngTables = ManageTables.Instance;
             List<DateTime> DT = new List<DateTime>
             {
                 new DateTime(2019, 01, 01),
@@ -59,19 +61,13 @@ namespace UniBase.Model
                 210.2 
             };
 
-            for (int i = 0; i < DT.Count; i++)
-            {
-                
-                TrendList.Add(new Trends(SizeList[i], WeightList[i], DT[i].ToString("s").Substring(0, 10)));
-                
-            }
 
-//            TrendList.Add(new Trends(240, 200, DT[0].ToString("s").Substring(0, 10)));
-//            TrendList.Add(new Trends(290, 220, DT[1].ToString("s").Substring(0, 10)));
-//            TrendList.Add(new Trends(250, 190, DT[2].ToString("s").Substring(0, 10)));
-//            TrendList.Add(new Trends(210, 170, DT[3].ToString("s").Substring(0, 10)));
-//            TrendList.Add(new Trends(180, 160, DT[4].ToString("s").Substring(0, 10)));
-//            TrendList.Add(new Trends(260, 200, DT[5].ToString("s").Substring(0, 10)));
+            for (int i = 0; i < MngTables._controlSchedulesList.Count; i++)
+            {
+                 TrendList.Add(new Trends(Convert.ToDouble(MngTables._controlSchedulesList[i].Weight), MngTables._controlSchedulesList[i].WeightControlTime.ToString("s").Substring(0, 10)));
+
+
+            }
 
         }
 

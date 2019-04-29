@@ -128,18 +128,11 @@
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel>
                     <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1000" Height="500"  >
-                        <charting:LineSeries Title="Size" 
-                                             IndependentValuePath="Date" 
-                                             DependentValuePath="Size"     
-                                             ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}" >
-                        </charting:LineSeries>
-
-                        <charting:LineSeries Title="Weight" 
+                        <charting:LineSeries Title="SelectedCategory" 
                                              IndependentValuePath="Date"
-                                             DependentValuePath="Weight"
+                                             DependentValuePath="SelectedCategory"
                                              ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
                     </charting:Chart>
-                  
 
                     <charting:Chart Width="480" >
                         <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" 

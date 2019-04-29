@@ -32,7 +32,7 @@ namespace UniBase.ViewModel
             Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
             Debug.WriteLine("\n \t" + a.Name, "Admin");
             Debug.WriteLine("\n \tError Message", "Category");
-            Debug.WriteLine("\n \tError Message", ListFrontpages[1].Product.ProductName);
+            //Debug.WriteLine("\n \tError Message", ListFrontpages[1].Product.ProductName);
 
             SaveWorkCommand = new RelayCommand(TempMethod);
 
