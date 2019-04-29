@@ -16,8 +16,6 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-        private string test = "hej";
-        public List<string> Strings { get; set; } = new List<string>{"Du dør", "død"};
         public ObservableCollection<Frontpages> ListFrontpages { get; set; } //= new ObservableCollection<Frontpages>{new Frontpages(2, 2, 2, 2, 2, 2, 2, DateTime.Today, "Hej", 2, 2, new Products()), new Frontpages(1, 1, 1, 1, 1, 1, 1, DateTime.Today, "Test", 2, 2, new Products()) };
         public ObservableCollection<ControlSchedules> ListControlScheduleses { get; set; }
 
