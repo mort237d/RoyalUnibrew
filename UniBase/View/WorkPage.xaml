@@ -89,14 +89,14 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" Height="auto">
-                                            <TextBox Text="{Binding Time}"/>
-                                            <TextBox Text="{Binding WeightControlTime}"/>
-                                            <TextBox Text="{Binding Weight}"/>
-                                            <TextBox Text="{Binding ReceiptForTest}"/>
-                                            <TextBox Text="{Binding KegTest}"/>
-                                            <TextBox Text="{Binding LudKoncentration}"/>
-                                            <TextBox Text="{Binding MipMA}"/>
-                                            <TextBox Text="{Binding Signature}"/>
+                                            <TextBox PlaceholderText="" Width="100" Text="{Binding Time, Mode=TwoWay}"/>
+                                            <TextBox PlaceholderText="" Width="100" Text="{Binding WeightControlTime, Mode=TwoWay}"/>
+                                            <TextBox PlaceholderText="" Width="100" Text="{Binding Weight, Mode=TwoWay}"/>
+                                            <TextBox PlaceholderText="" Width="100" Text="{Binding ReceiptForTest, Mode=TwoWay}"/>
+                                            <TextBox PlaceholderText="" Width="100" Text="{Binding KegTest, Mode=TwoWay}"/>
+                                            <TextBox PlaceholderText="" Width="100" Text="{Binding LudKoncentration, Mode=TwoWay}"/>
+                                            <TextBox PlaceholderText="" Width="100" Text="{Binding MipMA, Mode=TwoWay}"/>
+                                            <TextBox PlaceholderText="" Width="100" Text="{Binding Signature, Mode=TwoWay}"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>
