@@ -23,7 +23,7 @@ namespace UniBase.ViewModel
 
         public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
         public RelayCommand SaveWorkCommand { get; set; }
-        ManageTables mngTables = ManageTables.Instance;
+        //ManageTables mngTables = ManageTables.Instance;
 
         public WorkViewModel()
         {

@@ -8,16 +8,16 @@ namespace UniBase.Model
 {
     class Trends
     {
-        public Trends(int size, int weight, int months)
+        public Trends(double size, double weight, String date)
         {
             Size = size;
             Weight = weight;
-            Months = months;
+            Date = date;
         }
 
-        public int Size { get; set; }
-        public int Weight { get; set; }
-        public int Months { get; set; }
+        public double Size { get; set; }
+        public double Weight { get; set; }
+        public String Date { get; set; }
 
 
     }
