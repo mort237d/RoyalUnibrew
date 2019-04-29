@@ -18,7 +18,7 @@ namespace UniBase.ViewModel
     {
         public ObservableCollection<Frontpages> ListFrontpages { get; set; } 
         public ObservableCollection<ControlSchedules> ListControlScheduleses { get; set; }
-        public ObservableCollection<>
+        //public ObservableCollection<>
 
         public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
         public RelayCommand SaveWorkCommand { get; set; }
@@ -35,7 +35,6 @@ namespace UniBase.ViewModel
             Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
             Debug.WriteLine("\n \t" + a.Name, "Admin");
             Debug.WriteLine("\n \tError Message", "Category");
-            Debug.WriteLine("\n \tError Message", ListFrontpages[1].Product.ProductName);
 
             SaveWorkCommand = new RelayCommand(TempMethod);
             TestCommand = new RelayCommand(TempMethod);
