@@ -10,13 +10,13 @@ namespace UniBase.Model
 {
     public class ManageTables
     {
-        public ObservableCollection<ControlRegistrations> _controlRegistrationsList;
-        public ObservableCollection<ControlSchedules> _controlSchedulesList;
-        public ObservableCollection<Frontpages> _frontpagesList;
-        public ObservableCollection<Productions> _productionsList;
-        public ObservableCollection<Products> _productsList;
-        public ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
-        public ObservableCollection<TUs> _tuList;
+        public static ObservableCollection<ControlRegistrations> _controlRegistrationsList;
+        public static ObservableCollection<ControlSchedules> _controlSchedulesList;
+        public static ObservableCollection<Frontpages> _frontpagesList;
+        public static ObservableCollection<Productions> _productionsList;
+        public static ObservableCollection<Products> _productsList;
+        public static ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
+        public static ObservableCollection<TUs> _tuList;
 
         public ManageTables()
         {

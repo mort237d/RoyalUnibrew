@@ -120,6 +120,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Administrator.cs" />
+    <Compile Include="Model\K2\ManageControlRegistration.cs" />
+    <Compile Include="Model\K2\ManageControlSchedule.cs" />
+    <Compile Include="Model\K2\ManageProduction.cs" />
+    <Compile Include="Model\K2\ManageProducts.cs" />
+    <Compile Include="Model\K2\ManageShiftRegistration.cs" />
+    <Compile Include="Model\K2\ManageTU.cs" />
     <Compile Include="Model\Leader.cs" />
     <Compile Include="Model\ManageFrontpage.cs" />
     <Compile Include="Model\ManageTables.cs" />
