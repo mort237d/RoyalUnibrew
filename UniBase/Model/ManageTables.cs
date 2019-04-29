@@ -26,7 +26,8 @@ namespace UniBase.Model
         {
             _frontpagesList = ModelGenerics.GetAll(new Frontpages());
             _controlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            _controlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            _controlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            _frontpagesList = ModelGenerics.GetAll(new Frontpages());
             _productionsList = ModelGenerics.GetAll(new Productions());
             _productsList = ModelGenerics.GetAll(new Products());
             _shiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
