@@ -14,25 +14,16 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-        
-
-        public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
         private string _graphCombobox;
+
         public RelayCommand SaveWorkCommand { get; set; }
         public RelayCommand TestCommand { get; set; }
 
         public ManageTables Column_2 { get; set; }
+        
+        public TrendAdminstrator TrendAdminstrator { get; set; } = new TrendAdminstrator();
 
-        public string GraphCombobox
-        {
-            get { return _graphCombobox; }
-            set
-            {
-                _graphCombobox = value; 
-                OnPropertyChanged();
-                _trendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox);
-            }
-        }
+
 
         public WorkViewModel()
         {
@@ -53,12 +44,17 @@ namespace UniBase.ViewModel
         }
 
         #region Propeties
-
-        public TrendAdminstrator TrendAdminstrator
+        public string GraphCombobox
         {
-            get { return _trendAdminstrator; }
-            set { _trendAdminstrator = value; }
+            get { return _graphCombobox; }
+            set
+            {
+                _graphCombobox = value;
+                OnPropertyChanged();
+                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox);
+            }
         }
+
         #endregion
 
         #region InotifyPropertyChanged

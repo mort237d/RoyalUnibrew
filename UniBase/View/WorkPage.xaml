@@ -77,7 +77,49 @@
                         </StackPanel>
                     </PivotItem>
                     <PivotItem Header="Kontrol regristering">
-
+                        <StackPanel>
+                            <ListView Width="690"
+                                      Height="42" 
+                                      Style="{StaticResource ButtonListViewStyle}" 
+                                      ItemsSource="{Binding K2.ControlRegistrationProps}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
+                                            <Line></Line>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView Width="690" ItemsSource="{Binding ListControl}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Width="115" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Date}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Colunm}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Note}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Week_No}"></TextBox>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
                     </PivotItem>
                     <PivotItem Header="Kontrol skema">
                         
