@@ -14,6 +14,7 @@ namespace UniBase.Model
         private static HttpClient client = new HttpClient();
 
 
+
         /// <summary>
         /// Generic method to call a specific type from its ID
         /// </summary>

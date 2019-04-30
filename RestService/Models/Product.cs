@@ -21,7 +21,7 @@ namespace RestService.Models
         [StringLength(255)]
         public string ProductName { get; set; }
 
-        public int BedstBeforeDateLength { get; set; }
+        public int BestBeforeDateLength { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Frontpage> Frontpages { get; set; }
