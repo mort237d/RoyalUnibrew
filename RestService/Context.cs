@@ -9,7 +9,7 @@ namespace RestService
 
     public partial class Context : DbContext
     {
-        public Context() : base("name=ContextConnectionSettings")
+        public Context() : base("name=Context2")
         {
             base.Configuration.ProxyCreationEnabled = false;
         }

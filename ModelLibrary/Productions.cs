@@ -20,7 +20,7 @@ namespace ModelLibrary
             BatchDate = batchDate;
         }
 
-        public int Production_ID { get; set; } //PK
+        public int Production_ID { get; set; }
 
         public int PalletPutInStock0001 { get; set; }
 

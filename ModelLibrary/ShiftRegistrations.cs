@@ -9,23 +9,29 @@ namespace ModelLibrary
             
         }
 
-        public ShiftRegistrations(int shift_Reg, DateTime start_Time, DateTime end_Time, DateTime @break, int staff, double totalHours, string initials)
+        public ShiftRegistrations(int shiftRegistration_ID, DateTime start_Time, DateTime end_Date, int breaks, int totalHours, int staff, string initials)
         {
-            Shift_Reg = shift_Reg;
+            ShiftRegistration_ID = shiftRegistration_ID;
             Start_Time = start_Time;
-            End_Time = end_Time;
-            Break = @break;
-            Staff = staff;
+            End_Date = end_Date;
+            Breaks = breaks;
             TotalHours = totalHours;
+            Staff = staff;
             Initials = initials;
         }
 
-        public int Shift_Reg { get; set; } //PK
+        public int ShiftRegistration_ID { get; set; }
+
         public DateTime Start_Time { get; set; }
-        public DateTime End_Time { get; set; }
-        public DateTime Break { get; set; }
+
+        public DateTime End_Date { get; set; }
+
+        public int Breaks { get; set; }
+
+        public int TotalHours { get; set; }
+
         public int Staff { get; set; }
-        public double TotalHours { get; set; }
+
         public string Initials { get; set; }
     }
 }

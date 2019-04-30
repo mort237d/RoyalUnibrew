@@ -16,10 +16,11 @@ namespace RestService.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int LabelControl_ID { get; set; }
+        public int ControlRegistration_ID { get; set; }
 
-        public DateTime Time { get; set; }
+        public TimeSpan Time { get; set; }
 
+        [Column(TypeName = "date")]
         public DateTime Production_Date { get; set; }
 
         [Required]

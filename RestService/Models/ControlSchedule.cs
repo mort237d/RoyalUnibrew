@@ -16,13 +16,13 @@ namespace RestService.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Control_ID { get; set; }
+        public int ControlSchedule_ID { get; set; }
 
         public DateTime Time { get; set; }
 
-        public DateTime WeightControlTime { get; set; }
+        public TimeSpan WeightControlTime { get; set; }
 
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
         [Required]
         [StringLength(50)]

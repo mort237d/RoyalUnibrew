@@ -21,11 +21,11 @@ namespace RestService.Models
         [StringLength(255)]
         public string Note { get; set; }
 
-        public int Control_ID { get; set; }
+        public int ControlSchedule_ID { get; set; }
 
-        public int LabelControl_ID { get; set; }
+        public int ControlRegistration_ID { get; set; }
 
-        public int Shift_Reg { get; set; }
+        public int ShiftRegistration_ID { get; set; }
 
         public int Production_ID { get; set; }
 

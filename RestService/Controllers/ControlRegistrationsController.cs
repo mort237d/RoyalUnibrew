@@ -45,7 +45,7 @@ namespace RestService.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != controlRegistration.LabelControl_ID)
+            if (id != controlRegistration.ControlRegistration_ID)
             {
                 return BadRequest();
             }
@@ -88,7 +88,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ControlRegistrationExists(controlRegistration.LabelControl_ID))
+                if (ControlRegistrationExists(controlRegistration.ControlRegistration_ID))
                 {
                     return Conflict();
                 }
@@ -98,7 +98,7 @@ namespace RestService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = controlRegistration.LabelControl_ID }, controlRegistration);
+            return CreatedAtRoute("DefaultApi", new { id = controlRegistration.ControlRegistration_ID }, controlRegistration);
         }
 
         // DELETE: api/ControlRegistrations/5
@@ -128,7 +128,7 @@ namespace RestService.Controllers
 
         private bool ControlRegistrationExists(int id)
         {
-            return db.ControlRegistrations.Count(e => e.LabelControl_ID == id) > 0;
+            return db.ControlRegistrations.Count(e => e.ControlRegistration_ID == id) > 0;
         }
     }
 }

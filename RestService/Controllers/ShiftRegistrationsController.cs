@@ -45,7 +45,7 @@ namespace RestService.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != shiftRegistration.Shift_Reg)
+            if (id != shiftRegistration.ShiftRegistration_ID)
             {
                 return BadRequest();
             }
@@ -88,7 +88,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ShiftRegistrationExists(shiftRegistration.Shift_Reg))
+                if (ShiftRegistrationExists(shiftRegistration.ShiftRegistration_ID))
                 {
                     return Conflict();
                 }
@@ -98,7 +98,7 @@ namespace RestService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = shiftRegistration.Shift_Reg }, shiftRegistration);
+            return CreatedAtRoute("DefaultApi", new { id = shiftRegistration.ShiftRegistration_ID }, shiftRegistration);
         }
 
         // DELETE: api/ShiftRegistrations/5
@@ -128,7 +128,7 @@ namespace RestService.Controllers
 
         private bool ShiftRegistrationExists(int id)
         {
-            return db.ShiftRegistrations.Count(e => e.Shift_Reg == id) > 0;
+            return db.ShiftRegistrations.Count(e => e.ShiftRegistration_ID == id) > 0;
         }
     }
 }

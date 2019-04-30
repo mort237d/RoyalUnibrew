@@ -16,7 +16,7 @@ namespace RestService.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Shift_Reg { get; set; }
+        public int ShiftRegistration_ID { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime Start_Time { get; set; }
@@ -24,8 +24,7 @@ namespace RestService.Models
         [Column(TypeName = "date")]
         public DateTime End_Date { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Breaks { get; set; }
+        public int Breaks { get; set; }
 
         public int TotalHours { get; set; }
 

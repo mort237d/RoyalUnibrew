@@ -21,7 +21,8 @@
             ThirdDay_Total = thirdDay_Total;
         }
 
-        public int TU_ID { get; set; } //PK
+        public int TU_ID { get; set; }
+
         public int FirstDayStart_TU { get; set; }
 
         public int FirstDayEnd_TU { get; set; }

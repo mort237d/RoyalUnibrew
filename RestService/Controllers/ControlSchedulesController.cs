@@ -45,7 +45,7 @@ namespace RestService.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != controlSchedule.Control_ID)
+            if (id != controlSchedule.ControlSchedule_ID)
             {
                 return BadRequest();
             }
@@ -88,7 +88,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ControlScheduleExists(controlSchedule.Control_ID))
+                if (ControlScheduleExists(controlSchedule.ControlSchedule_ID))
                 {
                     return Conflict();
                 }
@@ -98,7 +98,7 @@ namespace RestService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = controlSchedule.Control_ID }, controlSchedule);
+            return CreatedAtRoute("DefaultApi", new { id = controlSchedule.ControlSchedule_ID }, controlSchedule);
         }
 
         // DELETE: api/ControlSchedules/5
@@ -128,7 +128,7 @@ namespace RestService.Controllers
 
         private bool ControlScheduleExists(int id)
         {
-            return db.ControlSchedules.Count(e => e.Control_ID == id) > 0;
+            return db.ControlSchedules.Count(e => e.ControlSchedule_ID == id) > 0;
         }
     }
 }
