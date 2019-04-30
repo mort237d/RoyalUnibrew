@@ -21,6 +21,7 @@ namespace UniBase.ViewModel
 
         public RelayCommand SaveWorkCommand { get; set; }
         public RelayCommand TestCommand { get; set; }
+        public RelayCommand UpdateTable { get; set; }
 
         public Model.K2.ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
@@ -36,17 +37,15 @@ namespace UniBase.ViewModel
 
             TrendAdminstrator = new TrendAdminstrator();
 
-
-            
-
             SaveWorkCommand = new RelayCommand(TempMethod);
             TestCommand = new RelayCommand(TempMethod);
+            UpdateTable = new RelayCommand(TempMethod);
         }
 
       
         private void TempMethod()
         {
-            Debug.WriteLine("Hej", "Button Clicked");
+            Debug.WriteLine("\n \tHej", "Button Clicked");
         }
 
         #region Propeties
@@ -60,6 +59,8 @@ namespace UniBase.ViewModel
                 TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox);
             }
         }
+
+        
 
         #endregion
 
