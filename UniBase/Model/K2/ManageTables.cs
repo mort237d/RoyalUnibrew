@@ -65,7 +65,7 @@ namespace UniBase.Model.K2
             ProductionProps = new List<string>{"Produktions ID","Paller lagt på lager 0001", "Tappemaskine", "Antal fustager pr. palle", "Tæller", "Palle tæller", "Batchdato"};
             ProductProps = new List<string>{"Færdigvarer Nr", "Produkt Navn", "Antal dage før udløbsdato"};
             ShiftRegistrationProps = new List<string>{"Vagt registrerings ID","Start tidspunkt", "Slut tidspunkt", "Pauser", "Total timer", "Bemanding", "Initialer"};
-            TuProps = new List<string>{"TU ID", "Første dag start TU", "Første dag slut TU", "Anden dag start TU", "Anden dag slut TU", "Tredje dag start TU", "Tredje dag slut TU" };
+            TuProps = new List<string>{"TU ID", "Første dag start TU", "Første dag slut TU", "Første dag TU i alt", "Anden dag start TU", "Anden dag slut TU", "Anden dag TU i alt", "Tredje dag start TU", "Tredje dag slut TU", "Tredje dag TU i alt" };
         }
 
 

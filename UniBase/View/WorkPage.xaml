@@ -157,7 +157,7 @@
                     <!--#region KonstrolSkema-->
                     <PivotItem Header="Kontrol skema">
                         <StackPanel>
-                            <ListView Width="1100"
+                            <ListView Width="880"
                                       Style="{StaticResource ButtonListViewStyle}" 
                                       ItemsSource="{Binding Column_2.ControlScheduleProps}">
                                 <ListView.ItemContainerStyle>
@@ -178,7 +178,7 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <ListView Width="1100" ItemsSource="{Binding Column_2.ControlSchedulesList}">
+                            <ListView Width="882" ItemsSource="{Binding Column_2.ControlSchedulesList}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="Padding" Value="0"/>
@@ -191,9 +191,7 @@
                                         <StackPanel Orientation="Horizontal">
                                             <TextBox Width="110" Height="40" Text="{Binding ControlSchedule_ID}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding Time}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding WeightControlTime}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding Weight}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding ReceiptForTest}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding KegTest}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding LudKoncentration}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding MipMA}"></TextBox>
