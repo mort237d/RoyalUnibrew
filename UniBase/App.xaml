@@ -8,7 +8,7 @@
             <Setter Property="Width" Value="110"></Setter>
             <Setter Property="Height" Value="40"></Setter>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
+            <Setter Property="Foreground" Value="FloralWhite"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="0,0,1,0"/>
             <Setter Property="Padding" Value="{StaticResource ButtonPadding}"/>
@@ -80,9 +80,9 @@
         </Style>
         <Style x:Key="ButtonListViewStyle" TargetType="ListView">
             <Setter Property="Height" Value="42"/>
-            <Setter Property="BorderBrush" Value="Green"/>
+            <Setter Property="BorderBrush" Value="#16503F"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" Value="GreenYellow"/>
+            <Setter Property="Background" Value="#1A634D"/>
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="TabNavigation" Value="Once"/>
             <Setter Property="IsSwipeEnabled" Value="True"/>

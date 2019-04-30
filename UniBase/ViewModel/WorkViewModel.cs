@@ -11,6 +11,7 @@ using UniBase.Annotations;
 using UniBase.Model;
 using UniBase.Model.K2;
 using UniBase.Model.Login;
+using UniBase.View;
 
 namespace UniBase.ViewModel
 {
@@ -22,6 +23,7 @@ namespace UniBase.ViewModel
         public RelayCommand TestCommand { get; set; }
 
         public Model.K2.ManageTables Column_2 { get; set; }
+        public Colors PredefinedColors { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; } 
 
@@ -30,6 +32,7 @@ namespace UniBase.ViewModel
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
+            PredefinedColors = new Colors();
 
             TrendAdminstrator = new TrendAdminstrator();
 
