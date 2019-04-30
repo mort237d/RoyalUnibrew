@@ -81,7 +81,7 @@
                             <ListView Width="690"
                                       Height="42" 
                                       Style="{StaticResource ButtonListViewStyle}" 
-                                      ItemsSource="{Binding K2.ControlRegistrationProps}">
+                                      ItemsSource="{Binding Column_2.ControlRegistrationProps}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="Padding" Value="0"/>
@@ -98,7 +98,7 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <ListView Width="690" ItemsSource="{Binding ListControl}">
+                            <ListView Width="690" ItemsSource="{Binding Column_2.ControlRegistrationsList}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="Padding" Value="0"/>
@@ -109,12 +109,17 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBox Width="115" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
-                                            <TextBox Width="115" Height="40" Text="{Binding Date}"></TextBox>
-                                            <TextBox Width="115" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
-                                            <TextBox Width="115" Height="40" Text="{Binding Colunm}"></TextBox>
-                                            <TextBox Width="115" Height="40" Text="{Binding Note}"></TextBox>
-                                            <TextBox Width="115" Height="40" Text="{Binding Week_No}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding ControlRegistration_ID}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Time}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Production_Date}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding CommentsOnChangedDate}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding ControlAlcoholSpearDispenser}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding CapNo}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding EtiquetteNo}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding KegSize}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Signature}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding FirstPalletDepalletizing}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding LastPalletDepalletizing}"></TextBox>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>

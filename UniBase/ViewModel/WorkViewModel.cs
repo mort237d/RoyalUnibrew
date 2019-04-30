@@ -9,6 +9,8 @@ using GalaSoft.MvvmLight.Command;
 using ModelLibrary;
 using UniBase.Annotations;
 using UniBase.Model;
+using UniBase.Model.K2;
+using UniBase.Model.Login;
 
 namespace UniBase.ViewModel
 {

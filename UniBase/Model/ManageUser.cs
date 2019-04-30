@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
+using UniBase.Model.Login;
 
 namespace UniBase.Model
 {

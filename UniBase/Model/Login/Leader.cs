@@ -1,4 +1,4 @@
-﻿namespace UniBase.Model
+﻿namespace UniBase.Model.Login
 {
     class Leader : User
     {

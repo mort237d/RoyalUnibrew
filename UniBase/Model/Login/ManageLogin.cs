@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 using UniBase.View;
 
-namespace UniBase.Model
+namespace UniBase.Model.Login
 {
     class ManageLogin : INotifyPropertyChanged
     {

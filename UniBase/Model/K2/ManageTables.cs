@@ -2,10 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reflection;
-using System.Threading.Tasks;
 using ModelLibrary;
 
-namespace UniBase.Model
+namespace UniBase.Model.K2
 {
     public class ManageTables
     {
@@ -64,6 +63,7 @@ namespace UniBase.Model
         {
             FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
             ProductProps = new List<string>{ "Færdigt Produkt Nr", "Produkt Navn", "Antal dage før udløbsdato"};
+            ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
             //ProductionProps.AddRange(new List<string>{"Produktion ID", ""});
         }
 

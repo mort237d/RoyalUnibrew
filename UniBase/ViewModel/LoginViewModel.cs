@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using UniBase.Model;
+using UniBase.Model.Login;
 
 namespace UniBase.ViewModel
 {
