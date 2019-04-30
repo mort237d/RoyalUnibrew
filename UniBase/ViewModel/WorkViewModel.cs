@@ -27,9 +27,7 @@ namespace UniBase.ViewModel
         public Colors PredefinedColors { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; } 
-
-
-
+        
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
@@ -37,9 +35,10 @@ namespace UniBase.ViewModel
 
             TrendAdminstrator = new TrendAdminstrator();
 
-            SaveWorkCommand = new RelayCommand(Column_2.InitializeObservableCollections);
-            TestCommand = new RelayCommand(TempMethod);
+            SaveWorkCommand = new RelayCommand(Column_2.SaveFrontpages);
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
+
+            TestCommand = new RelayCommand(TempMethod);
         }
 
       

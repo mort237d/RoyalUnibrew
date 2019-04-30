@@ -139,7 +139,7 @@ namespace UniBase.Model.K2
 
         private void ShowToastNotification(string title, string stringContent)
         {
-            ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
+            ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
             Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
             Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
             toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
@@ -150,7 +150,7 @@ namespace UniBase.Model.K2
 
             ToastNotification toast = new ToastNotification(toastXml);
             toast.ExpirationTime = DateTime.Now.AddSeconds(4);
-            ToastNotifier.Show(toast);
+            toastNotifier.Show(toast);
         }
 
         private void CompleteLists()
