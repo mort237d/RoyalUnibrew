@@ -2,11 +2,11 @@
 {
     public class Products
     {
-        public Products(int finishedProduct_No, string productName, int bedstBeforeDateLength)
+        public Products(int finishedProduct_No, string productName, int bestBeforeDateLength)
         {
             FinishedProduct_No = finishedProduct_No;
             ProductName = productName;
-            BedstBeforeDateLength = bedstBeforeDateLength;
+            BestBeforeDateLength = bestBeforeDateLength;
         }
 
         public Products()
@@ -18,6 +18,6 @@
 
         public string ProductName { get; set; }
 
-        public int BedstBeforeDateLength { get; set; }
+        public int BestBeforeDateLength { get; set; }
     }
 }
