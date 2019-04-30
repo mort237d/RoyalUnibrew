@@ -43,20 +43,6 @@ namespace UniBase.Model.K2
             TuList = ModelGenerics.GetAll(new TUs());
         }
 
-        /*private List<string> GetProperties<T>(T type)
-        {
-            List<string> properties = new List<string>();
-            var prop = type.GetType().GetProperties();
-
-            foreach (var propertyInfo in prop)
-            {
-                Debug.WriteLine(propertyInfo.Name);
-                properties.Add(propertyInfo.Name);
-            }
-
-            return properties;
-        }*/
-
         private void CompleteLists()
         {
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
