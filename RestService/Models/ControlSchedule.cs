@@ -20,13 +20,7 @@ namespace RestService.Models
 
         public DateTime Time { get; set; }
 
-        public TimeSpan WeightControlTime { get; set; }
-
         public double Weight { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string ReceiptForTest { get; set; }
 
         [Required]
         [StringLength(50)]

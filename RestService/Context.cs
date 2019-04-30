@@ -2,11 +2,14 @@ using RestService.Models;
 
 namespace RestService
 {
+    using System;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public partial class Context : DbContext
     {
-        public Context() : base("name=Context2")
+        public Context() : base("name=Context3")
         {
             base.Configuration.ProxyCreationEnabled = false;
         }
@@ -33,10 +36,6 @@ namespace RestService
                 .HasMany(e => e.Frontpages)
                 .WithRequired(e => e.ControlRegistration)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<ControlSchedule>()
-                .Property(e => e.ReceiptForTest)
-                .IsUnicode(false);
 
             modelBuilder.Entity<ControlSchedule>()
                 .Property(e => e.KegTest)
