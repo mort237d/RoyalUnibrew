@@ -21,19 +21,20 @@ namespace UniBase.ViewModel
         public RelayCommand SaveWorkCommand { get; set; }
         public RelayCommand TestCommand { get; set; }
 
-        public ManageTables Column_2 { get; set; }
+        public Model.K2.ManageTables Column_2 { get; set; }
         
-        public TrendAdminstrator TrendAdminstrator { get; set; } = new TrendAdminstrator();
+        public TrendAdminstrator TrendAdminstrator { get; set; } 
 
 
 
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
+
+            TrendAdminstrator = new TrendAdminstrator();
+
+
             
-            Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
-            Debug.WriteLine("\n \t" + a.Name, "Admin");
-            Debug.WriteLine("\n \tError Message", "Category");
 
             SaveWorkCommand = new RelayCommand(TempMethod);
             TestCommand = new RelayCommand(TempMethod);

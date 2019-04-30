@@ -20,33 +20,35 @@ namespace UniBase.Model
             set { _trendList = value; }
         }
 
-        public void GraphComboboxSelectedMethod(string input)
+        public void GraphComboboxSelectedMethod(string comboboxInput)
         {
-            if (input == "Weight")
-            {
-                CreateWeightGraph("En Uge");
-            }
-            else if (input == "MipMa")
-            {
-                CreateMipMAGraph();
-            }
-            else if (input == "Lud Koncentration")
-            {
-                CreateLudKoncentrationGraph();
-            }
+            
+                CreateGraph("En Uge", comboboxInput);
+            
         }
 
-        public void CreateWeightGraph(string timePeriod)
+        public void CreateGraph(string timePeriod, string comboboxInput)
         {
             TrendList.Clear();
             if (timePeriod == "En Uge")
             {
                 for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
                 {
-                    if (MngTables.ControlSchedulesList[i].Time >= DateTime.Now - new TimeSpan(7, 0, 0, 0))
+                    if (MngTables.ControlSchedulesList[i].Time >= DateTime.Now - new TimeSpan(7, 0, 0, 0) && MngTables.ControlSchedulesList[i].Time <= DateTime.Now)
                     {
 
-                    TrendList.Add(new Trends(Convert.ToDouble(MngTables.ControlSchedulesList[i].Weight), MngTables.ControlSchedulesList[i].WeightControlTime.ToString("s").Substring(0, 10)));
+                        if (comboboxInput == "Weight")
+                        {
+                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].Weight, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                        }
+                        else if (comboboxInput == "MipMa")
+                        {
+                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].MipMA, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                        }
+                        else if (comboboxInput == "Lud Koncentration")
+                        {
+                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].LudKoncentration, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                        }
                     }
                 }
 
@@ -54,26 +56,6 @@ namespace UniBase.Model
 
         }
 
-        public void CreateMipMAGraph()
-        {
-            TrendList.Clear();
-
-            for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
-            {
-                TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].MipMA, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
-
-            }
-        }
-
-        public void CreateLudKoncentrationGraph()
-        {
-            TrendList.Clear();
-
-            for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
-            {
-                TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].LudKoncentration, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
-
-            }
-        }
+       
     }
 }
