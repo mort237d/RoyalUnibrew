@@ -47,7 +47,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
+                                            <Button CommandParameter="{Binding FrontPageButton}" Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
                                             <Line></Line>
                                         </StackPanel>
                                     </DataTemplate>

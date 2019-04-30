@@ -40,9 +40,29 @@ namespace UniBase.ViewModel
             TestCommand = new RelayCommand(TempMethod);
         }
 
+        private Button _frontPageButton;
+
+        public Button FrontPageButton
+        {
+            get
+            {
+                return this._frontPageButton;
+            }
+            set
+            {
+                this._frontPageButton = value;
+            }
+        }
         private void TempMethod()
         {
-            Debug.WriteLine("CLicked", "Button");
+            if (FrontPageButton.Name.ToLower() == "finishedproduct_no")
+            {
+                Debug.WriteLine("Yay", "Button");
+            }
+            else
+            {
+                Debug.WriteLine("...", "Button");
+            }
         }
 
         #region Propeties
