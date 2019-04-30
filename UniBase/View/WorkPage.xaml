@@ -47,7 +47,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button CommandParameter="{Binding FrontPageButton}" Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
+                                            <Button Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
                                             <Line></Line>
                                         </StackPanel>
                                     </DataTemplate>
@@ -67,7 +67,7 @@
                                             <TextBox Width="115" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
                                             <TextBox Width="115" Height="40" Text="{Binding Date}"></TextBox>
                                             <TextBox Width="115" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
-                                            <TextBox Width="115" Height="40" Text="{Binding Column}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Colunm}"></TextBox>
                                             <TextBox Width="115" Height="40" Text="{Binding Note}"></TextBox>
                                             <TextBox Width="115" Height="40" Text="{Binding Week_No}"></TextBox>
                                         </StackPanel>

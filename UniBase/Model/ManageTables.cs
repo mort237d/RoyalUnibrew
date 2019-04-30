@@ -54,8 +54,8 @@ namespace UniBase.Model
 
         private void CompleteLists()
         {
-            FrontPageProps.AddRange(new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"});
-            ProductProps.AddRange(new List<string>{ "Færdigt Produkt Nr", "Produkt Navn", "Antal dage før udløbsdato"});
+            FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
+            ProductProps = new List<string>{ "Færdigt Produkt Nr", "Produkt Navn", "Antal dage før udløbsdato"};
             //ProductionProps.AddRange(new List<string>{"Produktion ID", ""});
         }
 
