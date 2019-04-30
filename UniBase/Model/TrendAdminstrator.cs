@@ -35,6 +35,7 @@ namespace UniBase.Model
             }
         }
 
+
         public void CreateWeightGraph()
         {
             for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
