@@ -9,7 +9,9 @@ namespace ModelLibrary
             
         }
 
-        public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo, int etiquetteNo, double kegSize, string signature, DateTime firstPalletDepalletizing, DateTime lastPalletDepalletizing)
+        public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date,
+            string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo, int etiquetteNo, double kegSize,
+            string signature, DateTime firstPalletDepalletizing, DateTime lastPalletDepalletizing, DateTime expiry_Date)
         {
             ControlRegistration_ID = controlRegistration_ID;
             Time = time;
@@ -22,6 +24,7 @@ namespace ModelLibrary
             Signature = signature;
             FirstPalletDepalletizing = firstPalletDepalletizing;
             LastPalletDepalletizing = lastPalletDepalletizing;
+            Expiry_Date = expiry_Date;
         }
 
         public int ControlRegistration_ID { get; set; }
@@ -29,6 +32,8 @@ namespace ModelLibrary
         public TimeSpan Time { get; set; }
 
         public DateTime Production_Date { get; set; }
+
+        public DateTime Expiry_Date { get; set; }
 
 
         public string CommentsOnChangedDate { get; set; }
