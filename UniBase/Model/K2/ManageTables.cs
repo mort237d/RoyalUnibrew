@@ -62,10 +62,10 @@ namespace UniBase.Model.K2
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
             ControlScheduleProps = new List<string>{"Klokkeslæt", "Vægt kontrol", "Kontrol af fustage", "LudKoncentration", "Mip MA", "Signatur operatør", "Note"};
             FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
-            ProductionProps = new List<string>{};
+            ProductionProps = new List<string>{"Paller lagt på lager 0001", "Tappemaskine", "Antal fustager pr. palle", "Tæller", "Palle tæller", "Batchdato"};
             ProductProps = new List<string>{"Færdigt Produkt Nr", "Produkt Navn", "Antal dage før udløbsdato"};
-            ShiftRegistrationProps = new List<string>{};
-            TuProps = new List<string>{};
+            ShiftRegistrationProps = new List<string>{"Start tidspunkt", "Slut tidspunkt", "Pauser", "Total timer", "Bemanding", "Initialer"};
+            TuProps = new List<string>{"Første dag start TU", "Første dag slut TU", "Anden dag start TU", "Anden dag slut TU", "Tredje dag start TU", "Tredje dag slut TU" };
         }
 
 
