@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using ModelLibrary;
 
 namespace UniBase.Model
@@ -21,6 +17,12 @@ namespace UniBase.Model
         public ObservableCollection<TUs> _tuList;
 
         public List<string> FrontPageProps { get; set; }
+        public List<string> ProductProps { get; set; }
+        public List<string> ProductionProps { get; set; }
+        public List<string> ShiftRegistrationProps { get; set; }
+        public List<string> TuProps { get; set; }
+        public List<string> ControlRegistrationProps { get; set; }
+        public List<string> ControlScheduleProps { get; set; }
 
         public ManageTables()
         {
@@ -52,8 +54,9 @@ namespace UniBase.Model
 
         private void CompleteLists()
         {
-            FrontPageProps = GetProperties(new Frontpages());
-            FrontPageProps.RemoveRange(6, FrontPageProps.Count-6);
+            FrontPageProps.AddRange(new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"});
+            ProductProps.AddRange(new List<string>{ "Færdigt Produkt Nr", "Produkt Navn", "Antal dage før udløbsdato"});
+            //ProductionProps.AddRange(new List<string>{"Produktion ID", ""});
         }
 
         private static ManageTables _instance;
