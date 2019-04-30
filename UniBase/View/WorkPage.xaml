@@ -123,14 +123,14 @@
             </PivotItem>
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel>
-                    <ComboBox Name="SelectGraphCombobox" SelectionChanged="GraphComboboxMethod">
+                    <ComboBox Name="SelectGraphCombobox" SelectionChanged="GraphComboboxMethod" PlaceholderText="Vælg Graf">
                         <ComboBoxItem Content="Weight"/>
                         <ComboBoxItem Content="MipMa"/>
                         <ComboBoxItem Content="Lud Koncentration"/>
                     </ComboBox>
                     <TextBlock Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
                     <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1000" Height="500"  >
-                        <charting:LineSeries Title="SelectedCategory" 
+                        <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
                                              IndependentValuePath="Date"
                                              DependentValuePath="SelectedCategory"
                                              ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
@@ -141,6 +141,5 @@
                 
             </PivotItem>
         </Pivot>
-        <Button Grid.Row="2" Margin="16,16" Height="80" Width="160" VerticalAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding SaveWorkCommand}" Content="Save" FontSize="32" Background="DarkCyan"/>
     </Grid>
 </Page>

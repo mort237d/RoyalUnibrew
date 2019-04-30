@@ -35,6 +35,8 @@ namespace UniBase.Model
             _shiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             _tuList = ModelGenerics.GetAll(new TUs());
 
+            FrontPageProps = new List<string>();
+            ProductProps = new List<string>();
             CompleteLists();
         }
 

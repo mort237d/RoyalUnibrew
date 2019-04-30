@@ -31,18 +31,7 @@ namespace UniBase.ViewModel
             {
                 _graphCombobox = value; 
                 OnPropertyChanged();
-                if (_graphCombobox == "Weight")
-                {
-                    _trendAdminstrator.CreateWeightGraph();
-                }
-                else if (_graphCombobox == "MipMa")
-                {
-                    _trendAdminstrator.CreateMipMAGraph();
-                }
-                else if (_graphCombobox == "Lud Koncentration")
-                {
-                    _trendAdminstrator.CreateLudKoncentrationGraph();
-                }
+                _trendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox);
             }
         }
 
