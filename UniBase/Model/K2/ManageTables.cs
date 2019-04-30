@@ -26,14 +26,12 @@ namespace UniBase.Model.K2
 
         public ManageTables()
         {
-            InitializeLists();
-
-            FrontPageProps = new List<string>();
-            ProductProps = new List<string>();
+            InitializeObservableCollections();
             CompleteLists();
         }
 
-        private void InitializeLists()
+
+        private void InitializeObservableCollections()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
@@ -45,7 +43,7 @@ namespace UniBase.Model.K2
             TuList = ModelGenerics.GetAll(new TUs());
         }
 
-        private List<string> GetProperties<T>(T type)
+        /*private List<string> GetProperties<T>(T type)
         {
             List<string> properties = new List<string>();
             var prop = type.GetType().GetProperties();
@@ -57,16 +55,22 @@ namespace UniBase.Model.K2
             }
 
             return properties;
-        }
+        }*/
 
         private void CompleteLists()
         {
-            FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
-            ProductProps = new List<string>{ "Færdigt Produkt Nr", "Produkt Navn", "Antal dage før udløbsdato"};
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
-            //ProductionProps.AddRange(new List<string>{"Produktion ID", ""});
+            ControlScheduleProps = new List<string>{"Klokkeslæt", "Vægt kontrol", "Kontrol af fustage", "LudKoncentration", "Mip MA", "Signatur operatør", "Note"};
+            FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
+            ProductionProps = new List<string>{};
+            ProductProps = new List<string>{"Færdigt Produkt Nr", "Produkt Navn", "Antal dage før udløbsdato"};
+            ShiftRegistrationProps = new List<string>{};
+            TuProps = new List<string>{};
         }
 
+
+        #region SingleTon
+        
         private static ManageTables _instance;
         public static ManageTables Instance
         {
@@ -80,5 +84,6 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+        #endregion
     }
 }
