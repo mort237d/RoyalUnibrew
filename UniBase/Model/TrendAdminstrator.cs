@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UniBase.Model.K2;
 
 namespace UniBase.Model
@@ -32,25 +34,74 @@ namespace UniBase.Model
             TrendList.Clear();
             if (timePeriod == "En Uge")
             {
-                for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
+                int tempDayOfScheduleList = MngTables.ControlSchedulesList[0].Time.Day;
+                List<double> tempItemList = new List<double>();
+                foreach (var schedulesListItem in MngTables.ControlSchedulesList)
                 {
-                    if (MngTables.ControlSchedulesList[i].Time >= DateTime.Now - new TimeSpan(7, 0, 0, 0) && MngTables.ControlSchedulesList[i].Time <= DateTime.Now)
+                    if (schedulesListItem.Time >= DateTime.Now - new TimeSpan(7, 0, 0, 0) && schedulesListItem.Time <= DateTime.Now)
                     {
 
                         if (comboboxInput == "Weight")
                         {
-                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].Weight, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                            if (tempDayOfScheduleList == schedulesListItem.Time.Day)
+                            {
+                                tempItemList.Add(schedulesListItem.Weight);
+                            }
+                            else
+                            {
+                                double tempAverage = tempItemList.Sum() / tempItemList.Count;
+                                TrendList.Add(new Trends(tempAverage, schedulesListItem.Time.ToString("s").Substring(0, 10)));
+                            }
+
                         }
                         else if (comboboxInput == "MipMa")
                         {
-                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].MipMA, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                            if (tempDayOfScheduleList == schedulesListItem.Time.Day)
+                            {
+                                tempItemList.Add(schedulesListItem.MipMA);
+                            }
+                            else
+                            {
+                                double tempAverage = tempItemList.Sum() / tempItemList.Count;
+                                TrendList.Add(new Trends(tempAverage, schedulesListItem.Time.ToString("s").Substring(0, 10)));
+                            }
                         }
                         else if (comboboxInput == "Lud Koncentration")
                         {
-                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].LudKoncentration, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                            if (tempDayOfScheduleList == schedulesListItem.Time.Day)
+                            {
+                                tempItemList.Add(schedulesListItem.LudKoncentration);
+                            }
+                            else
+                            {
+                                double tempAverage = tempItemList.Sum() / tempItemList.Count;
+                                TrendList.Add(new Trends(tempAverage, schedulesListItem.Time.ToString("s").Substring(0, 10)));
+                            }
                         }
                     }
                 }
+                //                for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
+                //                {
+                //                    if (MngTables.ControlSchedulesList[i].Time >= DateTime.Now - new TimeSpan(7, 0, 0, 0) && MngTables.ControlSchedulesList[i].Time <= DateTime.Now)
+                //                    {
+                //
+                //                        if (comboboxInput == "Weight")
+                //                        {
+                //                            int tempDayOfScheduleList = MngTables.ControlSchedulesList[i];
+                //
+                //                            
+                //                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].Weight, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                //                        }
+                //                        else if (comboboxInput == "MipMa")
+                //                        {
+                //                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].MipMA, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                //                        }
+                //                        else if (comboboxInput == "Lud Koncentration")
+                //                        {
+                //                            TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].LudKoncentration, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                //                        }
+                //                    }
+                //                }
 
             }
 
