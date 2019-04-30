@@ -24,7 +24,7 @@ namespace UniBase.Model
         {
             if (input == "Weight")
             {
-                CreateWeightGraph();
+                CreateWeightGraph("En Uge");
             }
             else if (input == "MipMa")
             {
@@ -36,17 +36,28 @@ namespace UniBase.Model
             }
         }
 
-        public void CreateWeightGraph()
+        public void CreateWeightGraph(string timePeriod)
         {
-            for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
+            TrendList.Clear();
+            if (timePeriod == "En Uge")
             {
-                TrendList.Add(new Trends(Convert.ToDouble(MngTables.ControlSchedulesList[i].Weight), MngTables.ControlSchedulesList[i].WeightControlTime.ToString("s").Substring(0, 10)));
+                for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
+                {
+                    if (MngTables.ControlSchedulesList[i].Time >= DateTime.Now - new TimeSpan(7, 0, 0, 0))
+                    {
+
+                    TrendList.Add(new Trends(Convert.ToDouble(MngTables.ControlSchedulesList[i].Weight), MngTables.ControlSchedulesList[i].WeightControlTime.ToString("s").Substring(0, 10)));
+                    }
+                }
 
             }
+
         }
 
         public void CreateMipMAGraph()
         {
+            TrendList.Clear();
+
             for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
             {
                 TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].MipMA, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
@@ -56,6 +67,8 @@ namespace UniBase.Model
 
         public void CreateLudKoncentrationGraph()
         {
+            TrendList.Clear();
+
             for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
             {
                 TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].LudKoncentration, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
