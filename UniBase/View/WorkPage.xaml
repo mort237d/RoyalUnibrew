@@ -123,6 +123,12 @@
             </PivotItem>
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel>
+                    <ComboBox Name="SelectGraphCombobox" SelectionChanged="GraphComboboxMethod">
+                        <ComboBoxItem Content="Weight"/>
+                        <ComboBoxItem Content="MipMa"/>
+                        <ComboBoxItem Content="Lud Koncentration"/>
+                    </ComboBox>
+                    <TextBlock Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
                     <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1000" Height="500"  >
                         <charting:LineSeries Title="SelectedCategory" 
                                              IndependentValuePath="Date"
@@ -130,11 +136,7 @@
                                              ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
                     </charting:Chart>
 
-                    <charting:Chart Width="480" >
-                        <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" 
-                                               IndependentValuePath="ProfitType" 
-                                               DependentValuePath="TotalIncome"/>
-                    </charting:Chart>
+                    
                 </StackPanel>
                 
             </PivotItem>

@@ -27,5 +27,11 @@ namespace UniBase.View
         {
             this.InitializeComponent();
         }
+
+        private void GraphComboboxMethod(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedContent = ((ComboBoxItem) SelectGraphCombobox.SelectedItem).Content.ToString();
+            TbCombobox.Text = selectedContent;
+        }
     }
 }
