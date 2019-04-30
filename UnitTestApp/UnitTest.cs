@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ModelLibrary;
-using UniBase;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestApp
 {

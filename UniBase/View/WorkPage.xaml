@@ -36,7 +36,7 @@
                 <Pivot>
                     <PivotItem Header="Forside">
                         <StackPanel>
-                            <ListView Height="42" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding MngTables.FrontPageProps}">
+                            <ListView Width="690" Height="42" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding MngTables.FrontPageProps}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="Padding" Value="0"/>
@@ -47,18 +47,29 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
+                                            <Button CommandParameter="{Binding FrontPageButton}" Style="{StaticResource ButtonPropertyStyle}" Content="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}"></Button>
                                             <Line></Line>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <ListView ItemsSource="{Binding ListFrontpages}">
+                            <ListView Width="690" ItemsSource="{Binding ListFrontpages}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBox Text="{Binding Date}"></TextBox>
-                                            <TextBox Text="{Binding Column}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Date}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Column}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Note}"></TextBox>
+                                            <TextBox Width="115" Height="40" Text="{Binding Week_No}"></TextBox>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
@@ -112,25 +123,20 @@
             </PivotItem>
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel>
+                    <ComboBox Name="SelectGraphCombobox" SelectionChanged="GraphComboboxMethod">
+                        <ComboBoxItem Content="Weight"/>
+                        <ComboBoxItem Content="MipMa"/>
+                        <ComboBoxItem Content="Lud Koncentration"/>
+                    </ComboBox>
+                    <TextBlock Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
                     <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1000" Height="500"  >
-                        <charting:LineSeries Title="Size" 
-                                             IndependentValuePath="Date" 
-                                             DependentValuePath="Size"     
-                                             ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}" >
-                        </charting:LineSeries>
-
-                        <charting:LineSeries Title="Weight" 
+                        <charting:LineSeries Title="SelectedCategory" 
                                              IndependentValuePath="Date"
-                                             DependentValuePath="Weight"
+                                             DependentValuePath="SelectedCategory"
                                              ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
                     </charting:Chart>
-                  
 
-                    <charting:Chart Width="480" >
-                        <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" 
-                                               IndependentValuePath="ProfitType" 
-                                               DependentValuePath="TotalIncome"/>
-                    </charting:Chart>
+                    
                 </StackPanel>
                 
             </PivotItem>
