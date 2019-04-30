@@ -39,7 +39,7 @@ namespace UniBase.ViewModel
 
             SaveWorkCommand = new RelayCommand(TempMethod);
             TestCommand = new RelayCommand(TempMethod);
-            UpdateTable = new RelayCommand(TempMethod);
+            UpdateTable = new RelayCommand(Column_2.InitializeObservableCollections);
         }
 
       

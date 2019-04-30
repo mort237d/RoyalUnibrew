@@ -1,20 +1,93 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using ModelLibrary;
+using UniBase.Annotations;
 
 namespace UniBase.Model.K2
 {
-    public class ManageTables
+    public class ManageTables :INotifyPropertyChanged
     {
-        public ObservableCollection<Frontpages> FrontpagesList { get; set; }
-        public ObservableCollection<ControlRegistrations> ControlRegistrationsList { get; set; }
-        public ObservableCollection<ControlSchedules> ControlSchedulesList { get; set; }
-        public ObservableCollection<Productions> ProductionsList { get; set; }
-        public ObservableCollection<Products> ProductsList { get; set; }
-        public ObservableCollection<ShiftRegistrations> ShiftRegistrationsList { get; set; }
-        public ObservableCollection<TUs> TuList { get; set; } 
+        private ObservableCollection<Frontpages> _frontpagesList;
+        private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
+        private ObservableCollection<ControlSchedules> _controlSchedulesList;
+        private ObservableCollection<Productions> _productionsList;
+        private ObservableCollection<Products> _productsList;
+        private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
+        private ObservableCollection<TUs> _tuList;
+
+        public ObservableCollection<Frontpages> FrontpagesList
+        {
+            get { return _frontpagesList; }
+            set
+            {
+                _frontpagesList = value;
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<ControlRegistrations> ControlRegistrationsList
+        {
+            get { return _controlRegistrationsList; }
+            set
+            {
+                _controlRegistrationsList = value; 
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<ControlSchedules> ControlSchedulesList
+        {
+            get { return _controlSchedulesList; }
+            set
+            {
+                _controlSchedulesList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Productions> ProductionsList
+        {
+            get { return _productionsList; }
+            set
+            {
+                _productionsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Products> ProductsList
+        {
+            get { return _productsList; }
+            set
+            {
+                _productsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ShiftRegistrations> ShiftRegistrationsList
+        {
+            get { return _shiftRegistrationsList; }
+            set
+            {
+                _shiftRegistrationsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<TUs> TuList
+        {
+            get { return _tuList; }
+            set
+            {
+                _tuList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region PropLists
 
         public List<string> FrontPageProps { get; set; }
         public List<string> ProductProps { get; set; }
@@ -24,6 +97,8 @@ namespace UniBase.Model.K2
         public List<string> ControlRegistrationProps { get; set; }
         public List<string> ControlScheduleProps { get; set; }
 
+        #endregion
+
         public ManageTables()
         {
             InitializeObservableCollections();
@@ -31,12 +106,11 @@ namespace UniBase.Model.K2
         }
 
 
-        private void InitializeObservableCollections()
+        public void InitializeObservableCollections()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
             ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             ProductionsList = ModelGenerics.GetAll(new Productions());
             ProductsList = ModelGenerics.GetAll(new Products());
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
@@ -56,7 +130,6 @@ namespace UniBase.Model.K2
 
 
         #region SingleTon
-        
         private static ManageTables _instance;
         public static ManageTables Instance
         {
@@ -70,6 +143,18 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+        #endregion
+
+        #region INotifyPropertiesChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         #endregion
     }
 }
