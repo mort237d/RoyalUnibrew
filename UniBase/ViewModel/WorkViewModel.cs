@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight.Command;
 using ModelLibrary;
@@ -28,18 +30,7 @@ namespace UniBase.ViewModel
             {
                 _graphCombobox = value; 
                 OnPropertyChanged();
-                if (_graphCombobox == "Weight")
-                {
-                    _trendAdminstrator.CreateWeightGraph();
-                }
-                else if (_graphCombobox == "MipMa")
-                {
-                    _trendAdminstrator.CreateMipMAGraph();
-                }
-                else if (_graphCombobox == "Lud Koncentration")
-                {
-                    _trendAdminstrator.CreateLudKoncentrationGraph();
-                }
+                _trendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox);
             }
         }
 
@@ -55,29 +46,10 @@ namespace UniBase.ViewModel
             TestCommand = new RelayCommand(TempMethod);
         }
 
-        private Button _frontPageButton;
-
-        public Button FrontPageButton
-        {
-            get
-            {
-                return this._frontPageButton;
-            }
-            set
-            {
-                this._frontPageButton = value;
-            }
-        }
+      
         private void TempMethod()
         {
-            if (FrontPageButton.Name.ToLower() == "finishedproduct_no")
-            {
-                Debug.WriteLine("Yay", "Button");
-            }
-            else
-            {
-                Debug.WriteLine("...", "Button");
-            }
+            Debug.WriteLine("Hej", "Button Clicked");
         }
 
         #region Propeties
@@ -99,4 +71,5 @@ namespace UniBase.ViewModel
         }
         #endregion
     }
+    
 }

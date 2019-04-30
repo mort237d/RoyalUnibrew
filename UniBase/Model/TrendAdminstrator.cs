@@ -19,6 +19,22 @@ namespace UniBase.Model
             set { _trendList = value; }
         }
 
+        public void GraphComboboxSelectedMethod(string input)
+        {
+            if (input == "Weight")
+            {
+                CreateWeightGraph();
+            }
+            else if (input == "MipMa")
+            {
+                CreateMipMAGraph();
+            }
+            else if (input == "Lud Koncentration")
+            {
+                CreateLudKoncentrationGraph();
+            }
+        }
+
         public void CreateWeightGraph()
         {
             for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
