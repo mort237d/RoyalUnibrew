@@ -14,7 +14,8 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Frontpages> ListFrontpages { get; set; } 
+        public ObservableCollection<Frontpages> ListFrontpages { get; set; }
+        public ObservableCollection<ControlRegistrations> ListControlRegistration { get; set; }
         public ObservableCollection<ControlSchedules> ListControlScheduleses { get; set; }
 
         public TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
@@ -22,7 +23,7 @@ namespace UniBase.ViewModel
         public RelayCommand SaveWorkCommand { get; set; }
         public RelayCommand TestCommand { get; set; }
 
-        public ManageTables MngTables { get; set; }
+        public ManageTables K2 { get; set; }
 
         public string GraphCombobox
         {
@@ -37,10 +38,11 @@ namespace UniBase.ViewModel
 
         public WorkViewModel()
         {
-            MngTables = ManageTables.Instance;
+            K2 = ManageTables.Instance;
 
-            ListFrontpages = MngTables._frontpagesList;
-            ListControlScheduleses = MngTables._controlSchedulesList;
+            ListFrontpages = K2._frontpagesList;
+            ListControlRegistration = K2._controlRegistrationsList;
+            ListControlScheduleses = K2._controlSchedulesList;
             Administrator a = new Administrator("Morten", "d","31223437","Hej","?");
             Debug.WriteLine("\n \t" + a.Name, "Admin");
             Debug.WriteLine("\n \tError Message", "Category");
