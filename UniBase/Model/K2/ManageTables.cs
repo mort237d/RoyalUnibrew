@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Windows.UI.Notifications;
 using ModelLibrary;
 using UniBase.Annotations;
 
@@ -11,6 +13,8 @@ namespace UniBase.Model.K2
 {
     public class ManageTables :INotifyPropertyChanged
     {
+        #region Field
+
         private ObservableCollection<Frontpages> _frontpagesList;
         private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
         private ObservableCollection<ControlSchedules> _controlSchedulesList;
@@ -18,6 +22,10 @@ namespace UniBase.Model.K2
         private ObservableCollection<Products> _productsList;
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
         private ObservableCollection<TUs> _tuList;
+
+        #endregion
+
+        #region Properties
 
         public ObservableCollection<Frontpages> FrontpagesList
         {
@@ -87,6 +95,8 @@ namespace UniBase.Model.K2
             }
         }
 
+        #endregion
+
         #region PropLists
 
         public List<string> FrontPageProps { get; set; }
@@ -105,7 +115,6 @@ namespace UniBase.Model.K2
             CompleteLists();
         }
 
-
         public void InitializeObservableCollections()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
@@ -115,6 +124,33 @@ namespace UniBase.Model.K2
             ProductsList = ModelGenerics.GetAll(new Products());
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             TuList = ModelGenerics.GetAll(new TUs());
+        }
+
+        public void RefreshFrontpages()
+        {
+            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+        }
+
+        public void SaveFrontpages()
+        {
+            ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+        }
+
+        private void ShowToastNotification(string title, string stringContent)
+        {
+            ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
+            Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+            Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
+            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
+            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(stringContent));
+            Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+            Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
+            audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
+
+            ToastNotification toast = new ToastNotification(toastXml);
+            toast.ExpirationTime = DateTime.Now.AddSeconds(4);
+            ToastNotifier.Show(toast);
         }
 
         private void CompleteLists()
