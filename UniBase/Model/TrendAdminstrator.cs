@@ -21,27 +21,27 @@ namespace UniBase.Model
 
         public void CreateWeightGraph()
         {
-            for (int i = 0; i < MngTables._controlSchedulesList.Count; i++)
+            for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
             {
-                TrendList.Add(new Trends(Convert.ToDouble(MngTables._controlSchedulesList[i].Weight), MngTables._controlSchedulesList[i].WeightControlTime.ToString("s").Substring(0, 10)));
+                TrendList.Add(new Trends(Convert.ToDouble(MngTables.ControlSchedulesList[i].Weight), MngTables.ControlSchedulesList[i].WeightControlTime.ToString("s").Substring(0, 10)));
 
             }
         }
 
         public void CreateMipMAGraph()
         {
-            for (int i = 0; i < MngTables._controlSchedulesList.Count; i++)
+            for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
             {
-                TrendList.Add(new Trends(MngTables._controlSchedulesList[i].MipMA, MngTables._controlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].MipMA, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
 
             }
         }
 
         public void CreateLudKoncentrationGraph()
         {
-            for (int i = 0; i < MngTables._controlSchedulesList.Count; i++)
+            for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
             {
-                TrendList.Add(new Trends(MngTables._controlSchedulesList[i].LudKoncentration, MngTables._controlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
+                TrendList.Add(new Trends(MngTables.ControlSchedulesList[i].LudKoncentration, MngTables.ControlSchedulesList[i].Time.ToString("s").Substring(0, 10)));
 
             }
         }
