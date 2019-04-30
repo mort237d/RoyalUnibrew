@@ -2,19 +2,20 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reflection;
+using System.Threading.Tasks;
 using ModelLibrary;
 
 namespace UniBase.Model
 {
     public class ManageTables
     {
-        public ObservableCollection<Frontpages> _frontpagesList;
-        public ObservableCollection<ControlRegistrations> _controlRegistrationsList;
-        public ObservableCollection<ControlSchedules> _controlSchedulesList;
-        public ObservableCollection<Productions> _productionsList;
-        public ObservableCollection<Products> _productsList;
-        public ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
-        public ObservableCollection<TUs> _tuList;
+        public ObservableCollection<Frontpages> FrontpagesList { get; set; }
+        public ObservableCollection<ControlRegistrations> ControlRegistrationsList { get; set; }
+        public ObservableCollection<ControlSchedules> ControlSchedulesList { get; set; }
+        public ObservableCollection<Productions> ProductionsList { get; set; }
+        public ObservableCollection<Products> ProductsList { get; set; }
+        public ObservableCollection<ShiftRegistrations> ShiftRegistrationsList { get; set; }
+        public ObservableCollection<TUs> TuList { get; set; } 
 
         public List<string> FrontPageProps { get; set; }
         public List<string> ProductProps { get; set; }
@@ -26,18 +27,23 @@ namespace UniBase.Model
 
         public ManageTables()
         {
-            _frontpagesList = ModelGenerics.GetAll(new Frontpages());
-            _controlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            _controlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            _frontpagesList = ModelGenerics.GetAll(new Frontpages());
-            _productionsList = ModelGenerics.GetAll(new Productions());
-            _productsList = ModelGenerics.GetAll(new Products());
-            _shiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            _tuList = ModelGenerics.GetAll(new TUs());
+            InitializeLists();
 
             FrontPageProps = new List<string>();
             ProductProps = new List<string>();
             CompleteLists();
+        }
+
+        private void InitializeLists()
+        {
+            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            ProductionsList = ModelGenerics.GetAll(new Productions());
+            ProductsList = ModelGenerics.GetAll(new Products());
+            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+            TuList = ModelGenerics.GetAll(new TUs());
         }
 
         private List<string> GetProperties<T>(T type)
