@@ -79,8 +79,8 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                             <StackPanel>
-                                <TextBlock Text="Filter"></TextBlock>
-                                <ListView Width="662" ItemsSource="{Binding Column_2.FrontpagesList}">
+                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                                <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -90,13 +90,9 @@
                                     </ListView.ItemContainerStyle>
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Date}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Colunm}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Note}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Week_No}"></TextBox>
+                                            <StackPanel>
+                                                <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
