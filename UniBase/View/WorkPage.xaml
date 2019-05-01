@@ -40,7 +40,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="6*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
@@ -49,7 +49,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Grid.Column="1" Grid.Row="1">
+                            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                                 <Button ToolTipService.ToolTip="Opdater" Command="{Binding RefreshFrontpageTable}" Height="40" Width="40" Background="Transparent">
                                     <Image Source="Images/RefreshButton.png"></Image>
                                 </Button>
@@ -60,7 +60,7 @@
                                     <Image Source="Images/DeleteButton.png"></Image>
                                 </Button>
                             </StackPanel>
-                            <StackPanel Grid.Row="1">
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center">
                                 <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
@@ -80,7 +80,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                <ListView SelectedItem="{Binding Column_2.SelectedFrontpageItem, Mode=TwoWay}" Width="662" ItemsSource="{Binding Column_2.FrontpagesList}">
+                                <ListView Height="300" Width="662" ItemsSource="{Binding Column_2.FrontpagesList}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
