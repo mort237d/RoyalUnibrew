@@ -68,7 +68,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <Button Style="{StaticResource ButtonPropertyStyle}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
                                                     <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
                                                 </Button>
                                                 <Line></Line>
@@ -87,12 +87,12 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Date}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Colunm}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Note}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Week_No}"></TextBox>
+                                                <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding Date, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding Colunm, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding Note, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding Week_No, Mode=TwoWay}"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -137,8 +137,8 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Style="{StaticResource ButtonPropertyStyle}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
-                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
+                                            <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                             </Button>
                                             <Line></Line>
                                         </StackPanel>

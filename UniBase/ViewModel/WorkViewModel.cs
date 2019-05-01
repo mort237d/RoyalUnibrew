@@ -18,11 +18,10 @@ namespace UniBase.ViewModel
     class WorkViewModel : INotifyPropertyChanged
     {
         private string _graphCombobox;
-        public int id { get; set; }
 
 
         public RelayCommand SaveWorkCommand { get; set; }
-        public RelayCommand TestCommand { get; set; }
+        public RelayCommand<object> TestCommand { get; set; }
         public RelayCommand RefreshFrontpageTable { get; set; }
 
         public Model.K2.ManageTables Column_2 { get; set; }
@@ -46,11 +45,11 @@ namespace UniBase.ViewModel
             SaveWorkCommand = new RelayCommand(Column_2.SaveFrontpages);
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
             
-            TestCommand = new RelayCommand(TempMethod);
+            TestCommand = new RelayCommand<object>(TempMethod);            
         }
 
       
-        private void TempMethod()
+        private void TempMethod(object id)
         {
             Debug.WriteLine("\n \tHej", "Button Clicked");
             Debug.WriteLine(id);

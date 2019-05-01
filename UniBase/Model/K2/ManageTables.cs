@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.UI.Notifications;
 using ModelLibrary;
 using UniBase.Annotations;
@@ -135,6 +136,11 @@ namespace UniBase.Model.K2
         public void SaveFrontpages()
         {
             ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+            Debug.WriteLine(_frontpagesList[0].Note);
+            Parallel.ForEach(_frontpagesList, frontpage =>
+                {
+                    ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
+                });
         }
 
         private void ShowToastNotification(string title, string stringContent)
