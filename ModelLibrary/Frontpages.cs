@@ -9,6 +9,21 @@ namespace ModelLibrary
             
         }
 
+        public Frontpages(int processOrder_No, DateTime date, int finishedProduct_No, int colunm, string note, int controlSchedule_ID, int controlRegistration_ID, int shiftRegistration_ID, int production_ID, int tU_ID, int week_No)
+        {
+            ProcessOrder_No = processOrder_No;
+            Date = date;
+            FinishedProduct_No = finishedProduct_No;
+            Colunm = colunm;
+            Note = note;
+            ControlSchedule_ID = controlSchedule_ID;
+            ControlRegistration_ID = controlRegistration_ID;
+            ShiftRegistration_ID = shiftRegistration_ID;
+            Production_ID = production_ID;
+            TU_ID = tU_ID;
+            Week_No = week_No;
+        }
+
         public Frontpages(int processOrder_No, DateTime date, int finishedProduct_No, int colunm, string note, int controlSchedule_ID, int controlRegistration_ID, int shiftRegistration_ID, int production_ID, int tU_ID, int week_No, ControlRegistrations controlRegistration, ControlSchedules controlSchedule, Products product, Productions production, ShiftRegistrations shiftRegistration, TUs tU)
         {
             ProcessOrder_No = processOrder_No;

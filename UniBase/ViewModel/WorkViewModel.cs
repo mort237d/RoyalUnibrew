@@ -18,11 +18,11 @@ namespace UniBase.ViewModel
     class WorkViewModel : INotifyPropertyChanged
     {
         private string _graphCombobox;
-        public int id { get; set; }
+        private string _graphTimeperiodCombobox;
 
 
         public RelayCommand SaveWorkCommand { get; set; }
-        public RelayCommand TestCommand { get; set; }
+        public RelayCommand<object> TestCommand { get; set; }
         public RelayCommand RefreshFrontpageTable { get; set; }
         public RelayCommand DeleteFrontpageTable { get; set; }
         public RelayCommand AddFrontpageTable { get; set; }
@@ -38,23 +38,49 @@ namespace UniBase.ViewModel
             PredefinedColors = new Colors();
 
             TrendAdminstrator = new TrendAdminstrator();
-
+            int month = 2;
+            int day = 11;
             //Udfyld controlschdual.
-            //Random radnom = new Random();
-            //for (int i = 1; i < 35; i++)
-            //{
-            //    ModelGenerics.CreateByObject(new ControlSchedules(4 + i, new DateTime(2019,9,9), (double)radnom.Next(0, 100) + radnom.NextDouble(), "Hej", radnom.NextDouble(), radnom.NextDouble(), "OP", "Ingen note"));
-            //}
+            Random radnom = new Random();
+//            for (int i = 0; i < 120; i++)
+//            {
+//                ModelGenerics.CreateByObject(new ControlSchedules(i+39, new DateTime(2019, month, day),radnom.NextDouble()*100, "hej", radnom.NextDouble() * 100, radnom.NextDouble() * 100, "mig", "Very good"));
+//                day++;
+//                if (day == 29)
+//                {
+//                    month++;
+//                    day = 1;
+//                }
+//            }
+            //            foreach (var VARIABLE in Column_2.ControlSchedulesList)
+            //            {
+            //                
+            //                VARIABLE.Time = new DateTime(2019, month, day);
+            //                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
+            //                day++;
+            //                if (day > 30)
+            //                {
+            //                    month++;
+            //                    day = 1;
+            //                }
+            //
+            //            }
+
+
             SaveWorkCommand = new RelayCommand(Column_2.SaveFrontpages);
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
-            DeleteFrontpageTable = new RelayCommand(TempMethod);
-            AddFrontpageTable = new RelayCommand(TempMethod);
-
-            TestCommand = new RelayCommand(TempMethod);
+            DeleteFrontpageTable = new RelayCommand(TempMethod2);
+            AddFrontpageTable = new RelayCommand(TempMethod2);
+            
+            TestCommand = new RelayCommand<object>(TempMethod);            
         }
 
-      
-        private void TempMethod()
+        private void TempMethod2()
+        {
+            Debug.WriteLine("\n \tHej", "Button Clicked");
+        }
+
+        private void TempMethod(object id)
         {
             Debug.WriteLine("\n \tHej", "Button Clicked");
             Debug.WriteLine(id);
@@ -68,7 +94,18 @@ namespace UniBase.ViewModel
             {
                 _graphCombobox = value;
                 OnPropertyChanged();
-                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox);
+                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox, _graphTimeperiodCombobox);
+            }
+        }
+
+        public string GraphTimeperiodCombobox
+        {
+            get { return _graphTimeperiodCombobox; }
+            set
+            {
+                _graphTimeperiodCombobox = value; 
+                OnPropertyChanged();
+                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox, _graphTimeperiodCombobox);
             }
         }
 
