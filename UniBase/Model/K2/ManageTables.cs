@@ -6,7 +6,10 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Notifications;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using ModelLibrary;
 using UniBase.Annotations;
 
@@ -27,6 +30,8 @@ namespace UniBase.Model.K2
         #endregion
 
         #region Properties
+
+        #region ObservableLists
 
         public ObservableCollection<Frontpages> FrontpagesList
         {
@@ -95,6 +100,8 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -185,6 +192,7 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+        
         #endregion
 
         #region INotifyPropertiesChanged

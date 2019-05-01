@@ -23,6 +23,8 @@ namespace UniBase.ViewModel
         public RelayCommand SaveWorkCommand { get; set; }
         public RelayCommand<object> TestCommand { get; set; }
         public RelayCommand RefreshFrontpageTable { get; set; }
+        public RelayCommand DeleteFrontpageTable { get; set; }
+        public RelayCommand AddFrontpageTable { get; set; }
 
         public Model.K2.ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
@@ -44,6 +46,10 @@ namespace UniBase.ViewModel
             //}
             SaveWorkCommand = new RelayCommand(Column_2.SaveFrontpages);
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
+            DeleteFrontpageTable = new RelayCommand(TempMethod);
+            AddFrontpageTable = new RelayCommand(TempMethod);
+
+            TestCommand = new RelayCommand(TempMethod);
             
             TestCommand = new RelayCommand<object>(TempMethod);            
         }
@@ -66,6 +72,7 @@ namespace UniBase.ViewModel
                 TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox);
             }
         }
+
         #endregion
 
         #region InotifyPropertyChanged
