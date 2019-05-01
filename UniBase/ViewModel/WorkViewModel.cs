@@ -18,6 +18,8 @@ namespace UniBase.ViewModel
     class WorkViewModel : INotifyPropertyChanged
     {
         private string _graphCombobox;
+        public int id { get; set; }
+
 
         public RelayCommand SaveWorkCommand { get; set; }
         public RelayCommand TestCommand { get; set; }
@@ -37,6 +39,12 @@ namespace UniBase.ViewModel
 
             TrendAdminstrator = new TrendAdminstrator();
 
+            //Udfyld controlschdual.
+            //Random radnom = new Random();
+            //for (int i = 1; i < 35; i++)
+            //{
+            //    ModelGenerics.CreateByObject(new ControlSchedules(4 + i, new DateTime(2019,9,9), (double)radnom.Next(0, 100) + radnom.NextDouble(), "Hej", radnom.NextDouble(), radnom.NextDouble(), "OP", "Ingen note"));
+            //}
             SaveWorkCommand = new RelayCommand(Column_2.SaveFrontpages);
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
             DeleteFrontpageTable = new RelayCommand(TempMethod);
@@ -49,6 +57,7 @@ namespace UniBase.ViewModel
         private void TempMethod()
         {
             Debug.WriteLine("\n \tHej", "Button Clicked");
+            Debug.WriteLine(id);
         }
 
         #region Properties
