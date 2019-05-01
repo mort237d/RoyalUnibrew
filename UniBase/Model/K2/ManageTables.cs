@@ -143,7 +143,7 @@ namespace UniBase.Model.K2
         public void SaveFrontpages()
         {
             ShowToastNotification("Gemt", "Forside-tabellen er gemt");
-            Debug.WriteLine(_frontpagesList[0].Note);
+            Debug.WriteLine(_frontpagesList[3].Note);
             Parallel.ForEach(_frontpagesList, frontpage =>
                 {
                     ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);

@@ -91,12 +91,12 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No}" IsReadOnly="True"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Date}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Colunm}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Note}"></TextBox>
-                                                <TextBox Width="110" Height="40" Text="{Binding Week_No}"></TextBox>
+                                                <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding Date, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding Colunm, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding Note, Mode=TwoWay}"/>
+                                                <TextBox Width="110" Height="40" Text="{Binding Week_No, Mode=TwoWay}"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
