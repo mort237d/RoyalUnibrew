@@ -18,6 +18,7 @@ namespace UniBase.ViewModel
     class WorkViewModel : INotifyPropertyChanged
     {
         private string _graphCombobox;
+        private string _graphTimeperiodCombobox;
 
 
         public RelayCommand SaveWorkCommand { get; set; }
@@ -37,6 +38,33 @@ namespace UniBase.ViewModel
             PredefinedColors = new Colors();
 
             TrendAdminstrator = new TrendAdminstrator();
+            int month = 2;
+            int day = 11;
+            //Udfyld controlschdual.
+            Random radnom = new Random();
+//            for (int i = 0; i < 120; i++)
+//            {
+//                ModelGenerics.CreateByObject(new ControlSchedules(i+39, new DateTime(2019, month, day),radnom.NextDouble()*100, "hej", radnom.NextDouble() * 100, radnom.NextDouble() * 100, "mig", "Very good"));
+//                day++;
+//                if (day == 29)
+//                {
+//                    month++;
+//                    day = 1;
+//                }
+//            }
+            //            foreach (var VARIABLE in Column_2.ControlSchedulesList)
+            //            {
+            //                
+            //                VARIABLE.Time = new DateTime(2019, month, day);
+            //                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
+            //                day++;
+            //                if (day > 30)
+            //                {
+            //                    month++;
+            //                    day = 1;
+            //                }
+            //
+            //            }
 
 
             SaveWorkCommand = new RelayCommand(Column_2.SaveFrontpages);
@@ -66,7 +94,18 @@ namespace UniBase.ViewModel
             {
                 _graphCombobox = value;
                 OnPropertyChanged();
-                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox);
+                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox, _graphTimeperiodCombobox);
+            }
+        }
+
+        public string GraphTimeperiodCombobox
+        {
+            get { return _graphTimeperiodCombobox; }
+            set
+            {
+                _graphTimeperiodCombobox = value; 
+                OnPropertyChanged();
+                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox, _graphTimeperiodCombobox);
             }
         }
 

@@ -23,139 +23,93 @@ namespace UniBase.Model
             set { _trendList = value; }
         }
 
-        public void GraphComboboxSelectedMethod(string comboboxInput)
+        public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
         {
             
-                CreateGraph("En Uge", comboboxInput);
+                CreateGraph(comboboxInput, comboboxTimeInput);
             
         }
-        public void CreateGraph(string timePeriod, string comboboxInput)
+        public void CreateGraph(string comboboxInput,string timePeriod)
         {
             TrendList.Clear();
             DateTime tempDayOfScheduleList = MngTables.ControlSchedulesList[0].Time;
-            List<double> tempItemList = new List<double>();
             int timeHorizon = 0;
+            int timeHorizonDivider = 0;
             DateTime currentItemDate = DateTime.Now;
 
             if (timePeriod == "En Uge")
             {
                 timeHorizon = 7;
+                timeHorizonDivider = 1;
             }
-            else if (timePeriod == "Et år")
+            else if (timePeriod == "En Måned")
+            {
+                timeHorizon = 30;
+                timeHorizonDivider = 4;
+            }
+            else if (timePeriod == "Et Kvartal")
+            {
+                timeHorizon = 91;
+                timeHorizonDivider = 15;
+            }
+            else if (timePeriod == "Et År")
             {
                 timeHorizon = 365;
+                timeHorizonDivider = 30;
             }
 
             int amountOfItemsWithSameDate = 0;
             double totalWeightPrDay = 0;
+
             for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
             {
                 if (MngTables.ControlSchedulesList[i].Time >= DateTime.Now - new TimeSpan(timeHorizon, 0, 0, 0) && MngTables.ControlSchedulesList[i].Time <= DateTime.Now)
                 {
-                    here:
                     currentItemDate = MngTables.ControlSchedulesList[i].Time.Subtract(new TimeSpan(0,
                         MngTables.ControlSchedulesList[i].Time.Hour, MngTables.ControlSchedulesList[i].Time.Minute,
                         MngTables.ControlSchedulesList[i].Time.Second));
-                    if (tempDayOfScheduleList <= currentItemDate + new TimeSpan(1, 0, 0, 0) && tempDayOfScheduleList >= currentItemDate)
+
+                    here:
+
+                    if (tempDayOfScheduleList <= currentItemDate + new TimeSpan(timeHorizonDivider, 0, 0, 0) && tempDayOfScheduleList >= currentItemDate)
                     {
                         amountOfItemsWithSameDate++;
-                        totalWeightPrDay += MngTables.ControlSchedulesList[i].Weight;
+                        if (comboboxInput == "Vægt")
+                        {
+                            totalWeightPrDay += MngTables.ControlSchedulesList[i].Weight;
+                        }
+                        else if (comboboxInput == "MipMa")
+                        {
+                            totalWeightPrDay += MngTables.ControlSchedulesList[i].MipMA;
+
+                        }
+                        else if (comboboxInput == "Lud Koncentration")
+                        {
+                            totalWeightPrDay += MngTables.ControlSchedulesList[i].LudKoncentration;
+                        }
+
                         continue;
                     }
 
                     if (amountOfItemsWithSameDate != 0)
                     {
-                        TrendList.Add(new Trends(totalWeightPrDay / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + currentItemDate.Day));
-
+                        TrendList.Add(new Trends(totalWeightPrDay / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day));
                     }
 
-                    tempDayOfScheduleList = currentItemDate;
                     totalWeightPrDay = 0;
                     amountOfItemsWithSameDate = 0;
-                    goto here;
+
+                    if (new TimeSpan(timeHorizonDivider,0,0,0) <= currentItemDate - tempDayOfScheduleList)
+                    {
+                        tempDayOfScheduleList = currentItemDate;
+                        goto here;
+                    }
                 }
             }
             if (amountOfItemsWithSameDate != 0)
             {
-                TrendList.Add(new Trends(totalWeightPrDay / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + currentItemDate.Day));
+                TrendList.Add(new Trends(totalWeightPrDay / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day));
             }
-
         }
-        //        public void CreateGraph(string timePeriod, string comboboxInput)
-        //        {
-        //            TrendList.Clear();
-        //            if (timePeriod == "En Uge")
-        //            {
-        //            }
-        //
-        //            int year = DateTime.Now.Year;
-        //            int month = DateTime.Now.Month;
-        //            int day = DateTime.Now.Day; //todo fix
-        //            double totalWeight = 0;
-        //            int counter = 0;
-        //            //Todo nested if / switch
-        //            switch (comboboxInput)
-        //            {
-        //                case "Weight":
-        //                    break;
-        //                case "MipMa":
-        //                    break;
-        //                case "Lud Koncentration":
-        //
-        //                    break;
-        //            }
-        //
-        //
-        //            foreach (var t in MngTables.ControlSchedulesList)
-        //            {
-        //            here:
-        //                if (t.Time.Year == year && t.Time.Month == month)
-        //                {
-        //                    totalWeight += t.Weight;
-        //                    
-        //                    counter++;
-        //                    continue;
-        //                }
-        //
-        //                if (totalWeight != 0 || counter != 0)
-        //                {
-        //                    _trendList.Add(new Trends((totalWeight / counter), "YY: " + year + " MM: " + month));
-        //                }
-        //
-        //                month = t.Time.Month;
-        //                year = t.Time.Year;
-        //                totalWeight = 0;
-        //                counter = 0;
-        //                goto here;
-        //
-        //            }
-        //            _trendList.Add(new Trends((totalWeight / counter), "YY: " + year + " MM: " + month));
-        //
-        //
-        //            //Todo fix
-        //            foreach (var controleScheduleItem in MngTables.ControlSchedulesList)
-        //            {
-        //            here:
-        //                if (controleScheduleItem.Time.Day == day && controleScheduleItem.Time.Month == month)
-        //                {
-        //                    totalWeight += controleScheduleItem.Weight;
-        //                    counter++;
-        //                    continue;
-        //                }
-        //
-        //                if (totalWeight != 0 || counter != 0)
-        //                {
-        //                    _trendList.Add(new Trends((totalWeight / counter), year + "/" + month + "/" + day));
-        //                }
-        //
-        //                day = controleScheduleItem.Time.Day;
-        //                month = controleScheduleItem.Time.Month;
-        //                year = controleScheduleItem.Time.Year;
-        //                totalWeight = 0;
-        //                counter = 0;
-        //                goto here;
-        //            }
-        //            _trendList.Add(new Trends((totalWeight / counter), year + "/" + month + "/" + day));
-        //        }
     }
 }
