@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <CommandBar Background="DarkCyan">
+        <CommandBar Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
             <CommandBar.SecondaryCommands>
                 <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
                 <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
@@ -34,51 +34,71 @@
         <Pivot Grid.Row="1" Name="ColumnPivot">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot>
+                <Pivot Style="{StaticResource CustomPivotStyle}">
                     <!--#region Forside-->
                     <PivotItem Header="Forside">
-                        <StackPanel>
-                            <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="ListViewItem">
-                                        <Setter Property="Padding" Value="0"/>
-                                        <Setter Property="Margin" Value="0"/>
-                                        <Setter Property="BorderThickness" Value="0"/>
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <Button Style="{StaticResource ButtonPropertyStyle}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
-                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
-                                            </Button>
-                                            <Line></Line>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView Width="662" ItemsSource="{Binding Column_2.FrontpagesList}">
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="ListViewItem">
-                                        <Setter Property="Padding" Value="0"/>
-                                        <Setter Property="Margin" Value="0"/>
-                                        <Setter Property="BorderThickness" Value="0"/>
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding Date}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding Colunm}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding Note}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding Week_No}"></TextBox>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
+                                <Button Command="{Binding RefreshFrontpageTable}" Height="40" Width="40" Background="Transparent">
+                                    <Image Source="Images/RefreshButton.png"></Image>
+                                </Button>
+                                <Button Command="{Binding SaveWorkCommand}" Height="40" Width="40" Background="Transparent">
+                                    <Image Source="Images/SaveButton.png"></Image>
+                                </Button>
+                            </StackPanel>
                             <StackPanel>
+                                <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Button Style="{StaticResource ButtonPropertyStyle}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                    <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
+                                                </Button>
+                                                <Line></Line>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <ListView Width="662" ItemsSource="{Binding Column_2.FrontpagesList}">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No}"></TextBox>
+                                                <TextBox Width="110" Height="40" Text="{Binding Date}"></TextBox>
+                                                <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No}"></TextBox>
+                                                <TextBox Width="110" Height="40" Text="{Binding Colunm}"></TextBox>
+                                                <TextBox Width="110" Height="40" Text="{Binding Note}"></TextBox>
+                                                <TextBox Width="110" Height="40" Text="{Binding Week_No}"></TextBox>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
                                 <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
                                     <ListView.ItemContainerStyle>
@@ -98,7 +118,7 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
                     </PivotItem>
                     <!--#endregion-->
                     <!--#region KontrolRegistrering-->
@@ -157,7 +177,7 @@
                     <!--#region KonstrolSkema-->
                     <PivotItem Header="Kontrol skema">
                         <StackPanel>
-                            <ListView Width="1100"
+                            <ListView Width="880"
                                       Style="{StaticResource ButtonListViewStyle}" 
                                       ItemsSource="{Binding Column_2.ControlScheduleProps}">
                                 <ListView.ItemContainerStyle>
@@ -178,7 +198,7 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <ListView Width="1100" ItemsSource="{Binding Column_2.ControlSchedulesList}">
+                            <ListView Width="882" ItemsSource="{Binding Column_2.ControlSchedulesList}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="Padding" Value="0"/>
@@ -191,9 +211,7 @@
                                         <StackPanel Orientation="Horizontal">
                                             <TextBox Width="110" Height="40" Text="{Binding ControlSchedule_ID}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding Time}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding WeightControlTime}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding Weight}"></TextBox>
-                                            <TextBox Width="110" Height="40" Text="{Binding ReceiptForTest}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding KegTest}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding LudKoncentration}"></TextBox>
                                             <TextBox Width="110" Height="40" Text="{Binding MipMA}"></TextBox>
