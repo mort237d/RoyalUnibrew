@@ -388,12 +388,24 @@
             </PivotItem>
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel>
-                    <ComboBox Name="SelectGraphCombobox" SelectionChanged="GraphComboboxMethod" PlaceholderText="Vælg Graf">
-                        <ComboBoxItem Content="Weight"/>
-                        <ComboBoxItem Content="MipMa"/>
-                        <ComboBoxItem Content="Lud Koncentration"/>
-                    </ComboBox>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Name="SelectGraphCombobox"  Width="200" SelectionChanged="GraphComboboxMethod" PlaceholderText="Vælg Graf">
+                            <ComboBoxItem Content="Vægt"/>
+                            <ComboBoxItem Content="MipMa"/>
+                            <ComboBoxItem Content="Lud Koncentration"/>
+                        </ComboBox>
+
+                        <ComboBox Name="SelectedGraphTimeperiodCB"  Width="200" SelectionChanged="GraphTimeComboboxMethod" PlaceholderText="Vælg Tidsperiode">
+                            <ComboBoxItem Content="En Uge"/>
+                            <ComboBoxItem Content="En Måned"/>
+                            <ComboBoxItem Content="Et Kvartal"/>
+                            <ComboBoxItem Content="Et År"/>
+
+                        </ComboBox>
+                    </StackPanel>
                     <TextBlock Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
+                    <TextBlock Name="TbTimeperiodCombobox" Text="{Binding GraphTimeperiodCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
+
                     <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1000" Height="500"  >
                         <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
                                              IndependentValuePath="Date"
