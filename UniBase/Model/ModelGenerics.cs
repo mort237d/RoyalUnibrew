@@ -13,8 +13,6 @@ namespace UniBase.Model
         private const string URI = "http://localhost:12736/api/";
         private static HttpClient client = new HttpClient();
 
-
-
         /// <summary>
         /// Generic method to call a specific type from its ID
         /// </summary>
@@ -36,7 +34,6 @@ namespace UniBase.Model
             }
             catch (Exception e)
             {
-                
                 Debug.WriteLine(e);
             }
 
@@ -53,10 +50,19 @@ namespace UniBase.Model
         {
             String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1];
+            Task<string> resTask = null;
 
-            Task<string> resTask = client.GetStringAsync(httpUrl);
+            try
+            {
+                resTask = client.GetStringAsync(httpUrl);
+                return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
 
-            return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
+          return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
         }
 
         /// <summary>
@@ -71,13 +77,20 @@ namespace UniBase.Model
             String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1] + "/" + id;
 
-            Task<HttpResponseMessage> deleteAsync = client.DeleteAsync(httpUrl);
-
-            HttpResponseMessage resp = deleteAsync.Result;
-            if (resp.IsSuccessStatusCode)
+            try
             {
-                String jsonStr = resp.Content.ReadAsStringAsync().Result;
-                return true; //JsonConvert.DeserializeObject<bool>(jsonStr);
+                Task<HttpResponseMessage> deleteAsync = client.DeleteAsync(httpUrl);
+
+                HttpResponseMessage resp = deleteAsync.Result;
+                if (resp.IsSuccessStatusCode)
+                {
+                    return true; 
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
             }
             return false;
         }
@@ -93,16 +106,23 @@ namespace UniBase.Model
             String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1];
 
-            String jsonStr = JsonConvert.SerializeObject(type);
-            StringContent content = new StringContent(jsonStr, Encoding.ASCII, "application/json");
-
-            Task<HttpResponseMessage> postAsync = client.PostAsync(httpUrl, content);
-
-            HttpResponseMessage resp = postAsync.Result;
-            if (resp.IsSuccessStatusCode)
+            try
             {
-                String jsonResStr = resp.Content.ReadAsStringAsync().Result;
-                return true; //JsonConvert.DeserializeObject<bool>(jsonResStr);
+                String jsonStr = JsonConvert.SerializeObject(type);
+                StringContent content = new StringContent(jsonStr, Encoding.ASCII, "application/json");
+
+                Task<HttpResponseMessage> postAsync = client.PostAsync(httpUrl, content);
+
+                HttpResponseMessage resp = postAsync.Result;
+                if (resp.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return false;
             }
             return false;
         }
@@ -119,19 +139,25 @@ namespace UniBase.Model
             String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1] + "/" + id;
 
-            String jsonStr = JsonConvert.SerializeObject(type);
-            StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
-
-            Task<HttpResponseMessage> putAsync = client.PutAsync(httpUrl, content);
-
-            HttpResponseMessage resp = putAsync.Result;
-            if (resp.IsSuccessStatusCode)
+            try
             {
-                String jsonResStr = resp.Content.ReadAsStringAsync().Result;
-                return true; //JsonConvert.DeserializeObject<bool>(jsonResStr);
+                String jsonStr = JsonConvert.SerializeObject(type);
+                StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
+
+                Task<HttpResponseMessage> putAsync = client.PutAsync(httpUrl, content);
+
+                HttpResponseMessage resp = putAsync.Result;
+                if (resp.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return false;
             }
             return false;
         }
-
     }
 }
