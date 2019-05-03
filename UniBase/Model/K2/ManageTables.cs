@@ -27,6 +27,8 @@ namespace UniBase.Model.K2
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
         private ObservableCollection<TUs> _tuList;
 
+
+
         #endregion
 
         #region Properties
@@ -180,13 +182,21 @@ namespace UniBase.Model.K2
 
         #region SingleTon
         private static ManageTables _instance;
+        private static object syncLock = new object();
+
         public static ManageTables Instance
         {
             get
             {
-                if(_instance == null)
+                if (_instance == null)
                 {
-                    _instance = new ManageTables();
+                    lock (syncLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new ManageTables();
+                        }
+                    }
                 }
 
                 return _instance;
