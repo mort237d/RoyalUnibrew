@@ -52,6 +52,7 @@ namespace UniBase.Model
             string httpUrl = URI + "/" + typeName[1];
             Task<string> resTask = null;
 
+
             try
             {
                 resTask = client.GetStringAsync(httpUrl);
