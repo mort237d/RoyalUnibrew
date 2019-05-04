@@ -51,7 +51,8 @@ namespace UniBase.Model
             String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + "/" + typeName[1];
             Task<string> resTask = null;
-
+            
+            ObservableCollection<T> ifFailed = new ObservableCollection<T>();
 
             try
             {
@@ -63,7 +64,7 @@ namespace UniBase.Model
                 Debug.WriteLine(e);
             }
 
-          return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
+            return ifFailed;
         }
 
         /// <summary>
