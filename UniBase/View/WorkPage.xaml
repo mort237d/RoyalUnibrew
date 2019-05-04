@@ -80,7 +80,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView Height="300" Width="662" ItemsSource="{Binding Column_2.FrontpagesList}">
+                                    <ListView Height="300" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -91,12 +91,12 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
-                                                    <TextBox Width="110" Height="40" Text="{Binding Date, Mode=TwoWay}"/>
-                                                    <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
-                                                    <TextBox Width="110" Height="40" Text="{Binding Colunm, Mode=TwoWay}"/>
-                                                    <TextBox Width="110" Height="40" Text="{Binding Note, Mode=TwoWay}"/>
-                                                    <TextBox Width="110" Height="40" Text="{Binding Week_No, Mode=TwoWay}"/>
+                                                    <TextBox BorderBrush="#16503F" Width="110" Height="40" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
+                                                    <TextBox BorderBrush="#16503F" Width="110" Height="40" Text="{Binding Date, Mode=TwoWay}"/>
+                                                    <TextBox BorderBrush="#16503F" Width="110" Height="40" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
+                                                    <TextBox BorderBrush="#16503F" Width="110" Height="40" Text="{Binding Colunm, Mode=TwoWay}"/>
+                                                    <TextBox BorderBrush="#16503F" Width="110" Height="40" Text="{Binding Note, Mode=TwoWay}"/>
+                                                    <TextBox BorderBrush="#16503F" Width="110" Height="40" Text="{Binding Week_No, Mode=TwoWay}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -117,7 +117,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
+                                <ListView Height="44" Width="662" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
