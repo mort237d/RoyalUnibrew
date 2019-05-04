@@ -37,8 +37,8 @@
                 <Pivot Style="{StaticResource CustomPivotStyle}">
                     <!--#region Forside-->
                     <PivotItem Header="Forside">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
+                        <StackPanel HorizontalAlignment="Center">
+                            <!--<Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -46,9 +46,29 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                            </Grid.RowDefinitions>-->
+                            <StackPanel HorizontalAlignment="left">
+                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                                <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <Line></Line>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
 
-                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                                 <StackPanel>
                                     <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
                                         <ListView.ItemContainerStyle>
@@ -93,22 +113,19 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <Button Style="{StaticResource CustomButtonWithImageStyle}" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshFrontpageTable}">
+                                    <Button Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshFrontpageTable}">
                                         <Image Source="Images/RefreshButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource CustomButtonWithImageStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
+                                    <Button Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource CustomButtonWithImageStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
                                         <Image Source="Images/DeleteButton.png"></Image>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
 
-                            
-                            
-                            <StackPanel>
-                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
                                 <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
@@ -126,30 +143,11 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                            </StackPanel>
-                            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
-                                                <Line></Line>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                                <Button Style="{StaticResource CustomButtonWithImageStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
+                                <Button Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"></Image>
                                 </Button>
                             </StackPanel>
-                        </Grid>
+                        </StackPanel>
                     </PivotItem>
                     <!--#endregion-->
                     <!--#region KontrolRegistrering-->
