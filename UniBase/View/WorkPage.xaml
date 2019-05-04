@@ -25,10 +25,10 @@
         <CommandBar Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
             <CommandBar.SecondaryCommands>
                 <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
-                <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
+                <AppBarButton Label="Log af"/> <!--Command="{Binding LogOffCommand}"/>-->
             </CommandBar.SecondaryCommands>
             <AppBarSeparator/>
-            <AppBarButton Icon="Help" Label="Help" Command="{Binding GoToHelpPageCommand}"/>
+            <AppBarButton Icon="Help" Label="Help"/> <!--Command="{Binding GoToHelpPageCommand}"/>-->
         </CommandBar>
 
         <Pivot Grid.Row="1" Name="ColumnPivot">
@@ -39,69 +39,74 @@
                     <PivotItem Header="Forside">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="6*"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="4*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
-                                <Button ToolTipService.ToolTip="Opdater" Command="{Binding RefreshFrontpageTable}" Height="40" Width="40" Background="Transparent">
-                                    <Image Source="Images/RefreshButton.png"></Image>
-                                </Button>
-                                <Button ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}" Height="40" Width="40" Background="Transparent">
-                                    <Image Source="Images/SaveButton.png"></Image>
-                                </Button>
-                                <Button ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}" Height="40" Width="40" Background="Transparent">
-                                    <Image Source="Images/DeleteButton.png"></Image>
-                                </Button>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <StackPanel>
+                                    <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="Padding" Value="0"/>
+                                                <Setter Property="Margin" Value="0"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
+                                                    </Button>
+                                                    <Line></Line>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                    <ListView Height="300" Width="662" ItemsSource="{Binding Column_2.FrontpagesList}">
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="Padding" Value="0"/>
+                                                <Setter Property="Margin" Value="0"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
+                                                    <TextBox Width="110" Height="40" Text="{Binding Date, Mode=TwoWay}"/>
+                                                    <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
+                                                    <TextBox Width="110" Height="40" Text="{Binding Colunm, Mode=TwoWay}"/>
+                                                    <TextBox Width="110" Height="40" Text="{Binding Note, Mode=TwoWay}"/>
+                                                    <TextBox Width="110" Height="40" Text="{Binding Week_No, Mode=TwoWay}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <Button Style="{StaticResource CustomButtonWithImageStyle}" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshFrontpageTable}">
+                                        <Image Source="Images/RefreshButton.png"></Image>
+                                    </Button>
+                                    <Button Style="{StaticResource CustomButtonWithImageStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
+                                        <Image Source="Images/SaveButton.png"></Image>
+                                    </Button>
+                                    <Button Style="{StaticResource CustomButtonWithImageStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                        <Image Source="Images/DeleteButton.png"></Image>
+                                    </Button>
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel Grid.Row="1" VerticalAlignment="Center">
-                                <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
-                                                    <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
-                                                </Button>
-                                                <Line></Line>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                                <ListView Height="300" Width="662" ItemsSource="{Binding Column_2.FrontpagesList}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBox Width="110" Height="40" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
-                                                <TextBox Width="110" Height="40" Text="{Binding Date, Mode=TwoWay}"/>
-                                                <TextBox Width="110" Height="40" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
-                                                <TextBox Width="110" Height="40" Text="{Binding Colunm, Mode=TwoWay}"/>
-                                                <TextBox Width="110" Height="40" Text="{Binding Note, Mode=TwoWay}"/>
-                                                <TextBox Width="110" Height="40" Text="{Binding Week_No, Mode=TwoWay}"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </StackPanel>
+
+                            
+                            
                             <StackPanel>
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
                                 <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
@@ -122,27 +127,28 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackPanel>
-
-                            <ListView Grid.Row="2" Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="ListViewItem">
-                                        <Setter Property="Padding" Value="0"/>
-                                        <Setter Property="Margin" Value="0"/>
-                                        <Setter Property="BorderThickness" Value="0"/>
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
-                                            <Line></Line>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <Button ToolTipService.ToolTip="Tilføj" Grid.Row="2" Grid.Column="1" Command="{Binding AddFrontpageTable}" Height="40" Width="40" Background="Transparent">
-                                <Image Source="Images/AddButton.png"></Image>
-                            </Button>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <ListView Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <Line></Line>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <Button Style="{StaticResource CustomButtonWithImageStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
+                                    <Image Source="Images/AddButton.png"></Image>
+                                </Button>
+                            </StackPanel>
                         </Grid>
                     </PivotItem>
                     <!--#endregion-->
