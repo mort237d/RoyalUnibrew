@@ -70,7 +70,7 @@ namespace UniBase.ViewModel
             SaveWorkCommand = new RelayCommand(Column_2.SaveFrontpages);
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
             DeleteFrontpageTable = new RelayCommand(TempMethod2);
-            AddFrontpageTable = new RelayCommand(TempMethod2);
+            AddFrontpageTable = new RelayCommand(Column_2.AddNewFrontpages);
             
             TestCommand = new RelayCommand<object>(TempMethod);            
         }

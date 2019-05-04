@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace UniBase.Model.K2
         #endregion
 
         #region Properties
+
+        public Frontpages NewFrontpagesToAdd { get; set; }
 
         #region ObservableLists
 
@@ -136,6 +139,9 @@ namespace UniBase.Model.K2
             TuList = ModelGenerics.GetAll(new TUs());
         }
 
+
+        #region ButtonMethods
+        
         public void RefreshFrontpages()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
@@ -151,6 +157,34 @@ namespace UniBase.Model.K2
                     ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
                 });
         }
+
+        public void AddNewFrontpages()
+        {
+            //todo finish this
+            NewFrontpagesToAdd.Product = new Products();
+            NewFrontpagesToAdd.Production = new Productions();
+            NewFrontpagesToAdd.ControlSchedule = new ControlSchedules();
+            NewFrontpagesToAdd.ControlRegistration = new ControlRegistrations();
+            NewFrontpagesToAdd.ShiftRegistration = new ShiftRegistrations();
+            NewFrontpagesToAdd.TU = new TUs();
+
+            //Checks whether any of the properties are null if any are returns true
+            bool isNull = NewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(NewFrontpagesToAdd) != null);
+
+            if (!isNull)
+            {
+                if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
+                {
+                    _frontpagesList.Add(NewFrontpagesToAdd);
+                    NewFrontpagesToAdd = new Frontpages();
+                }
+                else
+                {
+
+                }
+            }
+        }
+        #endregion
 
         private void ShowToastNotification(string title, string stringContent)
         {
