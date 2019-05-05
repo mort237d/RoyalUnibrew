@@ -147,6 +147,31 @@ namespace UniBase.Model.K2
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
+        public void RefreshControlRegistrations()
+        {
+            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+        }
+        public void RefreshControlSchedules()
+        {
+            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            ShowToastNotification("Opdateret", "Kontrol skema-tabellen er opdateret");
+        }
+        public void RefreshProductions()
+        {
+            ProductionsList = ModelGenerics.GetAll(new Productions());
+            ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+        }
+        public void RefreshShiftRegistrations()
+        {
+            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+            ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
+        }
+        public void RefreshTUs()
+        {
+            TuList = ModelGenerics.GetAll(new TUs());
+            ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
+        }
 
         public void SaveFrontpages()
         {

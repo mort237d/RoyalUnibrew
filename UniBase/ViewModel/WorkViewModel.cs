@@ -27,6 +27,12 @@ namespace UniBase.ViewModel
         public RelayCommand DeleteFrontpageTable { get; set; }
         public RelayCommand AddFrontpageTable { get; set; }
 
+        public RelayCommand RefreshControlRegistrationTable { get; set; }
+        public RelayCommand RefreshControlScheduleTable { get; set; }
+        public RelayCommand RefreshProductionTable { get; set; }
+        public RelayCommand RefreshShiftRegistrationTable { get; set; }
+        public RelayCommand RefreshTUTable { get; set; }
+
         public Model.K2.ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
         
@@ -71,7 +77,13 @@ namespace UniBase.ViewModel
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
             DeleteFrontpageTable = new RelayCommand(TempMethod2);
             AddFrontpageTable = new RelayCommand(Column_2.AddNewFrontpages);
-            
+
+            RefreshControlRegistrationTable = new RelayCommand(Column_2.RefreshControlRegistrations);
+            RefreshControlScheduleTable = new RelayCommand(Column_2.RefreshControlSchedules);
+            RefreshProductionTable = new RelayCommand(Column_2.RefreshProductions);
+            RefreshShiftRegistrationTable = new RelayCommand(Column_2.RefreshShiftRegistrations);
+            RefreshTUTable = new RelayCommand(Column_2.RefreshTUs);
+
             TestCommand = new RelayCommand<object>(TempMethod);            
         }
 
