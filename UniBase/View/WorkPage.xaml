@@ -107,7 +107,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshFrontpageTable}">
                                         <Image Source="Images/RefreshButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveFrontpageTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
@@ -221,7 +221,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshControlRegistrationTable}">
                                         <Image Source="Images/RefreshButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlRegistrationTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
@@ -331,7 +331,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshControlScheduleTable}">
                                         <Image Source="Images/RefreshButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlScheduleTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
@@ -440,7 +440,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshProductionTable}">
                                         <Image Source="Images/RefreshButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveProductionTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
@@ -549,7 +549,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshShiftRegistrationTable}">
                                         <Image Source="Images/RefreshButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveShiftRegistrationTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
@@ -661,7 +661,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshTUTable}">
                                         <Image Source="Images/RefreshButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveWorkCommand}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveTUTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">

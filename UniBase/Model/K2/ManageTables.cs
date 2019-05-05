@@ -147,40 +147,83 @@ namespace UniBase.Model.K2
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
+        public void SaveFrontpages()
+        {
+            Parallel.ForEach(_frontpagesList, frontpage =>
+            {
+                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
+            });
+            ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+        }
+
         public void RefreshControlRegistrations()
         {
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
             ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
+        public void SaveControlRegistrations()
+        {
+            Parallel.ForEach(_controlRegistrationsList, controlRegistration =>
+            {
+                ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
+            });
+            ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
+        }
+
         public void RefreshControlSchedules()
         {
             ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            ShowToastNotification("Opdateret", "Kontrol skema-tabellen er opdateret");
+            ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
+        public void SaveControlSchedules()
+        {
+            Parallel.ForEach(_controlSchedulesList, controlSchedules =>
+            {
+                ModelGenerics.UpdateByObjectAndId(controlSchedules.ControlSchedule_ID, controlSchedules);
+            });
+            ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
+        }
+
         public void RefreshProductions()
         {
             ProductionsList = ModelGenerics.GetAll(new Productions());
             ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
+        public void SaveProductions()
+        {
+            Parallel.ForEach(_productionsList, productions =>
+            {
+                ModelGenerics.UpdateByObjectAndId(productions.Production_ID, productions);
+            });
+            ShowToastNotification("Gemt", "Produktions-tabellen er gemt");
+        }
+
         public void RefreshShiftRegistrations()
         {
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
+        public void SaveShiftRegistrations()
+        {
+            Parallel.ForEach(_shiftRegistrationsList, shiftRegistrations =>
+            {
+                ModelGenerics.UpdateByObjectAndId(shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
+            });
+            ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
+        }
+
         public void RefreshTUs()
         {
             TuList = ModelGenerics.GetAll(new TUs());
             ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
-
-        public void SaveFrontpages()
+        public void SaveTUs()
         {
-            ShowToastNotification("Gemt", "Forside-tabellen er gemt");
-            Debug.WriteLine(_frontpagesList[3].Note);
-            Parallel.ForEach(_frontpagesList, frontpage =>
-                {
-                    ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
-                });
+            Parallel.ForEach(_tuList, tus =>
+            {
+                ModelGenerics.UpdateByObjectAndId(tus.TU_ID, tus);
+            });
+            ShowToastNotification("Gemt", "TU-tabellen er gemt");
         }
 
         public void AddNewFrontpages()

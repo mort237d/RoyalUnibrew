@@ -21,17 +21,26 @@ namespace UniBase.ViewModel
         private string _graphTimeperiodCombobox;
 
 
-        public RelayCommand SaveWorkCommand { get; set; }
         public RelayCommand<object> TestCommand { get; set; }
         public RelayCommand RefreshFrontpageTable { get; set; }
+        public RelayCommand SaveFrontpageTable { get; set; }
         public RelayCommand DeleteFrontpageTable { get; set; }
         public RelayCommand AddFrontpageTable { get; set; }
 
         public RelayCommand RefreshControlRegistrationTable { get; set; }
+        public RelayCommand SaveControlRegistrationTable { get; set; }
+
         public RelayCommand RefreshControlScheduleTable { get; set; }
+        public RelayCommand SaveControlScheduleTable { get; set; }
+
         public RelayCommand RefreshProductionTable { get; set; }
+        public RelayCommand SaveProductionTable { get; set; }
+
         public RelayCommand RefreshShiftRegistrationTable { get; set; }
+        public RelayCommand SaveShiftRegistrationTable { get; set; }
+
         public RelayCommand RefreshTUTable { get; set; }
+        public RelayCommand SaveTUTable { get; set; }
 
         public Model.K2.ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
@@ -73,16 +82,25 @@ namespace UniBase.ViewModel
             //            }
 
 
-            SaveWorkCommand = new RelayCommand(Column_2.SaveFrontpages);
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
+            SaveFrontpageTable = new RelayCommand(Column_2.SaveFrontpages);
             DeleteFrontpageTable = new RelayCommand(TempMethod2);
             AddFrontpageTable = new RelayCommand(Column_2.AddNewFrontpages);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.RefreshControlRegistrations);
+            SaveControlRegistrationTable = new RelayCommand(Column_2.SaveControlRegistrations);
+
             RefreshControlScheduleTable = new RelayCommand(Column_2.RefreshControlSchedules);
+            SaveControlScheduleTable = new RelayCommand(Column_2.SaveControlSchedules);
+
             RefreshProductionTable = new RelayCommand(Column_2.RefreshProductions);
+            SaveProductionTable = new RelayCommand(Column_2.SaveProductions);
+
             RefreshShiftRegistrationTable = new RelayCommand(Column_2.RefreshShiftRegistrations);
+            SaveShiftRegistrationTable = new RelayCommand(Column_2.SaveShiftRegistrations);
+
             RefreshTUTable = new RelayCommand(Column_2.RefreshTUs);
+            SaveTUTable = new RelayCommand(Column_2.SaveTUs);
 
             TestCommand = new RelayCommand<object>(TempMethod);            
         }
