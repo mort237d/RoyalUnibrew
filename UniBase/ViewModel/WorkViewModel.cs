@@ -67,19 +67,22 @@ namespace UniBase.ViewModel
 //                    day = 1;
 //                }
 //            }
-            //            foreach (var VARIABLE in Column_2.ControlSchedulesList)
-            //            {
-            //                
-            //                VARIABLE.Time = new DateTime(2019, month, day);
-            //                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
-            //                day++;
-            //                if (day > 30)
-            //                {
-            //                    month++;
-            //                    day = 1;
-            //                }
-            //
-            //            }
+//            foreach (var VARIABLE in Column_2.ControlSchedulesList)
+//            {
+//                
+//                VARIABLE.Time = new DateTime(2019, month, day);
+//                VARIABLE.Weight = radnom.NextDouble()* 1.7 + 36.9;
+//                VARIABLE.MipMA = radnom.NextDouble() * 2.7 + 23.9;
+//                VARIABLE.LudKoncentration = radnom.NextDouble() * 1.2 + 0.9;
+//                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
+//                day++;
+//                if (day > 30)
+//                {
+//                    month++;
+//                    day = 1;
+//                }
+//            
+//            }
 
 
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
