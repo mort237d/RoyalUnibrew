@@ -15,6 +15,7 @@ using UniBase.View;
 
 namespace UniBase.ViewModel
 {
+    //(☭ ͜ʖ ☭)
     class WorkViewModel : INotifyPropertyChanged
     {
         private string _graphCombobox;
