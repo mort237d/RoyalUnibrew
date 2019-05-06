@@ -92,8 +92,8 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Date, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Colunm, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Week_No, Mode=TwoWay}"/>
