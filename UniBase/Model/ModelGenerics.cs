@@ -23,7 +23,7 @@ namespace UniBase.Model
         public static T GetById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + "/" + typeName[1] + "/" + id;
+            string httpUrl = URI + typeName[1] + "/" + id;
 
             var endResult = type;
             try
@@ -49,7 +49,7 @@ namespace UniBase.Model
         public static ObservableCollection<T> GetAll<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + "/" + typeName[1];
+            string httpUrl = URI + typeName[1];
             Task<string> resTask = null;
             
             ObservableCollection<T> ifFailed = new ObservableCollection<T>();
@@ -77,7 +77,7 @@ namespace UniBase.Model
         public static bool DeleteById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + "/" + typeName[1] + "/" + id;
+            string httpUrl = URI + typeName[1] + "/" + id;
 
             try
             {
@@ -139,7 +139,7 @@ namespace UniBase.Model
         public static bool UpdateByObjectAndId<T>(int id, T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + "/" + typeName[1] + "/" + id;
+            string httpUrl = URI + typeName[1] + "/" + id;
 
             try
             {
