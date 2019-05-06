@@ -150,7 +150,7 @@ namespace UniBase.Model.K2
                     FrontpagesList.Add(tempList[i]);
                 }
 
-                ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+                message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
             }
         }
         public void SaveFrontpages()
@@ -195,7 +195,7 @@ namespace UniBase.Model.K2
                     ControlSchedulesList.Add(tempList[i]);
                 }
 
-                ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+                message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
             }
         }
         public void SaveControlSchedules()
@@ -291,22 +291,6 @@ namespace UniBase.Model.K2
         }
         #endregion
 
-        private void ShowToastNotification(string title, string stringContent)
-        {
-            ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
-            Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
-            Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
-            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
-            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(stringContent));
-            Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
-            Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
-            audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
-
-            ToastNotification toast = new ToastNotification(toastXml);
-            toast.ExpirationTime = DateTime.Now.AddSeconds(4);
-            toastNotifier.Show(toast);
-        }
-
         private ObservableCollection<T> GetLastTen<T>(T type)
         {
             var tempList = ModelGenerics.GetAll(type);
@@ -327,7 +311,7 @@ namespace UniBase.Model.K2
             return result;
         }
 
-        private void CompleteLists()
+        private void GenerateHeaderLists()
         {
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
             ControlScheduleProps = new List<string>{"Kontrol skema ID","Klokkeslæt", "Vægt kontrol", "Kontrol af fustage", "LudKoncentration", "Mip MA", "Signatur operatør", "Note"};
