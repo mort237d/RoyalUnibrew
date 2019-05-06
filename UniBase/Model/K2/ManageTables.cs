@@ -34,7 +34,7 @@ namespace UniBase.Model.K2
 
         #region Properties
 
-        public Frontpages NewFrontpagesToAdd { get; set; }
+        public Frontpages NewFrontpagesToAdd { get; set; } = new Frontpages();
 
         #region ObservableLists
 
@@ -130,22 +130,34 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            ProductionsList = ModelGenerics.GetAll(new Productions());
-            ProductsList = ModelGenerics.GetAll(new Products());
-            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            TuList = ModelGenerics.GetAll(new TUs());
+            FrontpagesList = GetLastTen(new Frontpages());
+            ControlRegistrationsList = GetLastTen(new ControlRegistrations());
+            ControlSchedulesList = GetLastTen(new ControlSchedules());
+            ProductionsList = GetLastTen(new Productions());
+            ProductsList = GetLastTen(new Products());
+            ShiftRegistrationsList = GetLastTen(new ShiftRegistrations());
+            TuList = GetLastTen(new TUs());
         }
 
+        
 
         #region ButtonMethods
         
+        
+
         public void RefreshFrontpages()
         {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            var TempList = ModelGenerics.GetAll(new Frontpages());
+            FrontpagesList = new ObservableCollection<Frontpages>();
+            if (TempList.Count > 10)
+            {
+                for (int i = TempList.Count-10; i < TempList.Count; i++)
+                {
+                    FrontpagesList.Add(TempList[i]);
+                }
+
+                ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            }
         }
         public void SaveFrontpages()
         {
@@ -172,8 +184,17 @@ namespace UniBase.Model.K2
 
         public void RefreshControlSchedules()
         {
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+            var tempList = ModelGenerics.GetAll(new ControlSchedules());
+            ControlSchedulesList = new ObservableCollection<ControlSchedules>();
+            if (tempList.Count > 10)
+            {
+                for (int i = tempList.Count - 10; i < tempList.Count; i++)
+                {
+                    ControlSchedulesList.Add(tempList[i]);
+                }
+
+                ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+            }
         }
         public void SaveControlSchedules()
         {
@@ -268,6 +289,26 @@ namespace UniBase.Model.K2
             ToastNotification toast = new ToastNotification(toastXml);
             toast.ExpirationTime = DateTime.Now.AddSeconds(4);
             toastNotifier.Show(toast);
+        }
+
+        private ObservableCollection<T> GetLastTen<T>(T type)
+        {
+            var tempList = ModelGenerics.GetAll(type);
+            ObservableCollection<T> result = new ObservableCollection<T>();
+
+            if (tempList.Count > 10)
+            {
+                for (int i = tempList.Count - 10; i < tempList.Count; i++)
+                {
+                    result.Add(tempList[i]);
+                }
+            }
+            else
+            {
+                result = tempList;
+            }
+
+            return result;
         }
 
         private void CompleteLists()
