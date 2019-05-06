@@ -199,18 +199,18 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_Date}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlAlcoholSpearDispenser}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_Date, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlAlcoholSpearDispenser, Mode=TwoWay}"></TextBox>
                                                     <!--<CheckBox Style="{StaticResource CheckBoxTableStyle}" IsChecked="True" BorderBrush="Green" BorderThickness="2" Width="110" Height="40" ></CheckBox>-->
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstPalletDepalletizing}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LastPalletDepalletizing}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstPalletDepalletizing, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LastPalletDepalletizing, Mode=TwoWay}"></TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -313,14 +313,14 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}"></TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -423,13 +423,13 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDate}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDate, Mode=TwoWay}"></TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -532,13 +532,13 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ShiftRegistration_ID}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Start_Time}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding End_Date}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Breaks}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalHours}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Staff}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Initials}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ShiftRegistration_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Start_Time, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding End_Date, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Breaks, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalHours, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Staff, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Initials, Mode=TwoWay}"></TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -641,16 +641,16 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TU_ID}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStart_TU}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEnd_TU}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDay_Total}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDay_Total}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDay_Total}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TU_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStart_TU, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEnd_TU, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDay_Total, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDay_Total, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDay_Total, Mode=TwoWay}"></TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
