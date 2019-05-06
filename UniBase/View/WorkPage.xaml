@@ -34,7 +34,7 @@
         <Pivot Grid.Row="1" Name="ColumnPivot">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="3">
+                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="0">
                     <!--#region Forside-->
                     <PivotItem Style="{StaticResource CustomPivotItemStyle}" Header="Forside">
                         <StackPanel HorizontalAlignment="Center">
