@@ -726,13 +726,22 @@
                     </StackPanel>
                     <TextBlock Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
                     <TextBlock Name="TbTimeperiodCombobox" Text="{Binding GraphTimeperiodCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
+                    
+                        <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1100" Height="500"  >
+                            <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
+                                                 IndependentValuePath="Date"
+                                                 DependentValuePath="SelectedCategory"
+                                                 ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
+                            <charting:LineSeries Title="Min værdi" 
+                                                 IndependentValuePath="Date"
+                                                 DependentValuePath="MinValue"
+                                                 ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
+                            <charting:LineSeries Title="Max værdi" 
+                                                 IndependentValuePath="Date"
+                                                 DependentValuePath="MaxValue"
+                                                 ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
+                        </charting:Chart>
 
-                    <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1000" Height="500"  >
-                        <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
-                                             IndependentValuePath="Date"
-                                             DependentValuePath="SelectedCategory"
-                                             ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
-                    </charting:Chart>
 
                     
                 </StackPanel>
