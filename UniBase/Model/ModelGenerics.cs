@@ -82,7 +82,7 @@ namespace UniBase.Model
             try
             {
                 Task<HttpResponseMessage> deleteAsync = client.DeleteAsync(httpUrl);
-
+                
                 HttpResponseMessage resp = deleteAsync.Result;
                 if (resp.IsSuccessStatusCode)
                 {

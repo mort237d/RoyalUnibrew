@@ -142,18 +142,15 @@ namespace UniBase.Model.K2
         
 
         #region ButtonMethods
-        
-        
-
         public void RefreshFrontpages()
         {
-            var TempList = ModelGenerics.GetAll(new Frontpages());
+            var tempList = ModelGenerics.GetAll(new Frontpages());
             FrontpagesList = new ObservableCollection<Frontpages>();
-            if (TempList.Count > 10)
+            if (tempList.Count > 10)
             {
-                for (int i = TempList.Count-10; i < TempList.Count; i++)
+                for (int i = tempList.Count-10; i < tempList.Count; i++)
                 {
-                    FrontpagesList.Add(TempList[i]);
+                    FrontpagesList.Add(tempList[i]);
                 }
 
                 ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
