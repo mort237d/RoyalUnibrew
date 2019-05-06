@@ -51,7 +51,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -128,7 +128,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -157,7 +157,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -242,7 +242,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -271,7 +271,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -352,7 +352,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -381,7 +381,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -461,7 +461,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -490,7 +490,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -570,7 +570,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -599,7 +599,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -682,7 +682,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -737,6 +737,9 @@
                     
                 </StackPanel>
                 
+            </PivotItem>
+            <PivotItem Header="Brugere">
+
             </PivotItem>
         </Pivot>
     </Grid>
