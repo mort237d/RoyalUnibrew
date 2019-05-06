@@ -9,6 +9,7 @@ namespace UnitTestApp
         public void TestMethod1()
         {
             //Assert.AreEqual(ModelGenerics.GetById(new Product(), 666).ProductName, "Test");
+            //MUH
             
             Assert.AreEqual("Test", "Test");
         }

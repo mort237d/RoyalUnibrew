@@ -28,7 +28,7 @@ namespace UniBase.Model.K2
 
         #region Properties
 
-        public Frontpages NewFrontpagesToAdd { get; set; }
+        public Frontpages NewFrontpagesToAdd { get; set; } = new Frontpages();
 
         #region ObservableLists
 
@@ -124,15 +124,16 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            ProductionsList = ModelGenerics.GetAll(new Productions());
-            ProductsList = ModelGenerics.GetAll(new Products());
-            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            TuList = ModelGenerics.GetAll(new TUs());
+            FrontpagesList = GetLastTen(new Frontpages());
+            ControlRegistrationsList = GetLastTen(new ControlRegistrations());
+            ControlSchedulesList = GetLastTen(new ControlSchedules());
+            ProductionsList = GetLastTen(new Productions());
+            ProductsList = GetLastTen(new Products());
+            ShiftRegistrationsList = GetLastTen(new ShiftRegistrations());
+            TuList = GetLastTen(new TUs());
         }
 
+        
 
         #region ButtonMethods
 
@@ -140,8 +141,17 @@ namespace UniBase.Model.K2
 
         public void RefreshFrontpages()
         {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            var tempList = ModelGenerics.GetAll(new Frontpages());
+            FrontpagesList = new ObservableCollection<Frontpages>();
+            if (tempList.Count > 10)
+            {
+                for (int i = tempList.Count-10; i < tempList.Count; i++)
+                {
+                    FrontpagesList.Add(tempList[i]);
+                }
+
+                ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            }
         }
         public void SaveFrontpages()
         {
@@ -176,8 +186,17 @@ namespace UniBase.Model.K2
 
         public void RefreshControlSchedules()
         {
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+            var tempList = ModelGenerics.GetAll(new ControlSchedules());
+            ControlSchedulesList = new ObservableCollection<ControlSchedules>();
+            if (tempList.Count > 10)
+            {
+                for (int i = tempList.Count - 10; i < tempList.Count; i++)
+                {
+                    ControlSchedulesList.Add(tempList[i]);
+                }
+
+                ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+            }
         }
         public void SaveControlSchedules()
         {
@@ -272,7 +291,43 @@ namespace UniBase.Model.K2
         }
         #endregion
 
-        private void GenerateHeaderLists()
+        private void ShowToastNotification(string title, string stringContent)
+        {
+            ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
+            Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+            Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
+            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
+            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(stringContent));
+            Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+            Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
+            audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
+
+            ToastNotification toast = new ToastNotification(toastXml);
+            toast.ExpirationTime = DateTime.Now.AddSeconds(4);
+            toastNotifier.Show(toast);
+        }
+
+        private ObservableCollection<T> GetLastTen<T>(T type)
+        {
+            var tempList = ModelGenerics.GetAll(type);
+            ObservableCollection<T> result = new ObservableCollection<T>();
+
+            if (tempList.Count > 10)
+            {
+                for (int i = tempList.Count - 10; i < tempList.Count; i++)
+                {
+                    result.Add(tempList[i]);
+                }
+            }
+            else
+            {
+                result = tempList;
+            }
+
+            return result;
+        }
+
+        private void CompleteLists()
         {
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
             ControlScheduleProps = new List<string>{"Kontrol skema ID","Klokkeslæt", "Vægt kontrol", "Kontrol af fustage", "LudKoncentration", "Mip MA", "Signatur operatør", "Note"};
