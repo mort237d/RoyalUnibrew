@@ -61,7 +61,7 @@ namespace UniBase.Model
             }
 
             int amountOfItemsWithSameDate = 0;
-            double totalWeightPrDay = 0;
+            double tempTotalValue = 0;
 
             for (int i = 0; i < MngTables.ControlSchedulesList.Count; i++)
             {
@@ -78,20 +78,20 @@ namespace UniBase.Model
                         amountOfItemsWithSameDate++;
                         if (comboboxInput == "Vægt")
                         {
-                            totalWeightPrDay += MngTables.ControlSchedulesList[i].Weight;
+                            tempTotalValue += MngTables.ControlSchedulesList[i].Weight;
                             minValue = 37;
                             maxValue = 38.5;
                             
                         }
                         else if (comboboxInput == "MipMa")
                         {
-                            totalWeightPrDay += MngTables.ControlSchedulesList[i].MipMA;
+                            tempTotalValue += MngTables.ControlSchedulesList[i].MipMA;
                             minValue = 24;
                             maxValue = 26.5;
                         }
                         else if (comboboxInput == "Lud Koncentration")
                         {
-                            totalWeightPrDay += MngTables.ControlSchedulesList[i].LudKoncentration;
+                            tempTotalValue += MngTables.ControlSchedulesList[i].LudKoncentration;
                             minValue = 1;
                             maxValue = 2;
                         }
@@ -101,10 +101,10 @@ namespace UniBase.Model
 
                     if (amountOfItemsWithSameDate != 0)
                     {
-                        TrendList.Add(new Trends(totalWeightPrDay / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
+                        TrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
                     }
 
-                    totalWeightPrDay = 0;
+                    tempTotalValue = 0;
                     amountOfItemsWithSameDate = 0;
 
                     if (new TimeSpan(timeHorizonDivider,0,0,0) <= currentItemDate - tempDayOfScheduleList)
@@ -116,7 +116,7 @@ namespace UniBase.Model
             }
             if (amountOfItemsWithSameDate != 0)
             {
-                TrendList.Add(new Trends(totalWeightPrDay / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
+                TrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
             }
         }
     }
