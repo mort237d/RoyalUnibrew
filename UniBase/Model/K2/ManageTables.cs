@@ -35,12 +35,12 @@ namespace UniBase.Model.K2
 
         private Message message = new Message();
 
-        private int _firstTextBoxOutput;
-        private string _secondTextBoxOutput;
-        private string _thirdTextBoxOutput;
-        private string _fourthTextBoxOutput;
-        private string _fifthTextBoxOutput;
-        private string _sixthTextBoxOutput;
+        private string _processOrderNoTextBoxOutput;
+        private string _dateTextBoxOutput;
+        private string _finishedProductNoTextBoxOutput;
+        private string _columnTextBoxOutput;
+        private string _noteTextBoxOutput;
+        private string _weekNoTextBoxOutput;
 
         #endregion
 
@@ -49,74 +49,153 @@ namespace UniBase.Model.K2
         public Frontpages NewFrontpagesToAdd { get; set; } = new Frontpages();
 
         List<int> temp = new List<int>();
-        public int FirstTextBoxOutput
+        public string ProcessOrderNoTextBoxOutput
         {
-            get { return _firstTextBoxOutput; }
+            get { return _processOrderNoTextBoxOutput; }
             set
             {
-                _firstTextBoxOutput = value;
-                Debug.WriteLine("\n \t" + _firstTextBoxOutput, "1");
-                temp.Clear();
-                
-                foreach (var f in FrontpagesList)
+                _processOrderNoTextBoxOutput = value;
+
+                if (string.IsNullOrEmpty(DateTextBoxOutput) && string.IsNullOrEmpty(FinishedProductNoTextBoxOutput) && string.IsNullOrEmpty(ColumnTextBoxOutput) && string.IsNullOrEmpty(NoteTextBoxOutput) && string.IsNullOrEmpty(WeekNoTextBoxOutput))
                 {
-                    var v = f.ProcessOrder_No.ToString();
-                    if (v.Contains(_firstTextBoxOutput.ToString()))
+                    FrontpagesList.Clear();
+
+                    foreach (var f in CompleteFrontpagesList)
                     {
-                        temp.Add(f.ProcessOrder_No);
+                        var v = f.ProcessOrder_No.ToString();
+                        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
+                        {
+                            FrontpagesList.Add(f);
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
+                    {
+                        FrontpagesList = GetLastTen(new Frontpages());
                     }
                 }
-                Debug.WriteLine(temp.Count);
+
+                else
+                {
+                    var temp = new ObservableCollection<Frontpages>();
+                    foreach (var f in FrontpagesList)
+                    {
+                        var v = f.ProcessOrder_No.ToString();
+                        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
+                        {
+                            temp.Add(f);
+                        }
+                    }
+
+                    FrontpagesList = temp;
+                }
+                
             }
         }
 
-        public string SecondTextBoxOutput
+        public string DateTextBoxOutput
         {
-            get { return _secondTextBoxOutput; }
+            get { return _dateTextBoxOutput; }
+            set{ _dateTextBoxOutput = value; }
+        }
+
+        public string FinishedProductNoTextBoxOutput
+        {
+            get { return _finishedProductNoTextBoxOutput; }
             set
             {
-                _secondTextBoxOutput = value;
-                Debug.WriteLine("\n \t" + _secondTextBoxOutput, "2");
+                _finishedProductNoTextBoxOutput = value;
+
+                FrontpagesList.Clear();
+
+                foreach (var f in CompleteFrontpagesList)
+                {
+                    var v = f.FinishedProduct_No.ToString();
+                    if (v.Contains(_finishedProductNoTextBoxOutput.ToString()))
+                    {
+                        FrontpagesList.Add(f);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(_finishedProductNoTextBoxOutput))
+                {
+                    FrontpagesList = GetLastTen(new Frontpages());
+                }
             }
         }
 
-        public string ThirdTextBoxOutput
+        public string ColumnTextBoxOutput
         {
-            get { return _thirdTextBoxOutput; }
+            get { return _columnTextBoxOutput; }
             set
             {
-                _thirdTextBoxOutput = value;
-                Debug.WriteLine("\n \t" + _thirdTextBoxOutput, "3");
+                _columnTextBoxOutput = value;
+
+                FrontpagesList.Clear();
+
+                foreach (var f in CompleteFrontpagesList)
+                {
+                    var v = f.Colunm.ToString();
+                    if (v.Contains(_columnTextBoxOutput.ToString()))
+                    {
+                        FrontpagesList.Add(f);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(_columnTextBoxOutput))
+                {
+                    FrontpagesList = GetLastTen(new Frontpages());
+                }
             }
         }
 
-        public string FourthTextBoxOutput
+        public string NoteTextBoxOutput
         {
-            get { return _fourthTextBoxOutput; }
+            get { return _noteTextBoxOutput; }
             set
             {
-                _fourthTextBoxOutput = value;
-                Debug.WriteLine("\n \t" + _fourthTextBoxOutput, "4");
+                _noteTextBoxOutput = value;
+
+                FrontpagesList.Clear();
+
+                foreach (var f in CompleteFrontpagesList)
+                {
+                    var v = f.Note.ToString();
+                    if (v.Contains(_noteTextBoxOutput.ToString()))
+                    {
+                        FrontpagesList.Add(f);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(_noteTextBoxOutput))
+                {
+                    FrontpagesList = GetLastTen(new Frontpages());
+                }
             }
         }
 
-        public string FifthTextBoxOutput
+        public string WeekNoTextBoxOutput
         {
-            get { return _fifthTextBoxOutput; }
+            get { return _weekNoTextBoxOutput; }
             set
             {
-                _fifthTextBoxOutput = value;
-                Debug.WriteLine("\n \t" + _fifthTextBoxOutput, "5");
-            }
-        }
+                _weekNoTextBoxOutput = value;
 
-        public string SixthTextBoxOutput
-        {
-            get { return _sixthTextBoxOutput; }
-            set
-            {
-                _sixthTextBoxOutput = value;
-                Debug.WriteLine("\n \t" + _sixthTextBoxOutput, "6");
+                FrontpagesList.Clear();
+
+                foreach (var f in CompleteFrontpagesList)
+                {
+                    var v = f.Week_No.ToString();
+                    if (v.Contains(_weekNoTextBoxOutput.ToString()))
+                    {
+                        FrontpagesList.Add(f);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(_weekNoTextBoxOutput))
+                {
+                    FrontpagesList = GetLastTen(new Frontpages());
+                }
             }
         }
 
