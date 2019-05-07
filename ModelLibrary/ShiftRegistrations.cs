@@ -9,7 +9,7 @@ namespace ModelLibrary
             
         }
 
-        public ShiftRegistrations(int shiftRegistration_ID, DateTime start_Time, DateTime end_Date, int breaks, int totalHours, int staff, string initials)
+        public ShiftRegistrations(int shiftRegistration_ID, DateTime start_Time, DateTime end_Date, int breaks, int totalHours, int staff, string initials, int processOrder_No, Frontpages frontpage)
         {
             ShiftRegistration_ID = shiftRegistration_ID;
             Start_Time = start_Time;
@@ -18,6 +18,8 @@ namespace ModelLibrary
             TotalHours = totalHours;
             Staff = staff;
             Initials = initials;
+            ProcessOrder_No = processOrder_No;
+            Frontpage = frontpage;
         }
 
         public int ShiftRegistration_ID { get; set; }
@@ -33,5 +35,9 @@ namespace ModelLibrary
         public int Staff { get; set; }
 
         public string Initials { get; set; }
+
+        public int ProcessOrder_No { get; set; }
+
+        public virtual Frontpages Frontpage { get; set; }
     }
 }

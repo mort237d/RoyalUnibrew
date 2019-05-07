@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,6 +8,16 @@ namespace RestService.Models
     [Table("Frontpage")]
     public partial class Frontpage
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Frontpage()
+        {
+            ControlRegistrations = new HashSet<ControlRegistration>();
+            ControlSchedules = new HashSet<ControlSchedule>();
+            Productions = new HashSet<Production>();
+            ShiftRegistrations = new HashSet<ShiftRegistration>();
+            TUs = new HashSet<TU>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProcessOrder_No { get; set; }
@@ -21,28 +32,23 @@ namespace RestService.Models
         [StringLength(255)]
         public string Note { get; set; }
 
-        public int ControlSchedule_ID { get; set; }
-
-        public int ControlRegistration_ID { get; set; }
-
-        public int ShiftRegistration_ID { get; set; }
-
-        public int Production_ID { get; set; }
-
-        public int TU_ID { get; set; }
-
         public int Week_No { get; set; }
 
-        public virtual ControlRegistration ControlRegistration { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ControlRegistration> ControlRegistrations { get; set; }
 
-        public virtual ControlSchedule ControlSchedule { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ControlSchedule> ControlSchedules { get; set; }
 
         public virtual Product Product { get; set; }
 
-        public virtual Production Production { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Production> Productions { get; set; }
 
-        public virtual ShiftRegistration ShiftRegistration { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShiftRegistration> ShiftRegistrations { get; set; }
 
-        public virtual TU TU { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TU> TUs { get; set; }
     }
 }

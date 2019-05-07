@@ -1,51 +1,56 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using RestService;
 using RestService.Models;
 
 namespace RestService.Controllers
 {
-    public class ProductionsController : ApiController
+    public class UsersController : ApiController
     {
         private Context db = new Context();
 
-        // GET: api/Productions
-        public IQueryable<Models.Production> GetProductions()
+        // GET: api/Users
+        public IQueryable<User> GetUsers()
         {
-            return db.Productions;
+            return db.Users;
         }
 
-        // GET: api/Productions/5
-        [ResponseType(typeof(Models.Production))]
-        public IHttpActionResult GetProduction(int id)
+        // GET: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUser(int id)
         {
-            Models.Production production = db.Productions.Find(id);
-            if (production == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(production);
+            return Ok(user);
         }
 
-        // PUT: api/Productions/5
+        // PUT: api/Users/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProduction(int id, Models.Production production)
+        public IHttpActionResult PutUser(int id, User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != production.Production_ID)
+            if (id != user.User_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(production).State = EntityState.Modified;
+            db.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +58,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductionExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -66,16 +71,16 @@ namespace RestService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Productions
-        [ResponseType(typeof(Models.Production))]
-        public IHttpActionResult PostProduction(Models.Production production)
+        // POST: api/Users
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Productions.Add(production);
+            db.Users.Add(user);
 
             try
             {
@@ -83,7 +88,7 @@ namespace RestService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ProductionExists(production.Production_ID))
+                if (UserExists(user.User_ID))
                 {
                     return Conflict();
                 }
@@ -93,23 +98,23 @@ namespace RestService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = production.Production_ID }, production);
+            return CreatedAtRoute("DefaultApi", new { id = user.User_ID }, user);
         }
 
-        // DELETE: api/Productions/5
-        [ResponseType(typeof(Models.Production))]
-        public IHttpActionResult DeleteProduction(int id)
+        // DELETE: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(int id)
         {
-            Models.Production production = db.Productions.Find(id);
-            if (production == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            db.Productions.Remove(production);
+            db.Users.Remove(user);
             db.SaveChanges();
 
-            return Ok(production);
+            return Ok(user);
         }
 
         protected override void Dispose(bool disposing)
@@ -121,9 +126,9 @@ namespace RestService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProductionExists(int id)
+        private bool UserExists(int id)
         {
-            return db.Productions.Count(e => e.Production_ID == id) > 0;
+            return db.Users.Count(e => e.User_ID == id) > 0;
         }
     }
 }

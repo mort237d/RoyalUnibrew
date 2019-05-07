@@ -13,16 +13,16 @@ namespace RestService.Controllers
         private Context db = new Context();
 
         // GET: api/ControlSchedules
-        public IQueryable<ControlSchedule> GetControlSchedules()
+        public IQueryable<Models.ControlSchedule> GetControlSchedules()
         {
             return db.ControlSchedules;
         }
 
         // GET: api/ControlSchedules/5
-        [ResponseType(typeof(ControlSchedule))]
+        [ResponseType(typeof(Models.ControlSchedule))]
         public IHttpActionResult GetControlSchedule(int id)
         {
-            ControlSchedule controlSchedule = db.ControlSchedules.Find(id);
+            Models.ControlSchedule controlSchedule = db.ControlSchedules.Find(id);
             if (controlSchedule == null)
             {
                 return NotFound();
@@ -33,7 +33,7 @@ namespace RestService.Controllers
 
         // PUT: api/ControlSchedules/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutControlSchedule(int id, ControlSchedule controlSchedule)
+        public IHttpActionResult PutControlSchedule(int id, Models.ControlSchedule controlSchedule)
         {
             if (!ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace RestService.Controllers
         }
 
         // POST: api/ControlSchedules
-        [ResponseType(typeof(ControlSchedule))]
-        public IHttpActionResult PostControlSchedule(ControlSchedule controlSchedule)
+        [ResponseType(typeof(Models.ControlSchedule))]
+        public IHttpActionResult PostControlSchedule(Models.ControlSchedule controlSchedule)
         {
             if (!ModelState.IsValid)
             {
@@ -97,10 +97,10 @@ namespace RestService.Controllers
         }
 
         // DELETE: api/ControlSchedules/5
-        [ResponseType(typeof(ControlSchedule))]
+        [ResponseType(typeof(Models.ControlSchedule))]
         public IHttpActionResult DeleteControlSchedule(int id)
         {
-            ControlSchedule controlSchedule = db.ControlSchedules.Find(id);
+            Models.ControlSchedule controlSchedule = db.ControlSchedules.Find(id);
             if (controlSchedule == null)
             {
                 return NotFound();

@@ -199,6 +199,14 @@ namespace UniBase.Model.K2
             }
         }
 
+        public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
+        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList { get => _completeControlRegistrationsList; set => _completeControlRegistrationsList = value; }
+        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList { get => _completeControlSchedulesList; set => _completeControlSchedulesList = value; }
+        public ObservableCollection<Productions> CompleteProductionsList { get => _completeProductionsList; set => _completeProductionsList = value; }
+        public ObservableCollection<Products> CompleteProductsList { get => _completeProductsList; set => _completeProductsList = value; }
+        public ObservableCollection<ShiftRegistrations> CompleteShiftRegistrationsList { get => _completeShiftRegistrationsList; set => _completeShiftRegistrationsList = value; }
+        public ObservableCollection<TUs> CompleteTuList { get => _completeTuList; set => _completeTuList = value; }
+
         #region ObservableLists
 
         public ObservableCollection<Frontpages> FrontpagesList
@@ -310,6 +318,11 @@ namespace UniBase.Model.K2
             ProductsList = GetLastTen(new Products());
             ShiftRegistrationsList = GetLastTen(new ShiftRegistrations());
             TuList = GetLastTen(new TUs());
+
+
+            NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
+            NewFrontpagesToAdd.Date = DateTime.Now;
+            NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
         }
 
         private List<bool> sorted = new List<bool> { true, false, false, false, false, false };
@@ -467,6 +480,7 @@ namespace UniBase.Model.K2
         }
         public void SaveFrontpages()
         {
+            
             Parallel.ForEach(_frontpagesList, frontpage =>
             {
                 ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
@@ -577,16 +591,33 @@ namespace UniBase.Model.K2
 
         public void AddNewFrontpages()
         {
-            //todo finish this
-            NewFrontpagesToAdd.Product = new Products();
-            NewFrontpagesToAdd.Production = new Productions();
-            NewFrontpagesToAdd.ControlSchedule = new ControlSchedules();
-            NewFrontpagesToAdd.ControlRegistration = new ControlRegistrations();
-            NewFrontpagesToAdd.ShiftRegistration = new ShiftRegistrations();
-            NewFrontpagesToAdd.TU = new TUs();
+            if (NewFrontpagesToAdd.FinishedProduct_No == 0 && NewFrontpagesToAdd.FinishedProduct_No > 0)
+            {
+                //something wrong mate
+            }
+
+            if (NewFrontpagesToAdd.ProcessOrder_No == 0 && NewFrontpagesToAdd.ProcessOrder_No > 0)
+            {
+                //Something wrong again matey
+            }
+
+            if (NewFrontpagesToAdd.Colunm == 0 && NewFrontpagesToAdd.Colunm > 0)
+            {
+                //Still something wrong dude
+            }
+
+            if (NewFrontpagesToAdd.Note == null)
+            {
+                NewFrontpagesToAdd.Note = " ";
+            }
+
+            CheckDateTime();
+
+            NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
+
 
             //Checks whether any of the properties are null if any are returns true
-            bool isNull = NewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(NewFrontpagesToAdd) != null);
+            bool isNull = NewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(NewFrontpagesToAdd) == null);
 
             if (!isNull)
             {
@@ -594,12 +625,68 @@ namespace UniBase.Model.K2
                 {
                     _frontpagesList.Add(NewFrontpagesToAdd);
                     NewFrontpagesToAdd = new Frontpages();
+                    NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count-1].FinishedProduct_No+1;
                 }
                 else
                 {
 
                 }
             }
+        }
+
+        private void CheckDateTime()
+        {
+            string[] splitDateTimeString = new string[3];
+
+            if (NewFrontpagesToAdd.DateHelper != null)
+            {
+                splitDateTimeString = NewFrontpagesToAdd.DateHelper.Split('/');
+
+                //Check if day is 2 long, month is 2 and year is 4 ex. 02 / 02 / 2018 (semi check order)
+                if (splitDateTimeString[0].Length == 2 && splitDateTimeString[1].Length == 2 && splitDateTimeString[2].Length == 4)
+                {
+                    //Check if they are numbers
+                    if (int.TryParse(splitDateTimeString[0], out int year) && int.TryParse(splitDateTimeString[0], out int month) && int.TryParse(splitDateTimeString[0], out int day))
+                    {
+                        //Check if they are valid numbers
+                        if (year > 0 && month > 0 && month < 13 && day < 32 && day > 0)
+                        {
+                            NewFrontpagesToAdd.Date = new DateTime(year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, 0);
+                        }
+                        else
+                        {
+                            //Sumthing wong boss
+                        }
+                    }
+                    else
+                    {
+                        //wrong format you filty filty peasant
+                    }
+                }
+                else
+                {
+                    //sumtin wong
+                }
+            }
+        }
+
+        private int FindWeekNumber(Frontpages frontpage)
+        {
+            int dayOfYear = frontpage.Date.DayOfYear;
+            int weekNumber = 1;
+            if (dayOfYear > 7)
+            {
+                if (dayOfYear % 1 != 0)
+                {
+                    weekNumber = (dayOfYear / 7) + 1;
+                }
+                else
+                {
+                    weekNumber = (dayOfYear / 7) + 1;
+                }
+            }
+
+            return weekNumber;
         }
         #endregion
 
@@ -657,14 +744,6 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-
-        public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
-        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList { get => _completeControlRegistrationsList; set => _completeControlRegistrationsList = value; }
-        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList { get => _completeControlSchedulesList; set => _completeControlSchedulesList = value; }
-        public ObservableCollection<Productions> CompleteProductionsList { get => _completeProductionsList; set => _completeProductionsList = value; }
-        public ObservableCollection<Products> CompleteProductsList { get => _completeProductsList; set => _completeProductsList = value; }
-        public ObservableCollection<ShiftRegistrations> CompleteShiftRegistrationsList { get => _completeShiftRegistrationsList; set => _completeShiftRegistrationsList = value; }
-        public ObservableCollection<TUs> CompleteTuList { get => _completeTuList; set => _completeTuList = value; }
 
         #endregion
 

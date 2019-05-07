@@ -47,6 +47,8 @@ namespace UniBase.ViewModel
         public Colors PredefinedColors { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; } 
+
+        public OutOfBoundColorChange OutOfBoundColorChange { get; set; }
         
         public WorkViewModel()
         {
@@ -60,7 +62,7 @@ namespace UniBase.ViewModel
             Random radnom = new Random();
 //            for (int i = 0; i < 120; i++)
 //            {
-//                ModelGenerics.CreateByObject(new ControlSchedules(i+39, new DateTime(2019, month, day),radnom.NextDouble()*100, "hej", radnom.NextDouble() * 100, radnom.NextDouble() * 100, "mig", "Very good"));
+//                ModelGenerics.CreateByObject(new ControlSchedules(i+39, new DateHelper(2019, month, day),radnom.NextDouble()*100, "hej", radnom.NextDouble() * 100, radnom.NextDouble() * 100, "mig", "Very good"));
 //                day++;
 //                if (day == 29)
 //                {
@@ -71,7 +73,7 @@ namespace UniBase.ViewModel
 //            foreach (var VARIABLE in Column_2.ControlSchedulesList)
 //            {
 //                
-//                VARIABLE.Time = new DateTime(2019, month, day);
+//                VARIABLE.Time = new DateHelper(2019, month, day);
 //                VARIABLE.Weight = radnom.NextDouble()* 1.7 + 36.9;
 //                VARIABLE.MipMA = radnom.NextDouble() * 2.7 + 23.9;
 //                VARIABLE.LudKoncentration = radnom.NextDouble() * 1.2 + 0.9;
