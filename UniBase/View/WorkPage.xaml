@@ -79,6 +79,14 @@
                                                 <Setter Property="BorderThickness" Value="0"/>
                                             </Style>
                                         </ListView.ItemContainerStyle>
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <ItemsStackPanel
+                                                    VerticalAlignment="Bottom"
+                                                    ItemsUpdatingScrollMode="KeepLastItemInView"
+                                                />
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
@@ -150,7 +158,7 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
-                                <ListView Height="44" Width="1216" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlRegistrationProps}">
+                                <ListView Height="44" Width="1326" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlRegistrationProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -171,7 +179,7 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
                                 <StackPanel>
-                                    <ListView Width="1216"
+                                    <ListView Width="1326"
                                       Style="{StaticResource ButtonListViewStyle}" 
                                       ItemsSource="{Binding Column_2.ControlRegistrationProps}">
                                         <ListView.ItemContainerStyle>
@@ -192,7 +200,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="1216" ItemsSource="{Binding Column_2.ControlRegistrationsList}">
+                                    <ListView MaxHeight="400" Width="1326" ItemsSource="{Binding Column_2.ControlRegistrationsList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -204,6 +212,7 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_Date, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"></TextBox>
@@ -235,7 +244,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="1216" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlRegistrationProps}">
+                                <ListView Height="44" Width="1326" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlRegistrationProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -264,7 +273,7 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
-                                <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlScheduleProps}">
+                                <ListView Height="44" Width="994" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlScheduleProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -285,7 +294,7 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
                                 <StackPanel>
-                                    <ListView Width="883"
+                                    <ListView Width="994"
                                       Style="{StaticResource ButtonListViewStyle}" 
                                       ItemsSource="{Binding Column_2.ControlScheduleProps}">
                                         <ListView.ItemContainerStyle>
@@ -306,7 +315,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="883" ItemsSource="{Binding Column_2.ControlSchedulesList}">
+                                    <ListView MaxHeight="400" Width="994" ItemsSource="{Binding Column_2.ControlSchedulesList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -318,6 +327,7 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay}" Background="{Binding DataContext.OutOfBoundColorChange.TextBoxColor, ElementName=WorkPageName}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}"></TextBox>
@@ -345,7 +355,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlScheduleProps}">
+                                <ListView Height="44" Width="994" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlScheduleProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -374,7 +384,7 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
-                                <ListView Height="44" Width="663" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ProductionProps}">
+                                <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ProductionProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -395,7 +405,7 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
                                 <StackPanel>
-                                    <ListView Width="663"
+                                    <ListView Width="883"
                                       Style="{StaticResource ButtonListViewStyle}" 
                                       ItemsSource="{Binding Column_2.ProductionProps}">
                                         <ListView.ItemContainerStyle>
@@ -416,7 +426,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.ProductionsList}">
+                                    <ListView MaxHeight="400" Width="883" ItemsSource="{Binding Column_2.ProductionsList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -428,6 +438,7 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay}"></TextBox>
@@ -454,7 +465,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="663" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ProductionProps}">
+                                <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ProductionProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -483,7 +494,7 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
-                                <ListView Height="44" Width="773" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ShiftRegistrationProps}">
+                                <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ShiftRegistrationProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -504,7 +515,7 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
                                 <StackPanel>
-                                    <ListView Width="773"
+                                    <ListView Width="883"
                                       Style="{StaticResource ButtonListViewStyle}" 
                                       ItemsSource="{Binding Column_2.ShiftRegistrationProps}">
                                         <ListView.ItemContainerStyle>
@@ -525,7 +536,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="773" ItemsSource="{Binding Column_2.ShiftRegistrationsList}">
+                                    <ListView MaxHeight="400" Width="883" ItemsSource="{Binding Column_2.ShiftRegistrationsList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -537,6 +548,7 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ShiftRegistration_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Start_Time, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding End_Date, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Breaks, Mode=TwoWay}"></TextBox>
@@ -563,7 +575,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="773" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ShiftRegistrationProps}">
+                                <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ShiftRegistrationProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -592,7 +604,7 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
-                                <ListView Height="44" Width="1105" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.TuProps}">
+                                <ListView Height="44" Width="1215" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.TuProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
@@ -613,7 +625,7 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
                                 <StackPanel>
-                                    <ListView Width="1105"
+                                    <ListView Width="1215"
                                       Style="{StaticResource ButtonListViewStyle}" 
                                       ItemsSource="{Binding Column_2.TuProps}">
                                         <ListView.ItemContainerStyle>
@@ -634,7 +646,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="1105" ItemsSource="{Binding Column_2.TuList}">
+                                    <ListView MaxHeight="400" Width="1215" ItemsSource="{Binding Column_2.TuList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -646,6 +658,7 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TU_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStart_TU, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEnd_TU, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDay_Total, Mode=TwoWay}"></TextBox>
@@ -675,7 +688,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="1105" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.TuProps}">
+                                <ListView Height="44" Width="1215" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.TuProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Padding" Value="0"/>
