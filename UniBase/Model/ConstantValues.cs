@@ -22,5 +22,8 @@ namespace UniBase.Model
         public double MaxMipMa { get => maxMipMa; set => maxMipMa = value; }
         public double MinLudkoncentration { get => minLudkoncentration; set => minLudkoncentration = value; }
         public double MaxLudkoncentration { get => maxLudkoncentration; set => maxLudkoncentration = value; }
+
+
+
     }
 }
