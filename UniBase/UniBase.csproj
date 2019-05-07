@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ConstantValues.cs" />
     <Compile Include="Model\Login\Administrator.cs" />
     <Compile Include="Model\Login\Leader.cs" />
     <Compile Include="Model\K2\ManageTables.cs" />

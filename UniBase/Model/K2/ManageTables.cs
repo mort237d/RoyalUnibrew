@@ -16,6 +16,13 @@ namespace UniBase.Model.K2
     public class ManageTables :INotifyPropertyChanged
     {
         #region Field
+        private ObservableCollection<Frontpages> _completeFrontpagesList;
+        private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList;
+        private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
+        private ObservableCollection<Productions> _completeProductionsList;
+        private ObservableCollection<Products> _completeProductsList;
+        private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList;
+        private ObservableCollection<TUs> _completeTuList;
 
         private ObservableCollection<Frontpages> _frontpagesList;
         private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
@@ -127,6 +134,16 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
+            CompleteFrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            CompleteControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            CompleteControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            CompleteProductionsList = ModelGenerics.GetAll(new Productions());
+            CompleteProductsList = ModelGenerics.GetAll(new Products());
+            CompleteShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+            CompleteTuList = ModelGenerics.GetAll(new TUs());
+
+
+
             FrontpagesList = GetLastTen(new Frontpages());
             ControlRegistrationsList = GetLastTen(new ControlRegistrations());
             ControlSchedulesList = GetLastTen(new ControlSchedules());
@@ -481,7 +498,15 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-        
+
+        public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
+        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList { get => _completeControlRegistrationsList; set => _completeControlRegistrationsList = value; }
+        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList { get => _completeControlSchedulesList; set => _completeControlSchedulesList = value; }
+        public ObservableCollection<Productions> CompleteProductionsList { get => _completeProductionsList; set => _completeProductionsList = value; }
+        public ObservableCollection<Products> CompleteProductsList { get => _completeProductsList; set => _completeProductsList = value; }
+        public ObservableCollection<ShiftRegistrations> CompleteShiftRegistrationsList { get => _completeShiftRegistrationsList; set => _completeShiftRegistrationsList = value; }
+        public ObservableCollection<TUs> CompleteTuList { get => _completeTuList; set => _completeTuList = value; }
+
         #endregion
 
         #region INotifyPropertiesChanged
