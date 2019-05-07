@@ -22,7 +22,7 @@ namespace UniBase.ViewModel
         private string _graphTimeperiodCombobox;
 
 
-        public RelayCommand<object> TestCommand { get; set; }
+        public RelayCommand<object> SortFrontpageCommand { get; set; }
 
         public RelayCommand RefreshFrontpageTable { get; set; }
         public RelayCommand SaveFrontpageTable { get; set; }
@@ -107,7 +107,7 @@ namespace UniBase.ViewModel
             RefreshTUTable = new RelayCommand(Column_2.RefreshTUs);
             SaveTUTable = new RelayCommand(Column_2.SaveTUs);
 
-            TestCommand = new RelayCommand<object>(Column_2.SortButtonClick);
+            SortFrontpageCommand = new RelayCommand<object>(Column_2.SortButtonClick);
         }
 
         private void TempMethod2()

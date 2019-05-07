@@ -139,7 +139,7 @@ namespace UniBase.Model.K2
         private List<bool> sorted = new List<bool> { true, false, false, false, false, false };
 
         //TODO FIX DRYYYYYYYY
-        private ObservableCollection<Frontpages> SortWay(int index) 
+        private ObservableCollection<Frontpages> SortWay(int index, Frontpages frontpages) 
         {
             var tempList = new ObservableCollection<Frontpages>();
 
