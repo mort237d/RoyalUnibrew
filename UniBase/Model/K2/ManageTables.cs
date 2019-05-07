@@ -537,6 +537,7 @@ namespace UniBase.Model.K2
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
 
 
+
             //Checks whether any of the properties are null if any are returns true
             bool isNull = NewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(NewFrontpagesToAdd) == null);
 

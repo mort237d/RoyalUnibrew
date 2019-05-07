@@ -9,13 +9,12 @@ namespace ModelLibrary
             
         }
 
-        public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date,
-            string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo, int etiquetteNo, double kegSize,
-            string signature, DateTime firstPalletDepalletizing, DateTime lastPalletDepalletizing, DateTime expiry_Date)
+        public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date, DateTime expiry_Date, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo, int etiquetteNo, double kegSize, string signature, DateTime firstPalletDepalletizing, DateTime lastPalletDepalletizing, int processOrder_No, Frontpages frontpage)
         {
             ControlRegistration_ID = controlRegistration_ID;
             Time = time;
             Production_Date = production_Date;
+            Expiry_Date = expiry_Date;
             CommentsOnChangedDate = commentsOnChangedDate;
             ControlAlcoholSpearDispenser = controlAlcoholSpearDispenser;
             CapNo = capNo;
@@ -24,7 +23,8 @@ namespace ModelLibrary
             Signature = signature;
             FirstPalletDepalletizing = firstPalletDepalletizing;
             LastPalletDepalletizing = lastPalletDepalletizing;
-            Expiry_Date = expiry_Date;
+            ProcessOrder_No = processOrder_No;
+            Frontpage = frontpage;
         }
 
         public int ControlRegistration_ID { get; set; }
@@ -51,5 +51,9 @@ namespace ModelLibrary
         public DateTime FirstPalletDepalletizing { get; set; }
 
         public DateTime LastPalletDepalletizing { get; set; }
+
+        public int ProcessOrder_No { get; set; }
+
+        public virtual Frontpages Frontpage { get; set; }
     }
 }
