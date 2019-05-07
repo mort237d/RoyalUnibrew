@@ -4,13 +4,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Windows.UI;
-using Windows.UI.Notifications;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using ModelLibrary;
 using UniBase.Annotations;
 
@@ -28,13 +25,13 @@ namespace UniBase.Model.K2
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
         private ObservableCollection<TUs> _tuList;
 
-
+        private Message message = new Message();
 
         #endregion
 
         #region Properties
 
-        public Frontpages NewFrontpagesToAdd { get; set; }
+        public Frontpages NewFrontpagesToAdd { get; set; } = new Frontpages();
 
         #region ObservableLists
 
@@ -125,27 +122,172 @@ namespace UniBase.Model.K2
         public ManageTables()
         {
             InitializeObservableCollections();
-            CompleteLists();
+            GenerateHeaderLists();
         }
 
         public void InitializeObservableCollections()
         {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            ProductionsList = ModelGenerics.GetAll(new Productions());
-            ProductsList = ModelGenerics.GetAll(new Products());
-            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            TuList = ModelGenerics.GetAll(new TUs());
+            FrontpagesList = GetLastTen(new Frontpages());
+            ControlRegistrationsList = GetLastTen(new ControlRegistrations());
+            ControlSchedulesList = GetLastTen(new ControlSchedules());
+            ProductionsList = GetLastTen(new Productions());
+            ProductsList = GetLastTen(new Products());
+            ShiftRegistrationsList = GetLastTen(new ShiftRegistrations());
+            TuList = GetLastTen(new TUs());
         }
 
+        private List<bool> sorted = new List<bool> { true, false, false, false, false, false };
+
+        //TODO FIX DRYYYYYYYY
+        private ObservableCollection<Frontpages> SortWay(int index, Frontpages frontpages) 
+        {
+            var tempList = new ObservableCollection<Frontpages>();
+
+            if (!sorted[index])
+            {
+                tempList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.ProcessOrder_No));
+                sorted[index] = true;
+            }
+            else
+            {
+                tempList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.ProcessOrder_No));
+                sorted[index] = false;
+            }
+
+            return tempList;
+        }
+        public void SortButtonClick(object id)
+        {
+            Debug.WriteLine("\n \t" + id.ToString(),"Click");
+
+            switch (id.ToString())
+            {
+                case "ProcessOrdre Nr":
+                    if (!sorted[0])
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.ProcessOrder_No));
+
+                        for (int i = 0; i < sorted.Count-1; i++)
+                        {
+                            sorted[i] = false;
+                        }
+                        sorted[0] = true;
+                    }
+                    else
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.ProcessOrder_No));
+                        sorted[0] = false;
+                    }
+                    break;
+                case "Dato":
+                    if (!sorted[0])
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Date));
+
+                        for (int i = 0; i < sorted.Count - 1; i++)
+                        {
+                            sorted[i] = false;
+                        }
+                        sorted[0] = true;
+                    }
+                    else
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Date));
+                        sorted[0] = false;
+                    }
+                    break;
+                case "Færdigt Produkt Nr":
+                    if (!sorted[0])
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.FinishedProduct_No));
+
+                        for (int i = 0; i < sorted.Count - 1; i++)
+                        {
+                            sorted[i] = false;
+                        }
+                        sorted[0] = true;
+                    }
+                    else
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.FinishedProduct_No));
+                        sorted[0] = false;
+                    }
+                    break;
+                case "Kolonne":
+                    if (!sorted[0])
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Colunm));
+
+                        for (int i = 0; i < sorted.Count - 1; i++)
+                        {
+                            sorted[i] = false;
+                        }
+                        sorted[0] = true;
+                    }
+                    else
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Colunm));
+                        sorted[0] = false;
+                    }
+                    break;
+                case "Note":
+                    if (!sorted[0])
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Note));
+
+                        for (int i = 0; i < sorted.Count - 1; i++)
+                        {
+                            sorted[i] = false;
+                        }
+                        sorted[0] = true;
+                    }
+                    else
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Note));
+                        sorted[0] = false;
+                    }
+                    break;
+                case "Uge Nr":
+                    if (!sorted[0])
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Week_No));
+
+                        for (int i = 0; i < sorted.Count - 1; i++)
+                        {
+                            sorted[i] = false;
+                        }
+                        sorted[0] = true;
+                    }
+                    else
+                    {
+                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Week_No));
+                        sorted[0] = false;
+                    }
+                    break;
+                default:
+                    Debug.WriteLine("Nothing");
+                    break;
+            }
+        }
+        
 
         #region ButtonMethods
-        
+
+        #region FrontPageMethods
+
         public void RefreshFrontpages()
         {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            var tempList = ModelGenerics.GetAll(new Frontpages());
+            FrontpagesList = new ObservableCollection<Frontpages>();
+            if (tempList.Count > 10)
+            {
+                for (int i = tempList.Count-10; i < tempList.Count; i++)
+                {
+                    FrontpagesList.Add(tempList[i]);
+                }
+
+                message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            }
         }
         public void SaveFrontpages()
         {
@@ -153,13 +295,17 @@ namespace UniBase.Model.K2
             {
                 ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
             });
-            ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+            message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
+
+        #endregion
+
+        #region ControlRegistrationMethods
 
         public void RefreshControlRegistrations()
         {
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+            message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
         public void SaveControlRegistrations()
         {
@@ -167,13 +313,26 @@ namespace UniBase.Model.K2
             {
                 ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
             });
-            ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
+            message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
         }
+
+        #endregion
+
+        #region ControlScheduleMethods
 
         public void RefreshControlSchedules()
         {
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+            var tempList = ModelGenerics.GetAll(new ControlSchedules());
+            ControlSchedulesList = new ObservableCollection<ControlSchedules>();
+            if (tempList.Count > 10)
+            {
+                for (int i = tempList.Count - 10; i < tempList.Count; i++)
+                {
+                    ControlSchedulesList.Add(tempList[i]);
+                }
+
+                message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+            }
         }
         public void SaveControlSchedules()
         {
@@ -181,13 +340,17 @@ namespace UniBase.Model.K2
             {
                 ModelGenerics.UpdateByObjectAndId(controlSchedules.ControlSchedule_ID, controlSchedules);
             });
-            ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
+            message.ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
         }
+
+        #endregion
+
+        #region ProductionMethods
 
         public void RefreshProductions()
         {
             ProductionsList = ModelGenerics.GetAll(new Productions());
-            ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
         public void SaveProductions()
         {
@@ -195,13 +358,17 @@ namespace UniBase.Model.K2
             {
                 ModelGenerics.UpdateByObjectAndId(productions.Production_ID, productions);
             });
-            ShowToastNotification("Gemt", "Produktions-tabellen er gemt");
+            message.ShowToastNotification("Gemt", "Produktions-tabellen er gemt");
         }
+
+        #endregion
+
+        #region ShiftRegistrationMethods
 
         public void RefreshShiftRegistrations()
         {
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
+            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
         public void SaveShiftRegistrations()
         {
@@ -209,13 +376,17 @@ namespace UniBase.Model.K2
             {
                 ModelGenerics.UpdateByObjectAndId(shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
             });
-            ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
+            message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
         }
+
+        #endregion
+
+        #region TUMethods
 
         public void RefreshTUs()
         {
             TuList = ModelGenerics.GetAll(new TUs());
-            ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
+            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
         public void SaveTUs()
         {
@@ -223,8 +394,10 @@ namespace UniBase.Model.K2
             {
                 ModelGenerics.UpdateByObjectAndId(tus.TU_ID, tus);
             });
-            ShowToastNotification("Gemt", "TU-tabellen er gemt");
+            message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
         }
+
+        #endregion
 
         public void AddNewFrontpages()
         {
@@ -254,23 +427,27 @@ namespace UniBase.Model.K2
         }
         #endregion
 
-        private void ShowToastNotification(string title, string stringContent)
+        private ObservableCollection<T> GetLastTen<T>(T type)
         {
-            ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
-            Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
-            Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
-            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
-            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(stringContent));
-            Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
-            Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
-            audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
+            var tempList = ModelGenerics.GetAll(type);
+            ObservableCollection<T> result = new ObservableCollection<T>();
 
-            ToastNotification toast = new ToastNotification(toastXml);
-            toast.ExpirationTime = DateTime.Now.AddSeconds(4);
-            toastNotifier.Show(toast);
+            if (tempList.Count > 10)
+            {
+                for (int i = tempList.Count - 10; i < tempList.Count; i++)
+                {
+                    result.Add(tempList[i]);
+                }
+            }
+            else
+            {
+                result = tempList;
+            }
+
+            return result;
         }
 
-        private void CompleteLists()
+        private void GenerateHeaderLists()
         {
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
             ControlScheduleProps = new List<string>{"Kontrol skema ID","Klokkeslæt", "Vægt kontrol", "Kontrol af fustage", "LudKoncentration", "Mip MA", "Signatur operatør", "Note"};

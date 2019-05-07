@@ -51,7 +51,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -72,7 +72,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
                                                     </Button>
                                                     <Line></Line>
@@ -92,8 +92,8 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Date, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Colunm, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Week_No, Mode=TwoWay}"/>
@@ -128,7 +128,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -157,7 +157,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -180,7 +180,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
                                                     <Line></Line>
@@ -242,7 +242,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -271,7 +271,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -294,7 +294,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
                                                     <Line></Line>
@@ -352,7 +352,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -381,7 +381,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -404,7 +404,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
                                                     <Line></Line>
@@ -461,7 +461,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -490,7 +490,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -513,7 +513,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
                                                     <Line></Line>
@@ -570,7 +570,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -599,7 +599,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -622,7 +622,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.TestCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
                                                     <Line></Line>
@@ -682,7 +682,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox TextWrapping="Wrap" PlaceholderText="{Binding}" Width="110" Height="42" FontSize="10" TextAlignment="Center"></TextBox>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
                                                 <Line></Line>
                                             </StackPanel>
                                         </DataTemplate>
@@ -746,6 +746,9 @@
                     
                 </StackPanel>
                 
+            </PivotItem>
+            <PivotItem Header="Brugere">
+
             </PivotItem>
         </Pivot>
     </Grid>
