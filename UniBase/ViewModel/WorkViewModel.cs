@@ -47,6 +47,8 @@ namespace UniBase.ViewModel
         public Colors PredefinedColors { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; } 
+
+        public OutOfBoundColorChange OutOfBoundColorChange { get; set; }
         
         public WorkViewModel()
         {
