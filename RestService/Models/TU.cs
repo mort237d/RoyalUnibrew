@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,12 +6,6 @@ namespace RestService.Models
     [Table("TU")]
     public partial class TU
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TU()
-        {
-            Frontpages = new HashSet<Frontpage>();
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TU_ID { get; set; }
@@ -35,7 +28,8 @@ namespace RestService.Models
 
         public int ThirdDay_Total { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Frontpage> Frontpages { get; set; }
+        public int ProcessOrder_No { get; set; }
+
+        public virtual Frontpage Frontpage { get; set; }
     }
 }

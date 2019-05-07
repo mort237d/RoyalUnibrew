@@ -13,16 +13,16 @@ namespace RestService.Controllers
         private Context db = new Context();
 
         // GET: api/ControlRegistrations
-        public IQueryable<ControlRegistration> GetControlRegistrations()
+        public IQueryable<Models.ControlRegistration> GetControlRegistrations()
         {
             return db.ControlRegistrations;
         }
 
         // GET: api/ControlRegistrations/5
-        [ResponseType(typeof(ControlRegistration))]
+        [ResponseType(typeof(Models.ControlRegistration))]
         public IHttpActionResult GetControlRegistration(int id)
         {
-            ControlRegistration controlRegistration = db.ControlRegistrations.Find(id);
+            Models.ControlRegistration controlRegistration = db.ControlRegistrations.Find(id);
             if (controlRegistration == null)
             {
                 return NotFound();
@@ -33,7 +33,7 @@ namespace RestService.Controllers
 
         // PUT: api/ControlRegistrations/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutControlRegistration(int id, ControlRegistration controlRegistration)
+        public IHttpActionResult PutControlRegistration(int id, Models.ControlRegistration controlRegistration)
         {
             if (!ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace RestService.Controllers
         }
 
         // POST: api/ControlRegistrations
-        [ResponseType(typeof(ControlRegistration))]
-        public IHttpActionResult PostControlRegistration(ControlRegistration controlRegistration)
+        [ResponseType(typeof(Models.ControlRegistration))]
+        public IHttpActionResult PostControlRegistration(Models.ControlRegistration controlRegistration)
         {
             if (!ModelState.IsValid)
             {
@@ -97,10 +97,10 @@ namespace RestService.Controllers
         }
 
         // DELETE: api/ControlRegistrations/5
-        [ResponseType(typeof(ControlRegistration))]
+        [ResponseType(typeof(Models.ControlRegistration))]
         public IHttpActionResult DeleteControlRegistration(int id)
         {
-            ControlRegistration controlRegistration = db.ControlRegistrations.Find(id);
+            Models.ControlRegistration controlRegistration = db.ControlRegistrations.Find(id);
             if (controlRegistration == null)
             {
                 return NotFound();

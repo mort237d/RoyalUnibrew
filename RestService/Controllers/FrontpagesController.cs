@@ -13,16 +13,16 @@ namespace RestService.Controllers
         private Context db = new Context();
 
         // GET: api/Frontpages
-        public IQueryable<Frontpage> GetFrontpages()
+        public IQueryable<Models.Frontpage> GetFrontpages()
         {
             return db.Frontpages;
         }
 
         // GET: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
+        [ResponseType(typeof(Models.Frontpage))]
         public IHttpActionResult GetFrontpage(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
+            Models.Frontpage frontpage = db.Frontpages.Find(id);
             if (frontpage == null)
             {
                 return NotFound();
@@ -33,7 +33,7 @@ namespace RestService.Controllers
 
         // PUT: api/Frontpages/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFrontpage(int id, Frontpage frontpage)
+        public IHttpActionResult PutFrontpage(int id, Models.Frontpage frontpage)
         {
             if (!ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace RestService.Controllers
         }
 
         // POST: api/Frontpages
-        [ResponseType(typeof(Frontpage))]
-        public IHttpActionResult PostFrontpage(Frontpage frontpage)
+        [ResponseType(typeof(Models.Frontpage))]
+        public IHttpActionResult PostFrontpage(Models.Frontpage frontpage)
         {
             if (!ModelState.IsValid)
             {
@@ -97,10 +97,10 @@ namespace RestService.Controllers
         }
 
         // DELETE: api/Frontpages/5
-        [ResponseType(typeof(Frontpage))]
+        [ResponseType(typeof(Models.Frontpage))]
         public IHttpActionResult DeleteFrontpage(int id)
         {
-            Frontpage frontpage = db.Frontpages.Find(id);
+            Models.Frontpage frontpage = db.Frontpages.Find(id);
             if (frontpage == null)
             {
                 return NotFound();

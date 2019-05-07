@@ -9,7 +9,7 @@ namespace ModelLibrary
             
         }
 
-        public ControlSchedules(int controlSchedule_ID, DateTime time, double weight, string kegTest, double ludKoncentration, double mipMA, string signature, string note)
+        public ControlSchedules(int controlSchedule_ID, DateTime time, double weight, string kegTest, double ludKoncentration, double mipMA, string signature, string note, int processOrder_No, Frontpages frontpage)
         {
             ControlSchedule_ID = controlSchedule_ID;
             Time = time;
@@ -19,6 +19,8 @@ namespace ModelLibrary
             MipMA = mipMA;
             Signature = signature;
             Note = note;
+            ProcessOrder_No = processOrder_No;
+            Frontpage = frontpage;
         }
 
         public int ControlSchedule_ID { get; set; }
@@ -36,5 +38,9 @@ namespace ModelLibrary
         public string Signature { get; set; }
 
         public string Note { get; set; }
+
+        public int ProcessOrder_No { get; set; }
+
+        public virtual Frontpages Frontpage { get; set; }
     }
 }

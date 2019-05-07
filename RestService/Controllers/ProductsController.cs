@@ -13,16 +13,16 @@ namespace RestService.Controllers
         private Context db = new Context();
 
         // GET: api/Products
-        public IQueryable<Product> GetProducts()
+        public IQueryable<Models.Product> GetProducts()
         {
             return db.Products;
         }
 
         // GET: api/Products/5
-        [ResponseType(typeof(Product))]
+        [ResponseType(typeof(Models.Product))]
         public IHttpActionResult GetProduct(int id)
         {
-            Product product = db.Products.Find(id);
+            Models.Product product = db.Products.Find(id);
             if (product == null)
             {
                 return NotFound();
@@ -33,7 +33,7 @@ namespace RestService.Controllers
 
         // PUT: api/Products/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProduct(int id, Product product)
+        public IHttpActionResult PutProduct(int id, Models.Product product)
         {
             if (!ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace RestService.Controllers
         }
 
         // POST: api/Products
-        [ResponseType(typeof(Product))]
-        public IHttpActionResult PostProduct(Product product)
+        [ResponseType(typeof(Models.Product))]
+        public IHttpActionResult PostProduct(Models.Product product)
         {
             if (!ModelState.IsValid)
             {
@@ -97,10 +97,10 @@ namespace RestService.Controllers
         }
 
         // DELETE: api/Products/5
-        [ResponseType(typeof(Product))]
+        [ResponseType(typeof(Models.Product))]
         public IHttpActionResult DeleteProduct(int id)
         {
-            Product product = db.Products.Find(id);
+            Models.Product product = db.Products.Find(id);
             if (product == null)
             {
                 return NotFound();

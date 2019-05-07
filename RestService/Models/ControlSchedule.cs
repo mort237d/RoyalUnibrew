@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,12 +7,6 @@ namespace RestService.Models
     [Table("ControlSchedule")]
     public partial class ControlSchedule
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ControlSchedule()
-        {
-            Frontpages = new HashSet<Frontpage>();
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ControlSchedule_ID { get; set; }
@@ -36,7 +29,8 @@ namespace RestService.Models
 
         public string Note { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Frontpage> Frontpages { get; set; }
+        public int ProcessOrder_No { get; set; }
+
+        public virtual Frontpage Frontpage { get; set; }
     }
 }

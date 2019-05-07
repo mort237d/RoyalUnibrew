@@ -13,16 +13,16 @@ namespace RestService.Controllers
         private Context db = new Context();
 
         // GET: api/ShiftRegistrations
-        public IQueryable<ShiftRegistration> GetShiftRegistrations()
+        public IQueryable<Models.ShiftRegistration> GetShiftRegistrations()
         {
             return db.ShiftRegistrations;
         }
 
         // GET: api/ShiftRegistrations/5
-        [ResponseType(typeof(ShiftRegistration))]
+        [ResponseType(typeof(Models.ShiftRegistration))]
         public IHttpActionResult GetShiftRegistration(int id)
         {
-            ShiftRegistration shiftRegistration = db.ShiftRegistrations.Find(id);
+            Models.ShiftRegistration shiftRegistration = db.ShiftRegistrations.Find(id);
             if (shiftRegistration == null)
             {
                 return NotFound();
@@ -33,7 +33,7 @@ namespace RestService.Controllers
 
         // PUT: api/ShiftRegistrations/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutShiftRegistration(int id, ShiftRegistration shiftRegistration)
+        public IHttpActionResult PutShiftRegistration(int id, Models.ShiftRegistration shiftRegistration)
         {
             if (!ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace RestService.Controllers
         }
 
         // POST: api/ShiftRegistrations
-        [ResponseType(typeof(ShiftRegistration))]
-        public IHttpActionResult PostShiftRegistration(ShiftRegistration shiftRegistration)
+        [ResponseType(typeof(Models.ShiftRegistration))]
+        public IHttpActionResult PostShiftRegistration(Models.ShiftRegistration shiftRegistration)
         {
             if (!ModelState.IsValid)
             {
@@ -97,10 +97,10 @@ namespace RestService.Controllers
         }
 
         // DELETE: api/ShiftRegistrations/5
-        [ResponseType(typeof(ShiftRegistration))]
+        [ResponseType(typeof(Models.ShiftRegistration))]
         public IHttpActionResult DeleteShiftRegistration(int id)
         {
-            ShiftRegistration shiftRegistration = db.ShiftRegistrations.Find(id);
+            Models.ShiftRegistration shiftRegistration = db.ShiftRegistrations.Find(id);
             if (shiftRegistration == null)
             {
                 return NotFound();

@@ -13,16 +13,16 @@ namespace RestService.Controllers
         private Context db = new Context();
 
         // GET: api/TUs
-        public IQueryable<TU> GetTUs()
+        public IQueryable<Models.TU> GetTUs()
         {
             return db.TUs;
         }
 
         // GET: api/TUs/5
-        [ResponseType(typeof(TU))]
+        [ResponseType(typeof(Models.TU))]
         public IHttpActionResult GetTU(int id)
         {
-            TU tU = db.TUs.Find(id);
+            Models.TU tU = db.TUs.Find(id);
             if (tU == null)
             {
                 return NotFound();
@@ -33,7 +33,7 @@ namespace RestService.Controllers
 
         // PUT: api/TUs/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTU(int id, TU tU)
+        public IHttpActionResult PutTU(int id, Models.TU tU)
         {
             if (!ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace RestService.Controllers
         }
 
         // POST: api/TUs
-        [ResponseType(typeof(TU))]
-        public IHttpActionResult PostTU(TU tU)
+        [ResponseType(typeof(Models.TU))]
+        public IHttpActionResult PostTU(Models.TU tU)
         {
             if (!ModelState.IsValid)
             {
@@ -97,10 +97,10 @@ namespace RestService.Controllers
         }
 
         // DELETE: api/TUs/5
-        [ResponseType(typeof(TU))]
+        [ResponseType(typeof(Models.TU))]
         public IHttpActionResult DeleteTU(int id)
         {
-            TU tU = db.TUs.Find(id);
+            Models.TU tU = db.TUs.Find(id);
             if (tU == null)
             {
                 return NotFound();
