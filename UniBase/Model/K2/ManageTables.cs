@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using ModelLibrary;
 using UniBase.Annotations;
 
@@ -16,6 +17,13 @@ namespace UniBase.Model.K2
     public class ManageTables :INotifyPropertyChanged
     {
         #region Field
+        private ObservableCollection<Frontpages> _completeFrontpagesList;
+        private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList;
+        private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
+        private ObservableCollection<Productions> _completeProductionsList;
+        private ObservableCollection<Products> _completeProductsList;
+        private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList;
+        private ObservableCollection<TUs> _completeTuList;
 
         private ObservableCollection<Frontpages> _frontpagesList;
         private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
@@ -27,11 +35,98 @@ namespace UniBase.Model.K2
 
         private Message message = new Message();
 
+        private int _firstTextBoxOutput;
+        private string _secondTextBoxOutput;
+        private string _thirdTextBoxOutput;
+        private string _fourthTextBoxOutput;
+        private string _fifthTextBoxOutput;
+        private string _sixthTextBoxOutput;
+
         #endregion
 
         #region Properties
 
         public Frontpages NewFrontpagesToAdd { get; set; } = new Frontpages();
+
+        List<int> temp = new List<int>();
+        public int FirstTextBoxOutput
+        {
+            get { return _firstTextBoxOutput; }
+            set
+            {
+                _firstTextBoxOutput = value;
+                Debug.WriteLine("\n \t" + _firstTextBoxOutput, "1");
+                temp.Clear();
+                
+                foreach (var f in FrontpagesList)
+                {
+                    var v = f.ProcessOrder_No.ToString();
+                    if (v.Contains(_firstTextBoxOutput.ToString()))
+                    {
+                        temp.Add(f.ProcessOrder_No);
+                    }
+                }
+                Debug.WriteLine(temp.Count);
+            }
+        }
+
+        public string SecondTextBoxOutput
+        {
+            get { return _secondTextBoxOutput; }
+            set
+            {
+                _secondTextBoxOutput = value;
+                Debug.WriteLine("\n \t" + _secondTextBoxOutput, "2");
+            }
+        }
+
+        public string ThirdTextBoxOutput
+        {
+            get { return _thirdTextBoxOutput; }
+            set
+            {
+                _thirdTextBoxOutput = value;
+                Debug.WriteLine("\n \t" + _thirdTextBoxOutput, "3");
+            }
+        }
+
+        public string FourthTextBoxOutput
+        {
+            get { return _fourthTextBoxOutput; }
+            set
+            {
+                _fourthTextBoxOutput = value;
+                Debug.WriteLine("\n \t" + _fourthTextBoxOutput, "4");
+            }
+        }
+
+        public string FifthTextBoxOutput
+        {
+            get { return _fifthTextBoxOutput; }
+            set
+            {
+                _fifthTextBoxOutput = value;
+                Debug.WriteLine("\n \t" + _fifthTextBoxOutput, "5");
+            }
+        }
+
+        public string SixthTextBoxOutput
+        {
+            get { return _sixthTextBoxOutput; }
+            set
+            {
+                _sixthTextBoxOutput = value;
+                Debug.WriteLine("\n \t" + _sixthTextBoxOutput, "6");
+            }
+        }
+
+        public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
+        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList { get => _completeControlRegistrationsList; set => _completeControlRegistrationsList = value; }
+        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList { get => _completeControlSchedulesList; set => _completeControlSchedulesList = value; }
+        public ObservableCollection<Productions> CompleteProductionsList { get => _completeProductionsList; set => _completeProductionsList = value; }
+        public ObservableCollection<Products> CompleteProductsList { get => _completeProductsList; set => _completeProductsList = value; }
+        public ObservableCollection<ShiftRegistrations> CompleteShiftRegistrationsList { get => _completeShiftRegistrationsList; set => _completeShiftRegistrationsList = value; }
+        public ObservableCollection<TUs> CompleteTuList { get => _completeTuList; set => _completeTuList = value; }
 
         #region ObservableLists
 
@@ -127,6 +222,16 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
+            CompleteFrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            CompleteControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            CompleteControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            CompleteProductionsList = ModelGenerics.GetAll(new Productions());
+            CompleteProductsList = ModelGenerics.GetAll(new Products());
+            CompleteShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+            CompleteTuList = ModelGenerics.GetAll(new TUs());
+
+
+
             FrontpagesList = GetLastTen(new Frontpages());
             ControlRegistrationsList = GetLastTen(new ControlRegistrations());
             ControlSchedulesList = GetLastTen(new ControlSchedules());
@@ -163,8 +268,6 @@ namespace UniBase.Model.K2
         }
         public void SortButtonClick(object id)
         {
-            Debug.WriteLine("\n \t" + id.ToString(),"Click");
-
             switch (id.ToString())
             {
                 case "ProcessOrdre Nr":
@@ -274,6 +377,8 @@ namespace UniBase.Model.K2
                     break;
             }
         }
+
+
         
 
         #region ButtonMethods
@@ -560,7 +665,7 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-        
+
         #endregion
 
         #region INotifyPropertiesChanged

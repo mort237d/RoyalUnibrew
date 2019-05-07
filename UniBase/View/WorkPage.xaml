@@ -40,23 +40,14 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
-                                <ListView Height="44" Width="660" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[0]}" Text="{Binding DataContext.Column_2.FirstTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[1]}" Text="{Binding DataContext.Column_2.SecondTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[2]}" Text="{Binding DataContext.Column_2.ThirdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[3]}" Text="{Binding DataContext.Column_2.FourthTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[4]}" Text="{Binding DataContext.Column_2.FifthTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[5]}" Text="{Binding DataContext.Column_2.SixthTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
+                                </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
@@ -328,7 +319,7 @@
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay}" Background="{Binding DataContext.OutOfBoundColorChange.TextBoxColor, ElementName=WorkPageName}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay}"></TextBox>

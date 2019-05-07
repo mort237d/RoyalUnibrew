@@ -15,7 +15,6 @@ using UniBase.View;
 
 namespace UniBase.ViewModel
 {
-    //(☭ ͜ʖ ☭)
     class WorkViewModel : INotifyPropertyChanged
     {
         private string _graphCombobox;
@@ -48,6 +47,8 @@ namespace UniBase.ViewModel
         public Colors PredefinedColors { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; } 
+
+        public OutOfBoundColorChange OutOfBoundColorChange { get; set; }
         
         public WorkViewModel()
         {
