@@ -33,6 +33,9 @@ namespace UniBase.Model.K2
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
         private ObservableCollection<TUs> _tuList;
 
+        private Frontpages _newFrontpagesToAdd = new Frontpages();
+
+
         private Message message = new Message();
 
         private string _processOrderNoTextBoxOutput;
@@ -46,7 +49,15 @@ namespace UniBase.Model.K2
 
         #region Properties
 
-        public Frontpages NewFrontpagesToAdd { get; set; } = new Frontpages();
+        public Frontpages NewFrontpagesToAdd
+        {
+            get => _newFrontpagesToAdd;
+            set
+            {
+                _newFrontpagesToAdd = value; 
+                OnPropertyChanged();
+            }
+        }
 
         List<int> temp = new List<int>();
         public string ProcessOrderNoTextBoxOutput
@@ -591,17 +602,17 @@ namespace UniBase.Model.K2
 
         public void AddNewFrontpages()
         {
-            if (NewFrontpagesToAdd.FinishedProduct_No == 0 && NewFrontpagesToAdd.FinishedProduct_No > 0)
+            if (NewFrontpagesToAdd.FinishedProduct_No == 0 || NewFrontpagesToAdd.FinishedProduct_No <= 0)
             {
                 //something wrong mate
             }
 
-            if (NewFrontpagesToAdd.ProcessOrder_No == 0 && NewFrontpagesToAdd.ProcessOrder_No > 0)
+            if (NewFrontpagesToAdd.ProcessOrder_No == 0 || NewFrontpagesToAdd.ProcessOrder_No <= 0)
             {
                 //Something wrong again matey
             }
 
-            if (NewFrontpagesToAdd.Colunm == 0 && NewFrontpagesToAdd.Colunm > 0)
+            if (NewFrontpagesToAdd.Colunm == 0 || NewFrontpagesToAdd.Colunm <= 0)
             {
                 //Still something wrong dude
             }
@@ -626,7 +637,9 @@ namespace UniBase.Model.K2
                 {
                     _frontpagesList.Add(NewFrontpagesToAdd);
                     NewFrontpagesToAdd = new Frontpages();
-                    NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count-1].FinishedProduct_No+1;
+                    NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
+                    NewFrontpagesToAdd.Date = DateTime.Now;
+                    NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
                 }
                 else
                 {
