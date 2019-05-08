@@ -350,9 +350,8 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
-            var hej = ModelGenerics.GetRange(new ControlRegistrations());
             
-
+            
             CompleteFrontpagesList = ModelGenerics.GetAll(new Frontpages());
             CompleteControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
             CompleteControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
@@ -362,19 +361,21 @@ namespace UniBase.Model.K2
             CompleteTuList = ModelGenerics.GetAll(new TUs());
 
 
+            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+            ProductsList = ModelGenerics.GetLastTenInDatabasae(new Products());
+            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
 
-            FrontpagesList = GetLastTen(new Frontpages());
-            ControlRegistrationsList = GetLastTen(new ControlRegistrations());
-            ControlSchedulesList = GetLastTen(new ControlSchedules());
-            ProductionsList = GetLastTen(new Productions());
-            ProductsList = GetLastTen(new Products());
-            ShiftRegistrationsList = GetLastTen(new ShiftRegistrations());
-            TuList = GetLastTen(new TUs());
-
-
+            if (FrontpagesList.Count > 0)
+            {
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
+                
+            }
         }
         
         #region ButtonMethods
