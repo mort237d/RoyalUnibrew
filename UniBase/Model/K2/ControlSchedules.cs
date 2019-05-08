@@ -10,15 +10,22 @@ namespace UniBase.Model.K2
 {
     public class ControlSchedules : INotifyPropertyChanged
     {
+        private double _weight;
+        private double _ludKoncentration;
+        private double _mipMa;
+        private int _controlScheduleId;
+        private DateTime _time;
+        private string _kegTest;
+        private int _processOrderNo;
+        private string _note;
+        private string _signature;
+
+
         private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
         private ConstantValues constantValues = new ConstantValues();
-        private double _weight;
-
         private Brush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private Brush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private Brush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
-        private double _ludKoncentration;
-        private double _mipMa;
 
         public ControlSchedules()
         {
@@ -39,9 +46,27 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int ControlSchedule_ID { get; set; }
+        public int ControlSchedule_ID
+        {
+            get => _controlScheduleId;
+            set
+            {
+                if (value == _controlScheduleId) return;
+                _controlScheduleId = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public DateTime Time { get; set; }
+        public DateTime Time
+        {
+            get => _time;
+            set
+            {
+                if (value.Equals(_time)) return;
+                _time = value;
+                OnPropertyChanged();
+            }
+        }
 
         public double Weight
         {
@@ -54,7 +79,16 @@ namespace UniBase.Model.K2
             }
         }
 
-        public string KegTest { get; set; }
+        public string KegTest
+        {
+            get => _kegTest;
+            set
+            {
+                if (value == _kegTest) return;
+                _kegTest = value;
+                OnPropertyChanged();
+            }
+        }
 
         public double LudKoncentration
         {
@@ -75,16 +109,42 @@ namespace UniBase.Model.K2
             {
                 _mipMa = value;
                 OnPropertyChanged();
-                MipMaColorBrush =
-                    ofBoundColorChange.ChangeListViewColor(_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
+                MipMaColorBrush = ofBoundColorChange.ChangeListViewColor(_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
             }
         }
 
-        public string Signature { get; set; }
+        public string Signature
+        {
+            get => _signature;
+            set
+            {
+                if (value == _signature) return;
+                _signature = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string Note { get; set; }
+        public string Note
+        {
+            get => _note;
+            set
+            {
+                if (value == _note) return;
+                _note = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int ProcessOrder_No { get; set; }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
+                OnPropertyChanged();
+            }
+        }
 
         public virtual Frontpages Frontpage { get; set; }
 
@@ -119,6 +179,7 @@ namespace UniBase.Model.K2
         }
 
 
+        #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -126,5 +187,6 @@ namespace UniBase.Model.K2
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
 }
