@@ -44,6 +44,8 @@ namespace UniBase.ViewModel
 
         public Model.K2.ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
+
+        public SortAndFilter SortAndFilter { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; } 
 
@@ -53,6 +55,7 @@ namespace UniBase.ViewModel
         {
             Column_2 = ManageTables.Instance;
             PredefinedColors = new Colors();
+            SortAndFilter = new SortAndFilter();
 
             TrendAdminstrator = new TrendAdminstrator();
             int month = 2;
@@ -107,7 +110,7 @@ namespace UniBase.ViewModel
             RefreshTUTable = new RelayCommand(Column_2.RefreshTUs);
             SaveTUTable = new RelayCommand(Column_2.SaveTUs);
 
-            SortFrontpageCommand = new RelayCommand<object>(Column_2.SortButtonClick);
+            SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
         }
 
         private void TempMethod2()
