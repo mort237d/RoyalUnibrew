@@ -1,38 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
+using UniBase.Annotations;
 using UniBase.Model.K2;
 
 namespace UniBase.Model
 {
     class OutOfBoundColorChange
     {
-        private ManageTables manageTables = ManageTables.Instance;
-        private ConstantValues constantValues = new ConstantValues();
+        private Brush colorBrush;
 
-        public string WeightTextBoxColor { get; set; }
+        
 
-        public void ChangeListViewColor()
+        public Brush ChangeListViewColor(double textValue, double minValue, double maxValue)
         {
-            foreach (var item in manageTables.ControlSchedulesList)
+            if (textValue < minValue || textValue > maxValue)
             {
-                //if (expr)
-                //{
-                    
-                //}
-                //if (item.Weight < constantValues.MinWeight && item.Weight > constantValues.MaxWeight)
-                //{
-                //    WeightTextBoxColor = "Red";
-                //}
-                //else
-                //{
-                //    WeightTextBoxColor = "White";
-                //}
-
+                colorBrush = new SolidColorBrush(Colors.LightSalmon);
+                return colorBrush;
             }
-            
+            else
+            {
+                colorBrush = new SolidColorBrush(Colors.White);
+                return colorBrush;
+            }
         }
+
+        
     }
 }
