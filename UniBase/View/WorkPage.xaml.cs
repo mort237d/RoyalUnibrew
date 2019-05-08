@@ -25,16 +25,6 @@ namespace UniBase.View
             #endregion
         }
 
-        private void GraphComboboxMethod(object sender, SelectionChangedEventArgs e)
-        {
-            string selectedContent = ((ComboBoxItem) SelectGraphCombobox.SelectedItem).Content.ToString();
-            TbCombobox.Text = selectedContent;
-        }
-
-        private void GraphTimeComboboxMethod(object sender, SelectionChangedEventArgs e)
-        {
-            string selectedContent = ((ComboBoxItem)SelectedGraphTimeperiodCB.SelectedItem).Content.ToString();
-            TbTimeperiodCombobox.Text = selectedContent;
-        }
+        
     }
 }

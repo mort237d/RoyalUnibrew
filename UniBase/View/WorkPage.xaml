@@ -720,14 +720,18 @@
             </PivotItem>
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel>
+                    <StackPanel Orientation="Horizontal"  Margin="3">
+                        <TextBlock FontWeight="SemiBold" Text="Vælg type graf" Margin="5,0,105,0"/>
+                        <TextBlock FontWeight="SemiBold" Text="Vælg tidsperiode"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox Name="SelectGraphCombobox"  Width="200" SelectionChanged="GraphComboboxMethod" PlaceholderText="Vælg Graf">
+                        <ComboBox  Name="SelectGraphCombobox" PlaceholderText="Vægt" Width="200" SelectedItem="{Binding TrendAdminstrator.GraphType, Mode=TwoWay}">
                             <ComboBoxItem Content="Vægt"/>
                             <ComboBoxItem Content="MipMa"/>
                             <ComboBoxItem Content="Lud Koncentration"/>
                         </ComboBox>
 
-                        <ComboBox Name="SelectedGraphTimeperiodCB"  Width="200" SelectionChanged="GraphTimeComboboxMethod" PlaceholderText="Vælg Tidsperiode">
+                        <ComboBox Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
                             <ComboBoxItem Content="En Uge"/>
                             <ComboBoxItem Content="En Måned"/>
                             <ComboBoxItem Content="Et Kvartal"/>
