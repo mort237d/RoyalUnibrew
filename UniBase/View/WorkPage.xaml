@@ -375,7 +375,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
+                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"></Image>
                                 </Button>
                             </StackPanel>
@@ -488,7 +488,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
+                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"></Image>
                                 </Button>
                             </StackPanel>
@@ -601,7 +601,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
+                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"></Image>
                                 </Button>
                             </StackPanel>
@@ -717,7 +717,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
+                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"></Image>
                                 </Button>
                             </StackPanel>
