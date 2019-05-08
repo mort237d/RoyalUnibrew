@@ -1,9 +1,21 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using UniBase.Annotations;
 
 namespace UniBase.Model.K2
 {
-    public class Productions
+    public class Productions : INotifyPropertyChanged
     {
+        private int _productionId;
+        private int _palletPutInStock0001;
+        private int _tapmachine;
+        private int _totalKegsPrPallet;
+        private int _counter;
+        private int _palletCounter;
+        private DateTime _batchDate;
+        private int _processOrderNo;
+
         public Productions()
         {
             
@@ -22,22 +34,104 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int Production_ID { get; set; }
+        public int Production_ID
+        {
+            get => _productionId;
+            set
+            {
+                if (value == _productionId) return;
+                _productionId = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int PalletPutInStock0001 { get; set; }
+        public int PalletPutInStock0001
+        {
+            get => _palletPutInStock0001;
+            set
+            {
+                if (value == _palletPutInStock0001) return;
+                _palletPutInStock0001 = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int Tapmachine { get; set; }
+        public int Tapmachine
+        {
+            get => _tapmachine;
+            set
+            {
+                if (value == _tapmachine) return;
+                _tapmachine = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int TotalKegsPrPallet { get; set; }
+        public int TotalKegsPrPallet
+        {
+            get => _totalKegsPrPallet;
+            set
+            {
+                if (value == _totalKegsPrPallet) return;
+                _totalKegsPrPallet = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int Counter { get; set; }
+        public int Counter
+        {
+            get => _counter;
+            set
+            {
+                if (value == _counter) return;
+                _counter = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int PalletCounter { get; set; }
+        public int PalletCounter
+        {
+            get => _palletCounter;
+            set
+            {
+                if (value == _palletCounter) return;
+                _palletCounter = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public DateTime BatchDate { get; set; }
+        public DateTime BatchDate
+        {
+            get => _batchDate;
+            set
+            {
+                if (value.Equals(_batchDate)) return;
+                _batchDate = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int ProcessOrder_No { get; set; }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
+                OnPropertyChanged();
+            }
+        }
 
         public virtual Frontpages Frontpage { get; set; }
+
+        #region InotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }

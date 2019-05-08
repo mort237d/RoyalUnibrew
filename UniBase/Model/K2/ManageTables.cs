@@ -555,7 +555,7 @@ namespace UniBase.Model.K2
                 if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
                 {
                     //_frontpagesList.Add(NewFrontpagesToAdd);
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                     NewFrontpagesToAdd = new Frontpages();
                     NewFrontpagesToAdd.ProcessOrder_No = _frontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
                     NewFrontpagesToAdd.Date = DateTime.Now;

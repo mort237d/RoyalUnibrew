@@ -1,9 +1,21 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using UniBase.Annotations;
 
 namespace UniBase.Model.K2
 {
-    public class ShiftRegistrations
+    public class ShiftRegistrations : INotifyPropertyChanged
     {
+        private int _shiftRegistrationId;
+        private int _breaks;
+        private DateTime _endDate;
+        private DateTime _startTime;
+        private int _processOrderNo;
+        private string _initials;
+        private int _staff;
+        private int _totalHours;
+
         public ShiftRegistrations()
         {
             
@@ -22,22 +34,104 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int ShiftRegistration_ID { get; set; }
+        public int ShiftRegistration_ID
+        {
+            get => _shiftRegistrationId;
+            set
+            {
+                if (value == _shiftRegistrationId) return;
+                _shiftRegistrationId = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public DateTime Start_Time { get; set; }
+        public DateTime Start_Time
+        {
+            get => _startTime;
+            set
+            {
+                if (value.Equals(_startTime)) return;
+                _startTime = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public DateTime End_Date { get; set; }
+        public DateTime End_Date
+        {
+            get => _endDate;
+            set
+            {
+                if (value.Equals(_endDate)) return;
+                _endDate = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int Breaks { get; set; }
+        public int Breaks
+        {
+            get => _breaks;
+            set
+            {
+                if (value == _breaks) return;
+                _breaks = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int TotalHours { get; set; }
+        public int TotalHours
+        {
+            get => _totalHours;
+            set
+            {
+                if (value == _totalHours) return;
+                _totalHours = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int Staff { get; set; }
+        public int Staff
+        {
+            get => _staff;
+            set
+            {
+                if (value == _staff) return;
+                _staff = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string Initials { get; set; }
+        public string Initials
+        {
+            get => _initials;
+            set
+            {
+                if (value == _initials) return;
+                _initials = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int ProcessOrder_No { get; set; }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
+                OnPropertyChanged();
+            }
+        }
 
         public virtual Frontpages Frontpage { get; set; }
+
+        #region InotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }
