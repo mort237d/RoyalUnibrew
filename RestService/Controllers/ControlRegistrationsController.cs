@@ -113,15 +113,19 @@ namespace RestService.Controllers
             return Ok(controlRegistration);
         }
 
-        [Route("api/ControlRegistrations/range/{offset}")]
-        public IHttpActionResult GetRange(int offset)
+        [Route("api/ControlRegistrations/range/")]
+        public IHttpActionResult GetRange()
         {
-            ObservableCollection<ControlRegistration> list = new ObservableCollection<ControlRegistration>();
-            for (int i = 0; i < 10; i++)
-            {
-                list.Add(db.ControlRegistrations.Find(offset + i));
-            }
-            return Ok(list);
+            string databaseName = "ControlRegistration";
+            string primaryKeyName = "ControlRegistration_ID";
+            int lastId = db.ControlRegistrations.OrderByDescending(p => p.ControlRegistration_ID).FirstOrDefault().ControlRegistration_ID;
+
+            string queryString = string.Format("SELECT TOP 10 * FROM {0} WHERE {1} <= {2} ORDER BY {1} DESC", databaseName, primaryKeyName, lastId);
+
+            var reverseresult = db.ControlRegistrations.SqlQuery(queryString);
+            var result = reverseresult.Reverse();
+
+            return Ok(result);
         }
 
         protected override void Dispose(bool disposing)

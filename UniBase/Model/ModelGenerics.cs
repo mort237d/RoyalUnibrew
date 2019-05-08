@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,8 @@ namespace UniBase.Model
         public static T GetById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[1] + "/" + id;
-
+            string httpUrl = URI + typeName[3] + "/" + id;
+            
             var endResult = type;
             try
             {
@@ -67,10 +68,10 @@ namespace UniBase.Model
             return ifFailed;
         }
 
-        public static ObservableCollection<T> GetRange<T>(T type)
+        public static ObservableCollection<T> GetLastTenInDatabasae<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + "ControlRegistrations/range/0";
+            string httpUrl = URI + typeName[3] + "/range/";
             Task<string> resTask = null;
 
             ObservableCollection<T> ifFailed = new ObservableCollection<T>();
@@ -99,7 +100,7 @@ namespace UniBase.Model
         public static bool DeleteById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[1] + "/" + id;
+            string httpUrl = URI + typeName[3] + "/" + id;
 
             try
             {
@@ -128,7 +129,7 @@ namespace UniBase.Model
         public static bool CreateByObject<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + "/" + typeName[1];
+            string httpUrl = URI + "/" + typeName[3];
 
             try
             {

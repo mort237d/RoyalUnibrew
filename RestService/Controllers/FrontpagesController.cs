@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -110,6 +111,21 @@ namespace RestService.Controllers
             db.SaveChanges();
 
             return Ok(frontpage);
+        }
+
+        [Route("api/Frontpages/range/")]
+        public IHttpActionResult GetRange()
+        {
+            string databaseName = "Frontpage";
+            string primaryKeyName = "ProcessOrder_No";
+            int lastId = db.Frontpages.OrderByDescending(p => p.ProcessOrder_No).FirstOrDefault().ProcessOrder_No;
+
+            string queryString = string.Format("SELECT TOP 10 * FROM {0} WHERE {1} <= {2} ORDER BY {1} DESC", databaseName, primaryKeyName, lastId);
+
+            var reverseresult = db.Frontpages.SqlQuery(queryString);
+            var result = reverseresult.Reverse();
+
+            return Ok(result);
         }
 
         protected override void Dispose(bool disposing)
