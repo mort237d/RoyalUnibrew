@@ -49,7 +49,7 @@ namespace UniBase.Model
         public static ObservableCollection<T> GetAll<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[1];
+            string httpUrl = URI + typeName[3];
             Task<string> resTask = null;
             
             ObservableCollection<T> ifFailed = new ObservableCollection<T>();
@@ -65,6 +65,28 @@ namespace UniBase.Model
             }
 
             return ifFailed;
+        }
+
+        public static ObservableCollection<T> GetRange<T>(T type)
+        {
+            String[] typeName = type.ToString().Split('.');
+            string httpUrl = URI + "ControlRegistrations/range/0";
+            Task<string> resTask = null;
+
+            ObservableCollection<T> ifFailed = new ObservableCollection<T>();
+
+            try
+            {
+                resTask = client.GetStringAsync(httpUrl);
+                return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+
+            return ifFailed;
+            
         }
 
         /// <summary>

@@ -120,6 +120,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ConstantValues.cs" />
+    <Compile Include="Model\K2\ControlRegistrations.cs" />
+    <Compile Include="Model\K2\ControlSchedules.cs" />
+    <Compile Include="Model\K2\Frontpages.cs" />
+    <Compile Include="Model\K2\Productions.cs" />
+    <Compile Include="Model\K2\Products.cs" />
+    <Compile Include="Model\K2\ShiftRegistrations.cs" />
+    <Compile Include="Model\K2\TUs.cs" />
+    <Compile Include="Model\K2\Users.cs" />
     <Compile Include="Model\Login\Administrator.cs" />
     <Compile Include="Model\Login\Leader.cs" />
     <Compile Include="Model\K2\ManageTables.cs" />
@@ -231,12 +239,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj">
-      <Project>{80f76c9b-b055-4167-84b9-0ea512c987a3}</Project>
-      <Name>ModelLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

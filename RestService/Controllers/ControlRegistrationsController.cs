@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -110,6 +111,17 @@ namespace RestService.Controllers
             db.SaveChanges();
 
             return Ok(controlRegistration);
+        }
+
+        [Route("api/ControlRegistrations/range/{offset}")]
+        public IHttpActionResult GetRange(int offset)
+        {
+            ObservableCollection<ControlRegistration> list = new ObservableCollection<ControlRegistration>();
+            for (int i = 0; i < 10; i++)
+            {
+                list.Add(db.ControlRegistrations.Find(offset + i));
+            }
+            return Ok(list);
         }
 
         protected override void Dispose(bool disposing)

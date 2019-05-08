@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using ModelLibrary;
 using UniBase.Annotations;
 
 namespace UniBase.Model.K2
@@ -312,6 +311,9 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
+            var hej = ModelGenerics.GetRange(new ControlRegistrations());
+            
+
             CompleteFrontpagesList = ModelGenerics.GetAll(new Frontpages());
             CompleteControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
             CompleteControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
@@ -635,9 +637,10 @@ namespace UniBase.Model.K2
             {
                 if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
                 {
-                    _frontpagesList.Add(NewFrontpagesToAdd);
+                    //_frontpagesList.Add(NewFrontpagesToAdd);
+                    FrontpagesList = GetLastTen(new Frontpages());
                     NewFrontpagesToAdd = new Frontpages();
-                    NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
+                    NewFrontpagesToAdd.ProcessOrder_No = _frontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
                     NewFrontpagesToAdd.Date = DateTime.Now;
                     NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
                 }

@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight.Command;
-using ModelLibrary;
 using UniBase.Annotations;
 using UniBase.Model;
 using UniBase.Model.K2;

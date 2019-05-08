@@ -159,10 +159,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj">
-      <Project>{80f76c9b-b055-4167-84b9-0ea512c987a3}</Project>
-      <Name>ModelLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UniBase\UniBase.csproj">
       <Project>{93192e12-8514-4bde-91d3-ce00a85301fe}</Project>
       <Name>UniBase</Name>
