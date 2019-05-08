@@ -66,39 +66,59 @@ namespace UniBase.Model.K2
             {
                 _processOrderNoTextBoxOutput = value;
 
-                if (string.IsNullOrEmpty(DateTextBoxOutput) && string.IsNullOrEmpty(FinishedProductNoTextBoxOutput) && string.IsNullOrEmpty(ColumnTextBoxOutput) && string.IsNullOrEmpty(NoteTextBoxOutput) && string.IsNullOrEmpty(WeekNoTextBoxOutput))
+                FrontpagesList.Clear();
+
+                foreach (var f in CompleteFrontpagesList)
                 {
-                    FrontpagesList.Clear();
-
-                    foreach (var f in CompleteFrontpagesList)
+                    var v = f.ProcessOrder_No.ToString();
+                    if (v.Contains(_processOrderNoTextBoxOutput))
                     {
-                        var v = f.ProcessOrder_No.ToString();
-                        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
-                        {
-                            FrontpagesList.Add(f);
-                        }
-                    }
-
-                    if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                    {
-                        FrontpagesList = GetLastTen(new Frontpages());
+                        FrontpagesList.Add(f);
                     }
                 }
 
-                else
+                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    var temp = new ObservableCollection<Frontpages>();
-                    foreach (var f in FrontpagesList)
-                    {
-                        var v = f.ProcessOrder_No.ToString();
-                        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
-                        {
-                            temp.Add(f);
-                        }
-                    }
-
-                    FrontpagesList = temp;
+                    FrontpagesList = GetLastTen(new Frontpages());
                 }
+
+                #region Test
+
+                //if (string.IsNullOrEmpty(DateTextBoxOutput) && string.IsNullOrEmpty(FinishedProductNoTextBoxOutput) && string.IsNullOrEmpty(ColumnTextBoxOutput) && string.IsNullOrEmpty(NoteTextBoxOutput) && string.IsNullOrEmpty(WeekNoTextBoxOutput))
+                //{
+                //    FrontpagesList.Clear();
+
+                //    foreach (var f in CompleteFrontpagesList)
+                //    {
+                //        var v = f.ProcessOrder_No.ToString();
+                //        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
+                //        {
+                //            FrontpagesList.Add(f);
+                //        }
+                //    }
+
+                //    if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
+                //    {
+                //        FrontpagesList = GetLastTen(new Frontpages());
+                //    }
+                //}
+
+                //else
+                //{
+                //    var temp = new ObservableCollection<Frontpages>();
+                //    foreach (var f in FrontpagesList)
+                //    {
+                //        var v = f.ProcessOrder_No.ToString();
+                //        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
+                //        {
+                //            temp.Add(f);
+                //        }
+                //    }
+
+                //    FrontpagesList = temp;
+                //}
+
+                #endregion
                 
             }
         }
@@ -106,7 +126,26 @@ namespace UniBase.Model.K2
         public string DateTextBoxOutput
         {
             get { return _dateTextBoxOutput; }
-            set{ _dateTextBoxOutput = value; }
+            set
+            {
+                _dateTextBoxOutput = value;
+
+                FrontpagesList.Clear();
+
+                foreach (var f in CompleteFrontpagesList)
+                {
+                    var v = f.Date.ToString();
+                    if (v.Contains(_dateTextBoxOutput))
+                    {
+                        FrontpagesList.Add(f);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(_dateTextBoxOutput))
+                {
+                    FrontpagesList = GetLastTen(new Frontpages());
+                }
+            }
         }
 
         public string FinishedProductNoTextBoxOutput
@@ -121,7 +160,7 @@ namespace UniBase.Model.K2
                 foreach (var f in CompleteFrontpagesList)
                 {
                     var v = f.FinishedProduct_No.ToString();
-                    if (v.Contains(_finishedProductNoTextBoxOutput.ToString()))
+                    if (v.Contains(_finishedProductNoTextBoxOutput))
                     {
                         FrontpagesList.Add(f);
                     }
@@ -146,7 +185,7 @@ namespace UniBase.Model.K2
                 foreach (var f in CompleteFrontpagesList)
                 {
                     var v = f.Colunm.ToString();
-                    if (v.Contains(_columnTextBoxOutput.ToString()))
+                    if (v.Contains(_columnTextBoxOutput))
                     {
                         FrontpagesList.Add(f);
                     }
@@ -170,8 +209,8 @@ namespace UniBase.Model.K2
 
                 foreach (var f in CompleteFrontpagesList)
                 {
-                    var v = f.Note.ToString();
-                    if (v.Contains(_noteTextBoxOutput.ToString()))
+                    var v = f.Note;
+                    if (v.Contains(_noteTextBoxOutput))
                     {
                         FrontpagesList.Add(f);
                     }
@@ -196,7 +235,7 @@ namespace UniBase.Model.K2
                 foreach (var f in CompleteFrontpagesList)
                 {
                     var v = f.Week_No.ToString();
-                    if (v.Contains(_weekNoTextBoxOutput.ToString()))
+                    if (v.Contains(_weekNoTextBoxOutput))
                     {
                         FrontpagesList.Add(f);
                     }
@@ -311,9 +350,8 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
-            var hej = ModelGenerics.GetRange(new ControlRegistrations());
             
-
+            
             CompleteFrontpagesList = ModelGenerics.GetAll(new Frontpages());
             CompleteControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
             CompleteControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
@@ -323,155 +361,22 @@ namespace UniBase.Model.K2
             CompleteTuList = ModelGenerics.GetAll(new TUs());
 
 
+            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+            ProductsList = ModelGenerics.GetLastTenInDatabasae(new Products());
+            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
 
-            FrontpagesList = GetLastTen(new Frontpages());
-            ControlRegistrationsList = GetLastTen(new ControlRegistrations());
-            ControlSchedulesList = GetLastTen(new ControlSchedules());
-            ProductionsList = GetLastTen(new Productions());
-            ProductsList = GetLastTen(new Products());
-            ShiftRegistrationsList = GetLastTen(new ShiftRegistrations());
-            TuList = GetLastTen(new TUs());
-
-
+            if (FrontpagesList.Count > 0)
+            {
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
-        }
-
-        private List<bool> sorted = new List<bool> { true, false, false, false, false, false };
-
-        //TODO FIX DRYYYYYYYY
-        private ObservableCollection<Frontpages> SortWay(int index, Frontpages frontpages) 
-        {
-            var tempList = new ObservableCollection<Frontpages>();
-
-            if (!sorted[index])
-            {
-                tempList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.ProcessOrder_No));
-                sorted[index] = true;
-            }
-            else
-            {
-                tempList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.ProcessOrder_No));
-                sorted[index] = false;
-            }
-
-            return tempList;
-        }
-        public void SortButtonClick(object id)
-        {
-            switch (id.ToString())
-            {
-                case "ProcessOrdre Nr":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.ProcessOrder_No));
-
-                        for (int i = 0; i < sorted.Count-1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.ProcessOrder_No));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Dato":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Date));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Date));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Færdigt Produkt Nr":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.FinishedProduct_No));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.FinishedProduct_No));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Kolonne":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Colunm));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Colunm));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Note":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Note));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Note));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Uge Nr":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Week_No));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Week_No));
-                        sorted[0] = false;
-                    }
-                    break;
-                default:
-                    Debug.WriteLine("Nothing");
-                    break;
+                
             }
         }
-
-
-        
 
         #region ButtonMethods
 
@@ -479,17 +384,13 @@ namespace UniBase.Model.K2
 
         public void RefreshFrontpages()
         {
-            var tempList = ModelGenerics.GetAll(new Frontpages());
-            FrontpagesList = new ObservableCollection<Frontpages>();
-            if (tempList.Count > 10)
-            {
-                for (int i = tempList.Count-10; i < tempList.Count; i++)
-                {
-                    FrontpagesList.Add(tempList[i]);
-                }
-
-                message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
-            }
+            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+        }
+        public void RefreshLastTenFrontpages()
+        {
+            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveFrontpages()
         {
@@ -510,6 +411,11 @@ namespace UniBase.Model.K2
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
             message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
+        public void RefreshLastTenControlRegistrations()
+        {
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+        }
         public void SaveControlRegistrations()
         {
             Parallel.ForEach(_controlRegistrationsList, controlRegistration =>
@@ -525,17 +431,13 @@ namespace UniBase.Model.K2
 
         public void RefreshControlSchedules()
         {
-            var tempList = ModelGenerics.GetAll(new ControlSchedules());
-            ControlSchedulesList = new ObservableCollection<ControlSchedules>();
-            if (tempList.Count > 10)
-            {
-                for (int i = tempList.Count - 10; i < tempList.Count; i++)
-                {
-                    ControlSchedulesList.Add(tempList[i]);
-                }
-
-                message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
-            }
+            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+        }
+        public void RefreshLastTenControlSchedules()
+        {
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
         public void SaveControlSchedules()
         {
@@ -553,6 +455,11 @@ namespace UniBase.Model.K2
         public void RefreshProductions()
         {
             ProductionsList = ModelGenerics.GetAll(new Productions());
+            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+        }
+        public void RefreshLastTenProductions()
+        {
+            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
             message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
         public void SaveProductions()
@@ -573,6 +480,11 @@ namespace UniBase.Model.K2
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
+        public void RefreshLastTenShiftRegistrations()
+        {
+            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
+        }
         public void SaveShiftRegistrations()
         {
             Parallel.ForEach(_shiftRegistrationsList, shiftRegistrations =>
@@ -589,6 +501,11 @@ namespace UniBase.Model.K2
         public void RefreshTUs()
         {
             TuList = ModelGenerics.GetAll(new TUs());
+            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
+        }
+        public void RefreshLastTenTUs()
+        {
+            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
             message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
         public void SaveTUs()
@@ -638,7 +555,7 @@ namespace UniBase.Model.K2
                 if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
                 {
                     //_frontpagesList.Add(NewFrontpagesToAdd);
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                     NewFrontpagesToAdd = new Frontpages();
                     NewFrontpagesToAdd.ProcessOrder_No = _frontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
                     NewFrontpagesToAdd.Date = DateTime.Now;

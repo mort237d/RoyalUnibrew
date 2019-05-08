@@ -136,6 +136,7 @@
     <Compile Include="Model\ManageUser.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\OutOfBoundColorChange.cs" />
+    <Compile Include="Model\SortAndFilter.cs" />
     <Compile Include="Model\TrendAdminstrator.cs" />
     <Compile Include="Model\Trends.cs" />
     <Compile Include="Model\Login\User.cs" />
@@ -207,6 +208,8 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="View\Images\AddButton.png" />
     <Content Include="View\Images\DeleteButton.png" />
+    <Content Include="View\Images\GetAll.png" />
+    <Content Include="View\Images\GetLastTen.png" />
     <Content Include="View\Images\SaveButton.png" />
     <Content Include="View\Images\RefreshButton.png" />
   </ItemGroup>

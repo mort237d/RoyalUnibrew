@@ -1,7 +1,23 @@
-﻿namespace UniBase.Model.K2
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using UniBase.Annotations;
+
+namespace UniBase.Model.K2
 {
-    public class TUs
+    public class TUs : INotifyPropertyChanged
     {
+        private int _processOrderNo;
+        private int _thirdDayTotal;
+        private int _thirdDayEndTu;
+        private int _thirdDayStartTu;
+        private int _secoundDayTotal;
+        private int _secoundDayEndTu;
+        private int _secoundDayStartTu;
+        private int _firstDayTotal;
+        private int _firstDayEndTu;
+        private int _firstDayStartTu;
+        private int _tuId;
+
         public TUs()
         {
             
@@ -23,29 +39,137 @@
             Frontpage = frontpage;
         }
 
-        public int TU_ID { get; set; }
+        public int TU_ID
+        {
+            get => _tuId;
+            set
+            {
+                if (value == _tuId) return;
+                _tuId = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int FirstDayStart_TU { get; set; }
+        public int FirstDayStart_TU
+        {
+            get => _firstDayStartTu;
+            set
+            {
+                if (value == _firstDayStartTu) return;
+                _firstDayStartTu = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int FirstDayEnd_TU { get; set; }
+        public int FirstDayEnd_TU
+        {
+            get => _firstDayEndTu;
+            set
+            {
+                if (value == _firstDayEndTu) return;
+                _firstDayEndTu = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int FirstDay_Total { get; set; }
+        public int FirstDay_Total
+        {
+            get => _firstDayTotal;
+            set
+            {
+                if (value == _firstDayTotal) return;
+                _firstDayTotal = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int SecoundDayStart_TU { get; set; }
+        public int SecoundDayStart_TU
+        {
+            get => _secoundDayStartTu;
+            set
+            {
+                if (value == _secoundDayStartTu) return;
+                _secoundDayStartTu = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int SecoundDayEnd_TU { get; set; }
+        public int SecoundDayEnd_TU
+        {
+            get => _secoundDayEndTu;
+            set
+            {
+                if (value == _secoundDayEndTu) return;
+                _secoundDayEndTu = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int SecoundDay_Total { get; set; }
+        public int SecoundDay_Total
+        {
+            get => _secoundDayTotal;
+            set
+            {
+                if (value == _secoundDayTotal) return;
+                _secoundDayTotal = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int ThirdDayStart_TU { get; set; }
+        public int ThirdDayStart_TU
+        {
+            get => _thirdDayStartTu;
+            set
+            {
+                if (value == _thirdDayStartTu) return;
+                _thirdDayStartTu = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int ThirdDayEnd_TU { get; set; }
+        public int ThirdDayEnd_TU
+        {
+            get => _thirdDayEndTu;
+            set
+            {
+                if (value == _thirdDayEndTu) return;
+                _thirdDayEndTu = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int ThirdDay_Total { get; set; }
+        public int ThirdDay_Total
+        {
+            get => _thirdDayTotal;
+            set
+            {
+                if (value == _thirdDayTotal) return;
+                _thirdDayTotal = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int ProcessOrder_No { get; set; }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
+                OnPropertyChanged();
+            }
+        }
 
         public virtual Frontpages Frontpage { get; set; }
 
+        #region InotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }
