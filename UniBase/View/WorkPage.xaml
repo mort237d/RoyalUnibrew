@@ -95,16 +95,16 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshFrontpageTable}">
                                         <Image Source="Images/GetAll.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenFrontpageTable}">
                                         <Image Source="Images/GetLastTen.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveFrontpageTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
                                         <Image Source="Images/DeleteButton.png"></Image>
                                     </Button>
                                 </StackPanel>
@@ -228,13 +228,16 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshControlRegistrationTable}">
-                                        <Image Source="Images/RefreshButton.png"></Image>
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshControlRegistrationTable}">
+                                        <Image Source="Images/GetAll.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlRegistrationTable}">
-                                        <Image Source="Images/SaveButton.png"></Image>
-                                    </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenControlRegistrationTable}">
+                                        <Image Source="Images/GetLastTen.png"></Image>           
+                                    </Button>                                                    
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlRegistrationTable}">
+                                        <Image Source="Images/SaveButton.png"></Image>           
+                                    </Button>                                                    
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
                                         <Image Source="Images/DeleteButton.png"></Image>
                                     </Button>
                                 </StackPanel>
@@ -258,7 +261,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
+                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"></Image>
                                 </Button>
                             </StackPanel>
@@ -339,13 +342,16 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshControlScheduleTable}">
-                                        <Image Source="Images/RefreshButton.png"></Image>
-                                    </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlScheduleTable}">
-                                        <Image Source="Images/SaveButton.png"></Image>
-                                    </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshControlScheduleTable}">
+                                        <Image Source="Images/GetAll.png"></Image>               
+                                    </Button>                                                    
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenControlScheduleTable}">
+                                        <Image Source="Images/GetLastTen.png"></Image>           
+                                    </Button>                                                    
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlScheduleTable}">
+                                        <Image Source="Images/SaveButton.png"></Image>           
+                                    </Button>                                                    
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
                                         <Image Source="Images/DeleteButton.png"></Image>
                                     </Button>
                                 </StackPanel>
@@ -449,13 +455,16 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshProductionTable}">
-                                        <Image Source="Images/RefreshButton.png"></Image>
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshProductionTable}">
+                                        <Image Source="Images/GetAll.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveProductionTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenProductionTable}">
+                                        <Image Source="Images/GetLastTen.png"></Image>
+                                    </Button>
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveProductionTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
                                         <Image Source="Images/DeleteButton.png"></Image>
                                     </Button>
                                 </StackPanel>
@@ -559,13 +568,16 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshShiftRegistrationTable}">
-                                        <Image Source="Images/RefreshButton.png"></Image>
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshShiftRegistrationTable}">
+                                        <Image Source="Images/GetAll.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveShiftRegistrationTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenShiftRegistrationTable}">
+                                        <Image Source="Images/GetLastTen.png"></Image>
+                                    </Button>
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveShiftRegistrationTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
                                         <Image Source="Images/DeleteButton.png"></Image>
                                     </Button>
                                 </StackPanel>
@@ -672,13 +684,16 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Opdater" Command="{Binding RefreshTUTable}">
-                                        <Image Source="Images/RefreshButton.png"></Image>
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshTUTable}">
+                                        <Image Source="Images/GetAll.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Gem" Command="{Binding SaveTUTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenTUTable}">
+                                        <Image Source="Images/GetLastTen.png"></Image>
+                                    </Button>
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveTUTable}">
                                         <Image Source="Images/SaveButton.png"></Image>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="50" Width="50" Background="Transparent" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
                                         <Image Source="Images/DeleteButton.png"></Image>
                                     </Button>
                                 </StackPanel>
