@@ -66,39 +66,59 @@ namespace UniBase.Model.K2
             {
                 _processOrderNoTextBoxOutput = value;
 
-                if (string.IsNullOrEmpty(DateTextBoxOutput) && string.IsNullOrEmpty(FinishedProductNoTextBoxOutput) && string.IsNullOrEmpty(ColumnTextBoxOutput) && string.IsNullOrEmpty(NoteTextBoxOutput) && string.IsNullOrEmpty(WeekNoTextBoxOutput))
+                FrontpagesList.Clear();
+
+                foreach (var f in CompleteFrontpagesList)
                 {
-                    FrontpagesList.Clear();
-
-                    foreach (var f in CompleteFrontpagesList)
+                    var v = f.ProcessOrder_No.ToString();
+                    if (v.Contains(_processOrderNoTextBoxOutput))
                     {
-                        var v = f.ProcessOrder_No.ToString();
-                        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
-                        {
-                            FrontpagesList.Add(f);
-                        }
-                    }
-
-                    if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                    {
-                        FrontpagesList = GetLastTen(new Frontpages());
+                        FrontpagesList.Add(f);
                     }
                 }
 
-                else
+                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    var temp = new ObservableCollection<Frontpages>();
-                    foreach (var f in FrontpagesList)
-                    {
-                        var v = f.ProcessOrder_No.ToString();
-                        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
-                        {
-                            temp.Add(f);
-                        }
-                    }
-
-                    FrontpagesList = temp;
+                    FrontpagesList = GetLastTen(new Frontpages());
                 }
+
+                #region Test
+
+                //if (string.IsNullOrEmpty(DateTextBoxOutput) && string.IsNullOrEmpty(FinishedProductNoTextBoxOutput) && string.IsNullOrEmpty(ColumnTextBoxOutput) && string.IsNullOrEmpty(NoteTextBoxOutput) && string.IsNullOrEmpty(WeekNoTextBoxOutput))
+                //{
+                //    FrontpagesList.Clear();
+
+                //    foreach (var f in CompleteFrontpagesList)
+                //    {
+                //        var v = f.ProcessOrder_No.ToString();
+                //        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
+                //        {
+                //            FrontpagesList.Add(f);
+                //        }
+                //    }
+
+                //    if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
+                //    {
+                //        FrontpagesList = GetLastTen(new Frontpages());
+                //    }
+                //}
+
+                //else
+                //{
+                //    var temp = new ObservableCollection<Frontpages>();
+                //    foreach (var f in FrontpagesList)
+                //    {
+                //        var v = f.ProcessOrder_No.ToString();
+                //        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
+                //        {
+                //            temp.Add(f);
+                //        }
+                //    }
+
+                //    FrontpagesList = temp;
+                //}
+
+                #endregion
                 
             }
         }
@@ -106,7 +126,26 @@ namespace UniBase.Model.K2
         public string DateTextBoxOutput
         {
             get { return _dateTextBoxOutput; }
-            set{ _dateTextBoxOutput = value; }
+            set
+            {
+                _dateTextBoxOutput = value;
+
+                FrontpagesList.Clear();
+
+                foreach (var f in CompleteFrontpagesList)
+                {
+                    var v = f.Date.ToString();
+                    if (v.Contains(_dateTextBoxOutput))
+                    {
+                        FrontpagesList.Add(f);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(_dateTextBoxOutput))
+                {
+                    FrontpagesList = GetLastTen(new Frontpages());
+                }
+            }
         }
 
         public string FinishedProductNoTextBoxOutput
@@ -121,7 +160,7 @@ namespace UniBase.Model.K2
                 foreach (var f in CompleteFrontpagesList)
                 {
                     var v = f.FinishedProduct_No.ToString();
-                    if (v.Contains(_finishedProductNoTextBoxOutput.ToString()))
+                    if (v.Contains(_finishedProductNoTextBoxOutput))
                     {
                         FrontpagesList.Add(f);
                     }
@@ -146,7 +185,7 @@ namespace UniBase.Model.K2
                 foreach (var f in CompleteFrontpagesList)
                 {
                     var v = f.Colunm.ToString();
-                    if (v.Contains(_columnTextBoxOutput.ToString()))
+                    if (v.Contains(_columnTextBoxOutput))
                     {
                         FrontpagesList.Add(f);
                     }
@@ -170,8 +209,8 @@ namespace UniBase.Model.K2
 
                 foreach (var f in CompleteFrontpagesList)
                 {
-                    var v = f.Note.ToString();
-                    if (v.Contains(_noteTextBoxOutput.ToString()))
+                    var v = f.Note;
+                    if (v.Contains(_noteTextBoxOutput))
                     {
                         FrontpagesList.Add(f);
                     }
@@ -196,7 +235,7 @@ namespace UniBase.Model.K2
                 foreach (var f in CompleteFrontpagesList)
                 {
                     var v = f.Week_No.ToString();
-                    if (v.Contains(_weekNoTextBoxOutput.ToString()))
+                    if (v.Contains(_weekNoTextBoxOutput))
                     {
                         FrontpagesList.Add(f);
                     }
@@ -338,142 +377,7 @@ namespace UniBase.Model.K2
                 
             }
         }
-
-        private List<bool> sorted = new List<bool> { true, false, false, false, false, false };
-
-        //TODO FIX DRYYYYYYYY
-        private ObservableCollection<Frontpages> SortWay(int index, Frontpages frontpages) 
-        {
-            var tempList = new ObservableCollection<Frontpages>();
-
-            if (!sorted[index])
-            {
-                tempList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.ProcessOrder_No));
-                sorted[index] = true;
-            }
-            else
-            {
-                tempList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.ProcessOrder_No));
-                sorted[index] = false;
-            }
-
-            return tempList;
-        }
-        public void SortButtonClick(object id)
-        {
-            switch (id.ToString())
-            {
-                case "ProcessOrdre Nr":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.ProcessOrder_No));
-
-                        for (int i = 0; i < sorted.Count-1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.ProcessOrder_No));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Dato":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Date));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Date));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Færdigt Produkt Nr":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.FinishedProduct_No));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.FinishedProduct_No));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Kolonne":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Colunm));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Colunm));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Note":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Note));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Note));
-                        sorted[0] = false;
-                    }
-                    break;
-                case "Uge Nr":
-                    if (!sorted[0])
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderBy(i => i.Week_No));
-
-                        for (int i = 0; i < sorted.Count - 1; i++)
-                        {
-                            sorted[i] = false;
-                        }
-                        sorted[0] = true;
-                    }
-                    else
-                    {
-                        FrontpagesList = new ObservableCollection<Frontpages>(FrontpagesList.OrderByDescending(i => i.Week_No));
-                        sorted[0] = false;
-                    }
-                    break;
-                default:
-                    Debug.WriteLine("Nothing");
-                    break;
-            }
-        }
-
-
         
-
         #region ButtonMethods
 
         #region FrontPageMethods
