@@ -403,7 +403,10 @@ namespace UniBase.Model.K2
         private Frontpages _selectedFrontpage;
         public void DeleteFrontpage(object id)
         {
-            Debug.WriteLine(_selectedFrontpage.ProcessOrder_No);
+            if (string.IsNullOrEmpty(_selectedFrontpage.ProcessOrder_No.ToString()))
+            {
+                Debug.WriteLine(_selectedFrontpage.ProcessOrder_No);
+            }
         }
 
         #endregion
