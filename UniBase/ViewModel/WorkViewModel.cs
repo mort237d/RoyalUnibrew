@@ -52,10 +52,8 @@ namespace UniBase.ViewModel
 
         public SortAndFilter SortAndFilter { get; set; }
         
-        public TrendAdminstrator TrendAdminstrator { get; set; } 
-
-        public OutOfBoundColorChange OutOfBoundColorChange { get; set; }
-        
+        public TrendAdminstrator TrendAdminstrator { get; set; }
+        public XamlBindings XamlBindings { get; set; }
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
@@ -63,6 +61,7 @@ namespace UniBase.ViewModel
             SortAndFilter = new SortAndFilter();
 
             TrendAdminstrator = new TrendAdminstrator();
+            XamlBindings = new XamlBindings();
 
             #region Update(SavedForLater)
 
