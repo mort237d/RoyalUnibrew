@@ -131,7 +131,7 @@
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No}" Height="42" FontSize="10" IsReadOnly="True"/>
                                 <Line></Line>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Date}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Date}" Height="42" FontSize="10"/>
                                 <Line></Line>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No}" Height="42" FontSize="10"/>
                                 <Line></Line>

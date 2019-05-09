@@ -9,7 +9,7 @@ namespace UniBase.Model.K2
     {
         private int _processOrderNo;
         private DateTime _date;
-        private string _dateHelper;
+        private string _dateTimeStringHelper;
         private int _weekNo;
         private string _note;
         private int _colunm;
@@ -52,13 +52,13 @@ namespace UniBase.Model.K2
             }
         }
 
-        public string DateHelper
+        public string DateTimeStringHelper
         {
-            get => _dateHelper;
+            get => _dateTimeStringHelper;
             set
             {
-                if (value == _dateHelper) return;
-                _dateHelper = value;
+                if (value == _dateTimeStringHelper) return;
+                _dateTimeStringHelper = value;
                 OnPropertyChanged();
             }
         }
