@@ -1,19 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Windows.UI.Xaml.Controls;
+using UniBase.Annotations;
 using UniBase.Model.K2;
 
 namespace UniBase.Model
 {
-    class TrendAdminstrator
+    class TrendAdminstrator : INotifyPropertyChanged
     {
+        private ComboBoxItem _graphType = new ComboBoxItem();
+        private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
+
+
         public ObservableCollection<Trends> _trendList = new ObservableCollection<Trends>();
         public ManageTables MngTables = ManageTables.Instance;
         public TrendAdminstrator()
         {
-            
-           
+            GraphType.Content = "Vægt";
+            GraphTimePeriod.Content = "En Uge";
+            GraphComboboxSelectedMethod(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+
         }
 
         public ObservableCollection<Trends> TrendList
@@ -22,7 +32,30 @@ namespace UniBase.Model
             set { _trendList = value; }
         }
 
-        
+        public ComboBoxItem GraphType
+        {
+            get { return _graphType; }
+            set
+            {
+                _graphType = value;
+                OnPropertyChanged();
+                GraphComboboxSelectedMethod(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+            }
+        }
+
+
+        public ComboBoxItem GraphTimePeriod
+        {
+            get { return _graphTimePeriod; }
+            set
+            {
+                _graphTimePeriod = value; 
+                OnPropertyChanged();
+                GraphComboboxSelectedMethod(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+            }
+        }
+
+
         public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
         {
             
@@ -119,6 +152,14 @@ namespace UniBase.Model
             {
                 TrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

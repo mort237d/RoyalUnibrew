@@ -16,8 +16,7 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-        private string _graphCombobox;
-        private string _graphTimeperiodCombobox;
+        
 
 
         public RelayCommand<object> SortFrontpageCommand { get; set; }
@@ -141,27 +140,7 @@ namespace UniBase.ViewModel
         }
 
         #region Properties
-        public string GraphCombobox
-        {
-            get { return _graphCombobox; }
-            set
-            {
-                _graphCombobox = value;
-                OnPropertyChanged();
-                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox, _graphTimeperiodCombobox);
-            }
-        }
-
-        public string GraphTimeperiodCombobox
-        {
-            get { return _graphTimeperiodCombobox; }
-            set
-            {
-                _graphTimeperiodCombobox = value; 
-                OnPropertyChanged();
-                TrendAdminstrator.GraphComboboxSelectedMethod(_graphCombobox, _graphTimeperiodCombobox);
-            }
-        }
+        
 
         #endregion
 
