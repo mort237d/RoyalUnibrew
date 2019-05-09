@@ -11,6 +11,8 @@ namespace UniBase.Model.K2
 {
     class Users : INotifyPropertyChanged
     {
+        #region Field
+
         private int _userId;
         private string _name;
         private string _imageSource;
@@ -32,6 +34,10 @@ namespace UniBase.Model.K2
             Password = password;
             ImageSource = imageSource;
         }
+
+        #endregion
+
+        #region Properties
 
         public int User_ID
         {
@@ -98,6 +104,8 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

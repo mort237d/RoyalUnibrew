@@ -238,7 +238,7 @@ namespace UniBase.Model
 
                             NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
                         }
-                        else await _message.Error("Uoverensstemmelser", "Password stemmer ikke over ens med confirm password");
+                        else await _message.Error("Uoverensstemmelser", "Password stemmer ikke overens med confirm password");
                     }
                     else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
                 }

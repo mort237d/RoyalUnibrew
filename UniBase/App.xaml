@@ -961,6 +961,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="CustomGridViewItemContainerStyle" TargetType="GridView" />
+        <Style x:Key="CustomGridViewStyle" TargetType="GridView" />
     </Application.Resources>
 
 </Application>
