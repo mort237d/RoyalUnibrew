@@ -162,7 +162,7 @@ namespace UniBase.Model
         public static bool UpdateByObjectAndId<T>(int id, T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[1] + "/" + id;
+            string httpUrl = URI + typeName[3] + "/" + id;
 
             try
             {

@@ -518,9 +518,59 @@ namespace UniBase.Model.K2
         }
 
         #endregion
+        /// <summary>
+        /// Rækkefølge på properties i klasser er vigtige!
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type"></param>
+        public void ha<T>(ref T type)
+        {
+            Type tModelType = type.GetType();
+
+            PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
+
+            //ToDo Finish This.
+            foreach (PropertyInfo property in arrayPropertyInfos)
+            {
+                var prop = type.GetType().GetProperty(property.Name, BindingFlags.Public | BindingFlags.Instance);
+                var proppi = prop.GetValue(type);
+
+                if (property.PropertyType == typeof(string))    
+                {
+                    if (proppi.ToString().Contains("DateTimeStringHelper"))
+                    {
+                        //CheckDateTime()
+                    }
+                    else if (proppi.ToString().ToLower() == "True".ToLower() ||
+                             proppi.ToString().ToLower() == "False".ToLower())
+                    {
+
+                    }
+                    if (proppi == null)
+                    {
+                        prop.SetValue(type, " ", null);
+                    }
+                }
+                else if (property.PropertyType == typeof(int))
+                {
+                    int.TryParse(proppi.ToString(), out int i);
+                    if (i == 0)
+                    {
+                        //error
+                    }
+                }
+                else if (property.PropertyType == typeof(bool))
+                {
+                }
+            }
+        }
+    
+
+
 
         public void AddNewFrontpages()
         {
+            
             if (NewFrontpagesToAdd.FinishedProduct_No == 0 || NewFrontpagesToAdd.FinishedProduct_No <= 0)
             {
                 //something wrong mate
@@ -541,17 +591,17 @@ namespace UniBase.Model.K2
                 NewFrontpagesToAdd.Note = " ";
             }
 
-            CheckDateTime();
+            CheckDateTime("12/12/2018");
 
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
-
-
 
             //Checks whether any of the properties are null if any are returns true
             bool isNull = NewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(NewFrontpagesToAdd) == null);
 
             if (!isNull)
             {
+                FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList.Last().ProcessOrder_No + 1;
                 if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
                 {
                     //_frontpagesList.Add(NewFrontpagesToAdd);
@@ -568,13 +618,14 @@ namespace UniBase.Model.K2
             }
         }
 
-        private void CheckDateTime()
+        private DateTime CheckDateTime(string stringToCheck)
         {
             string[] splitDateTimeString = new string[3];
+            DateTime result = DateTime.Now;
 
-            if (NewFrontpagesToAdd.DateHelper != null)
+            if (stringToCheck != null)
             {
-                splitDateTimeString = NewFrontpagesToAdd.DateHelper.Split('/');
+                splitDateTimeString = stringToCheck.Split('/');
 
                 //Check if day is 2 long, month is 2 and year is 4 ex. 02 / 02 / 2018 (semi check order)
                 if (splitDateTimeString[0].Length == 2 && splitDateTimeString[1].Length == 2 && splitDateTimeString[2].Length == 4)
@@ -585,7 +636,7 @@ namespace UniBase.Model.K2
                         //Check if they are valid numbers
                         if (year > 0 && month > 0 && month < 13 && day < 32 && day > 0)
                         {
-                            NewFrontpagesToAdd.Date = new DateTime(year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, 0);
+                            return new DateTime(year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, 0);
                         }
                         else
                         {
@@ -602,6 +653,12 @@ namespace UniBase.Model.K2
                     //sumtin wong
                 }
             }
+            else
+            {
+                //Wrong again lad
+            }
+
+            return result;
         }
 
         private int FindWeekNumber(Frontpages frontpage)
