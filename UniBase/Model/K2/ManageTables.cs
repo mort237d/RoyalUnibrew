@@ -350,8 +350,6 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
-            
-            
             CompleteFrontpagesList = ModelGenerics.GetAll(new Frontpages());
             CompleteControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
             CompleteControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
@@ -400,6 +398,12 @@ namespace UniBase.Model.K2
                 ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
             });
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+        }
+
+        private Frontpages _selectedFrontpage;
+        public void DeleteFrontpage(object id)
+        {
+            Debug.WriteLine(_selectedFrontpage.ProcessOrder_No);
         }
 
         #endregion
@@ -676,6 +680,16 @@ namespace UniBase.Model.K2
                 }
 
                 return _instance;
+            }
+        }
+
+        public Frontpages SelectedFrontpage
+        {
+            get { return _selectedFrontpage; }
+            set
+            {
+                _selectedFrontpage = value;
+                OnPropertyChanged();
             }
         }
 

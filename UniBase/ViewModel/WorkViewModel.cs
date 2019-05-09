@@ -25,8 +25,8 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshFrontpageTable { get; set; }
         public RelayCommand RefreshLastTenControlRegistrationTable { get; set; }
         public RelayCommand SaveFrontpageTable { get; set; }
-        public RelayCommand DeleteFrontpageTable { get; set; }
         public RelayCommand AddFrontpageTable { get; set; }
+        public RelayCommand<object> DeleteFrontpageTable { get; set; }
 
         public RelayCommand RefreshControlRegistrationTable { get; set; }
         public RelayCommand RefreshLastTenFrontpageTable { get; set; }
@@ -64,10 +64,13 @@ namespace UniBase.ViewModel
             SortAndFilter = new SortAndFilter();
 
             TrendAdminstrator = new TrendAdminstrator();
-            int month = 2;
-            int day = 11;
+
+            #region Update(SavedForLater)
+
+            //int month = 2;
+            //int day = 11;
             //Udfyld controlschdual.
-            Random radnom = new Random();
+            //Random radnom = new Random();
             //            for (int i = 0; i < 120; i++)
             //            {
             //                ModelGenerics.CreateByObject(new ControlSchedules(i+39, new DateHelper(2019, month, day),radnom.NextDouble()*100, "hej", radnom.NextDouble() * 100, radnom.NextDouble() * 100, "mig", "Very good"));
@@ -95,12 +98,13 @@ namespace UniBase.ViewModel
             //            
             //            }
 
+            #endregion
 
             RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
             RefreshLastTenFrontpageTable = new RelayCommand(Column_2.RefreshLastTenFrontpages);
             SaveFrontpageTable = new RelayCommand(Column_2.SaveFrontpages);
-            DeleteFrontpageTable = new RelayCommand(TempMethod2);
             AddFrontpageTable = new RelayCommand(Column_2.AddNewFrontpages);
+            DeleteFrontpageTable = new RelayCommand<object>(Column_2.DeleteFrontpage);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.RefreshLastTenControlRegistrations);
