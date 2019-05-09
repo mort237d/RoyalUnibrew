@@ -33,6 +33,7 @@ namespace UniBase.Model.K2
         private ObservableCollection<TUs> _tuList;
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
+        private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
 
 
         private Message message = new Message();
@@ -54,6 +55,16 @@ namespace UniBase.Model.K2
             set
             {
                 _newFrontpagesToAdd = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public ControlRegistrations NewControlRegistrationsToAdd
+        {
+            get => _newControlRegistrationsToAdd;
+            set
+            {
+                _newControlRegistrationsToAdd = value;
                 OnPropertyChanged();
             }
         }
@@ -359,7 +370,9 @@ namespace UniBase.Model.K2
             CompleteTuList = ModelGenerics.GetAll(new TUs());
 
 
-            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            RefreshLastTenFrontpages();
+
+
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
             ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
@@ -371,6 +384,7 @@ namespace UniBase.Model.K2
             {
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
+            NewFrontpagesToAdd.DateTimeStringHelper = NewFrontpagesToAdd.Date.ToString().Remove(10);
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
                 
             }
@@ -383,11 +397,19 @@ namespace UniBase.Model.K2
         public void RefreshFrontpages()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            Parallel.ForEach(_frontpagesList, frontpage =>
+                {
+                    frontpage.DateTimeStringHelper = frontpage.Date.ToString();
+                });
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void RefreshLastTenFrontpages()
         {
             FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            foreach (var frontpage in FrontpagesList)
+            {
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString().Remove(10);
+            }
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveFrontpages()
@@ -530,8 +552,11 @@ namespace UniBase.Model.K2
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>
-        public void ha<T>(ref T type)
+        public void CheckIfInputsAreValid<T>(ref T type)
         {
+            List<string> datesandtimespans = new List<string>();
+            int listIndexCounter = 0;
+
             Type tModelType = type.GetType();
 
             PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
@@ -544,18 +569,24 @@ namespace UniBase.Model.K2
 
                 if (property.PropertyType == typeof(string))    
                 {
-                    if (proppi.ToString().Contains("DateTimeStringHelper"))
+                    if (prop.Name.Contains("StringHelper"))
                     {
-                        //CheckDateTime()
+                        if (proppi.ToString().Length >= 10)
+                        {
+                            datesandtimespans.Add(proppi.ToString());
+                        }
+                        else
+                        {
+                            //error
+                        }
                     }
-                    else if (proppi.ToString().ToLower() == "True".ToLower() ||
-                             proppi.ToString().ToLower() == "False".ToLower())
-                    {
-
-                    }
-                    if (proppi == null)
+                    else if (proppi == null && property.Name == "Note")
                     {
                         prop.SetValue(type, " ", null);
+                    }
+                    else if(proppi == null)
+                    {
+                        //error
                     }
                 }
                 else if (property.PropertyType == typeof(int))
@@ -566,8 +597,38 @@ namespace UniBase.Model.K2
                         //error
                     }
                 }
-                else if (property.PropertyType == typeof(bool))
+                else if (property.PropertyType == typeof(double))
                 {
+                    double.TryParse(proppi.ToString(), out double i);
+                    if (i == 0)
+                    {
+                        //error
+                    }
+                }
+                else if (property.PropertyType == typeof(DateTime))
+                {
+                    DateTime dt = DateTime.Now;
+                    var split = datesandtimespans[listIndexCounter].Split('/');
+                    var splitWithoutSpecialChars = split;
+                    for (int i = 0; i < split.Length; i++)
+                    {
+                        splitWithoutSpecialChars[i] = split[i].Trim('/');
+                    }
+
+                    if (splitWithoutSpecialChars[2].Length > 4)
+                    {
+                        splitWithoutSpecialChars[2] = splitWithoutSpecialChars[2].Remove(4);
+                    }
+
+                    prop.SetValue(type, new DateTime(int.Parse(splitWithoutSpecialChars[2]), int.Parse(splitWithoutSpecialChars[1]), int.Parse(splitWithoutSpecialChars[0]), dt.Hour,dt.Minute, 0), null);
+                    listIndexCounter++;
+                }
+                else if (property.PropertyType == typeof(TimeSpan))
+                {
+                    var split = datesandtimespans[listIndexCounter].Split(':');
+
+                    prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2]), 0), null);
+                    listIndexCounter++;
                 }
             }
         }
@@ -577,29 +638,7 @@ namespace UniBase.Model.K2
 
         public void AddNewFrontpages()
         {
-            
-            if (NewFrontpagesToAdd.FinishedProduct_No == 0 || NewFrontpagesToAdd.FinishedProduct_No <= 0)
-            {
-                //something wrong mate
-            }
-
-            if (NewFrontpagesToAdd.ProcessOrder_No == 0 || NewFrontpagesToAdd.ProcessOrder_No <= 0)
-            {
-                //Something wrong again matey
-            }
-
-            if (NewFrontpagesToAdd.Colunm == 0 || NewFrontpagesToAdd.Colunm <= 0)
-            {
-                //Still something wrong dude
-            }
-
-            if (NewFrontpagesToAdd.Note == null)
-            {
-                NewFrontpagesToAdd.Note = " ";
-            }
-
-            CheckDateTime("12/12/2018");
-
+            CheckIfInputsAreValid(ref _newFrontpagesToAdd);
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
 
             //Checks whether any of the properties are null if any are returns true
@@ -620,7 +659,31 @@ namespace UniBase.Model.K2
                 }
                 else
                 {
+                    //error
+                }
+            }
+        }
 
+        public void AddNewControlRegistrations()
+        {
+            CheckIfInputsAreValid(ref _newControlRegistrationsToAdd);
+
+            //Checks whether any of the properties are null if any are returns true
+            bool isNull = NewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(NewFrontpagesToAdd) == null);
+
+            if (!isNull)
+            {
+                ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
+                
+                if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
+                {
+                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                    NewControlRegistrationsToAdd = new ControlRegistrations();
+                }
+                else
+                {
+                    //error
                 }
             }
         }

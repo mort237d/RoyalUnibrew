@@ -16,8 +16,9 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-        
 
+        public string PlaceHolderDate { get; set; } = "2000/01/01";
+        public string PlaceHolderTimeSpan { get; set; } = "00:00:00";
 
         public RelayCommand<object> SortFrontpageCommand { get; set; }
 
@@ -30,6 +31,8 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshControlRegistrationTable { get; set; }
         public RelayCommand RefreshLastTenFrontpageTable { get; set; }
         public RelayCommand SaveControlRegistrationTable { get; set; }
+        public RelayCommand AddControlRegistrationsTable { get; set; }
+
 
         public RelayCommand RefreshControlScheduleTable { get; set; }
         public RelayCommand RefreshLastTenControlScheduleTable { get; set; }
@@ -108,6 +111,7 @@ namespace UniBase.ViewModel
             RefreshControlRegistrationTable = new RelayCommand(Column_2.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.RefreshLastTenControlRegistrations);
             SaveControlRegistrationTable = new RelayCommand(Column_2.SaveControlRegistrations);
+            AddControlRegistrationsTable = new RelayCommand(Column_2.AddNewControlRegistrations);
 
             RefreshControlScheduleTable = new RelayCommand(Column_2.RefreshControlSchedules);
             RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.RefreshLastTenControlSchedules);
