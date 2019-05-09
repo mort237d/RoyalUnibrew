@@ -375,24 +375,20 @@ namespace UniBase.Model.K2
                 
             }
         }
-        
+
         #region ButtonMethods
 
         #region FrontPageMethods
 
         public void RefreshFrontpages()
         {
-            var tempList = ModelGenerics.GetAll(new Frontpages());
-            FrontpagesList = new ObservableCollection<Frontpages>();
-            if (tempList.Count > 10)
-            {
-                for (int i = tempList.Count-10; i < tempList.Count; i++)
-                {
-                    FrontpagesList.Add(tempList[i]);
-                }
-
-                message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
-            }
+            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+        }
+        public void RefreshLastTenFrontpages()
+        {
+            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveFrontpages()
         {
@@ -404,6 +400,12 @@ namespace UniBase.Model.K2
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
+        private Frontpages _selectedFrontpage;
+        public void DeleteFrontpage(object id)
+        {
+            Debug.WriteLine(_selectedFrontpage.ProcessOrder_No);
+        }
+
         #endregion
 
         #region ControlRegistrationMethods
@@ -411,6 +413,11 @@ namespace UniBase.Model.K2
         public void RefreshControlRegistrations()
         {
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+        }
+        public void RefreshLastTenControlRegistrations()
+        {
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
         public void SaveControlRegistrations()
@@ -428,17 +435,13 @@ namespace UniBase.Model.K2
 
         public void RefreshControlSchedules()
         {
-            var tempList = ModelGenerics.GetAll(new ControlSchedules());
-            ControlSchedulesList = new ObservableCollection<ControlSchedules>();
-            if (tempList.Count > 10)
-            {
-                for (int i = tempList.Count - 10; i < tempList.Count; i++)
-                {
-                    ControlSchedulesList.Add(tempList[i]);
-                }
-
-                message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
-            }
+            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
+        }
+        public void RefreshLastTenControlSchedules()
+        {
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
         public void SaveControlSchedules()
         {
@@ -456,6 +459,11 @@ namespace UniBase.Model.K2
         public void RefreshProductions()
         {
             ProductionsList = ModelGenerics.GetAll(new Productions());
+            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+        }
+        public void RefreshLastTenProductions()
+        {
+            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
             message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
         public void SaveProductions()
@@ -476,6 +484,11 @@ namespace UniBase.Model.K2
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
+        public void RefreshLastTenShiftRegistrations()
+        {
+            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
+        }
         public void SaveShiftRegistrations()
         {
             Parallel.ForEach(_shiftRegistrationsList, shiftRegistrations =>
@@ -492,6 +505,11 @@ namespace UniBase.Model.K2
         public void RefreshTUs()
         {
             TuList = ModelGenerics.GetAll(new TUs());
+            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
+        }
+        public void RefreshLastTenTUs()
+        {
+            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
             message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
         public void SaveTUs()
@@ -719,6 +737,16 @@ namespace UniBase.Model.K2
                 }
 
                 return _instance;
+            }
+        }
+
+        public Frontpages SelectedFrontpage
+        {
+            get { return _selectedFrontpage; }
+            set
+            {
+                _selectedFrontpage = value;
+                OnPropertyChanged();
             }
         }
 
