@@ -72,7 +72,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView Name="FrontpageListView" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}" SelectedItem="{Binding Column_2.SelectedFrontpage, Mode=TwoWay}">
+                                    <ListView MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}" SelectedItem="{Binding Column_2.SelectedFrontpage, Mode=TwoWay}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -83,7 +83,10 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
+                                                    <Border Width="110" Height="40" BorderThickness="1" BorderBrush="#16503F">
+                                                        <TextBlock TextAlignment="Center" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
+                                                    </Border>
+                                                    <!--<TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>-->
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Date, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Colunm, Mode=TwoWay}"/>
@@ -215,7 +218,9 @@
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_Date, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"></TextBox>
-                                                    <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="#16503F" Content="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}" CommandParameter="{Binding ProcessOrder_No}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}"></Button>
+                                                    <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="#16503F" CommandParameter="{Binding ProcessOrder_No}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}">
+                                                        <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}"/>
+                                                    </Button>
                                                     <!--<TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlAlcoholSpearDispenser, Mode=TwoWay}"></TextBox>-->
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}"></TextBox>

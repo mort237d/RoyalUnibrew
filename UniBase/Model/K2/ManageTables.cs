@@ -374,7 +374,7 @@ namespace UniBase.Model.K2
         private Frontpages _selectedFrontpage;
         public void DeleteFrontpage(object id)
         {
-            if (string.IsNullOrEmpty(_selectedFrontpage.ProcessOrder_No.ToString()))
+            if (_selectedFrontpage != null)
             {
                 Debug.WriteLine(_selectedFrontpage.ProcessOrder_No);
             }
