@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 
@@ -89,9 +90,19 @@ namespace UniBase.Model.K2
             get => _controlAlcoholSpearDispenser;
             set
             {
-                if (value == _controlAlcoholSpearDispenser) return;
+                //if (value == _controlAlcoholSpearDispenser) return;
                 _controlAlcoholSpearDispenser = value;
+
                 OnPropertyChanged();
+
+                if (ControlAlcoholSpearDispenser)
+                {
+                    ControlRegistrationAlcoholSpearDispenserControlled = "Kontrolleret";
+                }
+                else
+                {
+                    ControlRegistrationAlcoholSpearDispenserControlled = "Ikke Kontrolleret";
+                }
             }
         }
 
@@ -247,7 +258,16 @@ namespace UniBase.Model.K2
             }
         }
 
-       
+        private string _controlRegistrationAlcoholSpearDispenserControlled;
+        public string ControlRegistrationAlcoholSpearDispenserControlled
+        {
+            get { return _controlRegistrationAlcoholSpearDispenserControlled; }
+            set
+            {
+                _controlRegistrationAlcoholSpearDispenserControlled = value;
+                OnPropertyChanged();
+            }
+        }
 
         public virtual Frontpages Frontpage { get; set; }
 

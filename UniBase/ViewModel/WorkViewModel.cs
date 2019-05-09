@@ -55,10 +55,8 @@ namespace UniBase.ViewModel
 
         public SortAndFilter SortAndFilter { get; set; }
         
-        public TrendAdminstrator TrendAdminstrator { get; set; } 
-
-        public OutOfBoundColorChange OutOfBoundColorChange { get; set; }
-        
+        public TrendAdminstrator TrendAdminstrator { get; set; }
+        public XamlBindings XamlBindings { get; set; }
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
@@ -66,6 +64,7 @@ namespace UniBase.ViewModel
             SortAndFilter = new SortAndFilter();
 
             TrendAdminstrator = new TrendAdminstrator();
+            XamlBindings = new XamlBindings();
 
             #region Update(SavedForLater)
 
@@ -130,7 +129,11 @@ namespace UniBase.ViewModel
             SaveTUTable = new RelayCommand(Column_2.SaveTUs);
 
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
+
+            ControlledClickCommand = new RelayCommand<object>(Column_2.ControlledClick);
         }
+
+        public RelayCommand<object> ControlledClickCommand { get; set; }
 
         private void TempMethod2()
         {

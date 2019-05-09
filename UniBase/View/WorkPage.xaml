@@ -42,18 +42,18 @@
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[0]}" Text="{Binding DataContext.Column_2.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[1]}" Text="{Binding DataContext.Column_2.DateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[2]}" Text="{Binding DataContext.Column_2.FinishedProductNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[3]}" Text="{Binding DataContext.Column_2.ColumnTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[4]}" Text="{Binding DataContext.Column_2.NoteTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[5]}" Text="{Binding DataContext.Column_2.WeekNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[0].Header}" Text="{Binding DataContext.Column_2.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[1].Header}" Text="{Binding DataContext.Column_2.DateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[2].Header}" Text="{Binding DataContext.Column_2.FinishedProductNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[3].Header}" Text="{Binding DataContext.Column_2.ColumnTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[4].Header}" Text="{Binding DataContext.Column_2.NoteTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[5].Header}" Text="{Binding DataContext.Column_2.WeekNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-2">
                                 <StackPanel>
-                                    <ListView Width="662" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
+                                    <ListView Width="662" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding XamlBindings.FrontPageHeaderList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -64,8 +64,8 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
-                                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}" ToolTipService.ToolTip="{Binding ToolTip}">
+                                                        <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ></TextBlock>
                                                     </Button>
                                                     <Line></Line>
                                                 </StackPanel>
@@ -83,12 +83,12 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding DateTimeStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Colunm, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Week_No, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True" ToolTipService.ToolTip="Skriv heltal"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Date, Mode=TwoWay}" ToolTipService.ToolTip="Fx ÅÅÅÅ/MM/DD"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Colunm, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}" ToolTipService.ToolTip="Skriv evt. en note her"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Week_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv evt. Uge nr. Fx 12"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -215,7 +215,7 @@
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"></TextBox>
-                                                    <CheckBox IsChecked="{Binding ControlAlcoholSpearDispenser, Mode=TwoWay}"></CheckBox>
+                                                    <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="#16503F" Content="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}" CommandParameter="{Binding ProcessOrder_No}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}"></Button>
                                                     <!--<TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlAlcoholSpearDispenser, Mode=TwoWay}"></TextBox>-->
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}"></TextBox>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}"></TextBox>
@@ -336,8 +336,8 @@
                                         </ListView.ItemContainerStyle>
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
+                                                <StackPanel> 
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}" >
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
                                                     <Line></Line>

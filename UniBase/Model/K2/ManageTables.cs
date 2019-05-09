@@ -90,47 +90,8 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
-
-                #region Test
-
-                //if (string.IsNullOrEmpty(DateTextBoxOutput) && string.IsNullOrEmpty(FinishedProductNoTextBoxOutput) && string.IsNullOrEmpty(ColumnTextBoxOutput) && string.IsNullOrEmpty(NoteTextBoxOutput) && string.IsNullOrEmpty(WeekNoTextBoxOutput))
-                //{
-                //    FrontpagesList.Clear();
-
-                //    foreach (var f in CompleteFrontpagesList)
-                //    {
-                //        var v = f.ProcessOrder_No.ToString();
-                //        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
-                //        {
-                //            FrontpagesList.Add(f);
-                //        }
-                //    }
-
-                //    if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                //    {
-                //        FrontpagesList = GetLastTen(new Frontpages());
-                //    }
-                //}
-
-                //else
-                //{
-                //    var temp = new ObservableCollection<Frontpages>();
-                //    foreach (var f in FrontpagesList)
-                //    {
-                //        var v = f.ProcessOrder_No.ToString();
-                //        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
-                //        {
-                //            temp.Add(f);
-                //        }
-                //    }
-
-                //    FrontpagesList = temp;
-                //}
-
-                #endregion
-                
             }
         }
 
@@ -154,7 +115,7 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_dateTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -179,7 +140,7 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_finishedProductNoTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -204,7 +165,7 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_columnTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -229,7 +190,7 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_noteTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -254,8 +215,18 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_weekNoTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
+            }
+        }
+
+        public Frontpages SelectedFrontpage
+        {
+            get { return _selectedFrontpage; }
+            set
+            {
+                _selectedFrontpage = value;
+                OnPropertyChanged();
             }
         }
 
@@ -452,6 +423,28 @@ namespace UniBase.Model.K2
                 ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
             });
             message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
+        }
+
+        public void ControlledClick(object id)
+        {
+            Debug.WriteLine(id.ToString());
+
+            foreach (var CR in ControlRegistrationsList)
+            {
+                if (CR.ProcessOrder_No == (int)id)
+                {
+                    if (CR.ControlAlcoholSpearDispenser)
+                    {
+                        CR.ControlAlcoholSpearDispenser = false;
+                        break;
+                    }
+                    else
+                    {
+                        CR.ControlAlcoholSpearDispenser = true;
+                        break;
+                    }
+                }
+            }
         }
 
         #endregion
@@ -750,32 +743,12 @@ namespace UniBase.Model.K2
             return weekNumber;
         }
         #endregion
-
-        private ObservableCollection<T> GetLastTen<T>(T type)
-        {
-            var tempList = ModelGenerics.GetAll(type);
-            ObservableCollection<T> result = new ObservableCollection<T>();
-
-            if (tempList.Count > 10)
-            {
-                for (int i = tempList.Count - 10; i < tempList.Count; i++)
-                {
-                    result.Add(tempList[i]);
-                }
-            }
-            else
-            {
-                result = tempList;
-            }
-
-            return result;
-        }
-
+        
         private void GenerateHeaderLists()
         {
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "ProcessOrdre Nr", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
             ControlScheduleProps = new List<string>{"Kontrol skema ID", "ProcessOrdre Nr", "Klokkeslæt", "Vægt kontrol", "Kontrol af fustage", "LudKoncentration", "Mip MA", "Signatur operatør", "Note"};
-            FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
+            //FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
             ProductionProps = new List<string>{"Produktions ID", "ProcessOrdre Nr", "Paller lagt på lager 0001", "Tappemaskine", "Antal fustager pr. palle", "Tæller", "Palle tæller", "Batchdato"};
             ProductProps = new List<string>{"Færdigvarer Nr", "Produkt Navn", "Antal dage før udløbsdato"};
             ShiftRegistrationProps = new List<string>{"Vagt registrerings ID", "ProcessOrdre Nr", "Start tidspunkt", "Slut tidspunkt", "Pauser", "Total timer", "Bemanding", "Initialer"};
@@ -805,17 +778,6 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-
-        public Frontpages SelectedFrontpage
-        {
-            get { return _selectedFrontpage; }
-            set
-            {
-                _selectedFrontpage = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #region INotifyPropertiesChanged

@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ConstantValues.cs" />
+    <Compile Include="Model\FrontPageHeader.cs" />
     <Compile Include="Model\K2\ControlRegistrations.cs" />
     <Compile Include="Model\K2\ControlSchedules.cs" />
     <Compile Include="Model\K2\Frontpages.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Model\TrendAdminstrator.cs" />
     <Compile Include="Model\Trends.cs" />
     <Compile Include="Model\Login\User.cs" />
+    <Compile Include="Model\XamlBindings.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\WorkViewModel.cs" />
