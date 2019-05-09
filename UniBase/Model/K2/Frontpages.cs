@@ -8,16 +8,19 @@ namespace UniBase.Model.K2
     public class Frontpages : INotifyPropertyChanged
     {
         private int _processOrderNo;
-        private DateTime _date;
-        private string _dateTimeStringHelper;
         private int _weekNo;
         private string _note;
         private int _colunm;
         private int _finishedProductNo;
+        private Products _product;
+
+
+        private DateTime _date;
+        private string _dateStringHelper;
 
         public Frontpages()
         {
-            
+
         }
 
         public Frontpages(int processOrder_No, DateTime date, int finishedProduct_No, int colunm, string note, int week_No)
@@ -40,6 +43,16 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+        public string DateTimeStringHelper
+        {
+            get => _dateStringHelper;
+            set
+            {
+                if (value == _dateStringHelper) return;
+                _dateStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
 
         public DateTime Date
         {
@@ -52,16 +65,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public string DateTimeStringHelper
-        {
-            get => _dateTimeStringHelper;
-            set
-            {
-                if (value == _dateTimeStringHelper) return;
-                _dateTimeStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
+
 
         public int FinishedProduct_No
         {
@@ -106,6 +110,13 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+
+        public virtual Products Product
+        {
+            get { return _product; }
+            set { _product = value; }
+        }
+
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

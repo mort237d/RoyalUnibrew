@@ -9,18 +9,25 @@ namespace UniBase.Model.K2
     public class ControlRegistrations : INotifyPropertyChanged
     {
         private int _controlRegistrationId;
-        private TimeSpan _time;
-        private DateTime _productionDate;
-        private DateTime _expiryDate;
         private string _commentsOnChangedDate;
         private bool _controlAlcoholSpearDispenser;
         private int _capNo;
         private int _etiquetteNo;
         private double _kegSize;
         private string _signature;
+        private int _processOrderNo;
+        private TimeSpan _time;
+        private DateTime _productionDate;
+        private DateTime _expiryDate;
         private DateTime _firstPalletDepalletizing;
         private DateTime _lastPalletDepalletizing;
-        private int _processOrderNo;
+        
+
+        private string _timeStringHelper;
+        private string _productionsDateStringHelper;
+        private string _expiryDateStringHelper;
+        private string _firstPalletDepalletizingStringHelper;
+        private string _lastPalletDepalletizingStringHelper;
 
         public ControlRegistrations()
         {
@@ -56,40 +63,6 @@ namespace UniBase.Model.K2
             }
         }
 
-        public TimeSpan Time
-        {
-            get => _time;
-            set
-            {
-                if (value.Equals(_time)) return;
-                _time = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime Production_Date
-        {
-            get => _productionDate;
-            set
-            {
-                if (value.Equals(_productionDate)) return;
-                _productionDate = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime Expiry_Date
-        {
-            get => _expiryDate;
-            set
-            {
-                if (value.Equals(_expiryDate)) return;
-                _expiryDate = value;
-                OnPropertyChanged();
-            }
-        }
-
-
         public string CommentsOnChangedDate
         {
             get => _commentsOnChangedDate;
@@ -97,6 +70,17 @@ namespace UniBase.Model.K2
             {
                 if (value == _commentsOnChangedDate) return;
                 _commentsOnChangedDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
                 OnPropertyChanged();
             }
         }
@@ -166,6 +150,59 @@ namespace UniBase.Model.K2
             }
         }
 
+        #region StringHelpers
+
+        public string TimeStringHelper
+        {
+            get { return _timeStringHelper; }
+            set
+            {
+                _timeStringHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string ProductionsDateStringHelper
+        {
+            get { return _productionsDateStringHelper; }
+            set
+            {
+                _productionsDateStringHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string ExpiryDateStringHelper
+        {
+            get { return _expiryDateStringHelper; }
+            set
+            {
+                _expiryDateStringHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string FirstPalletDepalletizingStringHelper
+        {
+            get { return _firstPalletDepalletizingStringHelper; }
+            set
+            {
+                _firstPalletDepalletizingStringHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string LastPalletDepalletizingStringHelper
+        {
+            get { return _lastPalletDepalletizingStringHelper; }
+            set
+            {
+                _lastPalletDepalletizingStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
         public DateTime FirstPalletDepalletizing
         {
             get => _firstPalletDepalletizing;
@@ -188,13 +225,35 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ProcessOrder_No
+        public TimeSpan Time
         {
-            get => _processOrderNo;
+            get => _time;
             set
             {
-                if (value == _processOrderNo) return;
-                _processOrderNo = value;
+                if (value.Equals(_time)) return;
+                _time = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Production_Date
+        {
+            get => _productionDate;
+            set
+            {
+                if (value.Equals(_productionDate)) return;
+                _productionDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Expiry_Date
+        {
+            get => _expiryDate;
+            set
+            {
+                if (value.Equals(_expiryDate)) return;
+                _expiryDate = value;
                 OnPropertyChanged();
             }
         }
