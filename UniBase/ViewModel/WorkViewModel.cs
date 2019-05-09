@@ -16,9 +16,6 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-        
-
-
         public RelayCommand<object> SortFrontpageCommand { get; set; }
 
         public RelayCommand RefreshFrontpageTable { get; set; }
@@ -125,7 +122,11 @@ namespace UniBase.ViewModel
             SaveTUTable = new RelayCommand(Column_2.SaveTUs);
 
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
+
+            ControlledClickCommand = new RelayCommand<object>(Column_2.ControlledClick);
         }
+
+        public RelayCommand<object> ControlledClickCommand { get; set; }
 
         private void TempMethod2()
         {
