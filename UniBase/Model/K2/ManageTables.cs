@@ -788,8 +788,8 @@ namespace UniBase.Model.K2
                 else
                 {
                     weekNumber = (dayOfYear / 7) + 1;
-                }
-            }
+                }            }
+
 
             return weekNumber;
         }

@@ -12,11 +12,11 @@ using UniBase.Model.K2;
 
 namespace UniBase.Model
 {
-    class OutOfBoundColorChange
+    public class OutOfBoundColorChange
     {
-        private Brush colorBrush;
+        private SolidColorBrush colorBrush;
 
-        public Brush ChangeListViewColor(double textValue, double minValue, double maxValue)
+        public SolidColorBrush ChangeListViewColor(double textValue, double minValue, double maxValue)
         {
             if (textValue < minValue || textValue > maxValue)
             {

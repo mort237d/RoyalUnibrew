@@ -54,8 +54,6 @@ namespace UniBase.ViewModel
         public RelayCommand DeleteUserCommand { get; set; }
 
         public ManageTables Column_2 { get; set; }
-        public Colors PredefinedColors { get; set; }
-        public ManageTables Column_2 { get; set; }
         public PredefinedColors PredefinedColors { get; set; }
         public RelayCommand<object> ControlledClickCommand { get; set; }
         public RelayCommand ControlledClickCommand2 { get; set; }
@@ -65,8 +63,6 @@ namespace UniBase.ViewModel
         
         public TrendAdminstrator TrendAdminstrator { get; set; }
         public XamlBindings XamlBindings { get; set; }
-
-        public OutOfBoundColorChange OutOfBoundColorChange { get; set; }
 
         public ManageUser ManageUser { get; set; }
         
