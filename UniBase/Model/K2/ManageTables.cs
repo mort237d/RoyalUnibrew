@@ -383,6 +383,7 @@ namespace UniBase.Model.K2
         }
 
         #region ButtonMethods
+        private Frontpages _selectedFrontpage;
 
         #region FrontPageMethods
 
@@ -414,7 +415,6 @@ namespace UniBase.Model.K2
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
-        private Frontpages _selectedFrontpage;
         public void DeleteFrontpage(object id)
         {
             if (_selectedFrontpage != null)
@@ -561,6 +561,7 @@ namespace UniBase.Model.K2
             message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
         }
 
+        #endregion
         #endregion
         /// <summary>
         /// Rækkefølge på properties i klasser er vigtige!
@@ -718,7 +719,6 @@ namespace UniBase.Model.K2
 
             return weekNumber;
         }
-        #endregion
         
         private void GenerateHeaderLists()
         {

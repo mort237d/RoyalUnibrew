@@ -50,8 +50,8 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshLastTenTUTable { get; set; }
         public RelayCommand SaveTUTable { get; set; }
 
-        public Model.K2.ManageTables Column_2 { get; set; }
-        public Colors PredefinedColors { get; set; }
+        public ManageTables Column_2 { get; set; }
+        public PredefinedColors PredefinedColors { get; set; }
 
         public SortAndFilter SortAndFilter { get; set; }
         
@@ -60,7 +60,7 @@ namespace UniBase.ViewModel
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
-            PredefinedColors = new Colors();
+            PredefinedColors = new PredefinedColors();
             SortAndFilter = new SortAndFilter();
 
             TrendAdminstrator = new TrendAdminstrator();
