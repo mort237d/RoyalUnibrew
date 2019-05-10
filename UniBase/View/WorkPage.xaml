@@ -402,23 +402,24 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="994" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlScheduleProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
-                                                <Line/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.ControlSchedule_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.ControlSchedule_ID}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.ProcessOrder_No}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.TimeStringHelper}" PlaceholderText="{Binding PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Weight, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.Weight}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.KegTest, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.KegTest}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.LudKoncentration, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.LudKoncentration}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.MipMA, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.MipMA}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.Signature}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Note, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.Note, Mode=TwoWay}" Height="42" FontSize="10"/>
+                                <Line/>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"/>
                                 </Button>

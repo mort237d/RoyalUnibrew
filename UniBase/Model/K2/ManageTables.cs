@@ -32,8 +32,13 @@ namespace UniBase.Model.K2
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
         private ObservableCollection<TUs> _tuList;
 
-        private Frontpages _newFrontpagesToAdd = new Frontpages();
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
+        private ControlSchedules _newControlSchedules = new ControlSchedules();
+        private Frontpages _newFrontpagesToAdd = new Frontpages();
+        private Productions _newProductions = new Productions();
+        private ShiftRegistrations _newShiftRegistrations = new ShiftRegistrations();
+        private TUs _newTUs = new TUs();
+
         private ObservableCollection<string> _kegSizes = new ObservableCollection<string>();
 
 
@@ -70,7 +75,48 @@ namespace UniBase.Model.K2
             }
         }
 
-        List<int> temp = new List<int>();
+        public ControlSchedules NewControlSchedules
+        {
+            get { return _newControlSchedules; }
+            set
+            {
+                _newControlSchedules = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public Productions NewProductions
+        {
+            get { return _newProductions; }
+            set
+            {
+                _newProductions = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ShiftRegistrations NewShiftRegistrations
+        {
+            get { return _newShiftRegistrations; }
+            set
+            {
+                _newShiftRegistrations = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TUs NewTUs
+        {
+            get { return _newTUs; }
+            set
+            {
+                _newTUs = value; 
+                OnPropertyChanged();
+            }
+        }
+
+
+
         public string ProcessOrderNoTextBoxOutput
         {
             get { return _processOrderNoTextBoxOutput; }
@@ -775,6 +821,33 @@ namespace UniBase.Model.K2
             }
         }
 
+        public void AddNewControlSchedule()
+        {
+            CheckIfInputsAreValid(ref _newControlSchedules);
+
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            NewControlSchedules.ControlSchedule_ID = ControlSchedulesList.Last().ControlSchedule_ID + 1;
+
+            if (ModelGenerics.CreateByObject(NewControlSchedules))
+            {
+                ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+
+                ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                NewControlRegistrationsToAdd = new ControlRegistrations();
+                NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
+                NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
+                NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
+                NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
+                NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
+
+            }
+            else
+            {
+                //error
+            }
+        }
+
         public int FindWeekNumber(Frontpages frontpage)
         {
             int dayOfYear = frontpage.Date.DayOfYear;
@@ -830,6 +903,8 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+
+        
 
         #endregion
 
