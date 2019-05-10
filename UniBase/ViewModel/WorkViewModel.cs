@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight.Command;
 using UniBase.Annotations;
 using UniBase.Model;
 using UniBase.Model.K2;
-using UniBase.Model.Login;
 using UniBase.View;
 
 namespace UniBase.ViewModel
@@ -123,9 +118,9 @@ namespace UniBase.ViewModel
             SaveControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.SaveControlRegistrations);
             AddControlRegistrationsTable = new RelayCommand(Column_2.ControlRegistrationMethod.AddNewControlRegistrations);
 
-            RefreshControlScheduleTable = new RelayCommand(Column_2.RefreshControlSchedules);
-            RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.RefreshLastTenControlSchedules);
-            SaveControlScheduleTable = new RelayCommand(Column_2.SaveControlSchedules);
+            RefreshControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshControlSchedules);
+            RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTenControlSchedules);
+            SaveControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.SaveControlSchedules);
 
             RefreshProductionTable = new RelayCommand(Column_2.RefreshProductions);
             RefreshLastTenProductionTable = new RelayCommand(Column_2.RefreshProductions);

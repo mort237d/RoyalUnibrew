@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 using UniBase.Model.K2.ButtonMethods;
 
@@ -46,6 +41,7 @@ namespace UniBase.Model.K2
         private Message message = new Message();
         private FrontpageButtonMethod _frontpageButtonMethod = new FrontpageButtonMethod();
         private ControlRegistrationMethod _controlRegistrationMethod = new ControlRegistrationMethod();
+        private ControlScheduleMethod _controlScheduleMethod = new ControlScheduleMethod();
 
         private string _processOrderNoTextBoxOutput;
         private string _dateTextBoxOutput;
@@ -130,6 +126,12 @@ namespace UniBase.Model.K2
         {
             get { return _controlRegistrationMethod; }
             set { _controlRegistrationMethod = value; }
+        }
+
+        public ControlScheduleMethod ControlScheduleMethod
+        {
+            get { return _controlScheduleMethod; }
+            set { _controlScheduleMethod = value; }
         }
 
         public string ProcessOrderNoTextBoxOutput
@@ -431,105 +433,6 @@ namespace UniBase.Model.K2
                 NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
             }
         }
-
-        #region ButtonMethods
-        
-
-        #region ControlScheduleMethods
-
-        public void RefreshControlSchedules()
-        {
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
-        }
-        public void RefreshLastTenControlSchedules()
-        {
-            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
-        }
-        public void SaveControlSchedules()
-        {
-            Parallel.ForEach(_controlSchedulesList, controlSchedules =>
-            {
-                ModelGenerics.UpdateByObjectAndId(controlSchedules.ControlSchedule_ID, controlSchedules);
-            });
-            message.ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
-        }
-
-        #endregion
-
-        #region ProductionMethods
-
-        public void RefreshProductions()
-        {
-            ProductionsList = ModelGenerics.GetAll(new Productions());
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
-        }
-        public void RefreshLastTenProductions()
-        {
-            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
-        }
-        public void SaveProductions()
-        {
-            Parallel.ForEach(_productionsList, productions =>
-            {
-                ModelGenerics.UpdateByObjectAndId(productions.Production_ID, productions);
-            });
-            message.ShowToastNotification("Gemt", "Produktions-tabellen er gemt");
-        }
-
-        #endregion
-
-        #region ShiftRegistrationMethods
-
-        public void RefreshShiftRegistrations()
-        {
-            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
-        }
-        public void RefreshLastTenShiftRegistrations()
-        {
-            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
-        }
-        public void SaveShiftRegistrations()
-        {
-            Parallel.ForEach(_shiftRegistrationsList, shiftRegistrations =>
-            {
-                ModelGenerics.UpdateByObjectAndId(shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
-            });
-            message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
-        }
-
-        #endregion
-
-        #region TUMethods
-
-        public void RefreshTUs()
-        {
-            TuList = ModelGenerics.GetAll(new TUs());
-            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
-        }
-        public void RefreshLastTenTUs()
-        {
-            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
-        }
-        public void SaveTUs()
-        {
-            Parallel.ForEach(_tuList, tus =>
-            {
-                ModelGenerics.UpdateByObjectAndId(tus.TU_ID, tus);
-            });
-            message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
-        }
-
-        #endregion
-        #endregion
-
-            
-            
         
         private void GenerateHeaderLists()
         {
@@ -567,9 +470,6 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-
-        
-
         #endregion
 
         #region INotifyPropertiesChanged
