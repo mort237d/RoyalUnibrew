@@ -53,6 +53,9 @@ namespace UniBase.ViewModel
         public RelayCommand<object> ControlledClickCommand { get; set; }
         public RelayCommand ControlledClickCommand2 { get; set; }
 
+        public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
+
+
         public Model.K2.ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
 
@@ -141,9 +144,7 @@ namespace UniBase.ViewModel
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlledClickAdd);
         }
 
-        public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
-
-        public RelayCommand<object> ControlledClickCommand { get; set; }
+        
 
         private void TempMethod2()
         {
