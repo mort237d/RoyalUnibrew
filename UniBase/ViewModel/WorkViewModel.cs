@@ -113,16 +113,16 @@ namespace UniBase.ViewModel
 
             #endregion
 
-            RefreshFrontpageTable = new RelayCommand(Column_2.RefreshFrontpages);
-            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.RefreshLastTenFrontpages);
-            SaveFrontpageTable = new RelayCommand(Column_2.SaveFrontpages);
-            AddFrontpageTable = new RelayCommand(Column_2.AddNewFrontpages);
-            DeleteFrontpageTable = new RelayCommand<object>(Column_2.DeleteFrontpage);
+            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.RefreshFrontpages);
+            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.RefreshLastTenFrontpages);
+            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.SaveFrontpages);
+            AddFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.AddNewFrontpages);
+            DeleteFrontpageTable = new RelayCommand<object>(Column_2.FrontpageButtonMethod.DeleteFrontpage);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.RefreshLastTenControlRegistrations);
             SaveControlRegistrationTable = new RelayCommand(Column_2.SaveControlRegistrations);
-            AddControlRegistrationsTable = new RelayCommand(Column_2.AddNewControlRegistrations);
+            //AddControlRegistrationsTable = new RelayCommand(Column_2.AddNewControlRegistrations);
 
             RefreshControlScheduleTable = new RelayCommand(Column_2.RefreshControlSchedules);
             RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.RefreshLastTenControlSchedules);
