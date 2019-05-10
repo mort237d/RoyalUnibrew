@@ -9,6 +9,7 @@
     xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:interop="using:Windows.UI.Xaml.Interop"
     xmlns:k2="using:UniBase.Model.K2"
+    xmlns:model="using:UniBase.Model"
 
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -791,11 +792,11 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GridView ItemContainerStyle="{StaticResource CustomGridViewItemContainerStyle}" Style="{StaticResource CustomGridViewStyle}" ItemsSource="{Binding }" SelectedItem="{Binding}" Margin="10,10,10,0">
+                    <GridView ItemsSource="{Binding ManageUser.Users}" SelectedItem="{Binding ManageUser.SelectedUser}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
-                            <DataTemplate x:DataType="k2:Users">
+                            <DataTemplate x:DataType="model:ManageUser">
                                 <StackPanel Orientation="Horizontal" Margin="10">
-                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
+                                    <Image Source="{Binding ImageTb}" Width="100" Height="100"/>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name}"/>
                                         <StackPanel Orientation="Horizontal">
@@ -818,6 +819,21 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
+                    <Rectangle Fill="#16503F" Grid.Row="1" Margin="-11,-10,-11,0"/>
+                    <Grid Grid.Row="1" Margin="10,0,10,0">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <TextBox PlaceholderText="Name"></TextBox>
+                            <TextBox PlaceholderText="Email"></TextBox>
+                            <TextBox PlaceholderText="TelephoneNumber"></TextBox>
+                            <PasswordBox PlaceholderText="Password"></PasswordBox>
+                            <PasswordBox PlaceholderText="Confirm password"></PasswordBox>
+                            <Button HorizontalAlignment="Center" Content="Tilføj bruger" Command="{Binding AddUserCommand}"/>
+                    
+                            <Button HorizontalAlignment="Center" Content="Slet bruger" Command="{Binding DeleteUserCommand}" Margin="0,5,0,0"/>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Right" Content="Ændre bruger" Command="{Binding}"/>
+                    </Grid>
+
                 </Grid>
 
             </PivotItem>

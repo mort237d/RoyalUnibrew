@@ -47,7 +47,10 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshLastTenTUTable { get; set; }
         public RelayCommand SaveTUTable { get; set; }
 
-        public Model.K2.ManageTables Column_2 { get; set; }
+        public RelayCommand AddUserCommand { get; set; }
+        public RelayCommand DeleteUserCommand { get; set; }
+
+        public ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
 
         public SortAndFilter SortAndFilter { get; set; }
@@ -55,13 +58,15 @@ namespace UniBase.ViewModel
         public TrendAdminstrator TrendAdminstrator { get; set; } 
 
         public OutOfBoundColorChange OutOfBoundColorChange { get; set; }
+
+        public ManageUser ManageUser { get; set; }
         
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
             PredefinedColors = new Colors();
             SortAndFilter = new SortAndFilter();
-
+            ManageUser = new ManageUser();
             TrendAdminstrator = new TrendAdminstrator();
 
             #region Update(SavedForLater)
@@ -124,6 +129,9 @@ namespace UniBase.ViewModel
             RefreshTUTable = new RelayCommand(Column_2.RefreshTUs);
             RefreshLastTenTUTable = new RelayCommand(Column_2.RefreshLastTenTUs);
             SaveTUTable = new RelayCommand(Column_2.SaveTUs);
+
+            AddUserCommand = new RelayCommand(ManageUser.AddUser);
+            DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
         }

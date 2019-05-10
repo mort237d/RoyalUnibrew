@@ -20,6 +20,8 @@ namespace UniBase.Model.K2
         private string _telephoneNo;
         private string _email;
 
+        ManageUser manageUser = ManageUser.Instance;
+
         public Users()
         {
             

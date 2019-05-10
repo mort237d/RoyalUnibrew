@@ -15,12 +15,10 @@ namespace UniBase.Model
 
         public readonly string StandardImage = "UserImages/Profile-icon.png";
 
-        private string _nameTb, _gradeTb, _educationTb, _emailTb, _telephoneNumberTb, _userNameTb, _passwordTb, _confirmPasswordTb;
+        private string _nameTb, _emailTb, _telephoneNumberTb, _passwordTb, _confirmPasswordTb;
         private string _imageTb = "";
 
         private string _visible;
-
-        private bool _showAddUserPopUp;
 
         private ObservableCollection<User> _users;
         private User _selectedUser, _currentUser;
@@ -35,26 +33,6 @@ namespace UniBase.Model
             set
             {
                 _nameTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string GradeTb
-        {
-            get => _gradeTb;
-            set
-            {
-                _gradeTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string EducationTb
-        {
-            get => _educationTb;
-            set
-            {
-                _educationTb = value;
                 OnPropertyChanged();
             }
         }
@@ -75,16 +53,6 @@ namespace UniBase.Model
             set
             {
                 _telephoneNumberTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string UserNameTb
-        {
-            get => _userNameTb;
-            set
-            {
-                _userNameTb = value;
                 OnPropertyChanged();
             }
         }
@@ -159,22 +127,13 @@ namespace UniBase.Model
             }
         }
 
-        public bool ShowAddUserPopUp
-        {
-            get { return _showAddUserPopUp; }
-            set
-            {
-                _showAddUserPopUp = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
-        private ManageUser()
+        public ManageUser()
         {
             Users = new ObservableCollection<User>();
             Users.Add(new User("1", "1", "1", "1", "1"));
+            Users.Add(new User("HEJ", "@hej.dk", "12340", "1", "1"));
 
             _message = new Message(this);
         }
@@ -201,11 +160,6 @@ namespace UniBase.Model
 
         #region ButtonMethods
 
-        public void ShowAddUserPopUpMethod()
-        {
-            ShowAddUserPopUp = true;
-        }
-
 //        public async void BrowseImageButton()
 //        {
 //            ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
@@ -214,9 +168,9 @@ namespace UniBase.Model
 
         public async void AddUser()
         {
-            if ((NameTb ?? GradeTb ?? EducationTb ?? EmailTb ?? TelephoneNumberTb ?? UserNameTb ?? PasswordTb) != null)
+            if ((NameTb ?? EmailTb ?? TelephoneNumberTb ?? PasswordTb) != null)
             {
-                if (EmailTb.Contains("@edu.easj.dk") || EmailTb.Contains("@easj.dk"))
+                if (EmailTb.Contains(".dk") || EmailTb.Contains(".com"))
                 {
                     foreach (var user in Users)
                     {
@@ -234,15 +188,13 @@ namespace UniBase.Model
                             if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage));
                             else Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
 
-                            ShowAddUserPopUp = false;
-
-                            NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
+                            NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
                         }
-                        else await _message.Error("Uoverensstemmelser", "Password stemmer ikke overens med confirm password");
+                        else await _message.Error("Uoverensstemmelser", "kodeord stemmer ikke overens med bekræft kodeord");
                     }
                     else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
                 }
-                else await _message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
+                else await _message.Error("Forkert email", "Du skal bruge en \".dk\" eller en \".com\" mail.");
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }
