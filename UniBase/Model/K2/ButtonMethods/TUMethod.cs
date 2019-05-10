@@ -2,7 +2,7 @@
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    class TUMethod
+    public class TUMethod
     {
         private Message message = new Message();
 

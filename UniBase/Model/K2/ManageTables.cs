@@ -42,6 +42,9 @@ namespace UniBase.Model.K2
         private FrontpageButtonMethod _frontpageButtonMethod = new FrontpageButtonMethod();
         private ControlRegistrationMethod _controlRegistrationMethod = new ControlRegistrationMethod();
         private ControlScheduleMethod _controlScheduleMethod = new ControlScheduleMethod();
+        private ProductionMethod _productionMethod = new ProductionMethod();
+        private ShiftRegistrationMethod _shiftRegistrationMethod = new ShiftRegistrationMethod();
+        private TUMethod _tuMethod = new TUMethod();
 
         private string _processOrderNoTextBoxOutput;
         private string _dateTextBoxOutput;
@@ -132,6 +135,24 @@ namespace UniBase.Model.K2
         {
             get { return _controlScheduleMethod; }
             set { _controlScheduleMethod = value; }
+        }
+
+        public ProductionMethod ProductionMethod
+        {
+            get { return _productionMethod; }
+            set { _productionMethod = value; }
+        }
+
+        public ShiftRegistrationMethod ShiftRegistrationMethod
+        {
+            get { return _shiftRegistrationMethod; }
+            set { _shiftRegistrationMethod = value; }
+        }
+
+        public TUMethod TuMethod
+        {
+            get { return _tuMethod; }
+            set { _tuMethod = value; }
         }
 
         public string ProcessOrderNoTextBoxOutput

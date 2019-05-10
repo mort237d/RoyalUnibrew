@@ -2,7 +2,7 @@
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    class ProductionMethod
+    public class ProductionMethod
     {
         private Message message = new Message();
         

@@ -122,17 +122,17 @@ namespace UniBase.ViewModel
             RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTenControlSchedules);
             SaveControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.SaveControlSchedules);
 
-            RefreshProductionTable = new RelayCommand(Column_2.RefreshProductions);
-            RefreshLastTenProductionTable = new RelayCommand(Column_2.RefreshProductions);
-            SaveProductionTable = new RelayCommand(Column_2.SaveProductions);
+            RefreshProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshProductions);
+            RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshProductions);
+            SaveProductionTable = new RelayCommand(Column_2.ProductionMethod.SaveProductions);
 
-            RefreshShiftRegistrationTable = new RelayCommand(Column_2.RefreshShiftRegistrations);
-            RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.RefreshLastTenShiftRegistrations);
-            SaveShiftRegistrationTable = new RelayCommand(Column_2.SaveShiftRegistrations);
+            RefreshShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshShiftRegistrations);
+            RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshLastTenShiftRegistrations);
+            SaveShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.SaveShiftRegistrations);
 
-            RefreshTUTable = new RelayCommand(Column_2.RefreshTUs);
-            RefreshLastTenTUTable = new RelayCommand(Column_2.RefreshLastTenTUs);
-            SaveTUTable = new RelayCommand(Column_2.SaveTUs);
+            RefreshTUTable = new RelayCommand(Column_2.TuMethod.RefreshTUs);
+            RefreshLastTenTUTable = new RelayCommand(Column_2.TuMethod.RefreshLastTenTUs);
+            SaveTUTable = new RelayCommand(Column_2.TuMethod.SaveTUs);
 
             AddUserCommand = new RelayCommand(ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);

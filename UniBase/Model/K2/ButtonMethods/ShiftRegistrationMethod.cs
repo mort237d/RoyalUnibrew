@@ -2,7 +2,7 @@
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    class ShiftRegistrationMethod
+    public class ShiftRegistrationMethod
     {
         private Message message = new Message();
 
