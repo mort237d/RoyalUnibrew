@@ -33,8 +33,13 @@ namespace UniBase.Model.K2
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
         private ObservableCollection<TUs> _tuList;
 
-        private Frontpages _newFrontpagesToAdd = new Frontpages();
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
+        private ControlSchedules _newControlSchedules = new ControlSchedules();
+        private Frontpages _newFrontpagesToAdd = new Frontpages();
+        private Productions _newProductions = new Productions();
+        private ShiftRegistrations _newShiftRegistrations = new ShiftRegistrations();
+        private TUs _newTUs = new TUs();
+
         private ObservableCollection<string> _kegSizes = new ObservableCollection<string>();
 
 
@@ -72,6 +77,48 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+
+        public ControlSchedules NewControlSchedules
+        {
+            get { return _newControlSchedules; }
+            set
+            {
+                _newControlSchedules = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public Productions NewProductions
+        {
+            get { return _newProductions; }
+            set
+            {
+                _newProductions = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ShiftRegistrations NewShiftRegistrations
+        {
+            get { return _newShiftRegistrations; }
+            set
+            {
+                _newShiftRegistrations = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TUs NewTUs
+        {
+            get { return _newTUs; }
+            set
+            {
+                _newTUs = value; 
+                OnPropertyChanged();
+            }
+        }
+
+
 
         public FrontpageButtonMethod FrontpageButtonMethod
         {
@@ -481,6 +528,9 @@ namespace UniBase.Model.K2
         #endregion
         #endregion
 
+            
+            
+        
         private void GenerateHeaderLists()
         {
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "ProcessOrdre Nr", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
@@ -517,6 +567,8 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+
+        
 
         #endregion
 
