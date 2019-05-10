@@ -382,6 +382,27 @@ namespace UniBase.Model.K2
             }
         }
 
+        private int _selectedFrontpageId;
+        public int SelectedFrontpageId
+        {
+            get { return _selectedFrontpageId; }
+            set
+            {
+                _selectedFrontpageId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void SelectParentItemFrontpage(object obj)
+        {
+            int id = (int)obj;
+
+            Frontpages del = _frontpagesList.First(d => d.ProcessOrder_No == id);
+            int ix = _frontpagesList.IndexOf(del);
+
+            SelectedFrontpageId = ix;
+        }
+
         #region ButtonMethods
 
         #region FrontPageMethods
@@ -417,8 +438,9 @@ namespace UniBase.Model.K2
         private Frontpages _selectedFrontpage;
         public void DeleteFrontpage(object id)
         {
-            if (string.IsNullOrEmpty(_selectedFrontpage.ProcessOrder_No.ToString()))
+            if (_selectedFrontpage != null)
             {
+                //TODO Make deletion method
                 Debug.WriteLine(_selectedFrontpage.ProcessOrder_No);
             }
         }
@@ -689,9 +711,6 @@ namespace UniBase.Model.K2
             }
         }
     
-
-
-
         public void AddNewFrontpages()
         {
             CheckIfInputsAreValid(ref _newFrontpagesToAdd);
@@ -752,49 +771,6 @@ namespace UniBase.Model.K2
             }
         }
 
-        private DateTime CheckDateTime(string stringToCheck)
-        {
-            string[] splitDateTimeString = new string[3];
-            DateTime result = DateTime.Now;
-
-            if (stringToCheck != null)
-            {
-                splitDateTimeString = stringToCheck.Split('/');
-
-                //Check if day is 2 long, month is 2 and year is 4 ex. 02 / 02 / 2018 (semi check order)
-                if (splitDateTimeString[0].Length == 2 && splitDateTimeString[1].Length == 2 && splitDateTimeString[2].Length == 4)
-                {
-                    //Check if they are numbers
-                    if (int.TryParse(splitDateTimeString[0], out int year) && int.TryParse(splitDateTimeString[0], out int month) && int.TryParse(splitDateTimeString[0], out int day))
-                    {
-                        //Check if they are valid numbers
-                        if (year > 0 && month > 0 && month < 13 && day < 32 && day > 0)
-                        {
-                            return new DateTime(year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, 0);
-                        }
-                        else
-                        {
-                            //Sumthing wong boss
-                        }
-                    }
-                    else
-                    {
-                        //wrong format you filty filty peasant
-                    }
-                }
-                else
-                {
-                    //sumtin wong
-                }
-            }
-            else
-            {
-                //Wrong again lad
-            }
-
-            return result;
-        }
-
         private int FindWeekNumber(Frontpages frontpage)
         {
             int dayOfYear = frontpage.Date.DayOfYear;
@@ -851,8 +827,6 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-
-        
 
         #endregion
 

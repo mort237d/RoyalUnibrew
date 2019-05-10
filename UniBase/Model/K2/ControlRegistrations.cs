@@ -98,11 +98,11 @@ namespace UniBase.Model.K2
 
                 if (ControlAlcoholSpearDispenser)
                 {
-                    ControlRegistrationAlcoholSpearDispenserControlled = "Kontrolleret";
+                    ControlRegistrationAlcoholSpearDispenserControlled = "Images/CheckedCheckbox.png";
                 }
                 else
                 {
-                    ControlRegistrationAlcoholSpearDispenserControlled = "Ikke Kontrolleret";
+                    ControlRegistrationAlcoholSpearDispenserControlled = "Images/UnCheckedCheckbox.png";
                 }
             }
         }

@@ -209,11 +209,13 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="View\Images\AddButton.png" />
+    <Content Include="View\Images\CheckedCheckbox.png" />
     <Content Include="View\Images\DeleteButton.png" />
     <Content Include="View\Images\GetAll.png" />
     <Content Include="View\Images\GetLastTen.png" />
     <Content Include="View\Images\SaveButton.png" />
     <Content Include="View\Images\RefreshButton.png" />
+    <Content Include="View\Images\UnCheckedCheckbox.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -232,6 +234,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmLightLibs">
       <Version>5.3.0</Version>
