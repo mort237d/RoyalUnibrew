@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace UniBase.View
 {
-    public class Colors
+    public class PredefinedColors
     {
-        public Colors()
+        public PredefinedColors()
         {
             RoyalUniBrewOriginalGreen = "#16503F";
             RoyalUniBrewLightGreen = "#1A634D";

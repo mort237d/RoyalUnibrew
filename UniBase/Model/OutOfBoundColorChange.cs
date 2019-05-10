@@ -16,8 +16,6 @@ namespace UniBase.Model
     {
         private Brush colorBrush;
 
-        
-
         public Brush ChangeListViewColor(double textValue, double minValue, double maxValue)
         {
             if (textValue < minValue || textValue > maxValue)

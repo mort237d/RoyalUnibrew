@@ -16,8 +16,9 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-        
 
+        public string PlaceHolderDate { get; set; } = "2000/01/01";
+        public string PlaceHolderTimeSpan { get; set; } = "00:00:00";
 
         public RelayCommand<object> SortFrontpageCommand { get; set; }
 
@@ -30,6 +31,8 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshControlRegistrationTable { get; set; }
         public RelayCommand RefreshLastTenFrontpageTable { get; set; }
         public RelayCommand SaveControlRegistrationTable { get; set; }
+        public RelayCommand AddControlRegistrationsTable { get; set; }
+
 
         public RelayCommand RefreshControlScheduleTable { get; set; }
         public RelayCommand RefreshLastTenControlScheduleTable { get; set; }
@@ -52,10 +55,16 @@ namespace UniBase.ViewModel
 
         public ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
+        public ManageTables Column_2 { get; set; }
+        public PredefinedColors PredefinedColors { get; set; }
+        public RelayCommand<object> ControlledClickCommand { get; set; }
+        public RelayCommand ControlledClickCommand2 { get; set; }
 
+        public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
         public SortAndFilter SortAndFilter { get; set; }
         
-        public TrendAdminstrator TrendAdminstrator { get; set; } 
+        public TrendAdminstrator TrendAdminstrator { get; set; }
+        public XamlBindings XamlBindings { get; set; }
 
         public OutOfBoundColorChange OutOfBoundColorChange { get; set; }
 
@@ -64,10 +73,11 @@ namespace UniBase.ViewModel
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
-            PredefinedColors = new Colors();
+            PredefinedColors = new PredefinedColors();
             SortAndFilter = new SortAndFilter();
             ManageUser = new ManageUser();
             TrendAdminstrator = new TrendAdminstrator();
+            XamlBindings = new XamlBindings();
 
             #region Update(SavedForLater)
 
@@ -113,6 +123,7 @@ namespace UniBase.ViewModel
             RefreshControlRegistrationTable = new RelayCommand(Column_2.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.RefreshLastTenControlRegistrations);
             SaveControlRegistrationTable = new RelayCommand(Column_2.SaveControlRegistrations);
+            AddControlRegistrationsTable = new RelayCommand(Column_2.AddNewControlRegistrations);
 
             RefreshControlScheduleTable = new RelayCommand(Column_2.RefreshControlSchedules);
             RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.RefreshLastTenControlSchedules);
@@ -134,7 +145,14 @@ namespace UniBase.ViewModel
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
+
+            ControlledClickCommand = new RelayCommand<object>(Column_2.ControlledClick);
+
+            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.SelectParentItemFrontpage);
+            ControlledClickCommand2 = new RelayCommand(Column_2.ControlledClickAdd);
         }
+
+        
 
         private void TempMethod2()
         {

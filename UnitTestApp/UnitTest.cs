@@ -1,17 +1,23 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting.AppContainer;
+using UniBase.Model;
+using UniBase.Model.K2;
 
 namespace UnitTestApp
 {
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
+        
+        [UITestMethod]
         public void TestMethod1()
         {
-            //Assert.AreEqual(ModelGenerics.GetById(new Product(), 666).ProductName, "Test");
-            //MUH
+            ManageTables mt = new ManageTables();
+            Frontpages frontpages = new Frontpages(0, new DateTime(2019, 1, 25), 0, 0, "hej", 1);
+            int weekNumber = mt.FindWeekNumber(frontpages);
+            Assert.AreEqual(4, weekNumber);
             
-            Assert.AreEqual("Test", "Test");
         }
     }
 }

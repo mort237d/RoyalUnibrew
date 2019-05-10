@@ -33,6 +33,8 @@ namespace UniBase.Model.K2
         private ObservableCollection<TUs> _tuList;
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
+        private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
+        private ObservableCollection<string> _kegSizes = new ObservableCollection<string>();
 
 
         private Message message = new Message();
@@ -58,6 +60,16 @@ namespace UniBase.Model.K2
             }
         }
 
+        public ControlRegistrations NewControlRegistrationsToAdd
+        {
+            get => _newControlRegistrationsToAdd;
+            set
+            {
+                _newControlRegistrationsToAdd = value;
+                OnPropertyChanged();
+            }
+        }
+
         List<int> temp = new List<int>();
         public string ProcessOrderNoTextBoxOutput
         {
@@ -79,47 +91,8 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
-
-                #region Test
-
-                //if (string.IsNullOrEmpty(DateTextBoxOutput) && string.IsNullOrEmpty(FinishedProductNoTextBoxOutput) && string.IsNullOrEmpty(ColumnTextBoxOutput) && string.IsNullOrEmpty(NoteTextBoxOutput) && string.IsNullOrEmpty(WeekNoTextBoxOutput))
-                //{
-                //    FrontpagesList.Clear();
-
-                //    foreach (var f in CompleteFrontpagesList)
-                //    {
-                //        var v = f.ProcessOrder_No.ToString();
-                //        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
-                //        {
-                //            FrontpagesList.Add(f);
-                //        }
-                //    }
-
-                //    if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                //    {
-                //        FrontpagesList = GetLastTen(new Frontpages());
-                //    }
-                //}
-
-                //else
-                //{
-                //    var temp = new ObservableCollection<Frontpages>();
-                //    foreach (var f in FrontpagesList)
-                //    {
-                //        var v = f.ProcessOrder_No.ToString();
-                //        if (v.Contains(_processOrderNoTextBoxOutput.ToString()))
-                //        {
-                //            temp.Add(f);
-                //        }
-                //    }
-
-                //    FrontpagesList = temp;
-                //}
-
-                #endregion
-                
             }
         }
 
@@ -143,7 +116,7 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_dateTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -168,7 +141,7 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_finishedProductNoTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -193,7 +166,7 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_columnTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -218,7 +191,7 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_noteTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -243,8 +216,28 @@ namespace UniBase.Model.K2
 
                 if (string.IsNullOrEmpty(_weekNoTextBoxOutput))
                 {
-                    FrontpagesList = GetLastTen(new Frontpages());
+                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
+            }
+        }
+
+        public Frontpages SelectedFrontpage
+        {
+            get { return _selectedFrontpage; }
+            set
+            {
+                _selectedFrontpage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<string> KegSizes
+        {
+            get { return _kegSizes; }
+            set
+            {
+                _kegSizes = value;
+                OnPropertyChanged();
             }
         }
 
@@ -359,7 +352,9 @@ namespace UniBase.Model.K2
             CompleteTuList = ModelGenerics.GetAll(new TUs());
 
 
-            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            RefreshLastTenFrontpages();
+
+
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
             ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
@@ -369,25 +364,67 @@ namespace UniBase.Model.K2
 
             if (FrontpagesList.Count > 0)
             {
+            NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
+            NewFrontpagesToAdd.DateTimeStringHelper = NewFrontpagesToAdd.Date.ToString().Remove(10);
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
                 
             }
+
+            if (ControlRegistrationsList.Count > 0)
+            {
+
+                NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
+                NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
+                NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
+                NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
+                NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
+            }
+        }
+
+        private int _selectedFrontpageId;
+        public int SelectedFrontpageId
+        {
+            get { return _selectedFrontpageId; }
+            set
+            {
+                _selectedFrontpageId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void SelectParentItemFrontpage(object obj)
+        {
+            int id = (int)obj;
+
+            Frontpages del = _frontpagesList.First(d => d.ProcessOrder_No == id);
+            int ix = _frontpagesList.IndexOf(del);
+
+            SelectedFrontpageId = ix;
         }
 
         #region ButtonMethods
+        private Frontpages _selectedFrontpage;
 
         #region FrontPageMethods
 
         public void RefreshFrontpages()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            Parallel.ForEach(_frontpagesList, frontpage =>
+                {
+                    frontpage.DateTimeStringHelper = frontpage.Date.ToString();
+                });
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void RefreshLastTenFrontpages()
         {
             FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            foreach (var frontpage in FrontpagesList)
+            {
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString().Remove(10);
+            }
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveFrontpages()
@@ -400,11 +437,11 @@ namespace UniBase.Model.K2
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
-        private Frontpages _selectedFrontpage;
         public void DeleteFrontpage(object id)
         {
-            if (string.IsNullOrEmpty(_selectedFrontpage.ProcessOrder_No.ToString()))
+            if (_selectedFrontpage != null)
             {
+                //TODO Make deletion method
                 Debug.WriteLine(_selectedFrontpage.ProcessOrder_No);
             }
         }
@@ -430,6 +467,40 @@ namespace UniBase.Model.K2
                 ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
             });
             message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
+        }
+
+        public void ControlledClick(object id)
+        {
+            Debug.WriteLine(id.ToString());
+
+            foreach (var CR in ControlRegistrationsList)
+            {
+                if (CR.ProcessOrder_No == (int)id)
+                {
+                    if (CR.ControlAlcoholSpearDispenser)
+                    {
+                        CR.ControlAlcoholSpearDispenser = false;
+                        break;
+                    }
+                    else
+                    {
+                        CR.ControlAlcoholSpearDispenser = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void ControlledClickAdd()
+        {
+            if (NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
+            {
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
+            }
+            else
+            {
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
+            }
         }
 
         #endregion
@@ -525,13 +596,17 @@ namespace UniBase.Model.K2
         }
 
         #endregion
+        #endregion
         /// <summary>
         /// Rækkefølge på properties i klasser er vigtige!
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>
-        public void ha<T>(ref T type)
+        public void CheckIfInputsAreValid<T>(ref T type)
         {
+            List<string> datesandtimespans = new List<string>();
+            int listIndexCounter = 0;
+
             Type tModelType = type.GetType();
 
             PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
@@ -544,18 +619,30 @@ namespace UniBase.Model.K2
 
                 if (property.PropertyType == typeof(string))    
                 {
-                    if (proppi.ToString().Contains("DateTimeStringHelper"))
+                    if (prop.Name.Contains("StringHelper"))
                     {
-                        //CheckDateTime()
+                        if (proppi.ToString().Length >= 8)
+                        {
+                            datesandtimespans.Add(proppi.ToString());
+                        }
+                        else
+                        {
+                            //error
+                            Debug.WriteLine("Failed");
+                        }
                     }
-                    else if (proppi.ToString().ToLower() == "True".ToLower() ||
-                             proppi.ToString().ToLower() == "False".ToLower())
+                    else if (proppi == null)
                     {
+                        if (property.Name == "Note" || property.Name == "CommentsOnChangedDate")
+                        {
+                            prop.SetValue(type, " ", null);
+                        }
+                        else
+                        {
+                            //error
+                            Debug.WriteLine("Failed");
 
-                    }
-                    if (proppi == null)
-                    {
-                        prop.SetValue(type, " ", null);
+                        }
                     }
                 }
                 else if (property.PropertyType == typeof(int))
@@ -564,42 +651,71 @@ namespace UniBase.Model.K2
                     if (i == 0)
                     {
                         //error
+                        Debug.WriteLine("Failed");
+
                     }
                 }
-                else if (property.PropertyType == typeof(bool))
+                else if (property.PropertyType == typeof(double))
                 {
+                    double.TryParse(proppi.ToString(), out double i);
+                    if (i == 0)
+                    {
+                        //error
+                        Debug.WriteLine("Failed");
+
+                    }
+                }
+                else if (property.PropertyType == typeof(DateTime))
+                {
+                    if (!(datesandtimespans.Count <= listIndexCounter))
+                    {
+
+                        DateTime dt = DateTime.Now;
+                        var split = datesandtimespans[listIndexCounter].Split('/');
+                        var splitWithoutSpecialChars = split;
+                        for (int i = 0; i < split.Length; i++)
+                        {
+                            splitWithoutSpecialChars[i] = split[i].Trim('/');
+                        }
+
+                        if (splitWithoutSpecialChars[2].Length > 4)
+                        {
+                            splitWithoutSpecialChars[2] = splitWithoutSpecialChars[2].Remove(4);
+                        }
+
+                        try
+                        {
+                            prop.SetValue(type, new DateTime(int.Parse(splitWithoutSpecialChars[0]), int.Parse(splitWithoutSpecialChars[1]), int.Parse(splitWithoutSpecialChars[2]), dt.Hour, dt.Minute, 0), null);
+                        }
+                        catch 
+                        {
+                            //error
+                        }
+                        listIndexCounter++;
+                    }
+                }
+                else if (property.PropertyType == typeof(TimeSpan))
+                {
+                    if (!(datesandtimespans.Count <= listIndexCounter))
+                    {
+                        var split = datesandtimespans[listIndexCounter].Split(':');
+                        try
+                        {
+                            prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
+                        }
+                        catch
+                        {
+                            //error
+                        }
+                        listIndexCounter++;
+                    }
                 }
             }
         }
     
-
-
-
         public void AddNewFrontpages()
         {
-            
-            if (NewFrontpagesToAdd.FinishedProduct_No == 0 || NewFrontpagesToAdd.FinishedProduct_No <= 0)
-            {
-                //something wrong mate
-            }
-
-            if (NewFrontpagesToAdd.ProcessOrder_No == 0 || NewFrontpagesToAdd.ProcessOrder_No <= 0)
-            {
-                //Something wrong again matey
-            }
-
-            if (NewFrontpagesToAdd.Colunm == 0 || NewFrontpagesToAdd.Colunm <= 0)
-            {
-                //Still something wrong dude
-            }
-
-            if (NewFrontpagesToAdd.Note == null)
-            {
-                NewFrontpagesToAdd.Note = " ";
-            }
-
-            CheckDateTime("12/12/2018");
-
+            CheckIfInputsAreValid(ref _newFrontpagesToAdd);
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
 
             //Checks whether any of the properties are null if any are returns true
@@ -620,55 +736,46 @@ namespace UniBase.Model.K2
                 }
                 else
                 {
-
+                    //error
                 }
             }
         }
 
-        private DateTime CheckDateTime(string stringToCheck)
+        public void AddNewControlRegistrations()
         {
-            string[] splitDateTimeString = new string[3];
-            DateTime result = DateTime.Now;
+            CheckIfInputsAreValid(ref _newControlRegistrationsToAdd);
 
-            if (stringToCheck != null)
+            //Checks whether any of the properties are null if any are returns true
+            bool isNull = NewControlRegistrationsToAdd.GetType().GetProperties().All(p => p.GetValue(NewControlRegistrationsToAdd) == null);
+
+            if (!isNull)
             {
-                splitDateTimeString = stringToCheck.Split('/');
-
-                //Check if day is 2 long, month is 2 and year is 4 ex. 02 / 02 / 2018 (semi check order)
-                if (splitDateTimeString[0].Length == 2 && splitDateTimeString[1].Length == 2 && splitDateTimeString[2].Length == 4)
+                ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
+                var temp = ModelGenerics.GetById(new Frontpages(), NewControlRegistrationsToAdd.ProcessOrder_No);
+                var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
+                NewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
+                
+                if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
                 {
-                    //Check if they are numbers
-                    if (int.TryParse(splitDateTimeString[0], out int year) && int.TryParse(splitDateTimeString[0], out int month) && int.TryParse(splitDateTimeString[0], out int day))
-                    {
-                        //Check if they are valid numbers
-                        if (year > 0 && month > 0 && month < 13 && day < 32 && day > 0)
-                        {
-                            return new DateTime(year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, 0);
-                        }
-                        else
-                        {
-                            //Sumthing wong boss
-                        }
-                    }
-                    else
-                    {
-                        //wrong format you filty filty peasant
-                    }
+                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                    NewControlRegistrationsToAdd = new ControlRegistrations();
+                    NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
+                    NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
+                    NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID+1;
+                    NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
+                    NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
+                    NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
+
                 }
                 else
                 {
-                    //sumtin wong
+                    //error
                 }
             }
-            else
-            {
-                //Wrong again lad
-            }
-
-            return result;
         }
 
-        private int FindWeekNumber(Frontpages frontpage)
+        public int FindWeekNumber(Frontpages frontpage)
         {
             int dayOfYear = frontpage.Date.DayOfYear;
             int weekNumber = 1;
@@ -686,37 +793,18 @@ namespace UniBase.Model.K2
 
             return weekNumber;
         }
-        #endregion
-
-        private ObservableCollection<T> GetLastTen<T>(T type)
-        {
-            var tempList = ModelGenerics.GetAll(type);
-            ObservableCollection<T> result = new ObservableCollection<T>();
-
-            if (tempList.Count > 10)
-            {
-                for (int i = tempList.Count - 10; i < tempList.Count; i++)
-                {
-                    result.Add(tempList[i]);
-                }
-            }
-            else
-            {
-                result = tempList;
-            }
-
-            return result;
-        }
-
+        
         private void GenerateHeaderLists()
         {
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "ProcessOrdre Nr", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
             ControlScheduleProps = new List<string>{"Kontrol skema ID", "ProcessOrdre Nr", "Klokkeslæt", "Vægt kontrol", "Kontrol af fustage", "LudKoncentration", "Mip MA", "Signatur operatør", "Note"};
-            FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
+            //FrontPageProps = new List<string> {"ProcessOrdre Nr", "Dato", "Færdigt Produkt Nr", "Kolonne", "Note", "Uge Nr"};
             ProductionProps = new List<string>{"Produktions ID", "ProcessOrdre Nr", "Paller lagt på lager 0001", "Tappemaskine", "Antal fustager pr. palle", "Tæller", "Palle tæller", "Batchdato"};
             ProductProps = new List<string>{"Færdigvarer Nr", "Produkt Navn", "Antal dage før udløbsdato"};
             ShiftRegistrationProps = new List<string>{"Vagt registrerings ID", "ProcessOrdre Nr", "Start tidspunkt", "Slut tidspunkt", "Pauser", "Total timer", "Bemanding", "Initialer"};
             TuProps = new List<string>{"TU ID", "ProcessOrdre Nr", "Første dag start TU", "Første dag slut TU", "Første dag TU i alt", "Anden dag start TU", "Anden dag slut TU", "Anden dag TU i alt", "Tredje dag start TU", "Tredje dag slut TU", "Tredje dag TU i alt" };
+
+            KegSizes = new ObservableCollection<string>{"25L", "30L", "35L"};
         }
 
 
@@ -740,16 +828,6 @@ namespace UniBase.Model.K2
                 }
 
                 return _instance;
-            }
-        }
-
-        public Frontpages SelectedFrontpage
-        {
-            get { return _selectedFrontpage; }
-            set
-            {
-                _selectedFrontpage = value;
-                OnPropertyChanged();
             }
         }
 

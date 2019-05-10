@@ -1,5 +1,4 @@
-﻿<Page x:Name="WorkPageName"
-    x:Class="UniBase.View.WorkPage"
+﻿<Page
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UniBase.View"
@@ -8,8 +7,12 @@
     xmlns:viewModel="using:UniBase.ViewModel"
     xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:interop="using:Windows.UI.Xaml.Interop"
+    xmlns:interactivity="using:WinRTXamlToolkit.Interactivity"
     xmlns:k2="using:UniBase.Model.K2"
     xmlns:model="using:UniBase.Model"
+
+    xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core" x:Name="WorkPageName"
+    x:Class="UniBase.View.WorkPage"
 
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -28,34 +31,38 @@
         <CommandBar Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
             <CommandBar.SecondaryCommands>
                 <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
-                <AppBarButton Label="Log af"/> <!--Command="{Binding LogOffCommand}"/>-->
+                <AppBarButton Label="Log af"/>
+                <!--Command="{Binding LogOffCommand}"/>-->
             </CommandBar.SecondaryCommands>
             <AppBarSeparator/>
-            <AppBarButton Icon="Help" Label="Help"/> <!--Command="{Binding GoToHelpPageCommand}"/>-->
+            <AppBarButton Icon="Help" Label="Help"/>
+            <!--Command="{Binding GoToHelpPageCommand}"/>-->
         </CommandBar>
 
-        <Pivot Grid.Row="1" Name="ColumnPivot">
+        <Pivot Grid.Row="1" x:Name="ColumnPivot">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="2">
+                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="1">
                     <!--#region Forside-->
                     <PivotItem Style="{StaticResource CustomPivotItemStyle}" Header="Forside">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
-                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[0]}" Text="{Binding DataContext.Column_2.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[1]}" Text="{Binding DataContext.Column_2.DateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[2]}" Text="{Binding DataContext.Column_2.FinishedProductNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[3]}" Text="{Binding DataContext.Column_2.ColumnTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[4]}" Text="{Binding DataContext.Column_2.NoteTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding Column_2.FrontPageProps[5]}" Text="{Binding DataContext.Column_2.WeekNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=WorkPageName}" Height="42" FontSize="10"></TextBox>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[0].Header}" Text="{Binding DataContext.Column_2.ProcessOrderNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10">
+                                        
+                                    </TextBox>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[1].Header}" Text="{Binding DataContext.Column_2.DateTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[2].Header}" Text="{Binding DataContext.Column_2.FinishedProductNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[3].Header}" Text="{Binding DataContext.Column_2.ColumnTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[4].Header}" Text="{Binding DataContext.Column_2.NoteTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[5].Header}" Text="{Binding DataContext.Column_2.WeekNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-2">
                                 <StackPanel>
-                                    <ListView Width="662" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
+                                    <ListView Width="662" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding XamlBindings.FrontPageHeaderList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -66,15 +73,15 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
-                                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}" ToolTipService.ToolTip="{Binding ToolTip}">
+                                                        <TextBlock Text="{Binding Header}" TextWrapping="Wrap" />
                                                     </Button>
-                                                    <Line></Line>
+                                                    <Line/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView Name="FrontpageListView" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}" SelectedItem="{Binding Column_2.SelectedFrontpage, Mode=TwoWay}">
+                                    <ListView SelectedIndex="{Binding Column_2.SelectedFrontpageId, Mode=TwoWay}" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}" SelectedItem="{Binding Column_2.SelectedFrontpage, Mode=TwoWay}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -85,70 +92,90 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Date, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Colunm, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Week_No, Mode=TwoWay}"/>
+                                                    
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Date, Mode=TwoWay}" ToolTipService.ToolTip="Fx ÅÅÅÅ/MM/DD">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Colunm, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}" ToolTipService.ToolTip="Skriv evt. en note her">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Week_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv evt. Uge nr. Fx 12">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <TextBlock></TextBlock>
+                                    <TextBlock/>
                                 </StackPanel>
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshFrontpageTable}">
-                                        <Image Source="Images/GetAll.png"></Image>
+                                        <Image Source="Images/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenFrontpageTable}">
-                                        <Image Source="Images/GetLastTen.png"></Image>
+                                        <Image Source="Images/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveFrontpageTable}">
-                                        <Image Source="Images/SaveButton.png"></Image>
+                                        <Image Source="Images/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
-                                        <Image Source="Images/DeleteButton.png"></Image>
+                                        <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <!--<ListView Height="44" Width="662" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>-->
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No}" Height="42" FontSize="10" IsReadOnly="True"/>
-                                <Line></Line>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Date}" Height="42" FontSize="10"/>
-                                <Line></Line>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No}" Height="42" FontSize="10"/>
-                                <Line></Line>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.Colunm, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Colunm}" Height="42" FontSize="10"/>
-                                <Line></Line>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.Note, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Note}" Height="42" FontSize="10"/>
-                                <Line></Line>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.Week_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Week_No}" Height="42" FontSize="10"/>
-                                <Line></Line>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No}" Height="42" FontSize="10" IsReadOnly="True"/>
+                                    <Line/>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper}" Height="42" FontSize="10"/>
+                                    <Line/>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No}" Height="42" FontSize="10"/>
+                                    <Line/>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.Colunm, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Colunm}" Height="42" FontSize="10"/>
+                                    <Line/>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.Note, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Note}" Height="42" FontSize="10"/>
+                                    <Line/>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.Week_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.Week_No}" Height="42" FontSize="10"/>
+                                    <Line/>
                                 </StackPanel>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" Background="Transparent" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
-                                    <Image Source="Images/AddButton.png"></Image>
+                                    <Image Source="Images/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -158,7 +185,7 @@
                     <PivotItem Header="Kontrol registrering">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
-                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <ListView Height="44" Width="1326" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlRegistrationProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
@@ -170,8 +197,8 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -196,7 +223,7 @@
                                                     <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
-                                                    <Line></Line>
+                                                    <Line/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -212,19 +239,20 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_Date, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"></TextBox>
-                                                    <CheckBox IsChecked="{Binding ControlAlcoholSpearDispenser, Mode=TwoWay}"></CheckBox>
-                                                    <!--<TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlAlcoholSpearDispenser, Mode=TwoWay}"></TextBox>-->
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstPalletDepalletizing, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LastPalletDepalletizing, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"/>
+                                                    <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}">
+                                                        <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}"/>
+                                                    </Button>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -233,40 +261,52 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshControlRegistrationTable}">
-                                        <Image Source="Images/GetAll.png"></Image>
+                                        <Image Source="Images/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenControlRegistrationTable}">
-                                        <Image Source="Images/GetLastTen.png"></Image>           
-                                    </Button>                                                    
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlRegistrationTable}">
-                                        <Image Source="Images/SaveButton.png"></Image>           
-                                    </Button>                                                    
+                                        <Image Source="Images/GetLastTen.png"/>
+                                    </Button>
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding AddControlRegistrationsTable}">
+                                        <Image Source="Images/SaveButton.png"/>
+                                    </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
-                                        <Image Source="Images/DeleteButton.png"></Image>
+                                        <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="1326" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlRegistrationProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
-                                    <Image Source="Images/AddButton.png"></Image>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ControlRegistration_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.ControlRegistration_ID}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.ProcessOrder_No}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.CommentsOnChangedDate, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.CommentsOnChangedDate}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="#16503F" Command="{Binding DataContext.ControlledClickCommand2, ElementName=WorkPageName}">
+                                    <Image Source="{Binding Column_2.NewControlRegistrationsToAdd.ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}"/>
+                                </Button>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.CapNo, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.CapNo}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.EtiquetteNo, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.EtiquetteNo}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <ComboBox ItemsSource="{Binding Column_2.KegSizes}" BorderThickness="1,2,1,1" Height="42" Width="110" FontSize="10" Margin="0,4,0,0">
+                                    <ComboBoxItem Content="{Binding}"/>
+                                </ComboBox>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.Signature}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <Line/>
+
+                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddControlRegistrationsTable}">
+                                    <Image Source="Images/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -276,7 +316,7 @@
                     <PivotItem Header="Kontrol skema">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
-                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <ListView Height="44" Width="994" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlScheduleProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
@@ -288,8 +328,8 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -311,10 +351,10 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}" >
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
-                                                    <Line></Line>
+                                                    <Line/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -330,15 +370,15 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding WeightColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding LudKoncentrationColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding MipMaColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding WeightColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding LudKoncentrationColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding MipMaColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -347,16 +387,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshControlScheduleTable}">
-                                        <Image Source="Images/GetAll.png"></Image>               
-                                    </Button>                                                    
+                                        <Image Source="Images/GetAll.png"/>
+                                    </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenControlScheduleTable}">
-                                        <Image Source="Images/GetLastTen.png"></Image>           
-                                    </Button>                                                    
+                                        <Image Source="Images/GetLastTen.png"/>
+                                    </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlScheduleTable}">
-                                        <Image Source="Images/SaveButton.png"></Image>           
-                                    </Button>                                                    
+                                        <Image Source="Images/SaveButton.png"/>
+                                    </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
-                                        <Image Source="Images/DeleteButton.png"></Image>
+                                        <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -373,14 +413,14 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
-                                    <Image Source="Images/AddButton.png"></Image>
+                                    <Image Source="Images/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -390,7 +430,7 @@
                     <PivotItem Header="Produktion">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
-                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ProductionProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
@@ -402,8 +442,8 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -428,7 +468,7 @@
                                                     <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
-                                                    <Line></Line>
+                                                    <Line/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -444,14 +484,14 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDate, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDate, Mode=TwoWay}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -460,16 +500,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshProductionTable}">
-                                        <Image Source="Images/GetAll.png"></Image>
+                                        <Image Source="Images/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenProductionTable}">
-                                        <Image Source="Images/GetLastTen.png"></Image>
+                                        <Image Source="Images/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveProductionTable}">
-                                        <Image Source="Images/SaveButton.png"></Image>
+                                        <Image Source="Images/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
-                                        <Image Source="Images/DeleteButton.png"></Image>
+                                        <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -486,14 +526,14 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
-                                    <Image Source="Images/AddButton.png"></Image>
+                                    <Image Source="Images/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -503,7 +543,7 @@
                     <PivotItem Header="Vagt registering">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
-                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ShiftRegistrationProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
@@ -515,8 +555,8 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -541,7 +581,7 @@
                                                     <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
-                                                    <Line></Line>
+                                                    <Line/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -557,14 +597,14 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ShiftRegistration_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Start_Time, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding End_Date, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Breaks, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalHours, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Staff, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Initials, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ShiftRegistration_ID, Mode=TwoWay}" IsReadOnly="True"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Start_Time, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding End_Date, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Breaks, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalHours, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Staff, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Initials, Mode=TwoWay}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -573,16 +613,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshShiftRegistrationTable}">
-                                        <Image Source="Images/GetAll.png"></Image>
+                                        <Image Source="Images/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenShiftRegistrationTable}">
-                                        <Image Source="Images/GetLastTen.png"></Image>
+                                        <Image Source="Images/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveShiftRegistrationTable}">
-                                        <Image Source="Images/SaveButton.png"></Image>
+                                        <Image Source="Images/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
-                                        <Image Source="Images/DeleteButton.png"></Image>
+                                        <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -599,24 +639,24 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
-                                    <Image Source="Images/AddButton.png"></Image>
+                                    <Image Source="Images/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
-                        </PivotItem>
-                        <!--#endregion-->
+                    </PivotItem>
+                    <!--#endregion-->
                     <!--#region TU-->
                     <PivotItem Header="TUs">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
-                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"></TextBlock>
+                                <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <ListView Height="44" Width="1215" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.TuProps}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
@@ -628,8 +668,8 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -654,7 +694,7 @@
                                                     <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                                     </Button>
-                                                    <Line></Line>
+                                                    <Line/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -670,17 +710,17 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TU_ID, Mode=TwoWay}" IsReadOnly="True"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStart_TU, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEnd_TU, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDay_Total, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDay_Total, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU, Mode=TwoWay}"></TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDay_Total, Mode=TwoWay}"></TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TU_ID, Mode=TwoWay}" IsReadOnly="True"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStart_TU, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEnd_TU, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDay_Total, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDay_Total, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDay_Total, Mode=TwoWay}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -689,16 +729,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshTUTable}">
-                                        <Image Source="Images/GetAll.png"></Image>
+                                        <Image Source="Images/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenTUTable}">
-                                        <Image Source="Images/GetLastTen.png"></Image>
+                                        <Image Source="Images/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveTUTable}">
-                                        <Image Source="Images/SaveButton.png"></Image>
+                                        <Image Source="Images/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
-                                        <Image Source="Images/DeleteButton.png"></Image>
+                                        <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -715,14 +755,14 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
+                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
+                                                <Line/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
-                                    <Image Source="Images/AddButton.png"></Image>
+                                    <Image Source="Images/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -731,15 +771,9 @@
                 </Pivot>
             </PivotItem>
             <!--#endregion-->
-            <PivotItem Header="K3">
-
-            </PivotItem>
-            <PivotItem Header="K4">
-
-            </PivotItem>
-            <PivotItem Header="K5">
-
-            </PivotItem>
+            <PivotItem Header="K3"/>
+            <PivotItem Header="K4"/>
+            <PivotItem Header="K5"/>
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal"  Margin="3">
@@ -747,13 +781,13 @@
                         <TextBlock FontWeight="SemiBold" Text="Vælg tidsperiode"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox  Name="SelectGraphCombobox" PlaceholderText="Vægt" Width="200" SelectedItem="{Binding TrendAdminstrator.GraphType, Mode=TwoWay}">
+                        <ComboBox  x:Name="SelectGraphCombobox" PlaceholderText="Vægt" Width="200" SelectedItem="{Binding TrendAdminstrator.GraphType, Mode=TwoWay}">
                             <ComboBoxItem Content="Vægt"/>
                             <ComboBoxItem Content="MipMa"/>
                             <ComboBoxItem Content="Lud Koncentration"/>
                         </ComboBox>
 
-                        <ComboBox Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
+                        <ComboBox x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
                             <ComboBoxItem Content="En Uge"/>
                             <ComboBoxItem Content="En Måned"/>
                             <ComboBoxItem Content="Et Kvartal"/>
@@ -761,28 +795,28 @@
 
                         </ComboBox>
                     </StackPanel>
-                    <TextBlock Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
-                    <TextBlock Name="TbTimeperiodCombobox" Text="{Binding GraphTimeperiodCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
-                    
-                        <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1100" Height="500"  >
-                            <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
+                    <TextBlock x:Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
+                    <TextBlock x:Name="TbTimeperiodCombobox" Text="{Binding GraphTimeperiodCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
+
+                    <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1100" Height="500"  >
+                        <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="SelectedCategory"
-                                                 ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
-                            <charting:LineSeries Title="Min værdi" 
+                                                 ItemsSource="{Binding TrendAdminstrator.TrendList, Mode=TwoWay}"/>
+                        <charting:LineSeries Title="Min værdi" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="MinValue"
-                                                 ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
-                            <charting:LineSeries Title="Max værdi" 
+                                                 ItemsSource="{Binding TrendAdminstrator.TrendList, Mode=TwoWay}"/>
+                        <charting:LineSeries Title="Max værdi" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="MaxValue"
-                                                 ItemsSource="{Binding TrendAdminstrator.TrendList,Mode=TwoWay}"/>
-                        </charting:Chart>
+                                                 ItemsSource="{Binding TrendAdminstrator.TrendList, Mode=TwoWay}"/>
+                    </charting:Chart>
 
 
-                    
+
                 </StackPanel>
-                
+
             </PivotItem>
             <PivotItem Header="Brugere">
 
