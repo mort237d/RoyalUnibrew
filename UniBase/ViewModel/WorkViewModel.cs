@@ -55,6 +55,7 @@ namespace UniBase.ViewModel
         public RelayCommand<object> ControlledClickCommand { get; set; }
         public RelayCommand ControlledClickCommand2 { get; set; }
 
+        public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
         public SortAndFilter SortAndFilter { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; }
@@ -140,9 +141,7 @@ namespace UniBase.ViewModel
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlledClickAdd);
         }
 
-        public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
-
-        public RelayCommand<object> ControlledClickCommand { get; set; }
+        
 
         private void TempMethod2()
         {

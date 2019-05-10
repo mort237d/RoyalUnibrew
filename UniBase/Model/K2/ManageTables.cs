@@ -364,6 +364,7 @@ namespace UniBase.Model.K2
 
             if (FrontpagesList.Count > 0)
             {
+            NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
             NewFrontpagesToAdd.DateTimeStringHelper = NewFrontpagesToAdd.Date.ToString().Remove(10);
@@ -764,6 +765,8 @@ namespace UniBase.Model.K2
                     NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID+1;
                     NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
                     NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
+                    NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
+
                 }
                 else
                 {
@@ -772,7 +775,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        private int FindWeekNumber(Frontpages frontpage)
+        public int FindWeekNumber(Frontpages frontpage)
         {
             int dayOfYear = frontpage.Date.DayOfYear;
             int weekNumber = 1;
