@@ -42,7 +42,7 @@
         <Pivot Grid.Row="1" x:Name="ColumnPivot">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="1">
+                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="2">
                     <!--#region Forside-->
                     <PivotItem Style="{StaticResource CustomPivotItemStyle}" Header="Forside">
                         <StackPanel HorizontalAlignment="Center">
@@ -162,7 +162,7 @@
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No}" Height="42" FontSize="10" IsReadOnly="True"/>
                                     <Line/>
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper}" Height="42" FontSize="10"/>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                     <Line/>
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No}" Height="42" FontSize="10"/>
                                     <Line/>
@@ -241,8 +241,8 @@
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"/>
                                                     <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}">
                                                         <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}"/>
@@ -251,8 +251,8 @@
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"/>
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -280,9 +280,9 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.ProcessOrder_No}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.CommentsOnChangedDate, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.CommentsOnChangedDate}" Height="42" FontSize="10"/>
                                 <Line/>
@@ -300,9 +300,9 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.Signature}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddControlRegistrationsTable}">
@@ -406,19 +406,19 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.ProcessOrder_No}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.TimeStringHelper}" PlaceholderText="{Binding PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.TimeStringHelper}" PlaceholderText="{Binding XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Weight, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.Weight}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.KegTest, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.KegTest}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.KegTest, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.LudKoncentration, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.LudKoncentration}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.MipMA, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.MipMA}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.Signature}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Signature, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Note, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.Note, Mode=TwoWay}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Note, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString, Mode=TwoWay}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"/>

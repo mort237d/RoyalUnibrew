@@ -610,7 +610,7 @@ namespace UniBase.Model.K2
 
         #endregion
         #endregion
-        
+
         //public void AddNewControlRegistrations()
         //{
         //    CheckIfInputsAreValid(ref _newControlRegistrationsToAdd);
@@ -625,7 +625,7 @@ namespace UniBase.Model.K2
         //        var temp = ModelGenerics.GetById(new Frontpages(), NewControlRegistrationsToAdd.ProcessOrder_No);
         //        var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
         //        NewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
-                
+
         //        if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
         //        {
         //            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());

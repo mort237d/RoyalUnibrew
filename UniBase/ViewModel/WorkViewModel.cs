@@ -16,10 +16,7 @@ namespace UniBase.ViewModel
 {
     class WorkViewModel : INotifyPropertyChanged
     {
-
-        public string PlaceHolderDate { get; set; } = "2000/01/01";
-        public string PlaceHolderTimeSpan { get; set; } = "00:00:00";
-
+        #region Relaycommands
         public RelayCommand<object> SortFrontpageCommand { get; set; }
 
         public RelayCommand RefreshFrontpageTable { get; set; }
@@ -54,12 +51,16 @@ namespace UniBase.ViewModel
         public RelayCommand DeleteUserCommand { get; set; }
 
         
-        public ManageTables Column_2 { get; set; }
-        public PredefinedColors PredefinedColors { get; set; }
+        
         public RelayCommand<object> ControlledClickCommand { get; set; }
         public RelayCommand ControlledClickCommand2 { get; set; }
 
         public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
+
+        #endregion
+
+        public ManageTables Column_2 { get; set; }
+        public PredefinedColors PredefinedColors { get; set; }
         public SortAndFilter SortAndFilter { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; }
