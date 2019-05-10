@@ -361,6 +361,27 @@ namespace UniBase.Model.K2
             }
         }
 
+        private int _selectedFrontpageId;
+        public int SelectedFrontpageId
+        {
+            get { return _selectedFrontpageId; }
+            set
+            {
+                _selectedFrontpageId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void SelectParentItemFrontpage(object obj)
+        {
+            int id = (int)obj;
+
+            Frontpages del = _frontpagesList.First(d => d.ProcessOrder_No == id);
+            int ix = _frontpagesList.IndexOf(del);
+
+            SelectedFrontpageId = ix;
+        }
+
         #region ButtonMethods
 
         #region FrontPageMethods
@@ -778,6 +799,7 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+
         #endregion
 
         #region INotifyPropertiesChanged

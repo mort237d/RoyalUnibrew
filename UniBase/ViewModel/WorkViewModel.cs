@@ -131,7 +131,11 @@ namespace UniBase.ViewModel
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlledClick);
+
+            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.SelectParentItemFrontpage);
         }
+
+        public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
 
         public RelayCommand<object> ControlledClickCommand { get; set; }
 
