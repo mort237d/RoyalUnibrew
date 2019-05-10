@@ -681,50 +681,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        private DateTime CheckDateTime(string stringToCheck)
-        {
-            string[] splitDateTimeString = new string[3];
-            DateTime result = DateTime.Now;
-
-            if (stringToCheck != null)
-            {
-                splitDateTimeString = stringToCheck.Split('/');
-
-                //Check if day is 2 long, month is 2 and year is 4 ex. 02 / 02 / 2018 (semi check order)
-                if (splitDateTimeString[0].Length == 2 && splitDateTimeString[1].Length == 2 && splitDateTimeString[2].Length == 4)
-                {
-                    //Check if they are numbers
-                    if (int.TryParse(splitDateTimeString[0], out int year) && int.TryParse(splitDateTimeString[0], out int month) && int.TryParse(splitDateTimeString[0], out int day))
-                    {
-                        //Check if they are valid numbers
-                        if (year > 0 && month > 0 && month < 13 && day < 32 && day > 0)
-                        {
-                            return new DateTime(year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, 0);
-                        }
-                        else
-                        {
-                            //Sumthing wong boss
-                        }
-                    }
-                    else
-                    {
-                        //wrong format you filty filty peasant
-                    }
-                }
-                else
-                {
-                    //sumtin wong
-                }
-            }
-            else
-            {
-                //Wrong again lad
-            }
-
-            return result;
-        }
-
-        private int FindWeekNumber(Frontpages frontpage)
+        public int FindWeekNumber(Frontpages frontpage)
         {
             int dayOfYear = frontpage.Date.DayOfYear;
             int weekNumber = 1;
