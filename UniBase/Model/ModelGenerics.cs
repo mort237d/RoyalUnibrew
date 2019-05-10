@@ -129,7 +129,7 @@ namespace UniBase.Model
         public static bool CreateByObject<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + "/" + typeName[3];
+            string httpUrl = URI + typeName[3];
 
             try
             {

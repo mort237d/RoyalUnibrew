@@ -50,6 +50,9 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshLastTenTUTable { get; set; }
         public RelayCommand SaveTUTable { get; set; }
 
+        public RelayCommand<object> ControlledClickCommand { get; set; }
+        public RelayCommand ControlledClickCommand2 { get; set; }
+
         public Model.K2.ManageTables Column_2 { get; set; }
         public Colors PredefinedColors { get; set; }
 
@@ -57,6 +60,8 @@ namespace UniBase.ViewModel
         
         public TrendAdminstrator TrendAdminstrator { get; set; }
         public XamlBindings XamlBindings { get; set; }
+
+
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
@@ -131,7 +136,12 @@ namespace UniBase.ViewModel
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlledClick);
+
+            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.SelectParentItemFrontpage);
+            ControlledClickCommand2 = new RelayCommand(Column_2.ControlledClickAdd);
         }
+
+        public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
 
         public RelayCommand<object> ControlledClickCommand { get; set; }
 
