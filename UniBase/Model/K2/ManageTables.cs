@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
+using UniBase.Model.K2.ButtonMethods;
 
 namespace UniBase.Model.K2
 {
@@ -32,12 +33,18 @@ namespace UniBase.Model.K2
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
         private ObservableCollection<TUs> _tuList;
 
-        private Frontpages _newFrontpagesToAdd = new Frontpages();
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
+        private ControlSchedules _newControlSchedules = new ControlSchedules();
+        private Frontpages _newFrontpagesToAdd = new Frontpages();
+        private Productions _newProductions = new Productions();
+        private ShiftRegistrations _newShiftRegistrations = new ShiftRegistrations();
+        private TUs _newTUs = new TUs();
+
         private ObservableCollection<string> _kegSizes = new ObservableCollection<string>();
 
 
         private Message message = new Message();
+        private FrontpageButtonMethod _frontpageButtonMethod = new FrontpageButtonMethod();
 
         private string _processOrderNoTextBoxOutput;
         private string _dateTextBoxOutput;
@@ -59,7 +66,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
+        
         public ControlRegistrations NewControlRegistrationsToAdd
         {
             get => _newControlRegistrationsToAdd;
@@ -70,7 +77,54 @@ namespace UniBase.Model.K2
             }
         }
 
-        List<int> temp = new List<int>();
+        public ControlSchedules NewControlSchedules
+        {
+            get { return _newControlSchedules; }
+            set
+            {
+                _newControlSchedules = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public Productions NewProductions
+        {
+            get { return _newProductions; }
+            set
+            {
+                _newProductions = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ShiftRegistrations NewShiftRegistrations
+        {
+            get { return _newShiftRegistrations; }
+            set
+            {
+                _newShiftRegistrations = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TUs NewTUs
+        {
+            get { return _newTUs; }
+            set
+            {
+                _newTUs = value; 
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        public FrontpageButtonMethod FrontpageButtonMethod
+        {
+            get { return _frontpageButtonMethod; }
+            set { _frontpageButtonMethod = value; }
+        }
+        
         public string ProcessOrderNoTextBoxOutput
         {
             get { return _processOrderNoTextBoxOutput; }
@@ -339,6 +393,8 @@ namespace UniBase.Model.K2
         {
             InitializeObservableCollections();
             GenerateHeaderLists();
+
+            
         }
 
         public void InitializeObservableCollections()
@@ -352,9 +408,7 @@ namespace UniBase.Model.K2
             CompleteTuList = ModelGenerics.GetAll(new TUs());
 
 
-            RefreshLastTenFrontpages();
-
-
+            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
             ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
@@ -368,7 +422,7 @@ namespace UniBase.Model.K2
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
             NewFrontpagesToAdd.DateTimeStringHelper = NewFrontpagesToAdd.Date.ToString().Remove(10);
-            NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
+            NewFrontpagesToAdd.Week_No = FrontpageButtonMethod.FindWeekNumber(NewFrontpagesToAdd);
                 
             }
 
@@ -406,48 +460,7 @@ namespace UniBase.Model.K2
 
         #region ButtonMethods
         private Frontpages _selectedFrontpage;
-
-        #region FrontPageMethods
-
-        public void RefreshFrontpages()
-        {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            Parallel.ForEach(_frontpagesList, frontpage =>
-                {
-                    frontpage.DateTimeStringHelper = frontpage.Date.ToString();
-                });
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
-        }
-        public void RefreshLastTenFrontpages()
-        {
-            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-            foreach (var frontpage in FrontpagesList)
-            {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString().Remove(10);
-            }
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
-        }
-        public void SaveFrontpages()
-        {
-            
-            Parallel.ForEach(_frontpagesList, frontpage =>
-            {
-                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
-            });
-            message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
-        }
-
-        public void DeleteFrontpage(object id)
-        {
-            if (_selectedFrontpage != null)
-            {
-                //TODO Make deletion method
-                Debug.WriteLine(_selectedFrontpage.ProcessOrder_No);
-            }
-        }
-
-        #endregion
-
+        
         #region ControlRegistrationMethods
 
         public void RefreshControlRegistrations()
@@ -597,202 +610,9 @@ namespace UniBase.Model.K2
 
         #endregion
         #endregion
-        /// <summary>
-        /// Rækkefølge på properties i klasser er vigtige!
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="type"></param>
-        public void CheckIfInputsAreValid<T>(ref T type)
-        {
-            List<string> datesandtimespans = new List<string>();
-            int listIndexCounter = 0;
 
-            Type tModelType = type.GetType();
-
-            PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
-
-            //ToDo Finish This.
-            foreach (PropertyInfo property in arrayPropertyInfos)
-            {
-                var prop = type.GetType().GetProperty(property.Name, BindingFlags.Public | BindingFlags.Instance);
-                var proppi = prop.GetValue(type);
-
-                if (property.PropertyType == typeof(string))    
-                {
-                    if (prop.Name.Contains("StringHelper"))
-                    {
-                        if (proppi.ToString().Length >= 8)
-                        {
-                            datesandtimespans.Add(proppi.ToString());
-                        }
-                        else
-                        {
-                            //error
-                            Debug.WriteLine("Failed");
-                        }
-                    }
-                    else if (proppi == null)
-                    {
-                        if (property.Name == "Note" || property.Name == "CommentsOnChangedDate")
-                        {
-                            prop.SetValue(type, " ", null);
-                        }
-                        else
-                        {
-                            //error
-                            Debug.WriteLine("Failed");
-
-                        }
-                    }
-                }
-                else if (property.PropertyType == typeof(int))
-                {
-                    int.TryParse(proppi.ToString(), out int i);
-                    if (i == 0)
-                    {
-                        //error
-                        Debug.WriteLine("Failed");
-
-                    }
-                }
-                else if (property.PropertyType == typeof(double))
-                {
-                    double.TryParse(proppi.ToString(), out double i);
-                    if (i == 0)
-                    {
-                        //error
-                        Debug.WriteLine("Failed");
-
-                    }
-                }
-                else if (property.PropertyType == typeof(DateTime))
-                {
-                    if (!(datesandtimespans.Count <= listIndexCounter))
-                    {
-
-                        DateTime dt = DateTime.Now;
-                        var split = datesandtimespans[listIndexCounter].Split('/');
-                        var splitWithoutSpecialChars = split;
-                        for (int i = 0; i < split.Length; i++)
-                        {
-                            splitWithoutSpecialChars[i] = split[i].Trim('/');
-                        }
-
-                        if (splitWithoutSpecialChars[2].Length > 4)
-                        {
-                            splitWithoutSpecialChars[2] = splitWithoutSpecialChars[2].Remove(4);
-                        }
-
-                        try
-                        {
-                            prop.SetValue(type, new DateTime(int.Parse(splitWithoutSpecialChars[0]), int.Parse(splitWithoutSpecialChars[1]), int.Parse(splitWithoutSpecialChars[2]), dt.Hour, dt.Minute, 0), null);
-                        }
-                        catch 
-                        {
-                            //error
-                        }
-                        listIndexCounter++;
-                    }
-                }
-                else if (property.PropertyType == typeof(TimeSpan))
-                {
-                    if (!(datesandtimespans.Count <= listIndexCounter))
-                    {
-                        var split = datesandtimespans[listIndexCounter].Split(':');
-                        try
-                        {
-                            prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
-                        }
-                        catch
-                        {
-                            //error
-                        }
-                        listIndexCounter++;
-                    }
-                }
-            }
-        }
-    
-        public void AddNewFrontpages()
-        {
-            CheckIfInputsAreValid(ref _newFrontpagesToAdd);
-            NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
-
-            //Checks whether any of the properties are null if any are returns true
-            bool isNull = NewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(NewFrontpagesToAdd) == null);
-
-            if (!isNull)
-            {
-                FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList.Last().ProcessOrder_No + 1;
-                if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
-                {
-                    //_frontpagesList.Add(NewFrontpagesToAdd);
-                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                    NewFrontpagesToAdd = new Frontpages();
-                    NewFrontpagesToAdd.ProcessOrder_No = _frontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
-                    NewFrontpagesToAdd.Date = DateTime.Now;
-                    NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
-                }
-                else
-                {
-                    //error
-                }
-            }
-        }
-
-        public void AddNewControlRegistrations()
-        {
-            CheckIfInputsAreValid(ref _newControlRegistrationsToAdd);
-
-            //Checks whether any of the properties are null if any are returns true
-            bool isNull = NewControlRegistrationsToAdd.GetType().GetProperties().All(p => p.GetValue(NewControlRegistrationsToAdd) == null);
-
-            if (!isNull)
-            {
-                ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
-                var temp = ModelGenerics.GetById(new Frontpages(), NewControlRegistrationsToAdd.ProcessOrder_No);
-                var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
-                NewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
-                
-                if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                    NewControlRegistrationsToAdd = new ControlRegistrations();
-                    NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
-                    NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
-                    NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID+1;
-                    NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
-                    NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
-                    NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-
-                }
-                else
-                {
-                    //error
-                }
-            }
-        }
-
-        public int FindWeekNumber(Frontpages frontpage)
-        {
-            int dayOfYear = frontpage.Date.DayOfYear;
-            int weekNumber = 1;
-            if (dayOfYear > 7)
-            {
-                if (dayOfYear % 1 != 0)
-                {
-                    weekNumber = (dayOfYear / 7) + 1;
-                }
-                else
-                {
-                    weekNumber = (dayOfYear / 7) + 1;
-                }            }
-
-
-            return weekNumber;
-        }
+            
+            
         
         private void GenerateHeaderLists()
         {
@@ -830,6 +650,8 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+
+        
 
         #endregion
 

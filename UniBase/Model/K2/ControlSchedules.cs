@@ -14,11 +14,13 @@ namespace UniBase.Model.K2
         private double _ludKoncentration;
         private double _mipMa;
         private int _controlScheduleId;
-        private DateTime _time;
         private string _kegTest;
         private int _processOrderNo;
         private string _note;
         private string _signature;
+
+        private DateTime _time;
+        private string _timeStringHelper;
 
 
         private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
@@ -57,16 +59,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime Time
-        {
-            get => _time;
-            set
-            {
-                if (value.Equals(_time)) return;
-                _time = value;
-                OnPropertyChanged();
-            }
-        }
+        
 
         public double Weight
         {
@@ -146,6 +139,28 @@ namespace UniBase.Model.K2
             }
         }
 
+
+        public string TimeStringHelper
+        {
+            get { return _timeStringHelper; }
+            set
+            {
+                _timeStringHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Time
+        {
+            get => _time;
+            set
+            {
+                if (value.Equals(_time)) return;
+                _time = value;
+                OnPropertyChanged();
+            }
+        }
+
         public virtual Frontpages Frontpage { get; set; }
 
         public Brush WeightColorBrush
@@ -177,8 +192,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
-
+        
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

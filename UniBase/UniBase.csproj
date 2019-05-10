@@ -121,9 +121,16 @@
     </Compile>
     <Compile Include="Model\ConstantValues.cs" />
     <Compile Include="Model\FrontPageHeader.cs" />
+    <Compile Include="Model\K2\ButtonMethods\ControlRegistrationMethod.cs" />
+    <Compile Include="Model\K2\ButtonMethods\ControlScheduleMethod.cs" />
+    <Compile Include="Model\K2\ButtonMethods\ProductionMethod.cs" />
+    <Compile Include="Model\K2\ButtonMethods\ShiftRegistrationMethod.cs" />
+    <Compile Include="Model\K2\ButtonMethods\TUMethod.cs" />
     <Compile Include="Model\K2\ControlRegistrations.cs" />
     <Compile Include="Model\K2\ControlSchedules.cs" />
+    <Compile Include="Model\K2\ButtonMethods\FrontpageButtonMethod.cs" />
     <Compile Include="Model\K2\Frontpages.cs" />
+    <Compile Include="Model\K2\InputValidator.cs" />
     <Compile Include="Model\K2\Productions.cs" />
     <Compile Include="Model\K2\Products.cs" />
     <Compile Include="Model\K2\ShiftRegistrations.cs" />
