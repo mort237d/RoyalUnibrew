@@ -118,10 +118,10 @@ namespace UniBase.ViewModel
             AddFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.AddNewFrontpages);
             DeleteFrontpageTable = new RelayCommand<object>(Column_2.FrontpageButtonMethod.DeleteFrontpage);
 
-            RefreshControlRegistrationTable = new RelayCommand(Column_2.RefreshControlRegistrations);
-            RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.RefreshLastTenControlRegistrations);
-            SaveControlRegistrationTable = new RelayCommand(Column_2.SaveControlRegistrations);
-            //AddControlRegistrationsTable = new RelayCommand(Column_2.AddNewControlRegistrations);
+            RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshControlRegistrations);
+            RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTenControlRegistrations);
+            SaveControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.SaveControlRegistrations);
+            AddControlRegistrationsTable = new RelayCommand(Column_2.ControlRegistrationMethod.AddNewControlRegistrations);
 
             RefreshControlScheduleTable = new RelayCommand(Column_2.RefreshControlSchedules);
             RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.RefreshLastTenControlSchedules);
@@ -144,10 +144,10 @@ namespace UniBase.ViewModel
 
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
 
-            ControlledClickCommand = new RelayCommand<object>(Column_2.ControlledClick);
+            ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
-            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.SelectParentItemFrontpage);
-            ControlledClickCommand2 = new RelayCommand(Column_2.ControlledClickAdd);
+            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageButtonMethod.SelectParentItemFrontpage);
+            ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
         

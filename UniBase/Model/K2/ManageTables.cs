@@ -40,6 +40,7 @@ namespace UniBase.Model.K2
 
         private Message message = new Message();
         private FrontpageButtonMethod _frontpageButtonMethod = new FrontpageButtonMethod();
+        private ControlRegistrationMethod _controlRegistrationMethod = new ControlRegistrationMethod();
 
         private string _processOrderNoTextBoxOutput;
         private string _dateTextBoxOutput;
@@ -77,7 +78,13 @@ namespace UniBase.Model.K2
             get { return _frontpageButtonMethod; }
             set { _frontpageButtonMethod = value; }
         }
-        
+
+        public ControlRegistrationMethod ControlRegistrationMethod
+        {
+            get { return _controlRegistrationMethod; }
+            set { _controlRegistrationMethod = value; }
+        }
+
         public string ProcessOrderNoTextBoxOutput
         {
             get { return _processOrderNoTextBoxOutput; }
@@ -228,16 +235,6 @@ namespace UniBase.Model.K2
             }
         }
 
-        public Frontpages SelectedFrontpage
-        {
-            get { return _selectedFrontpage; }
-            set
-            {
-                _selectedFrontpage = value;
-                OnPropertyChanged();
-            }
-        }
-
         public ObservableCollection<string> KegSizes
         {
             get { return _kegSizes; }
@@ -346,8 +343,6 @@ namespace UniBase.Model.K2
         {
             InitializeObservableCollections();
             GenerateHeaderLists();
-
-            
         }
 
         public void InitializeObservableCollections()
@@ -390,86 +385,8 @@ namespace UniBase.Model.K2
             }
         }
 
-        private int _selectedFrontpageId;
-        public int SelectedFrontpageId
-        {
-            get { return _selectedFrontpageId; }
-            set
-            {
-                _selectedFrontpageId = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public void SelectParentItemFrontpage(object obj)
-        {
-            int id = (int)obj;
-
-            Frontpages del = _frontpagesList.First(d => d.ProcessOrder_No == id);
-            int ix = _frontpagesList.IndexOf(del);
-
-            SelectedFrontpageId = ix;
-        }
-
         #region ButtonMethods
-        private Frontpages _selectedFrontpage;
         
-        #region ControlRegistrationMethods
-
-        public void RefreshControlRegistrations()
-        {
-            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
-        }
-        public void RefreshLastTenControlRegistrations()
-        {
-            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-            message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
-        }
-        public void SaveControlRegistrations()
-        {
-            Parallel.ForEach(_controlRegistrationsList, controlRegistration =>
-            {
-                ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
-            });
-            message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
-        }
-
-        public void ControlledClick(object id)
-        {
-            Debug.WriteLine(id.ToString());
-
-            foreach (var CR in ControlRegistrationsList)
-            {
-                if (CR.ProcessOrder_No == (int)id)
-                {
-                    if (CR.ControlAlcoholSpearDispenser)
-                    {
-                        CR.ControlAlcoholSpearDispenser = false;
-                        break;
-                    }
-                    else
-                    {
-                        CR.ControlAlcoholSpearDispenser = true;
-                        break;
-                    }
-                }
-            }
-        }
-
-        public void ControlledClickAdd()
-        {
-            if (NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
-            {
-                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-            }
-            else
-            {
-                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
-            }
-        }
-
-        #endregion
 
         #region ControlScheduleMethods
 
@@ -563,40 +480,6 @@ namespace UniBase.Model.K2
 
         #endregion
         #endregion
-        
-        //public void AddNewControlRegistrations()
-        //{
-        //    CheckIfInputsAreValid(ref _newControlRegistrationsToAdd);
-
-        //    //Checks whether any of the properties are null if any are returns true
-        //    bool isNull = NewControlRegistrationsToAdd.GetType().GetProperties().All(p => p.GetValue(NewControlRegistrationsToAdd) == null);
-
-        //    if (!isNull)
-        //    {
-        //        ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-        //        NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
-        //        var temp = ModelGenerics.GetById(new Frontpages(), NewControlRegistrationsToAdd.ProcessOrder_No);
-        //        var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
-        //        NewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
-                
-        //        if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
-        //        {
-        //            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-        //            NewControlRegistrationsToAdd = new ControlRegistrations();
-        //            NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
-        //            NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
-        //            NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID+1;
-        //            NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
-        //            NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
-        //            NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-
-        //        }
-        //        else
-        //        {
-        //            //error
-        //        }
-        //    }
-        //}
 
         private void GenerateHeaderLists()
         {
