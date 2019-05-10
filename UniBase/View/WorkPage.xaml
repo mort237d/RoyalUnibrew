@@ -302,7 +302,8 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.CommentsOnChangedDate, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.CommentsOnChangedDate}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="#16503F" Content="{Binding Column_2.NewControlRegistrationsToAdd.ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}" Command="{Binding DataContext.ControlledClickCommand2, ElementName=WorkPageName}">
+                                <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="#16503F" Command="{Binding DataContext.ControlledClickCommand2, ElementName=WorkPageName}">
+                                    <Image Source="{Binding Column_2.NewControlRegistrationsToAdd.ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}"/>
                                 </Button>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.CapNo, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.CapNo}" Height="42" FontSize="10"/>
