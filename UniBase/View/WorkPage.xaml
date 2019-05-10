@@ -90,6 +90,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
+                                                    
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
@@ -156,23 +157,6 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <!--<ListView Height="44" Width="662" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.FrontPageProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding}" Height="42" FontSize="10"></TextBox>
-                                                <Line></Line>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>-->
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No}" Height="42" FontSize="10" IsReadOnly="True"/>
                                     <Line/>
