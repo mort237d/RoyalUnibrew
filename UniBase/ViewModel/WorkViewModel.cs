@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight.Command;
 using UniBase.Annotations;
 using UniBase.Model;
 using UniBase.Model.K2;
-using UniBase.Model.Login;
 using UniBase.View;
 
 namespace UniBase.ViewModel
@@ -49,8 +44,6 @@ namespace UniBase.ViewModel
 
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
-
-        
         
         public RelayCommand<object> ControlledClickCommand { get; set; }
         public RelayCommand ControlledClickCommand2 { get; set; }
@@ -118,36 +111,36 @@ namespace UniBase.ViewModel
             AddFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.AddNewFrontpages);
             DeleteFrontpageTable = new RelayCommand<object>(Column_2.FrontpageButtonMethod.DeleteFrontpage);
 
-            RefreshControlRegistrationTable = new RelayCommand(Column_2.RefreshControlRegistrations);
-            RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.RefreshLastTenControlRegistrations);
-            SaveControlRegistrationTable = new RelayCommand(Column_2.SaveControlRegistrations);
-            //AddControlRegistrationsTable = new RelayCommand(Column_2.AddNewControlRegistrations);
+            RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshControlRegistrations);
+            RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTenControlRegistrations);
+            SaveControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.SaveControlRegistrations);
+            AddControlRegistrationsTable = new RelayCommand(Column_2.ControlRegistrationMethod.AddNewControlRegistrations);
 
-            RefreshControlScheduleTable = new RelayCommand(Column_2.RefreshControlSchedules);
-            RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.RefreshLastTenControlSchedules);
-            SaveControlScheduleTable = new RelayCommand(Column_2.SaveControlSchedules);
+            RefreshControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshControlSchedules);
+            RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTenControlSchedules);
+            SaveControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.SaveControlSchedules);
 
-            RefreshProductionTable = new RelayCommand(Column_2.RefreshProductions);
-            RefreshLastTenProductionTable = new RelayCommand(Column_2.RefreshProductions);
-            SaveProductionTable = new RelayCommand(Column_2.SaveProductions);
+            RefreshProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshProductions);
+            RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshProductions);
+            SaveProductionTable = new RelayCommand(Column_2.ProductionMethod.SaveProductions);
 
-            RefreshShiftRegistrationTable = new RelayCommand(Column_2.RefreshShiftRegistrations);
-            RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.RefreshLastTenShiftRegistrations);
-            SaveShiftRegistrationTable = new RelayCommand(Column_2.SaveShiftRegistrations);
+            RefreshShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshShiftRegistrations);
+            RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshLastTenShiftRegistrations);
+            SaveShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.SaveShiftRegistrations);
 
-            RefreshTUTable = new RelayCommand(Column_2.RefreshTUs);
-            RefreshLastTenTUTable = new RelayCommand(Column_2.RefreshLastTenTUs);
-            SaveTUTable = new RelayCommand(Column_2.SaveTUs);
+            RefreshTUTable = new RelayCommand(Column_2.TuMethod.RefreshTUs);
+            RefreshLastTenTUTable = new RelayCommand(Column_2.TuMethod.RefreshLastTenTUs);
+            SaveTUTable = new RelayCommand(Column_2.TuMethod.SaveTUs);
 
             AddUserCommand = new RelayCommand(ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
 
-            ControlledClickCommand = new RelayCommand<object>(Column_2.ControlledClick);
+            ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
-            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.SelectParentItemFrontpage);
-            ControlledClickCommand2 = new RelayCommand(Column_2.ControlledClickAdd);
+            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageButtonMethod.SelectParentItemFrontpage);
+            ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
         

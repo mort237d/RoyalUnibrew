@@ -1,19 +1,40 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class FrontpageButtonMethod
+    public class FrontpageButtonMethod : INotifyPropertyChanged
     {
         private Message message = new Message();
         private InputValidator inputValidator = new InputValidator();
 
-        public FrontpageButtonMethod()
+        private int _selectedFrontpageId;
+        private Frontpages _selectedFrontpage;
+
+        public int SelectedFrontpageId
         {
+            get { return _selectedFrontpageId; }
+            set
+            {
+                _selectedFrontpageId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Frontpages SelectedFrontpage
+        {
+            get { return _selectedFrontpage; }
+            set
+            {
+                _selectedFrontpage = value;
+                OnPropertyChanged();
+            }
         }
 
         public void RefreshFrontpages()
@@ -46,10 +67,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteFrontpage(object id)
         {
-            if (ManageTables.Instance.SelectedFrontpage != null)
+            if (SelectedFrontpage != null)
             {
                 //TODO Make deletion method
-                Debug.WriteLine(ManageTables.Instance.SelectedFrontpage.ProcessOrder_No);
+                Debug.WriteLine(SelectedFrontpage.ProcessOrder_No);
             }
         }
 
@@ -99,6 +120,24 @@ namespace UniBase.Model.K2.ButtonMethods
             }
 
             return weekNumber;
+        }
+
+        public void SelectParentItemFrontpage(object obj)
+        {
+            int id = (int)obj;
+
+            Frontpages del = ManageTables.Instance.FrontpagesList.First(d => d.ProcessOrder_No == id);
+            int ix = ManageTables.Instance.FrontpagesList.IndexOf(del);
+
+            SelectedFrontpageId = ix;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
