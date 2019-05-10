@@ -52,11 +52,15 @@ namespace UniBase.ViewModel
 
         public ManageTables Column_2 { get; set; }
         public PredefinedColors PredefinedColors { get; set; }
+        public RelayCommand<object> ControlledClickCommand { get; set; }
+        public RelayCommand ControlledClickCommand2 { get; set; }
 
         public SortAndFilter SortAndFilter { get; set; }
         
         public TrendAdminstrator TrendAdminstrator { get; set; }
         public XamlBindings XamlBindings { get; set; }
+
+
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
@@ -133,6 +137,7 @@ namespace UniBase.ViewModel
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlledClick);
 
             SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.SelectParentItemFrontpage);
+            ControlledClickCommand2 = new RelayCommand(Column_2.ControlledClickAdd);
         }
 
         public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }

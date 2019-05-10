@@ -34,6 +34,7 @@ namespace UniBase.Model.K2
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
+        private ObservableCollection<string> _kegSizes = new ObservableCollection<string>();
 
 
         private Message message = new Message();
@@ -230,6 +231,16 @@ namespace UniBase.Model.K2
             }
         }
 
+        public ObservableCollection<string> KegSizes
+        {
+            get { return _kegSizes; }
+            set
+            {
+                _kegSizes = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
         public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList { get => _completeControlRegistrationsList; set => _completeControlRegistrationsList = value; }
         public ObservableCollection<ControlSchedules> CompleteControlSchedulesList { get => _completeControlSchedulesList; set => _completeControlSchedulesList = value; }
@@ -359,6 +370,16 @@ namespace UniBase.Model.K2
             NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd);
                 
             }
+
+            if (ControlRegistrationsList.Count > 0)
+            {
+
+                NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
+                NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
+                NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
+                NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
+                NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
+            }
         }
 
         private int _selectedFrontpageId;
@@ -466,6 +487,18 @@ namespace UniBase.Model.K2
                         break;
                     }
                 }
+            }
+        }
+
+        public void ControlledClickAdd()
+        {
+            if (NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
+            {
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
+            }
+            else
+            {
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
             }
         }
 
@@ -587,22 +620,28 @@ namespace UniBase.Model.K2
                 {
                     if (prop.Name.Contains("StringHelper"))
                     {
-                        if (proppi.ToString().Length >= 10)
+                        if (proppi.ToString().Length >= 8)
                         {
                             datesandtimespans.Add(proppi.ToString());
                         }
                         else
                         {
                             //error
+                            Debug.WriteLine("Failed");
                         }
                     }
-                    else if (proppi == null && property.Name == "Note")
+                    else if (proppi == null)
                     {
-                        prop.SetValue(type, " ", null);
-                    }
-                    else if(proppi == null)
-                    {
-                        //error
+                        if (property.Name == "Note" || property.Name == "CommentsOnChangedDate")
+                        {
+                            prop.SetValue(type, " ", null);
+                        }
+                        else
+                        {
+                            //error
+                            Debug.WriteLine("Failed");
+
+                        }
                     }
                 }
                 else if (property.PropertyType == typeof(int))
@@ -611,6 +650,8 @@ namespace UniBase.Model.K2
                     if (i == 0)
                     {
                         //error
+                        Debug.WriteLine("Failed");
+
                     }
                 }
                 else if (property.PropertyType == typeof(double))
@@ -619,32 +660,54 @@ namespace UniBase.Model.K2
                     if (i == 0)
                     {
                         //error
+                        Debug.WriteLine("Failed");
+
                     }
                 }
                 else if (property.PropertyType == typeof(DateTime))
                 {
-                    DateTime dt = DateTime.Now;
-                    var split = datesandtimespans[listIndexCounter].Split('/');
-                    var splitWithoutSpecialChars = split;
-                    for (int i = 0; i < split.Length; i++)
+                    if (!(datesandtimespans.Count <= listIndexCounter))
                     {
-                        splitWithoutSpecialChars[i] = split[i].Trim('/');
-                    }
 
-                    if (splitWithoutSpecialChars[2].Length > 4)
-                    {
-                        splitWithoutSpecialChars[2] = splitWithoutSpecialChars[2].Remove(4);
-                    }
+                        DateTime dt = DateTime.Now;
+                        var split = datesandtimespans[listIndexCounter].Split('/');
+                        var splitWithoutSpecialChars = split;
+                        for (int i = 0; i < split.Length; i++)
+                        {
+                            splitWithoutSpecialChars[i] = split[i].Trim('/');
+                        }
 
-                    prop.SetValue(type, new DateTime(int.Parse(splitWithoutSpecialChars[2]), int.Parse(splitWithoutSpecialChars[1]), int.Parse(splitWithoutSpecialChars[0]), dt.Hour,dt.Minute, 0), null);
-                    listIndexCounter++;
+                        if (splitWithoutSpecialChars[2].Length > 4)
+                        {
+                            splitWithoutSpecialChars[2] = splitWithoutSpecialChars[2].Remove(4);
+                        }
+
+                        try
+                        {
+                            prop.SetValue(type, new DateTime(int.Parse(splitWithoutSpecialChars[0]), int.Parse(splitWithoutSpecialChars[1]), int.Parse(splitWithoutSpecialChars[2]), dt.Hour, dt.Minute, 0), null);
+                        }
+                        catch 
+                        {
+                            //error
+                        }
+                        listIndexCounter++;
+                    }
                 }
                 else if (property.PropertyType == typeof(TimeSpan))
                 {
-                    var split = datesandtimespans[listIndexCounter].Split(':');
-
-                    prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2]), 0), null);
-                    listIndexCounter++;
+                    if (!(datesandtimespans.Count <= listIndexCounter))
+                    {
+                        var split = datesandtimespans[listIndexCounter].Split(':');
+                        try
+                        {
+                            prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
+                        }
+                        catch
+                        {
+                            //error
+                        }
+                        listIndexCounter++;
+                    }
                 }
             }
         }
@@ -682,17 +745,25 @@ namespace UniBase.Model.K2
             CheckIfInputsAreValid(ref _newControlRegistrationsToAdd);
 
             //Checks whether any of the properties are null if any are returns true
-            bool isNull = NewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(NewFrontpagesToAdd) == null);
+            bool isNull = NewControlRegistrationsToAdd.GetType().GetProperties().All(p => p.GetValue(NewControlRegistrationsToAdd) == null);
 
             if (!isNull)
             {
                 ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
                 NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
+                var temp = ModelGenerics.GetById(new Frontpages(), NewControlRegistrationsToAdd.ProcessOrder_No);
+                var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
+                NewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
                 
                 if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
                 {
                     ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
                     NewControlRegistrationsToAdd = new ControlRegistrations();
+                    NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
+                    NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
+                    NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID+1;
+                    NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
+                    NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
                 }
                 else
                 {
@@ -729,6 +800,8 @@ namespace UniBase.Model.K2
             ProductProps = new List<string>{"Færdigvarer Nr", "Produkt Navn", "Antal dage før udløbsdato"};
             ShiftRegistrationProps = new List<string>{"Vagt registrerings ID", "ProcessOrdre Nr", "Start tidspunkt", "Slut tidspunkt", "Pauser", "Total timer", "Bemanding", "Initialer"};
             TuProps = new List<string>{"TU ID", "ProcessOrdre Nr", "Første dag start TU", "Første dag slut TU", "Første dag TU i alt", "Anden dag start TU", "Anden dag slut TU", "Anden dag TU i alt", "Tredje dag start TU", "Tredje dag slut TU", "Tredje dag TU i alt" };
+
+            KegSizes = new ObservableCollection<string>{"25L", "30L", "35L"};
         }
 
 
