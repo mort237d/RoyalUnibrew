@@ -12,7 +12,6 @@ namespace UniBase.Model.K2
     public class ManageTables :INotifyPropertyChanged
     {
         #region Field
-        private ObservableCollection<Frontpages> _completeFrontpagesList;
 
         private ObservableCollection<Frontpages> _frontpagesList;
         private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
@@ -37,13 +36,6 @@ namespace UniBase.Model.K2
         private ProductionMethod _productionMethod = new ProductionMethod();
         private ShiftRegistrationMethod _shiftRegistrationMethod = new ShiftRegistrationMethod();
         private TUMethod _tuMethod = new TUMethod();
-
-        private string _processOrderNoTextBoxOutput;
-        private string _dateTextBoxOutput;
-        private string _finishedProductNoTextBoxOutput;
-        private string _columnTextBoxOutput;
-        private string _noteTextBoxOutput;
-        private string _weekNoTextBoxOutput;
 
         #endregion
 
@@ -145,156 +137,6 @@ namespace UniBase.Model.K2
             set { _tuMethod = value; }
         }
 
-        public string ProcessOrderNoTextBoxOutput
-        {
-            get { return _processOrderNoTextBoxOutput; }
-            set
-            {
-                _processOrderNoTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.ProcessOrder_No.ToString();
-                    if (v.Contains(_processOrderNoTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
-        }
-
-        public string DateTextBoxOutput
-        {
-            get { return _dateTextBoxOutput; }
-            set
-            {
-                _dateTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.Date.ToString();
-                    if (v.Contains(_dateTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_dateTextBoxOutput))
-                {
-                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
-        }
-
-        public string FinishedProductNoTextBoxOutput
-        {
-            get { return _finishedProductNoTextBoxOutput; }
-            set
-            {
-                _finishedProductNoTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.FinishedProduct_No.ToString();
-                    if (v.Contains(_finishedProductNoTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_finishedProductNoTextBoxOutput))
-                {
-                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
-        }
-
-        public string ColumnTextBoxOutput
-        {
-            get { return _columnTextBoxOutput; }
-            set
-            {
-                _columnTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.Colunm.ToString();
-                    if (v.Contains(_columnTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_columnTextBoxOutput))
-                {
-                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
-        }
-
-        public string NoteTextBoxOutput
-        {
-            get { return _noteTextBoxOutput; }
-            set
-            {
-                _noteTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.Note;
-                    if (v.Contains(_noteTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_noteTextBoxOutput))
-                {
-                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
-        }
-
-        public string WeekNoTextBoxOutput
-        {
-            get { return _weekNoTextBoxOutput; }
-            set
-            {
-                _weekNoTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.Week_No.ToString();
-                    if (v.Contains(_weekNoTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_weekNoTextBoxOutput))
-                {
-                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
-        }
-
         public ObservableCollection<string> KegSizes
         {
             get { return _kegSizes; }
@@ -304,8 +146,6 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
-        public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
 
         #region ObservableLists
 
@@ -401,9 +241,6 @@ namespace UniBase.Model.K2
 
         public void InitializeObservableCollections()
         {
-            CompleteFrontpagesList = ModelGenerics.GetAll(new Frontpages());
-
-
             FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
