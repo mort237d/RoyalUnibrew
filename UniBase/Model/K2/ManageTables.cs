@@ -31,8 +31,6 @@ namespace UniBase.Model.K2
 
         private ObservableCollection<string> _kegSizes = new ObservableCollection<string>();
 
-
-        private Message message = new Message();
         private FrontpageButtonMethod _frontpageButtonMethod = new FrontpageButtonMethod();
         private ControlRegistrationMethod _controlRegistrationMethod = new ControlRegistrationMethod();
         private ControlScheduleMethod _controlScheduleMethod = new ControlScheduleMethod();
