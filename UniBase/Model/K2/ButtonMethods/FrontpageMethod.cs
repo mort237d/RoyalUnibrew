@@ -15,7 +15,6 @@ namespace UniBase.Model.K2.ButtonMethods
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
         private Message message = new Message();
-        private InputValidator inputValidator = new InputValidator();
 
         private int _selectedFrontpageId;
         private Frontpages _selectedFrontpage;
@@ -238,7 +237,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewFrontpages()
         {
             var instanceNewFrontpagesToAdd = ManageTables.Instance.NewFrontpagesToAdd;
-            inputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
+            InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
             instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
 
             //Checks whether any of the properties are null if any are returns true
