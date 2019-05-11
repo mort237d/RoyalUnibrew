@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class ControlRegistrationMethod
+    public class ControlRegistrationMethod : INotifyPropertyChanged
     {
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
 
         private Message _message = new Message();
         private InputValidator _inputValidator = new InputValidator();
+
+        private int _selectedControlRegistrationId;
+        private ControlRegistrations _selectedControlRegistration;
 
         private string _controlRegistrationIdTextBoxOutput;
         private string _timeTextBoxOutput;
@@ -338,6 +344,26 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        public int SelectedControlRegistrationId
+        {
+            get { return _selectedControlRegistrationId; }
+            set
+            {
+                _selectedControlRegistrationId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ControlRegistrations SelectedControlRegistration
+        {
+            get { return _selectedControlRegistration; }
+            set
+            {
+                _selectedControlRegistration = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void RefreshControlRegistrations()
         {
             ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
@@ -355,6 +381,14 @@ namespace UniBase.Model.K2.ButtonMethods
                 ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
             });
             _message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
+        }
+        public void DeleteControlRegistration()
+        {
+            if (SelectedControlRegistration != null)
+            {
+                //TODO Make deletion method
+                Debug.WriteLine(SelectedControlRegistration.ControlRegistration_ID);
+            }
         }
 
         public void ControlledClick(object id)
@@ -427,5 +461,26 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        public void SelectParentItem(object obj)
+        {
+            int id = (int)obj;
+
+            ControlRegistrations del = ManageTables.Instance.ControlRegistrationsList.First(d => d.ControlRegistration_ID == id);
+            int index = ManageTables.Instance.ControlRegistrationsList.IndexOf(del);
+
+            SelectedControlRegistrationId = index;
+        }
+
+        #region INotify
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

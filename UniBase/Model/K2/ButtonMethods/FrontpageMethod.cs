@@ -226,7 +226,7 @@ namespace UniBase.Model.K2.ButtonMethods
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
-        public void DeleteFrontpage(object id)
+        public void DeleteFrontpage()
         {
             if (SelectedFrontpage != null)
             {
@@ -283,15 +283,17 @@ namespace UniBase.Model.K2.ButtonMethods
             return weekNumber;
         }
 
-        public void SelectParentItemFrontpage(object obj)
+        public void SelectParentItem(object obj)
         {
             int id = (int)obj;
 
             Frontpages del = ManageTables.Instance.FrontpagesList.First(d => d.ProcessOrder_No == id);
-            int ix = ManageTables.Instance.FrontpagesList.IndexOf(del);
+            int index = ManageTables.Instance.FrontpagesList.IndexOf(del);
 
-            SelectedFrontpageId = ix;
+            SelectedFrontpageId = index;
         }
+
+        #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -300,5 +302,7 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

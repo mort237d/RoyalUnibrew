@@ -18,7 +18,7 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshLastTenControlRegistrationTable { get; set; }
         public RelayCommand SaveFrontpageTable { get; set; }
         public RelayCommand AddFrontpageTable { get; set; }
-        public RelayCommand<object> DeleteFrontpageTable { get; set; }
+        public RelayCommand DeleteFrontpageTable { get; set; }
 
         public RelayCommand RefreshControlRegistrationTable { get; set; }
         public RelayCommand RefreshLastTenFrontpageTable { get; set; }
@@ -49,6 +49,7 @@ namespace UniBase.ViewModel
         public RelayCommand ControlledClickCommand2 { get; set; }
 
         public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
+        public RelayCommand<object> SelectParentItemControlRegistrationCommand { get; set; }
 
         #endregion
 
@@ -109,12 +110,13 @@ namespace UniBase.ViewModel
             RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTenFrontpages);
             SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.SaveFrontpages);
             AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewFrontpages);
-            DeleteFrontpageTable = new RelayCommand<object>(Column_2.FrontpageMethod.DeleteFrontpage);
+            DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.DeleteFrontpage);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTenControlRegistrations);
             SaveControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.SaveControlRegistrations);
             AddControlRegistrationsTable = new RelayCommand(Column_2.ControlRegistrationMethod.AddNewControlRegistrations);
+            DeleteControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.DeleteControlRegistration);
 
             RefreshControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshControlSchedules);
             RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTenControlSchedules);
@@ -139,11 +141,14 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
-            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SelectParentItemFrontpage);
+            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SelectParentItem);
+            SelectParentItemControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SelectParentItem);
+
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
-        
+        public RelayCommand DeleteControlRegistrationTable { get; set; }
+
 
         private void TempMethod2()
         {

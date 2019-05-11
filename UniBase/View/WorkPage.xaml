@@ -223,7 +223,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="1326" ItemsSource="{Binding Column_2.ControlRegistrationsList}">
+                                    <ListView SelectedIndex="{Binding Column_2.ControlRegistrationMethod.SelectedControlRegistrationId, Mode=TwoWay}" SelectedItem="{Binding Column_2.ControlRegistrationMethod.SelectedControlRegistration, Mode=TwoWay}" MaxHeight="400" Width="1326" ItemsSource="{Binding Column_2.ControlRegistrationsList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -234,20 +234,87 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <!-- Find en løsning til knappen med at få selecteditem frem -->
                                                     <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}">
                                                         <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}"/>
                                                     </Button>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -264,7 +331,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding AddControlRegistrationsTable}">
                                         <Image Source="Images/SaveButton.png"/>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteControlRegistrationTable}">
                                         <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
