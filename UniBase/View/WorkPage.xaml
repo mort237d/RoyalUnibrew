@@ -42,19 +42,19 @@
         <Pivot Grid.Row="1" x:Name="ColumnPivot">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="2">
+                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="1">
                     <!--#region Forside-->
                     <PivotItem Style="{StaticResource CustomPivotItemStyle}" Header="Forside">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[0].Header}" Text="{Binding DataContext.Column_2.FrontpageMethod.ProcessOrderNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[1].Header}" Text="{Binding DataContext.Column_2.FrontpageMethod.DateTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[2].Header}" Text="{Binding DataContext.Column_2.FrontpageMethod.FinishedProductNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[3].Header}" Text="{Binding DataContext.Column_2.FrontpageMethod.ColumnTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[4].Header}" Text="{Binding DataContext.Column_2.FrontpageMethod.NoteTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[5].Header}" Text="{Binding DataContext.Column_2.FrontpageMethod.WeekNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[0].Header}" Text="{Binding Column_2.FrontpageMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[1].Header}" Text="{Binding Column_2.FrontpageMethod.DateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[2].Header}" Text="{Binding Column_2.FrontpageMethod.FinishedProductNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[3].Header}" Text="{Binding Column_2.FrontpageMethod.ColumnTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[4].Header}" Text="{Binding Column_2.FrontpageMethod.NoteTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[5].Header}" Text="{Binding Column_2.FrontpageMethod.WeekNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -184,23 +184,20 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
-                                <ListView Height="44" Width="1326" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlRegistrationProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
-                                                <Line/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[0]}"  Text="{Binding Column_2.ControlRegistrationMethod.ControlRegistrationIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[1]}"  Text="{Binding Column_2.ControlRegistrationMethod.TimeTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[2]}"  Text="{Binding Column_2.ControlRegistrationMethod.ProductionDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[3]}"  Text="{Binding Column_2.ControlRegistrationMethod.ExpiryDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[4]}"  Text="{Binding Column_2.ControlRegistrationMethod.CommentsOnChangedDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[5]}"  Text="{Binding Column_2.ControlRegistrationMethod.ControlAlcoholSpearDispenserTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[6]}"  Text="{Binding Column_2.ControlRegistrationMethod.CapNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[7]}"  Text="{Binding Column_2.ControlRegistrationMethod.EtiquetteNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[8]}"  Text="{Binding Column_2.ControlRegistrationMethod.KegSizeTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[9]}"  Text="{Binding Column_2.ControlRegistrationMethod.SignatureTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[10]}"  Text="{Binding Column_2.ControlRegistrationMethod.FirstPalletDepalletizingTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[11]}"  Text="{Binding Column_2.ControlRegistrationMethod.LastPalletDepalletizingTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">

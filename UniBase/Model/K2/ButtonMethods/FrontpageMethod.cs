@@ -46,7 +46,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
+        //public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
 
         public string ProcessOrderNoTextBoxOutput
         {
@@ -57,10 +57,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
                 ManageTables.Instance.FrontpagesList.Clear();
 
-                foreach (var f in CompleteFrontpagesList)
+                foreach (var f in _completeFrontpagesList)
                 {
-                    var v = f.ProcessOrder_No.ToString();
-                    if (v.Contains(_processOrderNoTextBoxOutput))
+                    var v = f.ProcessOrder_No.ToString().ToLower();
+                    if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
                     {
                         ManageTables.Instance.FrontpagesList.Add(f);
                     }
@@ -82,10 +82,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
                 ManageTables.Instance.FrontpagesList.Clear();
 
-                foreach (var f in CompleteFrontpagesList)
+                foreach (var f in _completeFrontpagesList)
                 {
-                    var v = f.Date.ToString();
-                    if (v.Contains(_dateTextBoxOutput))
+                    var v = f.Date.ToString().ToLower();
+                    if (v.Contains(_dateTextBoxOutput.ToLower()))
                     {
                         ManageTables.Instance.FrontpagesList.Add(f);
                     }
@@ -107,10 +107,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
                 ManageTables.Instance.FrontpagesList.Clear();
 
-                foreach (var f in CompleteFrontpagesList)
+                foreach (var f in _completeFrontpagesList)
                 {
-                    var v = f.FinishedProduct_No.ToString();
-                    if (v.Contains(_finishedProductNoTextBoxOutput))
+                    var v = f.FinishedProduct_No.ToString().ToLower();
+                    if (v.Contains(_finishedProductNoTextBoxOutput.ToLower()))
                     {
                         ManageTables.Instance.FrontpagesList.Add(f);
                     }
@@ -132,10 +132,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
                 ManageTables.Instance.FrontpagesList.Clear();
 
-                foreach (var f in CompleteFrontpagesList)
+                foreach (var f in _completeFrontpagesList)
                 {
-                    var v = f.Colunm.ToString();
-                    if (v.Contains(_columnTextBoxOutput))
+                    var v = f.Colunm.ToString().ToLower();
+                    if (v.Contains(_columnTextBoxOutput.ToLower()))
                     {
                         ManageTables.Instance.FrontpagesList.Add(f);
                     }
@@ -157,10 +157,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
                 ManageTables.Instance.FrontpagesList.Clear();
 
-                foreach (var f in CompleteFrontpagesList)
+                foreach (var f in _completeFrontpagesList)
                 {
-                    var v = f.Note;
-                    if (v.Contains(_noteTextBoxOutput))
+                    var v = f.Note.ToLower();
+                    if (v.Contains(_noteTextBoxOutput.ToLower()))
                     {
                         ManageTables.Instance.FrontpagesList.Add(f);
                     }
@@ -182,10 +182,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
                 ManageTables.Instance.FrontpagesList.Clear();
 
-                foreach (var f in CompleteFrontpagesList)
+                foreach (var f in _completeFrontpagesList)
                 {
-                    var v = f.Week_No.ToString();
-                    if (v.Contains(_weekNoTextBoxOutput))
+                    var v = f.Week_No.ToString().ToLower();
+                    if (v.Contains(_weekNoTextBoxOutput.ToLower()))
                     {
                         ManageTables.Instance.FrontpagesList.Add(f);
                     }
