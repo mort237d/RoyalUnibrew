@@ -128,7 +128,7 @@
     <Compile Include="Model\K2\ButtonMethods\TUMethod.cs" />
     <Compile Include="Model\K2\ControlRegistrations.cs" />
     <Compile Include="Model\K2\ControlSchedules.cs" />
-    <Compile Include="Model\K2\ButtonMethods\FrontpageButtonMethod.cs" />
+    <Compile Include="Model\K2\ButtonMethods\FrontpageMethod.cs" />
     <Compile Include="Model\K2\Frontpages.cs" />
     <Compile Include="Model\K2\InputValidator.cs" />
     <Compile Include="Model\K2\Productions.cs" />

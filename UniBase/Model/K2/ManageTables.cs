@@ -31,7 +31,7 @@ namespace UniBase.Model.K2
 
         private ObservableCollection<string> _kegSizes = new ObservableCollection<string>();
 
-        private FrontpageButtonMethod _frontpageButtonMethod = new FrontpageButtonMethod();
+        private FrontpageMethod _frontpageMethod = new FrontpageMethod();
         private ControlRegistrationMethod _controlRegistrationMethod = new ControlRegistrationMethod();
         private ControlScheduleMethod _controlScheduleMethod = new ControlScheduleMethod();
         private ProductionMethod _productionMethod = new ProductionMethod();
@@ -109,10 +109,10 @@ namespace UniBase.Model.K2
             }
         }
 
-        public FrontpageButtonMethod FrontpageButtonMethod
+        public FrontpageMethod FrontpageMethod
         {
-            get { return _frontpageButtonMethod; }
-            set { _frontpageButtonMethod = value; }
+            get { return _frontpageMethod; }
+            set { _frontpageMethod = value; }
         }
 
         public ControlRegistrationMethod ControlRegistrationMethod
@@ -418,7 +418,7 @@ namespace UniBase.Model.K2
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
             NewFrontpagesToAdd.DateTimeStringHelper = NewFrontpagesToAdd.Date.ToString().Remove(10);
-            NewFrontpagesToAdd.Week_No = FrontpageButtonMethod.FindWeekNumber(NewFrontpagesToAdd);
+            NewFrontpagesToAdd.Week_No = FrontpageMethod.FindWeekNumber(NewFrontpagesToAdd);
                 
             }
 

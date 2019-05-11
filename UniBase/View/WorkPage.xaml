@@ -81,7 +81,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView SelectedIndex="{Binding Column_2.FrontpageButtonMethod.SelectedFrontpageId, Mode=TwoWay}" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}" SelectedItem="{Binding Column_2.FrontpageButtonMethod.SelectedFrontpage, Mode=TwoWay}">
+                                    <ListView SelectedIndex="{Binding Column_2.FrontpageMethod.SelectedFrontpageId, Mode=TwoWay}" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}" SelectedItem="{Binding Column_2.FrontpageMethod.SelectedFrontpage, Mode=TwoWay}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>

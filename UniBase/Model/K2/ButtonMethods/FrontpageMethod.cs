@@ -9,7 +9,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class FrontpageButtonMethod : INotifyPropertyChanged
+    public class FrontpageMethod : INotifyPropertyChanged
     {
         private Message message = new Message();
         private InputValidator inputValidator = new InputValidator();

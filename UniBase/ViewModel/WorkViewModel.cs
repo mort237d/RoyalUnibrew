@@ -105,11 +105,11 @@ namespace UniBase.ViewModel
 
             #endregion
 
-            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.RefreshFrontpages);
-            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.RefreshLastTenFrontpages);
-            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.SaveFrontpages);
-            AddFrontpageTable = new RelayCommand(Column_2.FrontpageButtonMethod.AddNewFrontpages);
-            DeleteFrontpageTable = new RelayCommand<object>(Column_2.FrontpageButtonMethod.DeleteFrontpage);
+            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshFrontpages);
+            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTenFrontpages);
+            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.SaveFrontpages);
+            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewFrontpages);
+            DeleteFrontpageTable = new RelayCommand<object>(Column_2.FrontpageMethod.DeleteFrontpage);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTenControlRegistrations);
@@ -139,7 +139,7 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
-            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageButtonMethod.SelectParentItemFrontpage);
+            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SelectParentItemFrontpage);
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
