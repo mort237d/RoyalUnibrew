@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 using UniBase.Model.K2.ButtonMethods;
 
@@ -17,13 +12,6 @@ namespace UniBase.Model.K2
     public class ManageTables :INotifyPropertyChanged
     {
         #region Field
-        private ObservableCollection<Frontpages> _completeFrontpagesList;
-        private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList;
-        private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
-        private ObservableCollection<Productions> _completeProductionsList;
-        private ObservableCollection<Products> _completeProductsList;
-        private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList;
-        private ObservableCollection<TUs> _completeTuList;
 
         private ObservableCollection<Frontpages> _frontpagesList;
         private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
@@ -42,16 +30,12 @@ namespace UniBase.Model.K2
 
         private ObservableCollection<string> _kegSizes = new ObservableCollection<string>();
 
-
-        private Message message = new Message();
-        private FrontpageButtonMethod _frontpageButtonMethod = new FrontpageButtonMethod();
-
-        private string _processOrderNoTextBoxOutput;
-        private string _dateTextBoxOutput;
-        private string _finishedProductNoTextBoxOutput;
-        private string _columnTextBoxOutput;
-        private string _noteTextBoxOutput;
-        private string _weekNoTextBoxOutput;
+        private FrontpageMethod _frontpageMethod = new FrontpageMethod();
+        private ControlRegistrationMethod _controlRegistrationMethod = new ControlRegistrationMethod();
+        private ControlScheduleMethod _controlScheduleMethod = new ControlScheduleMethod();
+        private ProductionMethod _productionMethod = new ProductionMethod();
+        private ShiftRegistrationMethod _shiftRegistrationMethod = new ShiftRegistrationMethod();
+        private TUMethod _tuMethod = new TUMethod();
 
         #endregion
 
@@ -117,172 +101,40 @@ namespace UniBase.Model.K2
             }
         }
 
-
-
-        public FrontpageButtonMethod FrontpageButtonMethod
+        public FrontpageMethod FrontpageMethod
         {
-            get { return _frontpageButtonMethod; }
-            set { _frontpageButtonMethod = value; }
-        }
-        
-        public string ProcessOrderNoTextBoxOutput
-        {
-            get { return _processOrderNoTextBoxOutput; }
-            set
-            {
-                _processOrderNoTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.ProcessOrder_No.ToString();
-                    if (v.Contains(_processOrderNoTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
+            get { return _frontpageMethod; }
+            set { _frontpageMethod = value; }
         }
 
-        public string DateTextBoxOutput
+        public ControlRegistrationMethod ControlRegistrationMethod
         {
-            get { return _dateTextBoxOutput; }
-            set
-            {
-                _dateTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.Date.ToString();
-                    if (v.Contains(_dateTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_dateTextBoxOutput))
-                {
-                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
+            get { return _controlRegistrationMethod; }
+            set { _controlRegistrationMethod = value; }
         }
 
-        public string FinishedProductNoTextBoxOutput
+        public ControlScheduleMethod ControlScheduleMethod
         {
-            get { return _finishedProductNoTextBoxOutput; }
-            set
-            {
-                _finishedProductNoTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.FinishedProduct_No.ToString();
-                    if (v.Contains(_finishedProductNoTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_finishedProductNoTextBoxOutput))
-                {
-                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
+            get { return _controlScheduleMethod; }
+            set { _controlScheduleMethod = value; }
         }
 
-        public string ColumnTextBoxOutput
+        public ProductionMethod ProductionMethod
         {
-            get { return _columnTextBoxOutput; }
-            set
-            {
-                _columnTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.Colunm.ToString();
-                    if (v.Contains(_columnTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_columnTextBoxOutput))
-                {
-                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
+            get { return _productionMethod; }
+            set { _productionMethod = value; }
         }
 
-        public string NoteTextBoxOutput
+        public ShiftRegistrationMethod ShiftRegistrationMethod
         {
-            get { return _noteTextBoxOutput; }
-            set
-            {
-                _noteTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.Note;
-                    if (v.Contains(_noteTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_noteTextBoxOutput))
-                {
-                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
+            get { return _shiftRegistrationMethod; }
+            set { _shiftRegistrationMethod = value; }
         }
 
-        public string WeekNoTextBoxOutput
+        public TUMethod TuMethod
         {
-            get { return _weekNoTextBoxOutput; }
-            set
-            {
-                _weekNoTextBoxOutput = value;
-
-                FrontpagesList.Clear();
-
-                foreach (var f in CompleteFrontpagesList)
-                {
-                    var v = f.Week_No.ToString();
-                    if (v.Contains(_weekNoTextBoxOutput))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_weekNoTextBoxOutput))
-                {
-                    FrontpagesList =  ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
-            }
-        }
-
-        public Frontpages SelectedFrontpage
-        {
-            get { return _selectedFrontpage; }
-            set
-            {
-                _selectedFrontpage = value;
-                OnPropertyChanged();
-            }
+            get { return _tuMethod; }
+            set { _tuMethod = value; }
         }
 
         public ObservableCollection<string> KegSizes
@@ -294,14 +146,6 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
-        public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
-        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList { get => _completeControlRegistrationsList; set => _completeControlRegistrationsList = value; }
-        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList { get => _completeControlSchedulesList; set => _completeControlSchedulesList = value; }
-        public ObservableCollection<Productions> CompleteProductionsList { get => _completeProductionsList; set => _completeProductionsList = value; }
-        public ObservableCollection<Products> CompleteProductsList { get => _completeProductsList; set => _completeProductsList = value; }
-        public ObservableCollection<ShiftRegistrations> CompleteShiftRegistrationsList { get => _completeShiftRegistrationsList; set => _completeShiftRegistrationsList = value; }
-        public ObservableCollection<TUs> CompleteTuList { get => _completeTuList; set => _completeTuList = value; }
 
         #region ObservableLists
 
@@ -393,21 +237,10 @@ namespace UniBase.Model.K2
         {
             InitializeObservableCollections();
             GenerateHeaderLists();
-
-            
         }
 
         public void InitializeObservableCollections()
         {
-            CompleteFrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            CompleteControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            CompleteControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            CompleteProductionsList = ModelGenerics.GetAll(new Productions());
-            CompleteProductsList = ModelGenerics.GetAll(new Products());
-            CompleteShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            CompleteTuList = ModelGenerics.GetAll(new TUs());
-
-
             FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
@@ -426,7 +259,7 @@ namespace UniBase.Model.K2
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
             NewFrontpagesToAdd.DateTimeStringHelper = NewFrontpagesToAdd.Date.ToString().Remove(10);
-            NewFrontpagesToAdd.Week_No = FrontpageButtonMethod.FindWeekNumber(NewFrontpagesToAdd);
+            NewFrontpagesToAdd.Week_No = FrontpageMethod.FindWeekNumber(NewFrontpagesToAdd);
                 
             }
 
@@ -440,215 +273,7 @@ namespace UniBase.Model.K2
                 NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
             }
         }
-
-        private int _selectedFrontpageId;
-        public int SelectedFrontpageId
-        {
-            get { return _selectedFrontpageId; }
-            set
-            {
-                _selectedFrontpageId = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public void SelectParentItemFrontpage(object obj)
-        {
-            int id = (int)obj;
-
-            Frontpages del = _frontpagesList.First(d => d.ProcessOrder_No == id);
-            int ix = _frontpagesList.IndexOf(del);
-
-            SelectedFrontpageId = ix;
-        }
-
-        #region ButtonMethods
-        private Frontpages _selectedFrontpage;
         
-        #region ControlRegistrationMethods
-
-        public void RefreshControlRegistrations()
-        {
-            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
-        }
-        public void RefreshLastTenControlRegistrations()
-        {
-            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-            message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
-        }
-        public void SaveControlRegistrations()
-        {
-            Parallel.ForEach(_controlRegistrationsList, controlRegistration =>
-            {
-                ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
-            });
-            message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
-        }
-
-        public void ControlledClick(object id)
-        {
-            Debug.WriteLine(id.ToString());
-
-            foreach (var CR in ControlRegistrationsList)
-            {
-                if (CR.ProcessOrder_No == (int)id)
-                {
-                    if (CR.ControlAlcoholSpearDispenser)
-                    {
-                        CR.ControlAlcoholSpearDispenser = false;
-                        break;
-                    }
-                    else
-                    {
-                        CR.ControlAlcoholSpearDispenser = true;
-                        break;
-                    }
-                }
-            }
-        }
-
-        public void ControlledClickAdd()
-        {
-            if (NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
-            {
-                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-            }
-            else
-            {
-                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
-            }
-        }
-
-        #endregion
-
-        #region ControlScheduleMethods
-
-        public void RefreshControlSchedules()
-        {
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
-        }
-        public void RefreshLastTenControlSchedules()
-        {
-            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-            message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
-        }
-        public void SaveControlSchedules()
-        {
-            Parallel.ForEach(_controlSchedulesList, controlSchedules =>
-            {
-                ModelGenerics.UpdateByObjectAndId(controlSchedules.ControlSchedule_ID, controlSchedules);
-            });
-            message.ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
-        }
-
-        #endregion
-
-        #region ProductionMethods
-
-        public void RefreshProductions()
-        {
-            ProductionsList = ModelGenerics.GetAll(new Productions());
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
-        }
-        public void RefreshLastTenProductions()
-        {
-            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
-        }
-        public void SaveProductions()
-        {
-            Parallel.ForEach(_productionsList, productions =>
-            {
-                ModelGenerics.UpdateByObjectAndId(productions.Production_ID, productions);
-            });
-            message.ShowToastNotification("Gemt", "Produktions-tabellen er gemt");
-        }
-
-        #endregion
-
-        #region ShiftRegistrationMethods
-
-        public void RefreshShiftRegistrations()
-        {
-            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
-        }
-        public void RefreshLastTenShiftRegistrations()
-        {
-            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
-        }
-        public void SaveShiftRegistrations()
-        {
-            Parallel.ForEach(_shiftRegistrationsList, shiftRegistrations =>
-            {
-                ModelGenerics.UpdateByObjectAndId(shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
-            });
-            message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
-        }
-
-        #endregion
-
-        #region TUMethods
-
-        public void RefreshTUs()
-        {
-            TuList = ModelGenerics.GetAll(new TUs());
-            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
-        }
-        public void RefreshLastTenTUs()
-        {
-            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
-        }
-        public void SaveTUs()
-        {
-            Parallel.ForEach(_tuList, tus =>
-            {
-                ModelGenerics.UpdateByObjectAndId(tus.TU_ID, tus);
-            });
-            message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
-        }
-
-        #endregion
-        #endregion
-
-        //public void AddNewControlRegistrations()
-        //{
-        //    CheckIfInputsAreValid(ref _newControlRegistrationsToAdd);
-
-        //    //Checks whether any of the properties are null if any are returns true
-        //    bool isNull = NewControlRegistrationsToAdd.GetType().GetProperties().All(p => p.GetValue(NewControlRegistrationsToAdd) == null);
-
-        //    if (!isNull)
-        //    {
-        //        ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-        //        NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
-        //        var temp = ModelGenerics.GetById(new Frontpages(), NewControlRegistrationsToAdd.ProcessOrder_No);
-        //        var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
-        //        NewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
-
-        //        if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
-        //        {
-        //            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-        //            NewControlRegistrationsToAdd = new ControlRegistrations();
-        //            NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
-        //            NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
-        //            NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID+1;
-        //            NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
-        //            NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
-        //            NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-
-        //        }
-        //        else
-        //        {
-        //            //error
-        //        }
-        //    }
-        //}
-
         private void GenerateHeaderLists()
         {
             ControlRegistrationProps = new List<string>{"Kontrol Registrering ID", "ProcessOrdre Nr", "Tid", "Produktionsdato", "Kommentar vedr. ændret dato", "Kontrol af sprit på anstikker", "Hætte Nr", "Etikette Nr", "Fustage", "Signatur", "Første palle depalleteret" , "Sidste palle depalleteret" };
@@ -685,9 +310,6 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-
-        
-
         #endregion
 
         #region INotifyPropertiesChanged

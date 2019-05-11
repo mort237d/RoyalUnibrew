@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI;
-using Windows.UI.Text;
 using Windows.UI.Xaml.Media;
 using UniBase.Annotations;
 
@@ -25,9 +24,9 @@ namespace UniBase.Model.K2
 
         private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
         private ConstantValues constantValues = new ConstantValues();
-        private Brush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
-        private Brush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
-        private Brush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private SolidColorBrush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private SolidColorBrush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private SolidColorBrush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
 
         public ControlSchedules()
         {
@@ -163,7 +162,7 @@ namespace UniBase.Model.K2
 
         public virtual Frontpages Frontpage { get; set; }
 
-        public Brush WeightColorBrush
+        public SolidColorBrush WeightColorBrush
         {
             get { return weightColorBrush; }
             set
@@ -173,7 +172,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public Brush MipMaColorBrush
+        public SolidColorBrush MipMaColorBrush
         {
             get { return mipMaColorBrush; }
             set
@@ -183,7 +182,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public Brush LudKoncentrationColorBrush
+        public SolidColorBrush LudKoncentrationColorBrush
         {
             get { return ludKoncentrationColorBrush; }
             set
