@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace UniBase.Model.K2
 {
-    class InputValidator
+    public static class InputValidator
     {
         /// <summary>
         /// Rækkefølge på properties i klasser er vigtige!
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>
-        public void CheckIfInputsAreValid<T>(ref T type)
+        public static void CheckIfInputsAreValid<T>(ref T type)
         {
             List<string> datesandtimespans = new List<string>();
             int listIndexCounter = 0;

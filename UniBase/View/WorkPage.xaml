@@ -100,7 +100,7 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Date, Mode=TwoWay}" ToolTipService.ToolTip="Fx ÅÅÅÅ/MM/DD">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding DateTimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>

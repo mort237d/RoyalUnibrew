@@ -15,8 +15,8 @@ namespace UniBase.Model.K2
         private Products _product;
 
 
-        private DateTime _date;
         private string _dateStringHelper;
+        private DateTime _date;
 
         public Frontpages()
         {
@@ -53,19 +53,6 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
-        public DateTime Date
-        {
-            get => _date;
-            set
-            {
-                if (value.Equals(_date)) return;
-                _date = value;
-                OnPropertyChanged();
-            }
-        }
-
-
 
         public int FinishedProduct_No
         {
@@ -108,6 +95,15 @@ namespace UniBase.Model.K2
                 if (value == _weekNo) return;
                 _weekNo = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public DateTime Date
+        {
+            get => _date;
+            set
+            {
+                _date = value;
             }
         }
 

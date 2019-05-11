@@ -4,13 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Windows.Globalization.DateTimeFormatting;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
     public class FrontpageButtonMethod
     {
         private Message message = new Message();
-        private InputValidator inputValidator = new InputValidator();
 
         public FrontpageButtonMethod()
         {
@@ -21,27 +21,42 @@ namespace UniBase.Model.K2.ButtonMethods
             ManageTables.Instance.FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
             {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString();
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString().Remove(10);
             });
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
+
         public void RefreshLastTenFrontpages()
         {
-            ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-            foreach (var frontpage in ManageTables.Instance.FrontpagesList)
-            {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString().Remove(10);
-            }
+            ManageTables.Instance.FrontpagesList = GetLastTenFrontpages();
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
+
         public void SaveFrontpages()
         {
-
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
             {
-                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
+                InputValidator.CheckIfInputsAreValid(ref frontpage);
             });
+            Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpages =>
+                {
+                    ModelGenerics.UpdateByObjectAndId(frontpages.ProcessOrder_No, frontpages);
+            });
+            ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+            ManageTables.Instance.FrontpagesList = GetLastTenFrontpages();
+        }
+
+        private ObservableCollection<Frontpages> GetLastTenFrontpages()
+        {
+            //Todo format datetime everywhere
+            ObservableCollection<Frontpages> result = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            foreach (var frontpage in result)
+            {
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+            }
+
+            return result;
         }
 
         public void DeleteFrontpage(object id)
@@ -56,30 +71,26 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewFrontpages()
         {
             var instanceNewFrontpagesToAdd = ManageTables.Instance.NewFrontpagesToAdd;
-            inputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
+            InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
             instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
 
-            //Checks whether any of the properties are null if any are returns true
-            bool isNull = instanceNewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(instanceNewFrontpagesToAdd) == null);
 
-            if (!isNull)
+            ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            instanceNewFrontpagesToAdd.ProcessOrder_No = ManageTables.Instance.FrontpagesList.Last().ProcessOrder_No + 1;
+            if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {
+                //ManageTables.Instance.FrontpagesList.Add(NewFrontpagesToAdd);
                 ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                instanceNewFrontpagesToAdd.ProcessOrder_No = ManageTables.Instance.FrontpagesList.Last().ProcessOrder_No + 1;
-                if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
-                {
-                    //ManageTables.Instance.FrontpagesList.Add(NewFrontpagesToAdd);
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                    instanceNewFrontpagesToAdd = new Frontpages();
-                    instanceNewFrontpagesToAdd.ProcessOrder_No = ManageTables.Instance.FrontpagesList[ManageTables.Instance.FrontpagesList.Count - 1].ProcessOrder_No + 1;
-                    instanceNewFrontpagesToAdd.Date = DateTime.Now;
-                    instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
-                }
-                else
-                {
-                    //error
-                }
+                instanceNewFrontpagesToAdd = new Frontpages();
+                instanceNewFrontpagesToAdd.ProcessOrder_No = ManageTables.Instance.FrontpagesList[ManageTables.Instance.FrontpagesList.Count - 1].ProcessOrder_No + 1;
+                instanceNewFrontpagesToAdd.Date = DateTime.Now;
+                instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
             }
+            else
+            {
+                //error
+            }
+
         }
 
         public int FindWeekNumber(Frontpages frontpage)

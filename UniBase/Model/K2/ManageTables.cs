@@ -418,6 +418,10 @@ namespace UniBase.Model.K2
 
             if (FrontpagesList.Count > 0)
             {
+                foreach (var VARIABLE in FrontpagesList)
+                {
+                    VARIABLE.DateTimeStringHelper = VARIABLE.Date.ToString().Remove(10);
+                }
             NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
