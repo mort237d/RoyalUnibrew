@@ -122,6 +122,8 @@ namespace UniBase.ViewModel
             RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTenControlSchedules);
             SaveControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.SaveControlSchedules);
 
+            DeleteControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.DeleteControlSchedule);
+
             RefreshProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshProductions);
             RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshProductions);
             SaveProductionTable = new RelayCommand(Column_2.ProductionMethod.SaveProductions);
@@ -143,9 +145,14 @@ namespace UniBase.ViewModel
 
             SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SelectParentItem);
             SelectParentItemControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SelectParentItem);
+            SelectParentItemControlScheduleCommand = new RelayCommand<object>(Column_2.ControlScheduleMethod.SelectParentItem);
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
+
+        public RelayCommand<object> SelectParentItemControlScheduleCommand { get; set; }
+
+        public RelayCommand DeleteControlScheduleTable { get; set; }
 
         public RelayCommand DeleteControlRegistrationTable { get; set; }
 

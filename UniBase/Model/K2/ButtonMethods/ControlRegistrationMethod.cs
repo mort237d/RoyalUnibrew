@@ -23,7 +23,6 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _controlRegistrationIdTextBoxOutput;
         private string _timeTextBoxOutput;
         private string _productionDateTextBoxOutput;
-        private string _expiryDateTextBoxOutput;
         private string _commentsOnChangedDateTextBoxOutput;
         private string _controlAlcoholSpearDispenserTextBoxOutput;
         private string _capNoTextBoxOutput;
@@ -32,6 +31,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _signatureTextBoxOutput;
         private string _firstPalletDepalletizingTextBoxOutput;
         private string _lastPalletDepalletizingTextBoxOutput;
+        private string _processOrderNoTextBoxOutput;
 
         public string ControlRegistrationIdTextBoxOutput
         {
@@ -104,32 +104,6 @@ namespace UniBase.Model.K2.ButtonMethods
                 }
 
                 if (string.IsNullOrEmpty(_productionDateTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string ExpiryDateTextBoxOutput
-        {
-            get { return _expiryDateTextBoxOutput; }
-            set
-            {
-                _expiryDateTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.Expiry_Date.ToString().ToLower();
-                    if (v.Contains(_expiryDateTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_expiryDateTextBoxOutput))
                 {
                     ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
                 }
@@ -304,7 +278,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
                 foreach (var f in _completeControlRegistrationsList)
                 {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
+                    var v = f.FirstPalletDepalletizing.ToString().ToLower();
                     if (v.Contains(_firstPalletDepalletizingTextBoxOutput))
                     {
                         ManageTables.Instance.ControlRegistrationsList.Add(f);
@@ -325,12 +299,11 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _lastPalletDepalletizingTextBoxOutput = value;
                 
-
                 ManageTables.Instance.ControlRegistrationsList.Clear();
 
                 foreach (var f in _completeControlRegistrationsList)
                 {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
+                    var v = f.LastPalletDepalletizing.ToString().ToLower();
                     if (v.Contains(_lastPalletDepalletizingTextBoxOutput))
                     {
                         ManageTables.Instance.ControlRegistrationsList.Add(f);
@@ -338,6 +311,31 @@ namespace UniBase.Model.K2.ButtonMethods
                 }
 
                 if (string.IsNullOrEmpty(_lastPalletDepalletizingTextBoxOutput))
+                {
+                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                }
+            }
+        }
+
+        public string ProcessOrderNoTextBoxOutput
+        {
+            get { return _processOrderNoTextBoxOutput; }
+            set
+            {
+                _processOrderNoTextBoxOutput = value;
+
+                ManageTables.Instance.ControlRegistrationsList.Clear();
+
+                foreach (var f in _completeControlRegistrationsList)
+                {
+                    var v = f.ProcessOrder_No.ToString().ToLower();
+                    if (v.Contains(_processOrderNoTextBoxOutput))
+                    {
+                        ManageTables.Instance.ControlRegistrationsList.Add(f);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
                     ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
                 }
