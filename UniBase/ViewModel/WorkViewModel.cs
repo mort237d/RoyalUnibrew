@@ -23,12 +23,13 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshControlRegistrationTable { get; set; }
         public RelayCommand RefreshLastTenFrontpageTable { get; set; }
         public RelayCommand SaveControlRegistrationTable { get; set; }
+        public RelayCommand DeleteControlRegistrationTable { get; set; }
         public RelayCommand AddControlRegistrationsTable { get; set; }
-
-
+        
         public RelayCommand RefreshControlScheduleTable { get; set; }
         public RelayCommand RefreshLastTenControlScheduleTable { get; set; }
         public RelayCommand SaveControlScheduleTable { get; set; }
+        public RelayCommand DeleteControlScheduleTable { get; set; }
 
         public RelayCommand RefreshProductionTable { get; set; }
         public RelayCommand RefreshLastTenProductionTable { get; set; }
@@ -50,6 +51,7 @@ namespace UniBase.ViewModel
 
         public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
         public RelayCommand<object> SelectParentItemControlRegistrationCommand { get; set; }
+        public RelayCommand<object> SelectParentItemControlScheduleCommand { get; set; }
 
         #endregion
 
@@ -150,11 +152,6 @@ namespace UniBase.ViewModel
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
-        public RelayCommand<object> SelectParentItemControlScheduleCommand { get; set; }
-
-        public RelayCommand DeleteControlScheduleTable { get; set; }
-
-        public RelayCommand DeleteControlRegistrationTable { get; set; }
 
 
         private void TempMethod2()
