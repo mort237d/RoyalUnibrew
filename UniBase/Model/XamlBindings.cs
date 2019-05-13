@@ -13,8 +13,8 @@ namespace UniBase.Model
         #endregion
 
         #region PropertyLists
-        public List<FrontPageHeader> FrontPageHeaderList { get; set; }
-        public List<ControlRegistrationsHeader> ControlRegistrationsHeaderList { get; set; }
+        public List<HeaderAndToolTip> FrontPageHeaderList { get; set; }
+        public List<HeaderAndToolTip> ControlRegistrationsHeaderList { get; set; }
         
 
 
@@ -28,33 +28,33 @@ namespace UniBase.Model
 
         public void CreateFrontpageHeader()
         {
-            FrontPageHeaderList = new List<FrontPageHeader>
+            FrontPageHeaderList = new List<HeaderAndToolTip>
             {
-                new FrontPageHeader("ProcessOrdre Nr", "Sorter efter ProcessOdre Nr"),
-                new FrontPageHeader("Dato", "Sorter efter Dato"),
-                new FrontPageHeader("Færdigt Produkt Nr", "Sorter efter Færdigt Produkt Nr"),
-                new FrontPageHeader("Kolonne", "Sorter efter Kolonne"),
-                new FrontPageHeader("Note", "Sorter efter Note"),
-                new FrontPageHeader("Uge Nr", "Sorter efter Uge Nr")
+                new HeaderAndToolTip("ProcessOrdre Nr", "Sorter efter ProcessOdre Nr"),
+                new HeaderAndToolTip("Dato", "Sorter efter Dato"),
+                new HeaderAndToolTip("Færdigt Produkt Nr", "Sorter efter Færdigt Produkt Nr"),
+                new HeaderAndToolTip("Kolonne", "Sorter efter Kolonne"),
+                new HeaderAndToolTip("Note", "Sorter efter Note"),
+                new HeaderAndToolTip("Uge Nr", "Sorter efter Uge Nr")
             };
         }
 
         public void CreateControlRegistrationHeader()
         {
-            ControlRegistrationsHeaderList = new List<ControlRegistrationsHeader>
+            ControlRegistrationsHeaderList = new List<HeaderAndToolTip>
             {
-                new ControlRegistrationsHeader("Kontrol Registrering ID", "Sorter efter Kontrol Registrering ID"),
-                new ControlRegistrationsHeader("ProcessOrdre Nr", "Sorter efter ProcessOrdre Nr"),
-                new ControlRegistrationsHeader("Tid","Sorter efter Tid"),
-                new ControlRegistrationsHeader("Produktionsdato","Sorter efter Produktionsdato"),
-                new ControlRegistrationsHeader("Kommentar vedr. ændret dato","Sorter efter Kommentar vedr. ændret dato"),
-                new ControlRegistrationsHeader("Kontrol af sprit på anstikker","Sorter efter Kontrol af sprit på anstikker"),
-                new ControlRegistrationsHeader("Hætte Nr","Sorter efter Hætte Nr"),
-                new ControlRegistrationsHeader("Etikette Nr","Sorter efter Etikette Nr"),
-                new ControlRegistrationsHeader("Fustage","Sorter efter Fustage"),
-                new ControlRegistrationsHeader("Signatur","Sorter efter Signatur"),
-                new ControlRegistrationsHeader("Første palle depalleteret","Sorter efter Første palle depalleteret"),
-                new ControlRegistrationsHeader("Sidste palle depalleteret","Sorter efter Sidste palle depalleteret")
+                new HeaderAndToolTip("Kontrol Registrering ID", "Sorter efter Kontrol Registrering ID"),
+                new HeaderAndToolTip("ProcessOrdre Nr", "Sorter efter ProcessOrdre Nr"),
+                new HeaderAndToolTip("Tid","Sorter efter Tid"),
+                new HeaderAndToolTip("Produktionsdato","Sorter efter Produktionsdato"),
+                new HeaderAndToolTip("Kommentar vedr. ændret dato","Sorter efter Kommentar vedr. ændret dato"),
+                new HeaderAndToolTip("Kontrol af sprit på anstikker","Sorter efter Kontrol af sprit på anstikker"),
+                new HeaderAndToolTip("Hætte Nr","Sorter efter Hætte Nr"),
+                new HeaderAndToolTip("Etikette Nr","Sorter efter Etikette Nr"),
+                new HeaderAndToolTip("Fustage","Sorter efter Fustage"),
+                new HeaderAndToolTip("Signatur","Sorter efter Signatur"),
+                new HeaderAndToolTip("Første palle depalleteret","Sorter efter Første palle depalleteret"),
+                new HeaderAndToolTip("Sidste palle depalleteret","Sorter efter Sidste palle depalleteret")
 
             };
         }
