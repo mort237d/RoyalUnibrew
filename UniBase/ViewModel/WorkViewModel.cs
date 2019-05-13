@@ -108,11 +108,11 @@ namespace UniBase.ViewModel
 
             #endregion
 
-            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshFrontpages);
-            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTenFrontpages);
-            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.SaveFrontpages);
-            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewFrontpages);
-            DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.DeleteFrontpage);
+            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Refresh);
+            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTen);
+            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Save);
+            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNew);
+            DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Delete);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTenControlRegistrations);
