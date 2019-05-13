@@ -13,5 +13,6 @@ namespace UniBase.Model.K2.ButtonMethods
         void SaveAll();
         void DeleteItem();
         void AddNewItem();
+        void SelectParentItem(object obj);
     }
 }
