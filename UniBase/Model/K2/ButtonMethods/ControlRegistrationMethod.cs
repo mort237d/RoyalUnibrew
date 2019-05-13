@@ -394,7 +394,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
             foreach (var cr in ManageTables.Instance.ControlRegistrationsList)
             {
-                if (cr.ProcessOrder_No == (int)id)
+                if (cr.ControlRegistration_ID == (int)id)
                 {
                     if (cr.ControlAlcoholSpearDispenser)
                     {
