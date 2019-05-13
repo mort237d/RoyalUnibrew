@@ -380,15 +380,15 @@
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[0]}" Text="{Binding Column_2.ControlScheduleMethod.ControlScheduleIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[1]}" Text="{Binding Column_2.ControlScheduleMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[2]}" Text="{Binding Column_2.ControlScheduleMethod.TimeTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[3]}" Text="{Binding Column_2.ControlScheduleMethod.WeightTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[4]}" Text="{Binding Column_2.ControlScheduleMethod.KegTestTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[5]}" Text="{Binding Column_2.ControlScheduleMethod.LudKoncentrationTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[6]}" Text="{Binding Column_2.ControlScheduleMethod.MipMaTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[7]}" Text="{Binding Column_2.ControlScheduleMethod.SignatureTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[8]}" Text="{Binding Column_2.ControlScheduleMethod.NoteTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[0].Header}" Text="{Binding Column_2.ControlScheduleMethod.ControlScheduleIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[1].Header}" Text="{Binding Column_2.ControlScheduleMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[2].Header}" Text="{Binding Column_2.ControlScheduleMethod.TimeTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[3].Header}" Text="{Binding Column_2.ControlScheduleMethod.WeightTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[4].Header}" Text="{Binding Column_2.ControlScheduleMethod.KegTestTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[5].Header}" Text="{Binding Column_2.ControlScheduleMethod.LudKoncentrationTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[6].Header}" Text="{Binding Column_2.ControlScheduleMethod.MipMaTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[7].Header}" Text="{Binding Column_2.ControlScheduleMethod.SignatureTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ControlSchedulesHeaderList[8].Header}" Text="{Binding Column_2.ControlScheduleMethod.NoteTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -396,7 +396,7 @@
                                 <StackPanel>
                                     <ListView SelectedIndex="{Binding Column_2.ControlScheduleMethod.SelectedControlScheduleId, Mode=TwoWay}" Width="994"
                                       Style="{StaticResource ButtonListViewStyle}" 
-                                      ItemsSource="{Binding Column_2.ControlScheduleProps}"
+                                      ItemsSource="{Binding XamlBindings.ControlSchedulesHeaderList}"
                                               SelectedItem="{Binding Column_2.ControlScheduleMethod.SelectedControlSchedule, Mode=TwoWay}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
@@ -409,7 +409,7 @@
                                             <DataTemplate>
                                                 <StackPanel>
                                                     <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}" >
-                                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                                        <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
                                                     </Button>
                                                     <Line/>
                                                 </StackPanel>
@@ -544,14 +544,14 @@
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[0]}"  Text="{Binding Column_2.ProductionMethod.ProductionIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[1]}"  Text="{Binding Column_2.ProductionMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[2]}"  Text="{Binding Column_2.ProductionMethod.PalletPutInStock0001TextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[3]}"  Text="{Binding Column_2.ProductionMethod.TapmachineTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[4]}"  Text="{Binding Column_2.ProductionMethod.TotalKegsPrPalletTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[5]}"  Text="{Binding Column_2.ProductionMethod.CounterTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[6]}"  Text="{Binding Column_2.ProductionMethod.PalletCounterTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[7]}"  Text="{Binding Column_2.ProductionMethod.BatchDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ProductionsList[0].Header}"  Text="{Binding Column_2.ProductionMethod.ProductionIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ProductionsList[1].Header}"  Text="{Binding Column_2.ProductionMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ProductionsList[2].Header}"  Text="{Binding Column_2.ProductionMethod.PalletPutInStock0001TextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ProductionsList[3].Header}"  Text="{Binding Column_2.ProductionMethod.TapmachineTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ProductionsList[4].Header}"  Text="{Binding Column_2.ProductionMethod.TotalKegsPrPalletTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ProductionsList[5].Header}"  Text="{Binding Column_2.ProductionMethod.CounterTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ProductionsList[6].Header}"  Text="{Binding Column_2.ProductionMethod.PalletCounterTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.ProductionsList[7].Header}"  Text="{Binding Column_2.ProductionMethod.BatchDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -559,7 +559,7 @@
                                 <StackPanel>
                                     <ListView Width="883"
                                       Style="{StaticResource ButtonListViewStyle}" 
-                                      ItemsSource="{Binding Column_2.ProductionProps}">
+                                      ItemsSource="{Binding XamlBindings.ProductionsList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -571,7 +571,7 @@
                                             <DataTemplate>
                                                 <StackPanel>
                                                     <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
-                                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                                        <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
                                                     </Button>
                                                     <Line/>
                                                 </StackPanel>

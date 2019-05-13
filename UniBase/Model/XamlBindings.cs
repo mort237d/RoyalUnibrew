@@ -15,6 +15,8 @@ namespace UniBase.Model
         #region PropertyLists
         public List<HeaderAndToolTip> FrontPageHeaderList { get; set; }
         public List<HeaderAndToolTip> ControlRegistrationsHeaderList { get; set; }
+        public List<HeaderAndToolTip> ControlSchedulesHeaderList { get; set; }
+        public List<HeaderAndToolTip> ProductionsList { get; set; }
         
 
 
@@ -24,6 +26,9 @@ namespace UniBase.Model
         {
             CreateFrontpageHeader();
             CreateControlRegistrationHeader();
+            CreateControlSchedulesHeader();
+            CreateProductionsHeader();
+
         }
 
         public void CreateFrontpageHeader()
@@ -58,6 +63,40 @@ namespace UniBase.Model
 
             };
         }
+
+        public void CreateControlSchedulesHeader()
+        {
+            ControlSchedulesHeaderList = new List<HeaderAndToolTip>
+            {
+                new HeaderAndToolTip("Kontrol skema ID","Sorter efter Kontrol skema ID"),
+                new HeaderAndToolTip("ProcessOrdre Nr","Sorter efter ProcessOrdre Nr"),
+                new HeaderAndToolTip("Klokkeslæt","Sorter efter Klokkeslæt"),
+                new HeaderAndToolTip("Vægt kontrol","Sorter efter Vægt kontrol"),
+                new HeaderAndToolTip("Kontrol af fustage","Sorter efter Kontrol af fustage"),
+                new HeaderAndToolTip("LudKoncentration","Sorter efter LudKoncentration"),
+                new HeaderAndToolTip("Mip MA","Sorter efter Mip MA"),
+                new HeaderAndToolTip("Signatur operatør","Sorter efter Signatur operatør"),
+                new HeaderAndToolTip("Note","Sorter efter Note"),
+
+
+            };
+        }
+
+        public void CreateProductionsHeader()
+        {
+            ProductionsList = new List<HeaderAndToolTip>
+            {
+                new HeaderAndToolTip("Produktions ID", "Sorter efter Produktions ID"),
+                new HeaderAndToolTip("ProcessOrdre Nr", "Sorter efter ProcessOrdre Nr"),
+                new HeaderAndToolTip("Paller lagt på lager 0001", "Sorter efter Paller lagt på lager 0001"),
+                new HeaderAndToolTip("Tappemaskine", "Sorter efter Tappemaskine"),
+                new HeaderAndToolTip("Antal fustager pr. palle", "Sorter efter Antal fustager pr. palle"),
+                new HeaderAndToolTip("Tæller", "Sorter efter Tæller"),
+                new HeaderAndToolTip("Palle tæller", "Sorter efter Palle tæller"),
+                new HeaderAndToolTip("Batchdato", "Sorter efter Batchdato")
+            };
+        }
+
 
     }
 }
