@@ -108,11 +108,11 @@ namespace UniBase.ViewModel
 
             #endregion
 
-            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshFrontpages);
-            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTenFrontpages);
-            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.SaveFrontpages);
-            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewFrontpage);
-            DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.DeleteFrontpage);
+            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Refresh);
+            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTen);
+            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Save);
+            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNew);
+            DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Delete);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTenControlRegistrations);
@@ -148,10 +148,14 @@ namespace UniBase.ViewModel
             SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SelectParentItem);
             SelectParentItemControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SelectParentItem);
             SelectParentItemControlScheduleCommand = new RelayCommand<object>(Column_2.ControlScheduleMethod.SelectParentItem);
+            SelectParentItemProductionCommand = new RelayCommand<object>(Column_2.ProductionMethod.SelectParentItem);
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
+        public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
+
+        public RelayCommand DeleteProductionTable { get; set; }
 
 
         private void TempMethod2()

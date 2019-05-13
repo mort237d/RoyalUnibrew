@@ -49,7 +49,6 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
-        //public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
 
         #region Filter
         public string ProcessOrderNoTextBoxOutput
@@ -203,7 +202,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         #endregion
 
-        public void RefreshFrontpages()
+        public void Refresh()
         {
             ManageTables.Instance.FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
@@ -212,8 +211,7 @@ namespace UniBase.Model.K2.ButtonMethods
             });
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
-
-        public void RefreshLastTenFrontpages()
+        public void RefreshLastTen()
         {
             ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             foreach (var frontpage in ManageTables.Instance.FrontpagesList)
@@ -222,8 +220,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
-
-        public void SaveFrontpages()
+        public void Save()
         {
             //Todo try catch save
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
@@ -239,7 +236,7 @@ namespace UniBase.Model.K2.ButtonMethods
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
-        public void DeleteFrontpage()
+        public void Delete()
         {
             if (SelectedFrontpage != null)
             {
@@ -248,7 +245,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public void AddNewFrontpage()
+        public void AddNew()
         {
             var instanceNewFrontpagesToAdd = ManageTables.Instance.NewFrontpagesToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
