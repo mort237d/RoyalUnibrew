@@ -967,17 +967,20 @@
                     </GridView>
                     <Rectangle Fill="#16503F" Grid.Row="1" Margin="-11,-10,-11,0"/>
                     <Grid Grid.Row="1" Margin="10,0,10,0">
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <TextBox PlaceholderText="Name"></TextBox>
-                            <TextBox PlaceholderText="Email"></TextBox>
-                            <TextBox PlaceholderText="TelephoneNumber"></TextBox>
-                            <PasswordBox PlaceholderText="Password"></PasswordBox>
-                            <PasswordBox PlaceholderText="Confirm password"></PasswordBox>
-                            <Button HorizontalAlignment="Center" Content="Tilføj bruger" Command="{Binding AddUserCommand}"/>
-                    
-                            <Button HorizontalAlignment="Center" Content="Slet bruger" Command="{Binding DeleteUserCommand}" Margin="0,5,0,0"/>
+       
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Button HorizontalAlignment="Center" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand}"/>
+                            <Button HorizontalAlignment="Center" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,5,0,0"/>
                         </StackPanel>
-                        <Button HorizontalAlignment="Right" Content="Ændre bruger" Command="{Binding}"/>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            
+                            <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb}"></TextBox>
+                            <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb}"></TextBox>
+                            <TextBox PlaceholderText="TelephoneNumber" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb}"></TextBox>
+                            <PasswordBox PlaceholderText="Password" Visibility="Visible" Password="{Binding ManageUser.PasswordTb}"></PasswordBox>
+                            <PasswordBox PlaceholderText="Confirm password" Visibility="Visible" Password="{Binding ManageUser.ConfirmPasswordTb}"></PasswordBox>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Right" Content="Ændre bruger" Visibility="Visible" Command="{Binding}"/>
                     </Grid>
 
                 </Grid>
