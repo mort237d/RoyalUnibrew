@@ -167,7 +167,14 @@ namespace UniBase.Model.K2
             get { return _timeStringHelper; }
             set
             {
-                _timeStringHelper = value; 
+                if (_timeStringHelper == null)
+                {
+                    _timeStringHelper = _time.ToString("H:mm:ss");
+                }
+                else
+                {
+                    _timeStringHelper = value; 
+                }
                 OnPropertyChanged();
             }
         }
@@ -177,7 +184,14 @@ namespace UniBase.Model.K2
             get { return _productionsDateStringHelper; }
             set
             {
-                _productionsDateStringHelper = value; 
+                if (_productionsDateStringHelper == null)
+                {
+                    _productionsDateStringHelper = _productionDate.ToString("yyyy/MM/dd");
+                }
+                else
+                {
+                    _productionsDateStringHelper = value; 
+                }
                 OnPropertyChanged();
             }
         }
@@ -187,7 +201,14 @@ namespace UniBase.Model.K2
             get { return _firstPalletDepalletizingStringHelper; }
             set
             {
-                _firstPalletDepalletizingStringHelper = value; 
+                if (_firstPalletDepalletizingStringHelper == null)
+                {
+                    _firstPalletDepalletizingStringHelper = _firstPalletDepalletizing.ToString("yyyy/MM/dd");
+                }
+                else
+                {
+                    _firstPalletDepalletizingStringHelper = value;
+                }
                 OnPropertyChanged();
             }
         }
@@ -197,7 +218,14 @@ namespace UniBase.Model.K2
             get { return _lastPalletDepalletizingStringHelper; }
             set
             {
-                _lastPalletDepalletizingStringHelper = value;
+                if (_lastPalletDepalletizingStringHelper == null)
+                {
+                    _lastPalletDepalletizingStringHelper = _lastPalletDepalletizing.ToString("yyyy/MM/dd");
+                }
+                else
+                {
+                    _lastPalletDepalletizingStringHelper = value;
+                }
                 OnPropertyChanged();
             }
         }

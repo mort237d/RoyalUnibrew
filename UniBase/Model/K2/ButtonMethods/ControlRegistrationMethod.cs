@@ -12,6 +12,10 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class ControlRegistrationMethod : INotifyPropertyChanged
     {
+        #region Fields
+
+        
+
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
 
         private Message _message = new Message();
@@ -31,7 +35,14 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _firstPalletDepalletizingTextBoxOutput;
         private string _lastPalletDepalletizingTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
+        #endregion
 
+
+        #region Filter
+
+        
+
+        
         public string ControlRegistrationIdTextBoxOutput
         {
             get { return _controlRegistrationIdTextBoxOutput; }
@@ -340,6 +351,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 }
             }
         }
+        #endregion
 
         public int SelectedControlRegistrationId
         {
@@ -361,16 +373,31 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+
         public void RefreshControlRegistrations()
         {
             ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlregistration =>
+            {
+                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString("yyyy/MM/dd");
+            });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
+
         public void RefreshLastTenControlRegistrations()
         {
             ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlregistration =>
+            {
+                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString("yyyy/MM/dd");
+            });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
+
         public void SaveControlRegistrations()
         {
             Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlRegistration =>
@@ -379,6 +406,38 @@ namespace UniBase.Model.K2.ButtonMethods
             });
             _message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
         }
+
+        public void AddNewControlRegistrations()
+        {
+            var instanceNewControlRegistrationsToAdd = ManageTables.Instance.NewControlRegistrationsToAdd;
+            InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
+            
+            var temp = ModelGenerics.GetById(new ControlRegistrations(), instanceNewControlRegistrationsToAdd.ProcessOrder_No);
+            //TODO Hvad er det her Lucas?ArrowDown
+            //var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
+            //instanceNewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
+
+            if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
+            {
+                ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+
+                ManageTables.Instance.NewControlRegistrationsToAdd = new ControlRegistrations
+                {
+                    CapNo = ManageTables.Instance.ControlRegistrationsList.Last().CapNo,
+                    EtiquetteNo = ManageTables.Instance.ControlRegistrationsList.Last().EtiquetteNo,
+                    KegSize = ManageTables.Instance.ControlRegistrationsList.Last().KegSize,
+                    ProcessOrder_No = ManageTables.Instance.ControlRegistrationsList.Last().ProcessOrder_No,
+                    ControlAlcoholSpearDispenser = false
+                };
+
+            }
+            else
+            {
+                //error
+            }
+        }
+
+
         public void DeleteControlRegistration()
         {
             if (SelectedControlRegistration != null)
@@ -422,41 +481,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public void AddNewControlRegistrations()
-        {
-            var instanceNewControlRegistrationsToAdd = ManageTables.Instance.NewControlRegistrationsToAdd;
-            InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
-
-            //Checks whether any of the properties are null if any are returns true
-            bool isNull = instanceNewControlRegistrationsToAdd.GetType().GetProperties().All(p => p.GetValue(instanceNewControlRegistrationsToAdd) == null);
-
-            if (!isNull)
-            {
-                ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                instanceNewControlRegistrationsToAdd.ControlRegistration_ID = ManageTables.Instance.ControlRegistrationsList.Last().ControlRegistration_ID + 1;
-                var temp = ModelGenerics.GetById(new ControlRegistrations(), instanceNewControlRegistrationsToAdd.ProcessOrder_No);
-                //TODO Hvad er det her Lucas?ArrowDown
-                //var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
-                //instanceNewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
-
-                if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                    instanceNewControlRegistrationsToAdd = new ControlRegistrations();
-                    instanceNewControlRegistrationsToAdd.CapNo = ManageTables.Instance.ControlRegistrationsList.Last().CapNo;
-                    instanceNewControlRegistrationsToAdd.EtiquetteNo = ManageTables.Instance.ControlRegistrationsList.Last().EtiquetteNo;
-                    instanceNewControlRegistrationsToAdd.ControlRegistration_ID = ManageTables.Instance.ControlRegistrationsList.Last().ControlRegistration_ID + 1;
-                    instanceNewControlRegistrationsToAdd.KegSize = ManageTables.Instance.ControlRegistrationsList.Last().KegSize;
-                    instanceNewControlRegistrationsToAdd.ProcessOrder_No = ManageTables.Instance.ControlRegistrationsList.Last().ProcessOrder_No;
-                    instanceNewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-
-                }
-                else
-                {
-                    //error
-                }
-            }
-        }
+        
 
         public void SelectParentItem(object obj)
         {

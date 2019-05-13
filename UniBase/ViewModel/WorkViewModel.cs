@@ -111,7 +111,7 @@ namespace UniBase.ViewModel
             RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshFrontpages);
             RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTenFrontpages);
             SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.SaveFrontpages);
-            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewFrontpages);
+            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewFrontpage);
             DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.DeleteFrontpage);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshControlRegistrations);
@@ -126,13 +126,13 @@ namespace UniBase.ViewModel
 
             DeleteControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.DeleteControlSchedule);
 
-            RefreshProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshProductions);
-            RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshProductions);
-            SaveProductionTable = new RelayCommand(Column_2.ProductionMethod.SaveProductions);
+            RefreshProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshAll);
+            RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshLastTen);
+            SaveProductionTable = new RelayCommand(Column_2.ProductionMethod.SaveAll);
 
-            RefreshShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshShiftRegistrations);
-            RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshLastTenShiftRegistrations);
-            SaveShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.SaveShiftRegistrations);
+            RefreshShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshAll);
+            RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshLastTen);
+            SaveShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.SaveAll);
 
             RefreshTUTable = new RelayCommand(Column_2.TuMethod.RefreshTUs);
             RefreshLastTenTUTable = new RelayCommand(Column_2.TuMethod.RefreshLastTenTUs);

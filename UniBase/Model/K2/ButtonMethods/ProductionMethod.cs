@@ -1,10 +1,13 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class ProductionMethod
+    public class ProductionMethod : IManageButtonMethods
     {
+        #region Fields
         private ObservableCollection<Productions> _completeProductionsList = ModelGenerics.GetAll(new Productions());
 
         private Message message = new Message();
@@ -20,7 +23,9 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _palletCounterTextBoxOutput;
         private string _batchDateTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
+        #endregion
 
+        #region Filter
         public string ProductionIdTextBoxOutput
         {
             get { return _productionIdTextBoxOutput; }
@@ -80,24 +85,79 @@ namespace UniBase.Model.K2.ButtonMethods
             get { return _selectedProduction; }
             set { _selectedProduction = value; }
         }
+        #endregion
 
-        public void RefreshProductions()
+
+        #region ButtonMethods
+
+        public void RefreshAll()
         {
             ManageTables.Instance.ProductionsList = ModelGenerics.GetAll(new Productions());
+
+            Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
+            {
+                production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
+            });
             message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
-        public void RefreshLastTenProductions()
+
+        public void RefreshLastTen()
         {
             ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+
+            Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
+            {
+                production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
+            });
             message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
-        public void SaveProductions()
+
+        public void SaveAll()
         {
-            Parallel.ForEach(ManageTables.Instance.ProductionsList, productions =>
+            ManageTables.Instance.ProductionsList = ModelGenerics.GetAll(new Productions());
+
+            Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
             {
-                ModelGenerics.UpdateByObjectAndId(productions.Production_ID, productions);
+                InputValidator.CheckIfInputsAreValid(ref production);
             });
-            message.ShowToastNotification("Gemt", "Produktions-tabellen er gemt");
+
+            Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
+                {
+                    ModelGenerics.UpdateByObjectAndId(production.Production_ID, production);
+                });
+            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
+
+        public void DeleteItem()
+        {
+            //if (SelectedFrontpage != null)
+            //{
+            //    //TODO Make deletion method
+            //    Debug.WriteLine(SelectedFrontpage.ProcessOrder_No);
+            //}
+        }
+
+        public void AddNewItem()
+        {
+            var ObjectToAdd = ManageTables.Instance.NewProductions;
+            InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
+
+            //Autofills
+
+            if (ModelGenerics.CreateByObject(ObjectToAdd))
+            {
+                ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+
+                ManageTables.Instance.NewProductions = new Productions
+                {
+                    ProcessOrder_No = ManageTables.Instance.ProductionsList.Last().ProcessOrder_No
+                };
+            }
+            else
+            {
+                //error
+            }
+        }
+        #endregion
     }
 }

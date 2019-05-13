@@ -13,8 +13,11 @@ namespace UniBase.Model.K2
         private int _totalKegsPrPallet;
         private int _counter;
         private int _palletCounter;
-        private DateTime _batchDate;
         private int _processOrderNo;
+
+        private string _batchDateStringHelper;
+        private DateTime _batchDate;
+
 
         public Productions()
         {
@@ -89,6 +92,17 @@ namespace UniBase.Model.K2
             }
         }
 
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int PalletCounter
         {
             get => _palletCounter;
@@ -96,6 +110,16 @@ namespace UniBase.Model.K2
             {
                 if (value == _palletCounter) return;
                 _palletCounter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string BatchDateStringHelper
+        {
+            get { return _batchDateStringHelper; }
+            set
+            {
+                _batchDateStringHelper = value; 
                 OnPropertyChanged();
             }
         }
@@ -111,16 +135,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                if (value == _processOrderNo) return;
-                _processOrderNo = value;
-                OnPropertyChanged();
-            }
-        }
+       
 
         public virtual Frontpages Frontpage { get; set; }
 

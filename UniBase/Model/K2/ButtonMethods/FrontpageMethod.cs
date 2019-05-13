@@ -13,6 +13,8 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class FrontpageMethod : INotifyPropertyChanged
     {
+
+        #region Fields
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
         private Message message = new Message();
@@ -26,6 +28,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _columnTextBoxOutput;
         private string _noteTextBoxOutput;
         private string _weekNoTextBoxOutput;
+        #endregion
 
         public int SelectedFrontpageId
         {
@@ -48,6 +51,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         //public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
 
+        #region Filter
         public string ProcessOrderNoTextBoxOutput
         {
             get { return _processOrderNoTextBoxOutput; }
@@ -197,27 +201,36 @@ namespace UniBase.Model.K2.ButtonMethods
                 }
             }
         }
+        #endregion
 
         public void RefreshFrontpages()
         {
             ManageTables.Instance.FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
             {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString();
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             });
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
+
         public void RefreshLastTenFrontpages()
         {
             ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             foreach (var frontpage in ManageTables.Instance.FrontpagesList)
             {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString().Remove(10);
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             }
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
+
         public void SaveFrontpages()
         {
+            //Todo try catch save
+            Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
+            {
+                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
+                InputValidator.CheckIfInputsAreValid(ref frontpage);
+            });
 
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
             {
@@ -235,13 +248,13 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public void AddNewFrontpages()
+        public void AddNewFrontpage()
         {
             var instanceNewFrontpagesToAdd = ManageTables.Instance.NewFrontpagesToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
 
             //Autofills
-            instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
+            instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd.Date);
 
             
             if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
@@ -255,29 +268,9 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public int FindWeekNumber(Frontpages frontpage)
+        public int FindWeekNumber(DateTime time)
         {
-            //int dayOfYear = frontpage.Date.DayOfYear;
-            //int weekNumber = 1;
-            //if (dayOfYear > 7)
-            //{
-            //    if (dayOfYear % 1 != 0)
-            //    {
-            //        weekNumber = (dayOfYear / 7) + 1;
-            //    }
-            //    else
-            //    {
-            //        weekNumber = (dayOfYear / 7) + 1;
-            //    }
-            //}
-
-            //return weekNumber;
-
-            // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
-            // be the same week# as whatever Thursday, Friday or Saturday are,
-            // and we always get those right
-
-            DateTime time = frontpage.Date;
+            // https://stackoverflow.com/questions/11154673/get-the-correct-week-number-of-a-given-date
             DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
             if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
             {

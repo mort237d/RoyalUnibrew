@@ -123,6 +123,7 @@
     <Compile Include="Model\FrontPageHeader.cs" />
     <Compile Include="Model\K2\ButtonMethods\ControlRegistrationMethod.cs" />
     <Compile Include="Model\K2\ButtonMethods\ControlScheduleMethod.cs" />
+    <Compile Include="Model\K2\ButtonMethods\IManageButtonMethods.cs" />
     <Compile Include="Model\K2\ButtonMethods\ProductionMethod.cs" />
     <Compile Include="Model\K2\ButtonMethods\ShiftRegistrationMethod.cs" />
     <Compile Include="Model\K2\ButtonMethods\TUMethod.cs" />
