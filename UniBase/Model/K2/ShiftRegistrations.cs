@@ -9,12 +9,16 @@ namespace UniBase.Model.K2
     {
         private int _shiftRegistrationId;
         private int _breaks;
-        private DateTime _endDate;
-        private DateTime _startTime;
         private int _processOrderNo;
         private string _initials;
         private int _staff;
         private int _totalHours;
+        private DateTime _startTime;
+        private DateTime _endDate;
+
+
+        private string _startTimeStringHelper;
+        private string _endDateStringHelper;
 
         public ShiftRegistrations()
         {
@@ -34,6 +38,26 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
+        public string StartTimeStringHelper
+        {
+            get { return _startTimeStringHelper; }
+            set
+            {
+                _startTimeStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string EndDateStringHelper
+        {
+            get { return _endDateStringHelper; }
+            set
+            {
+                _endDateStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int ShiftRegistration_ID
         {
             get => _shiftRegistrationId;
@@ -41,28 +65,6 @@ namespace UniBase.Model.K2
             {
                 if (value == _shiftRegistrationId) return;
                 _shiftRegistrationId = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime Start_Time
-        {
-            get => _startTime;
-            set
-            {
-                if (value.Equals(_startTime)) return;
-                _startTime = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime End_Date
-        {
-            get => _endDate;
-            set
-            {
-                if (value.Equals(_endDate)) return;
-                _endDate = value;
                 OnPropertyChanged();
             }
         }
@@ -118,6 +120,28 @@ namespace UniBase.Model.K2
             {
                 if (value == _processOrderNo) return;
                 _processOrderNo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Start_Time
+        {
+            get => _startTime;
+            set
+            {
+                if (value.Equals(_startTime)) return;
+                _startTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime End_Date
+        {
+            get => _endDate;
+            set
+            {
+                if (value.Equals(_endDate)) return;
+                _endDate = value;
                 OnPropertyChanged();
             }
         }

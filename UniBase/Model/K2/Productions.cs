@@ -14,9 +14,11 @@ namespace UniBase.Model.K2
         private int _counter;
         private int _palletCounter;
         private int _processOrderNo;
+        private DateTime _batchDate;
+
+
 
         private string _batchDateStringHelper;
-        private DateTime _batchDate;
 
 
         public Productions()

@@ -10,7 +10,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class ControlRegistrationMethod : INotifyPropertyChanged
+    public class ControlRegistrationMethod : INotifyPropertyChanged, IManageButtonMethods
     {
         #region Fields
 
@@ -39,10 +39,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
 
         #region Filter
-
-        
-
-        
+      
         public string ControlRegistrationIdTextBoxOutput
         {
             get { return _controlRegistrationIdTextBoxOutput; }
@@ -374,7 +371,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
 
 
-        public void RefreshControlRegistrations()
+        public void RefreshAll()
         {
             ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
             Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlregistration =>
@@ -386,7 +383,7 @@ namespace UniBase.Model.K2.ButtonMethods
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
 
-        public void RefreshLastTenControlRegistrations()
+        public void RefreshLastTen()
         {
             ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlregistration =>
@@ -398,7 +395,7 @@ namespace UniBase.Model.K2.ButtonMethods
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
 
-        public void SaveControlRegistrations()
+        public void SaveAll()
         {
             Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlRegistration =>
             {
@@ -407,7 +404,7 @@ namespace UniBase.Model.K2.ButtonMethods
             _message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
         }
 
-        public void AddNewControlRegistrations()
+        public void AddNewItem()
         {
             var instanceNewControlRegistrationsToAdd = ManageTables.Instance.NewControlRegistrationsToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
@@ -438,7 +435,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
 
 
-        public void DeleteControlRegistration()
+        public void DeleteItem()
         {
             if (SelectedControlRegistration != null)
             {

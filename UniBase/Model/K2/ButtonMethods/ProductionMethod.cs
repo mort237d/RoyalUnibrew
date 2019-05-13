@@ -250,9 +250,8 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         #endregion
 
-
+        
         #region ButtonMethods
-
         public void RefreshAll()
         {
             ManageTables.Instance.ProductionsList = ModelGenerics.GetAll(new Productions());
@@ -285,9 +284,9 @@ namespace UniBase.Model.K2.ButtonMethods
             });
 
             Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
-                {
-                    ModelGenerics.UpdateByObjectAndId(production.Production_ID, production);
-                });
+            {
+                ModelGenerics.UpdateByObjectAndId(production.Production_ID, production);
+            });
             message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
@@ -321,15 +320,9 @@ namespace UniBase.Model.K2.ButtonMethods
                 //error
             }
         }
+        #endregion
 
-        public void DeleteProduction()
-        {
-            if (SelectedProduction != null)
-            {
-                //TODO Make deletion method
-                Debug.WriteLine(SelectedProduction.Production_ID);
-            }
-        }
+
 
         public void SelectParentItem(object obj)
         {

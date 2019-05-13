@@ -259,7 +259,7 @@ namespace UniBase.Model.K2
             NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
             NewFrontpagesToAdd.Date = DateTime.Now;
             NewFrontpagesToAdd.DateTimeStringHelper = NewFrontpagesToAdd.Date.ToString().Remove(10);
-            NewFrontpagesToAdd.Week_No = FrontpageMethod.FindWeekNumber(NewFrontpagesToAdd);
+            NewFrontpagesToAdd.Week_No = FrontpageMethod.FindWeekNumber(NewFrontpagesToAdd.Date);
                 
             }
 

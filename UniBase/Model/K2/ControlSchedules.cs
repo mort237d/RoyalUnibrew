@@ -17,8 +17,10 @@ namespace UniBase.Model.K2
         private int _processOrderNo;
         private string _note;
         private string _signature;
-
         private DateTime _time;
+
+
+
         private string _timeStringHelper;
 
 
