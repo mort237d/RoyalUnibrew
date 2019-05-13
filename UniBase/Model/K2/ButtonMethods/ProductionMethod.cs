@@ -251,8 +251,6 @@ namespace UniBase.Model.K2.ButtonMethods
         #endregion
 
 
-        #region ButtonMethods
-
         public void RefreshAll()
         {
             ManageTables.Instance.ProductionsList = ModelGenerics.GetAll(new Productions());

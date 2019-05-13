@@ -11,7 +11,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class FrontpageMethod : INotifyPropertyChanged
+    public class FrontpageMethod : INotifyPropertyChanged, IManageButtonMethods
     {
 
         #region Fields
@@ -202,7 +202,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         #endregion
 
-        public void Refresh()
+        public void RefreshAll()
         {
             ManageTables.Instance.FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
@@ -220,7 +220,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
-        public void Save()
+        public void SaveAll()
         {
             //Todo try catch save
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
@@ -236,7 +236,7 @@ namespace UniBase.Model.K2.ButtonMethods
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
-        public void Delete()
+        public void DeleteItem()
         {
             if (SelectedFrontpage != null)
             {
@@ -245,7 +245,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public void AddNew()
+        public void AddNewItem()
         {
             var instanceNewFrontpagesToAdd = ManageTables.Instance.NewFrontpagesToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);

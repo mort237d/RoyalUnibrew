@@ -108,11 +108,11 @@ namespace UniBase.ViewModel
 
             #endregion
 
-            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Refresh);
+            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshAll);
             RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTen);
-            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Save);
-            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNew);
-            DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.Delete);
+            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.SaveAll);
+            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewItem);
+            DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.DeleteItem);
 
             RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshControlRegistrations);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTenControlRegistrations);
@@ -120,11 +120,11 @@ namespace UniBase.ViewModel
             AddControlRegistrationsTable = new RelayCommand(Column_2.ControlRegistrationMethod.AddNewControlRegistrations);
             DeleteControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.DeleteControlRegistration);
 
-            RefreshControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshControlSchedules);
-            RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTenControlSchedules);
-            SaveControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.SaveControlSchedules);
+            RefreshControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshAll);
+            RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTen);
+            SaveControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.SaveAll);
 
-            DeleteControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.DeleteControlSchedule);
+            DeleteControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.DeleteItem);
 
             RefreshProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshAll);
             RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshLastTen);
