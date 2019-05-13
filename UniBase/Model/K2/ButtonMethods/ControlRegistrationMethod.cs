@@ -15,7 +15,6 @@ namespace UniBase.Model.K2.ButtonMethods
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
 
         private Message _message = new Message();
-        private InputValidator _inputValidator = new InputValidator();
 
         private int _selectedControlRegistrationId;
         private ControlRegistrations _selectedControlRegistration;
@@ -426,7 +425,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewControlRegistrations()
         {
             var instanceNewControlRegistrationsToAdd = ManageTables.Instance.NewControlRegistrationsToAdd;
-            _inputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
+            InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
 
             //Checks whether any of the properties are null if any are returns true
             bool isNull = instanceNewControlRegistrationsToAdd.GetType().GetProperties().All(p => p.GetValue(instanceNewControlRegistrationsToAdd) == null);

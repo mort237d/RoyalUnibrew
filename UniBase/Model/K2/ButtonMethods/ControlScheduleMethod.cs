@@ -13,7 +13,6 @@ namespace UniBase.Model.K2.ButtonMethods
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
 
         private Message message = new Message();
-        private InputValidator inputValidator = new InputValidator();
 
         private int _selectedControlScheduleId;
         private ControlSchedules _selectedControlSchedule;

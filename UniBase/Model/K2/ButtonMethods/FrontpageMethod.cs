@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -238,48 +239,53 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             var instanceNewFrontpagesToAdd = ManageTables.Instance.NewFrontpagesToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
+
+            //Autofills
             instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
 
-            //Checks whether any of the properties are null if any are returns true
-            bool isNull = instanceNewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(instanceNewFrontpagesToAdd) == null);
-
-            if (!isNull)
+            
+            if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {
                 ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                instanceNewFrontpagesToAdd.ProcessOrder_No = ManageTables.Instance.FrontpagesList.Last().ProcessOrder_No + 1;
-                if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
-                {
-                    //ManageTables.Instance.FrontpagesList.Add(NewFrontpagesToAdd);
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                    instanceNewFrontpagesToAdd = new Frontpages();
-                    instanceNewFrontpagesToAdd.ProcessOrder_No = ManageTables.Instance.FrontpagesList[ManageTables.Instance.FrontpagesList.Count - 1].ProcessOrder_No + 1;
-                    instanceNewFrontpagesToAdd.Date = DateTime.Now;
-                    instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
-                }
-                else
-                {
-                    //error
-                }
+                ManageTables.Instance.NewFrontpagesToAdd = new Frontpages();
+            }
+            else
+            {
+                //error
             }
         }
 
         public int FindWeekNumber(Frontpages frontpage)
         {
-            int dayOfYear = frontpage.Date.DayOfYear;
-            int weekNumber = 1;
-            if (dayOfYear > 7)
+            //int dayOfYear = frontpage.Date.DayOfYear;
+            //int weekNumber = 1;
+            //if (dayOfYear > 7)
+            //{
+            //    if (dayOfYear % 1 != 0)
+            //    {
+            //        weekNumber = (dayOfYear / 7) + 1;
+            //    }
+            //    else
+            //    {
+            //        weekNumber = (dayOfYear / 7) + 1;
+            //    }
+            //}
+
+            //return weekNumber;
+
+            // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
+            // be the same week# as whatever Thursday, Friday or Saturday are,
+            // and we always get those right
+
+            DateTime time = frontpage.Date;
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
             {
-                if (dayOfYear % 1 != 0)
-                {
-                    weekNumber = (dayOfYear / 7) + 1;
-                }
-                else
-                {
-                    weekNumber = (dayOfYear / 7) + 1;
-                }
+                time = time.AddDays(3);
             }
 
-            return weekNumber;
+            // Return the week of our adjusted day
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
 
         public void SelectParentItem(object obj)
