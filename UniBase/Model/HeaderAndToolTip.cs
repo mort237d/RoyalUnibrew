@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace UniBase.Model
 {
-    class ControlRegistrationsHeader
+    class HeaderAndToolTip
     {
         public string Header { get; set; }
         public string ToolTip { get; set; }
 
-        public ControlRegistrationsHeader(string header, string toolTip)
+        public HeaderAndToolTip(string header, string toolTip)
         {
             Header = header;
             ToolTip = toolTip;
