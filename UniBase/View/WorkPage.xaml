@@ -49,14 +49,12 @@
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[0].Header}" Text="{Binding DataContext.Column_2.ProcessOrderNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10">
-                                        
-                                    </TextBox>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[1].Header}" Text="{Binding DataContext.Column_2.DateTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[2].Header}" Text="{Binding DataContext.Column_2.FinishedProductNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[3].Header}" Text="{Binding DataContext.Column_2.ColumnTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[4].Header}" Text="{Binding DataContext.Column_2.NoteTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[5].Header}" Text="{Binding DataContext.Column_2.WeekNoTextBoxOutput, ElementName=WorkPageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[0].Header}" Text="{Binding Column_2.FrontpageMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[1].Header}" Text="{Binding Column_2.FrontpageMethod.DateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[2].Header}" Text="{Binding Column_2.FrontpageMethod.FinishedProductNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[3].Header}" Text="{Binding Column_2.FrontpageMethod.ColumnTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[4].Header}" Text="{Binding Column_2.FrontpageMethod.NoteTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding XamlBindings.FrontPageHeaderList[5].Header}" Text="{Binding Column_2.FrontpageMethod.WeekNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -81,7 +79,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView SelectedIndex="{Binding Column_2.SelectedFrontpageId, Mode=TwoWay}" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}" SelectedItem="{Binding Column_2.SelectedFrontpage, Mode=TwoWay}">
+                                    <ListView SelectedIndex="{Binding Column_2.FrontpageMethod.SelectedFrontpageId, Mode=TwoWay}" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpagesList}" SelectedItem="{Binding Column_2.FrontpageMethod.SelectedFrontpage, Mode=TwoWay}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -100,7 +98,7 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Date, Mode=TwoWay}" ToolTipService.ToolTip="Fx ÅÅÅÅ/MM/DD">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding DateTimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
@@ -162,7 +160,7 @@
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.ProcessOrder_No}" Height="42" FontSize="10" IsReadOnly="True"/>
                                     <Line/>
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper}" Height="42" FontSize="10"/>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                     <Line/>
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewFrontpagesToAdd.FinishedProduct_No}" Height="42" FontSize="10"/>
                                     <Line/>
@@ -186,23 +184,20 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
-                                <ListView Height="44" Width="1326" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlRegistrationProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
-                                                <Line/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[0]}"  Text="{Binding Column_2.ControlRegistrationMethod.ControlRegistrationIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[1]}"  Text="{Binding Column_2.ControlRegistrationMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[2]}"  Text="{Binding Column_2.ControlRegistrationMethod.TimeTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[3]}"  Text="{Binding Column_2.ControlRegistrationMethod.ProductionDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[4]}"  Text="{Binding Column_2.ControlRegistrationMethod.CommentsOnChangedDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[5]}"  Text="{Binding Column_2.ControlRegistrationMethod.ControlAlcoholSpearDispenserTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[6]}"  Text="{Binding Column_2.ControlRegistrationMethod.CapNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[7]}"  Text="{Binding Column_2.ControlRegistrationMethod.EtiquetteNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[8]}"  Text="{Binding Column_2.ControlRegistrationMethod.KegSizeTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[9]}"  Text="{Binding Column_2.ControlRegistrationMethod.SignatureTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[10]}"  Text="{Binding Column_2.ControlRegistrationMethod.FirstPalletDepalletizingTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlRegistrationProps[11]}"  Text="{Binding Column_2.ControlRegistrationMethod.LastPalletDepalletizingTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
@@ -228,7 +223,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="1326" ItemsSource="{Binding Column_2.ControlRegistrationsList}">
+                                    <ListView SelectedIndex="{Binding Column_2.ControlRegistrationMethod.SelectedControlRegistrationId, Mode=TwoWay}" SelectedItem="{Binding Column_2.ControlRegistrationMethod.SelectedControlRegistration, Mode=TwoWay}" MaxHeight="400" Width="1326" ItemsSource="{Binding Column_2.ControlRegistrationsList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -239,20 +234,87 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlRegistration_ID, Mode=TwoWay}" IsReadOnly="True">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CommentsOnChangedDate, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <!-- Find en løsning til knappen med at få selecteditem frem -->
                                                     <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}">
                                                         <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}"/>
                                                     </Button>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNo, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNo, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -269,7 +331,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding AddControlRegistrationsTable}">
                                         <Image Source="Images/SaveButton.png"/>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteControlRegistrationTable}">
                                         <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
@@ -280,9 +342,9 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.ProcessOrder_No}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.CommentsOnChangedDate, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.CommentsOnChangedDate}" Height="42" FontSize="10"/>
                                 <Line/>
@@ -300,9 +362,9 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlRegistrationsToAdd.Signature}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddControlRegistrationsTable}">
@@ -317,30 +379,25 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
-                                <ListView Height="44" Width="994" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlScheduleProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
-                                                <Line/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[0]}" Text="{Binding Column_2.ControlScheduleMethod.ControlScheduleIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[1]}" Text="{Binding Column_2.ControlScheduleMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[2]}" Text="{Binding Column_2.ControlScheduleMethod.TimeTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[3]}" Text="{Binding Column_2.ControlScheduleMethod.WeightTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[4]}" Text="{Binding Column_2.ControlScheduleMethod.KegTestTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[5]}" Text="{Binding Column_2.ControlScheduleMethod.LudKoncentrationTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[6]}" Text="{Binding Column_2.ControlScheduleMethod.MipMaTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[7]}" Text="{Binding Column_2.ControlScheduleMethod.SignatureTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ControlScheduleProps[8]}" Text="{Binding Column_2.ControlScheduleMethod.NoteTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
                                 <StackPanel>
-                                    <ListView Width="994"
+                                    <ListView SelectedIndex="{Binding Column_2.ControlScheduleMethod.SelectedControlScheduleId, Mode=TwoWay}" Width="994"
                                       Style="{StaticResource ButtonListViewStyle}" 
-                                      ItemsSource="{Binding Column_2.ControlScheduleProps}">
+                                      ItemsSource="{Binding Column_2.ControlScheduleProps}"
+                                              SelectedItem="{Binding Column_2.ControlScheduleMethod.SelectedControlSchedule, Mode=TwoWay}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -359,7 +416,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="994" ItemsSource="{Binding Column_2.ControlSchedulesList}">
+                                    <ListView SelectedIndex="{Binding Column_2.ControlScheduleMethod.SelectedControlScheduleId, Mode=TwoWay}" MaxHeight="400" Width="994" ItemsSource="{Binding Column_2.ControlSchedulesList}" SelectedItem="{Binding Column_2.ControlScheduleMethod.SelectedControlSchedule, Mode=TwoWay}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -370,15 +427,69 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding WeightColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding LudKoncentrationColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding MipMaColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID, Mode=TwoWay}" IsReadOnly="True">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Time, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding WeightColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding LudKoncentrationColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding MipMaColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -395,30 +506,31 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlScheduleTable}">
                                         <Image Source="Images/SaveButton.png"/>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteControlScheduleTable}">
                                         <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <ListView Height="44" Width="994" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ControlScheduleProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
-                                                <Line/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.ControlSchedule_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.ControlSchedule_ID}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.ProcessOrder_No}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.TimeStringHelper}" PlaceholderText="{Binding XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Weight, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.Weight}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.KegTest, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.LudKoncentration, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.LudKoncentration}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.MipMA, Mode=TwoWay}" PlaceholderText="{Binding Column_2.NewControlSchedules.MipMA}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Signature, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
+                                <Line/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Note, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString, Mode=TwoWay}" Height="42" FontSize="10"/>
+                                <Line/>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"/>
                                 </Button>

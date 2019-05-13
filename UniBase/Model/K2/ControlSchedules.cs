@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI;
-using Windows.UI.Text;
 using Windows.UI.Xaml.Media;
 using UniBase.Annotations;
 
@@ -14,18 +13,20 @@ namespace UniBase.Model.K2
         private double _ludKoncentration;
         private double _mipMa;
         private int _controlScheduleId;
-        private DateTime _time;
         private string _kegTest;
         private int _processOrderNo;
         private string _note;
         private string _signature;
 
+        private DateTime _time;
+        private string _timeStringHelper;
+
 
         private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
         private ConstantValues constantValues = new ConstantValues();
-        private Brush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
-        private Brush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
-        private Brush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private SolidColorBrush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private SolidColorBrush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private SolidColorBrush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
 
         public ControlSchedules()
         {
@@ -57,16 +58,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime Time
-        {
-            get => _time;
-            set
-            {
-                if (value.Equals(_time)) return;
-                _time = value;
-                OnPropertyChanged();
-            }
-        }
+        
 
         public double Weight
         {
@@ -146,9 +138,31 @@ namespace UniBase.Model.K2
             }
         }
 
+
+        public string TimeStringHelper
+        {
+            get { return _timeStringHelper; }
+            set
+            {
+                _timeStringHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Time
+        {
+            get => _time;
+            set
+            {
+                if (value.Equals(_time)) return;
+                _time = value;
+                OnPropertyChanged();
+            }
+        }
+
         public virtual Frontpages Frontpage { get; set; }
 
-        public Brush WeightColorBrush
+        public SolidColorBrush WeightColorBrush
         {
             get { return weightColorBrush; }
             set
@@ -158,7 +172,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public Brush MipMaColorBrush
+        public SolidColorBrush MipMaColorBrush
         {
             get { return mipMaColorBrush; }
             set
@@ -168,7 +182,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public Brush LudKoncentrationColorBrush
+        public SolidColorBrush LudKoncentrationColorBrush
         {
             get { return ludKoncentrationColorBrush; }
             set
@@ -177,8 +191,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
-
+        
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace UniBase.Model
 {
     class XamlBindings
     {
+        #region Properties
+        public string PlaceHolderDate { get; set; } = "2000/01/01";
+        public string PlaceHolderTimeSpan { get; set; } = "00:00:00";
+        public string PlaceholderString { get; set; } = "Tekst";
+        public int PlaceHolderInt { get; set; } = 0;
+        public double PlaceHolderDouble { get; set; } = 0.00;
+        #endregion
 
+        #region PropertyLists
         public List<FrontPageHeader> FrontPageHeaderList { get; set; }
+
+        
+
+        #endregion
 
         public XamlBindings()
         {

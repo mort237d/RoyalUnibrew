@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
@@ -15,15 +13,17 @@ namespace UniBase.Model
         private ComboBoxItem _graphType = new ComboBoxItem();
         private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
 
-
         public ObservableCollection<Trends> _trendList = new ObservableCollection<Trends>();
-        public ManageTables MngTables = ManageTables.Instance;
+
+        private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
+
         public TrendAdminstrator()
         {
+            _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+
             GraphType.Content = "Vægt";
             GraphTimePeriod.Content = "En Uge";
             GraphComboboxSelectedMethod(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
-
         }
 
         public ObservableCollection<Trends> TrendList
@@ -55,6 +55,12 @@ namespace UniBase.Model
             }
         }
 
+        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList
+        {
+            get { return _completeControlSchedulesList; }
+            set { _completeControlSchedulesList = value; }
+        }
+
 
         public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
         {
@@ -65,7 +71,7 @@ namespace UniBase.Model
         public void CreateGraph(string comboboxInput,string timePeriod)
         {
             TrendList.Clear();
-            DateTime tempDayOfScheduleList = MngTables.CompleteControlSchedulesList[0].Time;
+            DateTime tempDayOfScheduleList = CompleteControlSchedulesList[0].Time;
             int timeHorizon = 0;
             int timeHorizonDivider = 0;
             DateTime currentItemDate = DateTime.Now;
@@ -97,13 +103,13 @@ namespace UniBase.Model
             int amountOfItemsWithSameDate = 0;
             double tempTotalValue = 0;
 
-            for (int i = 0; i < MngTables.CompleteControlSchedulesList.Count; i++)
+            for (int i = 0; i < CompleteControlSchedulesList.Count; i++)
             {
-                if (MngTables.CompleteControlSchedulesList[i].Time >= DateTime.Now - new TimeSpan(timeHorizon, 0, 0, 0) && MngTables.CompleteControlSchedulesList[i].Time <= DateTime.Now)
+                if (CompleteControlSchedulesList[i].Time >= DateTime.Now - new TimeSpan(timeHorizon, 0, 0, 0) && CompleteControlSchedulesList[i].Time <= DateTime.Now)
                 {
-                    currentItemDate = MngTables.CompleteControlSchedulesList[i].Time.Subtract(new TimeSpan(0,
-                        MngTables.CompleteControlSchedulesList[i].Time.Hour, MngTables.CompleteControlSchedulesList[i].Time.Minute,
-                        MngTables.CompleteControlSchedulesList[i].Time.Second));
+                    currentItemDate = CompleteControlSchedulesList[i].Time.Subtract(new TimeSpan(0,
+                        CompleteControlSchedulesList[i].Time.Hour, CompleteControlSchedulesList[i].Time.Minute,
+                        CompleteControlSchedulesList[i].Time.Second));
 
                     here:
 
@@ -112,20 +118,20 @@ namespace UniBase.Model
                         amountOfItemsWithSameDate++;
                         if (comboboxInput == "Vægt")
                         {
-                            tempTotalValue += MngTables.CompleteControlSchedulesList[i].Weight;
+                            tempTotalValue += CompleteControlSchedulesList[i].Weight;
                             minValue = constantValues.MinWeight;
                             maxValue = constantValues.MaxWeight;
                             
                         }
                         else if (comboboxInput == "MipMa")
                         {
-                            tempTotalValue += MngTables.CompleteControlSchedulesList[i].MipMA;
+                            tempTotalValue += CompleteControlSchedulesList[i].MipMA;
                             minValue = constantValues.MinMipMa;
                             maxValue = constantValues.MaxMipMa;
                         }
                         else if (comboboxInput == "Lud Koncentration")
                         {
-                            tempTotalValue += MngTables.CompleteControlSchedulesList[i].LudKoncentration;
+                            tempTotalValue += CompleteControlSchedulesList[i].LudKoncentration;
                             minValue = constantValues.MinLudkoncentration;
                             maxValue = constantValues.MaxLudkoncentration;
                         }
