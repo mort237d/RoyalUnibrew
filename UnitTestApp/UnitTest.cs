@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.AppContainer;
 using UniBase.Model;
 using UniBase.Model.K2;
+using UniBase.Model.K2.ButtonMethods;
 
 namespace UnitTestApp
 {
@@ -15,10 +16,10 @@ namespace UnitTestApp
         [UITestMethod]
         public void TestFindWeekNumber()
         {
-            ManageTables mt = new ManageTables();
+            FrontpageMethod fm = new FrontpageMethod();
             Frontpages frontpages = new Frontpages(0, new DateTime(2019, 1, 25), 0, 0, "hej", 1);
-            //int weekNumber = mt.FindWeekNumber(frontpages);
-            //Assert.AreEqual(4, weekNumber);
+            int weekNumber = fm.FindWeekNumber(frontpages);
+            Assert.AreEqual(4, weekNumber);
             
         }
    
