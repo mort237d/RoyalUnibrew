@@ -35,7 +35,7 @@ namespace UniBase.Model.K2
         private ControlScheduleMethod _controlScheduleMethod = new ControlScheduleMethod();
         private ProductionMethod _productionMethod = new ProductionMethod();
         private ShiftRegistrationMethod _shiftRegistrationMethod = new ShiftRegistrationMethod();
-        private TUMethod _tuMethod = new TUMethod();
+        private TuMethod _tuMethod = new TuMethod();
 
         #endregion
 
@@ -131,7 +131,7 @@ namespace UniBase.Model.K2
             set { _shiftRegistrationMethod = value; }
         }
 
-        public TUMethod TuMethod
+        public TuMethod TuMethod
         {
             get { return _tuMethod; }
             set { _tuMethod = value; }
