@@ -46,9 +46,6 @@ namespace UniBase.ViewModel
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
         
-
-        public ManageTables Column_2 { get; set; }
-        public PredefinedColors PredefinedColors { get; set; }
         public RelayCommand<object> ControlledClickCommand { get; set; }
         public RelayCommand ControlledClickCommand2 { get; set; }
 
