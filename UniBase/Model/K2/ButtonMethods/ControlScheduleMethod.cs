@@ -8,8 +8,9 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class ControlScheduleMethod : INotifyPropertyChanged
+    public class ControlScheduleMethod : INotifyPropertyChanged, IManageButtonMethods
     {
+        #region Fields
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
 
         private Message message = new Message();
@@ -26,6 +27,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _signatureTextBoxOutput;
         private string _noteTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
+        #endregion
 
         public int SelectedControlScheduleId
         {
@@ -47,6 +49,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        #region Filters
         public string ControlScheduleIdTextBoxOutput
         {
             get { return _controlScheduleIdTextBoxOutput; }
@@ -271,19 +274,35 @@ namespace UniBase.Model.K2.ButtonMethods
                 }
             }
         }
+        #endregion
 
-        public void RefreshControlSchedules()
+
+        public void RefreshAll()
         {
             ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controleSchedule =>
+            {
+                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
+            });
             message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
-        public void RefreshLastTenControlSchedules()
+
+        public void RefreshLastTen()
         {
             ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controleSchedule =>
+            {
+                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
+            });
             message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
-        public void SaveControlSchedules()
+
+        public void SaveAll()
         {
+            Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controleSchedule =>
+            {
+                InputValidator.CheckIfInputsAreValid(ref controleSchedule);
+            });
             Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controlSchedules =>
             {
                 ModelGenerics.UpdateByObjectAndId(controlSchedules.ControlSchedule_ID, controlSchedules);
@@ -291,12 +310,32 @@ namespace UniBase.Model.K2.ButtonMethods
             message.ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
         }
 
-        public void DeleteControlSchedule()
+        public void DeleteItem()
         {
             if (SelectedControlSchedule != null)
             {
                 //TODO Make deletion method
                 Debug.WriteLine(SelectedControlSchedule.ControlSchedule_ID);
+            }
+        }
+
+        public void AddNewItem()
+        {
+            var objectToAdd = ManageTables.Instance.NewControlRegistrationsToAdd;
+            InputValidator.CheckIfInputsAreValid(ref objectToAdd);
+
+           
+            if (ModelGenerics.CreateByObject(objectToAdd))
+            {
+                ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+
+                ManageTables.Instance.NewControlRegistrationsToAdd = new ControlRegistrations();
+
+                ManageTables.Instance.NewControlSchedules.ProcessOrder_No = ManageTables.Instance.ControlRegistrationsList.Last().ProcessOrder_No;
+            }
+            else
+            {
+                //error
             }
         }
 

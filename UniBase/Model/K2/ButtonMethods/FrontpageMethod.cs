@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -10,8 +11,10 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class FrontpageMethod : INotifyPropertyChanged
+    public class FrontpageMethod : INotifyPropertyChanged, IManageButtonMethods
     {
+
+        #region Fields
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
         private Message message = new Message();
@@ -25,6 +28,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _columnTextBoxOutput;
         private string _noteTextBoxOutput;
         private string _weekNoTextBoxOutput;
+        #endregion
 
         public int SelectedFrontpageId
         {
@@ -45,8 +49,8 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
-        //public ObservableCollection<Frontpages> CompleteFrontpagesList { get => _completeFrontpagesList; set => _completeFrontpagesList = value; }
 
+        #region Filter
         public string ProcessOrderNoTextBoxOutput
         {
             get { return _processOrderNoTextBoxOutput; }
@@ -196,27 +200,34 @@ namespace UniBase.Model.K2.ButtonMethods
                 }
             }
         }
+        #endregion
 
-        public void RefreshFrontpages()
+        public void RefreshAll()
         {
             ManageTables.Instance.FrontpagesList = ModelGenerics.GetAll(new Frontpages());
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
             {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString();
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             });
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
-        public void RefreshLastTenFrontpages()
+        public void RefreshLastTen()
         {
             ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             foreach (var frontpage in ManageTables.Instance.FrontpagesList)
             {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString().Remove(10);
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             }
             message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
-        public void SaveFrontpages()
+        public void SaveAll()
         {
+            //Todo try catch save
+            Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
+            {
+                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
+                InputValidator.CheckIfInputsAreValid(ref frontpage);
+            });
 
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
             {
@@ -225,7 +236,7 @@ namespace UniBase.Model.K2.ButtonMethods
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
-        public void DeleteFrontpage()
+        public void DeleteItem()
         {
             if (SelectedFrontpage != null)
             {
@@ -234,52 +245,37 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public void AddNewFrontpages()
+        public void AddNewItem()
         {
             var instanceNewFrontpagesToAdd = ManageTables.Instance.NewFrontpagesToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
-            instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
 
-            //Checks whether any of the properties are null if any are returns true
-            bool isNull = instanceNewFrontpagesToAdd.GetType().GetProperties().All(p => p.GetValue(instanceNewFrontpagesToAdd) == null);
+            //Autofills
+            instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd.Date);
 
-            if (!isNull)
+            
+            if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {
                 ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                instanceNewFrontpagesToAdd.ProcessOrder_No = ManageTables.Instance.FrontpagesList.Last().ProcessOrder_No + 1;
-                if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
-                {
-                    //ManageTables.Instance.FrontpagesList.Add(NewFrontpagesToAdd);
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                    instanceNewFrontpagesToAdd = new Frontpages();
-                    instanceNewFrontpagesToAdd.ProcessOrder_No = ManageTables.Instance.FrontpagesList[ManageTables.Instance.FrontpagesList.Count - 1].ProcessOrder_No + 1;
-                    instanceNewFrontpagesToAdd.Date = DateTime.Now;
-                    instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd);
-                }
-                else
-                {
-                    //error
-                }
+                ManageTables.Instance.NewFrontpagesToAdd = new Frontpages();
+            }
+            else
+            {
+                //error
             }
         }
 
-        public int FindWeekNumber(Frontpages frontpage)
+        public int FindWeekNumber(DateTime time)
         {
-            int dayOfYear = frontpage.Date.DayOfYear;
-            int weekNumber = 1;
-            if (dayOfYear > 7)
+            // https://stackoverflow.com/questions/11154673/get-the-correct-week-number-of-a-given-date
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
             {
-                if (dayOfYear % 1 != 0)
-                {
-                    weekNumber = (dayOfYear / 7) + 1;
-                }
-                else
-                {
-                    weekNumber = (dayOfYear / 7) + 1;
-                }
+                time = time.AddDays(3);
             }
 
-            return weekNumber;
+            // Return the week of our adjusted day
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
 
         public void SelectParentItem(object obj)

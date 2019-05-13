@@ -13,10 +13,11 @@ namespace UniBase.Model.K2
         private int _colunm;
         private int _finishedProductNo;
         private Products _product;
+        private DateTime _date;
+
 
 
         private string _dateStringHelper;
-        private DateTime _date;
 
         public Frontpages()
         {
