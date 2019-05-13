@@ -249,7 +249,6 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
         #endregion
-
         
         #region ButtonMethods
         public void RefreshAll()
@@ -292,11 +291,11 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            //if (SelectedFrontpage != null)
-            //{
-            //    //TODO Make deletion method
-            //    Debug.WriteLine(SelectedFrontpage.ProcessOrder_No);
-            //}
+            if (SelectedProduction != null)
+            {
+                //TODO Make deletion method
+                Debug.WriteLine(SelectedProduction.ProcessOrder_No);
+            }
         }
 
         public void AddNewItem()
@@ -321,9 +320,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
         #endregion
-
-
-
+        
         public void SelectParentItem(object obj)
         {
             int id = (int)obj;

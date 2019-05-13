@@ -11,7 +11,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class FrontpageMethod : INotifyPropertyChanged, IManageButtonMethods
+    public class FrontpageMethod : IManageButtonMethods
     {
 
         #region Fields

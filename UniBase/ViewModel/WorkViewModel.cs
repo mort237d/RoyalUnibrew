@@ -130,9 +130,13 @@ namespace UniBase.ViewModel
             RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshLastTen);
             SaveProductionTable = new RelayCommand(Column_2.ProductionMethod.SaveAll);
 
+            DeleteProductionTable = new RelayCommand(Column_2.ProductionMethod.DeleteItem);
+
             RefreshShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshAll);
             RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshLastTen);
             SaveShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.SaveAll);
+
+            DeleteShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.DeleteItem);
 
             RefreshTUTable = new RelayCommand(Column_2.TuMethod.RefreshTUs);
             RefreshLastTenTUTable = new RelayCommand(Column_2.TuMethod.RefreshLastTenTUs);
@@ -149,9 +153,14 @@ namespace UniBase.ViewModel
             SelectParentItemControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SelectParentItem);
             SelectParentItemControlScheduleCommand = new RelayCommand<object>(Column_2.ControlScheduleMethod.SelectParentItem);
             SelectParentItemProductionCommand = new RelayCommand<object>(Column_2.ProductionMethod.SelectParentItem);
+            SelectParentItemShiftRegistrationCommand = new RelayCommand<object>(Column_2.ShiftRegistrationMethod.SelectParentItem);
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
+
+        public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
+
+        public RelayCommand DeleteShiftRegistrationTable { get; set; }
 
         public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
 
