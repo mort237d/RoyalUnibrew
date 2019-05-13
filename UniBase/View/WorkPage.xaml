@@ -543,23 +543,16 @@
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
-                                <ListView Height="44" Width="883" Style="{StaticResource ButtonListViewStyle}" ItemsSource="{Binding Column_2.ProductionProps}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Padding" Value="0"/>
-                                            <Setter Property="Margin" Value="0"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding}" Height="42" FontSize="10"/>
-                                                <Line/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[0]}"  Text="{Binding Column_2.ProductionMethod.ProductionIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[1]}"  Text="{Binding Column_2.ProductionMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[2]}"  Text="{Binding Column_2.ProductionMethod.PalletPutInStock0001TextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[3]}"  Text="{Binding Column_2.ProductionMethod.TapmachineTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[4]}"  Text="{Binding Column_2.ProductionMethod.TotalKegsPrPalletTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[5]}"  Text="{Binding Column_2.ProductionMethod.CounterTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[6]}"  Text="{Binding Column_2.ProductionMethod.PalletCounterTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.ProductionProps[7]}"  Text="{Binding Column_2.ProductionMethod.BatchDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,-3">
@@ -585,7 +578,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView MaxHeight="400" Width="883" ItemsSource="{Binding Column_2.ProductionsList}">
+                                    <ListView SelectedIndex="{Binding Column_2.ProductionMethod.SelectedProductionId, Mode=TwoWay}" SelectedItem="{Binding Column_2.ProductionMethod.SelectedProduction, Mode=TwoWay}" MaxHeight="400" Width="883" ItemsSource="{Binding Column_2.ProductionsList}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -596,14 +589,62 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter, Mode=TwoWay}"/>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDate, Mode=TwoWay}"/>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDate, Mode=TwoWay}">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -620,7 +661,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveProductionTable}">
                                         <Image Source="Images/SaveButton.png"/>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteProductionTable}">
                                         <Image Source="Images/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
