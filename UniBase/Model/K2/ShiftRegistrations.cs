@@ -13,8 +13,8 @@ namespace UniBase.Model.K2
         private string _initials;
         private int _staff;
         private int _totalHours;
-        private DateTime _startTime; //Todo make this timespan in database, rest and model
-        private DateTime _endDate;
+        private TimeSpan _startTime; 
+        private TimeSpan _endDate;
 
 
         private string _startTimeStringHelper;
@@ -25,7 +25,7 @@ namespace UniBase.Model.K2
             
         }
 
-        public ShiftRegistrations(int shiftRegistration_ID, DateTime start_Time, DateTime end_Date, int breaks, int totalHours, int staff, string initials, int processOrder_No, Frontpages frontpage)
+        public ShiftRegistrations(int shiftRegistration_ID, TimeSpan start_Time, TimeSpan end_Date, int breaks, int totalHours, int staff, string initials, int processOrder_No, Frontpages frontpage)
         {
             ShiftRegistration_ID = shiftRegistration_ID;
             Start_Time = start_Time;
@@ -124,7 +124,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime Start_Time
+        public TimeSpan Start_Time
         {
             get => _startTime;
             set
@@ -135,7 +135,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime End_Date
+        public TimeSpan End_Date
         {
             get => _endDate;
             set

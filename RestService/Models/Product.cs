@@ -10,6 +10,7 @@ namespace RestService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
+            ControlRegistrations = new HashSet<ControlRegistration>();
             Frontpages = new HashSet<Frontpage>();
         }
 
@@ -22,6 +23,9 @@ namespace RestService.Models
         public string ProductName { get; set; }
 
         public int BestBeforeDateLength { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ControlRegistration> ControlRegistrations { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Frontpage> Frontpages { get; set; }

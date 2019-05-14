@@ -11,11 +11,9 @@ namespace RestService.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ShiftRegistration_ID { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Start_Time { get; set; }
+        public TimeSpan Start_Time { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime End_Date { get; set; }
+        public TimeSpan End_Date { get; set; }
 
         public int Breaks { get; set; }
 

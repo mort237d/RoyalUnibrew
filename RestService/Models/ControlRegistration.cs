@@ -29,7 +29,9 @@ namespace RestService.Models
 
         public int EtiquetteNo { get; set; }
 
-        public double KegSize { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string KegSize { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -39,7 +41,11 @@ namespace RestService.Models
 
         public DateTime LastPalletDepalletizing { get; set; }
 
-        public int? ProcessOrder_No { get; set; }
+        public int ProcessOrder_No { get; set; }
+
+        public int FinishedProduct_No { get; set; }
+
+        public virtual Product Product { get; set; }
 
         public virtual Frontpage Frontpage { get; set; }
     }
