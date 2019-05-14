@@ -10,19 +10,21 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class TuMethod : IManageButtonMethods
     {
+        public TuMethod()
+        {
+            RefreshLastTen();
+        }
         #region Fields
-        private ObservableCollection<TUs> _completeTUsList = ModelGenerics.GetAll(new TUs());
 
         private ObservableCollection<TUs> _tuList;
-
         private TUs _newTUs = new TUs();
-
-
+        
         private Message _message = new Message();
 
         private int _selectedTuId;
         private TUs _selectedTu;
 
+        private ObservableCollection<TUs> _completeTUsList = ModelGenerics.GetAll(new TUs());
         private string _tuIdTextBoxOutput;
         private string _firstDayStartTuTextBoxOutput;
         private string _firstDayEndTuTextBoxOutput;
@@ -357,11 +359,11 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public TuMethod()
-        {
-            RefreshLastTen();
-        }
 
+
+        #region ButtonMethods
+
+        
 
         public void RefreshAll()
         {
@@ -412,6 +414,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 //error
             }
         }
+        #endregion
 
         public void SelectParentItem(object obj)
         {
