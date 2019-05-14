@@ -9,76 +9,90 @@ namespace RestService
 
     public partial class Context : DbContext
     {
-        public Context(): base("name=Context4")
+        public Context()
+            : base("name=Context6")
         {
-            base.Configuration.ProxyCreationEnabled = false;
         }
 
-        public virtual DbSet<Models.ControlRegistration> ControlRegistrations { get; set; }
-        public virtual DbSet<Models.ControlSchedule> ControlSchedules { get; set; }
-        public virtual DbSet<Models.Frontpage> Frontpages { get; set; }
-        public virtual DbSet<Models.Product> Products { get; set; }
-        public virtual DbSet<Models.Production> Productions { get; set; }
-        public virtual DbSet<Models.ShiftRegistration> ShiftRegistrations { get; set; }
-        public virtual DbSet<Models.TU> TUs { get; set; }
+        public virtual DbSet<ControlRegistration> ControlRegistrations { get; set; }
+        public virtual DbSet<ControlSchedule> ControlSchedules { get; set; }
+        public virtual DbSet<Frontpage> Frontpages { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Production> Productions { get; set; }
+        public virtual DbSet<ShiftRegistration> ShiftRegistrations { get; set; }
+        public virtual DbSet<TU> TUs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.ControlRegistration>()
+            modelBuilder.Entity<ControlRegistration>()
                 .Property(e => e.CommentsOnChangedDate)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Models.ControlRegistration>()
+            modelBuilder.Entity<ControlRegistration>()
+                .Property(e => e.KegSize)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ControlRegistration>()
                 .Property(e => e.Signature)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Models.ControlSchedule>()
+            modelBuilder.Entity<ControlSchedule>()
                 .Property(e => e.KegTest)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Models.ControlSchedule>()
+            modelBuilder.Entity<ControlSchedule>()
                 .Property(e => e.Signature)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Models.ControlSchedule>()
+            modelBuilder.Entity<ControlSchedule>()
                 .Property(e => e.Note)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Models.Frontpage>()
+            modelBuilder.Entity<Frontpage>()
                 .Property(e => e.Note)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Models.Frontpage>()
+            modelBuilder.Entity<Frontpage>()
+                .HasMany(e => e.ControlRegistrations)
+                .WithRequired(e => e.Frontpage)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Frontpage>()
                 .HasMany(e => e.ControlSchedules)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Models.Frontpage>()
+            modelBuilder.Entity<Frontpage>()
                 .HasMany(e => e.Productions)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Models.Frontpage>()
+            modelBuilder.Entity<Frontpage>()
                 .HasMany(e => e.ShiftRegistrations)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Models.Frontpage>()
+            modelBuilder.Entity<Frontpage>()
                 .HasMany(e => e.TUs)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Models.Product>()
+            modelBuilder.Entity<Product>()
                 .Property(e => e.ProductName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Models.Product>()
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.ControlRegistrations)
+                .WithRequired(e => e.Product)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Product>()
                 .HasMany(e => e.Frontpages)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Models.ShiftRegistration>()
+            modelBuilder.Entity<ShiftRegistration>()
                 .Property(e => e.Initials)
                 .IsUnicode(false);
 

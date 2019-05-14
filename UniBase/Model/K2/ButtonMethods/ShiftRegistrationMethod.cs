@@ -286,7 +286,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         public void Initialize()
         {
-            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
         }
 
         public void RefreshAll()
@@ -332,7 +332,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
             if (ModelGenerics.CreateByObject(ObjectToAdd))
             {
-                ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                Initialize();
 
                 NewShiftRegistrations = new ShiftRegistrations()
                 {

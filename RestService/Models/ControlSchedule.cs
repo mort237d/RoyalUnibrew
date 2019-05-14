@@ -11,7 +11,7 @@ namespace RestService.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ControlSchedule_ID { get; set; }
 
-        public DateTime Time { get; set; }
+        public TimeSpan Time { get; set; }
 
         public double Weight { get; set; }
 
