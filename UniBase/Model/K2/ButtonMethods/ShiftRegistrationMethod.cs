@@ -325,7 +325,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
                 NewShiftRegistrations = new ShiftRegistrations()
                 {
-                    //StartTimeStringHelper = 
+                    
                 };
             }
             else
