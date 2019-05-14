@@ -305,7 +305,7 @@ namespace UniBase.Model.K2.ButtonMethods
             });
             Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controlSchedules =>
             {
-                ModelGenerics.UpdateByObjectAndId(controlSchedules.ControlSchedule_ID, controlSchedules);
+                ModelGenerics.UpdateByObjectAndId((int)controlSchedules.ControlSchedule_ID, controlSchedules);
             });
             message.ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
         }

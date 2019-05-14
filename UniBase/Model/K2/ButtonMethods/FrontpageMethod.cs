@@ -30,6 +30,8 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _weekNoTextBoxOutput;
         #endregion
 
+
+
         public int SelectedFrontpageId
         {
             get { return _selectedFrontpageId; }
@@ -222,16 +224,14 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         public void SaveAll()
         {
-            //Todo try catch save
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
             {
-                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
                 InputValidator.CheckIfInputsAreValid(ref frontpage);
             });
 
             Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
             {
-                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
+                ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
             });
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }

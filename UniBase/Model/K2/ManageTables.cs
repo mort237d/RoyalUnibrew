@@ -12,14 +12,12 @@ namespace UniBase.Model.K2
     public class ManageTables :INotifyPropertyChanged
     {
         #region Field
-
         private ObservableCollection<Frontpages> _frontpagesList;
         private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
         private ObservableCollection<ControlSchedules> _controlSchedulesList;
         private ObservableCollection<Productions> _productionsList;
         private ObservableCollection<Products> _productsList;
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
-        private ObservableCollection<TUs> _tuList;
 
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
         private ControlSchedules _newControlSchedules = new ControlSchedules();
@@ -207,15 +205,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public ObservableCollection<TUs> TuList
-        {
-            get { return _tuList; }
-            set
-            {
-                _tuList = value;
-                OnPropertyChanged();
-            }
-        }
+       
 
         #endregion
 
@@ -245,33 +235,9 @@ namespace UniBase.Model.K2
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
             ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-            ProductsList = ModelGenerics.GetLastTenInDatabasae(new Products());
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-
-            if (FrontpagesList.Count > 0)
-            {
-                foreach (var VARIABLE in FrontpagesList)
-                {
-                    VARIABLE.DateTimeStringHelper = VARIABLE.Date.ToString().Remove(10);
-                }
-            NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-            NewFrontpagesToAdd.ProcessOrder_No = FrontpagesList[FrontpagesList.Count - 1].ProcessOrder_No + 1;
-            NewFrontpagesToAdd.Date = DateTime.Now;
-            NewFrontpagesToAdd.DateTimeStringHelper = NewFrontpagesToAdd.Date.ToString().Remove(10);
-            NewFrontpagesToAdd.Week_No = FrontpageMethod.FindWeekNumber(NewFrontpagesToAdd.Date);
-                
-            }
-
-            if (ControlRegistrationsList.Count > 0)
-            {
-
-                NewControlRegistrationsToAdd.CapNo = ControlRegistrationsList.Last().CapNo;
-                NewControlRegistrationsToAdd.EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo;
-                NewControlRegistrationsToAdd.ControlRegistration_ID = ControlRegistrationsList.Last().ControlRegistration_ID + 1;
-                NewControlRegistrationsToAdd.KegSize = ControlRegistrationsList.Last().KegSize;
-                NewControlRegistrationsToAdd.ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No;
-            }
+            //TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            TuMethod = new TUMethod();
         }
         
         private void GenerateHeaderLists()

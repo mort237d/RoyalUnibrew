@@ -59,9 +59,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
         
-
         public double Weight
         {
             get => _weight;
@@ -69,7 +67,10 @@ namespace UniBase.Model.K2
             {
                 _weight = value;
                 OnPropertyChanged();
-                WeightColorBrush = ofBoundColorChange.ChangeListViewColor(_weight, constantValues.MinWeight, constantValues.MaxWeight);
+                if (_weight != null)
+                {
+                    WeightColorBrush = ofBoundColorChange.ChangeListViewColor((double)_weight, constantValues.MinWeight, constantValues.MaxWeight);
+                }
             }
         }
 
@@ -91,8 +92,10 @@ namespace UniBase.Model.K2
             {
                 _ludKoncentration = value; 
                 OnPropertyChanged();
-                LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor(_ludKoncentration,
-                    constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
+                if (_ludKoncentration != null)
+                {
+                    LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
+                }
             }
         }
 
@@ -103,7 +106,11 @@ namespace UniBase.Model.K2
             {
                 _mipMa = value;
                 OnPropertyChanged();
-                MipMaColorBrush = ofBoundColorChange.ChangeListViewColor(_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
+                if (_mipMa != null)
+                {
+                    MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
+
+                }
             }
         }
 
@@ -139,7 +146,6 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
 
         public string TimeStringHelper
         {

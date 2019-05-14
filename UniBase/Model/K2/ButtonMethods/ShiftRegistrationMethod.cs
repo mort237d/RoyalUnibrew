@@ -23,7 +23,11 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             Parallel.ForEach(ManageTables.Instance.ShiftRegistrationsList, shiftRegistrations =>
             {
-                ModelGenerics.UpdateByObjectAndId(shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
+                InputValidator.CheckIfInputsAreValid(ref shiftRegistrations);
+            });
+            Parallel.ForEach(ManageTables.Instance.ShiftRegistrationsList, shiftRegistrations =>
+            {
+                ModelGenerics.UpdateByObjectAndId((int)shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
             });
             message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
         }
@@ -53,6 +57,11 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 //error
             }
+        }
+
+        public void SelectParentItem(object obj)
+        {
+            
         }
     }
 }
