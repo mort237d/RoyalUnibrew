@@ -15,5 +15,6 @@ namespace UniBase.Model.K2.ButtonMethods
         void DeleteItem();
         void AddNewItem();
         void SelectParentItem(object obj);
+        void SortButtonClick(object obj);
     }
 }

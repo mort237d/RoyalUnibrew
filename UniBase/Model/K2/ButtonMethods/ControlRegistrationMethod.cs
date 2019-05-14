@@ -28,8 +28,11 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
 
+        private PropertyInfo[] controlRegistrationPropertyInfos = typeof(Frontpages).GetProperties();
 
         private Message _message = new Message();
+
+        private SortAndFilter _sortAndFilter = new SortAndFilter();
 
         private int _selectedControlRegistrationId;
         private ControlRegistrations _selectedControlRegistration;
@@ -549,6 +552,34 @@ namespace UniBase.Model.K2.ButtonMethods
             int index = ControlRegistrationsList.IndexOf(del);
 
             SelectedControlRegistrationId = index;
+        }
+
+        public void SortButtonClick(object id)
+        {
+            switch (id.ToString())
+            {
+                case "Kontrol Registrering ID":
+                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[0].Name);
+                    break;
+                case "ProcessOrdre Nr":
+                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[1].Name);
+                    break;
+                case "Tid":
+                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[2].Name);
+                    break;
+                case "Produktionsdato":
+                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[3].Name);
+                    break;
+                case "Kommentar vedr. ændret dato":
+                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[4].Name);
+                    break;
+                case "Uge Nr":
+                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[5].Name);
+                    break;
+                default:
+                    Debug.WriteLine("Nothing");
+                    break;
+            }
         }
 
         #region SingleTon

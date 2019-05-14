@@ -159,8 +159,8 @@ namespace UniBase.ViewModel
             AddUserCommand = new RelayCommand(ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
-            SortFrontpageCommand = new RelayCommand<object>(Column_2.SortAndFilter.SortFrontpagesButtonClick);
-            SortControlRegistrationCommand = new RelayCommand<object>(Column_2.SortAndFilter.SortControlRegistrationsButtonClick);
+            SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);
+            SortControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SortButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
