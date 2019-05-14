@@ -59,6 +59,8 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SelectParentItemControlRegistrationCommand { get; set; }
         public RelayCommand<object> SelectParentItemControlScheduleCommand { get; set; }
         public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
+        public RelayCommand<object> SelectParentItemTuCommand { get; set; }
+        public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
         #endregion
 
         public ManageTables Column_2 { get; set; }
@@ -172,17 +174,8 @@ namespace UniBase.ViewModel
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
-        public RelayCommand DeleteTUTable { get; set; }
 
-        public RelayCommand<object> SelectParentItemTuCommand { get; set; }
-
-        public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
-
-        public RelayCommand DeleteShiftRegistrationTable { get; set; }
-
-        public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
-
-        public RelayCommand DeleteProductionTable { get; set; }
+        
 
 
 

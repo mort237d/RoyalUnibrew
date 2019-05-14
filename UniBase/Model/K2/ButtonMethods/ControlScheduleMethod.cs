@@ -13,6 +13,10 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
 
+        private ObservableCollection<ControlSchedules> _controlSchedulesList;
+
+        private ControlSchedules _newControlSchedules = new ControlSchedules();
+
         private Message message = new Message();
 
         private int _selectedControlScheduleId;
@@ -49,6 +53,26 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        public ObservableCollection<ControlSchedules> ControlSchedulesList
+        {
+            get { return _controlSchedulesList; }
+            set
+            {
+                _controlSchedulesList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ControlSchedules NewControlSchedules
+        {
+            get { return _newControlSchedules; }
+            set
+            {
+                _newControlSchedules = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Filters
         public string ControlScheduleIdTextBoxOutput
         {
@@ -57,20 +81,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlScheduleIdTextBoxOutput = value;
 
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.ControlSchedule_ID.ToString().ToLower();
                     if (v.Contains(_controlScheduleIdTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_controlScheduleIdTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -82,20 +106,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _timeTextBoxOutput = value;
 
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.Time.ToString().ToLower();
                     if (v.Contains(_timeTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_timeTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -107,20 +131,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weightTextBoxOutput = value;
 
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.Weight.ToString().ToLower();
                     if (v.Contains(_weightTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_weightTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -131,20 +155,20 @@ namespace UniBase.Model.K2.ButtonMethods
             set
             {
                 _kegTestTextBoxOutput = value;
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.KegTest.ToString().ToLower();
                     if (v.Contains(_kegTestTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_kegTestTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -156,20 +180,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _ludKoncentrationTextBoxOutput = value;
 
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.LudKoncentration.ToString().ToLower();
                     if (v.Contains(_ludKoncentrationTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_ludKoncentrationTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -181,20 +205,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _mipMaTextBoxOutput = value;
 
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.MipMA.ToString().ToLower();
                     if (v.Contains(_mipMaTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_mipMaTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -206,20 +230,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _signatureTextBoxOutput = value;
 
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.Signature.ToString().ToLower();
                     if (v.Contains(_signatureTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_signatureTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -231,20 +255,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.Note.ToString().ToLower();
                     if (v.Contains(_noteTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_noteTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -257,20 +281,20 @@ namespace UniBase.Model.K2.ButtonMethods
                 _processOrderNoTextBoxOutput = value;
 
 
-                ManageTables.Instance.ControlSchedulesList.Clear();
+                ControlSchedulesList.Clear();
 
                 foreach (var f in _completeControlSchedulesList)
                 {
                     var v = f.ProcessOrder_No.ToString().ToLower();
                     if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ControlSchedulesList.Add(f);
+                        ControlSchedulesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
                 }
             }
         }
@@ -278,8 +302,8 @@ namespace UniBase.Model.K2.ButtonMethods
         
         public void RefreshAll()
         {
-            ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controleSchedule =>
+            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
                 controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
             });
@@ -288,8 +312,8 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshLastTen()
         {
-            ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-            Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controleSchedule =>
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
                 controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
             });
@@ -298,11 +322,11 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controleSchedule =>
+            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
                 InputValidator.CheckIfInputsAreValid(ref controleSchedule);
             });
-            Parallel.ForEach(ManageTables.Instance.ControlSchedulesList, controlSchedules =>
+            Parallel.ForEach(ControlSchedulesList, controlSchedules =>
             {
                 ModelGenerics.UpdateByObjectAndId((int)controlSchedules.ControlSchedule_ID, controlSchedules);
             });
@@ -320,17 +344,17 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
-            var objectToAdd = ManageTables.Instance.NewControlRegistrationsToAdd;
+            var objectToAdd = NewControlSchedules;
             InputValidator.CheckIfInputsAreValid(ref objectToAdd);
 
            
             if (ModelGenerics.CreateByObject(objectToAdd))
             {
-                ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
 
-                ManageTables.Instance.NewControlRegistrationsToAdd = new ControlRegistrations();
+                NewControlSchedules = new ControlSchedules();
 
-                ManageTables.Instance.NewControlSchedules.ProcessOrder_No = ManageTables.Instance.ControlRegistrationsList.Last().ProcessOrder_No;
+                NewControlSchedules.ProcessOrder_No = ControlSchedulesList.Last().ProcessOrder_No;
             }
             else
             {
@@ -342,8 +366,8 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             int id = (int)obj;
 
-            ControlSchedules del = ManageTables.Instance.ControlSchedulesList.First(d => d.ControlSchedule_ID == id);
-            int index = ManageTables.Instance.ControlSchedulesList.IndexOf(del);
+            ControlSchedules del = ControlSchedulesList.First(d => d.ControlSchedule_ID == id);
+            int index = ControlSchedulesList.IndexOf(del);
 
             SelectedControlScheduleId = index;
         }
