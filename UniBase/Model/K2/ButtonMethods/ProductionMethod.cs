@@ -10,6 +10,10 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class ProductionMethod : IManageButtonMethods
     {
+        public ProductionMethod()
+        {
+            RefreshLastTen();
+        }
         #region Fields
         private ObservableCollection<Productions> _completeProductionsList = ModelGenerics.GetAll(new Productions());
 

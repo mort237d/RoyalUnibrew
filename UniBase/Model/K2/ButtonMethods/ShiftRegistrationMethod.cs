@@ -10,6 +10,10 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class ShiftRegistrationMethod : IManageButtonMethods
     {
+        public ShiftRegistrationMethod()
+        {
+            RefreshLastTen();
+        }
         #region Fields
         private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
 

@@ -10,6 +10,10 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class ControlScheduleMethod : IManageButtonMethods
     {
+        public ControlScheduleMethod()
+        {
+            RefreshLastTen();
+        }
         #region Fields
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
 

@@ -160,7 +160,7 @@
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10" />
                                     <Line/>
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
+                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                     <Line/>
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.FinishedProduct_No, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                     <Line/>
@@ -364,9 +364,9 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.Signature, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddControlRegistrationsTable}">

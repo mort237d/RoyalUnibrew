@@ -13,6 +13,10 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class ControlRegistrationMethod : IManageButtonMethods
     {
+        public ControlRegistrationMethod()
+        {
+            RefreshLastTen();
+        }
         #region Fields
 
         private ComboBoxItem _kegSize = new ComboBoxItem();

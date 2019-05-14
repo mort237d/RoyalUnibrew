@@ -20,7 +20,8 @@ namespace UniBase.Model.K2
         public ShiftRegistrationMethod ShiftRegistrationMethod { get; set; }
         public TuMethod TuMethod { get; set; }
         public XamlBindings XamlBindings { get; set; }
-        public TrendAdminstrator TrendAdminstrator { get; private set; }
+        public TrendAdminstrator TrendAdminstrator { get; set; }
+        public SortAndFilter SortAndFilter { get; set; }
         #endregion
 
         #region PropLists
@@ -38,7 +39,7 @@ namespace UniBase.Model.K2
             InitializeObservableCollections();
             GenerateHeaderLists();
 
-            SortAndFilter = new SortAndFilter();
+            
         }
 
         public void InitializeObservableCollections()
@@ -49,8 +50,10 @@ namespace UniBase.Model.K2
             ProductionMethod = new ProductionMethod();
             ShiftRegistrationMethod = new ShiftRegistrationMethod();
             TuMethod = new TuMethod();
+
             XamlBindings = new XamlBindings();
             TrendAdminstrator = new TrendAdminstrator();
+            SortAndFilter = new SortAndFilter();
         }
         
         private void GenerateHeaderLists()
