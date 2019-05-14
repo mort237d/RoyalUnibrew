@@ -17,7 +17,7 @@ namespace UniBase.Model
 
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
 
-        public TrendAdminstrator()
+        /*public TrendAdminstrator()
         {
             _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
 
@@ -62,7 +62,7 @@ namespace UniBase.Model
         }
 
 
-        public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
+        /*public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
         {
             
                 CreateGraph(comboboxInput, comboboxTimeInput);
@@ -158,7 +158,7 @@ namespace UniBase.Model
             {
                 TrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
             }
-        }
+        }*/
 
         public event PropertyChangedEventHandler PropertyChanged;
 
