@@ -8,7 +8,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class ControlScheduleMethod : INotifyPropertyChanged, IManageButtonMethods
+    public class ControlScheduleMethod : IManageButtonMethods
     {
         #region Fields
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
@@ -275,8 +275,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
         #endregion
-
-
+        
         public void RefreshAll()
         {
             ManageTables.Instance.ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());

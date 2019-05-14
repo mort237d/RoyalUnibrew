@@ -11,7 +11,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class ControlRegistrationMethod : INotifyPropertyChanged, IManageButtonMethods
+    public class ControlRegistrationMethod : IManageButtonMethods
     {
         #region Fields
 

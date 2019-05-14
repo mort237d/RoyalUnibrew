@@ -168,11 +168,24 @@ namespace UniBase.ViewModel
             SelectParentItemControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SelectParentItem);
             SelectParentItemControlScheduleCommand = new RelayCommand<object>(Column_2.ControlScheduleMethod.SelectParentItem);
             SelectParentItemProductionCommand = new RelayCommand<object>(Column_2.ProductionMethod.SelectParentItem);
+            SelectParentItemShiftRegistrationCommand = new RelayCommand<object>(Column_2.ShiftRegistrationMethod.SelectParentItem);
+            SelectParentItemTuCommand = new RelayCommand<object>(Column_2.TuMethod.SelectParentItem);
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
-        
+        public RelayCommand DeleteTUTable { get; set; }
+
+        public RelayCommand<object> SelectParentItemTuCommand { get; set; }
+
+        public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
+
+        public RelayCommand DeleteShiftRegistrationTable { get; set; }
+
+        public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
+
+        public RelayCommand DeleteProductionTable { get; set; }
+
 
 
 
