@@ -313,6 +313,30 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedFrontpageId = index;
         }
 
+        #region SingleTon
+        private static FrontpageMethod _instance;
+        private static object syncLock = new object();
+
+        public static FrontpageMethod Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new FrontpageMethod();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
+        #endregion
+
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -13,32 +13,15 @@ namespace UniBase.Model.K2
     public class ManageTables :INotifyPropertyChanged
     {
         #region Properties
-
-        public Frontpages NewFrontpagesToAdd
-        {
-            get => _newFrontpagesToAdd;
-            set
-            {
-                _newFrontpagesToAdd = value; 
-                OnPropertyChanged();
-            }
-        }
-        
-        public ControlRegistrations NewControlRegistrationsToAdd
-        {
-            get => _newControlRegistrationsToAdd;
-            set
-            {
-                _newControlRegistrationsToAdd = value;
-                OnPropertyChanged();
-            }
-        }
-
         public ProductionMethod ProductionMethod { get; set; }
 
         public ShiftRegistrationMethod ShiftRegistrationMethod { get; set; }
 
         public TuMethod TuMethod { get; set; }
+        public ControlRegistrationMethod ControlRegistrationMethod { get; private set; }
+        public ControlScheduleMethod ControlScheduleMethod { get; private set; }
+        public FrontpageMethod FrontpageMethod { get; private set; }
+        public SortAndFilter SortAndFilter { get; set; }
         #endregion
         
         #region PropLists
@@ -55,6 +38,8 @@ namespace UniBase.Model.K2
         {
             InitializeObservableCollections();
             GenerateHeaderLists();
+
+            SortAndFilter = new SortAndFilter();
         }
 
         public void InitializeObservableCollections()
@@ -102,8 +87,6 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-
-        
 
         #endregion
 

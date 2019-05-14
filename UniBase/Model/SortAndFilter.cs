@@ -6,12 +6,14 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using UniBase.Model.K2;
+using UniBase.Model.K2.ButtonMethods;
 
 namespace UniBase.Model
 {
     public class SortAndFilter
     {
-        private ManageTables _mt = ManageTables.Instance;
+        private FrontpageMethod _frontpageMethod = FrontpageMethod.Instance;
+        private ControlRegistrationMethod _controlRegistrationMethod = ControlRegistrationMethod.Instance;
 
         XamlBindings xamlBindings = new XamlBindings();
 
@@ -46,22 +48,22 @@ namespace UniBase.Model
             switch (id.ToString())
             {
                 case "ProcessOrdre Nr":
-                    _mt.FrontpagesList = SortWay<Frontpages>(_mt.FrontpagesList, frontpagePropertyInfos[0].Name);
+                    _frontpageMethod.FrontpagesList = SortWay<Frontpages>(_frontpageMethod.FrontpagesList, frontpagePropertyInfos[0].Name);
                     break;
                 case "Dato":
-                    _mt.FrontpagesList = SortWay<Frontpages>(_mt.FrontpagesList, frontpagePropertyInfos[1].Name);
+                    _frontpageMethod.FrontpagesList = SortWay<Frontpages>(_frontpageMethod.FrontpagesList, frontpagePropertyInfos[1].Name);
                     break;
                 case "Færdigt Produkt Nr":
-                    _mt.FrontpagesList = SortWay<Frontpages>(_mt.FrontpagesList, frontpagePropertyInfos[2].Name);
+                    _frontpageMethod.FrontpagesList = SortWay<Frontpages>(_frontpageMethod.FrontpagesList, frontpagePropertyInfos[2].Name);
                     break;
                 case "Kolonne":
-                    _mt.FrontpagesList = SortWay<Frontpages>(_mt.FrontpagesList, frontpagePropertyInfos[3].Name);
+                    _frontpageMethod.FrontpagesList = SortWay<Frontpages>(_frontpageMethod.FrontpagesList, frontpagePropertyInfos[3].Name);
                     break;
                 case "Note":
-                    _mt.FrontpagesList = SortWay<Frontpages>(_mt.FrontpagesList, frontpagePropertyInfos[4].Name);
+                    _frontpageMethod.FrontpagesList = SortWay<Frontpages>(_frontpageMethod.FrontpagesList, frontpagePropertyInfos[4].Name);
                     break;
                 case "Uge Nr":
-                    _mt.FrontpagesList = SortWay<Frontpages>(_mt.FrontpagesList, frontpagePropertyInfos[5].Name);
+                    _frontpageMethod.FrontpagesList = SortWay<Frontpages>(_frontpageMethod.FrontpagesList, frontpagePropertyInfos[5].Name);
                     break;
                 default:
                     Debug.WriteLine("Nothing");
@@ -74,22 +76,22 @@ namespace UniBase.Model
             switch (id.ToString())
             {
                 case "Kontrol Registrering ID":
-                    _mt.ControlRegistrationsList = SortWay<ControlRegistrations>(_mt.ControlRegistrationsList, controlRegistrationPropertyInfos[0].Name);
+                    _controlRegistrationMethod.ControlRegistrationsList = SortWay<ControlRegistrations>(_controlRegistrationMethod.ControlRegistrationsList, controlRegistrationPropertyInfos[0].Name);
                     break;
                 case "ProcessOrdre Nr":
-                    _mt.ControlRegistrationsList = SortWay<ControlRegistrations>(_mt.ControlRegistrationsList, controlRegistrationPropertyInfos[1].Name);
+                    _controlRegistrationMethod.ControlRegistrationsList = SortWay<ControlRegistrations>(_controlRegistrationMethod.ControlRegistrationsList, controlRegistrationPropertyInfos[1].Name);
                     break;
                 case "Tid":
-                    _mt.ControlRegistrationsList = SortWay<ControlRegistrations>(_mt.ControlRegistrationsList, controlRegistrationPropertyInfos[2].Name);
+                    _controlRegistrationMethod.ControlRegistrationsList = SortWay<ControlRegistrations>(_controlRegistrationMethod.ControlRegistrationsList, controlRegistrationPropertyInfos[2].Name);
                     break;
                 case "Produktionsdato":
-                    _mt.ControlRegistrationsList = SortWay<ControlRegistrations>(_mt.ControlRegistrationsList, controlRegistrationPropertyInfos[3].Name);
+                    _controlRegistrationMethod.ControlRegistrationsList = SortWay<ControlRegistrations>(_controlRegistrationMethod.ControlRegistrationsList, controlRegistrationPropertyInfos[3].Name);
                     break;
                 case "Kommentar vedr. ændret dato":
-                    _mt.ControlRegistrationsList = SortWay<ControlRegistrations>(_mt.ControlRegistrationsList, controlRegistrationPropertyInfos[4].Name);
+                    _controlRegistrationMethod.ControlRegistrationsList = SortWay<ControlRegistrations>(_controlRegistrationMethod.ControlRegistrationsList, controlRegistrationPropertyInfos[4].Name);
                     break;
                 case "Uge Nr":
-                    _mt.ControlRegistrationsList = SortWay<ControlRegistrations>(_mt.ControlRegistrationsList, controlRegistrationPropertyInfos[5].Name);
+                    _controlRegistrationMethod.ControlRegistrationsList = SortWay<ControlRegistrations>(_controlRegistrationMethod.ControlRegistrationsList, controlRegistrationPropertyInfos[5].Name);
                     break;
                 default:
                     Debug.WriteLine("Nothing");

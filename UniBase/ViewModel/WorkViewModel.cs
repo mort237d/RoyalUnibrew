@@ -68,9 +68,6 @@ namespace UniBase.ViewModel
 
         public ManageTables Column_2 { get; set; }
         public PredefinedColors PredefinedColors { get; set; }
-        public SortAndFilter SortAndFilter { get; set; }
-        
-        
 
         public ManageUser ManageUser { get; set; }
         
@@ -162,8 +159,8 @@ namespace UniBase.ViewModel
             AddUserCommand = new RelayCommand(ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
-            SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
-            SortControlRegistrationCommand = new RelayCommand<object>(SortAndFilter.SortControlRegistrationsButtonClick);
+            SortFrontpageCommand = new RelayCommand<object>(Column_2.SortAndFilter.SortFrontpagesButtonClick);
+            SortControlRegistrationCommand = new RelayCommand<object>(Column_2.SortAndFilter.SortControlRegistrationsButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
