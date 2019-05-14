@@ -387,6 +387,11 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedControlScheduleId = index;
         }
 
+        public void SortButtonClick(object obj)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;

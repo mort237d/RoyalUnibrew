@@ -425,6 +425,11 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedTuId = index;
         }
 
+        public void SortButtonClick(object obj)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
