@@ -416,7 +416,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         public void Initialize()
         {
-            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
             Parallel.ForEach(ControlRegistrationsList, controlregistration =>
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
@@ -477,7 +477,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
             if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
             {
-                ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                Initialize();
 
                 NewControlRegistrationsToAdd = new ControlRegistrations
                 {

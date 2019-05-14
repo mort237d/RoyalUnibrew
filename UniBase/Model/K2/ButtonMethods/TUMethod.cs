@@ -361,7 +361,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         public void Initialize()
         {
-            TuList = ModelGenerics.GetAll(new TUs());
+            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
         }
 
         public void RefreshAll()
@@ -403,7 +403,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
             if (ModelGenerics.CreateByObject(ObjectToAdd))
             {
-                TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                Initialize();
 
                 NewTUs = new TUs();
                 

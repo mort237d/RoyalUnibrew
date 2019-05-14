@@ -284,7 +284,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         public void Initialize()
         {
-            ProductionsList = ModelGenerics.GetAll(new Productions());
+            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
 
             Parallel.ForEach(ProductionsList, production =>
             {
@@ -347,7 +347,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
             if (ModelGenerics.CreateByObject(ObjectToAdd))
             {
-                ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                Initialize();
 
                 NewProductions = new Productions
                 {

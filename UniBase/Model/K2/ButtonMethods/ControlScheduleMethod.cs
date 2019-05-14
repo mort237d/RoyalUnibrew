@@ -307,7 +307,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #endregion
         public void Initialize()
         {
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
                 controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
@@ -364,11 +364,12 @@ namespace UniBase.Model.K2.ButtonMethods
            
             if (ModelGenerics.CreateByObject(objectToAdd))
             {
-                ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+                Initialize();
 
-                NewControlSchedules = new ControlSchedules();
-
-                NewControlSchedules.ProcessOrder_No = ControlSchedulesList.Last().ProcessOrder_No;
+                NewControlSchedules = new ControlSchedules
+                {
+                    ProcessOrder_No = ControlSchedulesList.Last().ProcessOrder_No
+                };
             }
             else
             {

@@ -230,10 +230,10 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         #endregion
 
-        #region Properties
+        #region ButtonMethods
         public void Initialize()
         {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             Parallel.ForEach(FrontpagesList, frontpage =>
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
@@ -292,8 +292,10 @@ namespace UniBase.Model.K2.ButtonMethods
             
             if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {
-                FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                Initialize();
+
                 NewFrontpagesToAdd = new Frontpages();
+                NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd.Date);
             }
             else
             {
