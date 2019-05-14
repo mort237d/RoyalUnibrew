@@ -13,6 +13,8 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class FrontpageMethod : IManageButtonMethods
     {
+        private ObservableCollection<Frontpages> _frontpagesList;
+
         public FrontpageMethod()
         {
             Initialize();
@@ -20,7 +22,6 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
-        private ObservableCollection<Frontpages> _frontpagesList;
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
 
@@ -75,6 +76,28 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _frontpagesList = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private void some<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut)
+        {
+            list.Clear();
+
+            foreach (var f in completeList)
+            {
+                //var v = f.ProcessOrder_No.ToString().ToLower();
+
+                PropertyInfo prop = typeof(T).GetProperty(property);
+                var v = prop.GetValue(f, null).ToString().ToLower();
+                if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
+                {
+                    list.Add(f);
+                }
+            }
+
+            if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
+            {
+                list = ModelGenerics.GetLastTenInDatabasae(type);
             }
         }
 
