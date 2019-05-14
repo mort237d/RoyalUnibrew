@@ -421,7 +421,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.TimeStringHelper = controlregistration.Time.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm\");  
             });
         }
         public void RefreshAll()
@@ -431,7 +431,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.TimeStringHelper = controlregistration.Time.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm\");
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }

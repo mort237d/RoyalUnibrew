@@ -357,9 +357,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
         #endregion
-
-
-
+        
         #region ButtonMethods
         public void Initialize()
         {
