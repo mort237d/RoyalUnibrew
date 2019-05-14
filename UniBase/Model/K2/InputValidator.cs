@@ -117,7 +117,14 @@ namespace UniBase.Model.K2
                         var split = datesandtimespans[listIndexCounter].Split(':');
                         try
                         {
-                            prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
+                            if (split.Length == 2)
+                            {
+                                prop.SetValue(type, new TimeSpan(int.Parse(split[0]),int.Parse(split[1]), 0), null);
+                            }
+                            else
+                            {
+                                prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
+                            }
                         }
                         catch
                         {

@@ -15,8 +15,9 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         public ControlRegistrationMethod()
         {
-            RefreshLastTen();
+            Initialize();
         }
+
         #region Fields
 
         private ComboBoxItem _kegSize = new ComboBoxItem();
@@ -360,6 +361,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         #endregion
 
+        #region Properties
         public int SelectedControlRegistrationId
         {
             get { return _selectedControlRegistrationId; }
@@ -409,8 +411,19 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         #region ButtonMethods
+        public void Initialize()
+        {
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            Parallel.ForEach(ControlRegistrationsList, controlregistration =>
+            {
+                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm");  
+            });
+        }
         public void RefreshAll()
         {
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
@@ -418,7 +431,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.TimeStringHelper = controlregistration.Time.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm");
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
@@ -464,7 +477,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
             if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
             {
-                ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+                Initialize();
 
                 NewControlRegistrationsToAdd = new ControlRegistrations
                 {
@@ -527,9 +540,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
             }
         }
-
         
-
         public void SelectParentItem(object obj)
         {
             int id = (int)obj;

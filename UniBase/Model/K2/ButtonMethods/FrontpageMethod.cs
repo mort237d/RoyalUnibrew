@@ -15,7 +15,7 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         public FrontpageMethod()
         {
-            RefreshLastTen();
+            Initialize();
         }
         #region Fields
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
@@ -37,8 +37,6 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _noteTextBoxOutput;
         private string _weekNoTextBoxOutput;
         #endregion
-
-
 
         public int SelectedFrontpageId
         {
@@ -232,6 +230,16 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         #endregion
 
+        #region ButtonMethods
+        public void Initialize()
+        {
+            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            Parallel.ForEach(FrontpagesList, frontpage =>
+            {
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+            });
+        }
+
         public void RefreshAll()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
@@ -284,14 +292,18 @@ namespace UniBase.Model.K2.ButtonMethods
             
             if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {
-                FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                Initialize();
+
                 NewFrontpagesToAdd = new Frontpages();
+                NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd.Date);
             }
             else
             {
                 //error
             }
         }
+
+        #endregion
 
         public int FindWeekNumber(DateTime time)
         {

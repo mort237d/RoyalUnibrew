@@ -12,7 +12,7 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         public TuMethod()
         {
-            RefreshLastTen();
+            Initialize();
         }
         #region Fields
 
@@ -37,36 +37,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _thirdDayTotalTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
         #endregion
-
-        public int SelectedTuId
-        {
-            get { return _selectedTuId; }
-            set
-            {
-                _selectedTuId = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public TUs SelectedTu
-        {
-            get { return _selectedTu; }
-            set
-            {
-                _selectedTu = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public TUs NewTUs
-        {
-            get { return _newTUs; }
-            set
-            {
-                _newTUs = value;
-            }
-        }
-
+        
         #region Filter
 
         public string TuIdTextBoxOutput
@@ -345,10 +316,37 @@ namespace UniBase.Model.K2.ButtonMethods
         }
 
         #endregion
-        
-        
-        
 
+        #region Properties
+        public int SelectedTuId
+        {
+            get { return _selectedTuId; }
+            set
+            {
+                _selectedTuId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TUs SelectedTu
+        {
+            get { return _selectedTu; }
+            set
+            {
+                _selectedTu = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TUs NewTUs
+        {
+            get { return _newTUs; }
+            set
+            {
+                _newTUs = value;
+            }
+        }
+        
         public ObservableCollection<TUs> TuList
         {
             get { return _tuList; }
@@ -358,12 +356,13 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
-
-
-
-        #region ButtonMethods
-
+        #endregion
         
+        #region ButtonMethods
+        public void Initialize()
+        {
+            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+        }
 
         public void RefreshAll()
         {
@@ -404,7 +403,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
             if (ModelGenerics.CreateByObject(ObjectToAdd))
             {
-                TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                Initialize();
 
                 NewTUs = new TUs();
                 
