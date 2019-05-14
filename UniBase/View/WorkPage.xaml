@@ -328,7 +328,7 @@
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenControlRegistrationTable}">
                                         <Image Source="Images/GetLastTen.png"/>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding AddControlRegistrationsTable}">
+                                    <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlRegistrationTable}">
                                         <Image Source="Images/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteControlRegistrationTable}">
@@ -533,7 +533,7 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Note, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString, Mode=TwoWay}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
+                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddControlScheduleTable}">
                                     <Image Source="Images/AddButton.png"/>
                                 </Button>
                             </StackPanel>
@@ -699,14 +699,14 @@
                             <StackPanel HorizontalAlignment="left">
                                 <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[0].Header}"  Text="{Binding Column_2.ShiftRegistrationMethod.ShiftRegistrationIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[1].Header}"  Text="{Binding Column_2.ShiftRegistrationMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[2].Header}"  Text="{Binding Column_2.ShiftRegistrationMethod.StaffTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[3].Header}"  Text="{Binding Column_2.ShiftRegistrationMethod.EndDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[4].Header}"  Text="{Binding Column_2.ShiftRegistrationMethod.BreaksTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[5].Header}"  Text="{Binding Column_2.ShiftRegistrationMethod.TotalHoursTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[6].Header}"  Text="{Binding Column_2.ShiftRegistrationMethod.StaffTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
-                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[7].Header}"  Text="{Binding Column_2.ShiftRegistrationMethod.InitialsTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[0].Header}" Text="{Binding Column_2.ShiftRegistrationMethod.ShiftRegistrationIdTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[1].Header}" Text="{Binding Column_2.ShiftRegistrationMethod.ProcessOrderNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[2].Header}" Text="{Binding Column_2.ShiftRegistrationMethod.StaffTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[3].Header}" Text="{Binding Column_2.ShiftRegistrationMethod.EndDateTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[4].Header}" Text="{Binding Column_2.ShiftRegistrationMethod.BreaksTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[5].Header}" Text="{Binding Column_2.ShiftRegistrationMethod.TotalHoursTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[6].Header}" Text="{Binding Column_2.ShiftRegistrationMethod.StaffTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
+                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column_2.XamlBindings.ShiftRegistrationHeaderList[7].Header}" Text="{Binding Column_2.ShiftRegistrationMethod.InitialsTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" FontSize="10"/>
                                 </StackPanel>
                             </StackPanel>
 
