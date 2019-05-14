@@ -331,50 +331,85 @@ namespace UniBase.Model.K2.ButtonMethods
         #endregion
         
         public void RefreshAll()
+        private ObservableCollection<TUs> _tuList;
+
+        public ObservableCollection<TUs> TuList
         {
-            ManageTables.Instance.TuList = ModelGenerics.GetAll(new TUs());
-            _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
+            get { return _tuList; }
+            set
+            {
+                _tuList = value;
+                OnPropertyChanged();
+            }
         }
+
+        public TUMethod()
+        {
+            RefreshLastTen();
+        }
+
+
+        public void RefreshAll()
+        {
+            TuList = ModelGenerics.GetAll(new TUs());
+            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
+        }
+
         public void RefreshLastTen()
         {
-            ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-            _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
+            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
+
         public void SaveAll()
         {
-            Parallel.ForEach(ManageTables.Instance.TuList, tus =>
+            Parallel.ForEach(TuList, tus =>
             {
-                ModelGenerics.UpdateByObjectAndId(tus.TU_ID, tus);
+                InputValidator.CheckIfInputsAreValid(ref tus);
             });
-            _message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
+            Parallel.ForEach(TuList, tus =>
+            {
+                ModelGenerics.UpdateByObjectAndId((int)tus.TU_ID, tus);
+            });
+            message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
         }
 
         public void DeleteItem()
         {
-            if (SelectedTu != null)
-            {
-                //TODO Make deletion method
-                Debug.WriteLine(SelectedTu.ProcessOrder_No);
-            }
+            throw new System.NotImplementedException();
         }
 
         public void AddNewItem()
         {
-            throw new System.NotImplementedException();
+            var ObjectToAdd = ManageTables.Instance.NewTUs;
+            InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
+
+            //Autofills
+
+            if (ModelGenerics.CreateByObject(ObjectToAdd))
+            {
+                TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+
+                ManageTables.Instance.NewTUs = new TUs();
+                
+            }
+            else
+            {
+                //error
+            }
         }
 
         public void SelectParentItem(object obj)
         {
             int id = (int)obj;
 
-            TUs del = ManageTables.Instance.TuList.First(d => d.TU_ID == id);
-            int index = ManageTables.Instance.TuList.IndexOf(del);
+            ControlRegistrations del = ManageTables.Instance.ControlRegistrationsList.First(d => d.ControlRegistration_ID == id);
+            int index = ManageTables.Instance.ControlRegistrationsList.IndexOf(del);
 
-            SelectedTuId = index;
+           // SelectedControlRegistrationId = index;
         }
 
-        #region INotify
-
+        #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -382,7 +417,6 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         #endregion
     }
 }

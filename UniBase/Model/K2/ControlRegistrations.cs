@@ -17,15 +17,16 @@ namespace UniBase.Model.K2
         private int _processOrderNo;
         private TimeSpan _time;
         private DateTime _productionDate;
-        private DateTime _expiryDate;
         private DateTime _firstPalletDepalletizing;
         private DateTime _lastPalletDepalletizing;
+        private DateTime _expiryDate; //ToDo add to GUI through binding
         
 
         private string _timeStringHelper;
         private string _productionsDateStringHelper;
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
+        private string _exipryDateStringHelper;
 
         private string _controlRegistrationAlcoholSpearDispenserControlled;
 
@@ -167,14 +168,7 @@ namespace UniBase.Model.K2
             get { return _timeStringHelper; }
             set
             {
-                if (_timeStringHelper == null)
-                {
-                    _timeStringHelper = _time.ToString("H:mm:ss");
-                }
-                else
-                {
-                    _timeStringHelper = value; 
-                }
+                _timeStringHelper = value; 
                 OnPropertyChanged();
             }
         }
@@ -183,15 +177,8 @@ namespace UniBase.Model.K2
         {
             get { return _productionsDateStringHelper; }
             set
-            {
-                if (_productionsDateStringHelper == null)
-                {
-                    _productionsDateStringHelper = _productionDate.ToString("yyyy/MM/dd");
-                }
-                else
-                {
-                    _productionsDateStringHelper = value; 
-                }
+            {               
+                _productionsDateStringHelper = value; 
                 OnPropertyChanged();
             }
         }
@@ -201,14 +188,7 @@ namespace UniBase.Model.K2
             get { return _firstPalletDepalletizingStringHelper; }
             set
             {
-                if (_firstPalletDepalletizingStringHelper == null)
-                {
-                    _firstPalletDepalletizingStringHelper = _firstPalletDepalletizing.ToString("yyyy/MM/dd");
-                }
-                else
-                {
-                    _firstPalletDepalletizingStringHelper = value;
-                }
+                _firstPalletDepalletizingStringHelper = value;
                 OnPropertyChanged();
             }
         }
@@ -218,14 +198,17 @@ namespace UniBase.Model.K2
             get { return _lastPalletDepalletizingStringHelper; }
             set
             {
-                if (_lastPalletDepalletizingStringHelper == null)
-                {
-                    _lastPalletDepalletizingStringHelper = _lastPalletDepalletizing.ToString("yyyy/MM/dd");
-                }
-                else
-                {
-                    _lastPalletDepalletizingStringHelper = value;
-                }
+                _lastPalletDepalletizingStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ExipryDateStringHelper
+        {
+            get { return _exipryDateStringHelper; }
+            set
+            {
+                _exipryDateStringHelper = value;
                 OnPropertyChanged();
             }
         }
@@ -236,7 +219,6 @@ namespace UniBase.Model.K2
             get => _time;
             set
             {
-                if (value.Equals(_time)) return;
                 _time = value;
                 OnPropertyChanged();
             }
@@ -247,7 +229,6 @@ namespace UniBase.Model.K2
             get => _productionDate;
             set
             {
-                if (value.Equals(_productionDate)) return;
                 _productionDate = value;
                 OnPropertyChanged();
             }

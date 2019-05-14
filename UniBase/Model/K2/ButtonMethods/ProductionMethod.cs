@@ -284,7 +284,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
             Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
             {
-                ModelGenerics.UpdateByObjectAndId(production.Production_ID, production);
+                ModelGenerics.UpdateByObjectAndId((int)production.Production_ID, production);
             });
             message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }

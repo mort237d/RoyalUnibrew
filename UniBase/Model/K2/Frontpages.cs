@@ -39,7 +39,6 @@ namespace UniBase.Model.K2
             get => _processOrderNo;
             set
             {
-                if (value == _processOrderNo) return;
                 _processOrderNo = value;
                 OnPropertyChanged();
             }

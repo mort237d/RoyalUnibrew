@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
@@ -14,7 +15,7 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         #region Fields
 
-        
+        private ComboBoxItem _kegSize = new ComboBoxItem();
 
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
 
@@ -370,6 +371,16 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        public ComboBoxItem KegSize
+        {
+            get { return _kegSize; }
+            set
+           {
+                _kegSize = value; 
+                OnPropertyChanged();
+            }
+        }
+
 
         public void RefreshAll()
         {
@@ -390,7 +401,8 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.TimeStringHelper = controlregistration.Time.ToString("yyyy/MM/dd");
+                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm");
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
@@ -399,7 +411,12 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlRegistration =>
             {
-                ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
+                InputValidator.CheckIfInputsAreValid(ref controlRegistration);
+            });
+
+            Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlRegistration =>
+            {
+                ModelGenerics.UpdateByObjectAndId((int)controlRegistration.ControlRegistration_ID, controlRegistration);
             });
             _message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
         }
@@ -408,11 +425,13 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             var instanceNewControlRegistrationsToAdd = ManageTables.Instance.NewControlRegistrationsToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
-            
-            var temp = ModelGenerics.GetById(new ControlRegistrations(), instanceNewControlRegistrationsToAdd.ProcessOrder_No);
-            //TODO Hvad er det her Lucas?ArrowDown
-            //var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
-            //instanceNewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
+
+            //todo Find  fix for expiry date
+            instanceNewControlRegistrationsToAdd.Expiry_Date = DateTime.Now.AddDays(30);
+
+            string kegSize = KegSize.Content.ToString().Remove(_kegSize.Content.ToString().Length-1);
+            double.TryParse(kegSize, out double kegSizeDouble);
+            instanceNewControlRegistrationsToAdd.KegSize = kegSizeDouble;
 
             if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
             {
