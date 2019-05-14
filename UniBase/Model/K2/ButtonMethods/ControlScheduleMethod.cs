@@ -23,7 +23,8 @@ namespace UniBase.Model.K2.ButtonMethods
         private ControlSchedules _newControlSchedules = new ControlSchedules();
 
         private Message message = new Message();
-
+        
+        private XamlBindings _xamlBindings = new XamlBindings();
         private SortAndFilter _sortAndFilter = new SortAndFilter();
         private PropertyInfo[] PropertyInfos = typeof(ControlSchedules).GetProperties();
 
@@ -266,9 +267,37 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedControlScheduleId = index;
         }
 
-        public void SortButtonClick(object obj)
+        public void SortButtonClick(object id)
         {
-            throw new System.NotImplementedException();
+            if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[0].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[0].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[1].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[1].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[2].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[2].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[3].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[3].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[4].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[4].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[5].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[5].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[6].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[6].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[7].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[7].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[8].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[8].Name);
+            else
+                Debug.WriteLine("Error");
         }
 
         #region INotify

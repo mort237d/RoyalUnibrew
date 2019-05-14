@@ -383,21 +383,42 @@ namespace UniBase.Model.K2.ButtonMethods
             if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[0].Header)
                 ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
                     PropertyInfos[0].Name);
-            else if (id.ToString() == "ProcessOrdre Nr")
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[1].Header)
                 ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
                     PropertyInfos[1].Name);
-            else if (id.ToString() == "Tid")
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[2].Header)
                 ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
                     PropertyInfos[2].Name);
-            else if (id.ToString() == "Produktionsdato")
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[3].Header)
                 ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
                     PropertyInfos[3].Name);
-            else if (id.ToString() == "Kommentar vedr. ændret dato")
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[4].Header)
                 ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
                     PropertyInfos[4].Name);
-            else if (id.ToString() == "Uge Nr")
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[5].Header)
                 ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
                     PropertyInfos[5].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[6].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[6].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[7].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[7].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[8].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[8].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[9].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[9].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[10].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[10].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[11].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[11].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[12].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[12].Name);
             else
                 Debug.WriteLine("Error");
         }

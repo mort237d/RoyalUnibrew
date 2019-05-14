@@ -14,6 +14,10 @@ namespace UniBase.ViewModel
         #region Relaycommands
         public RelayCommand<object> SortFrontpageCommand { get; set; }
         public RelayCommand<object> SortControlRegistrationCommand { get; set; }
+        public RelayCommand<object> SortControlScheduleCommand { get; set; }
+        public RelayCommand<object> SortProductionCommand { get; set; }
+        public RelayCommand<object> SortShiftRegistrationCommand { get; set; }
+        public RelayCommand<object> SortTuCommand { get; set; }
 
         public RelayCommand RefreshFrontpageTable { get; set; }
         public RelayCommand RefreshLastTenControlRegistrationTable { get; set; }
@@ -159,11 +163,17 @@ namespace UniBase.ViewModel
             AddUserCommand = new RelayCommand(ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
+            //Sort
             SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);
             SortControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SortButtonClick);
+            SortControlScheduleCommand = new RelayCommand<object>(Column_2.ControlScheduleMethod.SortButtonClick);
+            SortProductionCommand = new RelayCommand<object>(Column_2.ProductionMethod.SortButtonClick);
+            SortShiftRegistrationCommand = new RelayCommand<object>(Column_2.ShiftRegistrationMethod.SortButtonClick);
+            SortTuCommand = new RelayCommand<object>(Column_2.TuMethod.SortButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
+            //SelectParent
             SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SelectParentItem);
             SelectParentItemControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SelectParentItem);
             SelectParentItemControlScheduleCommand = new RelayCommand<object>(Column_2.ControlScheduleMethod.SelectParentItem);
@@ -173,9 +183,7 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
-
-
-
+        
         #region Properties
         
 

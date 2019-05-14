@@ -248,21 +248,17 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SortButtonClick(object id)
         {
-            //if (xamlBindings.FrontPageHeaderList[0].Header.Equals(id.ToString()))
-            //{
-
-            //}
             if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
                 FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
-            else if (id.ToString() == "Dato")
+            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[1].Header)
                 FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
-            else if (id.ToString() == "Færdigt Produkt Nr")
+            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[2].Header)
                 FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
-            else if (id.ToString() == "Kolonne")
+            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[3].Header)
                 FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
-            else if (id.ToString() == "Note")
+            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[4].Header)
                 FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
-            else if (id.ToString() == "Uge Nr")
+            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[5].Header)
                 FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
             else
                 Debug.WriteLine("Error");

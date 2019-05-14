@@ -91,7 +91,7 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
@@ -410,7 +410,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}" >
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortControlScheduleCommand, ElementName=WorkPageName}" >
                                                         <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
                                                     </Button>
                                                     <Line/>
@@ -572,7 +572,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortProductionCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
                                                     </Button>
                                                     <Line/>
@@ -725,7 +725,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortShiftRegistrationCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
                                                     </Button>
                                                     <Line/>
@@ -878,7 +878,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortTuCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
                                                     </Button>
                                                     <Line/>

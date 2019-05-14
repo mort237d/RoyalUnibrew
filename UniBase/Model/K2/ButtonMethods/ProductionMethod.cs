@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using UniBase.Annotations;
@@ -21,8 +22,11 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private Productions _newProductions = new Productions();
 
-
         private Message message = new Message();
+
+        private XamlBindings _xamlBindings = new XamlBindings();
+        private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private PropertyInfo[] PropertyInfos = typeof(Productions).GetProperties();
 
         private int _selectedProductionId;
         private Productions _selectedProduction;
@@ -67,171 +71,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _productionIdTextBoxOutput = value;
 
-                ProductionsList.Clear();
-
-                foreach (var f in _completeProductionsList)
-                {
-                    var v = f.Production_ID.ToString().ToLower();
-                    if (v.Contains(_productionIdTextBoxOutput.ToLower()))
-                    {
-                        ProductionsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_productionIdTextBoxOutput))
-                {
-                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-                }
-            }
-        }
-
-        public string PalletPutInStock0001TextBoxOutput
-        {
-            get { return _palletPutInStock0001TextBoxOutput; }
-            set
-            {
-                _palletPutInStock0001TextBoxOutput = value;
-
-                ProductionsList.Clear();
-
-                foreach (var f in _completeProductionsList)
-                {
-                    var v = f.PalletPutInStock0001.ToString().ToLower();
-                    if (v.Contains(_palletPutInStock0001TextBoxOutput.ToLower()))
-                    {
-                        ProductionsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_palletPutInStock0001TextBoxOutput))
-                {
-                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-                }
-            }
-        }
-
-        public string TapmachineTextBoxOutput
-        {
-            get { return _tapmachineTextBoxOutput; }
-            set
-            {
-                _tapmachineTextBoxOutput = value;
-
-                ProductionsList.Clear();
-
-                foreach (var f in _completeProductionsList)
-                {
-                    var v = f.Tapmachine.ToString().ToLower();
-                    if (v.Contains(_tapmachineTextBoxOutput.ToLower()))
-                    {
-                        ProductionsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_tapmachineTextBoxOutput))
-                {
-                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-                }
-            }
-        }
-
-        public string TotalKegsPrPalletTextBoxOutput
-        {
-            get { return _totalKegsPrPalletTextBoxOutput; }
-            set
-            {
-                _totalKegsPrPalletTextBoxOutput = value;
-
-                ProductionsList.Clear();
-
-                foreach (var f in _completeProductionsList)
-                {
-                    var v = f.TotalKegsPrPallet.ToString().ToLower();
-                    if (v.Contains(_totalKegsPrPalletTextBoxOutput.ToLower()))
-                    {
-                        ProductionsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_totalKegsPrPalletTextBoxOutput))
-                {
-                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-                }
-            }
-        }
-
-        public string CounterTextBoxOutput
-        {
-            get { return _counterTextBoxOutput; }
-            set
-            {
-                _counterTextBoxOutput = value;
-
-                ProductionsList.Clear();
-
-                foreach (var f in _completeProductionsList)
-                {
-                    var v = f.Counter.ToString().ToLower();
-                    if (v.Contains(_counterTextBoxOutput.ToLower()))
-                    {
-                        ProductionsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_counterTextBoxOutput))
-                {
-                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-                }
-            }
-        }
-
-        public string PalletCounterTextBoxOutput
-        {
-            get { return _palletCounterTextBoxOutput; }
-            set
-            {
-                _palletCounterTextBoxOutput = value;
-
-                ProductionsList.Clear();
-
-                foreach (var f in _completeProductionsList)
-                {
-                    var v = f.PalletCounter.ToString().ToLower();
-                    if (v.Contains(_palletCounterTextBoxOutput.ToLower()))
-                    {
-                        ProductionsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_palletCounterTextBoxOutput))
-                {
-                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-                }
-            }
-        }
-
-        public string BatchDateTextBoxOutput
-        {
-            get { return _batchDateTextBoxOutput; }
-            set
-            {
-                _batchDateTextBoxOutput = value;
-
-                ProductionsList.Clear();
-
-                foreach (var f in _completeProductionsList)
-                {
-                    var v = f.BatchDate.ToString().ToLower();
-                    if (v.Contains(_batchDateTextBoxOutput.ToLower()))
-                    {
-                        ProductionsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_batchDateTextBoxOutput))
-                {
-                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-                }
+                _sortAndFilter.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[0].Name, _productionIdTextBoxOutput);
             }
         }
 
@@ -242,21 +82,73 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                ProductionsList.Clear();
+                _sortAndFilter.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+            }
+        }
 
-                foreach (var f in _completeProductionsList)
-                {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
-                    if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
-                    {
-                        ProductionsList.Add(f);
-                    }
-                }
+        public string PalletPutInStock0001TextBoxOutput
+        {
+            get { return _palletPutInStock0001TextBoxOutput; }
+            set
+            {
+                _palletPutInStock0001TextBoxOutput = value;
 
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
-                }
+                _sortAndFilter.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[2].Name, _palletPutInStock0001TextBoxOutput);
+            }
+        }
+
+        public string TapmachineTextBoxOutput
+        {
+            get { return _tapmachineTextBoxOutput; }
+            set
+            {
+                _tapmachineTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[3].Name, _tapmachineTextBoxOutput);
+            }
+        }
+
+        public string TotalKegsPrPalletTextBoxOutput
+        {
+            get { return _totalKegsPrPalletTextBoxOutput; }
+            set
+            {
+                _totalKegsPrPalletTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[4].Name, _totalKegsPrPalletTextBoxOutput);
+            }
+        }
+
+        public string CounterTextBoxOutput
+        {
+            get { return _counterTextBoxOutput; }
+            set
+            {
+                _counterTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[5].Name, _counterTextBoxOutput);
+            }
+        }
+
+        public string PalletCounterTextBoxOutput
+        {
+            get { return _palletCounterTextBoxOutput; }
+            set
+            {
+                _palletCounterTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[6].Name, _palletCounterTextBoxOutput);
+            }
+        }
+
+        public string BatchDateTextBoxOutput
+        {
+            get { return _batchDateTextBoxOutput; }
+            set
+            {
+                _batchDateTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[7].Name, _batchDateTextBoxOutput);
             }
         }
 
@@ -371,9 +263,26 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedProductionId = index;
         }
 
-        public void SortButtonClick(object obj)
+        public void SortButtonClick(object id)
         {
-            throw new System.NotImplementedException();
+            if (id.ToString() == _xamlBindings.ProductionsHeaderList[0].Header)
+                ProductionsList = _sortAndFilter.Sort<Productions>(ProductionsList,PropertyInfos[0].Name);
+            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[1].Header)
+                ProductionsList = _sortAndFilter.Sort<Productions>(ProductionsList, PropertyInfos[1].Name);
+            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[2].Header)
+                ProductionsList = _sortAndFilter.Sort<Productions>(ProductionsList, PropertyInfos[2].Name);
+            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[3].Header)
+                ProductionsList = _sortAndFilter.Sort<Productions>(ProductionsList, PropertyInfos[3].Name);
+            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[4].Header)
+                ProductionsList = _sortAndFilter.Sort<Productions>(ProductionsList, PropertyInfos[4].Name);
+            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[5].Header)
+                ProductionsList = _sortAndFilter.Sort<Productions>(ProductionsList, PropertyInfos[5].Name);
+            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[6].Header)
+                ProductionsList = _sortAndFilter.Sort<Productions>(ProductionsList, PropertyInfos[6].Name);
+            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[7].Header)
+                ProductionsList = _sortAndFilter.Sort<Productions>(ProductionsList, PropertyInfos[7].Name);
+            else
+                Debug.WriteLine("Error");
         }
 
         #region INotify

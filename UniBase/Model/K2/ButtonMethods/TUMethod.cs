@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using UniBase.Annotations;
@@ -20,6 +21,10 @@ namespace UniBase.Model.K2.ButtonMethods
         private TUs _newTUs = new TUs();
         
         private Message _message = new Message();
+
+        private XamlBindings _xamlBindings = new XamlBindings();
+        private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private PropertyInfo[] PropertyInfos = typeof(TUs).GetProperties();
 
         private int _selectedTuId;
         private TUs _selectedTu;
@@ -47,246 +52,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tuIdTextBoxOutput = value;
 
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.TU_ID.ToString().ToLower();
-                    if (v.Contains(_tuIdTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_tuIdTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string FirstDayStartTuTextBoxOutput
-        {
-            get { return _firstDayStartTuTextBoxOutput; }
-            set
-            {
-                _firstDayStartTuTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.FirstDayStart_TU.ToString().ToLower();
-                    if (v.Contains(_firstDayStartTuTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_firstDayStartTuTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string FirstDayEndTuTextBoxOutput
-        {
-            get { return _firstDayEndTuTextBoxOutput; }
-            set
-            {
-                _firstDayEndTuTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.FirstDayEnd_TU.ToString().ToLower();
-                    if (v.Contains(_firstDayEndTuTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_firstDayEndTuTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string FirstDayTotalTextBoxOutput
-        {
-            get { return _firstDayTotalTextBoxOutput; }
-            set
-            {
-                _firstDayTotalTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.FirstDay_Total.ToString().ToLower();
-                    if (v.Contains(_firstDayTotalTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_firstDayTotalTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string SecoundDayStartTuTextBoxOutput
-        {
-            get { return _secoundDayStartTuTextBoxOutput; }
-            set
-            {
-                _secoundDayStartTuTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.SecoundDayStart_TU.ToString().ToLower();
-                    if (v.Contains(_secoundDayStartTuTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_secoundDayStartTuTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string SecoundDayEndTuTextBoxOutput
-        {
-            get { return _secoundDayEndTuTextBoxOutput; }
-            set
-            {
-                _secoundDayEndTuTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.SecoundDayEnd_TU.ToString().ToLower();
-                    if (v.Contains(_secoundDayEndTuTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_secoundDayEndTuTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string SecoundDayTotalTextBoxOutput
-        {
-            get { return _secoundDayTotalTextBoxOutput; }
-            set
-            {
-                _secoundDayTotalTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.SecoundDay_Total.ToString().ToLower();
-                    if (v.Contains(_secoundDayTotalTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_secoundDayTotalTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string ThirdDayStartTuTextBoxOutput
-        {
-            get { return _thirdDayStartTuTextBoxOutput; }
-            set
-            {
-                _thirdDayStartTuTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.ThirdDayStart_TU.ToString().ToLower();
-                    if (v.Contains(_thirdDayStartTuTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_thirdDayStartTuTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string ThirdDayEndTuTextBoxOutput
-        {
-            get { return _thirdDayEndTuTextBoxOutput; }
-            set
-            {
-                _thirdDayEndTuTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.ThirdDayEnd_TU.ToString().ToLower();
-                    if (v.Contains(_thirdDayEndTuTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_thirdDayEndTuTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
-            }
-        }
-
-        public string ThirdDayTotalTextBoxOutput
-        {
-            get { return _thirdDayTotalTextBoxOutput; }
-            set
-            {
-                _thirdDayTotalTextBoxOutput = value;
-
-                TuList.Clear();
-
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.ThirdDay_Total.ToString().ToLower();
-                    if (v.Contains(_thirdDayTotalTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_thirdDayTotalTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[0].Name, _tuIdTextBoxOutput);
             }
         }
 
@@ -297,21 +63,106 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                TuList.Clear();
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+            }
+        }
 
-                foreach (var f in _completeTUsList)
-                {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
-                    if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
-                    {
-                        TuList.Add(f);
-                    }
-                }
+        public string FirstDayStartTuTextBoxOutput
+        {
+            get { return _firstDayStartTuTextBoxOutput; }
+            set
+            {
+                _firstDayStartTuTextBoxOutput = value;
 
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
-                }
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[2].Name, _firstDayStartTuTextBoxOutput);
+            }
+        }
+
+        public string FirstDayEndTuTextBoxOutput
+        {
+            get { return _firstDayEndTuTextBoxOutput; }
+            set
+            {
+                _firstDayEndTuTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[3].Name, _firstDayEndTuTextBoxOutput);
+            }
+        }
+
+        public string FirstDayTotalTextBoxOutput
+        {
+            get { return _firstDayTotalTextBoxOutput; }
+            set
+            {
+                _firstDayTotalTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[4].Name, _firstDayTotalTextBoxOutput);
+            }
+        }
+
+        public string SecoundDayStartTuTextBoxOutput
+        {
+            get { return _secoundDayStartTuTextBoxOutput; }
+            set
+            {
+                _secoundDayStartTuTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[5].Name, _secoundDayStartTuTextBoxOutput);
+            }
+        }
+
+        public string SecoundDayEndTuTextBoxOutput
+        {
+            get { return _secoundDayEndTuTextBoxOutput; }
+            set
+            {
+                _secoundDayEndTuTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[6].Name, _secoundDayEndTuTextBoxOutput);
+            }
+        }
+
+        public string SecoundDayTotalTextBoxOutput
+        {
+            get { return _secoundDayTotalTextBoxOutput; }
+            set
+            {
+                _secoundDayTotalTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[7].Name, _secoundDayTotalTextBoxOutput);
+            }
+        }
+
+        public string ThirdDayStartTuTextBoxOutput
+        {
+            get { return _thirdDayStartTuTextBoxOutput; }
+            set
+            {
+                _thirdDayStartTuTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[8].Name, _thirdDayStartTuTextBoxOutput);
+            }
+        }
+
+        public string ThirdDayEndTuTextBoxOutput
+        {
+            get { return _thirdDayEndTuTextBoxOutput; }
+            set
+            {
+                _thirdDayEndTuTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[9].Name, _thirdDayEndTuTextBoxOutput);
+            }
+        }
+
+        public string ThirdDayTotalTextBoxOutput
+        {
+            get { return _thirdDayTotalTextBoxOutput; }
+            set
+            {
+                _thirdDayTotalTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[10].Name, _thirdDayTotalTextBoxOutput);
             }
         }
 
@@ -425,9 +276,32 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedTuId = index;
         }
 
-        public void SortButtonClick(object obj)
+        public void SortButtonClick(object id)
         {
-            throw new System.NotImplementedException();
+            if (id.ToString() == _xamlBindings.TUHeaderList[0].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[0].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[1].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[1].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[2].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[2].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[3].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[3].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[4].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[4].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[5].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[5].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[6].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[6].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[7].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[7].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[8].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[8].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[9].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[9].Name);
+            else if (id.ToString() == _xamlBindings.TUHeaderList[10].Header)
+                TuList = _sortAndFilter.Sort<TUs>(TuList, PropertyInfos[10].Name);
+            else
+                Debug.WriteLine("Error");
         }
 
         #region InotifyPropertyChanged

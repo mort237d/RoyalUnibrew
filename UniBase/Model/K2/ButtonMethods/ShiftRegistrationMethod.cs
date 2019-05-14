@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using UniBase.Annotations;
@@ -22,6 +23,10 @@ namespace UniBase.Model.K2.ButtonMethods
         private ShiftRegistrations _newShiftRegistrations = new ShiftRegistrations();
 
         private Message message = new Message();
+
+        private XamlBindings _xamlBindings = new XamlBindings();
+        private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private PropertyInfo[] PropertyInfos = typeof(ShiftRegistrations).GetProperties();
 
         private int _selectedShiftRegistrationId;
         private ShiftRegistrations _selectedShiftRegistration;
@@ -88,171 +93,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _shiftRegistrationIdTextBoxOutput = value;
 
-                ShiftRegistrationsList.Clear();
-
-                foreach (var f in _completeShiftRegistrationsList)
-                {
-                    var v = f.ShiftRegistration_ID.ToString().ToLower();
-                    if (v.Contains(_shiftRegistrationIdTextBoxOutput.ToLower()))
-                    {
-                        ShiftRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_shiftRegistrationIdTextBoxOutput))
-                {
-                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-                }
-            }
-        }
-
-        public string StartTimeTextBoxOutput
-        {
-            get { return _startTimeTextBoxOutput; }
-            set
-            {
-                _startTimeTextBoxOutput = value;
-
-                ShiftRegistrationsList.Clear();
-
-                foreach (var f in _completeShiftRegistrationsList)
-                {
-                    var v = f.Start_Time.ToString().ToLower();
-                    if (v.Contains(_startTimeTextBoxOutput.ToLower()))
-                    {
-                        ShiftRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_startTimeTextBoxOutput))
-                {
-                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-                }
-            }
-        }
-
-        public string EndDateTextBoxOutput
-        {
-            get { return _endDateTextBoxOutput; }
-            set
-            {
-                _endDateTextBoxOutput = value;
-
-                ShiftRegistrationsList.Clear();
-
-                foreach (var f in _completeShiftRegistrationsList)
-                {
-                    var v = f.End_Date.ToString().ToLower();
-                    if (v.Contains(_endDateTextBoxOutput.ToLower()))
-                    {
-                        ShiftRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_endDateTextBoxOutput))
-                {
-                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-                }
-            }
-        }
-
-        public string BreaksTextBoxOutput
-        {
-            get { return _breaksTextBoxOutput; }
-            set
-            {
-                _breaksTextBoxOutput = value;
-
-                ShiftRegistrationsList.Clear();
-
-                foreach (var f in _completeShiftRegistrationsList)
-                {
-                    var v = f.Breaks.ToString().ToLower();
-                    if (v.Contains(_breaksTextBoxOutput.ToLower()))
-                    {
-                        ShiftRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_breaksTextBoxOutput))
-                {
-                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-                }
-            }
-        }
-
-        public string TotalHoursTextBoxOutput
-        {
-            get { return _totalHoursTextBoxOutput; }
-            set
-            {
-                _totalHoursTextBoxOutput = value;
-
-                ShiftRegistrationsList.Clear();
-
-                foreach (var f in _completeShiftRegistrationsList)
-                {
-                    var v = f.TotalHours.ToString().ToLower();
-                    if (v.Contains(_totalHoursTextBoxOutput.ToLower()))
-                    {
-                        ShiftRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_totalHoursTextBoxOutput))
-                {
-                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-                }
-            }
-        }
-
-        public string StaffTextBoxOutput
-        {
-            get { return _staffTextBoxOutput; }
-            set
-            {
-                _staffTextBoxOutput = value;
-
-                ShiftRegistrationsList.Clear();
-
-                foreach (var f in _completeShiftRegistrationsList)
-                {
-                    var v = f.Staff.ToString().ToLower();
-                    if (v.Contains(_staffTextBoxOutput.ToLower()))
-                    {
-                        ShiftRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_staffTextBoxOutput))
-                {
-                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-                }
-            }
-        }
-
-        public string InitialsTextBoxOutput
-        {
-            get { return _initialsTextBoxOutput; }
-            set
-            {
-                _initialsTextBoxOutput = value;
-
-                ShiftRegistrationsList.Clear();
-
-                foreach (var f in _completeShiftRegistrationsList)
-                {
-                    var v = f.Initials.ToString().ToLower();
-                    if (v.Contains(_initialsTextBoxOutput.ToLower()))
-                    {
-                        ShiftRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_initialsTextBoxOutput))
-                {
-                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-                }
+                _sortAndFilter.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[0].Name, _shiftRegistrationIdTextBoxOutput);
             }
         }
 
@@ -263,21 +104,73 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                ShiftRegistrationsList.Clear();
+                _sortAndFilter.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+            }
+        }
 
-                foreach (var f in _completeShiftRegistrationsList)
-                {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
-                    if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
-                    {
-                        ShiftRegistrationsList.Add(f);
-                    }
-                }
+        public string StartTimeTextBoxOutput
+        {
+            get { return _startTimeTextBoxOutput; }
+            set
+            {
+                _startTimeTextBoxOutput = value;
 
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-                }
+                _sortAndFilter.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[2].Name, _startTimeTextBoxOutput);
+            }
+        }
+
+        public string EndDateTextBoxOutput
+        {
+            get { return _endDateTextBoxOutput; }
+            set
+            {
+                _endDateTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[3].Name, _endDateTextBoxOutput);
+            }
+        }
+
+        public string BreaksTextBoxOutput
+        {
+            get { return _breaksTextBoxOutput; }
+            set
+            {
+                _breaksTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[4].Name, _breaksTextBoxOutput);
+            }
+        }
+
+        public string TotalHoursTextBoxOutput
+        {
+            get { return _totalHoursTextBoxOutput; }
+            set
+            {
+                _totalHoursTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[5].Name, _totalHoursTextBoxOutput);
+            }
+        }
+
+        public string StaffTextBoxOutput
+        {
+            get { return _staffTextBoxOutput; }
+            set
+            {
+                _staffTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[6].Name, _staffTextBoxOutput);
+            }
+        }
+
+        public string InitialsTextBoxOutput
+        {
+            get { return _initialsTextBoxOutput; }
+            set
+            {
+                _initialsTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[7].Name, _initialsTextBoxOutput);
             }
         }
 
@@ -356,9 +249,26 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedShiftRegistrationId = index;
         }
 
-        public void SortButtonClick(object obj)
+        public void SortButtonClick(object id)
         {
-            throw new System.NotImplementedException();
+            if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[0].Header)
+                ShiftRegistrationsList = _sortAndFilter.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[0].Name);
+            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[1].Header)
+                ShiftRegistrationsList = _sortAndFilter.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[1].Name);
+            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[2].Header)
+                ShiftRegistrationsList = _sortAndFilter.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[2].Name);
+            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[3].Header)
+                ShiftRegistrationsList = _sortAndFilter.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[3].Name);
+            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[4].Header)
+                ShiftRegistrationsList = _sortAndFilter.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[4].Name);
+            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[5].Header)
+                ShiftRegistrationsList = _sortAndFilter.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[5].Name);
+            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[6].Header)
+                ShiftRegistrationsList = _sortAndFilter.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[6].Name);
+            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[7].Header)
+                ShiftRegistrationsList = _sortAndFilter.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[7].Name);
+            else
+                Debug.WriteLine("Error");
         }
 
         #region INotify
