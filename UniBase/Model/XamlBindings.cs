@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UniBase.Model.K2;
 
 namespace UniBase.Model
 {
@@ -16,7 +17,9 @@ namespace UniBase.Model
         public List<HeaderAndToolTip> FrontPageHeaderList { get; set; }
         public List<HeaderAndToolTip> ControlRegistrationsHeaderList { get; set; }
         public List<HeaderAndToolTip> ControlSchedulesHeaderList { get; set; }
-        public List<HeaderAndToolTip> ProductionsList { get; set; }
+        public List<HeaderAndToolTip> ProductionsHeaderList { get; set; }
+        public List<HeaderAndToolTip> ShiftRegistrationHeaderList { get; set; }
+        public List<HeaderAndToolTip> TUHeaderList { get; set; }
         
 
 
@@ -28,7 +31,8 @@ namespace UniBase.Model
             CreateControlRegistrationHeader();
             CreateControlSchedulesHeader();
             CreateProductionsHeader();
-
+            CreateShiftRegistrationHeader();
+            CreateTUHeader();
         }
 
         public void CreateFrontpageHeader()
@@ -84,7 +88,7 @@ namespace UniBase.Model
 
         public void CreateProductionsHeader()
         {
-            ProductionsList = new List<HeaderAndToolTip>
+            ProductionsHeaderList = new List<HeaderAndToolTip>
             {
                 new HeaderAndToolTip("Produktions ID", "Sorter efter Produktions ID"),
                 new HeaderAndToolTip("ProcessOrdre Nr", "Sorter efter ProcessOrdre Nr"),
@@ -96,6 +100,41 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Batchdato", "Sorter efter Batchdato")
             };
         }
+
+        public void CreateShiftRegistrationHeader()
+        {
+            ShiftRegistrationHeaderList = new List<HeaderAndToolTip>
+            {
+                new HeaderAndToolTip("Vagt registrerings ID", "Sorter efter Vagt registrerings ID"),
+                new HeaderAndToolTip("ProcessOrdre Nr", "Sorter efter ProcessOrdre Nr"),
+                new HeaderAndToolTip("Start tidspunkt", "Sorter efter Start tidspunkt"),
+                new HeaderAndToolTip("Slut tidspunkt", "Sorter efter Slut tidspunkt"),
+                new HeaderAndToolTip("Pauser", "Sorter efter Pauser"),
+                new HeaderAndToolTip("Total timer", "Sorter efter Total timer"),
+                new HeaderAndToolTip("Bemanding", "Sorter efter Bemanding"),
+                new HeaderAndToolTip("Initialer", "Sorter efter Initialer")
+            };
+        }
+
+        public void CreateTUHeader()
+        {
+            TUHeaderList = new List<HeaderAndToolTip>
+            {
+                new HeaderAndToolTip("TU ID", "Sorter efter TU ID"),
+                new HeaderAndToolTip("ProcessOrdre Nr", "Sorter efter ProcessOrdre Nr"),
+                new HeaderAndToolTip("Første dag start TU", "Sorter efter Første dag start TU"),
+                new HeaderAndToolTip("Første dag slut TU", "Sorter efter Første dag slut TU"),
+                new HeaderAndToolTip("Første dag TU i alt", "Sorter efter Første dag TU i alt"),
+                new HeaderAndToolTip("Anden dag start TU", "Sorter efter Anden dag start TU"),
+                new HeaderAndToolTip("Anden dag slut TU", "Sorter efter Anden dag slut TU"),
+                new HeaderAndToolTip("Anden dag TU i alt", "Sorter efter Anden dag TU i alt"),
+                new HeaderAndToolTip("Tredje dag start TU", "Sorter efter Tredje dag start TU"),
+                new HeaderAndToolTip("Tredje dag slut TU", "Sorter efter Tredje dag slut TU"),
+                new HeaderAndToolTip("Tredje dag TU i alt", "Sorter efter Tredje dag TU i alt")
+            };
+        }
+
+
 
 
     }
