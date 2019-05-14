@@ -15,7 +15,7 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         public FrontpageMethod()
         {
-            RefreshLastTen();
+            Initialize();
         }
         #region Fields
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
