@@ -37,6 +37,8 @@ namespace UniBase.Model.K2
         {
             InitializeObservableCollections();
             GenerateHeaderLists();
+
+            SortAndFilter = new SortAndFilter();
         }
 
         public void InitializeObservableCollections()
@@ -86,8 +88,6 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
-
-        
 
         #endregion
 

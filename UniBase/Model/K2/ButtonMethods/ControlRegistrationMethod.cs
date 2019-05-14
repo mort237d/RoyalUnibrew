@@ -536,6 +536,30 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedControlRegistrationId = index;
         }
 
+        #region SingleTon
+        private static ControlRegistrationMethod _instance;
+        private static object syncLock = new object();
+
+        public static ControlRegistrationMethod Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new ControlRegistrationMethod();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
+        #endregion
+
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
