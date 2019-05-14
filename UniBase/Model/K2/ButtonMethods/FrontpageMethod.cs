@@ -20,6 +20,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private Frontpages _newFrontpagesToAdd = new Frontpages();
         private Message message = new Message();
         private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private XamlBindings _xamlBindings = new XamlBindings();
         
         private int _selectedFrontpageId;
         private Frontpages _selectedFrontpage;
@@ -78,7 +79,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
 
         #region Filter
-        private PropertyInfo[] frontpagePropertyInfos = typeof(Frontpages).GetProperties();
+        private PropertyInfo[] PropertyInfos = typeof(Frontpages).GetProperties();
 
         public string ProcessOrderNoTextBoxOutput
         {
@@ -87,7 +88,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, frontpagePropertyInfos[0].Name, _processOrderNoTextBoxOutput);
+                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[0].Name, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -98,7 +99,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _dateTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, frontpagePropertyInfos[1].Name, _dateTextBoxOutput);
+                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[1].Name, _dateTextBoxOutput);
             }
         }
 
@@ -109,7 +110,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _finishedProductNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, frontpagePropertyInfos[2].Name, _finishedProductNoTextBoxOutput);
+                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[2].Name, _finishedProductNoTextBoxOutput);
             }
         }
 
@@ -120,7 +121,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _columnTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, frontpagePropertyInfos[3].Name, _columnTextBoxOutput);
+                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[3].Name, _columnTextBoxOutput);
             }
         }
 
@@ -131,7 +132,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, frontpagePropertyInfos[4].Name, _noteTextBoxOutput);
+                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[4].Name, _noteTextBoxOutput);
             }
         }
 
@@ -142,7 +143,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weekNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, frontpagePropertyInfos[5].Name, _weekNoTextBoxOutput);
+                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[5].Name, _weekNoTextBoxOutput);
             }
         }
         #endregion
@@ -251,30 +252,20 @@ namespace UniBase.Model.K2.ButtonMethods
             //{
 
             //}
-            switch (id.ToString())
-            {
-                case "ProcessOrdre Nr":
-                    FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, frontpagePropertyInfos[0].Name);
-                    break;
-                case "Dato":
-                    FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, frontpagePropertyInfos[1].Name);
-                    break;
-                case "Færdigt Produkt Nr":
-                    FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, frontpagePropertyInfos[2].Name);
-                    break;
-                case "Kolonne":
-                    FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, frontpagePropertyInfos[3].Name);
-                    break;
-                case "Note":
-                    FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, frontpagePropertyInfos[4].Name);
-                    break;
-                case "Uge Nr":
-                    FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, frontpagePropertyInfos[5].Name);
-                    break;
-                default:
-                    Debug.WriteLine("Nothing");
-                    break;
-            }
+            if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
+                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
+            else if (id.ToString() == "Dato")
+                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
+            else if (id.ToString() == "Færdigt Produkt Nr")
+                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
+            else if (id.ToString() == "Kolonne")
+                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
+            else if (id.ToString() == "Note")
+                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
+            else if (id.ToString() == "Uge Nr")
+                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
+            else
+                Debug.WriteLine("Error");
         }
 
         #region SingleTon
