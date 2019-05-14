@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniBase.Model
 {
-    class HeaderAndToolTip
+    public class HeaderAndToolTip
     {
         public string Header { get; set; }
         public string ToolTip { get; set; }

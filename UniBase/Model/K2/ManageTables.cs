@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 using UniBase.Model.K2.ButtonMethods;
 
+
 namespace UniBase.Model.K2
 {
     public class ManageTables :INotifyPropertyChanged
@@ -36,10 +37,23 @@ namespace UniBase.Model.K2
         private ProductionMethod _productionMethod = new ProductionMethod();
         private ShiftRegistrationMethod _shiftRegistrationMethod = new ShiftRegistrationMethod();
         private TuMethod _tuMethod = new TuMethod();
+        private TrendAdminstrator _trendAdminstrator = new TrendAdminstrator();
+        private XamlBindings _xamlBindings = new XamlBindings();
 
         #endregion
 
         #region Properties
+        public XamlBindings XamlBindings
+        {
+            get { return _xamlBindings; }
+            set { _xamlBindings = value; }
+        }
+
+        public TrendAdminstrator TrendAdminstrator
+        {
+            get { return _trendAdminstrator; }
+            set { _trendAdminstrator = value; }
+        }
 
         public Frontpages NewFrontpagesToAdd
         {
@@ -310,6 +324,9 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+
+        
+
         #endregion
 
         #region INotifyPropertiesChanged

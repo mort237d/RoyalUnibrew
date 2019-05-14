@@ -59,8 +59,7 @@ namespace UniBase.ViewModel
         public PredefinedColors PredefinedColors { get; set; }
         public SortAndFilter SortAndFilter { get; set; }
         
-        public TrendAdminstrator TrendAdminstrator { get; set; }
-        public XamlBindings XamlBindings { get; set; }
+        
 
         public ManageUser ManageUser { get; set; }
         
@@ -70,8 +69,7 @@ namespace UniBase.ViewModel
             PredefinedColors = new PredefinedColors();
             SortAndFilter = new SortAndFilter();
             ManageUser = new ManageUser();
-            TrendAdminstrator = new TrendAdminstrator();
-            XamlBindings = new XamlBindings();
+            
 
             #region Update(SavedForLater)
 
