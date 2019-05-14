@@ -17,7 +17,7 @@ namespace UniBase.Model.K2
         private int _processOrderNo;
         private string _note;
         private string _signature;
-        private TimeSpan _time;
+        private DateTime _time;
 
 
 
@@ -35,7 +35,7 @@ namespace UniBase.Model.K2
 
         }
 
-        public ControlSchedules(int controlSchedule_ID, TimeSpan time, double weight, string kegTest, double ludKoncentration, double mipMA, string signature, string note, int processOrder_No, Frontpages frontpage)
+        public ControlSchedules(int controlSchedule_ID, DateTime time, double weight, string kegTest, double ludKoncentration, double mipMA, string signature, string note, int processOrder_No, Frontpages frontpage)
         {
             ControlSchedule_ID = controlSchedule_ID;
             Time = time;
@@ -157,7 +157,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public TimeSpan Time
+        public DateTime Time
         {
             get => _time;
             set
