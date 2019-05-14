@@ -12,7 +12,7 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         public ProductionMethod()
         {
-            RefreshLastTen();
+            Initialize();
         }
         #region Fields
         private ObservableCollection<Productions> _completeProductionsList = ModelGenerics.GetAll(new Productions());
@@ -37,6 +37,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _processOrderNoTextBoxOutput;
         #endregion
 
+        #region Properties
         public Productions NewProductions
         {
             get { return _newProductions; }
@@ -56,6 +57,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         #region Filter
         public string ProductionIdTextBoxOutput
@@ -278,8 +280,17 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
         #endregion
-        
+
         #region ButtonMethods
+        public void Initialize()
+        {
+            ProductionsList = ModelGenerics.GetAll(new Productions());
+
+            Parallel.ForEach(ProductionsList, production =>
+            {
+                production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
+            });
+        }
         public void RefreshAll()
         {
             ProductionsList = ModelGenerics.GetAll(new Productions());

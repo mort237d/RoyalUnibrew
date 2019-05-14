@@ -12,7 +12,7 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         public ControlScheduleMethod()
         {
-            RefreshLastTen();
+            Initialize();
         }
         #region Fields
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
@@ -37,6 +37,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _processOrderNoTextBoxOutput;
         #endregion
 
+        #region Properties
         public int SelectedControlScheduleId
         {
             get { return _selectedControlScheduleId; }
@@ -76,6 +77,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         #region Filters
         public string ControlScheduleIdTextBoxOutput
@@ -303,7 +305,15 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
         #endregion
-        
+        public void Initialize()
+        {
+            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
+            {
+                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
+            });
+        }
+
         public void RefreshAll()
         {
             ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());

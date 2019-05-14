@@ -15,8 +15,9 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         public ControlRegistrationMethod()
         {
-            RefreshLastTen();
+            Initialize();
         }
+
         #region Fields
 
         private ComboBoxItem _kegSize = new ComboBoxItem();
@@ -360,6 +361,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         #endregion
 
+        #region Properties
         public int SelectedControlRegistrationId
         {
             get { return _selectedControlRegistrationId; }
@@ -409,8 +411,19 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         #region ButtonMethods
+        public void Initialize()
+        {
+            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            Parallel.ForEach(ControlRegistrationsList, controlregistration =>
+            {
+                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString("yyyy/MM/dd");
+            });
+        }
         public void RefreshAll()
         {
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
@@ -527,9 +540,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
             }
         }
-
         
-
         public void SelectParentItem(object obj)
         {
             int id = (int)obj;

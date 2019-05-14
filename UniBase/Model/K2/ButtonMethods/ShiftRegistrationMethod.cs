@@ -12,7 +12,7 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         public ShiftRegistrationMethod()
         {
-            RefreshLastTen();
+            Initialize();
         }
         #region Fields
         private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
@@ -37,6 +37,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         #endregion
 
+        #region Properties
         public int SelectedShiftRegistrationId
         {
             get { return _selectedShiftRegistrationId; }
@@ -76,6 +77,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         #region Filters
 
@@ -281,6 +283,11 @@ namespace UniBase.Model.K2.ButtonMethods
 
         #endregion
 
+        #region ButtonMethods
+        public void Initialize()
+        {
+            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+        }
 
         public void RefreshAll()
         {
@@ -337,6 +344,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 //error
             }
         }
+        #endregion
 
         public void SelectParentItem(object obj)
         {

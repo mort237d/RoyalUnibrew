@@ -38,8 +38,6 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _weekNoTextBoxOutput;
         #endregion
 
-
-
         public int SelectedFrontpageId
         {
             get { return _selectedFrontpageId; }
@@ -232,6 +230,16 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         #endregion
 
+        #region Properties
+        public void Initialize()
+        {
+            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            Parallel.ForEach(FrontpagesList, frontpage =>
+            {
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+            });
+        }
+
         public void RefreshAll()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
@@ -292,6 +300,8 @@ namespace UniBase.Model.K2.ButtonMethods
                 //error
             }
         }
+
+        #endregion
 
         public int FindWeekNumber(DateTime time)
         {
