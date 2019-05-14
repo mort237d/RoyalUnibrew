@@ -2,7 +2,7 @@
 
 namespace UniBase.Model
 {
-    class Trends
+    public class Trends
     {
         public Trends(double selectedCategory, String date, double minValue, double maxValue)
         {

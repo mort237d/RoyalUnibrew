@@ -13,6 +13,8 @@ namespace UniBase.ViewModel
     {
         #region Relaycommands
         public RelayCommand<object> SortFrontpageCommand { get; set; }
+        public RelayCommand<object> SortControlRegistrationCommand { get; set; }
+
         public RelayCommand RefreshFrontpageTable { get; set; }
         public RelayCommand RefreshLastTenControlRegistrationTable { get; set; }
         public RelayCommand SaveFrontpageTable { get; set; }
@@ -59,16 +61,16 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SelectParentItemControlRegistrationCommand { get; set; }
         public RelayCommand<object> SelectParentItemControlScheduleCommand { get; set; }
         public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
-        public RelayCommand<object> SelectParentItemTuCommand { get; set; }
         public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
+        public RelayCommand<object> SelectParentItemTuCommand { get; set; }
+        
         #endregion
 
         public ManageTables Column_2 { get; set; }
         public PredefinedColors PredefinedColors { get; set; }
         public SortAndFilter SortAndFilter { get; set; }
         
-        public TrendAdminstrator TrendAdminstrator { get; set; }
-        public XamlBindings XamlBindings { get; set; }
+        
 
         public ManageUser ManageUser { get; set; }
         
@@ -76,10 +78,8 @@ namespace UniBase.ViewModel
         {
             Column_2 = ManageTables.Instance;
             PredefinedColors = new PredefinedColors();
-            SortAndFilter = new SortAndFilter();
             ManageUser = new ManageUser();
-            TrendAdminstrator = new TrendAdminstrator();
-            XamlBindings = new XamlBindings();
+            
 
             #region Update(SavedForLater)
 
@@ -163,6 +163,7 @@ namespace UniBase.ViewModel
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
+            SortControlRegistrationCommand = new RelayCommand<object>(SortAndFilter.SortControlRegistrationsButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
@@ -175,10 +176,6 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
-
-
-        
-
 
 
 

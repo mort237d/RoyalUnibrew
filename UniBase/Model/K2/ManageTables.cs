@@ -7,16 +7,32 @@ using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 using UniBase.Model.K2.ButtonMethods;
 
+
 namespace UniBase.Model.K2
 {
     public class ManageTables :INotifyPropertyChanged
     {
         #region Properties
-       public FrontpageMethod FrontpageMethod { get; set; }
 
-        public ControlRegistrationMethod ControlRegistrationMethod { get; set; }
-
-        public ControlScheduleMethod ControlScheduleMethod { get; set; }
+        public Frontpages NewFrontpagesToAdd
+        {
+            get => _newFrontpagesToAdd;
+            set
+            {
+                _newFrontpagesToAdd = value; 
+                OnPropertyChanged();
+            }
+        }
+        
+        public ControlRegistrations NewControlRegistrationsToAdd
+        {
+            get => _newControlRegistrationsToAdd;
+            set
+            {
+                _newControlRegistrationsToAdd = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ProductionMethod ProductionMethod { get; set; }
 
@@ -86,6 +102,9 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+
+        
+
         #endregion
 
         #region INotifyPropertiesChanged

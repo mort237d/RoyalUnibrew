@@ -2,7 +2,7 @@
 
 namespace UniBase.Model
 {
-    class XamlBindings
+    public class XamlBindings
     {
         #region Properties
         public string PlaceHolderDate { get; set; } = "2000/01/01";

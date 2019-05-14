@@ -8,7 +8,7 @@ using UniBase.Model.K2;
 
 namespace UniBase.Model
 {
-    class TrendAdminstrator : INotifyPropertyChanged
+    public class TrendAdminstrator : INotifyPropertyChanged
     {
         private ComboBoxItem _graphType = new ComboBoxItem();
         private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
