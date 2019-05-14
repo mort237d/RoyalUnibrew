@@ -310,7 +310,7 @@ namespace UniBase.Model.K2.ButtonMethods
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
-                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
+                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh\:mm");
             });
         }
 
@@ -319,7 +319,7 @@ namespace UniBase.Model.K2.ButtonMethods
             ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
-                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
+                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh\:mm");
             });
             message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }

@@ -9,9 +9,9 @@ namespace RestService
 
     public partial class Context : DbContext
     {
-        public Context()
-            : base("name=Context6")
+        public Context() : base("name=Context6")
         {
+            base.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<ControlRegistration> ControlRegistrations { get; set; }

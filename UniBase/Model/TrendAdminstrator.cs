@@ -17,7 +17,7 @@ namespace UniBase.Model
 
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
 
-        public TrendAdminstrator()
+        /*public TrendAdminstrator()
         {
             _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
 
@@ -62,7 +62,7 @@ namespace UniBase.Model
         }
 
 
-        public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
+        /*public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
         {
             
                 //CreateGraph(comboboxInput, comboboxTimeInput);
@@ -147,18 +147,18 @@ namespace UniBase.Model
         //            tempTotalValue = 0;
         //            amountOfItemsWithSameDate = 0;
 
-        //            if (new TimeSpan(timeHorizonDivider,0,0,0) <= currentItemDate - tempDayOfScheduleList)
-        //            {
-        //                tempDayOfScheduleList = currentItemDate;
-        //                goto here;
-        //            }
-        //        }
-        //    }
-        //    if (amountOfItemsWithSameDate != 0)
-        //    {
-        //        TrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
-        //    }
-        //}
+                    if (new TimeSpan(timeHorizonDivider,0,0,0) <= currentItemDate - tempDayOfScheduleList)
+                    {
+                        tempDayOfScheduleList = currentItemDate;
+                        goto here;
+                    }
+                }
+            }
+            if (amountOfItemsWithSameDate != 0)
+            {
+                TrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
+            }
+        }*/
 
         public event PropertyChangedEventHandler PropertyChanged;
 
