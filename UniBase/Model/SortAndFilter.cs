@@ -25,10 +25,9 @@ namespace UniBase.Model
         //TODO FIX DRYYYYYYYY
         private ObservableCollection<T> SortWay<T>(ObservableCollection<T> input, string property)
         {
-            PropertyInfo prop = typeof(T).GetProperty(property);
-
             var tempList = new ObservableCollection<T>();
-
+            PropertyInfo prop = typeof(T).GetProperty(property);
+            
             if (!sorted)
             {
                 tempList = new ObservableCollection<T>(input.OrderBy(item => prop.GetValue(item, null)));
@@ -45,6 +44,10 @@ namespace UniBase.Model
 
         public void SortFrontpagesButtonClick(object id)
         {
+            //if (xamlBindings.FrontPageHeaderList[0].Header.Equals(id.ToString()))
+            //{
+                
+            //}
             switch (id.ToString())
             {
                 case "ProcessOrdre Nr":

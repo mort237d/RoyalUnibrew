@@ -13,6 +13,8 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class FrontpageMethod : IManageButtonMethods
     {
+        private ObservableCollection<Frontpages> _frontpagesList;
+
         public FrontpageMethod()
         {
             Initialize();
@@ -20,7 +22,6 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
-        private ObservableCollection<Frontpages> _frontpagesList;
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
 
@@ -78,7 +79,31 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        private void some<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut)
+        {
+            list.Clear();
+
+            foreach (var f in completeList)
+            {
+                //var v = f.ProcessOrder_No.ToString().ToLower();
+
+                PropertyInfo prop = typeof(T).GetProperty(property);
+                var v = prop.GetValue(f, null).ToString().ToLower();
+                if (v.Contains(textBoxOutPut.ToLower()))
+                {
+                    list.Add(f);
+                }
+            }
+
+            if (string.IsNullOrEmpty(textBoxOutPut))
+            {
+                list = ModelGenerics.GetLastTenInDatabasae(type);
+            }
+        }
+
         #region Filter
+        private PropertyInfo[] frontpagePropertyInfos = typeof(Frontpages).GetProperties();
+
         public string ProcessOrderNoTextBoxOutput
         {
             get { return _processOrderNoTextBoxOutput; }
@@ -86,21 +111,23 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                FrontpagesList.Clear();
+                some(new Frontpages(), FrontpagesList, _completeFrontpagesList, frontpagePropertyInfos[0].Name, _processOrderNoTextBoxOutput);
 
-                foreach (var f in _completeFrontpagesList)
-                {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
-                    if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
-                    {
-                        FrontpagesList.Add(f);
-                    }
-                }
+                //FrontpagesList.Clear();
 
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                }
+                //foreach (var f in _completeFrontpagesList)
+                //{
+                //    var v = f.ProcessOrder_No.ToString().ToLower();
+                //    if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
+                //    {
+                //        FrontpagesList.Add(f);
+                //    }
+                //}
+
+                //if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
+                //{
+                //    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                //}
             }
         }
 
