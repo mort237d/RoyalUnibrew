@@ -42,7 +42,7 @@
         <Pivot Grid.Row="1" x:Name="ColumnPivot">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="1">
+                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="0">
                     <!--#region Forside-->
                     <PivotItem Style="{StaticResource CustomPivotItemStyle}" Header="Forside">
                         <StackPanel HorizontalAlignment="Center">
@@ -215,7 +215,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding ElementName=WorkPageName}" Command="{Binding DataContext.SortFrontpageCommand, ElementName=WorkPageName}">
+                                                    <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortControlRegistrationCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
                                                     </Button>
                                                     <Line/>

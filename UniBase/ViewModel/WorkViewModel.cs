@@ -13,6 +13,7 @@ namespace UniBase.ViewModel
     {
         #region Relaycommands
         public RelayCommand<object> SortFrontpageCommand { get; set; }
+        public RelayCommand<object> SortControlRegistrationCommand { get; set; }
 
         public RelayCommand RefreshFrontpageTable { get; set; }
         public RelayCommand RefreshLastTenControlRegistrationTable { get; set; }
@@ -34,14 +35,17 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshProductionTable { get; set; }
         public RelayCommand RefreshLastTenProductionTable { get; set; }
         public RelayCommand SaveProductionTable { get; set; }
+        public RelayCommand DeleteProductionTable { get; set; }
 
         public RelayCommand RefreshShiftRegistrationTable { get; set; }
         public RelayCommand RefreshLastTenShiftRegistrationTable { get; set; }
         public RelayCommand SaveShiftRegistrationTable { get; set; }
+        public RelayCommand DeleteShiftRegistrationTable { get; set; }
 
         public RelayCommand RefreshTUTable { get; set; }
         public RelayCommand RefreshLastTenTUTable { get; set; }
         public RelayCommand SaveTUTable { get; set; }
+        public RelayCommand DeleteTUTable { get; set; }
 
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
@@ -52,7 +56,10 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SelectParentItemFrontpageCommand { get; set; }
         public RelayCommand<object> SelectParentItemControlRegistrationCommand { get; set; }
         public RelayCommand<object> SelectParentItemControlScheduleCommand { get; set; }
-
+        public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
+        public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
+        public RelayCommand<object> SelectParentItemTuCommand { get; set; }
+        
         #endregion
 
         public ManageTables Column_2 { get; set; }
@@ -68,7 +75,6 @@ namespace UniBase.ViewModel
         {
             Column_2 = ManageTables.Instance;
             PredefinedColors = new PredefinedColors();
-            SortAndFilter = new SortAndFilter();
             ManageUser = new ManageUser();
             TrendAdminstrator = new TrendAdminstrator();
             XamlBindings = new XamlBindings();
@@ -148,6 +154,7 @@ namespace UniBase.ViewModel
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
             SortFrontpageCommand = new RelayCommand<object>(SortAndFilter.SortFrontpagesButtonClick);
+            SortControlRegistrationCommand = new RelayCommand<object>(SortAndFilter.SortControlRegistrationsButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
 
@@ -161,29 +168,7 @@ namespace UniBase.ViewModel
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
 
-        public RelayCommand DeleteTUTable { get; set; }
 
-        public RelayCommand<object> SelectParentItemTuCommand { get; set; }
-
-        public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
-
-        public RelayCommand DeleteShiftRegistrationTable { get; set; }
-
-        public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
-
-        public RelayCommand DeleteProductionTable { get; set; }
-
-
-        private void TempMethod2()
-        {
-            Debug.WriteLine("\n \tHej", "Button Clicked");
-        }
-
-        private void TempMethod(object id)
-        {
-            Debug.WriteLine("\n \tHej", "Button Clicked");
-            Debug.WriteLine(id);
-        }
 
         #region Properties
         

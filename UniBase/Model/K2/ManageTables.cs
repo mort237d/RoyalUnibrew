@@ -37,6 +37,8 @@ namespace UniBase.Model.K2
         private ShiftRegistrationMethod _shiftRegistrationMethod = new ShiftRegistrationMethod();
         private TuMethod _tuMethod = new TuMethod();
 
+        private SortAndFilter _sortAndFilter = new SortAndFilter();
+
         #endregion
 
         #region Properties
@@ -135,6 +137,12 @@ namespace UniBase.Model.K2
         {
             get { return _tuMethod; }
             set { _tuMethod = value; }
+        }
+
+        public SortAndFilter SortAndFilter
+        {
+            get { return _sortAndFilter; }
+            set { _sortAndFilter = value; }
         }
 
         public ObservableCollection<string> KegSizes
@@ -310,6 +318,9 @@ namespace UniBase.Model.K2
                 return _instance;
             }
         }
+
+        
+
         #endregion
 
         #region INotifyPropertiesChanged
