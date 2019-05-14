@@ -18,22 +18,21 @@ namespace UniBase.Model.K2
             int listIndexCounter = 0;
 
             Type tModelType = type.GetType();
-
             PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
 
             //ToDo Finish This.
             foreach (PropertyInfo property in arrayPropertyInfos)
             {
                 var prop = type.GetType().GetProperty(property.Name, BindingFlags.Public | BindingFlags.Instance);
-                var proppi = prop.GetValue(type);
-
+                var propertyValue = prop.GetValue(type);
+                
                 if (property.PropertyType == typeof(string))
                 {
                     if (prop.Name.Contains("StringHelper"))
                     {
-                        if (proppi.ToString().Length >= 8)
+                        if (propertyValue.ToString().Length >= 8)
                         {
-                            datesandtimespans.Add(proppi.ToString());
+                            datesandtimespans.Add(propertyValue.ToString());
                         }
                         else
                         {
@@ -41,7 +40,7 @@ namespace UniBase.Model.K2
                             Debug.WriteLine("Failed");
                         }
                     }
-                    else if (proppi == null)
+                    else if (propertyValue == null)
                     {
                         if (property.Name == "Note" || property.Name == "CommentsOnChangedDate")
                         {
@@ -55,24 +54,31 @@ namespace UniBase.Model.K2
                         }
                     }
                 }
-                else if (property.PropertyType == typeof(int))
+                else if (property.PropertyType == typeof(int) || property.PropertyType == typeof(int?))
                 {
-                    int.TryParse(proppi.ToString(), out int i);
-                    if (i == 0)
+                    try
+                    {
+                        int.TryParse(propertyValue.ToString(), out int i);
+                        if (i == 0)
+                        {
+                            //error
+                        }
+                    }
+                    catch
                     {
                         //error
-                        Debug.WriteLine("Failed");
-
                     }
                 }
-                else if (property.PropertyType == typeof(double))
+                else if (property.PropertyType == typeof(double) || property.PropertyType == typeof(double?))
                 {
-                    double.TryParse(proppi.ToString(), out double i);
-                    if (i == 0)
+                    if (!double.TryParse(propertyValue.ToString(), out double i))
+                    {
+                        //error
+                    }
+                    else if (Math.Abs(i) < 0.001)
                     {
                         //error
                         Debug.WriteLine("Failed");
-
                     }
                 }
                 else if (property.PropertyType == typeof(DateTime))

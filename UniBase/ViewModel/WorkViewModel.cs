@@ -31,21 +31,25 @@ namespace UniBase.ViewModel
         public RelayCommand RefreshLastTenControlScheduleTable { get; set; }
         public RelayCommand SaveControlScheduleTable { get; set; }
         public RelayCommand DeleteControlScheduleTable { get; set; }
+        public RelayCommand AddControlScheduleTable { get; set; }
 
         public RelayCommand RefreshProductionTable { get; set; }
         public RelayCommand RefreshLastTenProductionTable { get; set; }
         public RelayCommand SaveProductionTable { get; set; }
         public RelayCommand DeleteProductionTable { get; set; }
+        public RelayCommand AddProductionTable { get; set; }
 
         public RelayCommand RefreshShiftRegistrationTable { get; set; }
         public RelayCommand RefreshLastTenShiftRegistrationTable { get; set; }
         public RelayCommand SaveShiftRegistrationTable { get; set; }
         public RelayCommand DeleteShiftRegistrationTable { get; set; }
+        public RelayCommand AddShiftRegistrationTable { get; set; }
 
         public RelayCommand RefreshTUTable { get; set; }
         public RelayCommand RefreshLastTenTUTable { get; set; }
         public RelayCommand SaveTUTable { get; set; }
         public RelayCommand DeleteTUTable { get; set; }
+        public RelayCommand AddTUTable { get; set; }
 
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
@@ -66,8 +70,7 @@ namespace UniBase.ViewModel
         public PredefinedColors PredefinedColors { get; set; }
         public SortAndFilter SortAndFilter { get; set; }
         
-        public TrendAdminstrator TrendAdminstrator { get; set; }
-        public XamlBindings XamlBindings { get; set; }
+        
 
         public ManageUser ManageUser { get; set; }
         
@@ -76,8 +79,7 @@ namespace UniBase.ViewModel
             Column_2 = ManageTables.Instance;
             PredefinedColors = new PredefinedColors();
             ManageUser = new ManageUser();
-            TrendAdminstrator = new TrendAdminstrator();
-            XamlBindings = new XamlBindings();
+            
 
             #region Update(SavedForLater)
 
@@ -114,42 +116,49 @@ namespace UniBase.ViewModel
 
             #endregion
 
+            //Frontpage
             RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshAll);
             RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTen);
             SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.SaveAll);
             AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewItem);
             DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.DeleteItem);
 
+            //ControlRegistration
             RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshAll);
             RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTen);
             SaveControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.SaveAll);
             AddControlRegistrationsTable = new RelayCommand(Column_2.ControlRegistrationMethod.AddNewItem);
             DeleteControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.DeleteItem);
 
+            //ControlSchedule
             RefreshControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshAll);
             RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTen);
             SaveControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.SaveAll);
-
+            AddControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.AddNewItem);
             DeleteControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.DeleteItem);
 
+            //Production
             RefreshProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshAll);
             RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshLastTen);
             SaveProductionTable = new RelayCommand(Column_2.ProductionMethod.SaveAll);
-
+            AddProductionTable = new RelayCommand(Column_2.ProductionMethod.AddNewItem);
             DeleteProductionTable = new RelayCommand(Column_2.ProductionMethod.DeleteItem);
 
+            //ShiftRegistration
             RefreshShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshAll);
             RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshLastTen);
             SaveShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.SaveAll);
-
+            AddShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.AddNewItem);
             DeleteShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.DeleteItem);
 
+            //TU
             RefreshTUTable = new RelayCommand(Column_2.TuMethod.RefreshAll);
             RefreshLastTenTUTable = new RelayCommand(Column_2.TuMethod.RefreshLastTen);
             SaveTUTable = new RelayCommand(Column_2.TuMethod.SaveAll);
-
+            AddTUTable = new RelayCommand(Column_2.TuMethod.AddNewItem);
             DeleteTUTable = new RelayCommand(Column_2.TuMethod.DeleteItem);
 
+            //User
             AddUserCommand = new RelayCommand(ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
 
@@ -185,5 +194,4 @@ namespace UniBase.ViewModel
         }
         #endregion
     }
-    
 }

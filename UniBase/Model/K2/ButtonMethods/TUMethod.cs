@@ -13,6 +13,11 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
         private ObservableCollection<TUs> _completeTUsList = ModelGenerics.GetAll(new TUs());
 
+        private ObservableCollection<TUs> _tuList;
+
+        private TUs _newTUs = new TUs();
+
+
         private Message _message = new Message();
 
         private int _selectedTuId;
@@ -51,6 +56,15 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        public TUs NewTUs
+        {
+            get { return _newTUs; }
+            set
+            {
+                _newTUs = value;
+            }
+        }
+
         #region Filter
 
         public string TuIdTextBoxOutput
@@ -60,20 +74,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tuIdTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.TU_ID.ToString().ToLower();
                     if (v.Contains(_tuIdTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_tuIdTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -85,20 +99,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayStartTuTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.FirstDayStart_TU.ToString().ToLower();
                     if (v.Contains(_firstDayStartTuTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_firstDayStartTuTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -110,20 +124,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayEndTuTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.FirstDayEnd_TU.ToString().ToLower();
                     if (v.Contains(_firstDayEndTuTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_firstDayEndTuTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -135,20 +149,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayTotalTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.FirstDay_Total.ToString().ToLower();
                     if (v.Contains(_firstDayTotalTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_firstDayTotalTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -160,20 +174,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayStartTuTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.SecoundDayStart_TU.ToString().ToLower();
                     if (v.Contains(_secoundDayStartTuTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_secoundDayStartTuTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -185,20 +199,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayEndTuTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.SecoundDayEnd_TU.ToString().ToLower();
                     if (v.Contains(_secoundDayEndTuTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_secoundDayEndTuTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -210,20 +224,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayTotalTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.SecoundDay_Total.ToString().ToLower();
                     if (v.Contains(_secoundDayTotalTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_secoundDayTotalTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -235,20 +249,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayStartTuTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.ThirdDayStart_TU.ToString().ToLower();
                     if (v.Contains(_thirdDayStartTuTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_thirdDayStartTuTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -260,20 +274,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayEndTuTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.ThirdDayEnd_TU.ToString().ToLower();
                     if (v.Contains(_thirdDayEndTuTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_thirdDayEndTuTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -285,20 +299,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayTotalTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.ThirdDay_Total.ToString().ToLower();
                     if (v.Contains(_thirdDayTotalTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_thirdDayTotalTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
@@ -310,71 +324,106 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                ManageTables.Instance.TuList.Clear();
+                TuList.Clear();
 
                 foreach (var f in _completeTUsList)
                 {
                     var v = f.ProcessOrder_No.ToString().ToLower();
                     if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.TuList.Add(f);
+                        TuList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+                    TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
                 }
             }
         }
 
         #endregion
         
+        
+        
+
+        public ObservableCollection<TUs> TuList
+        {
+            get { return _tuList; }
+            set
+            {
+                _tuList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TuMethod()
+        {
+            RefreshLastTen();
+        }
+
+
         public void RefreshAll()
         {
-            ManageTables.Instance.TuList = ModelGenerics.GetAll(new TUs());
+            TuList = ModelGenerics.GetAll(new TUs());
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
+
         public void RefreshLastTen()
         {
-            ManageTables.Instance.TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
+
         public void SaveAll()
         {
-            Parallel.ForEach(ManageTables.Instance.TuList, tus =>
+            Parallel.ForEach(TuList, tus =>
             {
-                ModelGenerics.UpdateByObjectAndId(tus.TU_ID, tus);
+                InputValidator.CheckIfInputsAreValid(ref tus);
+            });
+            Parallel.ForEach(TuList, tus =>
+            {
+                ModelGenerics.UpdateByObjectAndId((int)tus.TU_ID, tus);
             });
             _message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
         }
 
         public void DeleteItem()
         {
-            if (SelectedTu != null)
-            {
-                //TODO Make deletion method
-                Debug.WriteLine(SelectedTu.ProcessOrder_No);
-            }
+            throw new System.NotImplementedException();
         }
 
         public void AddNewItem()
         {
-            throw new System.NotImplementedException();
+            var ObjectToAdd = NewTUs;
+            InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
+
+            //Autofills
+
+            if (ModelGenerics.CreateByObject(ObjectToAdd))
+            {
+                TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+
+                NewTUs = new TUs();
+                
+            }
+            else
+            {
+                //error
+            }
         }
 
         public void SelectParentItem(object obj)
         {
             int id = (int)obj;
 
-            TUs del = ManageTables.Instance.TuList.First(d => d.TU_ID == id);
-            int index = ManageTables.Instance.TuList.IndexOf(del);
+            TUs del = TuList.First(d => d.TU_ID == id);
+            int index = TuList.IndexOf(del);
 
             SelectedTuId = index;
         }
 
-        #region INotify
-
+        #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -382,7 +431,6 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         #endregion
     }
 }

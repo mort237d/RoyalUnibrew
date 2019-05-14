@@ -17,6 +17,11 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
+        private ObservableCollection<Frontpages> _frontpagesList;
+
+        private Frontpages _newFrontpagesToAdd = new Frontpages();
+
+
         private Message message = new Message();
 
         private int _selectedFrontpageId;
@@ -29,6 +34,8 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _noteTextBoxOutput;
         private string _weekNoTextBoxOutput;
         #endregion
+
+
 
         public int SelectedFrontpageId
         {
@@ -50,6 +57,26 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        public Frontpages NewFrontpagesToAdd
+        {
+            get => _newFrontpagesToAdd;
+            set
+            {
+                _newFrontpagesToAdd = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Frontpages> FrontpagesList
+        {
+            get { return _frontpagesList; }
+            set
+            {
+                _frontpagesList = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Filter
         public string ProcessOrderNoTextBoxOutput
         {
@@ -58,20 +85,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                ManageTables.Instance.FrontpagesList.Clear();
+                FrontpagesList.Clear();
 
                 foreach (var f in _completeFrontpagesList)
                 {
                     var v = f.ProcessOrder_No.ToString().ToLower();
                     if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.FrontpagesList.Add(f);
+                        FrontpagesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -83,20 +110,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _dateTextBoxOutput = value;
 
-                ManageTables.Instance.FrontpagesList.Clear();
+                FrontpagesList.Clear();
 
                 foreach (var f in _completeFrontpagesList)
                 {
                     var v = f.Date.ToString().ToLower();
                     if (v.Contains(_dateTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.FrontpagesList.Add(f);
+                        FrontpagesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_dateTextBoxOutput))
                 {
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -108,20 +135,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _finishedProductNoTextBoxOutput = value;
 
-                ManageTables.Instance.FrontpagesList.Clear();
+                FrontpagesList.Clear();
 
                 foreach (var f in _completeFrontpagesList)
                 {
                     var v = f.FinishedProduct_No.ToString().ToLower();
                     if (v.Contains(_finishedProductNoTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.FrontpagesList.Add(f);
+                        FrontpagesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_finishedProductNoTextBoxOutput))
                 {
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -133,20 +160,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _columnTextBoxOutput = value;
 
-                ManageTables.Instance.FrontpagesList.Clear();
+                FrontpagesList.Clear();
 
                 foreach (var f in _completeFrontpagesList)
                 {
                     var v = f.Colunm.ToString().ToLower();
                     if (v.Contains(_columnTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.FrontpagesList.Add(f);
+                        FrontpagesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_columnTextBoxOutput))
                 {
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -158,20 +185,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                ManageTables.Instance.FrontpagesList.Clear();
+                FrontpagesList.Clear();
 
                 foreach (var f in _completeFrontpagesList)
                 {
                     var v = f.Note.ToLower();
                     if (v.Contains(_noteTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.FrontpagesList.Add(f);
+                        FrontpagesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_noteTextBoxOutput))
                 {
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -183,20 +210,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weekNoTextBoxOutput = value;
 
-                ManageTables.Instance.FrontpagesList.Clear();
+                FrontpagesList.Clear();
 
                 foreach (var f in _completeFrontpagesList)
                 {
                     var v = f.Week_No.ToString().ToLower();
                     if (v.Contains(_weekNoTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.FrontpagesList.Add(f);
+                        FrontpagesList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_weekNoTextBoxOutput))
                 {
-                    ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                    FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
                 }
             }
         }
@@ -204,8 +231,8 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshAll()
         {
-            ManageTables.Instance.FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
+            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            Parallel.ForEach(FrontpagesList, frontpage =>
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             });
@@ -213,8 +240,8 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         public void RefreshLastTen()
         {
-            ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-            foreach (var frontpage in ManageTables.Instance.FrontpagesList)
+            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            foreach (var frontpage in FrontpagesList)
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             }
@@ -222,16 +249,14 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         public void SaveAll()
         {
-            //Todo try catch save
-            Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
+            Parallel.ForEach(FrontpagesList, frontpage =>
             {
-                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
                 InputValidator.CheckIfInputsAreValid(ref frontpage);
             });
 
-            Parallel.ForEach(ManageTables.Instance.FrontpagesList, frontpage =>
+            Parallel.ForEach(FrontpagesList, frontpage =>
             {
-                ModelGenerics.UpdateByObjectAndId(frontpage.ProcessOrder_No, frontpage);
+                ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
             });
             message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
@@ -247,7 +272,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
-            var instanceNewFrontpagesToAdd = ManageTables.Instance.NewFrontpagesToAdd;
+            var instanceNewFrontpagesToAdd = NewFrontpagesToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
 
             //Autofills
@@ -256,8 +281,8 @@ namespace UniBase.Model.K2.ButtonMethods
             
             if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {
-                ManageTables.Instance.FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-                ManageTables.Instance.NewFrontpagesToAdd = new Frontpages();
+                FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+                NewFrontpagesToAdd = new Frontpages();
             }
             else
             {
@@ -282,8 +307,8 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             int id = (int)obj;
 
-            Frontpages del = ManageTables.Instance.FrontpagesList.First(d => d.ProcessOrder_No == id);
-            int index = ManageTables.Instance.FrontpagesList.IndexOf(del);
+            Frontpages del = FrontpagesList.First(d => d.ProcessOrder_No == id);
+            int index = FrontpagesList.IndexOf(del);
 
             SelectedFrontpageId = index;
         }

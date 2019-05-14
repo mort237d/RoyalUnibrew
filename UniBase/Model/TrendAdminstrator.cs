@@ -8,7 +8,7 @@ using UniBase.Model.K2;
 
 namespace UniBase.Model
 {
-    class TrendAdminstrator : INotifyPropertyChanged
+    public class TrendAdminstrator : INotifyPropertyChanged
     {
         private ComboBoxItem _graphType = new ComboBoxItem();
         private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
@@ -117,21 +117,21 @@ namespace UniBase.Model
                     {
                         amountOfItemsWithSameDate++;
                         if (comboboxInput == "Vægt")
-                        {
-                            tempTotalValue += CompleteControlSchedulesList[i].Weight;
+                        { //todo check om weight er null selvom den ikke burde være
+                            tempTotalValue += (double)CompleteControlSchedulesList[i].Weight;
                             minValue = constantValues.MinWeight;
                             maxValue = constantValues.MaxWeight;
                             
                         }
                         else if (comboboxInput == "MipMa")
                         {
-                            tempTotalValue += CompleteControlSchedulesList[i].MipMA;
+                            tempTotalValue += (double)CompleteControlSchedulesList[i].MipMA;
                             minValue = constantValues.MinMipMa;
                             maxValue = constantValues.MaxMipMa;
                         }
                         else if (comboboxInput == "Lud Koncentration")
                         {
-                            tempTotalValue += CompleteControlSchedulesList[i].LudKoncentration;
+                            tempTotalValue += (double)CompleteControlSchedulesList[i].LudKoncentration;
                             minValue = constantValues.MinLudkoncentration;
                             maxValue = constantValues.MaxLudkoncentration;
                         }

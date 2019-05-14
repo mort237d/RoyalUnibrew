@@ -13,6 +13,11 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
         private ObservableCollection<Productions> _completeProductionsList = ModelGenerics.GetAll(new Productions());
 
+        private ObservableCollection<Productions> _productionsList;
+
+        private Productions _newProductions = new Productions();
+
+
         private Message message = new Message();
 
         private int _selectedProductionId;
@@ -28,6 +33,26 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _processOrderNoTextBoxOutput;
         #endregion
 
+        public Productions NewProductions
+        {
+            get { return _newProductions; }
+            set
+            {
+                _newProductions = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Productions> ProductionsList
+        {
+            get { return _productionsList; }
+            set
+            {
+                _productionsList = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Filter
         public string ProductionIdTextBoxOutput
         {
@@ -36,20 +61,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _productionIdTextBoxOutput = value;
 
-                ManageTables.Instance.ProductionsList.Clear();
+                ProductionsList.Clear();
 
                 foreach (var f in _completeProductionsList)
                 {
                     var v = f.Production_ID.ToString().ToLower();
                     if (v.Contains(_productionIdTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ProductionsList.Add(f);
+                        ProductionsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_productionIdTextBoxOutput))
                 {
-                    ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
                 }
             }
         }
@@ -61,20 +86,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _palletPutInStock0001TextBoxOutput = value;
 
-                ManageTables.Instance.ProductionsList.Clear();
+                ProductionsList.Clear();
 
                 foreach (var f in _completeProductionsList)
                 {
                     var v = f.PalletPutInStock0001.ToString().ToLower();
                     if (v.Contains(_palletPutInStock0001TextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ProductionsList.Add(f);
+                        ProductionsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_palletPutInStock0001TextBoxOutput))
                 {
-                    ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
                 }
             }
         }
@@ -86,20 +111,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tapmachineTextBoxOutput = value;
 
-                ManageTables.Instance.ProductionsList.Clear();
+                ProductionsList.Clear();
 
                 foreach (var f in _completeProductionsList)
                 {
                     var v = f.Tapmachine.ToString().ToLower();
                     if (v.Contains(_tapmachineTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ProductionsList.Add(f);
+                        ProductionsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_tapmachineTextBoxOutput))
                 {
-                    ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
                 }
             }
         }
@@ -111,20 +136,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _totalKegsPrPalletTextBoxOutput = value;
 
-                ManageTables.Instance.ProductionsList.Clear();
+                ProductionsList.Clear();
 
                 foreach (var f in _completeProductionsList)
                 {
                     var v = f.TotalKegsPrPallet.ToString().ToLower();
                     if (v.Contains(_totalKegsPrPalletTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ProductionsList.Add(f);
+                        ProductionsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_totalKegsPrPalletTextBoxOutput))
                 {
-                    ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
                 }
             }
         }
@@ -136,20 +161,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _counterTextBoxOutput = value;
 
-                ManageTables.Instance.ProductionsList.Clear();
+                ProductionsList.Clear();
 
                 foreach (var f in _completeProductionsList)
                 {
                     var v = f.Counter.ToString().ToLower();
                     if (v.Contains(_counterTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ProductionsList.Add(f);
+                        ProductionsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_counterTextBoxOutput))
                 {
-                    ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
                 }
             }
         }
@@ -161,20 +186,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _palletCounterTextBoxOutput = value;
 
-                ManageTables.Instance.ProductionsList.Clear();
+                ProductionsList.Clear();
 
                 foreach (var f in _completeProductionsList)
                 {
                     var v = f.PalletCounter.ToString().ToLower();
                     if (v.Contains(_palletCounterTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ProductionsList.Add(f);
+                        ProductionsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_palletCounterTextBoxOutput))
                 {
-                    ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
                 }
             }
         }
@@ -186,20 +211,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _batchDateTextBoxOutput = value;
 
-                ManageTables.Instance.ProductionsList.Clear();
+                ProductionsList.Clear();
 
                 foreach (var f in _completeProductionsList)
                 {
                     var v = f.BatchDate.ToString().ToLower();
                     if (v.Contains(_batchDateTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ProductionsList.Add(f);
+                        ProductionsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_batchDateTextBoxOutput))
                 {
-                    ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
                 }
             }
         }
@@ -211,20 +236,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                ManageTables.Instance.ProductionsList.Clear();
+                ProductionsList.Clear();
 
                 foreach (var f in _completeProductionsList)
                 {
                     var v = f.ProcessOrder_No.ToString().ToLower();
                     if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ProductionsList.Add(f);
+                        ProductionsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                    ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
                 }
             }
         }
@@ -253,9 +278,9 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         public void RefreshAll()
         {
-            ManageTables.Instance.ProductionsList = ModelGenerics.GetAll(new Productions());
+            ProductionsList = ModelGenerics.GetAll(new Productions());
 
-            Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
+            Parallel.ForEach(ProductionsList, production =>
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
             });
@@ -264,9 +289,9 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshLastTen()
         {
-            ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
 
-            Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
+            Parallel.ForEach(ProductionsList, production =>
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
             });
@@ -275,16 +300,16 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            ManageTables.Instance.ProductionsList = ModelGenerics.GetAll(new Productions());
+            ProductionsList = ModelGenerics.GetAll(new Productions());
 
-            Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
+            Parallel.ForEach(ProductionsList, production =>
             {
                 InputValidator.CheckIfInputsAreValid(ref production);
             });
 
-            Parallel.ForEach(ManageTables.Instance.ProductionsList, production =>
+            Parallel.ForEach(ProductionsList, production =>
             {
-                ModelGenerics.UpdateByObjectAndId(production.Production_ID, production);
+                ModelGenerics.UpdateByObjectAndId((int)production.Production_ID, production);
             });
             message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
@@ -300,18 +325,18 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
-            var ObjectToAdd = ManageTables.Instance.NewProductions;
+            var ObjectToAdd = NewProductions;
             InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
 
             //Autofills
 
             if (ModelGenerics.CreateByObject(ObjectToAdd))
             {
-                ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
 
-                ManageTables.Instance.NewProductions = new Productions
+                NewProductions = new Productions
                 {
-                    ProcessOrder_No = ManageTables.Instance.ProductionsList.Last().ProcessOrder_No
+                    ProcessOrder_No = ProductionsList.Last().ProcessOrder_No
                 };
             }
             else
@@ -325,8 +350,8 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             int id = (int)obj;
 
-            Productions del = ManageTables.Instance.ProductionsList.First(d => d.Production_ID == id);
-            int index = ManageTables.Instance.ProductionsList.IndexOf(del);
+            Productions del = ProductionsList.First(d => d.Production_ID == id);
+            int index = ProductionsList.IndexOf(del);
 
             SelectedProductionId = index;
         }

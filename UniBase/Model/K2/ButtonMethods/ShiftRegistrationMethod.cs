@@ -13,6 +13,10 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
         private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
 
+        private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
+
+        private ShiftRegistrations _newShiftRegistrations = new ShiftRegistrations();
+
         private Message message = new Message();
 
         private int _selectedShiftRegistrationId;
@@ -49,6 +53,26 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        public ShiftRegistrations NewShiftRegistrations
+        {
+            get { return _newShiftRegistrations; }
+            set
+            {
+                _newShiftRegistrations = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ShiftRegistrations> ShiftRegistrationsList
+        {
+            get { return _shiftRegistrationsList; }
+            set
+            {
+                _shiftRegistrationsList = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Filters
 
         public string ShiftRegistrationIdTextBoxOutput
@@ -58,20 +82,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _shiftRegistrationIdTextBoxOutput = value;
 
-                ManageTables.Instance.ShiftRegistrationsList.Clear();
+                ShiftRegistrationsList.Clear();
 
                 foreach (var f in _completeShiftRegistrationsList)
                 {
                     var v = f.ShiftRegistration_ID.ToString().ToLower();
                     if (v.Contains(_shiftRegistrationIdTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ShiftRegistrationsList.Add(f);
+                        ShiftRegistrationsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_shiftRegistrationIdTextBoxOutput))
                 {
-                    ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
                 }
             }
         }
@@ -83,20 +107,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _startTimeTextBoxOutput = value;
 
-                ManageTables.Instance.ShiftRegistrationsList.Clear();
+                ShiftRegistrationsList.Clear();
 
                 foreach (var f in _completeShiftRegistrationsList)
                 {
                     var v = f.Start_Time.ToString().ToLower();
                     if (v.Contains(_startTimeTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ShiftRegistrationsList.Add(f);
+                        ShiftRegistrationsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_startTimeTextBoxOutput))
                 {
-                    ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
                 }
             }
         }
@@ -108,20 +132,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _endDateTextBoxOutput = value;
 
-                ManageTables.Instance.ShiftRegistrationsList.Clear();
+                ShiftRegistrationsList.Clear();
 
                 foreach (var f in _completeShiftRegistrationsList)
                 {
                     var v = f.End_Date.ToString().ToLower();
                     if (v.Contains(_endDateTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ShiftRegistrationsList.Add(f);
+                        ShiftRegistrationsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_endDateTextBoxOutput))
                 {
-                    ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
                 }
             }
         }
@@ -133,20 +157,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _breaksTextBoxOutput = value;
 
-                ManageTables.Instance.ShiftRegistrationsList.Clear();
+                ShiftRegistrationsList.Clear();
 
                 foreach (var f in _completeShiftRegistrationsList)
                 {
                     var v = f.Breaks.ToString().ToLower();
                     if (v.Contains(_breaksTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ShiftRegistrationsList.Add(f);
+                        ShiftRegistrationsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_breaksTextBoxOutput))
                 {
-                    ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
                 }
             }
         }
@@ -158,20 +182,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _totalHoursTextBoxOutput = value;
 
-                ManageTables.Instance.ShiftRegistrationsList.Clear();
+                ShiftRegistrationsList.Clear();
 
                 foreach (var f in _completeShiftRegistrationsList)
                 {
                     var v = f.TotalHours.ToString().ToLower();
                     if (v.Contains(_totalHoursTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ShiftRegistrationsList.Add(f);
+                        ShiftRegistrationsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_totalHoursTextBoxOutput))
                 {
-                    ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
                 }
             }
         }
@@ -183,20 +207,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _staffTextBoxOutput = value;
 
-                ManageTables.Instance.ShiftRegistrationsList.Clear();
+                ShiftRegistrationsList.Clear();
 
                 foreach (var f in _completeShiftRegistrationsList)
                 {
                     var v = f.Staff.ToString().ToLower();
                     if (v.Contains(_staffTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ShiftRegistrationsList.Add(f);
+                        ShiftRegistrationsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_staffTextBoxOutput))
                 {
-                    ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
                 }
             }
         }
@@ -208,20 +232,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _initialsTextBoxOutput = value;
 
-                ManageTables.Instance.ShiftRegistrationsList.Clear();
+                ShiftRegistrationsList.Clear();
 
                 foreach (var f in _completeShiftRegistrationsList)
                 {
                     var v = f.Initials.ToString().ToLower();
                     if (v.Contains(_initialsTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ShiftRegistrationsList.Add(f);
+                        ShiftRegistrationsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_initialsTextBoxOutput))
                 {
-                    ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
                 }
             }
         }
@@ -233,20 +257,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                ManageTables.Instance.ShiftRegistrationsList.Clear();
+                ShiftRegistrationsList.Clear();
 
                 foreach (var f in _completeShiftRegistrationsList)
                 {
                     var v = f.ProcessOrder_No.ToString().ToLower();
                     if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
                     {
-                        ManageTables.Instance.ShiftRegistrationsList.Add(f);
+                        ShiftRegistrationsList.Add(f);
                     }
                 }
 
                 if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
                 {
-                    ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+                    ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
                 }
             }
         }
@@ -256,21 +280,25 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshAll()
         {
-            ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
         {
-            ManageTables.Instance.ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
         public void SaveAll()
         {
-            Parallel.ForEach(ManageTables.Instance.ShiftRegistrationsList, shiftRegistrations =>
+            Parallel.ForEach(ShiftRegistrationsList, shiftRegistrations =>
             {
-                ModelGenerics.UpdateByObjectAndId(shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
+                InputValidator.CheckIfInputsAreValid(ref shiftRegistrations);
+            });
+            Parallel.ForEach(ShiftRegistrationsList, shiftRegistrations =>
+            {
+                ModelGenerics.UpdateByObjectAndId((int)shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
             });
             message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
         }
@@ -286,18 +314,18 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
-            var ObjectToAdd = ManageTables.Instance.NewShiftRegistrations;
+            var ObjectToAdd = NewShiftRegistrations;
             InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
 
             //Autofills
 
             if (ModelGenerics.CreateByObject(ObjectToAdd))
             {
-                ManageTables.Instance.ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+                ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
 
-                ManageTables.Instance.NewProductions = new Productions
+                NewShiftRegistrations = new ShiftRegistrations()
                 {
-                    ProcessOrder_No = ManageTables.Instance.ProductionsList.Last().ProcessOrder_No
+                    StartTimeStringHelper = 
                 };
             }
             else
@@ -310,8 +338,8 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             int id = (int)obj;
 
-            ShiftRegistrations del = ManageTables.Instance.ShiftRegistrationsList.First(d => d.ShiftRegistration_ID == id);
-            int index = ManageTables.Instance.ShiftRegistrationsList.IndexOf(del);
+            ShiftRegistrations del = ShiftRegistrationsList.First(d => d.ShiftRegistration_ID == id);
+            int index = ShiftRegistrationsList.IndexOf(del);
 
             SelectedShiftRegistrationId = index;
         }
