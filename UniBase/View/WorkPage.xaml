@@ -342,9 +342,9 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.CommentsOnChangedDate, Mode=TwoWay}" Height="42" FontSize="10"/>
                                 <Line/>
@@ -519,19 +519,19 @@
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.TimeStringHelper}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.TimeStringHelper}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Weight, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.KegTest, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.KegTest, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.LudKoncentration, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.MipMA, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.NewControlSchedules.Note, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString, Mode=TwoWay}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Note, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString, Mode=TwoWay}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
                                     <Image Source="Images/AddButton.png"/>

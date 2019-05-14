@@ -13,34 +13,16 @@ namespace UniBase.Model.K2
     public class ManageTables :INotifyPropertyChanged
     {
         #region Properties
-
-        public Frontpages NewFrontpagesToAdd
-        {
-            get => _newFrontpagesToAdd;
-            set
-            {
-                _newFrontpagesToAdd = value; 
-                OnPropertyChanged();
-            }
-        }
-        
-        public ControlRegistrations NewControlRegistrationsToAdd
-        {
-            get => _newControlRegistrationsToAdd;
-            set
-            {
-                _newControlRegistrationsToAdd = value;
-                OnPropertyChanged();
-            }
-        }
-
+        public ControlRegistrationMethod ControlRegistrationMethod { get; private set; }
+        public ControlScheduleMethod ControlScheduleMethod { get; private set; }
+        public FrontpageMethod FrontpageMethod { get; private set; }
         public ProductionMethod ProductionMethod { get; set; }
-
         public ShiftRegistrationMethod ShiftRegistrationMethod { get; set; }
-
         public TuMethod TuMethod { get; set; }
+        public XamlBindings XamlBindings { get; set; }
+        public TrendAdminstrator TrendAdminstrator { get; private set; }
         #endregion
-        
+
         #region PropLists
         public List<string> FrontPageProps { get; set; }
         public List<string> ProductProps { get; set; }
@@ -65,6 +47,8 @@ namespace UniBase.Model.K2
             ProductionMethod = new ProductionMethod();
             ShiftRegistrationMethod = new ShiftRegistrationMethod();
             TuMethod = new TuMethod();
+            XamlBindings = new XamlBindings();
+            TrendAdminstrator = new TrendAdminstrator();
         }
         
         private void GenerateHeaderLists()
