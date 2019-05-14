@@ -19,7 +19,6 @@ namespace RestService.Models
         [Column(TypeName = "date")]
         public DateTime Expiry_Date { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string CommentsOnChangedDate { get; set; }
 
