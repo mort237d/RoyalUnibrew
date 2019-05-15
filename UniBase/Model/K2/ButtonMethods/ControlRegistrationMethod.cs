@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -16,6 +15,11 @@ namespace UniBase.Model.K2.ButtonMethods
         public ControlRegistrationMethod()
         {
             Initialize();
+
+            foreach (var p in PropertyInfos)
+            {
+                Debug.WriteLine("\t \n " + p, "ControlRegistrationMethod");
+            }
         }
 
         #region Fields
@@ -28,7 +32,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
 
-        private PropertyInfo[] PropertyInfos = typeof(Frontpages).GetProperties();
+        private PropertyInfo[] PropertyInfos = typeof(ControlRegistrations).GetProperties();
 
         private Message _message = new Message();
 
@@ -307,8 +311,8 @@ namespace UniBase.Model.K2.ButtonMethods
             InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
 
             //todo Find  fix for expiry date
-            instanceNewControlRegistrationsToAdd.Expiry_Date = DateTime.Now.AddDays(30);
-
+            instanceNewControlRegistrationsToAdd.FinishedProductNo = ModelGenerics.GetById(new Frontpages(), instanceNewControlRegistrationsToAdd.ProcessOrder_No).FinishedProduct_No;
+            instanceNewControlRegistrationsToAdd.Expiry_Date = instanceNewControlRegistrationsToAdd.Production_Date.AddDays(ModelGenerics.GetById(new Products(), instanceNewControlRegistrationsToAdd.FinishedProductNo).BestBeforeDateLength);
             
 
             if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
@@ -321,7 +325,8 @@ namespace UniBase.Model.K2.ButtonMethods
                     EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo,
                     KegSize = ControlRegistrationsList.Last().KegSize,
                     ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No,
-                    ControlAlcoholSpearDispenser = false
+                    ControlAlcoholSpearDispenser = false,
+                    Production_Date = ControlRegistrationsList.Last().Production_Date,
                 };
 
             }
