@@ -5,7 +5,7 @@ using UniBase.Model.K2.ButtonMethods;
 
 namespace UniBase.Model.K2
 {
-    public class TUs : INotifyPropertyChanged
+    public class Us : INotifyPropertyChanged
     {
         private int _processOrderNo;
         private int _thirdDayTotal;
@@ -20,30 +20,30 @@ namespace UniBase.Model.K2
         private int _tuId;
 
 
-        private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
+        private CalculateTuTotal _calculateTuTotal = new CalculateTuTotal();
 
-        public TUs()
+        public Us()
         {
             
         }
 
-        public TUs(int tU_ID, int firstDayStart_TU, int firstDayEnd_TU, int firstDay_Total, int secoundDayStart_TU, int secoundDayEnd_TU, int secoundDay_Total, int thirdDayStart_TU, int thirdDayEnd_TU, int thirdDay_Total, int processOrder_No, Frontpages frontpage)
+        public Us(int tUId, int firstDayStartTu, int firstDayEndTu, int firstDayTotal, int secoundDayStartTu, int secoundDayEndTu, int secoundDayTotal, int thirdDayStartTu, int thirdDayEndTu, int thirdDayTotal, int processOrderNo, Frontpages frontpage)
         {
-            TU_ID = tU_ID;
-            FirstDayStart_TU = firstDayStart_TU;
-            FirstDayEnd_TU = firstDayEnd_TU;
-            FirstDay_Total = firstDay_Total;
-            SecoundDayStart_TU = secoundDayStart_TU;
-            SecoundDayEnd_TU = secoundDayEnd_TU;
-            SecoundDay_Total = secoundDay_Total;
-            ThirdDayStart_TU = thirdDayStart_TU;
-            ThirdDayEnd_TU = thirdDayEnd_TU;
-            ThirdDay_Total = thirdDay_Total;
-            ProcessOrder_No = processOrder_No;
+            TuId = tUId;
+            FirstDayStartTu = firstDayStartTu;
+            FirstDayEndTu = firstDayEndTu;
+            FirstDayTotal = firstDayTotal;
+            SecoundDayStartTu = secoundDayStartTu;
+            SecoundDayEndTu = secoundDayEndTu;
+            SecoundDayTotal = secoundDayTotal;
+            ThirdDayStartTu = thirdDayStartTu;
+            ThirdDayEndTu = thirdDayEndTu;
+            ThirdDayTotal = thirdDayTotal;
+            ProcessOrderNo = processOrderNo;
             Frontpage = frontpage;
         }
 
-        public int TU_ID
+        public int TuId
         {
             get => _tuId;
             set
@@ -54,7 +54,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int FirstDayStart_TU
+        public int FirstDayStartTu
         {
             get => _firstDayStartTu;
             set
@@ -62,11 +62,11 @@ namespace UniBase.Model.K2
                 if (value == _firstDayStartTu) return;
                 _firstDayStartTu = value;
                 OnPropertyChanged();
-                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
+                FirstDayTotal = _calculateTuTotal.CalculateTuDayTotal(FirstDayStartTu, FirstDayEndTu);
             }
         }
 
-        public int FirstDayEnd_TU
+        public int FirstDayEndTu
         {
             get => _firstDayEndTu;
             set
@@ -74,11 +74,11 @@ namespace UniBase.Model.K2
                 if (value == _firstDayEndTu) return;
                 _firstDayEndTu = value;
                 OnPropertyChanged();
-                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
+                FirstDayTotal = _calculateTuTotal.CalculateTuDayTotal(FirstDayStartTu, FirstDayEndTu);
             }
         }
 
-        public int FirstDay_Total
+        public int FirstDayTotal
         {
             get => _firstDayTotal;
             set
@@ -89,7 +89,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int SecoundDayStart_TU
+        public int SecoundDayStartTu
         {
             get => _secoundDayStartTu;
             set
@@ -97,11 +97,11 @@ namespace UniBase.Model.K2
                 if (value == _secoundDayStartTu) return;
                 _secoundDayStartTu = value;
                 OnPropertyChanged();
-                SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
+                SecoundDayTotal = _calculateTuTotal.CalculateTuDayTotal(SecoundDayStartTu, SecoundDayEndTu);
             }
         }
 
-        public int SecoundDayEnd_TU
+        public int SecoundDayEndTu
         {
             get => _secoundDayEndTu;
             set
@@ -109,11 +109,11 @@ namespace UniBase.Model.K2
                 if (value == _secoundDayEndTu) return;
                 _secoundDayEndTu = value;
                 OnPropertyChanged();
-                SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
+                SecoundDayTotal = _calculateTuTotal.CalculateTuDayTotal(SecoundDayStartTu, SecoundDayEndTu);
             }
         }
 
-        public int SecoundDay_Total
+        public int SecoundDayTotal
         {
             get => _secoundDayTotal;
             set
@@ -124,7 +124,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ThirdDayStart_TU
+        public int ThirdDayStartTu
         {
             get => _thirdDayStartTu;
             set
@@ -132,11 +132,11 @@ namespace UniBase.Model.K2
                 if (value == _thirdDayStartTu) return;
                 _thirdDayStartTu = value;
                 OnPropertyChanged();
-                ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
+                ThirdDayTotal = _calculateTuTotal.CalculateTuDayTotal(ThirdDayStartTu, ThirdDayEndTu);
             }
         }
 
-        public int ThirdDayEnd_TU
+        public int ThirdDayEndTu
         {
             get => _thirdDayEndTu;
             set
@@ -144,11 +144,11 @@ namespace UniBase.Model.K2
                 if (value == _thirdDayEndTu) return;
                 _thirdDayEndTu = value;
                 OnPropertyChanged();
-                ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
+                ThirdDayTotal = _calculateTuTotal.CalculateTuDayTotal(ThirdDayStartTu, ThirdDayEndTu);
             }
         }
 
-        public int ThirdDay_Total
+        public int ThirdDayTotal
         {
             get => _thirdDayTotal;
             set
@@ -159,7 +159,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ProcessOrder_No
+        public int ProcessOrderNo
         {
             get => _processOrderNo;
             set

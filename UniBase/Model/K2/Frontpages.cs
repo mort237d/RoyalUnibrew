@@ -24,17 +24,17 @@ namespace UniBase.Model.K2
 
         }
 
-        public Frontpages(int processOrder_No, DateTime date, int finishedProduct_No, int colunm, string note, int week_No)
+        public Frontpages(int processOrderNo, DateTime date, int finishedProductNo, int colunm, string note, int weekNo)
         {
-            ProcessOrder_No = processOrder_No;
+            ProcessOrderNo = processOrderNo;
             Date = date;
-            FinishedProduct_No = finishedProduct_No;
+            FinishedProductNo = finishedProductNo;
             Colunm = colunm;
             Note = note;
-            Week_No = week_No;
+            WeekNo = weekNo;
         }
 
-        public int ProcessOrder_No
+        public int ProcessOrderNo
         {
             get => _processOrderNo;
             set
@@ -54,7 +54,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int FinishedProduct_No
+        public int FinishedProductNo
         {
             get => _finishedProductNo;
             set
@@ -87,7 +87,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int Week_No
+        public int WeekNo
         {
             get => _weekNo;
             set

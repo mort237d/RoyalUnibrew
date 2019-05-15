@@ -6,7 +6,7 @@ namespace UniBase.Model
 {
     public class GenericMethod
     {
-        private bool sorted = true;
+        private bool _sorted = true;
 
         public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut)
         {
@@ -33,15 +33,15 @@ namespace UniBase.Model
             var tempList = new ObservableCollection<T>();
             PropertyInfo prop = typeof(T).GetProperty(property);
             
-            if (!sorted)
+            if (!_sorted)
             {
                 tempList = new ObservableCollection<T>(input.OrderBy(item => prop.GetValue(item, null)));
-                sorted = true;
+                _sorted = true;
             }
             else
             {
                 tempList = new ObservableCollection<T>(input.OrderByDescending(item => prop.GetValue(item, null)));
-                sorted = false;
+                _sorted = false;
             }
 
             return tempList;

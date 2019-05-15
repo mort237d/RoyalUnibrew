@@ -10,9 +10,9 @@ namespace UniBase.Model.K2
         private string _productName;
         private int _bestBeforeDateLength;
 
-        public Products(int finishedProduct_No, string productName, int bestBeforeDateLength)
+        public Products(int finishedProductNo, string productName, int bestBeforeDateLength)
         {
-            FinishedProduct_No = finishedProduct_No;
+            FinishedProductNo = finishedProductNo;
             ProductName = productName;
             BestBeforeDateLength = bestBeforeDateLength;
         }
@@ -22,7 +22,7 @@ namespace UniBase.Model.K2
             
         }
 
-        public int FinishedProduct_No
+        public int FinishedProductNo
         {
             get => _finishedProductNo;
             set
