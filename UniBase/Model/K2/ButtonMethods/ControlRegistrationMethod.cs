@@ -424,8 +424,18 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
                 controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm");  
             });
+
+            NewControlRegistrationsToAdd = new ControlRegistrations
+            {
+                CapNo = ControlRegistrationsList.Last().CapNo,
+                EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo,
+                KegSize = ControlRegistrationsList.Last().KegSize,
+                ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No,
+                ControlAlcoholSpearDispenser = false
+            };
         }
         public void RefreshAll()
         {
@@ -434,6 +444,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
                 controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm");
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
@@ -474,9 +485,7 @@ namespace UniBase.Model.K2.ButtonMethods
             //todo Find  fix for expiry date
             instanceNewControlRegistrationsToAdd.Expiry_Date = DateTime.Now.AddDays(30);
 
-            string kegSize = KegSize.Content.ToString().Remove(_kegSize.Content.ToString().Length-1);
-            double.TryParse(kegSize, out double kegSizeDouble);
-            instanceNewControlRegistrationsToAdd.KegSize = kegSizeDouble;
+            
 
             if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
             {
