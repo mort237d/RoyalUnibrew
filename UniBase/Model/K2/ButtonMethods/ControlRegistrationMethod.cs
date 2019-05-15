@@ -429,6 +429,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 Debug.WriteLine("Error");
         }
 
+        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
+        {
+            get { return _completeControlRegistrationsList; }
+            set { _completeControlRegistrationsList = value; }
+        }
         #region SingleTon
         private static ControlRegistrationMethod _instance;
         private static object syncLock = new object();
@@ -452,11 +457,6 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
-        {
-            get { return _completeControlRegistrationsList; }
-            set { _completeControlRegistrationsList = value; }
-        }
 
         #endregion
 

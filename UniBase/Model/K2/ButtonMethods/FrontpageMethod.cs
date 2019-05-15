@@ -192,7 +192,8 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            var CRM= ControlRegistrationMethod.Instance;
+            var CRM = ControlRegistrationMethod.Instance;
+            var CSM = ControlScheduleMethod.In
             if (SelectedFrontpage != null)
             {
                 foreach (var i in CRM.CompleteControlRegistrationsList)
@@ -200,7 +201,15 @@ namespace UniBase.Model.K2.ButtonMethods
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
                         //CRM.CompleteControlRegistrationsList.Remove(i);
-                        Debug.WriteLine("\t \nControlRegistration_ID" + i.ControlRegistration_ID, "DELETE");
+                        Debug.WriteLine("\t \nControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
+                    }
+                }
+                foreach (var i in CRM.CompleteControlRegistrationsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        //CRM.CompleteControlRegistrationsList.Remove(i);
+                        Debug.WriteLine("\t \nControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
                     }
                 }
                 //_genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");

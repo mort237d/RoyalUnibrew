@@ -312,6 +312,32 @@ namespace UniBase.Model.K2.ButtonMethods
                 Debug.WriteLine("Error");
         }
 
+        #region SingleTon
+        private static TuMethod _instance;
+        private static object syncLock = new object();
+
+        public static TuMethod Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new TuMethod();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
+
+        #endregion
+
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
