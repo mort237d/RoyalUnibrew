@@ -12,7 +12,7 @@ namespace UniBase.Model
     {
         private ComboBoxItem _graphType = new ComboBoxItem();
         private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
-
+        //Test
         public ObservableCollection<Trends> _trendList = new ObservableCollection<Trends>();
 
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
