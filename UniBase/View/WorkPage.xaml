@@ -935,14 +935,14 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
@@ -956,14 +956,14 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
