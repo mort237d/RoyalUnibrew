@@ -19,7 +19,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
         private Message message = new Message();
-        private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private GenericMethod _genericMethod = new GenericMethod();
         private XamlBindings _xamlBindings = new XamlBindings();
         
         private int _selectedFrontpageId;
@@ -88,7 +88,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[0].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[0].Name, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -99,7 +99,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _dateTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[1].Name, _dateTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[1].Name, _dateTextBoxOutput);
             }
         }
 
@@ -110,7 +110,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _finishedProductNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[2].Name, _finishedProductNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[2].Name, _finishedProductNoTextBoxOutput);
             }
         }
 
@@ -121,7 +121,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _columnTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[3].Name, _columnTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[3].Name, _columnTextBoxOutput);
             }
         }
 
@@ -132,7 +132,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[4].Name, _noteTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[4].Name, _noteTextBoxOutput);
             }
         }
 
@@ -143,7 +143,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weekNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[5].Name, _weekNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[5].Name, _weekNoTextBoxOutput);
             }
         }
         #endregion
@@ -192,11 +192,8 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            if (SelectedFrontpage != null)
-            {
-                //TODO Make deletion method
-                Debug.WriteLine(SelectedFrontpage.ProcessOrder_No);
-            }
+            //if (SelectedFrontpage != null)
+            //    _genericMethod.Delete(SelectedControlRegistration, new ControlRegistrations(), _completeControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID");
         }
 
         public void AddNewItem()
@@ -249,17 +246,17 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[1].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[2].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[3].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[4].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[5].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
             else
                 Debug.WriteLine("Error");
         }

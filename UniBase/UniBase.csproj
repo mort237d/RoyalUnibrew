@@ -145,7 +145,7 @@
     <Compile Include="Model\ManageUser.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\OutOfBoundColorChange.cs" />
-    <Compile Include="Model\SortAndFilter.cs" />
+    <Compile Include="Model\GenericMethod.cs" />
     <Compile Include="Model\TrendAdminstrator.cs" />
     <Compile Include="Model\Trends.cs" />
     <Compile Include="Model\Login\User.cs" />

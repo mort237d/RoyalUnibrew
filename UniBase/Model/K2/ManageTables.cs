@@ -21,7 +21,7 @@ namespace UniBase.Model.K2
         public TuMethod TuMethod { get; set; }
         public XamlBindings XamlBindings { get; set; }
         public TrendAdminstrator TrendAdminstrator { get; set; }
-        public SortAndFilter SortAndFilter { get; set; }
+        public GenericMethod GenericMethod { get; set; }
         #endregion
 
         #region PropLists
@@ -53,7 +53,7 @@ namespace UniBase.Model.K2
 
             XamlBindings = new XamlBindings();
             TrendAdminstrator = new TrendAdminstrator();
-            SortAndFilter = new SortAndFilter();
+            GenericMethod = new GenericMethod();
         }
         
         
