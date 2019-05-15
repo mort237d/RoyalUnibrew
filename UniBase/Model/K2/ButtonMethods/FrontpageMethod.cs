@@ -193,7 +193,10 @@ namespace UniBase.Model.K2.ButtonMethods
         public void DeleteItem()
         {
             var CRM = ControlRegistrationMethod.Instance;
-            var CSM = ControlScheduleMethod.In
+            var CSM = ControlScheduleMethod.Instance;
+            var PM = ProductionMethod.Instance;
+            var SRM = ShiftRegistrationMethod.Instance;
+            var TM = TuMethod.Instance;
             if (SelectedFrontpage != null)
             {
                 foreach (var i in CRM.CompleteControlRegistrationsList)
@@ -201,15 +204,35 @@ namespace UniBase.Model.K2.ButtonMethods
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
                         //CRM.CompleteControlRegistrationsList.Remove(i);
-                        Debug.WriteLine("\t \nControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
+                        Debug.WriteLine("\t \n ControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
                     }
                 }
-                foreach (var i in CRM.CompleteControlRegistrationsList)
+                foreach (var i in CSM.CompleteControlSchedulesList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        //CRM.CompleteControlRegistrationsList.Remove(i);
-                        Debug.WriteLine("\t \nControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
+                        Debug.WriteLine("\t \n ControlSchedule_ID: " + i.ControlSchedule_ID, "DELETE");
+                    }
+                }
+                foreach (var i in PM.CompleteProductionsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        Debug.WriteLine("\t \n Production_ID: " + i.Production_ID, "DELETE");
+                    }
+                }
+                foreach (var i in SRM.CompleteShiftRegistrationsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        Debug.WriteLine("\t \n ShiftRegistration_ID: " + i.ShiftRegistration_ID, "DELETE");
+                    }
+                }
+                foreach (var i in TM.CompleteTUsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        Debug.WriteLine("\t \n TU_ID: " + i.TU_ID, "DELETE");
                     }
                 }
                 //_genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");

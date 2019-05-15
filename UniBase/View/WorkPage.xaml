@@ -39,7 +39,7 @@
             <!--Command="{Binding GoToHelpPageCommand}"/>-->
         </CommandBar>
 
-        <Pivot Grid.Row="1" x:Name="ColumnPivot" SelectedIndex="5">
+        <Pivot Grid.Row="1" x:Name="ColumnPivot" SelectedIndex="0">
             <!--#region K2-->
             <PivotItem Header="K2">
                 <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="0">
