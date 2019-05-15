@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using UniBase.Annotations;
@@ -22,6 +23,10 @@ namespace UniBase.Model.K2.ButtonMethods
         private ControlSchedules _newControlSchedules = new ControlSchedules();
 
         private Message message = new Message();
+        
+        private XamlBindings _xamlBindings = new XamlBindings();
+        private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private PropertyInfo[] PropertyInfos = typeof(ControlSchedules).GetProperties();
 
         private int _selectedControlScheduleId;
         private ControlSchedules _selectedControlSchedule;
@@ -87,195 +92,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlScheduleIdTextBoxOutput = value;
 
-                ControlSchedulesList.Clear();
-
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.ControlSchedule_ID.ToString().ToLower();
-                    if (v.Contains(_controlScheduleIdTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_controlScheduleIdTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
-            }
-        }
-
-        public string TimeTextBoxOutput
-        {
-            get { return _timeTextBoxOutput; }
-            set
-            {
-                _timeTextBoxOutput = value;
-
-                ControlSchedulesList.Clear();
-
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.Time.ToString().ToLower();
-                    if (v.Contains(_timeTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_timeTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
-            }
-        }
-
-        public string WeightTextBoxOutput
-        {
-            get { return _weightTextBoxOutput; }
-            set
-            {
-                _weightTextBoxOutput = value;
-
-                ControlSchedulesList.Clear();
-
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.Weight.ToString().ToLower();
-                    if (v.Contains(_weightTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_weightTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
-            }
-        }
-
-        public string KegTestTextBoxOutput
-        {
-            get { return _kegTestTextBoxOutput; }
-            set
-            {
-                _kegTestTextBoxOutput = value;
-                ControlSchedulesList.Clear();
-
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.KegTest.ToString().ToLower();
-                    if (v.Contains(_kegTestTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_kegTestTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
-            }
-        }
-
-        public string LudKoncentrationTextBoxOutput
-        {
-            get { return _ludKoncentrationTextBoxOutput; }
-            set
-            {
-                _ludKoncentrationTextBoxOutput = value;
-
-                ControlSchedulesList.Clear();
-
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.LudKoncentration.ToString().ToLower();
-                    if (v.Contains(_ludKoncentrationTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_ludKoncentrationTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
-            }
-        }
-
-        public string MipMaTextBoxOutput
-        {
-            get { return _mipMaTextBoxOutput; }
-            set
-            {
-                _mipMaTextBoxOutput = value;
-
-                ControlSchedulesList.Clear();
-
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.MipMA.ToString().ToLower();
-                    if (v.Contains(_mipMaTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_mipMaTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
-            }
-        }
-
-        public string SignatureTextBoxOutput
-        {
-            get { return _signatureTextBoxOutput; }
-            set
-            {
-                _signatureTextBoxOutput = value;
-
-                ControlSchedulesList.Clear();
-
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.Signature.ToString().ToLower();
-                    if (v.Contains(_signatureTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_signatureTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
-            }
-        }
-
-        public string NoteTextBoxOutput
-        {
-            get { return _noteTextBoxOutput; }
-            set
-            {
-                _noteTextBoxOutput = value;
-
-                ControlSchedulesList.Clear();
-
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.Note.ToString().ToLower();
-                    if (v.Contains(_noteTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_noteTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[0].Name, _controlScheduleIdTextBoxOutput);
             }
         }
 
@@ -286,25 +103,88 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+            }
+        }
 
-                ControlSchedulesList.Clear();
+        public string TimeTextBoxOutput
+        {
+            get { return _timeTextBoxOutput; }
+            set
+            {
+                _timeTextBoxOutput = value;
 
-                foreach (var f in _completeControlSchedulesList)
-                {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
-                    if (v.Contains(_processOrderNoTextBoxOutput.ToLower()))
-                    {
-                        ControlSchedulesList.Add(f);
-                    }
-                }
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[2].Name, _timeTextBoxOutput);
+            }
+        }
 
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-                }
+        public string WeightTextBoxOutput
+        {
+            get { return _weightTextBoxOutput; }
+            set
+            {
+                _weightTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[3].Name, _weightTextBoxOutput);
+            }
+        }
+
+        public string KegTestTextBoxOutput
+        {
+            get { return _kegTestTextBoxOutput; }
+            set
+            {
+                _kegTestTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[4].Name, _kegTestTextBoxOutput);
+            }
+        }
+
+        public string LudKoncentrationTextBoxOutput
+        {
+            get { return _ludKoncentrationTextBoxOutput; }
+            set
+            {
+                _ludKoncentrationTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[5].Name, _ludKoncentrationTextBoxOutput);
+            }
+        }
+
+        public string MipMaTextBoxOutput
+        {
+            get { return _mipMaTextBoxOutput; }
+            set
+            {
+                _mipMaTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[6].Name, _mipMaTextBoxOutput);
+            }
+        }
+
+        public string SignatureTextBoxOutput
+        {
+            get { return _signatureTextBoxOutput; }
+            set
+            {
+                _signatureTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[7].Name, _signatureTextBoxOutput);
+            }
+        }
+
+        public string NoteTextBoxOutput
+        {
+            get { return _noteTextBoxOutput; }
+            set
+            {
+                _noteTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[8].Name, _noteTextBoxOutput);
             }
         }
         #endregion
+
         public void Initialize()
         {
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
@@ -387,9 +267,37 @@ namespace UniBase.Model.K2.ButtonMethods
             SelectedControlScheduleId = index;
         }
 
-        public void SortButtonClick(object obj)
+        public void SortButtonClick(object id)
         {
-            throw new System.NotImplementedException();
+            if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[0].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[0].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[1].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[1].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[2].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[2].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[3].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[3].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[4].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[4].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[5].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[5].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[6].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[6].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[7].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[7].Name);
+            else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[8].Header)
+                ControlSchedulesList = _sortAndFilter.Sort<ControlSchedules>(ControlSchedulesList,
+                    PropertyInfos[8].Name);
+            else
+                Debug.WriteLine("Error");
         }
 
         #region INotify

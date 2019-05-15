@@ -28,11 +28,12 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
 
-        private PropertyInfo[] controlRegistrationPropertyInfos = typeof(Frontpages).GetProperties();
+        private PropertyInfo[] PropertyInfos = typeof(Frontpages).GetProperties();
 
         private Message _message = new Message();
 
         private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private XamlBindings _xamlBindings = new XamlBindings();
 
         private int _selectedControlRegistrationId;
         private ControlRegistrations _selectedControlRegistration;
@@ -61,280 +62,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlRegistrationIdTextBoxOutput = value;
 
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.ControlRegistration_ID.ToString().ToLower();
-                    if (v.Contains(_controlRegistrationIdTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_controlRegistrationIdTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string TimeTextBoxOutput
-        {
-            get { return _timeTextBoxOutput; }
-            set
-            {
-                _timeTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.Time.ToString().ToLower();
-                    if (v.Contains(_timeTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_timeTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string ProductionDateTextBoxOutput
-        {
-            get { return _productionDateTextBoxOutput; }
-            set
-            {
-                _productionDateTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.Production_Date.ToString().ToLower();
-                    if (v.Contains(_productionDateTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_productionDateTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string CommentsOnChangedDateTextBoxOutput
-        {
-            get { return _commentsOnChangedDateTextBoxOutput; }
-            set
-            {
-                _commentsOnChangedDateTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.CommentsOnChangedDate.ToString().ToLower();
-                    if (v.Contains(_commentsOnChangedDateTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_commentsOnChangedDateTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string ControlAlcoholSpearDispenserTextBoxOutput
-        {
-            get { return _controlAlcoholSpearDispenserTextBoxOutput; }
-            set
-            {
-                _controlAlcoholSpearDispenserTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.ControlAlcoholSpearDispenser.ToString().ToLower();
-                    if (v.Contains(_controlAlcoholSpearDispenserTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_controlAlcoholSpearDispenserTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string CapNoTextBoxOutput
-        {
-            get { return _capNoTextBoxOutput; }
-            set
-            {
-                _capNoTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.CapNo.ToString().ToLower();
-                    if (v.Contains(_capNoTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_capNoTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string EtiquetteNoTextBoxOutput
-        {
-            get { return _etiquetteNoTextBoxOutput; }
-            set
-            {
-                _etiquetteNoTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.EtiquetteNo.ToString().ToLower();
-                    if (v.Contains(_etiquetteNoTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_etiquetteNoTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string KegSizeTextBoxOutput
-        {
-            get { return _kegSizeTextBoxOutput; }
-            set
-            {
-                _kegSizeTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.KegSize.ToString().ToLower();
-                    if (v.Contains(_kegSizeTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_kegSizeTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string SignatureTextBoxOutput
-        {
-            get { return _signatureTextBoxOutput; }
-            set
-            {
-                _signatureTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.Signature.ToString().ToLower();
-                    if (v.Contains(_signatureTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_signatureTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string FirstPalletDepalletizingTextBoxOutput
-        {
-            get { return _firstPalletDepalletizingTextBoxOutput; }
-            set
-            {
-                _firstPalletDepalletizingTextBoxOutput = value;
-
-
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.FirstPalletDepalletizing.ToString().ToLower();
-                    if (v.Contains(_firstPalletDepalletizingTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_firstPalletDepalletizingTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string LastPalletDepalletizingTextBoxOutput
-        {
-            get { return _lastPalletDepalletizingTextBoxOutput; }
-            set
-            {
-                _lastPalletDepalletizingTextBoxOutput = value;
-                
-                ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.LastPalletDepalletizing.ToString().ToLower();
-                    if (v.Contains(_lastPalletDepalletizingTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_lastPalletDepalletizingTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[0].Name, _controlRegistrationIdTextBoxOutput);
             }
         }
 
@@ -345,21 +73,117 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                ControlRegistrationsList.Clear();
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+            }
+        }
 
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
-                    if (v.Contains(_processOrderNoTextBoxOutput))
-                    {
-                        ControlRegistrationsList.Add(f);
-                    }
-                }
+        public string TimeTextBoxOutput
+        {
+            get { return _timeTextBoxOutput; }
+            set
+            {
+                _timeTextBoxOutput = value;
 
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[2].Name, _timeTextBoxOutput);
+            }
+        }
+
+        public string ProductionDateTextBoxOutput
+        {
+            get { return _productionDateTextBoxOutput; }
+            set
+            {
+                _productionDateTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[3].Name, _productionDateTextBoxOutput);
+            }
+        }
+
+        public string CommentsOnChangedDateTextBoxOutput
+        {
+            get { return _commentsOnChangedDateTextBoxOutput; }
+            set
+            {
+                _commentsOnChangedDateTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[4].Name, _commentsOnChangedDateTextBoxOutput);
+            }
+        }
+
+        public string ControlAlcoholSpearDispenserTextBoxOutput
+        {
+            get { return _controlAlcoholSpearDispenserTextBoxOutput; }
+            set
+            {
+                _controlAlcoholSpearDispenserTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[5].Name, _controlAlcoholSpearDispenserTextBoxOutput);
+            }
+        }
+
+        public string CapNoTextBoxOutput
+        {
+            get { return _capNoTextBoxOutput; }
+            set
+            {
+                _capNoTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[6].Name, _capNoTextBoxOutput);
+            }
+        }
+
+        public string EtiquetteNoTextBoxOutput
+        {
+            get { return _etiquetteNoTextBoxOutput; }
+            set
+            {
+                _etiquetteNoTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[7].Name, _etiquetteNoTextBoxOutput);
+            }
+        }
+
+        public string KegSizeTextBoxOutput
+        {
+            get { return _kegSizeTextBoxOutput; }
+            set
+            {
+                _kegSizeTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[8].Name, _kegSizeTextBoxOutput);
+            }
+        }
+
+        public string SignatureTextBoxOutput
+        {
+            get { return _signatureTextBoxOutput; }
+            set
+            {
+                _signatureTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[9].Name, _signatureTextBoxOutput);
+            }
+        }
+
+        public string FirstPalletDepalletizingTextBoxOutput
+        {
+            get { return _firstPalletDepalletizingTextBoxOutput; }
+            set
+            {
+                _firstPalletDepalletizingTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[10].Name, _firstPalletDepalletizingTextBoxOutput);
+            }
+        }
+
+        public string LastPalletDepalletizingTextBoxOutput
+        {
+            get { return _lastPalletDepalletizingTextBoxOutput; }
+            set
+            {
+                _lastPalletDepalletizingTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[11].Name, _lastPalletDepalletizingTextBoxOutput);
             }
         }
         #endregion
@@ -565,30 +389,47 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SortButtonClick(object id)
         {
-            switch (id.ToString())
-            {
-                case "Kontrol Registrering ID":
-                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[0].Name);
-                    break;
-                case "ProcessOrdre Nr":
-                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[1].Name);
-                    break;
-                case "Tid":
-                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[2].Name);
-                    break;
-                case "Produktionsdato":
-                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[3].Name);
-                    break;
-                case "Kommentar vedr. ændret dato":
-                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[4].Name);
-                    break;
-                case "Uge Nr":
-                    ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList, controlRegistrationPropertyInfos[5].Name);
-                    break;
-                default:
-                    Debug.WriteLine("Nothing");
-                    break;
-            }
+            if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[0].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[0].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[1].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[1].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[2].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[2].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[3].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[3].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[4].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[4].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[5].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[5].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[6].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[6].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[7].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[7].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[8].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[8].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[9].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[9].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[10].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[10].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[11].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[11].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[12].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[12].Name);
+            else
+                Debug.WriteLine("Error");
         }
 
         #region SingleTon
