@@ -436,7 +436,7 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
