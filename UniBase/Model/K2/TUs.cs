@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
+using UniBase.Model.K2.ButtonMethods;
 
 namespace UniBase.Model.K2
 {
@@ -18,6 +19,9 @@ namespace UniBase.Model.K2
         private int _firstDayEndTu;
         private int _firstDayStartTu;
         private int _tuId;
+
+
+        private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
 
         public TUs()
         {
@@ -59,6 +63,7 @@ namespace UniBase.Model.K2
                 if (value == _firstDayStartTu) return;
                 _firstDayStartTu = value;
                 OnPropertyChanged();
+                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
             }
         }
 
@@ -70,6 +75,7 @@ namespace UniBase.Model.K2
                 if (value == _firstDayEndTu) return;
                 _firstDayEndTu = value;
                 OnPropertyChanged();
+                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
             }
         }
 
@@ -92,6 +98,7 @@ namespace UniBase.Model.K2
                 if (value == _secoundDayStartTu) return;
                 _secoundDayStartTu = value;
                 OnPropertyChanged();
+                SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
             }
         }
 
@@ -103,6 +110,7 @@ namespace UniBase.Model.K2
                 if (value == _secoundDayEndTu) return;
                 _secoundDayEndTu = value;
                 OnPropertyChanged();
+                SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
             }
         }
 
@@ -125,6 +133,7 @@ namespace UniBase.Model.K2
                 if (value == _thirdDayStartTu) return;
                 _thirdDayStartTu = value;
                 OnPropertyChanged();
+                ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
             }
         }
 
@@ -136,6 +145,7 @@ namespace UniBase.Model.K2
                 if (value == _thirdDayEndTu) return;
                 _thirdDayEndTu = value;
                 OnPropertyChanged();
+                ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
             }
         }
 
