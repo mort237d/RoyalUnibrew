@@ -197,13 +197,16 @@ namespace UniBase.Model.K2.ButtonMethods
             var PM = ProductionMethod.Instance;
             var SRM = ShiftRegistrationMethod.Instance;
             var TM = TuMethod.Instance;
+            
+
+            //TODO Update all lists!!!
             if (SelectedFrontpage != null)
             {
                 foreach (var i in CRM.CompleteControlRegistrationsList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        //CRM.CompleteControlRegistrationsList.Remove(i);
+                        ModelGenerics.DeleteById(new ControlRegistrations(), i.ControlRegistration_ID);
                         Debug.WriteLine("\t \n ControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
                     }
                 }
@@ -211,6 +214,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
+                        ModelGenerics.DeleteById(new ControlSchedules(), i.ControlSchedule_ID);
                         Debug.WriteLine("\t \n ControlSchedule_ID: " + i.ControlSchedule_ID, "DELETE");
                     }
                 }
@@ -218,6 +222,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
+                        ModelGenerics.DeleteById(new Productions(), i.Production_ID);
                         Debug.WriteLine("\t \n Production_ID: " + i.Production_ID, "DELETE");
                     }
                 }
@@ -225,6 +230,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
+                        ModelGenerics.DeleteById(new ShiftRegistrations(), i.ShiftRegistration_ID);
                         Debug.WriteLine("\t \n ShiftRegistration_ID: " + i.ShiftRegistration_ID, "DELETE");
                     }
                 }
@@ -232,10 +238,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
+                        ModelGenerics.DeleteById(new TUs(), i.TU_ID);
                         Debug.WriteLine("\t \n TU_ID: " + i.TU_ID, "DELETE");
                     }
                 }
-                //_genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
+                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
             }
         }
 
