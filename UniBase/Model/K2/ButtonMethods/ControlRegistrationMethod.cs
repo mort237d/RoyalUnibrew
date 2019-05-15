@@ -16,6 +16,11 @@ namespace UniBase.Model.K2.ButtonMethods
         public ControlRegistrationMethod()
         {
             Initialize();
+
+            foreach (var p in PropertyInfos)
+            {
+                Debug.WriteLine("\t \n " + p, "ControlRegistrationMethod");
+            }
         }
 
         #region Fields
@@ -28,7 +33,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
 
-        private PropertyInfo[] PropertyInfos = typeof(Frontpages).GetProperties();
+        private PropertyInfo[] PropertyInfos = typeof(ControlRegistrations).GetProperties();
 
         private Message _message = new Message();
 
