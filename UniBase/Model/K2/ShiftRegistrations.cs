@@ -25,16 +25,16 @@ namespace UniBase.Model.K2
             
         }
 
-        public ShiftRegistrations(int shiftRegistration_ID, DateTime start_Time, DateTime end_Date, int breaks, int totalHours, int staff, string initials, int processOrder_No, Frontpages frontpage)
+        public ShiftRegistrations(int shiftRegistrationId, DateTime startTime, DateTime endDate, int breaks, int totalHours, int staff, string initials, int processOrderNo, Frontpages frontpage)
         {
-            ShiftRegistration_ID = shiftRegistration_ID;
-            Start_Time = start_Time;
-            End_Date = end_Date;
+            ShiftRegistrationId = shiftRegistrationId;
+            StartTime = startTime;
+            EndDate = endDate;
             Breaks = breaks;
             TotalHours = totalHours;
             Staff = staff;
             Initials = initials;
-            ProcessOrder_No = processOrder_No;
+            ProcessOrderNo = processOrderNo;
             Frontpage = frontpage;
         }
 
@@ -58,7 +58,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ShiftRegistration_ID
+        public int ShiftRegistrationId
         {
             get => _shiftRegistrationId;
             set
@@ -113,7 +113,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ProcessOrder_No
+        public int ProcessOrderNo
         {
             get => _processOrderNo;
             set
@@ -124,7 +124,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime Start_Time
+        public DateTime StartTime
         {
             get => _startTime;
             set
@@ -135,7 +135,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime End_Date
+        public DateTime EndDate
         {
             get => _endDate;
             set
