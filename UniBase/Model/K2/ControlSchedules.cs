@@ -109,7 +109,6 @@ namespace UniBase.Model.K2
                 if (_mipMa != null)
                 {
                     MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
-
                 }
             }
         }
@@ -119,7 +118,6 @@ namespace UniBase.Model.K2
             get => _signature;
             set
             {
-                if (value == _signature) return;
                 _signature = value;
                 OnPropertyChanged();
             }
@@ -130,7 +128,6 @@ namespace UniBase.Model.K2
             get => _note;
             set
             {
-                if (value == _note) return;
                 _note = value;
                 OnPropertyChanged();
             }
@@ -141,7 +138,6 @@ namespace UniBase.Model.K2
             get => _processOrderNo;
             set
             {
-                if (value == _processOrderNo) return;
                 _processOrderNo = value;
                 OnPropertyChanged();
             }
@@ -162,7 +158,6 @@ namespace UniBase.Model.K2
             get => _time;
             set
             {
-                if (value.Equals(_time)) return;
                 _time = value;
                 OnPropertyChanged();
             }

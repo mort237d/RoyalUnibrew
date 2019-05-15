@@ -240,7 +240,7 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             var objectToAdd = NewControlSchedules;
             InputValidator.CheckIfInputsAreValid(ref objectToAdd);
-
+            
            
             if (ModelGenerics.CreateByObject(objectToAdd))
             {
