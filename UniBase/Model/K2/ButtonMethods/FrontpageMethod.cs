@@ -192,8 +192,19 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            //if (SelectedFrontpage != null)
-            //    _genericMethod.Delete(SelectedControlRegistration, new ControlRegistrations(), _completeControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID");
+            var CRM= ControlRegistrationMethod.Instance;
+            if (SelectedFrontpage != null)
+            {
+                foreach (var i in CRM.CompleteControlRegistrationsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        //CRM.CompleteControlRegistrationsList.Remove(i);
+                        Debug.WriteLine("\t \nControlRegistration_ID" + i.ControlRegistration_ID, "DELETE");
+                    }
+                }
+                //_genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
+            }
         }
 
         public void AddNewItem()

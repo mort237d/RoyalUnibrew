@@ -92,7 +92,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlScheduleIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[0].Name, _controlScheduleIdTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[0].Name, _controlScheduleIdTextBoxOutput);
             }
         }
 
@@ -103,7 +103,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -114,7 +114,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _timeTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[2].Name, _timeTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[2].Name, _timeTextBoxOutput);
             }
         }
 
@@ -125,7 +125,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weightTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[3].Name, _weightTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[3].Name, _weightTextBoxOutput);
             }
         }
 
@@ -136,7 +136,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _kegTestTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[4].Name, _kegTestTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[4].Name, _kegTestTextBoxOutput);
             }
         }
 
@@ -147,7 +147,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _ludKoncentrationTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[5].Name, _ludKoncentrationTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[5].Name, _ludKoncentrationTextBoxOutput);
             }
         }
 
@@ -158,7 +158,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _mipMaTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[6].Name, _mipMaTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[6].Name, _mipMaTextBoxOutput);
             }
         }
 
@@ -169,7 +169,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _signatureTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[7].Name, _signatureTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[7].Name, _signatureTextBoxOutput);
             }
         }
 
@@ -180,9 +180,16 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, _completeControlSchedulesList, PropertyInfos[8].Name, _noteTextBoxOutput);
+                _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[8].Name, _noteTextBoxOutput);
             }
         }
+
+        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList
+        {
+            get { return _completeControlSchedulesList; }
+            set { _completeControlSchedulesList = value; }
+        }
+
         #endregion
 
         public void Initialize()
@@ -230,7 +237,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void DeleteItem()
         {
             if (SelectedControlSchedule != null)
-                _genericMethod.Delete(SelectedControlSchedule, new ControlSchedules(), _completeControlSchedulesList, ControlSchedulesList, "ControlSchedule_ID");
+                _genericMethod.DeleteSelected(SelectedControlSchedule, new ControlSchedules(), CompleteControlSchedulesList, ControlSchedulesList, "ControlSchedule_ID");
         }
 
         public void AddNewItem()

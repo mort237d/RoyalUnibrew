@@ -93,7 +93,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _shiftRegistrationIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[0].Name, _shiftRegistrationIdTextBoxOutput);
+                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[0].Name, _shiftRegistrationIdTextBoxOutput);
             }
         }
 
@@ -104,7 +104,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -115,7 +115,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _startTimeTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[2].Name, _startTimeTextBoxOutput);
+                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[2].Name, _startTimeTextBoxOutput);
             }
         }
 
@@ -126,7 +126,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _endDateTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[3].Name, _endDateTextBoxOutput);
+                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[3].Name, _endDateTextBoxOutput);
             }
         }
 
@@ -137,7 +137,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _breaksTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[4].Name, _breaksTextBoxOutput);
+                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[4].Name, _breaksTextBoxOutput);
             }
         }
 
@@ -148,7 +148,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _totalHoursTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[5].Name, _totalHoursTextBoxOutput);
+                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[5].Name, _totalHoursTextBoxOutput);
             }
         }
 
@@ -159,7 +159,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _staffTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[6].Name, _staffTextBoxOutput);
+                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[6].Name, _staffTextBoxOutput);
             }
         }
 
@@ -170,8 +170,14 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _initialsTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, _completeShiftRegistrationsList, PropertyInfos[7].Name, _initialsTextBoxOutput);
+                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[7].Name, _initialsTextBoxOutput);
             }
+        }
+
+        public ObservableCollection<ShiftRegistrations> CompleteShiftRegistrationsList
+        {
+            get { return _completeShiftRegistrationsList; }
+            set { _completeShiftRegistrationsList = value; }
         }
 
         #endregion
@@ -224,7 +230,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            _genericMethod.Delete(SelectedShiftRegistration, new ShiftRegistrations(), _completeShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID");
+            _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID");
         }
 
         public void AddNewItem()
