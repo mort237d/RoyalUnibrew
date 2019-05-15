@@ -27,7 +27,6 @@ namespace UniBase.Model.K2
         private string _productionsDateStringHelper;
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
-        private string _exipryDateStringHelper;
 
         private string _controlRegistrationAlcoholSpearDispenserControlled;
 
@@ -217,16 +216,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public string ExipryDateStringHelper
-        {
-            get { return _exipryDateStringHelper; }
-            set
-            {
-                _exipryDateStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
+       #endregion
 
         public TimeSpan Time
         {
@@ -275,7 +265,6 @@ namespace UniBase.Model.K2
             get => _expiryDate;
             set
             {
-                if (value.Equals(_expiryDate)) return;
                 _expiryDate = value;
                 OnPropertyChanged();
             }
