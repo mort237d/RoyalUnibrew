@@ -52,7 +52,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tuIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[0].Name, _tuIdTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[0].Name, _tuIdTextBoxOutput);
             }
         }
 
@@ -63,7 +63,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -74,7 +74,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[2].Name, _firstDayStartTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[2].Name, _firstDayStartTuTextBoxOutput);
             }
         }
 
@@ -85,7 +85,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[3].Name, _firstDayEndTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[3].Name, _firstDayEndTuTextBoxOutput);
             }
         }
 
@@ -96,7 +96,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[4].Name, _firstDayTotalTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[4].Name, _firstDayTotalTextBoxOutput);
             }
         }
 
@@ -107,7 +107,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[5].Name, _secoundDayStartTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[5].Name, _secoundDayStartTuTextBoxOutput);
             }
         }
 
@@ -118,7 +118,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[6].Name, _secoundDayEndTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[6].Name, _secoundDayEndTuTextBoxOutput);
             }
         }
 
@@ -129,7 +129,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[7].Name, _secoundDayTotalTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[7].Name, _secoundDayTotalTextBoxOutput);
             }
         }
 
@@ -140,7 +140,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[8].Name, _thirdDayStartTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[8].Name, _thirdDayStartTuTextBoxOutput);
             }
         }
 
@@ -151,7 +151,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[9].Name, _thirdDayEndTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[9].Name, _thirdDayEndTuTextBoxOutput);
             }
         }
 
@@ -162,7 +162,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, _completeTUsList, PropertyInfos[10].Name, _thirdDayTotalTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[10].Name, _thirdDayTotalTextBoxOutput);
             }
         }
 
@@ -207,6 +207,13 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
+
+        public ObservableCollection<TUs> CompleteTUsList
+        {
+            get { return _completeTUsList; }
+            set { _completeTUsList = value; }
+        }
+
         #endregion
         
         #region ButtonMethods
@@ -243,7 +250,14 @@ namespace UniBase.Model.K2.ButtonMethods
         public void DeleteItem()
         {
             if (SelectedTu != null)
-                _genericMethod.Delete(SelectedTu, new TUs(), _completeTUsList, TuList, "TU_ID");
+            {
+                _genericMethod.DeleteSelected(SelectedTu, new TUs(), CompleteTUsList, TuList, "TU_ID");
+                _message.ShowToastNotification("Slettet", "TU slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede TU, for at slette");
+            }
         }
 
         public void AddNewItem()
@@ -305,7 +319,31 @@ namespace UniBase.Model.K2.ButtonMethods
                 Debug.WriteLine("Error");
         }
 
-        
+        #region SingleTon
+        private static TuMethod _instance;
+        private static object syncLock = new object();
+
+        public static TuMethod Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new TuMethod();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
+
+        #endregion
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

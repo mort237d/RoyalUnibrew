@@ -53,7 +53,7 @@ namespace UniBase.Model
             return tempList;
         }
 
-        public void Delete<T>(T selectedItem, T type, ObservableCollection<T> completeList, ObservableCollection<T> list, string property)
+        public void DeleteSelected<T>(T selectedItem, T type, ObservableCollection<T> completeList, ObservableCollection<T> list, string property)
         {
             if (selectedItem != null)
             {

@@ -22,7 +22,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private Productions _newProductions = new Productions();
 
-        private Message message = new Message();
+        private Message _message = new Message();
 
         private XamlBindings _xamlBindings = new XamlBindings();
         private GenericMethod _genericMethod = new GenericMethod();
@@ -71,7 +71,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _productionIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[0].Name, _productionIdTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[0].Name, _productionIdTextBoxOutput);
             }
         }
 
@@ -82,7 +82,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -93,7 +93,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _palletPutInStock0001TextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[2].Name, _palletPutInStock0001TextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[2].Name, _palletPutInStock0001TextBoxOutput);
             }
         }
 
@@ -104,7 +104,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tapmachineTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[3].Name, _tapmachineTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[3].Name, _tapmachineTextBoxOutput);
             }
         }
 
@@ -115,7 +115,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _totalKegsPrPalletTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[4].Name, _totalKegsPrPalletTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[4].Name, _totalKegsPrPalletTextBoxOutput);
             }
         }
 
@@ -126,7 +126,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _counterTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[5].Name, _counterTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[5].Name, _counterTextBoxOutput);
             }
         }
 
@@ -137,7 +137,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _palletCounterTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[6].Name, _palletCounterTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[6].Name, _palletCounterTextBoxOutput);
             }
         }
 
@@ -148,7 +148,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _batchDateTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, _completeProductionsList, PropertyInfos[7].Name, _batchDateTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[7].Name, _batchDateTextBoxOutput);
             }
         }
 
@@ -171,6 +171,13 @@ namespace UniBase.Model.K2.ButtonMethods
                 OnPropertyChanged();
             }
         }
+
+        public ObservableCollection<Productions> CompleteProductionsList
+        {
+            get { return _completeProductionsList; }
+            set { _completeProductionsList = value; }
+        }
+
         #endregion
 
         #region ButtonMethods
@@ -191,7 +198,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
             });
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
@@ -202,7 +209,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
             });
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
         public void SaveAll()
@@ -218,13 +225,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 ModelGenerics.UpdateByObjectAndId((int)production.Production_ID, production);
             });
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
         public void DeleteItem()
         {
             if (SelectedProduction != null)
-                _genericMethod.Delete(SelectedProduction, new Productions(), _completeProductionsList, ProductionsList, "Production_ID");
+            {
+                _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID");
+                _message.ShowToastNotification("Slettet", "Produktion slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede produktion, for at slette");
+            }
         }
 
         public void AddNewItem()
@@ -281,6 +295,32 @@ namespace UniBase.Model.K2.ButtonMethods
             else
                 Debug.WriteLine("Error");
         }
+
+        #region SingleTon
+        private static ProductionMethod _instance;
+        private static object syncLock = new object();
+
+        public static ProductionMethod Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new ProductionMethod();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
+
+        #endregion
 
         #region INotify
 

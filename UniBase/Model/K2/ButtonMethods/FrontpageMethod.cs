@@ -18,7 +18,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
-        private Message message = new Message();
+        private Message _message = new Message();
         private GenericMethod _genericMethod = new GenericMethod();
         private XamlBindings _xamlBindings = new XamlBindings();
         
@@ -165,7 +165,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             });
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void RefreshLastTen()
         {
@@ -174,7 +174,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             }
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveAll()
         {
@@ -187,13 +187,69 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
             });
-            message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+            _message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
         public void DeleteItem()
         {
-            //if (SelectedFrontpage != null)
-            //    _genericMethod.Delete(SelectedControlRegistration, new ControlRegistrations(), _completeControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID");
+            var CRM = ControlRegistrationMethod.Instance;
+            var CSM = ControlScheduleMethod.Instance;
+            var PM = ProductionMethod.Instance;
+            var SRM = ShiftRegistrationMethod.Instance;
+            var TM = TuMethod.Instance;
+            
+
+            //TODO Update all lists!!!
+            if (SelectedFrontpage != null)
+            {
+                foreach (var i in CRM.CompleteControlRegistrationsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new ControlRegistrations(), i.ControlRegistration_ID);
+                        Debug.WriteLine("\t \n ControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
+                    }
+                }
+                foreach (var i in CSM.CompleteControlSchedulesList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new ControlSchedules(), i.ControlSchedule_ID);
+                        Debug.WriteLine("\t \n ControlSchedule_ID: " + i.ControlSchedule_ID, "DELETE");
+                    }
+                }
+                foreach (var i in PM.CompleteProductionsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new Productions(), i.Production_ID);
+                        Debug.WriteLine("\t \n Production_ID: " + i.Production_ID, "DELETE");
+                    }
+                }
+                foreach (var i in SRM.CompleteShiftRegistrationsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new ShiftRegistrations(), i.ShiftRegistration_ID);
+                        Debug.WriteLine("\t \n ShiftRegistration_ID: " + i.ShiftRegistration_ID, "DELETE");
+                    }
+                }
+                foreach (var i in TM.CompleteTUsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new TUs(), i.TU_ID);
+                        Debug.WriteLine("\t \n TU_ID: " + i.TU_ID, "DELETE");
+                    }
+                }
+                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
+
+                _message.ShowToastNotification("Slettet","Forside slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede forside, for at slette");
+            }
         }
 
         public void AddNewItem()
