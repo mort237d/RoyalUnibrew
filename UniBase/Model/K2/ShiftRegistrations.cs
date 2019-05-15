@@ -13,7 +13,7 @@ namespace UniBase.Model.K2
         private string _initials;
         private int _staff;
         private int _totalHours;
-        private DateTime _startTime; 
+        private DateTime _startTime;
         private DateTime _endDate;
 
 

@@ -11,6 +11,7 @@ namespace UniBase.Model
         public string PlaceholderString { get; set; } = "Tekst";
         public int PlaceHolderInt { get; set; } = 0;
         public double PlaceHolderDouble { get; set; } = 0.00;
+        public string PlaceHolderTime { get; set; } = "00:00";
         #endregion
 
         #region PropertyLists

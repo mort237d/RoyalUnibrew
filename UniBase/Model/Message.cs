@@ -9,8 +9,8 @@ namespace UniBase.Model
     {
         #region Field
 
-        private ManageUser _manageUser;
-
+        private static ManageUser _manageUser;
+        
 
         #endregion
 
@@ -24,6 +24,23 @@ namespace UniBase.Model
             
         }
 
+        #region Singleton
+
+        private static Message _instance;
+
+        public static Message Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Message();
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
 
         #region Methods
 

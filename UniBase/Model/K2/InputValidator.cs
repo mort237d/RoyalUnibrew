@@ -30,7 +30,7 @@ namespace UniBase.Model.K2
                 {
                     if (prop.Name.Contains("StringHelper"))
                     {
-                        if (propertyValue.ToString().Length >= 8)
+                        if (propertyValue.ToString().Length >= 5)
                         {
                             datesandtimespans.Add(propertyValue.ToString());
                         }
@@ -93,18 +93,20 @@ namespace UniBase.Model.K2
                         {
                             var split = datesandtimespans[listIndexCounter].Split(dateTimeChar[0]);
                             var secoundSplit = split[split.Length - 1].Split(timeSpanChar[0]);
+                            secoundSplit[0] = secoundSplit[0].Substring(3);
+                            //secoundSplit[0] = secoundSplit[0].Trim();
+                            split[2] = split[2].Remove(2);
 
-                            split[2] = split[2].Remove(4);
 
                             try
                             {
                                 if (secoundSplit.Length == 2)
                                 {
-                                    prop.SetValue(type, new DateTime(int.Parse(split[2]), int.Parse(split[1]), int.Parse(split[0]), int.Parse(secoundSplit[1]), int.Parse(secoundSplit[0]), 0), null);
+                                    prop.SetValue(type, new DateTime(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2]), int.Parse(secoundSplit[0]), int.Parse(secoundSplit[1]), 0), null);
                                 }
                                 else if (secoundSplit.Length == 3)
                                 {
-                                    prop.SetValue(type, new DateTime(int.Parse(split[2]), int.Parse(split[1]), int.Parse(split[0]), int.Parse(secoundSplit[2]), int.Parse(secoundSplit[1]), int.Parse(secoundSplit[0])), null);
+                                    prop.SetValue(type, new DateTime(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2]), int.Parse(secoundSplit[0]), int.Parse(secoundSplit[1]), int.Parse(secoundSplit[2])), null);
                                 }
                             }
                             catch
@@ -118,7 +120,7 @@ namespace UniBase.Model.K2
 
                             try
                             {
-                                prop.SetValue(type, new DateTime(int.Parse(split[2]), int.Parse(split[1]), int.Parse(split[0])), null);
+                                prop.SetValue(type, new DateTime(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
                             }
                             catch 
                             {
@@ -131,7 +133,16 @@ namespace UniBase.Model.K2
 
                             try
                             {
-                                prop.SetValue(type, new DateTime(0,0,0, int.Parse(split[2]), int.Parse(split[1]), int.Parse(split[0])), null);
+                                DateTime dateNow = DateTime.Now;
+                                if (split.Length == 3)
+                                {
+                                    prop.SetValue(type, new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
+                                }
+                                else
+                                {
+                                    prop.SetValue(type, new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, int.Parse(split[0]), int.Parse(split[1]), 0), null);
+
+                                }
                             }
                             catch
                             {

@@ -180,17 +180,32 @@ namespace UniBase.Model.K2.ButtonMethods
         public void Initialize()
         {
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
+            {
+                shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
+                shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
+            });
         }
 
         public void RefreshAll()
         {
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+            Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
+                {
+                    shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
+                    shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
+                });
             message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
         {
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
+            {
+                shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
+                shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
+            });
             message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 

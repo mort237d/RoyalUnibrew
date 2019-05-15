@@ -39,7 +39,7 @@
             <!--Command="{Binding GoToHelpPageCommand}"/>-->
         </CommandBar>
 
-        <Pivot Grid.Row="1" x:Name="ColumnPivot">
+        <Pivot Grid.Row="1" x:Name="ColumnPivot" SelectedIndex="5">
             <!--#region K2-->
             <PivotItem Header="K2">
                 <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="0">
@@ -90,7 +90,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    
+
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
@@ -362,7 +362,7 @@
                                     <ComboBoxItem Content="30L"/>
                                 </ComboBox>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.Signature, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                 <Line/>
@@ -436,7 +436,7 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
@@ -515,19 +515,19 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ControlSchedule_ID, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ControlSchedule_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.TimeStringHelper}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Weight, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Weight, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.KegTest, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.LudKoncentration, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.LudKoncentration, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.MipMA, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.MipMA, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
@@ -670,21 +670,21 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Production_ID, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Production_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                     <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                     <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletPutInStock0001, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletPutInStock0001, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                     <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Tapmachine, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Tapmachine, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                     <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.TotalKegsPrPallet, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.TotalKegsPrPallet, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                     <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Counter, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Counter, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                     <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletCounter, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletCounter, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                     <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.BatchDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.BatchDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" Height="42" FontSize="10"/>
                                     <Line/>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddProductionTable}">
                                     <Image Source="Images/AddButton.png"/>
@@ -758,14 +758,14 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Start_Time, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding StartTimeStringHelper, Mode=TwoWay}">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding End_Date, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EndDateStringHelper, Mode=TwoWay}">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
@@ -823,22 +823,25 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.ShiftRegistration_ID, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.ShiftRegistration_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.StartTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.StartTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.EndDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderTimeSpan}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.EndDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Breaks, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Breaks, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.TotalHours, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.TotalHours, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Staff, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Staff, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Initials, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Initials, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}" Height="42" FontSize="10"/>
                                 <Line/>
+                                <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddShiftRegistrationTable}">
+                                    <Image Source="Images/AddButton.png"/>
+                                </Button>
                             </StackPanel>
                         </StackPanel>
                     </PivotItem>
@@ -997,27 +1000,27 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.TU_ID, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.TU_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDay_Total, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDay_Total, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDay_Total, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDay_Total, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
-                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDay_Total, Mode=TwoWay}" PlaceholderText="{Binding XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
+                                <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDay_Total, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" Height="42" FontSize="10"/>
                                 <Line/>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Tilføj" Command="{Binding AddTUTable}">
                                     <Image Source="Images/AddButton.png"/>
@@ -1033,7 +1036,7 @@
             <PivotItem Header="K4"/>
             <PivotItem Header="K5"/>
             <PivotItem Header="Grafer" Visibility="Visible" >
-                <StackPanel>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  Margin="3">
                         <TextBlock FontWeight="SemiBold" Text="Vælg type graf" Margin="5,0,105,0"/>
                         <TextBlock FontWeight="SemiBold" Text="Vælg tidsperiode"/>
@@ -1078,32 +1081,18 @@
             </PivotItem>
             <PivotItem Header="Brugere">
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="6*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <GridView ItemsSource="{Binding ManageUser.Users}" SelectedItem="{Binding ManageUser.SelectedUser}" Margin="10,10,10,0">
+                <StackPanel Orientation="Horizontal">
+                    <GridView ItemsSource="{Binding ManageUser.Users}" SelectedItem="{Binding ManageUser.SelectedUser, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:ManageUser">
                                 <StackPanel Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageTb}" Width="100" Height="100"/>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name}"/>
+                                    <StackPanel>
+                                        <Image Height="60" Width="40" Source="Images/AddButton.png"></Image>
+                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding NameTb, Mode=TwoWay}"/>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding}" HorizontalAlignment="Center"/>
-                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="stk"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Indkøbspris: kr."/>
-                                            <TextBlock Text="{Binding BuyingPrice}" Margin="2,0,2,0"/>
-                                            <TextBlock Text=",-"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Salgspris: kr."/>
-                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"/>
-                                            <TextBlock Text=",-"/>
+                                            <TextBlock Text="{Binding EmailTb, Mode=TwoWay}"/>
+                                            <TextBlock Text="{Binding TelephoneNumberTb, Mode=TwoWay}"/>
                                         </StackPanel>
 
                                     </StackPanel>
@@ -1111,25 +1100,19 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    <Rectangle Fill="#16503F" Grid.Row="1" Margin="-11,-10,-11,0"/>
-                    <Grid Grid.Row="1" Margin="10,0,10,0">
-       
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Button HorizontalAlignment="Center" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand}"/>
-                            <Button HorizontalAlignment="Center" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,5,0,0"/>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                            
-                            <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb}"></TextBox>
-                            <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb}"></TextBox>
-                            <TextBox PlaceholderText="TelephoneNumber" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb}"></TextBox>
-                            <PasswordBox PlaceholderText="Password" Visibility="Visible" Password="{Binding ManageUser.PasswordTb}"></PasswordBox>
-                            <PasswordBox PlaceholderText="Confirm password" Visibility="Visible" Password="{Binding ManageUser.ConfirmPasswordTb}"></PasswordBox>
-                        </StackPanel>
-                        <Button HorizontalAlignment="Right" Content="Ændre bruger" Visibility="Visible" Command="{Binding}"/>
-                    </Grid>
+                    <StackPanel>
+                        <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}"></TextBox>
+                        <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}"></TextBox>
+                        <TextBox PlaceholderText="TelephoneNumber" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}"></TextBox>
+                        <PasswordBox PlaceholderText="Password" Visibility="Visible" Password="{Binding ManageUser.PasswordTb, Mode=TwoWay}"></PasswordBox>
+                        <PasswordBox PlaceholderText="Confirm password" Visibility="Visible" Password="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}"></PasswordBox>
+                        <TextBox PlaceholderText="Billedetest" Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"></TextBox>
+                        <Button HorizontalAlignment="Left" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Left" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Center" Content="Ændre bruger" Visibility="Visible" Command="{Binding}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                    </StackPanel>
 
-                </Grid>
+                </StackPanel>
 
             </PivotItem>
         </Pivot>

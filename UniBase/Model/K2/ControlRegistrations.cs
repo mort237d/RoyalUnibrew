@@ -12,7 +12,7 @@ namespace UniBase.Model.K2
         private bool _controlAlcoholSpearDispenser = false;
         private int _capNo;
         private int _etiquetteNo;
-        private double _kegSize;
+        private string _kegSize;
         private string _signature;
         private int _processOrderNo;
         private int _finishedProduct_No;
@@ -38,7 +38,7 @@ namespace UniBase.Model.K2
 
         public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date,
             DateTime expiry_Date, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo,
-            int etiquetteNo, double kegSize, string signature, DateTime firstPalletDepalletizing,
+            int etiquetteNo, string kegSize, string signature, DateTime firstPalletDepalletizing,
             DateTime lastPalletDepalletizing, int processOrder_No, Frontpages frontpage, int finishedProductNo)
         {
             ControlRegistration_ID = controlRegistration_ID;
@@ -143,7 +143,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public double KegSize
+        public string KegSize
         {
             get => _kegSize;
             set

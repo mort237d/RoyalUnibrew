@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 using UniBase.Model.Login;
@@ -135,6 +136,8 @@ namespace UniBase.Model
             Users.Add(new User("1", "1", "1", "1", "1"));
             Users.Add(new User("HEJ", "@hej.dk", "12340", "1", "1"));
 
+            CurrentUser = Users[0];
+
             _message = new Message(this);
         }
 
@@ -172,20 +175,11 @@ namespace UniBase.Model
             {
                 if (EmailTb.Contains(".dk") || EmailTb.Contains(".com"))
                 {
-                    foreach (var user in Users)
-                    {
-                        if (user.Email.Equals(EmailTb))
-                        {
-                            await _message.Error("Email findes allerede", user.Email + " findes allerede til en anden bruger");
-                            return;
-                        }
-                    }
-
                     if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage));
+                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
                             else Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
 
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
@@ -206,7 +200,6 @@ namespace UniBase.Model
                 if (SelectedUser != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
                 else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
             }
-            else await _message.Error("Sletning ugyldig", "Det er ikke muligt at slette dig selv i admin tilstand");
         }
 
         public void ButtonVisibility(User userToCheck)
