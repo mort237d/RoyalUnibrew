@@ -18,7 +18,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
-        private Message message = new Message();
+        private Message _message = new Message();
         private GenericMethod _genericMethod = new GenericMethod();
         private XamlBindings _xamlBindings = new XamlBindings();
         
@@ -165,7 +165,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             });
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void RefreshLastTen()
         {
@@ -174,7 +174,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             }
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveAll()
         {
@@ -187,7 +187,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
             });
-            message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+            _message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
         public void DeleteItem()
@@ -243,6 +243,12 @@ namespace UniBase.Model.K2.ButtonMethods
                     }
                 }
                 _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
+
+                _message.ShowToastNotification("Slettet","Forside slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede forside, for at slette");
             }
         }
 

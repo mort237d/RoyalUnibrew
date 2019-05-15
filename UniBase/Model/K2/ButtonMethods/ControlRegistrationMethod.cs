@@ -335,7 +335,14 @@ namespace UniBase.Model.K2.ButtonMethods
         public void DeleteItem()
         {
             if (SelectedControlRegistration != null)
+            {
                 _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID");
+                _message.ShowToastNotification("Slettet", "Kontrol Registrering slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede Kontrol Registrering, for at slette");
+            }
         }
         #endregion
 

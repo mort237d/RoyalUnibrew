@@ -22,7 +22,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private ShiftRegistrations _newShiftRegistrations = new ShiftRegistrations();
 
-        private Message message = new Message();
+        private Message _message = new Message();
 
         private XamlBindings _xamlBindings = new XamlBindings();
         private GenericMethod _genericMethod = new GenericMethod();
@@ -201,7 +201,7 @@ namespace UniBase.Model.K2.ButtonMethods
                     shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
                     shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
                 });
-            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
@@ -212,7 +212,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
                 shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
             });
-            message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
         public void SaveAll()
@@ -225,12 +225,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 ModelGenerics.UpdateByObjectAndId((int)shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
             });
-            message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
+            _message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
         }
 
         public void DeleteItem()
         {
-            _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID");
+            if (SelectedShiftRegistration != null)
+            {
+                _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID");
+                _message.ShowToastNotification("Slettet", "Vagt Registrering slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede Vagt Registrering, for at slette");
+            }
         }
 
         public void AddNewItem()

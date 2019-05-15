@@ -22,7 +22,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private Productions _newProductions = new Productions();
 
-        private Message message = new Message();
+        private Message _message = new Message();
 
         private XamlBindings _xamlBindings = new XamlBindings();
         private GenericMethod _genericMethod = new GenericMethod();
@@ -198,7 +198,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
             });
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
@@ -209,7 +209,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
             });
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
         public void SaveAll()
@@ -225,13 +225,20 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 ModelGenerics.UpdateByObjectAndId((int)production.Production_ID, production);
             });
-            message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
         public void DeleteItem()
         {
             if (SelectedProduction != null)
+            {
                 _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID");
+                _message.ShowToastNotification("Slettet", "Produktion slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede produktion, for at slette");
+            }
         }
 
         public void AddNewItem()

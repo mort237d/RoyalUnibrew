@@ -250,7 +250,14 @@ namespace UniBase.Model.K2.ButtonMethods
         public void DeleteItem()
         {
             if (SelectedTu != null)
+            {
                 _genericMethod.DeleteSelected(SelectedTu, new TUs(), CompleteTUsList, TuList, "TU_ID");
+                _message.ShowToastNotification("Slettet", "TU slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede TU, for at slette");
+            }
         }
 
         public void AddNewItem()
