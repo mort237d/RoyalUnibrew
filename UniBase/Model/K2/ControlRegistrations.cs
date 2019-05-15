@@ -15,7 +15,7 @@ namespace UniBase.Model.K2
         private string _kegSize;
         private string _signature;
         private int _processOrderNo;
-        private int _finishedProductNo;
+        private int _finishedProduct_No;
         private TimeSpan _time;
         private DateTime _productionDate;
         private DateTime _firstPalletDepalletizing;
@@ -35,15 +35,15 @@ namespace UniBase.Model.K2
             
         }
 
-        public ControlRegistrations(int controlRegistrationId, TimeSpan time, DateTime productionDate,
-            DateTime expiryDate, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo,
+        public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date,
+            DateTime expiry_Date, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo,
             int etiquetteNo, string kegSize, string signature, DateTime firstPalletDepalletizing,
-            DateTime lastPalletDepalletizing, int processOrderNo, Frontpages frontpage, int finishedProductNo)
+            DateTime lastPalletDepalletizing, int processOrder_No, Frontpages frontpage, int finishedProductNo)
         {
-            ControlRegistrationId = controlRegistrationId;
+            ControlRegistration_ID = controlRegistration_ID;
             Time = time;
-            ProductionDate = productionDate;
-            ExpiryDate = expiryDate;
+            Production_Date = production_Date;
+            Expiry_Date = expiry_Date;
             CommentsOnChangedDate = commentsOnChangedDate;
             ControlAlcoholSpearDispenser = controlAlcoholSpearDispenser;
             CapNo = capNo;
@@ -52,12 +52,12 @@ namespace UniBase.Model.K2
             Signature = signature;
             FirstPalletDepalletizing = firstPalletDepalletizing;
             LastPalletDepalletizing = lastPalletDepalletizing;
-            ProcessOrderNo = processOrderNo;
+            ProcessOrder_No = processOrder_No;
             Frontpage = frontpage;
             FinishedProductNo = finishedProductNo;
         }
 
-        public int ControlRegistrationId
+        public int ControlRegistration_ID
         {
             get => _controlRegistrationId;
             set
@@ -69,10 +69,10 @@ namespace UniBase.Model.K2
         }
         public int FinishedProductNo
         {
-            get { return _finishedProductNo; }
+            get { return _finishedProduct_No; }
             set
             {
-                _finishedProductNo = value;
+                _finishedProduct_No = value;
                 OnPropertyChanged();
             }
         }
@@ -88,7 +88,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ProcessOrderNo
+        public int ProcessOrder_No
         {
             get => _processOrderNo;
             set
@@ -228,7 +228,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime ProductionDate
+        public DateTime Production_Date
         {
             get => _productionDate;
             set
@@ -260,7 +260,7 @@ namespace UniBase.Model.K2
             }
         }
         
-        public DateTime ExpiryDate
+        public DateTime Expiry_Date
         {
             get => _expiryDate;
             set

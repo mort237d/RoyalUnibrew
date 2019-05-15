@@ -19,7 +19,7 @@ namespace UniBase.Model
         public List<HeaderAndToolTip> ControlSchedulesHeaderList { get; set; }
         public List<HeaderAndToolTip> ProductionsHeaderList { get; set; }
         public List<HeaderAndToolTip> ShiftRegistrationHeaderList { get; set; }
-        public List<HeaderAndToolTip> TuHeaderList { get; set; }
+        public List<HeaderAndToolTip> TUHeaderList { get; set; }
         
 
 
@@ -32,7 +32,7 @@ namespace UniBase.Model
             CreateControlSchedulesHeader();
             CreateProductionsHeader();
             CreateShiftRegistrationHeader();
-            CreateTuHeader();
+            CreateTUHeader();
         }
 
         public void CreateFrontpageHeader()
@@ -116,9 +116,9 @@ namespace UniBase.Model
             };
         }
 
-        public void CreateTuHeader()
+        public void CreateTUHeader()
         {
-            TuHeaderList = new List<HeaderAndToolTip>
+            TUHeaderList = new List<HeaderAndToolTip>
             {
                 new HeaderAndToolTip("TU ID", "Sorter efter TU ID"),
                 new HeaderAndToolTip("ProcessOrdre Nr", "Sorter efter ProcessOrdre Nr"),

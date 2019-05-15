@@ -10,8 +10,8 @@ namespace UniBase.Model
 {
     public static class ModelGenerics
     {
-        private const string Uri = "http://localhost:12736/api/";
-        private static HttpClient _client = new HttpClient();
+        private const string URI = "http://localhost:12736/api/";
+        private static HttpClient client = new HttpClient();
 
         /// <summary>
         /// Generic method to call a specific type from its ID
@@ -23,12 +23,12 @@ namespace UniBase.Model
         public static T GetById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = Uri + typeName[3] + "/" + id;
+            string httpUrl = URI + typeName[3] + "/" + id;
             
             var endResult = type;
             try
             {
-                Task<string> resTask = _client.GetStringAsync(httpUrl);
+                Task<string> resTask = client.GetStringAsync(httpUrl);
                 string result = resTask.Result;
                 endResult = JsonConvert.DeserializeObject<T>(result);
             }
@@ -49,14 +49,14 @@ namespace UniBase.Model
         public static ObservableCollection<T> GetAll<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = Uri + typeName[3];
+            string httpUrl = URI + typeName[3];
             Task<string> resTask = null;
             
             ObservableCollection<T> ifFailed = new ObservableCollection<T>();
 
             try
             {
-                resTask = _client.GetStringAsync(httpUrl);
+                resTask = client.GetStringAsync(httpUrl);
                 return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
             }
             catch (Exception e)
@@ -70,14 +70,14 @@ namespace UniBase.Model
         public static ObservableCollection<T> GetLastTenInDatabasae<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = Uri + typeName[3] + "/range/";
+            string httpUrl = URI + typeName[3] + "/range/";
             Task<string> resTask = null;
 
             ObservableCollection<T> ifFailed = new ObservableCollection<T>();
 
             try
             {
-                resTask = _client.GetStringAsync(httpUrl);
+                resTask = client.GetStringAsync(httpUrl);
                 return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
             }
             catch (Exception e)
@@ -99,11 +99,11 @@ namespace UniBase.Model
         public static bool DeleteById<T>(T type, int id)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = Uri + typeName[3] + "/" + id;
+            string httpUrl = URI + typeName[3] + "/" + id;
 
             try
             {
-                Task<HttpResponseMessage> deleteAsync = _client.DeleteAsync(httpUrl);
+                Task<HttpResponseMessage> deleteAsync = client.DeleteAsync(httpUrl);
                 
                 HttpResponseMessage resp = deleteAsync.Result;
                 if (resp.IsSuccessStatusCode)
@@ -128,14 +128,14 @@ namespace UniBase.Model
         public static bool CreateByObject<T>(T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = Uri + typeName[3];
+            string httpUrl = URI + typeName[3];
 
             try
             {
                 String jsonStr = JsonConvert.SerializeObject(type);
                 StringContent content = new StringContent(jsonStr, Encoding.ASCII, "application/json");
 
-                Task<HttpResponseMessage> postAsync = _client.PostAsync(httpUrl, content);
+                Task<HttpResponseMessage> postAsync = client.PostAsync(httpUrl, content);
 
                 HttpResponseMessage resp = postAsync.Result;
                 if (resp.IsSuccessStatusCode)
@@ -161,14 +161,14 @@ namespace UniBase.Model
         public static bool UpdateByObjectAndId<T>(int id, T type)
         {
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = Uri + typeName[3] + "/" + id;
+            string httpUrl = URI + typeName[3] + "/" + id;
 
             try
             {
                 String jsonStr = JsonConvert.SerializeObject(type);
                 StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
 
-                Task<HttpResponseMessage> putAsync = _client.PutAsync(httpUrl, content);
+                Task<HttpResponseMessage> putAsync = client.PutAsync(httpUrl, content);
 
                 HttpResponseMessage resp = putAsync.Result;
                 if (resp.IsSuccessStatusCode)

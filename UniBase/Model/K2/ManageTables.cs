@@ -58,7 +58,7 @@ namespace UniBase.Model.K2
 
         #region SingleTon
         private static ManageTables _instance;
-        private static object _syncLock = new object();
+        private static object syncLock = new object();
 
         public static ManageTables Instance
         {
@@ -66,7 +66,7 @@ namespace UniBase.Model.K2
             {
                 if (_instance == null)
                 {
-                    lock (_syncLock)
+                    lock (syncLock)
                     {
                         if (_instance == null)
                         {

@@ -15,19 +15,19 @@ namespace UniBase.Model.K2
         private string _telephoneNo;
         private string _email;
 
-        ManageUser _manageUser = ManageUser.Instance;
+        ManageUser manageUser = ManageUser.Instance;
 
         public Users()
         {
             
         }
 
-        public Users(int userId, string name, string email, string telephoneNo, string password, string imageSource)
+        public Users(int user_ID, string name, string email, string telephone_No, string password, string imageSource)
         {
-            UserId = userId;
+            User_ID = user_ID;
             Name = name;
             Email = email;
-            TelephoneNo = telephoneNo;
+            Telephone_No = telephone_No;
             Password = password;
             ImageSource = imageSource;
         }
@@ -36,7 +36,7 @@ namespace UniBase.Model.K2
 
         #region Properties
 
-        public int UserId
+        public int User_ID
         {
             get => _userId;
             set
@@ -69,7 +69,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public string TelephoneNo
+        public string Telephone_No
         {
             get => _telephoneNo;
             set

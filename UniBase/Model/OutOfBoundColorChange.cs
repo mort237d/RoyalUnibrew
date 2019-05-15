@@ -5,19 +5,19 @@ namespace UniBase.Model
 {
     public class OutOfBoundColorChange
     {
-        private SolidColorBrush _colorBrush;
+        private SolidColorBrush colorBrush;
 
         public SolidColorBrush ChangeListViewColor(double textValue, double minValue, double maxValue)
         {
             if (textValue < minValue || textValue > maxValue)
             {
-                _colorBrush = new SolidColorBrush(Colors.LightSalmon);
-                return _colorBrush;
+                colorBrush = new SolidColorBrush(Colors.LightSalmon);
+                return colorBrush;
             }
             else
             {
-                _colorBrush = new SolidColorBrush(Colors.White);
-                return _colorBrush;
+                colorBrush = new SolidColorBrush(Colors.White);
+                return colorBrush;
             }
         }
 

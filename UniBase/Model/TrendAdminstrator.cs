@@ -125,7 +125,7 @@ namespace UniBase.Model
                         }
                         else if (comboboxInput == "MipMa")
                         {
-                            tempTotalValue += (double)CompleteControlSchedulesList[i].MipMa;
+                            tempTotalValue += (double)CompleteControlSchedulesList[i].MipMA;
                             minValue = constantValues.MinMipMa;
                             maxValue = constantValues.MaxMipMa;
                         }

@@ -79,7 +79,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
 
         #region Filter
-        private PropertyInfo[] _propertyInfos = typeof(Frontpages).GetProperties();
+        private PropertyInfo[] PropertyInfos = typeof(Frontpages).GetProperties();
 
         public string ProcessOrderNoTextBoxOutput
         {
@@ -88,7 +88,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, _propertyInfos[0].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[0].Name, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -99,7 +99,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _dateTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, _propertyInfos[1].Name, _dateTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[1].Name, _dateTextBoxOutput);
             }
         }
 
@@ -110,7 +110,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _finishedProductNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, _propertyInfos[2].Name, _finishedProductNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[2].Name, _finishedProductNoTextBoxOutput);
             }
         }
 
@@ -121,7 +121,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _columnTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, _propertyInfos[3].Name, _columnTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[3].Name, _columnTextBoxOutput);
             }
         }
 
@@ -132,7 +132,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, _propertyInfos[4].Name, _noteTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[4].Name, _noteTextBoxOutput);
             }
         }
 
@@ -143,7 +143,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weekNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, _propertyInfos[5].Name, _weekNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[5].Name, _weekNoTextBoxOutput);
             }
         }
         #endregion
@@ -185,61 +185,61 @@ namespace UniBase.Model.K2.ButtonMethods
 
             Parallel.ForEach(FrontpagesList, frontpage =>
             {
-                ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrderNo, frontpage);
+                ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
             });
             _message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
         public void DeleteItem()
         {
-            var crm = ControlRegistrationMethod.Instance;
-            var csm = ControlScheduleMethod.Instance;
-            var pm = ProductionMethod.Instance;
-            var srm = ShiftRegistrationMethod.Instance;
-            var tm = TuMethod.Instance;
+            var CRM = ControlRegistrationMethod.Instance;
+            var CSM = ControlScheduleMethod.Instance;
+            var PM = ProductionMethod.Instance;
+            var SRM = ShiftRegistrationMethod.Instance;
+            var TM = TuMethod.Instance;
             
 
             //TODO Update all lists!!!
             if (SelectedFrontpage != null)
             {
-                foreach (var i in crm.CompleteControlRegistrationsList)
+                foreach (var i in CRM.CompleteControlRegistrationsList)
                 {
-                    if (SelectedFrontpage.ProcessOrderNo == i.ProcessOrderNo)
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new ControlRegistrations(), i.ControlRegistrationId);
-                        Debug.WriteLine("\t \n ControlRegistration_ID: " + i.ControlRegistrationId, "DELETE");
+                        ModelGenerics.DeleteById(new ControlRegistrations(), i.ControlRegistration_ID);
+                        Debug.WriteLine("\t \n ControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
                     }
                 }
-                foreach (var i in csm.CompleteControlSchedulesList)
+                foreach (var i in CSM.CompleteControlSchedulesList)
                 {
-                    if (SelectedFrontpage.ProcessOrderNo == i.ProcessOrderNo)
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new ControlSchedules(), i.ControlScheduleId);
-                        Debug.WriteLine("\t \n ControlSchedule_ID: " + i.ControlScheduleId, "DELETE");
+                        ModelGenerics.DeleteById(new ControlSchedules(), i.ControlSchedule_ID);
+                        Debug.WriteLine("\t \n ControlSchedule_ID: " + i.ControlSchedule_ID, "DELETE");
                     }
                 }
-                foreach (var i in pm.CompleteProductionsList)
+                foreach (var i in PM.CompleteProductionsList)
                 {
-                    if (SelectedFrontpage.ProcessOrderNo == i.ProcessOrderNo)
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new Productions(), i.ProductionId);
-                        Debug.WriteLine("\t \n Production_ID: " + i.ProductionId, "DELETE");
+                        ModelGenerics.DeleteById(new Productions(), i.Production_ID);
+                        Debug.WriteLine("\t \n Production_ID: " + i.Production_ID, "DELETE");
                     }
                 }
-                foreach (var i in srm.CompleteShiftRegistrationsList)
+                foreach (var i in SRM.CompleteShiftRegistrationsList)
                 {
-                    if (SelectedFrontpage.ProcessOrderNo == i.ProcessOrderNo)
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new ShiftRegistrations(), i.ShiftRegistrationId);
-                        Debug.WriteLine("\t \n ShiftRegistration_ID: " + i.ShiftRegistrationId, "DELETE");
+                        ModelGenerics.DeleteById(new ShiftRegistrations(), i.ShiftRegistration_ID);
+                        Debug.WriteLine("\t \n ShiftRegistration_ID: " + i.ShiftRegistration_ID, "DELETE");
                     }
                 }
-                foreach (var i in tm.CompleteTUsList)
+                foreach (var i in TM.CompleteTUsList)
                 {
-                    if (SelectedFrontpage.ProcessOrderNo == i.ProcessOrderNo)
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new Us(), i.TuId);
-                        Debug.WriteLine("\t \n TU_ID: " + i.TuId, "DELETE");
+                        ModelGenerics.DeleteById(new TUs(), i.TU_ID);
+                        Debug.WriteLine("\t \n TU_ID: " + i.TU_ID, "DELETE");
                     }
                 }
                 _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
@@ -258,7 +258,7 @@ namespace UniBase.Model.K2.ButtonMethods
             InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
 
             //Autofills
-            instanceNewFrontpagesToAdd.WeekNo = FindWeekNumber(instanceNewFrontpagesToAdd.Date);
+            instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd.Date);
 
             
             if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
@@ -266,7 +266,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 Initialize();
 
                 NewFrontpagesToAdd = new Frontpages();
-                NewFrontpagesToAdd.WeekNo = FindWeekNumber(NewFrontpagesToAdd.Date);
+                NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd.Date);
             }
             else
             {
@@ -293,7 +293,7 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             int id = (int)obj;
 
-            Frontpages del = FrontpagesList.First(d => d.ProcessOrderNo == id);
+            Frontpages del = FrontpagesList.First(d => d.ProcessOrder_No == id);
             int index = FrontpagesList.IndexOf(del);
 
             SelectedFrontpageId = index;
@@ -302,24 +302,24 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, _propertyInfos[0].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[1].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, _propertyInfos[1].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[2].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, _propertyInfos[2].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[3].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, _propertyInfos[3].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[4].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, _propertyInfos[4].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[5].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, _propertyInfos[5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
             else
                 Debug.WriteLine("Error");
         }
 
         #region SingleTon
         private static FrontpageMethod _instance;
-        private static object _syncLock = new object();
+        private static object syncLock = new object();
 
         public static FrontpageMethod Instance
         {
@@ -327,7 +327,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 if (_instance == null)
                 {
-                    lock (_syncLock)
+                    lock (syncLock)
                     {
                         if (_instance == null)
                         {

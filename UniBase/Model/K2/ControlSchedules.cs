@@ -24,32 +24,32 @@ namespace UniBase.Model.K2
         private string _timeStringHelper;
 
 
-        private OutOfBoundColorChange _ofBoundColorChange = new OutOfBoundColorChange();
-        private ConstantValues _constantValues = new ConstantValues();
-        private SolidColorBrush _weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
-        private SolidColorBrush _mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
-        private SolidColorBrush _ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
+        private ConstantValues constantValues = new ConstantValues();
+        private SolidColorBrush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private SolidColorBrush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private SolidColorBrush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
 
         public ControlSchedules()
         {
 
         }
 
-        public ControlSchedules(int controlScheduleId, DateTime time, double weight, string kegTest, double ludKoncentration, double mipMa, string signature, string note, int processOrderNo, Frontpages frontpage)
+        public ControlSchedules(int controlSchedule_ID, DateTime time, double weight, string kegTest, double ludKoncentration, double mipMA, string signature, string note, int processOrder_No, Frontpages frontpage)
         {
-            ControlScheduleId = controlScheduleId;
+            ControlSchedule_ID = controlSchedule_ID;
             Time = time;
             Weight = weight;
             KegTest = kegTest;
             LudKoncentration = ludKoncentration;
-            MipMa = mipMa;
+            MipMA = mipMA;
             Signature = signature;
             Note = note;
-            ProcessOrderNo = processOrderNo;
+            ProcessOrder_No = processOrder_No;
             Frontpage = frontpage;
         }
 
-        public int ControlScheduleId
+        public int ControlSchedule_ID
         {
             get => _controlScheduleId;
             set
@@ -69,7 +69,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
                 if (_weight != null)
                 {
-                    WeightColorBrush = _ofBoundColorChange.ChangeListViewColor((double)_weight, _constantValues.MinWeight, _constantValues.MaxWeight);
+                    WeightColorBrush = ofBoundColorChange.ChangeListViewColor((double)_weight, constantValues.MinWeight, constantValues.MaxWeight);
                 }
             }
         }
@@ -94,12 +94,12 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
                 if (_ludKoncentration != null)
                 {
-                    LudKoncentrationColorBrush = _ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, _constantValues.MinLudkoncentration, _constantValues.MaxLudkoncentration);
+                    LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
                 }
             }
         }
 
-        public double MipMa
+        public double MipMA
         {
             get => _mipMa;
             set
@@ -108,7 +108,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
                 if (_mipMa != null)
                 {
-                    MipMaColorBrush = _ofBoundColorChange.ChangeListViewColor((double)_mipMa, _constantValues.MinMipMa, _constantValues.MaxMipMa);
+                    MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
                 }
             }
         }
@@ -133,7 +133,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ProcessOrderNo
+        public int ProcessOrder_No
         {
             get => _processOrderNo;
             set
@@ -167,30 +167,30 @@ namespace UniBase.Model.K2
 
         public SolidColorBrush WeightColorBrush
         {
-            get { return _weightColorBrush; }
+            get { return weightColorBrush; }
             set
             {
-                _weightColorBrush = value;
+                weightColorBrush = value;
                 OnPropertyChanged();
             }
         }
 
         public SolidColorBrush MipMaColorBrush
         {
-            get { return _mipMaColorBrush; }
+            get { return mipMaColorBrush; }
             set
             {
-                _mipMaColorBrush = value; 
+                mipMaColorBrush = value; 
                 OnPropertyChanged();
             }
         }
 
         public SolidColorBrush LudKoncentrationColorBrush
         {
-            get { return _ludKoncentrationColorBrush; }
+            get { return ludKoncentrationColorBrush; }
             set
             {
-                _ludKoncentrationColorBrush = value; 
+                ludKoncentrationColorBrush = value; 
                 OnPropertyChanged();
             }
         }
