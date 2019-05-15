@@ -182,8 +182,8 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
             {
-                shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString("t");
-                shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString("t");
+                shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
+                shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
             });
         }
 
@@ -203,8 +203,8 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
             {
-                shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString("t");
-                shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString("t");
+                shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
+                shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
             });
             message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
