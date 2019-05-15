@@ -18,22 +18,21 @@ namespace UniBase.Model.K2
             int listIndexCounter = 0;
 
             Type tModelType = type.GetType();
-
             PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
 
             //ToDo Finish This.
             foreach (PropertyInfo property in arrayPropertyInfos)
             {
                 var prop = type.GetType().GetProperty(property.Name, BindingFlags.Public | BindingFlags.Instance);
-                var proppi = prop.GetValue(type);
-
+                var propertyValue = prop.GetValue(type);
+                
                 if (property.PropertyType == typeof(string))
                 {
                     if (prop.Name.Contains("StringHelper"))
                     {
-                        if (proppi.ToString().Length >= 8)
+                        if (propertyValue.ToString().Length >= 8)
                         {
-                            datesandtimespans.Add(proppi.ToString());
+                            datesandtimespans.Add(propertyValue.ToString());
                         }
                         else
                         {
@@ -41,7 +40,7 @@ namespace UniBase.Model.K2
                             Debug.WriteLine("Failed");
                         }
                     }
-                    else if (proppi == null)
+                    else if (propertyValue == null)
                     {
                         if (property.Name == "Note" || property.Name == "CommentsOnChangedDate")
                         {
@@ -55,51 +54,89 @@ namespace UniBase.Model.K2
                         }
                     }
                 }
-                else if (property.PropertyType == typeof(int))
+                else if (property.PropertyType == typeof(int) || property.PropertyType == typeof(int?))
                 {
-                    int.TryParse(proppi.ToString(), out int i);
-                    if (i == 0)
+                    try
+                    {
+                        int.TryParse(propertyValue.ToString(), out int i);
+                        if (i == 0)
+                        {
+                            //error
+                        }
+                    }
+                    catch
                     {
                         //error
-                        Debug.WriteLine("Failed");
-
                     }
                 }
-                else if (property.PropertyType == typeof(double))
+                else if (property.PropertyType == typeof(double) || property.PropertyType == typeof(double?))
                 {
-                    double.TryParse(proppi.ToString(), out double i);
-                    if (i == 0)
+                    if (!double.TryParse(propertyValue.ToString(), out double i))
+                    {
+                        //error
+                    }
+                    else if (Math.Abs(i) < 0.001)
                     {
                         //error
                         Debug.WriteLine("Failed");
-
                     }
                 }
                 else if (property.PropertyType == typeof(DateTime))
                 {
                     if (!(datesandtimespans.Count <= listIndexCounter))
                     {
+                        string dateTimeChar = "/";
+                        string timeSpanChar = ":";
 
                         DateTime dt = DateTime.Now;
-                        var split = datesandtimespans[listIndexCounter].Split('/');
-                        var splitWithoutSpecialChars = split;
-                        for (int i = 0; i < split.Length; i++)
+                        if (datesandtimespans[listIndexCounter].Contains(dateTimeChar) && datesandtimespans[listIndexCounter].Contains(timeSpanChar))
                         {
-                            splitWithoutSpecialChars[i] = split[i].Trim('/');
-                        }
+                            var split = datesandtimespans[listIndexCounter].Split(dateTimeChar[0]);
+                            var secoundSplit = split[split.Length - 1].Split(timeSpanChar[0]);
 
-                        if (splitWithoutSpecialChars[2].Length > 4)
-                        {
-                            splitWithoutSpecialChars[2] = splitWithoutSpecialChars[2].Remove(4);
-                        }
+                            split[2] = split[2].Remove(4);
 
-                        try
-                        {
-                            prop.SetValue(type, new DateTime(int.Parse(splitWithoutSpecialChars[0]), int.Parse(splitWithoutSpecialChars[1]), int.Parse(splitWithoutSpecialChars[2]), dt.Hour, dt.Minute, 0), null);
+                            try
+                            {
+                                if (secoundSplit.Length == 2)
+                                {
+                                    prop.SetValue(type, new DateTime(int.Parse(split[2]), int.Parse(split[1]), int.Parse(split[0]), int.Parse(secoundSplit[1]), int.Parse(secoundSplit[0]), 0), null);
+                                }
+                                else if (secoundSplit.Length == 3)
+                                {
+                                    prop.SetValue(type, new DateTime(int.Parse(split[2]), int.Parse(split[1]), int.Parse(split[0]), int.Parse(secoundSplit[2]), int.Parse(secoundSplit[1]), int.Parse(secoundSplit[0])), null);
+                                }
+                            }
+                            catch
+                            {
+                                //error
+                            }
                         }
-                        catch
+                        else if (datesandtimespans[listIndexCounter].Contains(dateTimeChar)) 
                         {
-                            //error
+                            var split = datesandtimespans[listIndexCounter].Split(dateTimeChar[0]);
+
+                            try
+                            {
+                                prop.SetValue(type, new DateTime(int.Parse(split[2]), int.Parse(split[1]), int.Parse(split[0])), null);
+                            }
+                            catch 
+                            {
+                                //error
+                            }
+                        }
+                        else if (datesandtimespans[listIndexCounter].Contains(timeSpanChar))
+                        {
+                            var split = datesandtimespans[listIndexCounter].Split(timeSpanChar[0]);
+
+                            try
+                            {
+                                prop.SetValue(type, new DateTime(0,0,0, int.Parse(split[2]), int.Parse(split[1]), int.Parse(split[0])), null);
+                            }
+                            catch
+                            {
+                                //error
+                            }
                         }
                         listIndexCounter++;
                     }
@@ -111,7 +148,14 @@ namespace UniBase.Model.K2
                         var split = datesandtimespans[listIndexCounter].Split(':');
                         try
                         {
-                            prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
+                            if (split.Length == 2)
+                            {
+                                prop.SetValue(type, new TimeSpan(int.Parse(split[0]),int.Parse(split[1]), 0), null);
+                            }
+                            else
+                            {
+                                prop.SetValue(type, new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2])), null);
+                            }
                         }
                         catch
                         {

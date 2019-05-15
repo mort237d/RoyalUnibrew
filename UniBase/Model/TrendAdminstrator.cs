@@ -8,7 +8,7 @@ using UniBase.Model.K2;
 
 namespace UniBase.Model
 {
-    class TrendAdminstrator : INotifyPropertyChanged
+    public class TrendAdminstrator : INotifyPropertyChanged
     {
         private ComboBoxItem _graphType = new ComboBoxItem();
         private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
@@ -64,11 +64,11 @@ namespace UniBase.Model
 
         public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
         {
-            
-                CreateGraph(comboboxInput, comboboxTimeInput);
-            
+
+            CreateGraph(comboboxInput, comboboxTimeInput);
+
         }
-        public void CreateGraph(string comboboxInput,string timePeriod)
+        public void CreateGraph(string comboboxInput, string timePeriod)
         {
             TrendList.Clear();
             DateTime tempDayOfScheduleList = CompleteControlSchedulesList[0].Time;
@@ -111,27 +111,27 @@ namespace UniBase.Model
                         CompleteControlSchedulesList[i].Time.Hour, CompleteControlSchedulesList[i].Time.Minute,
                         CompleteControlSchedulesList[i].Time.Second));
 
-                    here:
+                here:
 
                     if (tempDayOfScheduleList <= currentItemDate + new TimeSpan(timeHorizonDivider, 0, 0, 0) && tempDayOfScheduleList >= currentItemDate)
                     {
                         amountOfItemsWithSameDate++;
                         if (comboboxInput == "Vægt")
-                        {
-                            tempTotalValue += CompleteControlSchedulesList[i].Weight;
+                        { //todo check om weight er null selvom den ikke burde være
+                            tempTotalValue += (double)CompleteControlSchedulesList[i].Weight;
                             minValue = constantValues.MinWeight;
                             maxValue = constantValues.MaxWeight;
-                            
+
                         }
                         else if (comboboxInput == "MipMa")
                         {
-                            tempTotalValue += CompleteControlSchedulesList[i].MipMA;
+                            tempTotalValue += (double)CompleteControlSchedulesList[i].MipMA;
                             minValue = constantValues.MinMipMa;
                             maxValue = constantValues.MaxMipMa;
                         }
                         else if (comboboxInput == "Lud Koncentration")
                         {
-                            tempTotalValue += CompleteControlSchedulesList[i].LudKoncentration;
+                            tempTotalValue += (double)CompleteControlSchedulesList[i].LudKoncentration;
                             minValue = constantValues.MinLudkoncentration;
                             maxValue = constantValues.MaxLudkoncentration;
                         }

@@ -9,23 +9,25 @@ namespace UniBase.Model.K2
     {
         private int _controlRegistrationId;
         private string _commentsOnChangedDate;
-        private bool _controlAlcoholSpearDispenser;
+        private bool _controlAlcoholSpearDispenser = false;
         private int _capNo;
         private int _etiquetteNo;
         private double _kegSize;
         private string _signature;
         private int _processOrderNo;
+        private int _finishedProduct_No;
         private TimeSpan _time;
         private DateTime _productionDate;
-        private DateTime _expiryDate;
         private DateTime _firstPalletDepalletizing;
         private DateTime _lastPalletDepalletizing;
+        private DateTime _expiryDate; //ToDo add to GUI through binding
         
 
         private string _timeStringHelper;
         private string _productionsDateStringHelper;
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
+        private string _exipryDateStringHelper;
 
         private string _controlRegistrationAlcoholSpearDispenserControlled;
 
@@ -34,7 +36,10 @@ namespace UniBase.Model.K2
             
         }
 
-        public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date, DateTime expiry_Date, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo, int etiquetteNo, double kegSize, string signature, DateTime firstPalletDepalletizing, DateTime lastPalletDepalletizing, int processOrder_No, Frontpages frontpage)
+        public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date,
+            DateTime expiry_Date, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo,
+            int etiquetteNo, double kegSize, string signature, DateTime firstPalletDepalletizing,
+            DateTime lastPalletDepalletizing, int processOrder_No, Frontpages frontpage, int finishedProductNo)
         {
             ControlRegistration_ID = controlRegistration_ID;
             Time = time;
@@ -50,6 +55,7 @@ namespace UniBase.Model.K2
             LastPalletDepalletizing = lastPalletDepalletizing;
             ProcessOrder_No = processOrder_No;
             Frontpage = frontpage;
+            FinishedProductNo = finishedProductNo;
         }
 
         public int ControlRegistration_ID
@@ -59,6 +65,15 @@ namespace UniBase.Model.K2
             {
                 if (value == _controlRegistrationId) return;
                 _controlRegistrationId = value;
+                OnPropertyChanged();
+            }
+        }
+        public int FinishedProductNo
+        {
+            get { return _finishedProduct_No; }
+            set
+            {
+                _finishedProduct_No = value;
                 OnPropertyChanged();
             }
         }
@@ -176,7 +191,7 @@ namespace UniBase.Model.K2
         {
             get { return _productionsDateStringHelper; }
             set
-            {
+            {               
                 _productionsDateStringHelper = value; 
                 OnPropertyChanged();
             }
@@ -187,7 +202,7 @@ namespace UniBase.Model.K2
             get { return _firstPalletDepalletizingStringHelper; }
             set
             {
-                _firstPalletDepalletizingStringHelper = value; 
+                _firstPalletDepalletizingStringHelper = value;
                 OnPropertyChanged();
             }
         }
@@ -201,6 +216,16 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+
+        public string ExipryDateStringHelper
+        {
+            get { return _exipryDateStringHelper; }
+            set
+            {
+                _exipryDateStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         public TimeSpan Time
@@ -208,7 +233,6 @@ namespace UniBase.Model.K2
             get => _time;
             set
             {
-                if (value.Equals(_time)) return;
                 _time = value;
                 OnPropertyChanged();
             }
@@ -219,12 +243,10 @@ namespace UniBase.Model.K2
             get => _productionDate;
             set
             {
-                if (value.Equals(_productionDate)) return;
                 _productionDate = value;
                 OnPropertyChanged();
             }
         }
-
         
         public DateTime FirstPalletDepalletizing
         {
@@ -261,6 +283,7 @@ namespace UniBase.Model.K2
 
 
         public virtual Frontpages Frontpage { get; set; }
+
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

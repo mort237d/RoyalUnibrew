@@ -6,15 +6,34 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
 {
-    public class ControlRegistrationMethod : INotifyPropertyChanged
+    public class ControlRegistrationMethod : IManageButtonMethods
     {
+        public ControlRegistrationMethod()
+        {
+            Initialize();
+        }
+
+        #region Fields
+
+        private ComboBoxItem _kegSize = new ComboBoxItem();
+
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
 
+        private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
+
+        private ControlRegistrations _newControlRegistrationsToAdd = new ControlRegistrations();
+
+        private PropertyInfo[] PropertyInfos = typeof(Frontpages).GetProperties();
+
         private Message _message = new Message();
+
+        private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private XamlBindings _xamlBindings = new XamlBindings();
 
         private int _selectedControlRegistrationId;
         private ControlRegistrations _selectedControlRegistration;
@@ -31,7 +50,11 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _firstPalletDepalletizingTextBoxOutput;
         private string _lastPalletDepalletizingTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
+        #endregion
 
+
+        #region Filter
+      
         public string ControlRegistrationIdTextBoxOutput
         {
             get { return _controlRegistrationIdTextBoxOutput; }
@@ -39,280 +62,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlRegistrationIdTextBoxOutput = value;
 
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.ControlRegistration_ID.ToString().ToLower();
-                    if (v.Contains(_controlRegistrationIdTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_controlRegistrationIdTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string TimeTextBoxOutput
-        {
-            get { return _timeTextBoxOutput; }
-            set
-            {
-                _timeTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.Time.ToString().ToLower();
-                    if (v.Contains(_timeTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_timeTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string ProductionDateTextBoxOutput
-        {
-            get { return _productionDateTextBoxOutput; }
-            set
-            {
-                _productionDateTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.Production_Date.ToString().ToLower();
-                    if (v.Contains(_productionDateTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_productionDateTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string CommentsOnChangedDateTextBoxOutput
-        {
-            get { return _commentsOnChangedDateTextBoxOutput; }
-            set
-            {
-                _commentsOnChangedDateTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.CommentsOnChangedDate.ToString().ToLower();
-                    if (v.Contains(_commentsOnChangedDateTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_commentsOnChangedDateTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string ControlAlcoholSpearDispenserTextBoxOutput
-        {
-            get { return _controlAlcoholSpearDispenserTextBoxOutput; }
-            set
-            {
-                _controlAlcoholSpearDispenserTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.ControlAlcoholSpearDispenser.ToString().ToLower();
-                    if (v.Contains(_controlAlcoholSpearDispenserTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_controlAlcoholSpearDispenserTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string CapNoTextBoxOutput
-        {
-            get { return _capNoTextBoxOutput; }
-            set
-            {
-                _capNoTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.CapNo.ToString().ToLower();
-                    if (v.Contains(_capNoTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_capNoTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string EtiquetteNoTextBoxOutput
-        {
-            get { return _etiquetteNoTextBoxOutput; }
-            set
-            {
-                _etiquetteNoTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.EtiquetteNo.ToString().ToLower();
-                    if (v.Contains(_etiquetteNoTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_etiquetteNoTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string KegSizeTextBoxOutput
-        {
-            get { return _kegSizeTextBoxOutput; }
-            set
-            {
-                _kegSizeTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.KegSize.ToString().ToLower();
-                    if (v.Contains(_kegSizeTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_kegSizeTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string SignatureTextBoxOutput
-        {
-            get { return _signatureTextBoxOutput; }
-            set
-            {
-                _signatureTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.Signature.ToString().ToLower();
-                    if (v.Contains(_signatureTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_signatureTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string FirstPalletDepalletizingTextBoxOutput
-        {
-            get { return _firstPalletDepalletizingTextBoxOutput; }
-            set
-            {
-                _firstPalletDepalletizingTextBoxOutput = value;
-
-
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.FirstPalletDepalletizing.ToString().ToLower();
-                    if (v.Contains(_firstPalletDepalletizingTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_firstPalletDepalletizingTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
-            }
-        }
-
-        public string LastPalletDepalletizingTextBoxOutput
-        {
-            get { return _lastPalletDepalletizingTextBoxOutput; }
-            set
-            {
-                _lastPalletDepalletizingTextBoxOutput = value;
-                
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.LastPalletDepalletizing.ToString().ToLower();
-                    if (v.Contains(_lastPalletDepalletizingTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_lastPalletDepalletizingTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[0].Name, _controlRegistrationIdTextBoxOutput);
             }
         }
 
@@ -323,24 +73,122 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                ManageTables.Instance.ControlRegistrationsList.Clear();
-
-                foreach (var f in _completeControlRegistrationsList)
-                {
-                    var v = f.ProcessOrder_No.ToString().ToLower();
-                    if (v.Contains(_processOrderNoTextBoxOutput))
-                    {
-                        ManageTables.Instance.ControlRegistrationsList.Add(f);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(_processOrderNoTextBoxOutput))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                }
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
             }
         }
 
+        public string TimeTextBoxOutput
+        {
+            get { return _timeTextBoxOutput; }
+            set
+            {
+                _timeTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[2].Name, _timeTextBoxOutput);
+            }
+        }
+
+        public string ProductionDateTextBoxOutput
+        {
+            get { return _productionDateTextBoxOutput; }
+            set
+            {
+                _productionDateTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[3].Name, _productionDateTextBoxOutput);
+            }
+        }
+
+        public string CommentsOnChangedDateTextBoxOutput
+        {
+            get { return _commentsOnChangedDateTextBoxOutput; }
+            set
+            {
+                _commentsOnChangedDateTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[4].Name, _commentsOnChangedDateTextBoxOutput);
+            }
+        }
+
+        public string ControlAlcoholSpearDispenserTextBoxOutput
+        {
+            get { return _controlAlcoholSpearDispenserTextBoxOutput; }
+            set
+            {
+                _controlAlcoholSpearDispenserTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[5].Name, _controlAlcoholSpearDispenserTextBoxOutput);
+            }
+        }
+
+        public string CapNoTextBoxOutput
+        {
+            get { return _capNoTextBoxOutput; }
+            set
+            {
+                _capNoTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[6].Name, _capNoTextBoxOutput);
+            }
+        }
+
+        public string EtiquetteNoTextBoxOutput
+        {
+            get { return _etiquetteNoTextBoxOutput; }
+            set
+            {
+                _etiquetteNoTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[7].Name, _etiquetteNoTextBoxOutput);
+            }
+        }
+
+        public string KegSizeTextBoxOutput
+        {
+            get { return _kegSizeTextBoxOutput; }
+            set
+            {
+                _kegSizeTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[8].Name, _kegSizeTextBoxOutput);
+            }
+        }
+
+        public string SignatureTextBoxOutput
+        {
+            get { return _signatureTextBoxOutput; }
+            set
+            {
+                _signatureTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[9].Name, _signatureTextBoxOutput);
+            }
+        }
+
+        public string FirstPalletDepalletizingTextBoxOutput
+        {
+            get { return _firstPalletDepalletizingTextBoxOutput; }
+            set
+            {
+                _firstPalletDepalletizingTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[10].Name, _firstPalletDepalletizingTextBoxOutput);
+            }
+        }
+
+        public string LastPalletDepalletizingTextBoxOutput
+        {
+            get { return _lastPalletDepalletizingTextBoxOutput; }
+            set
+            {
+                _lastPalletDepalletizingTextBoxOutput = value;
+
+                _sortAndFilter.Filter(new ControlRegistrations(), ControlRegistrationsList, _completeControlRegistrationsList, PropertyInfos[11].Name, _lastPalletDepalletizingTextBoxOutput);
+            }
+        }
+        #endregion
+
+        #region Properties
         public int SelectedControlRegistrationId
         {
             get { return _selectedControlRegistrationId; }
@@ -361,25 +209,121 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public void RefreshControlRegistrations()
+        public ComboBoxItem KegSize
         {
-            ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+            get { return _kegSize; }
+            set
+           {
+                _kegSize = value; 
+                OnPropertyChanged();
+            }
         }
-        public void RefreshLastTenControlRegistrations()
+
+        public ObservableCollection<ControlRegistrations> ControlRegistrationsList
         {
-            ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-            _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
-        }
-        public void SaveControlRegistrations()
-        {
-            Parallel.ForEach(ManageTables.Instance.ControlRegistrationsList, controlRegistration =>
+            get { return _controlRegistrationsList; }
+            set
             {
-                ModelGenerics.UpdateByObjectAndId(controlRegistration.ControlRegistration_ID, controlRegistration);
+                _controlRegistrationsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ControlRegistrations NewControlRegistrationsToAdd
+        {
+            get => _newControlRegistrationsToAdd;
+            set
+            {
+                _newControlRegistrationsToAdd = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region ButtonMethods
+        public void Initialize()
+        {
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            Parallel.ForEach(ControlRegistrationsList, controlregistration =>
+            {
+                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm");  
+            });
+        }
+        public void RefreshAll()
+        {
+            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            Parallel.ForEach(ControlRegistrationsList, controlregistration =>
+            {
+                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm");
+            });
+            _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+        }
+
+        public void RefreshLastTen()
+        {
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            Parallel.ForEach(ControlRegistrationsList, controlregistration =>
+            {
+                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.TimeStringHelper = controlregistration.Time.ToString(@"hh\:mm");
+            });
+            _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+        }
+
+        public void SaveAll()
+        {
+            Parallel.ForEach(ControlRegistrationsList, controlRegistration =>
+            {
+                InputValidator.CheckIfInputsAreValid(ref controlRegistration);
+            });
+
+            Parallel.ForEach(ControlRegistrationsList, controlRegistration =>
+            {
+                ModelGenerics.UpdateByObjectAndId((int)controlRegistration.ControlRegistration_ID, controlRegistration);
             });
             _message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
         }
-        public void DeleteControlRegistration()
+
+        public void AddNewItem()
+        {
+            var instanceNewControlRegistrationsToAdd = NewControlRegistrationsToAdd;
+            InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
+
+            //todo Find  fix for expiry date
+            instanceNewControlRegistrationsToAdd.Expiry_Date = DateTime.Now.AddDays(30);
+
+            string kegSize = KegSize.Content.ToString().Remove(_kegSize.Content.ToString().Length-1);
+            double.TryParse(kegSize, out double kegSizeDouble);
+            instanceNewControlRegistrationsToAdd.KegSize = kegSizeDouble;
+
+            if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
+            {
+                Initialize();
+
+                NewControlRegistrationsToAdd = new ControlRegistrations
+                {
+                    CapNo = ControlRegistrationsList.Last().CapNo,
+                    EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo,
+                    KegSize = ControlRegistrationsList.Last().KegSize,
+                    ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No,
+                    ControlAlcoholSpearDispenser = false
+                };
+
+            }
+            else
+            {
+                //error
+            }
+        }
+
+
+        public void DeleteItem()
         {
             if (SelectedControlRegistration != null)
             {
@@ -387,12 +331,14 @@ namespace UniBase.Model.K2.ButtonMethods
                 Debug.WriteLine(SelectedControlRegistration.ControlRegistration_ID);
             }
         }
+        #endregion
+
 
         public void ControlledClick(object id)
         {
             Debug.WriteLine(id.ToString());
 
-            foreach (var cr in ManageTables.Instance.ControlRegistrationsList)
+            foreach (var cr in ControlRegistrationsList)
             {
                 if (cr.ControlRegistration_ID == (int)id)
                 {
@@ -412,61 +358,94 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void ControlledClickAdd()
         {
-            if (ManageTables.Instance.NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
+            if (NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
             {
-                ManageTables.Instance.NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
             }
             else
             {
-                ManageTables.Instance.NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
             }
         }
-
-        public void AddNewControlRegistrations()
-        {
-            var instanceNewControlRegistrationsToAdd = ManageTables.Instance.NewControlRegistrationsToAdd;
-            InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
-
-            //Checks whether any of the properties are null if any are returns true
-            bool isNull = instanceNewControlRegistrationsToAdd.GetType().GetProperties().All(p => p.GetValue(instanceNewControlRegistrationsToAdd) == null);
-
-            if (!isNull)
-            {
-                ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                instanceNewControlRegistrationsToAdd.ControlRegistration_ID = ManageTables.Instance.ControlRegistrationsList.Last().ControlRegistration_ID + 1;
-                var temp = ModelGenerics.GetById(new ControlRegistrations(), instanceNewControlRegistrationsToAdd.ProcessOrder_No);
-                //TODO Hvad er det her Lucas?ArrowDown
-                //var temp2 = ModelGenerics.GetById(new Products(), temp.FinishedProduct_No);
-                //instanceNewControlRegistrationsToAdd.Expiry_Date = new DateTime(temp2.BestBeforeDateLength);
-
-                if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
-                {
-                    ManageTables.Instance.ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-                    instanceNewControlRegistrationsToAdd = new ControlRegistrations();
-                    instanceNewControlRegistrationsToAdd.CapNo = ManageTables.Instance.ControlRegistrationsList.Last().CapNo;
-                    instanceNewControlRegistrationsToAdd.EtiquetteNo = ManageTables.Instance.ControlRegistrationsList.Last().EtiquetteNo;
-                    instanceNewControlRegistrationsToAdd.ControlRegistration_ID = ManageTables.Instance.ControlRegistrationsList.Last().ControlRegistration_ID + 1;
-                    instanceNewControlRegistrationsToAdd.KegSize = ManageTables.Instance.ControlRegistrationsList.Last().KegSize;
-                    instanceNewControlRegistrationsToAdd.ProcessOrder_No = ManageTables.Instance.ControlRegistrationsList.Last().ProcessOrder_No;
-                    instanceNewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-
-                }
-                else
-                {
-                    //error
-                }
-            }
-        }
-
+        
         public void SelectParentItem(object obj)
         {
             int id = (int)obj;
 
-            ControlRegistrations del = ManageTables.Instance.ControlRegistrationsList.First(d => d.ControlRegistration_ID == id);
-            int index = ManageTables.Instance.ControlRegistrationsList.IndexOf(del);
+            ControlRegistrations del = ControlRegistrationsList.First(d => d.ControlRegistration_ID == id);
+            int index = ControlRegistrationsList.IndexOf(del);
 
             SelectedControlRegistrationId = index;
         }
+
+        public void SortButtonClick(object id)
+        {
+            if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[0].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[0].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[1].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[1].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[2].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[2].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[3].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[3].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[4].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[4].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[5].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[5].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[6].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[6].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[7].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[7].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[8].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[8].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[9].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[9].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[10].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[10].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[11].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[11].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[12].Header)
+                ControlRegistrationsList = _sortAndFilter.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[12].Name);
+            else
+                Debug.WriteLine("Error");
+        }
+
+        #region SingleTon
+        private static ControlRegistrationMethod _instance;
+        private static object syncLock = new object();
+
+        public static ControlRegistrationMethod Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new ControlRegistrationMethod();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
+        #endregion
 
         #region INotify
 
