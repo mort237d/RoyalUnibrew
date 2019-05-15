@@ -42,7 +42,7 @@
         <Pivot Grid.Row="1" x:Name="ColumnPivot" SelectedIndex="0">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="0">
+                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="5">
                     <!--#region Forside-->
                     <PivotItem Style="{StaticResource CustomPivotItemStyle}" Header="Forside">
                         <StackPanel HorizontalAlignment="Center">
@@ -248,7 +248,7 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"  ToolTipService.ToolTip="Skriv tidspunkt fx TT:MM:SS">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"  ToolTipService.ToolTip="Skriv tidspunkt fx TT:MM">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
@@ -438,56 +438,56 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TimeStringHelper, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt fx TT:MM">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding WeightColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding WeightColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 37.60">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegTest, Mode=TwoWay}" ToolTipService.ToolTip="Skriv fx 'Linje 1-2-3 OK'">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding LudKoncentrationColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding LudKoncentrationColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 1.5">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding MipMaColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding MipMaColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 26.5">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}" ToolTipService.ToolTip="Skriv signatur">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Note, Mode=TwoWay}" ToolTipService.ToolTip="Skriv evt. note">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
@@ -593,56 +593,56 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True" >
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDateStringHelper, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDateStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
@@ -753,49 +753,49 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding StartTimeStringHelper, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding StartTimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt TT:MM">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EndDateStringHelper, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EndDateStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt TT:MM">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Breaks, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Breaks, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalHours, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalHours, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Staff, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Staff, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Initials, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Initials, Mode=TwoWay}" ToolTipService.ToolTip="Skriv initialer">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
@@ -909,70 +909,70 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStart_TU, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStart_TU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEnd_TU, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEnd_TU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDay_Total, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDay_Total, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDay_Total, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDay_Total, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDay_Total, Mode=TwoWay}">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDay_Total, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>

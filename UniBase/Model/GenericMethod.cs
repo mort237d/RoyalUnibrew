@@ -10,7 +10,7 @@ using UniBase.Model.K2.ButtonMethods;
 
 namespace UniBase.Model
 {
-    public class SortAndFilter
+    public class GenericMethod
     {
         private bool sorted = true;
 
@@ -18,9 +18,9 @@ namespace UniBase.Model
         {
             list.Clear();
 
+            PropertyInfo prop = typeof(T).GetProperty(property);
             foreach (var f in completeList)
             {
-                PropertyInfo prop = typeof(T).GetProperty(property);
                 var v = prop.GetValue(f, null).ToString().ToLower();
                 if (v.Contains(textBoxOutPut.ToLower()))
                 {
@@ -51,6 +51,29 @@ namespace UniBase.Model
             }
 
             return tempList;
+        }
+
+        public void DeleteSelected<T>(T selectedItem, T type, ObservableCollection<T> completeList, ObservableCollection<T> list, string property)
+        {
+            if (selectedItem != null)
+            {
+                PropertyInfo prop = typeof(T).GetProperty(property);
+                var id = prop.GetValue(selectedItem, null);
+
+                ModelGenerics.DeleteById(type, (int)id);
+
+                foreach (var item in completeList)
+                {
+                    var itemId = prop.GetValue(item, null);
+                    if (itemId.Equals(id))
+                    {
+                        completeList.Remove(item);
+                        break;
+                    }
+                }
+
+                list.Remove(selectedItem);
+            }
         }
     }
 }

@@ -18,8 +18,8 @@ namespace UniBase.Model.K2.ButtonMethods
         private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
-        private Message message = new Message();
-        private SortAndFilter _sortAndFilter = new SortAndFilter();
+        private Message _message = new Message();
+        private GenericMethod _genericMethod = new GenericMethod();
         private XamlBindings _xamlBindings = new XamlBindings();
         
         private int _selectedFrontpageId;
@@ -88,7 +88,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[0].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[0].Name, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -99,7 +99,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _dateTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[1].Name, _dateTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[1].Name, _dateTextBoxOutput);
             }
         }
 
@@ -110,7 +110,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _finishedProductNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[2].Name, _finishedProductNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[2].Name, _finishedProductNoTextBoxOutput);
             }
         }
 
@@ -121,7 +121,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _columnTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[3].Name, _columnTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[3].Name, _columnTextBoxOutput);
             }
         }
 
@@ -132,7 +132,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[4].Name, _noteTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[4].Name, _noteTextBoxOutput);
             }
         }
 
@@ -143,7 +143,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weekNoTextBoxOutput = value;
 
-                _sortAndFilter.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[5].Name, _weekNoTextBoxOutput);
+                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[5].Name, _weekNoTextBoxOutput);
             }
         }
         #endregion
@@ -165,7 +165,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             });
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void RefreshLastTen()
         {
@@ -174,7 +174,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
             }
-            message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
+            _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveAll()
         {
@@ -187,15 +187,68 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
             });
-            message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+            _message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
         public void DeleteItem()
         {
+            var CRM = ControlRegistrationMethod.Instance;
+            var CSM = ControlScheduleMethod.Instance;
+            var PM = ProductionMethod.Instance;
+            var SRM = ShiftRegistrationMethod.Instance;
+            var TM = TuMethod.Instance;
+            
+
+            //TODO Update all lists!!!
             if (SelectedFrontpage != null)
             {
-                //TODO Make deletion method
-                Debug.WriteLine(SelectedFrontpage.ProcessOrder_No);
+                foreach (var i in CRM.CompleteControlRegistrationsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new ControlRegistrations(), i.ControlRegistration_ID);
+                        Debug.WriteLine("\t \n ControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
+                    }
+                }
+                foreach (var i in CSM.CompleteControlSchedulesList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new ControlSchedules(), i.ControlSchedule_ID);
+                        Debug.WriteLine("\t \n ControlSchedule_ID: " + i.ControlSchedule_ID, "DELETE");
+                    }
+                }
+                foreach (var i in PM.CompleteProductionsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new Productions(), i.Production_ID);
+                        Debug.WriteLine("\t \n Production_ID: " + i.Production_ID, "DELETE");
+                    }
+                }
+                foreach (var i in SRM.CompleteShiftRegistrationsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new ShiftRegistrations(), i.ShiftRegistration_ID);
+                        Debug.WriteLine("\t \n ShiftRegistration_ID: " + i.ShiftRegistration_ID, "DELETE");
+                    }
+                }
+                foreach (var i in TM.CompleteTUsList)
+                {
+                    if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
+                    {
+                        ModelGenerics.DeleteById(new TUs(), i.TU_ID);
+                        Debug.WriteLine("\t \n TU_ID: " + i.TU_ID, "DELETE");
+                    }
+                }
+                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
+
+                _message.ShowToastNotification("Slettet","Forside slettet");
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede forside, for at slette");
             }
         }
 
@@ -249,17 +302,17 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[1].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[2].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[3].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[4].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[5].Header)
-                FrontpagesList = _sortAndFilter.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
             else
                 Debug.WriteLine("Error");
         }
