@@ -119,7 +119,13 @@ namespace UniBase.Model.K2
             set
             {
                 _productionsDateStringHelper = value;
-                ExpiryDateStringHelper = value;
+                if (_productionsDateStringHelper.Length == 10)
+                {
+                    int finishedProductNo = ModelGenerics.GetById(new Frontpages(), ProcessOrder_No).FinishedProduct_No;
+                    
+                    ExpiryDateStringHelper = Production_Date.AddDays(ModelGenerics.GetById(new Products(), finishedProductNo).BestBeforeDateLength).ToString("yyyy/MM/dd");
+
+                }
                 OnPropertyChanged();
             }
         }
@@ -160,9 +166,7 @@ namespace UniBase.Model.K2
             get => _controlRegistrationId;
             set
             {
-                if (value == _controlRegistrationId) return;
                 _controlRegistrationId = value;
-                OnPropertyChanged();
             }
         }
 
@@ -203,9 +207,7 @@ namespace UniBase.Model.K2
             get => _capNo;
             set
             {
-                if (value == _capNo) return;
                 _capNo = value;
-                OnPropertyChanged();
             }
         }
 
@@ -216,7 +218,6 @@ namespace UniBase.Model.K2
             {
                 if (value == _etiquetteNo) return;
                 _etiquetteNo = value;
-                OnPropertyChanged();
             }
         }
 
@@ -249,7 +250,6 @@ namespace UniBase.Model.K2
             {
                 if (value == _processOrderNo) return;
                 _processOrderNo = value;
-                OnPropertyChanged();
             }
         }
 
@@ -270,7 +270,6 @@ namespace UniBase.Model.K2
             set
             {
                 _time = value;
-                OnPropertyChanged();
             }
         }
 
@@ -280,7 +279,6 @@ namespace UniBase.Model.K2
             set
             {
                 _productionDate = value;
-                OnPropertyChanged();
             }
         }
 
@@ -290,7 +288,6 @@ namespace UniBase.Model.K2
             set
             {
                 _expiryDate = value;
-                OnPropertyChanged();
             }
         }
         
@@ -301,7 +298,6 @@ namespace UniBase.Model.K2
             {
                 if (value.Equals(_firstPalletDepalletizing)) return;
                 _firstPalletDepalletizing = value;
-                OnPropertyChanged();
             }
         }
 
@@ -312,7 +308,6 @@ namespace UniBase.Model.K2
             {
                 if (value.Equals(_lastPalletDepalletizing)) return;
                 _lastPalletDepalletizing = value;
-                OnPropertyChanged();
             }
         }
         

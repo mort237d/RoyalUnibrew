@@ -66,19 +66,6 @@ namespace UniBase.Model.K2
                             Debug.WriteLine("Failed");
                         }
                     }
-                    else if (propertyValue == null)
-                    {
-                        if (property.Name == "Note" || property.Name == "CommentsOnChangedDate")
-                        {
-                            prop.SetValue(type, " ", null);
-                        }
-                        else
-                        {
-                            //error
-                            Debug.WriteLine("Failed");
-
-                        }
-                    }
                 }
                 else if (property.PropertyType == typeof(int))
                 {
