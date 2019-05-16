@@ -58,6 +58,60 @@ namespace UniBase.Model.K2
             FinishedProductNo = finishedProductNo;
         }
 
+        #region StringHelpers
+
+        public string TimeStringHelper
+        {
+            get { return _timeStringHelper; }
+            set
+            {
+                _timeStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ProductionsDateStringHelper
+        {
+            get { return _productionsDateStringHelper; }
+            set
+            {
+                _productionsDateStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ExpiryDateStringHelper
+        {
+            get { return _expiryDateStringHelper; }
+            set
+            {
+                _expiryDateStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FirstPalletDepalletizingStringHelper
+        {
+            get { return _firstPalletDepalletizingStringHelper; }
+            set
+            {
+                _firstPalletDepalletizingStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LastPalletDepalletizingStringHelper
+        {
+            get { return _lastPalletDepalletizingStringHelper; }
+            set
+            {
+                _lastPalletDepalletizingStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
         public int ControlRegistration_ID
         {
             get => _controlRegistrationId;
@@ -68,16 +122,37 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-        public int FinishedProductNo
+
+        public TimeSpan Time
         {
-            get { return _finishedProduct_No; }
+            get => _time;
             set
             {
-                _finishedProduct_No = value;
+                _time = value;
                 OnPropertyChanged();
             }
         }
 
+        public DateTime Production_Date
+        {
+            get => _productionDate;
+            set
+            {
+                _productionDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Expiry_Date
+        {
+            get => _expiryDate;
+            set
+            {
+                _expiryDate = value;
+                OnPropertyChanged();
+            }
+        }
+        
         public string CommentsOnChangedDate
         {
             get => _commentsOnChangedDate;
@@ -85,17 +160,6 @@ namespace UniBase.Model.K2
             {
                 if (value == _commentsOnChangedDate) return;
                 _commentsOnChangedDate = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                if (value == _processOrderNo) return;
-                _processOrderNo = value;
                 OnPropertyChanged();
             }
         }
@@ -165,89 +229,6 @@ namespace UniBase.Model.K2
             }
         }
 
-        public string ControlRegistrationAlcoholSpearDispenserControlled
-        {
-            get { return _controlRegistrationAlcoholSpearDispenserControlled; }
-            set
-            {
-                _controlRegistrationAlcoholSpearDispenserControlled = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #region StringHelpers
-
-        public string TimeStringHelper
-        {
-            get { return _timeStringHelper; }
-            set
-            {
-                _timeStringHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public string ProductionsDateStringHelper
-        {
-            get { return _productionsDateStringHelper; }
-            set
-            {               
-                _productionsDateStringHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public string FirstPalletDepalletizingStringHelper
-        {
-            get { return _firstPalletDepalletizingStringHelper; }
-            set
-            {
-                _firstPalletDepalletizingStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string LastPalletDepalletizingStringHelper
-        {
-            get { return _lastPalletDepalletizingStringHelper; }
-            set
-            {
-                _lastPalletDepalletizingStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ExpiryDateStringHelper
-        {
-            get { return _expiryDateStringHelper; }
-            set
-            {
-                _expiryDateStringHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
-
-        public TimeSpan Time
-        {
-            get => _time;
-            set
-            {
-                _time = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime Production_Date
-        {
-            get => _productionDate;
-            set
-            {
-                _productionDate = value;
-                OnPropertyChanged();
-            }
-        }
         
         public DateTime FirstPalletDepalletizing
         {
@@ -271,16 +252,37 @@ namespace UniBase.Model.K2
             }
         }
         
-        public DateTime Expiry_Date
+
+        public int ProcessOrder_No
         {
-            get => _expiryDate;
+            get => _processOrderNo;
             set
             {
-                _expiryDate = value;
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
                 OnPropertyChanged();
             }
         }
 
+        public int FinishedProductNo
+        {
+            get { return _finishedProduct_No; }
+            set
+            {
+                _finishedProduct_No = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ControlRegistrationAlcoholSpearDispenserControlled
+        {
+            get { return _controlRegistrationAlcoholSpearDispenserControlled; }
+            set
+            {
+                _controlRegistrationAlcoholSpearDispenserControlled = value;
+                OnPropertyChanged();
+            }
+        }
 
         public virtual Frontpages Frontpage { get; set; }
 
