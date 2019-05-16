@@ -42,10 +42,6 @@ namespace RestService.Models
 
         public int ProcessOrder_No { get; set; }
 
-        public int FinishedProduct_No { get; set; }
-
-        public virtual Product Product { get; set; }
-
         public virtual Frontpage Frontpage { get; set; }
     }
 }

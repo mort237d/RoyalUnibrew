@@ -14,8 +14,10 @@ namespace UniBase.Model.K2
         /// <param name="type"></param>
         public static void CheckIfInputsAreValid<T>(ref T type)
         {
-            List<string> datesandtimespans = new List<string>();
-            int listIndexCounter = 0;
+            List<string> datesAndTimeSpanStrings = new List<string>();
+            List<double> intsAndDoubleStrings = new List<double>();
+            int datesAndTimeSpanListCounter = 0;
+            int intsAndDoubleListCounter = 0;
 
             Type tModelType = type.GetType();
             PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
@@ -32,9 +34,33 @@ namespace UniBase.Model.K2
                     {
                         if (propertyValue.ToString().Length >= 5)
                         {
-                            datesandtimespans.Add(propertyValue.ToString());
+                            datesAndTimeSpanStrings.Add(propertyValue.ToString());
                         }
                         else
+                        {
+                            //error
+                            Debug.WriteLine("Failed");
+                        }
+                    }
+                    else if (prop.Name.Contains("IntHelper") || prop.Name.Contains("DoubleHelper"))
+                    {
+                        try
+                        {
+                            if (propertyValue.ToString().Contains(","))
+                            {
+                                prop.SetValue(type, propertyValue.ToString().Replace(",",".") , null);
+                            }
+                            if (double.TryParse(propertyValue.ToString(), out double i))
+                            {
+                                intsAndDoubleStrings.Add(i);
+                            }
+                            else
+                            {
+                                //error
+                                Debug.WriteLine("Failed");
+                            }
+                        }
+                        catch
                         {
                             //error
                             Debug.WriteLine("Failed");
@@ -58,40 +84,44 @@ namespace UniBase.Model.K2
                 {
                     try
                     {
-                        int.TryParse(propertyValue.ToString(), out int i);
-                        if (i == 0)
+                        if (!(intsAndDoubleStrings.Count <= intsAndDoubleListCounter))
                         {
-                            //error
+                            prop.SetValue(type, (int)intsAndDoubleStrings[intsAndDoubleListCounter], null);
                         }
                     }
                     catch
                     {
                         //error
                     }
+                    intsAndDoubleListCounter++;
+
                 }
-                else if (property.PropertyType == typeof(double))
+                else if (property.PropertyType == typeof(double) || property.PropertyType == typeof(int))
                 {
-                    if (!double.TryParse(propertyValue.ToString(), out double i))
+                    try
+                    {
+                        if (!(intsAndDoubleStrings.Count <= intsAndDoubleListCounter))
+                        {
+                            prop.SetValue(type, (double)intsAndDoubleStrings[intsAndDoubleListCounter], null);
+                        }
+                    }
+                    catch
                     {
                         //error
                     }
-                    else if (Math.Abs(i) < 0.001)
-                    {
-                        //error
-                        Debug.WriteLine("Failed");
-                    }
+
+                    intsAndDoubleListCounter++;
                 }
                 else if (property.PropertyType == typeof(DateTime))
                 {
-                    if (!(datesandtimespans.Count <= listIndexCounter))
+                    if (!(datesAndTimeSpanStrings.Count <= datesAndTimeSpanListCounter))
                     {
                         string dateTimeChar = "/";
                         string timeSpanChar = ":";
 
-                        DateTime dt = DateTime.Now;
-                        if (datesandtimespans[listIndexCounter].Contains(dateTimeChar) && datesandtimespans[listIndexCounter].Contains(timeSpanChar))
+                        if (datesAndTimeSpanStrings[datesAndTimeSpanListCounter].Contains(dateTimeChar) && datesAndTimeSpanStrings[datesAndTimeSpanListCounter].Contains(timeSpanChar))
                         {
-                            var split = datesandtimespans[listIndexCounter].Split(dateTimeChar[0]);
+                            var split = datesAndTimeSpanStrings[datesAndTimeSpanListCounter].Split(dateTimeChar[0]);
                             var secoundSplit = split[split.Length - 1].Split(timeSpanChar[0]);
                             secoundSplit[0] = secoundSplit[0].Substring(3);
                             //secoundSplit[0] = secoundSplit[0].Trim();
@@ -114,9 +144,9 @@ namespace UniBase.Model.K2
                                 //error
                             }
                         }
-                        else if (datesandtimespans[listIndexCounter].Contains(dateTimeChar)) 
+                        else if (datesAndTimeSpanStrings[datesAndTimeSpanListCounter].Contains(dateTimeChar)) 
                         {
-                            var split = datesandtimespans[listIndexCounter].Split(dateTimeChar[0]);
+                            var split = datesAndTimeSpanStrings[datesAndTimeSpanListCounter].Split(dateTimeChar[0]);
 
                             try
                             {
@@ -127,9 +157,9 @@ namespace UniBase.Model.K2
                                 //error
                             }
                         }
-                        else if (datesandtimespans[listIndexCounter].Contains(timeSpanChar))
+                        else if (datesAndTimeSpanStrings[datesAndTimeSpanListCounter].Contains(timeSpanChar))
                         {
-                            var split = datesandtimespans[listIndexCounter].Split(timeSpanChar[0]);
+                            var split = datesAndTimeSpanStrings[datesAndTimeSpanListCounter].Split(timeSpanChar[0]);
 
                             try
                             {
@@ -149,14 +179,14 @@ namespace UniBase.Model.K2
                                 //error
                             }
                         }
-                        listIndexCounter++;
+                        datesAndTimeSpanListCounter++;
                     }
                 }
                 else if (property.PropertyType == typeof(TimeSpan))
                 {
-                    if (!(datesandtimespans.Count <= listIndexCounter))
+                    if (!(datesAndTimeSpanStrings.Count <= datesAndTimeSpanListCounter))
                     {
-                        var split = datesandtimespans[listIndexCounter].Split(':');
+                        var split = datesAndTimeSpanStrings[datesAndTimeSpanListCounter].Split(':');
                         try
                         {
                             if (split.Length == 2)
@@ -172,7 +202,7 @@ namespace UniBase.Model.K2
                         {
                             //error
                         }
-                        listIndexCounter++;
+                        datesAndTimeSpanListCounter++;
                     }
                 }
             }

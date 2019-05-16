@@ -100,8 +100,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _expiryTextBoxOutput = value;
 
-                //todo Morten fix this if it aint work
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[8].Name, _expiryTextBoxOutput, Initialize);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[4].Name, _expiryTextBoxOutput, Initialize);
             }
         }
 
@@ -266,6 +265,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
+                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
+                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
+                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
+                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpers(controlregistration);
             });
 
@@ -286,6 +290,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
+                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
+                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
+                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
+                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpers(controlregistration);
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
@@ -299,6 +308,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
+                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
+                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
+                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
+                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpers(controlregistration);
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
@@ -324,8 +338,8 @@ namespace UniBase.Model.K2.ButtonMethods
             InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
 
             //todo Find  fix for expiry date
-            instanceNewControlRegistrationsToAdd.FinishedProductNo = ModelGenerics.GetById(new Frontpages(), instanceNewControlRegistrationsToAdd.ProcessOrder_No).FinishedProduct_No;
-            instanceNewControlRegistrationsToAdd.Expiry_Date = instanceNewControlRegistrationsToAdd.Production_Date.AddDays(ModelGenerics.GetById(new Products(), instanceNewControlRegistrationsToAdd.FinishedProductNo).BestBeforeDateLength);
+            int finishedProductNo = ModelGenerics.GetById(new Frontpages(), instanceNewControlRegistrationsToAdd.ProcessOrder_No).FinishedProduct_No;
+            instanceNewControlRegistrationsToAdd.Expiry_Date = instanceNewControlRegistrationsToAdd.Production_Date.AddDays(ModelGenerics.GetById(new Products(), finishedProductNo).BestBeforeDateLength);
             
 
             if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))

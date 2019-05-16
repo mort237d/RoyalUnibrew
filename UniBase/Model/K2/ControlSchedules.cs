@@ -175,6 +175,7 @@ namespace UniBase.Model.K2
             set
             {
                 weightColorBrush = value;
+                OnPropertyChanged();
             }
         }
 
@@ -185,6 +186,7 @@ namespace UniBase.Model.K2
             set
             {
                 mipMaColorBrush = value; 
+                OnPropertyChanged();
             }
         }
 
@@ -195,6 +197,7 @@ namespace UniBase.Model.K2
             set
             {
                 ludKoncentrationColorBrush = value; 
+                OnPropertyChanged();
             }
         }
         

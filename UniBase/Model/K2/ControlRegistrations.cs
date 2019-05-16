@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using UniBase.Annotations;
 
 namespace UniBase.Model.K2
@@ -15,21 +16,24 @@ namespace UniBase.Model.K2
         private string _kegSize;
         private string _signature;
         private int _processOrderNo;
-        private int _finishedProduct_No;
         private TimeSpan _time;
         private DateTime _productionDate;
         private DateTime _firstPalletDepalletizing;
         private DateTime _lastPalletDepalletizing;
-        private DateTime _expiryDate; //ToDo add to GUI through binding
-        
+        private DateTime _expiryDate;
 
+        private string _controlRegistrationIdIntHelper;
+        private string _capNoIntHelper;
+        private string _etiquetteNoIntHelper;
+        private string _processOrderNoIntHelper;
+
+        private string _controlRegistrationAlcoholSpearDispenserControlled;
         private string _timeStringHelper;
         private string _productionsDateStringHelper;
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
         private string _expiryDateStringHelper;
 
-        private string _controlRegistrationAlcoholSpearDispenserControlled;
 
         public ControlRegistrations()
         {
@@ -39,7 +43,7 @@ namespace UniBase.Model.K2
         public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date,
             DateTime expiry_Date, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo,
             int etiquetteNo, string kegSize, string signature, DateTime firstPalletDepalletizing,
-            DateTime lastPalletDepalletizing, int processOrder_No, Frontpages frontpage, int finishedProductNo)
+            DateTime lastPalletDepalletizing, int processOrder_No, Frontpages frontpage)
         {
             ControlRegistration_ID = controlRegistration_ID;
             Time = time;
@@ -55,11 +59,50 @@ namespace UniBase.Model.K2
             LastPalletDepalletizing = lastPalletDepalletizing;
             ProcessOrder_No = processOrder_No;
             Frontpage = frontpage;
-            FinishedProductNo = finishedProductNo;
         }
 
         #region StringHelpers
-
+        [JsonIgnore]
+        public string ControlRegistrationIdIntHelper
+        {
+            get { return _controlRegistrationIdIntHelper; }
+            set
+            {
+                _controlRegistrationIdIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string CapNoIntHelper
+        {
+            get { return _capNoIntHelper; }
+            set
+            {
+                _capNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string EtiquetteNoIntHelper
+        {
+            get { return _etiquetteNoIntHelper; }
+            set
+            {
+                _etiquetteNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
         public string TimeStringHelper
         {
             get { return _timeStringHelper; }
@@ -69,17 +112,18 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
+        [JsonIgnore]
         public string ProductionsDateStringHelper
         {
             get { return _productionsDateStringHelper; }
             set
             {
                 _productionsDateStringHelper = value;
+                ExpiryDateStringHelper = value;
                 OnPropertyChanged();
             }
         }
-
+        [JsonIgnore]
         public string ExpiryDateStringHelper
         {
             get { return _expiryDateStringHelper; }
@@ -89,7 +133,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
+        [JsonIgnore]
         public string FirstPalletDepalletizingStringHelper
         {
             get { return _firstPalletDepalletizingStringHelper; }
@@ -99,7 +143,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
+        [JsonIgnore]
         public string LastPalletDepalletizingStringHelper
         {
             get { return _lastPalletDepalletizingStringHelper; }
@@ -109,7 +153,6 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
         #endregion
 
         public int ControlRegistration_ID
@@ -123,36 +166,6 @@ namespace UniBase.Model.K2
             }
         }
 
-        public TimeSpan Time
-        {
-            get => _time;
-            set
-            {
-                _time = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime Production_Date
-        {
-            get => _productionDate;
-            set
-            {
-                _productionDate = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime Expiry_Date
-        {
-            get => _expiryDate;
-            set
-            {
-                _expiryDate = value;
-                OnPropertyChanged();
-            }
-        }
-        
         public string CommentsOnChangedDate
         {
             get => _commentsOnChangedDate;
@@ -229,6 +242,57 @@ namespace UniBase.Model.K2
             }
         }
 
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public string ControlRegistrationAlcoholSpearDispenserControlled
+        {
+            get { return _controlRegistrationAlcoholSpearDispenserControlled; }
+            set
+            {
+                _controlRegistrationAlcoholSpearDispenserControlled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TimeSpan Time
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Production_Date
+        {
+            get => _productionDate;
+            set
+            {
+                _productionDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Expiry_Date
+        {
+            get => _expiryDate;
+            set
+            {
+                _expiryDate = value;
+                OnPropertyChanged();
+            }
+        }
         
         public DateTime FirstPalletDepalletizing
         {
@@ -253,39 +317,9 @@ namespace UniBase.Model.K2
         }
         
 
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                if (value == _processOrderNo) return;
-                _processOrderNo = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int FinishedProductNo
-        {
-            get { return _finishedProduct_No; }
-            set
-            {
-                _finishedProduct_No = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ControlRegistrationAlcoholSpearDispenserControlled
-        {
-            get { return _controlRegistrationAlcoholSpearDispenserControlled; }
-            set
-            {
-                _controlRegistrationAlcoholSpearDispenserControlled = value;
-                OnPropertyChanged();
-            }
-        }
-
         public virtual Frontpages Frontpage { get; set; }
 
+        
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
