@@ -294,13 +294,23 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"  ToolTipService.ToolTip="Vælg størrelse på fustage">
+                                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding KegSize, Mode=TwoWay}">
+                                                        <ComboBoxItem Content="20L"/>
+                                                        <ComboBoxItem Content="25L"/>
+                                                        <ComboBoxItem Content="30L"/>
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
-                                                    </TextBox>
+                                                    </ComboBox>
+                                                    <!--<TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"  ToolTipService.ToolTip="Vælg størrelse på fustage">
+                                                        <Custom:Interaction.Behaviors>
+                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
+                                                            </Custom1:EventTriggerBehavior>
+                                                        </Custom:Interaction.Behaviors>
+                                                    </TextBox>-->
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}" ToolTipService.ToolTip="Skriv initialer">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
@@ -366,7 +376,7 @@
                                     
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.EtiquetteNo, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     
-                                    <ComboBox SelectedItem="{Binding Column_2.ControlRegistrationMethod.KegSize, Mode=TwoWay}" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" BorderThickness="1,2,1,1" Height="40" Width="110" >
+                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding Column_2.ControlRegistrationMethod.KegSize, Mode=TwoWay}" BorderThickness="1,2,1,1">
                                         <ComboBoxItem Content="20L"/>
                                         <ComboBoxItem Content="25L"/>
                                         <ComboBoxItem Content="30L"/>
