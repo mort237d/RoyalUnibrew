@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using UniBase.Annotations;
 
 namespace UniBase.Model.K2
@@ -12,11 +13,14 @@ namespace UniBase.Model.K2
         private string _note;
         private int _colunm;
         private int _finishedProductNo;
-        private Products _product;
         private DateTime _date;
+        private Products _product;
 
-
-
+        //Helpers
+        private string _processOrderNoIntHelper;
+        private string _weekNoIntHelper;
+        private string _colunmIntHelper;
+        private string _finishedProductNoIntHelper;
         private string _dateStringHelper;
 
         public Frontpages()
@@ -34,15 +38,48 @@ namespace UniBase.Model.K2
             Week_No = week_No;
         }
 
-        public int ProcessOrder_No
+        #region PropertyHelpers
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
         {
-            get => _processOrderNo;
+            get { return _processOrderNoIntHelper; }
             set
             {
-                _processOrderNo = value;
+                _processOrderNoIntHelper = value;
                 OnPropertyChanged();
             }
         }
+        [JsonIgnore]
+        public string FinishedProductNoIntHelper
+        {
+            get { return _finishedProductNoIntHelper; }
+            set
+            {
+                _finishedProductNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ColunmIntHelper
+        {
+            get { return _colunmIntHelper; }
+            set
+            {
+                _colunmIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string WeekNoIntHelper
+        {
+            get { return _weekNoIntHelper; }
+            set
+            {
+                _weekNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
         public string DateTimeStringHelper
         {
             get => _dateStringHelper;
@@ -53,15 +90,23 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+        #endregion
+        
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                _processOrderNo = value;
+            }
+        }
 
         public int FinishedProduct_No
         {
             get => _finishedProductNo;
             set
             {
-                if (value == _finishedProductNo) return;
                 _finishedProductNo = value;
-                OnPropertyChanged();
             }
         }
 
@@ -70,9 +115,7 @@ namespace UniBase.Model.K2
             get => _colunm;
             set
             {
-                if (value == _colunm) return;
                 _colunm = value;
-                OnPropertyChanged();
             }
         }
 
@@ -92,9 +135,7 @@ namespace UniBase.Model.K2
             get => _weekNo;
             set
             {
-                if (value == _weekNo) return;
                 _weekNo = value;
-                OnPropertyChanged();
             }
         }
 
@@ -112,6 +153,8 @@ namespace UniBase.Model.K2
             get { return _product; }
             set { _product = value; }
         }
+
+        
 
 
         #region InotifyPropertyChanged

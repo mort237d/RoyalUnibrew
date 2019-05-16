@@ -155,6 +155,10 @@ namespace UniBase.Model.K2.ButtonMethods
             Parallel.ForEach(FrontpagesList, frontpage =>
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
+                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
+                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
+                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
             });
         }
 
@@ -164,6 +168,10 @@ namespace UniBase.Model.K2.ButtonMethods
             Parallel.ForEach(FrontpagesList, frontpage =>
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
+                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
+                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
+                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
             });
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
@@ -173,6 +181,10 @@ namespace UniBase.Model.K2.ButtonMethods
             foreach (var frontpage in FrontpagesList)
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
+                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
+                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
+                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
             }
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
@@ -260,6 +272,7 @@ namespace UniBase.Model.K2.ButtonMethods
             //Autofills
             instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd.Date);
 
+            Debug.WriteLine(instanceNewFrontpagesToAdd);
             
             if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {

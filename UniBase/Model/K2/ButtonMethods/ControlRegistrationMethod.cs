@@ -111,7 +111,6 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _expiryTextBoxOutput = value;
 
-                //todo Morten fix this if it aint work
                 _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[4].Name, _expiryTextBoxOutput, Initialize);
             }
         }
@@ -266,6 +265,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
                 FillStringHelpers(controlregistration);
             });
 
@@ -286,6 +286,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
                 FillStringHelpers(controlregistration);
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
@@ -299,6 +300,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
                 FillStringHelpers(controlregistration);
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
