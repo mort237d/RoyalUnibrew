@@ -45,6 +45,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private string _controlRegistrationIdTextBoxOutput;
         private string _timeTextBoxOutput;
         private string _productionDateTextBoxOutput;
+        private string _expiryTextBoxOutput;
         private string _commentsOnChangedDateTextBoxOutput;
         private string _controlAlcoholSpearDispenserTextBoxOutput;
         private string _capNoTextBoxOutput;
@@ -100,6 +101,18 @@ namespace UniBase.Model.K2.ButtonMethods
                 _productionDateTextBoxOutput = value;
 
                 _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[3].Name, _productionDateTextBoxOutput);
+            }
+        }
+
+        public string ExpiryTextBoxOutput
+        {
+            get { return _expiryTextBoxOutput; }
+            set
+            {
+                _expiryTextBoxOutput = value;
+
+                //todo Morten fix this if it aint work
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[4].Name, _expiryTextBoxOutput);
             }
         }
 
@@ -482,8 +495,6 @@ namespace UniBase.Model.K2.ButtonMethods
                 return _instance;
             }
         }
-
-
         #endregion
 
         #region INotify

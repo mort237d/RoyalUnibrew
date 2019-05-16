@@ -27,6 +27,7 @@ namespace UniBase.Model.K2
         private string _productionsDateStringHelper;
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
+        private string _expiryDateStringHelper;
 
         private string _controlRegistrationAlcoholSpearDispenserControlled;
 
@@ -216,7 +217,17 @@ namespace UniBase.Model.K2
             }
         }
 
-       #endregion
+        public string ExpiryDateStringHelper
+        {
+            get { return _expiryDateStringHelper; }
+            set
+            {
+                _expiryDateStringHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
 
         public TimeSpan Time
         {
@@ -272,7 +283,6 @@ namespace UniBase.Model.K2
 
 
         public virtual Frontpages Frontpage { get; set; }
-
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

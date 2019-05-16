@@ -56,6 +56,7 @@ namespace UniBase.Model
                 new HeaderAndToolTip("ProcessOrdre Nr", "Sorter efter ProcessOrdre Nr"),
                 new HeaderAndToolTip("Tid","Sorter efter Tid"),
                 new HeaderAndToolTip("Produktionsdato","Sorter efter Produktionsdato"),
+                new HeaderAndToolTip("Udløbsdato", "Sorter efter Udløbsdato"),
                 new HeaderAndToolTip("Kommentar vedr. ændret dato","Sorter efter Kommentar vedr. ændret dato"),
                 new HeaderAndToolTip("Kontrol af sprit på anstikker","Sorter efter Kontrol af sprit på anstikker"),
                 new HeaderAndToolTip("Hætte Nr","Sorter efter Hætte Nr"),
