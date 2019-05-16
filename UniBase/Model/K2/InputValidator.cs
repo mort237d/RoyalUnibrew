@@ -54,7 +54,7 @@ namespace UniBase.Model.K2
                         }
                     }
                 }
-                else if (property.PropertyType == typeof(int) || property.PropertyType == typeof(int?))
+                else if (property.PropertyType == typeof(int))
                 {
                     try
                     {
@@ -69,7 +69,7 @@ namespace UniBase.Model.K2
                         //error
                     }
                 }
-                else if (property.PropertyType == typeof(double) || property.PropertyType == typeof(double?))
+                else if (property.PropertyType == typeof(double))
                 {
                     if (!double.TryParse(propertyValue.ToString(), out double i))
                     {

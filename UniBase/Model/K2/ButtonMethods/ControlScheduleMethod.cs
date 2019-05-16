@@ -197,7 +197,7 @@ namespace UniBase.Model.K2.ButtonMethods
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
-                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh\:mm");
+                FillStringHelpers(controleSchedule);
             });
         }
 
@@ -206,7 +206,7 @@ namespace UniBase.Model.K2.ButtonMethods
             ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
-                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh\:mm");
+                FillStringHelpers(controleSchedule);
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
@@ -216,7 +216,8 @@ namespace UniBase.Model.K2.ButtonMethods
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
-                controleSchedule.TimeStringHelper = controleSchedule.Time.ToString(@"hh:mm:ss");
+                FillStringHelpers(controleSchedule);
+
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
@@ -309,6 +310,19 @@ namespace UniBase.Model.K2.ButtonMethods
                     PropertyInfos[8].Name);
             else
                 Debug.WriteLine("Error");
+        }
+
+        private void FillStringHelpers(ControlSchedules controlSchedules)
+        {
+            string temp, temp2;
+            if (controlSchedules.Time.Hour < 10) temp = "0" + controlSchedules.Time.Hour;
+            else temp = controlSchedules.Time.Hour.ToString();
+
+            if (controlSchedules.Time.Minute == 0) temp2 = "00";
+            else if (controlSchedules.Time.Minute < 10) temp2 = "0" + controlSchedules.Time.Minute;
+            else temp2 = controlSchedules.Time.Minute.ToString();
+
+            controlSchedules.TimeStringHelper = string.Format("{0}:{1}", temp, temp2);
         }
 
         #region SingleTon
