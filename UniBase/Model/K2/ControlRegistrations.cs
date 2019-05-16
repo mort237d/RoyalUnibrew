@@ -26,7 +26,6 @@ namespace UniBase.Model.K2
         private string _capNoIntHelper;
         private string _etiquetteNoIntHelper;
         private string _processOrderNoIntHelper;
-        private string _finishedProduct_NoIntHelper;
 
         private string _controlRegistrationAlcoholSpearDispenserControlled;
         private string _timeStringHelper;
@@ -100,16 +99,6 @@ namespace UniBase.Model.K2
             set
             {
                 _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string FinishedProductNoIntHelper
-        {
-            get { return _finishedProduct_NoIntHelper; }
-            set
-            {
-                _finishedProduct_NoIntHelper = value;
                 OnPropertyChanged();
             }
         }
