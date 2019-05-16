@@ -2,11 +2,14 @@ using RestService.Models;
 
 namespace RestService
 {
+    using System;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public partial class Context : DbContext
     {
-        public Context() : base("name=Context8")
+        public Context() : base("name=Context9")
         {
             base.Configuration.ProxyCreationEnabled = false;
         }
@@ -78,11 +81,6 @@ namespace RestService
             modelBuilder.Entity<Product>()
                 .Property(e => e.ProductName)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Product>()
-                .HasMany(e => e.ControlRegistrations)
-                .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
                 .HasMany(e => e.Frontpages)

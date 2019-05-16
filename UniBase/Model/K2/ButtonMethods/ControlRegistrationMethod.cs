@@ -266,6 +266,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
                 controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
+                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
+                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
+                controlregistration.FinishedProductNoIntHelper = controlregistration.FinishedProductNo.ToString();
+                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
+                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpers(controlregistration);
             });
 
@@ -287,6 +292,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
                 controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
+                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
+                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
+                controlregistration.FinishedProductNoIntHelper = controlregistration.FinishedProductNo.ToString();
+                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
+                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpers(controlregistration);
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
@@ -301,6 +311,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
                 controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
+                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
+                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
+                controlregistration.FinishedProductNoIntHelper = controlregistration.FinishedProductNo.ToString();
+                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
+                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpers(controlregistration);
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");

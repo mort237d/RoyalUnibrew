@@ -46,6 +46,10 @@ namespace UniBase.Model.K2
                     {
                         try
                         {
+                            if (propertyValue.ToString().Contains(","))
+                            {
+                                prop.SetValue(type, propertyValue.ToString().Replace(",",".") , null);
+                            }
                             if (double.TryParse(propertyValue.ToString(), out double i))
                             {
                                 intsAndDoubleStrings.Add(i);
