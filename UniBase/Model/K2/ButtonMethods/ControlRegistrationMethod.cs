@@ -112,7 +112,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 _expiryTextBoxOutput = value;
 
                 //todo Morten fix this if it aint work
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[4].Name, _expiryTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[4].Name, _expiryTextBoxOutput, Initialize);
             }
         }
 
@@ -450,6 +450,9 @@ namespace UniBase.Model.K2.ButtonMethods
             else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[12].Header)
                 ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,
                     PropertyInfos[12].Name);
+            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[13].Header)
+                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,
+                    PropertyInfos[13].Name);
             else
                 Debug.WriteLine("Error");
         }
