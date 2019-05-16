@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
@@ -8,7 +10,7 @@ namespace UniBase.Model
     {
         private bool sorted = true;
 
-        public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut)
+        public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut, Action method)
         {
             list.Clear();
 
@@ -24,7 +26,7 @@ namespace UniBase.Model
 
             if (string.IsNullOrEmpty(textBoxOutPut))
             {
-                typeof(T).GetMethod("Initialize", BindingFlags.Public | BindingFlags.Instance);
+                method();
             }
         }
         

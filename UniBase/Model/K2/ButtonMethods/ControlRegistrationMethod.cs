@@ -66,7 +66,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlRegistrationIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[0].Name, _controlRegistrationIdTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[0].Name, _controlRegistrationIdTextBoxOutput, Initialize);
             }
         }
 
@@ -77,7 +77,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput, Initialize);
             }
         }
 
@@ -88,7 +88,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _timeTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[2].Name, _timeTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[2].Name, _timeTextBoxOutput, Initialize);
             }
         }
 
@@ -99,7 +99,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _productionDateTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[3].Name, _productionDateTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[3].Name, _productionDateTextBoxOutput, Initialize);
             }
         }
 
@@ -110,7 +110,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _commentsOnChangedDateTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[4].Name, _commentsOnChangedDateTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[4].Name, _commentsOnChangedDateTextBoxOutput, Initialize);
             }
         }
 
@@ -121,7 +121,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlAlcoholSpearDispenserTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[5].Name, _controlAlcoholSpearDispenserTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[5].Name, _controlAlcoholSpearDispenserTextBoxOutput, Initialize);
             }
         }
 
@@ -132,7 +132,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _capNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[6].Name, _capNoTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[6].Name, _capNoTextBoxOutput, Initialize);
             }
         }
 
@@ -143,7 +143,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _etiquetteNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[7].Name, _etiquetteNoTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[7].Name, _etiquetteNoTextBoxOutput, Initialize);
             }
         }
 
@@ -154,7 +154,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _kegSizeTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[8].Name, _kegSizeTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[8].Name, _kegSizeTextBoxOutput, Initialize);
             }
         }
 
@@ -165,7 +165,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _signatureTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[9].Name, _signatureTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[9].Name, _signatureTextBoxOutput, Initialize);
             }
         }
 
@@ -176,7 +176,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstPalletDepalletizingTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[10].Name, _firstPalletDepalletizingTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[10].Name, _firstPalletDepalletizingTextBoxOutput, Initialize);
             }
         }
 
@@ -187,7 +187,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _lastPalletDepalletizingTextBoxOutput = value;
 
-                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[11].Name, _lastPalletDepalletizingTextBoxOutput);
+                _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[11].Name, _lastPalletDepalletizingTextBoxOutput, Initialize);
             }
         }
         #endregion

@@ -71,7 +71,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _productionIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[0].Name, _productionIdTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[0].Name, _productionIdTextBoxOutput, Initialize);
             }
         }
 
@@ -82,7 +82,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput, Initialize);
             }
         }
 
@@ -93,7 +93,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _palletPutInStock0001TextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[2].Name, _palletPutInStock0001TextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[2].Name, _palletPutInStock0001TextBoxOutput, Initialize);
             }
         }
 
@@ -104,7 +104,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tapmachineTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[3].Name, _tapmachineTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[3].Name, _tapmachineTextBoxOutput, Initialize);
             }
         }
 
@@ -115,7 +115,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _totalKegsPrPalletTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[4].Name, _totalKegsPrPalletTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[4].Name, _totalKegsPrPalletTextBoxOutput, Initialize);
             }
         }
 
@@ -126,7 +126,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _counterTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[5].Name, _counterTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[5].Name, _counterTextBoxOutput, Initialize);
             }
         }
 
@@ -137,7 +137,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _palletCounterTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[6].Name, _palletCounterTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[6].Name, _palletCounterTextBoxOutput, Initialize);
             }
         }
 
@@ -148,7 +148,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _batchDateTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[7].Name, _batchDateTextBoxOutput);
+                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[7].Name, _batchDateTextBoxOutput, Initialize);
             }
         }
 

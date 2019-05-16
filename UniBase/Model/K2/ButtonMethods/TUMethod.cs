@@ -52,7 +52,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tuIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[0].Name, _tuIdTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[0].Name, _tuIdTextBoxOutput, Initialize);
             }
         }
 
@@ -63,7 +63,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[1].Name, _firstDayStartTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[1].Name, _firstDayStartTuTextBoxOutput, Initialize);
             }
         }
 
@@ -74,7 +74,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[2].Name, _firstDayEndTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[2].Name, _firstDayEndTuTextBoxOutput, Initialize);
             }
         }
 
@@ -85,7 +85,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[3].Name, _firstDayTotalTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[3].Name, _firstDayTotalTextBoxOutput, Initialize);
             }
         }
 
@@ -96,7 +96,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[4].Name, _secoundDayStartTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[4].Name, _secoundDayStartTuTextBoxOutput, Initialize);
             }
         }
 
@@ -107,7 +107,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[5].Name, _secoundDayEndTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[5].Name, _secoundDayEndTuTextBoxOutput, Initialize);
             }
         }
 
@@ -118,7 +118,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[6].Name, _secoundDayTotalTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[6].Name, _secoundDayTotalTextBoxOutput, Initialize);
             }
         }
 
@@ -129,7 +129,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[7].Name, _thirdDayStartTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[7].Name, _thirdDayStartTuTextBoxOutput, Initialize);
             }
         }
 
@@ -140,7 +140,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[8].Name, _thirdDayEndTuTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[8].Name, _thirdDayEndTuTextBoxOutput, Initialize);
             }
         }
 
@@ -151,7 +151,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[9].Name, _thirdDayTotalTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[9].Name, _thirdDayTotalTextBoxOutput, Initialize);
             }
         }
 
@@ -162,7 +162,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[10].Name, _processOrderNoTextBoxOutput);
+                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[10].Name, _processOrderNoTextBoxOutput, Initialize);
             }
         }
 
