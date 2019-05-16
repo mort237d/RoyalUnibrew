@@ -24,7 +24,7 @@ namespace UniBase.Model
 
             if (string.IsNullOrEmpty(textBoxOutPut))
             {
-                list = ModelGenerics.GetLastTenInDatabasae(type);
+                typeof(T).GetMethod("Initialize", BindingFlags.Public | BindingFlags.Instance);
             }
         }
         
