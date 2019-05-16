@@ -198,6 +198,11 @@ namespace UniBase.Model.K2.ButtonMethods
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
                 FillStringHelpers(controleSchedule);
+                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
+                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("0.####");
+                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
+                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
+                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
             });
         }
 
@@ -207,6 +212,11 @@ namespace UniBase.Model.K2.ButtonMethods
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
                 FillStringHelpers(controleSchedule);
+                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
+                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("0.####");
+                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
+                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
+                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
@@ -217,7 +227,11 @@ namespace UniBase.Model.K2.ButtonMethods
             Parallel.ForEach(ControlSchedulesList, controleSchedule =>
             {
                 FillStringHelpers(controleSchedule);
-
+                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
+                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("0.####");
+                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
+                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
+                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
             });
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
