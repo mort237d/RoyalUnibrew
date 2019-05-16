@@ -21,7 +21,7 @@ namespace UniBase.Model.K2
 
 
         private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
-
+        private Productions _productions = new Productions();
         public TUs()
         {
             
@@ -86,6 +86,8 @@ namespace UniBase.Model.K2
                 if (value == _firstDayTotal) return;
                 _firstDayTotal = value;
                 OnPropertyChanged();
+                _calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,
+                    _productions.PalletPutInStock0001);
             }
         }
 
@@ -121,6 +123,8 @@ namespace UniBase.Model.K2
                 if (value == _secoundDayTotal) return;
                 _secoundDayTotal = value;
                 OnPropertyChanged();
+                _calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,
+                    _productions.PalletPutInStock0001);
             }
         }
 
@@ -156,6 +160,8 @@ namespace UniBase.Model.K2
                 if (value == _thirdDayTotal) return;
                 _thirdDayTotal = value;
                 OnPropertyChanged();
+                _calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,
+                    _productions.PalletPutInStock0001);
             }
         }
 
