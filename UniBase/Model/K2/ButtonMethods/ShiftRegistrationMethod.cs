@@ -188,8 +188,7 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
             {
-                shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
-                shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
+                FillStringHelpers(shiftRegistration);
             });
         }
 
@@ -198,8 +197,7 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
                 {
-                    shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
-                    shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
+                    FillStringHelpers(shiftRegistration);
                 });
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
@@ -209,8 +207,7 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
             {
-                shiftRegistration.StartTimeStringHelper = shiftRegistration.Start_Time.ToString(@"hh\:mm");
-                shiftRegistration.EndDateStringHelper = shiftRegistration.End_Date.ToString(@"hh\:mm");
+                FillStringHelpers(shiftRegistration);
             });
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
@@ -294,6 +291,28 @@ namespace UniBase.Model.K2.ButtonMethods
                 ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[7].Name);
             else
                 Debug.WriteLine("Error");
+        }
+
+        private void FillStringHelpers(ShiftRegistrations shiftRegistration)
+        {
+            string temp, temp2, temp3, temp4;
+            if (shiftRegistration.Start_Time.Hour < 10) temp = "0" + shiftRegistration.Start_Time.Hour;
+            else temp = shiftRegistration.Start_Time.Hour.ToString();
+
+            if (shiftRegistration.Start_Time.Minute == 0) temp2 = "00";
+            else if (shiftRegistration.Start_Time.Minute < 10) temp2 = "0" + shiftRegistration.Start_Time.Minute;
+            else temp2 = shiftRegistration.Start_Time.Minute.ToString();
+
+            if (shiftRegistration.End_Date.Hour < 10) temp3 = "0" + shiftRegistration.End_Date.Hour;
+            else temp3 = shiftRegistration.End_Date.Hour.ToString();
+
+            if (shiftRegistration.End_Date.Minute == 0) temp4 = "00";
+            else if (shiftRegistration.End_Date.Minute < 10) temp4 = "0" + shiftRegistration.End_Date.Minute;
+            else temp4 = shiftRegistration.End_Date.Minute.ToString();
+
+
+            shiftRegistration.StartTimeStringHelper = string.Format("{0}:{1}", temp, temp2);
+            shiftRegistration.EndDateStringHelper = string.Format("{0}:{1}", temp3, temp4);
         }
 
         #region SingleTon
