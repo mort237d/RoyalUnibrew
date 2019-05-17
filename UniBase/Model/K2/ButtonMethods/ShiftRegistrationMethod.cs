@@ -188,6 +188,11 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
             {
+                shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+                shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+                shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+                shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+                shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
                 FillStringHelpers(shiftRegistration);
             });
         }
@@ -197,6 +202,11 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
                 {
+                    shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+                    shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+                    shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+                    shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+                    shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
                     FillStringHelpers(shiftRegistration);
                 });
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
@@ -207,6 +217,11 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
             {
+                shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+                shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+                shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+                shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+                shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
                 FillStringHelpers(shiftRegistration);
             });
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
