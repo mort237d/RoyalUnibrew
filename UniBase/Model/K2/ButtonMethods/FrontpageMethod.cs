@@ -314,6 +314,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SortButtonClick(object id)
         {
+            Debug.WriteLine(id.ToString(), "ID");
             if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
                 FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[1].Header)
