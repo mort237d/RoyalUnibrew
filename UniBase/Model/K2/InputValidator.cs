@@ -22,7 +22,7 @@ namespace UniBase.Model.K2
             Type tModelType = type.GetType();
             PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
 
-            //ToDo Finish This.
+            //TODO Finish This.
             foreach (PropertyInfo property in arrayPropertyInfos)
             {
                 var prop = type.GetType().GetProperty(property.Name, BindingFlags.Public | BindingFlags.Instance);

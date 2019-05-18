@@ -337,7 +337,7 @@ namespace UniBase.Model.K2.ButtonMethods
             var instanceNewControlRegistrationsToAdd = NewControlRegistrationsToAdd;
             InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
 
-            //todo Find  fix for expiry date
+            //TODO Find  fix for expiry date
             int finishedProductNo = ModelGenerics.GetById(new Frontpages(), instanceNewControlRegistrationsToAdd.ProcessOrder_No).FinishedProduct_No;
             instanceNewControlRegistrationsToAdd.Expiry_Date = instanceNewControlRegistrationsToAdd.Production_Date.AddDays(ModelGenerics.GetById(new Products(), finishedProductNo).BestBeforeDateLength);
             
@@ -381,8 +381,6 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void ControlledClick(object id)
         {
-            Debug.WriteLine(id.ToString());
-
             foreach (var cr in ControlRegistrationsList)
             {
                 if (cr.ControlRegistration_ID == (int)id)
@@ -399,6 +397,8 @@ namespace UniBase.Model.K2.ButtonMethods
                     }
                 }
             }
+
+            SelectParentItem(id);
         }
 
         public void ControlledClickAdd()
