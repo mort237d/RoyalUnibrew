@@ -18,8 +18,8 @@ namespace UniBase.Model.K2
         private DateTime _batchDate;
 
 
-        private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
-        private TUs _tUs = new TUs();
+        //private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
+        //private TUs _tUs = new TUs();
 
         private string _batchDateStringHelper;
 
@@ -61,8 +61,7 @@ namespace UniBase.Model.K2
                 if (value == _palletPutInStock0001) return;
                 _palletPutInStock0001 = value;
                 OnPropertyChanged();
-                _calculateTuTotal.CalculatePalletCounter(_tUs.FirstDay_Total, _tUs.SecoundDay_Total,
-                    _tUs.ThirdDay_Total, PalletPutInStock0001);
+                //_calculateTuTotal.CalculatePalletCounter(_tUs.FirstDay_Total, _tUs.SecoundDay_Total,_tUs.ThirdDay_Total, PalletPutInStock0001);
             }
         }
 

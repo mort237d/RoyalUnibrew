@@ -20,7 +20,7 @@ namespace UniBase.Model.K2
         private int _tuId;
 
 
-        private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
+        //private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
         private Productions _productions = new Productions();
         public TUs()
         {
@@ -62,7 +62,7 @@ namespace UniBase.Model.K2
                 if (value == _firstDayStartTu) return;
                 _firstDayStartTu = value;
                 OnPropertyChanged();
-                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
+                //FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
             }
         }
 
@@ -74,7 +74,7 @@ namespace UniBase.Model.K2
                 if (value == _firstDayEndTu) return;
                 _firstDayEndTu = value;
                 OnPropertyChanged();
-                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
+                //FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
             }
         }
 
@@ -86,8 +86,7 @@ namespace UniBase.Model.K2
                 if (value == _firstDayTotal) return;
                 _firstDayTotal = value;
                 OnPropertyChanged();
-                _calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,
-                    _productions.PalletPutInStock0001);
+                //_calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,_productions.PalletPutInStock0001);
             }
         }
 
@@ -99,7 +98,7 @@ namespace UniBase.Model.K2
                 if (value == _secoundDayStartTu) return;
                 _secoundDayStartTu = value;
                 OnPropertyChanged();
-                SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
+                //SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
             }
         }
 
@@ -111,7 +110,7 @@ namespace UniBase.Model.K2
                 if (value == _secoundDayEndTu) return;
                 _secoundDayEndTu = value;
                 OnPropertyChanged();
-                SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
+                //SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
             }
         }
 
@@ -123,8 +122,7 @@ namespace UniBase.Model.K2
                 if (value == _secoundDayTotal) return;
                 _secoundDayTotal = value;
                 OnPropertyChanged();
-                _calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,
-                    _productions.PalletPutInStock0001);
+                //_calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,_productions.PalletPutInStock0001);
             }
         }
 
@@ -136,7 +134,7 @@ namespace UniBase.Model.K2
                 if (value == _thirdDayStartTu) return;
                 _thirdDayStartTu = value;
                 OnPropertyChanged();
-                ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
+                //ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
             }
         }
 
@@ -148,7 +146,7 @@ namespace UniBase.Model.K2
                 if (value == _thirdDayEndTu) return;
                 _thirdDayEndTu = value;
                 OnPropertyChanged();
-                ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
+                //ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
             }
         }
 
@@ -160,8 +158,7 @@ namespace UniBase.Model.K2
                 if (value == _thirdDayTotal) return;
                 _thirdDayTotal = value;
                 OnPropertyChanged();
-                _calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,
-                    _productions.PalletPutInStock0001);
+                //_calculateTuTotal.CalculatePalletCounter(FirstDay_Total, SecoundDay_Total, ThirdDay_Total,_productions.PalletPutInStock0001);
             }
         }
 

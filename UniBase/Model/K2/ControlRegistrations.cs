@@ -124,7 +124,6 @@ namespace UniBase.Model.K2
                     int finishedProductNo = ModelGenerics.GetById(new Frontpages(), ProcessOrder_No).FinishedProduct_No;
                     
                     ExpiryDateStringHelper = Production_Date.AddDays(ModelGenerics.GetById(new Products(), finishedProductNo).BestBeforeDateLength).ToString("yyyy/MM/dd");
-
                 }
                 OnPropertyChanged();
             }
