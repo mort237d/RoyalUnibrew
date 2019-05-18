@@ -44,7 +44,7 @@
         <Pivot Grid.Row="1" x:Name="ColumnPivot" SelectedIndex="0">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="0">
+                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="1">
                     <!--#region Forside-->
                     <PivotItem Style="{StaticResource CustomPivotItemStyle}" Header="Forside">
                         <StackPanel HorizontalAlignment="Center">
@@ -289,6 +289,7 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
+                                                    <!-- Find løsning til Binding -->
                                                     <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding KegSize, Mode=TwoWay}">
                                                         <ComboBoxItem Content="20L"/>
                                                         <ComboBoxItem Content="25L"/>
@@ -299,13 +300,6 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </ComboBox>
-                                                    <!--<TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"  ToolTipService.ToolTip="Vælg størrelse på fustage">
-                                                        <Custom:Interaction.Behaviors>
-                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
-                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
-                                                            </Custom1:EventTriggerBehavior>
-                                                        </Custom:Interaction.Behaviors>
-                                                    </TextBox>-->
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}" ToolTipService.ToolTip="Skriv initialer">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
