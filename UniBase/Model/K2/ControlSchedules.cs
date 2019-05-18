@@ -19,14 +19,18 @@ namespace UniBase.Model.K2
         private string _note;
         private string _signature;
         private DateTime _time;
-        
 
 
+        //Helpers
+        private string _weightDoubleHelper;
+        private string _ludKoncentrationDoubleHelper;
+        private string _mipMaDoubleHelper;
+        private string _controlScheduleIdIntHelper;
+        private string _processOrderNoIntHelper;
         private string _timeStringHelper;
 
-        [JsonIgnore]
+        
         private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
-        [JsonIgnore]
         private ConstantValues constantValues = new ConstantValues();
         private SolidColorBrush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private SolidColorBrush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
@@ -51,14 +55,105 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
+        #region Helpers
+        [JsonIgnore]
+        public string ControlScheduleIdIntHelper
+        {
+            get { return _controlScheduleIdIntHelper; }
+            set
+            {
+                _controlScheduleIdIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string WeightDoubleHelper
+        {
+            get { return _weightDoubleHelper; }
+            set
+            {
+                _weightDoubleHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string LudKoncentrationDoubleHelper
+        {
+            get { return _ludKoncentrationDoubleHelper; }
+            set
+            {
+                _ludKoncentrationDoubleHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string MipMaDoubleHelper
+        {
+            get { return _mipMaDoubleHelper; }
+            set
+            {
+                _mipMaDoubleHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string TimeStringHelper
+        {
+            get { return _timeStringHelper; }
+            set
+            {
+                _timeStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public SolidColorBrush WeightColorBrush
+        {
+            get { return weightColorBrush; }
+            set
+            {
+                weightColorBrush = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public SolidColorBrush MipMaColorBrush
+        {
+            get { return mipMaColorBrush; }
+            set
+            {
+                mipMaColorBrush = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public SolidColorBrush LudKoncentrationColorBrush
+        {
+            get { return ludKoncentrationColorBrush; }
+            set
+            {
+                ludKoncentrationColorBrush = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         public int ControlSchedule_ID
         {
             get => _controlScheduleId;
             set
             {
-                if (value == _controlScheduleId) return;
                 _controlScheduleId = value;
-                OnPropertyChanged();
             }
         }
         
@@ -68,11 +163,10 @@ namespace UniBase.Model.K2
             set
             {
                 _weight = value;
-                if (_weight != null)
-                {
-                    WeightColorBrush = ofBoundColorChange.ChangeListViewColor((double)_weight, constantValues.MinWeight, constantValues.MaxWeight);
-                }
-                OnPropertyChanged();
+                //if (_weight != null)
+                //{
+                //    WeightColorBrush = ofBoundColorChange.ChangeListViewColor((double)_weight, constantValues.MinWeight, constantValues.MaxWeight);
+                //}
             }
         }
 
@@ -92,12 +186,11 @@ namespace UniBase.Model.K2
             get => _ludKoncentration;
             set
             {
-                _ludKoncentration = value; 
+                _ludKoncentration = value;
                 if (_ludKoncentration != null)
                 {
                     LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
                 }
-                OnPropertyChanged();
             }
         }
 
@@ -107,11 +200,10 @@ namespace UniBase.Model.K2
             set
             {
                 _mipMa = value;
-                if (_mipMa != null)
-                {
-                    MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
-                }
-                OnPropertyChanged();
+                //if (_mipMa != null) //todo fix this
+                //{
+                //    MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
+                //}
             }
         }
 
@@ -141,18 +233,6 @@ namespace UniBase.Model.K2
             set
             {
                 _processOrderNo = value;
-                OnPropertyChanged();
-            }
-        }
-
-        [JsonIgnore]
-        public string TimeStringHelper
-        {
-            get { return _timeStringHelper; }
-            set
-            {
-                _timeStringHelper = value; 
-                OnPropertyChanged();
             }
         }
 
@@ -162,44 +242,10 @@ namespace UniBase.Model.K2
             set
             {
                 _time = value;
-                OnPropertyChanged();
             }
         }
 
         public virtual Frontpages Frontpage { get; set; }
-
-        [JsonIgnore]
-        public SolidColorBrush WeightColorBrush
-        {
-            get { return weightColorBrush; }
-            set
-            {
-                weightColorBrush = value;
-                OnPropertyChanged();
-            }
-        }
-
-        [JsonIgnore]
-        public SolidColorBrush MipMaColorBrush
-        {
-            get { return mipMaColorBrush; }
-            set
-            {
-                mipMaColorBrush = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        [JsonIgnore]
-        public SolidColorBrush LudKoncentrationColorBrush
-        {
-            get { return ludKoncentrationColorBrush; }
-            set
-            {
-                ludKoncentrationColorBrush = value; 
-                OnPropertyChanged();
-            }
-        }
         
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

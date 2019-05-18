@@ -220,17 +220,59 @@ namespace UniBase.Model.K2.ButtonMethods
         public void Initialize()
         {
             TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            Parallel.ForEach(TuList, Tu =>
+            {
+                Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
+                Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
+                Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
+                Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
+                Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
+                Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
+                Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
+                Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
+                Tu.TuIdIntHelper = Tu.TU_ID.ToString();
+            });
         }
 
         public void RefreshAll()
         {
             TuList = ModelGenerics.GetAll(new TUs());
+            Parallel.ForEach(TuList, Tu =>
+            {
+                Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
+                Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
+                Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
+                Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
+                Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
+                Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
+                Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
+                Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
+                Tu.TuIdIntHelper = Tu.TU_ID.ToString();
+            });
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
         {
             TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            Parallel.ForEach(TuList, Tu =>
+            {
+                Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
+                Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
+                Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
+                Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
+                Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
+                Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
+                Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
+                Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
+                Tu.TuIdIntHelper = Tu.TU_ID.ToString();
+            });
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using UniBase.Annotations;
 
 namespace UniBase.Model.K2
@@ -16,7 +17,11 @@ namespace UniBase.Model.K2
         private DateTime _startTime;
         private DateTime _endDate;
 
-
+        private string _shiftRegistrationIdIntHelper;
+        private string _breaksIntHelper;
+        private string _processOrderNoIntHelper;
+        private string _staffIntHelper;
+        private string _totalHoursIntHelper;
         private string _startTimeStringHelper;
         private string _endDateStringHelper;
 
@@ -38,6 +43,8 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
+        #region Helpers
+        [JsonIgnore]
         public string StartTimeStringHelper
         {
             get { return _startTimeStringHelper; }
@@ -47,7 +54,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
+        [JsonIgnore]
         public string EndDateStringHelper
         {
             get { return _endDateStringHelper; }
@@ -57,15 +64,63 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
+        [JsonIgnore]
+        public string ShiftRegistrationIdIntHelper
+        {
+            get { return _shiftRegistrationIdIntHelper; }
+            set
+            {
+                _shiftRegistrationIdIntHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string BreaksIntHelper
+        {
+            get { return _breaksIntHelper; }
+            set
+            {
+                _breaksIntHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string TotalHoursIntHelper
+        {
+            get { return _totalHoursIntHelper; }
+            set
+            {
+                _totalHoursIntHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string StaffIntHelper
+        {
+            get { return _staffIntHelper; }
+            set
+            {
+                _staffIntHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+        #endregion
         public int ShiftRegistration_ID
         {
             get => _shiftRegistrationId;
             set
             {
-                if (value == _shiftRegistrationId) return;
                 _shiftRegistrationId = value;
-                OnPropertyChanged();
             }
         }
 
@@ -74,9 +129,7 @@ namespace UniBase.Model.K2
             get => _breaks;
             set
             {
-                if (value == _breaks) return;
                 _breaks = value;
-                OnPropertyChanged();
             }
         }
 
@@ -85,9 +138,7 @@ namespace UniBase.Model.K2
             get => _totalHours;
             set
             {
-                if (value == _totalHours) return;
                 _totalHours = value;
-                OnPropertyChanged();
             }
         }
 
@@ -96,9 +147,7 @@ namespace UniBase.Model.K2
             get => _staff;
             set
             {
-                if (value == _staff) return;
                 _staff = value;
-                OnPropertyChanged();
             }
         }
 
@@ -107,7 +156,6 @@ namespace UniBase.Model.K2
             get => _initials;
             set
             {
-                if (value == _initials) return;
                 _initials = value;
                 OnPropertyChanged();
             }
@@ -118,9 +166,7 @@ namespace UniBase.Model.K2
             get => _processOrderNo;
             set
             {
-                if (value == _processOrderNo) return;
                 _processOrderNo = value;
-                OnPropertyChanged();
             }
         }
 
@@ -129,9 +175,7 @@ namespace UniBase.Model.K2
             get => _startTime;
             set
             {
-                if (value.Equals(_startTime)) return;
                 _startTime = value;
-                OnPropertyChanged();
             }
         }
 
@@ -140,13 +184,12 @@ namespace UniBase.Model.K2
             get => _endDate;
             set
             {
-                if (value.Equals(_endDate)) return;
                 _endDate = value;
-                OnPropertyChanged();
             }
         }
 
         public virtual Frontpages Frontpage { get; set; }
+
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
