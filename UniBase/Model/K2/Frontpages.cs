@@ -78,14 +78,14 @@ namespace UniBase.Model.K2
             set
             {
                 _weekNoIntHelper = value;
-                if (!string.IsNullOrEmpty(_weekNoIntHelper))
-                {
-                    Regex regex = new Regex("[^0-9]+");
-                    if (regex.IsMatch(_weekNoIntHelper))
-                    {
-                        WeekNoIntHelper = _weekNoIntHelper.Substring(_weekNoIntHelper.Length-1);
-                    }
-                }
+                //if (!string.IsNullOrEmpty(_weekNoIntHelper))
+                //{
+                //    Regex regex = new Regex("[^0-9]+");
+                //    if (regex.IsMatch(_weekNoIntHelper))
+                //    {
+                //        WeekNoIntHelper = _weekNoIntHelper.Substring(_weekNoIntHelper.Length-1);
+                //    }
+                //}
 
                 OnPropertyChanged();
             }
@@ -109,6 +109,15 @@ namespace UniBase.Model.K2
             set
             {
                 _processOrderNo = value;
+            }
+        }
+
+        public DateTime Date
+        {
+            get => _date;
+            set
+            {
+                _date = value;
             }
         }
 
@@ -150,14 +159,6 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime Date
-        {
-            get => _date;
-            set
-            {
-                _date = value;
-            }
-        }
 
         public virtual Products Product
         {
