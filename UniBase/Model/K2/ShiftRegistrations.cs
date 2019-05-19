@@ -45,6 +45,26 @@ namespace UniBase.Model.K2
 
         #region Helpers
         [JsonIgnore]
+        public string ShiftRegistrationIdIntHelper
+        {
+            get { return _shiftRegistrationIdIntHelper; }
+            set
+            {
+                _shiftRegistrationIdIntHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value; 
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
         public string StartTimeStringHelper
         {
             get { return _startTimeStringHelper; }
@@ -61,16 +81,6 @@ namespace UniBase.Model.K2
             set
             {
                 _endDateStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ShiftRegistrationIdIntHelper
-        {
-            get { return _shiftRegistrationIdIntHelper; }
-            set
-            {
-                _shiftRegistrationIdIntHelper = value; 
                 OnPropertyChanged();
             }
         }
@@ -104,16 +114,6 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                _processOrderNoIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
         #endregion
         public int ShiftRegistration_ID
         {
@@ -121,6 +121,33 @@ namespace UniBase.Model.K2
             set
             {
                 _shiftRegistrationId = value;
+            }
+        }
+
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                _processOrderNo = value;
+            }
+        }
+
+        public DateTime Start_Time
+        {
+            get => _startTime;
+            set
+            {
+                _startTime = value;
+            }
+        }
+
+        public DateTime End_Date
+        {
+            get => _endDate;
+            set
+            {
+                _endDate = value;
             }
         }
 
@@ -160,34 +187,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                _processOrderNo = value;
-            }
-        }
-
-        public DateTime Start_Time
-        {
-            get => _startTime;
-            set
-            {
-                _startTime = value;
-            }
-        }
-
-        public DateTime End_Date
-        {
-            get => _endDate;
-            set
-            {
-                _endDate = value;
-            }
-        }
-
+        
         public virtual Frontpages Frontpage { get; set; }
 
 
