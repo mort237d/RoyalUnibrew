@@ -68,6 +68,16 @@ namespace UniBase.Model.K2
             }
         }
         [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
         public string FirstDayStartTuIntHelper
         {
             get { return _firstDayStartTuIntHelper; }
@@ -157,16 +167,6 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
         #endregion
         public int TU_ID
         {
@@ -174,6 +174,15 @@ namespace UniBase.Model.K2
             set
             {
                 _tuId = value;
+            }
+        }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+
+                _processOrderNo = value;
             }
         }
         public int FirstDayStart_TU
@@ -246,15 +255,6 @@ namespace UniBase.Model.K2
             set
             {
                 _thirdDayTotal = value;
-            }
-        }
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-
-                _processOrderNo = value;
             }
         }
 
