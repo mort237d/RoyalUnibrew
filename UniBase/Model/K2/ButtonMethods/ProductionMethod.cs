@@ -284,21 +284,21 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.ProductionsHeaderList[0].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList,PropertyInfos[0].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList,PropertyInfos[0 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[1].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[1].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[1 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[2].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[2].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[2 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[3].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[3].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[3 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[4].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[4].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[4 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[5].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[5].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[5 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[6].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[6].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[6 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[7].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[7].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[7 + 8].Name);
             else
                 Debug.WriteLine("Error");
         }

@@ -60,6 +60,16 @@ namespace UniBase.Model.K2
             }
         }
         [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
         public string PalletPutInStock0001IntHelper
         {
             get { return _palletPutInStock0001IntHelper; }
@@ -110,16 +120,6 @@ namespace UniBase.Model.K2
             }
         }
         [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
         public string BatchDateStringHelper
         {
             get { return _batchDateStringHelper; }
@@ -136,6 +136,14 @@ namespace UniBase.Model.K2
             set
             {
                 _productionId = value;
+            }
+        }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                _processOrderNo = value;
             }
         }
         public int PalletPutInStock0001
@@ -176,14 +184,6 @@ namespace UniBase.Model.K2
             set
             {
                 _palletCounter = value;
-            }
-        }
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                _processOrderNo = value;
             }
         }
         public DateTime BatchDate
