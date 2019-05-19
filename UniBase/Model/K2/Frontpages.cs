@@ -78,14 +78,6 @@ namespace UniBase.Model.K2
             set
             {
                 _weekNoIntHelper = value;
-                //if (!string.IsNullOrEmpty(_weekNoIntHelper))
-                //{
-                //    Regex regex = new Regex("[^0-9]+");
-                //    if (regex.IsMatch(_weekNoIntHelper))
-                //    {
-                //        WeekNoIntHelper = _weekNoIntHelper.Substring(_weekNoIntHelper.Length-1);
-                //    }
-                //}
 
                 OnPropertyChanged();
             }
