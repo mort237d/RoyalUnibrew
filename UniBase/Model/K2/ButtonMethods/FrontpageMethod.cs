@@ -88,7 +88,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[0+5].Name, _processOrderNoTextBoxOutput, Initialize);
+                Filter(0 + 5);
             }
         }
 
@@ -99,7 +99,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _dateTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[1 + 5].Name, _dateTextBoxOutput, Initialize);
+                Filter(1 + 5);
             }
         }
 
@@ -110,7 +110,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _finishedProductNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[2 + 5].Name, _finishedProductNoTextBoxOutput, Initialize);
+                Filter(2 + 5);
             }
         }
 
@@ -121,7 +121,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _columnTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[3 + 5].Name, _columnTextBoxOutput, Initialize);
+                Filter(3 + 5);
             }
         }
 
@@ -132,7 +132,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[4 + 5].Name, _noteTextBoxOutput, Initialize);
+                Filter(4 + 5);
             }
         }
 
@@ -143,15 +143,25 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weekNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[5 + 5].Name, _weekNoTextBoxOutput, Initialize);
+                Filter(5+5);
             }
         }
         #endregion
+
+        private void Filter(int propIndex)
+        {
+            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, _weekNoTextBoxOutput, Initialize, Helpers);
+        }
 
         #region ButtonMethods
         public void Initialize()
         {
             FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            Helpers();
+        }
+
+        private void Helpers()
+        {
             Parallel.ForEach(FrontpagesList, frontpage =>
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
@@ -316,17 +326,17 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             Debug.WriteLine(id.ToString(), "ID");
             if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0 + 5].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[1].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[1 + 5].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[2].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[2 + 5].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[3].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[3 + 5].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[4].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[4 + 5].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[5].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5 + 5].Name);
             else
                 Debug.WriteLine("Error");
         }

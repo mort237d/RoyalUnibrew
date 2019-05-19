@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace UniBase.Model
 {
@@ -10,7 +11,7 @@ namespace UniBase.Model
     {
         private bool sorted = true;
 
-        public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut, Action method)
+        public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut, Action method, Action methodHelper)
         {
             list.Clear();
 
@@ -23,6 +24,8 @@ namespace UniBase.Model
                     list.Add(f);
                 }
             }
+
+            methodHelper();
 
             if (string.IsNullOrEmpty(textBoxOutPut))
             {

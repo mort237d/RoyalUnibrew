@@ -73,36 +73,6 @@ namespace UniBase.Model.K2
             }
         }
         [JsonIgnore]
-        public string CapNoIntHelper
-        {
-            get { return _capNoIntHelper; }
-            set
-            {
-                _capNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string EtiquetteNoIntHelper
-        {
-            get { return _etiquetteNoIntHelper; }
-            set
-            {
-                _etiquetteNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
         public string TimeStringHelper
         {
             get { return _timeStringHelper; }
@@ -139,6 +109,26 @@ namespace UniBase.Model.K2
             }
         }
         [JsonIgnore]
+        public string CapNoIntHelper
+        {
+            get { return _capNoIntHelper; }
+            set
+            {
+                _capNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string EtiquetteNoIntHelper
+        {
+            get { return _etiquetteNoIntHelper; }
+            set
+            {
+                _etiquetteNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
         public string FirstPalletDepalletizingStringHelper
         {
             get { return _firstPalletDepalletizingStringHelper; }
@@ -158,6 +148,16 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         public int ControlRegistration_ID
@@ -166,6 +166,40 @@ namespace UniBase.Model.K2
             set
             {
                 _controlRegistrationId = value;
+            }
+        }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                if (value == _processOrderNo) return;
+                _processOrderNo = value;
+            }
+        }
+        public TimeSpan Time
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+            }
+        }
+        public DateTime Production_Date
+        {
+            get => _productionDate;
+            set
+            {
+                _productionDate = value;
+            }
+        }
+
+        public DateTime Expiry_Date
+        {
+            get => _expiryDate;
+            set
+            {
+                _expiryDate = value;
             }
         }
 
@@ -242,54 +276,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                if (value == _processOrderNo) return;
-                _processOrderNo = value;
-            }
-        }
 
-
-        public string ControlRegistrationAlcoholSpearDispenserControlled
-        {
-            get { return _controlRegistrationAlcoholSpearDispenserControlled; }
-            set
-            {
-                _controlRegistrationAlcoholSpearDispenserControlled = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public TimeSpan Time
-        {
-            get => _time;
-            set
-            {
-                _time = value;
-            }
-        }
-
-        public DateTime Production_Date
-        {
-            get => _productionDate;
-            set
-            {
-                _productionDate = value;
-            }
-        }
-
-        public DateTime Expiry_Date
-        {
-            get => _expiryDate;
-            set
-            {
-                _expiryDate = value;
-            }
-        }
-        
         public DateTime FirstPalletDepalletizing
         {
             get => _firstPalletDepalletizing;
@@ -309,6 +296,19 @@ namespace UniBase.Model.K2
                 _lastPalletDepalletizing = value;
             }
         }
+
+        public string ControlRegistrationAlcoholSpearDispenserControlled
+        {
+            get { return _controlRegistrationAlcoholSpearDispenserControlled; }
+            set
+            {
+                _controlRegistrationAlcoholSpearDispenserControlled = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        
         
 
         public virtual Frontpages Frontpage { get; set; }
