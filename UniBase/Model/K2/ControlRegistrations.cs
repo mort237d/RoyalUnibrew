@@ -73,6 +73,16 @@ namespace UniBase.Model.K2
             }
         }
         [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
         public string TimeStringHelper
         {
             get { return _timeStringHelper; }
@@ -145,16 +155,6 @@ namespace UniBase.Model.K2
             set
             {
                 _lastPalletDepalletizingStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                _processOrderNoIntHelper = value;
                 OnPropertyChanged();
             }
         }

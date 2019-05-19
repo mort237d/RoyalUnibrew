@@ -306,32 +306,23 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[0].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[0].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[0 + 9].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[1].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[1].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[1 + 9].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[2].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[2].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[2 + 9].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[3].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[3].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[3 + 9].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[4].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[4].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[4 + 9].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[5].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[5].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[5 + 9].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[6].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[6].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[6 + 9].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[7].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[7].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[7 + 9].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[8].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,
-                    PropertyInfos[8].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[8 + 9].Name);
             else
                 Debug.WriteLine("Error");
         }

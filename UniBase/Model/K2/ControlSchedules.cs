@@ -19,8 +19,7 @@ namespace UniBase.Model.K2
         private string _note;
         private string _signature;
         private DateTime _time;
-
-
+        
         //Helpers
         private string _weightDoubleHelper;
         private string _ludKoncentrationDoubleHelper;
@@ -28,7 +27,6 @@ namespace UniBase.Model.K2
         private string _controlScheduleIdIntHelper;
         private string _processOrderNoIntHelper;
         private string _timeStringHelper;
-
         
         private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
         private ConstantValues constantValues = new ConstantValues();
@@ -67,6 +65,26 @@ namespace UniBase.Model.K2
             }
         }
         [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string TimeStringHelper
+        {
+            get { return _timeStringHelper; }
+            set
+            {
+                _timeStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
         public string WeightDoubleHelper
         {
             get { return _weightDoubleHelper; }
@@ -93,26 +111,6 @@ namespace UniBase.Model.K2
             set
             {
                 _mipMaDoubleHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string TimeStringHelper
-        {
-            get { return _timeStringHelper; }
-            set
-            {
-                _timeStringHelper = value;
                 OnPropertyChanged();
             }
         }
@@ -156,7 +154,25 @@ namespace UniBase.Model.K2
                 _controlScheduleId = value;
             }
         }
-        
+
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                _processOrderNo = value;
+            }
+        }
+
+        public DateTime Time
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+            }
+        }
+
         public double Weight
         {
             get => _weight;
@@ -224,24 +240,6 @@ namespace UniBase.Model.K2
             {
                 _note = value;
                 OnPropertyChanged();
-            }
-        }
-
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                _processOrderNo = value;
-            }
-        }
-
-        public DateTime Time
-        {
-            get => _time;
-            set
-            {
-                _time = value;
             }
         }
 
