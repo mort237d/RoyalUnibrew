@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using UniBase.Annotations;
 
@@ -76,6 +78,7 @@ namespace UniBase.Model.K2
             set
             {
                 _weekNoIntHelper = value;
+
                 OnPropertyChanged();
             }
         }
@@ -98,6 +101,15 @@ namespace UniBase.Model.K2
             set
             {
                 _processOrderNo = value;
+            }
+        }
+
+        public DateTime Date
+        {
+            get => _date;
+            set
+            {
+                _date = value;
             }
         }
 
@@ -139,14 +151,6 @@ namespace UniBase.Model.K2
             }
         }
 
-        public DateTime Date
-        {
-            get => _date;
-            set
-            {
-                _date = value;
-            }
-        }
 
         public virtual Products Product
         {

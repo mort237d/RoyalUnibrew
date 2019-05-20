@@ -117,7 +117,7 @@ namespace UniBase.Model
                     {
                         amountOfItemsWithSameDate++;
                         if (comboboxInput == "Vægt")
-                        { //todo check om weight er null selvom den ikke burde være
+                        { //TODO check om weight er null selvom den ikke burde være
                             tempTotalValue += (double)CompleteControlSchedulesList[i].Weight;
                             minValue = constantValues.MinWeight;
                             maxValue = constantValues.MaxWeight;

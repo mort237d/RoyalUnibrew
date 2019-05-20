@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using UniBase.Annotations;
 using UniBase.Model.K2.ButtonMethods;
 
@@ -17,6 +18,14 @@ namespace UniBase.Model.K2
         private int _processOrderNo;
         private DateTime _batchDate;
 
+        //Helpers
+        private string _productionIdIntHelper;
+        private string _palletPutInStock0001IntHelper;
+        private string _tapmachineIntHelper;
+        private string _totalKegsPrPalletIntHelper;
+        private string _counterIntHelper;
+        private string _palletCounterIntHelper;
+        private string _processOrderNoIntHelper;
         private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
 
         private string _batchDateStringHelper;
@@ -40,86 +49,82 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int Production_ID
+
+        #region Helpers
+        [JsonIgnore]
+        public string ProductionIdIntHelper
         {
-            get => _productionId;
+            get { return _productionIdIntHelper; }
             set
             {
-                if (value == _productionId) return;
-                _productionId = value;
+                _productionIdIntHelper = value; 
                 OnPropertyChanged();
             }
         }
-
-        public int PalletPutInStock0001
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
         {
-            get => _palletPutInStock0001;
+            get { return _processOrderNoIntHelper; }
             set
             {
-                if (value == _palletPutInStock0001) return;
-                _palletPutInStock0001 = value;
+                _processOrderNoIntHelper = value;
                 OnPropertyChanged();
                 PalletCounter = CalculateProductions.CalculatePalletCounter();
             }
         }
-
-        public int Tapmachine
+        [JsonIgnore]
+        public string PalletPutInStock0001IntHelper
         {
-            get => _tapmachine;
+            get { return _palletPutInStock0001IntHelper; }
             set
             {
-                if (value == _tapmachine) return;
-                _tapmachine = value;
+                _palletPutInStock0001IntHelper = value; 
                 OnPropertyChanged();
             }
         }
-
-        public int TotalKegsPrPallet
+        [JsonIgnore]
+        public string TapmachineIntHelper
         {
-            get => _totalKegsPrPallet;
+            get { return _tapmachineIntHelper; }
             set
             {
-                if (value == _totalKegsPrPallet) return;
-                _totalKegsPrPallet = value;
+                _tapmachineIntHelper = value; 
                 OnPropertyChanged();
                 //TotalKegs = _calculateTuTotal.CalculateTotalKegs(TotalKegsPrPallet, PalletCounter);
             }
         }
-
-        public int Counter
+        [JsonIgnore]
+        public string TotalKegsPrPalletIntHelper
         {
-            get => _counter;
+            get { return _totalKegsPrPalletIntHelper; }
             set
             {
-                if (value == _counter) return;
-                _counter = value;
+                _totalKegsPrPalletIntHelper = value;
                 OnPropertyChanged();
             }
         }
-
-        public int ProcessOrder_No
+        [JsonIgnore]
+        public string CounterIntHelper
         {
-            get => _processOrderNo;
+            get { return _counterIntHelper; }
             set
             {
-                if (value == _processOrderNo) return;
-                _processOrderNo = value;
+                _counterIntHelper = value; 
                 OnPropertyChanged();
             }
         }
-
-        public int PalletCounter
+        [JsonIgnore]
+        public string PalletCounterIntHelper
         {
-            get => _palletCounter;
+            get { return _palletCounterIntHelper; }
             set
             {
-                if (value == _palletCounter) return;
-                _palletCounter = value;
+                _palletCounterIntHelper = value; 
                 OnPropertyChanged();
                 //TotalKegs = _calculateTuTotal.CalculateTotalKegs(TotalKegsPrPallet, PalletCounter);
             }
         }
-
+        [JsonIgnore]
         public string BatchDateStringHelper
         {
             get { return _batchDateStringHelper; }
@@ -129,22 +134,73 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
+        #endregion
+        public int Production_ID
+        {
+            get => _productionId;
+            set
+            {
+                _productionId = value;
+            }
+        }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                _processOrderNo = value;
+            }
+        }
+        public int PalletPutInStock0001
+        {
+            get => _palletPutInStock0001;
+            set
+            {
+                _palletPutInStock0001 = value;
+            }
+        }
+        public int Tapmachine
+        {
+            get => _tapmachine;
+            set
+            {
+                _tapmachine = value;
+            }
+        }
+        public int TotalKegsPrPallet
+        {
+            get => _totalKegsPrPallet;
+            set
+            {
+                _totalKegsPrPallet = value;
+            }
+        }
+        public int Counter
+        {
+            get => _counter;
+            set
+            {
+                _counter = value;
+            }
+        }
+        public int PalletCounter
+        {
+            get => _palletCounter;
+            set
+            {
+                _palletCounter = value;
+            }
+        }
         public DateTime BatchDate
         {
             get => _batchDate;
             set
             {
-                if (value.Equals(_batchDate)) return;
                 _batchDate = value;
-                OnPropertyChanged();
             }
         }
-
-       
-
         public virtual Frontpages Frontpage { get; set; }
-
+        
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

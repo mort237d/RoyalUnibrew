@@ -93,7 +93,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _shiftRegistrationIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[0].Name, _shiftRegistrationIdTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[0].Name, _shiftRegistrationIdTextBoxOutput, Initialize);
             }
         }
 
@@ -104,7 +104,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput, Initialize);
             }
         }
 
@@ -115,7 +115,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _startTimeTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[2].Name, _startTimeTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[2].Name, _startTimeTextBoxOutput, Initialize);
             }
         }
 
@@ -126,7 +126,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _endDateTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[3].Name, _endDateTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[3].Name, _endDateTextBoxOutput, Initialize);
             }
         }
 
@@ -137,7 +137,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _breaksTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[4].Name, _breaksTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[4].Name, _breaksTextBoxOutput, Initialize);
             }
         }
 
@@ -148,7 +148,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _totalHoursTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[5].Name, _totalHoursTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[5].Name, _totalHoursTextBoxOutput, Initialize);
             }
         }
 
@@ -159,7 +159,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _staffTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[6].Name, _staffTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[6].Name, _staffTextBoxOutput, Initialize);
             }
         }
 
@@ -170,7 +170,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _initialsTextBoxOutput = value;
 
-                _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[7].Name, _initialsTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[7].Name, _initialsTextBoxOutput, Initialize);
             }
         }
 
@@ -188,6 +188,11 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
             {
+                shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+                shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+                shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+                shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+                shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
                 FillStringHelpers(shiftRegistration);
             });
         }
@@ -197,6 +202,11 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
                 {
+                    shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+                    shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+                    shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+                    shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+                    shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
                     FillStringHelpers(shiftRegistration);
                 });
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
@@ -207,6 +217,11 @@ namespace UniBase.Model.K2.ButtonMethods
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
             {
+                shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+                shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+                shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+                shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+                shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
                 FillStringHelpers(shiftRegistration);
             });
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
@@ -274,21 +289,21 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[0].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[0].Name);
+                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[0 + 7].Name);
             else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[1].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[1].Name);
+                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[1 + 7].Name);
             else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[2].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[2].Name);
+                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[2 + 7].Name);
             else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[3].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[3].Name);
+                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[3 + 7].Name);
             else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[4].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[4].Name);
+                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[4 + 7].Name);
             else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[5].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[5].Name);
+                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[5 + 7].Name);
             else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[6].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[6].Name);
+                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[6 + 7].Name);
             else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[7].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[7].Name);
+                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[7 + 7].Name);
             else
                 Debug.WriteLine("Error");
         }

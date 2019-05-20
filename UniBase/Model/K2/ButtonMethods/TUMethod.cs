@@ -52,7 +52,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tuIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[0].Name, _tuIdTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[0].Name, _tuIdTextBoxOutput, Initialize);
             }
         }
 
@@ -63,7 +63,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[1].Name, _firstDayStartTuTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[1].Name, _firstDayStartTuTextBoxOutput, Initialize);
             }
         }
 
@@ -74,7 +74,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[2].Name, _firstDayEndTuTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[2].Name, _firstDayEndTuTextBoxOutput, Initialize);
             }
         }
 
@@ -85,7 +85,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _firstDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[3].Name, _firstDayTotalTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[3].Name, _firstDayTotalTextBoxOutput, Initialize);
             }
         }
 
@@ -96,7 +96,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[4].Name, _secoundDayStartTuTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[4].Name, _secoundDayStartTuTextBoxOutput, Initialize);
             }
         }
 
@@ -107,7 +107,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[5].Name, _secoundDayEndTuTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[5].Name, _secoundDayEndTuTextBoxOutput, Initialize);
             }
         }
 
@@ -118,7 +118,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _secoundDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[6].Name, _secoundDayTotalTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[6].Name, _secoundDayTotalTextBoxOutput, Initialize);
             }
         }
 
@@ -129,7 +129,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayStartTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[7].Name, _thirdDayStartTuTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[7].Name, _thirdDayStartTuTextBoxOutput, Initialize);
             }
         }
 
@@ -140,7 +140,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayEndTuTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[8].Name, _thirdDayEndTuTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[8].Name, _thirdDayEndTuTextBoxOutput, Initialize);
             }
         }
 
@@ -151,7 +151,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _thirdDayTotalTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[9].Name, _thirdDayTotalTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[9].Name, _thirdDayTotalTextBoxOutput, Initialize);
             }
         }
 
@@ -162,7 +162,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[10].Name, _processOrderNoTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[10].Name, _processOrderNoTextBoxOutput, Initialize);
             }
         }
 
@@ -220,17 +220,59 @@ namespace UniBase.Model.K2.ButtonMethods
         public void Initialize()
         {
             TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            Parallel.ForEach(TuList, Tu =>
+            {
+                Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
+                Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
+                Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
+                Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
+                Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
+                Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
+                Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
+                Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
+                Tu.TuIdIntHelper = Tu.TU_ID.ToString();
+            });
         }
 
         public void RefreshAll()
         {
             TuList = ModelGenerics.GetAll(new TUs());
+            Parallel.ForEach(TuList, Tu =>
+            {
+                Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
+                Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
+                Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
+                Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
+                Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
+                Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
+                Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
+                Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
+                Tu.TuIdIntHelper = Tu.TU_ID.ToString();
+            });
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
         {
             TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            Parallel.ForEach(TuList, Tu =>
+            {
+                Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
+                Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
+                Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
+                Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
+                Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
+                Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
+                Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
+                Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
+                Tu.TuIdIntHelper = Tu.TU_ID.ToString();
+            });
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
 
@@ -294,27 +336,27 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.TUHeaderList[0].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[0].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[0 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[1].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[1].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[1 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[2].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[2].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[2 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[3].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[3].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[3 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[4].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[4].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[4 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[5].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[5].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[5 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[6].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[6].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[6 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[7].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[7].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[7 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[8].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[8].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[8 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[9].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[9].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[9 + 11].Name);
             else if (id.ToString() == _xamlBindings.TUHeaderList[10].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[10].Name);
+                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[10 + 11].Name);
             else
                 Debug.WriteLine("Error");
         }

@@ -11,6 +11,8 @@
     xmlns:k2="using:UniBase.Model.K2"
     xmlns:model="using:UniBase.Model"
 
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+
     xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core" x:Name="WorkPageName"
     x:Class="UniBase.View.WorkPage"
 
@@ -42,7 +44,7 @@
         <Pivot Grid.Row="1" x:Name="ColumnPivot" SelectedIndex="0">
             <!--#region K2-->
             <PivotItem Header="K2">
-                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="5">
+                <Pivot Style="{StaticResource CustomPivotStyle}"  SelectedIndex="0">
                     <!--#region Forside-->
                     <PivotItem Style="{StaticResource CustomPivotItemStyle}" Header="Forside">
                         <StackPanel HorizontalAlignment="Center">
@@ -79,7 +81,7 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                    <ListView SelectedIndex="{Binding Column_2.FrontpageMethod.SelectedFrontpageId, Mode=TwoWay}" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpageMethod.FrontpagesList}" SelectedItem="{Binding Column_2.FrontpageMethod.SelectedFrontpage, Mode=TwoWay}">
+                                    <ListView Style="{StaticResource ListViewTableStyle}" SelectedIndex="{Binding Column_2.FrontpageMethod.SelectedFrontpageId, Mode=TwoWay}" MaxHeight="400" Width="663" ItemsSource="{Binding Column_2.FrontpageMethod.FrontpagesList}" SelectedItem="{Binding Column_2.FrontpageMethod.SelectedFrontpage, Mode=TwoWay}">
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Padding" Value="0"/>
@@ -98,21 +100,21 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding DateTimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Fx ÅÅÅÅ/MM/DD">
+                                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding DateTimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProductNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProductNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ColunmIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ColunmIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
@@ -126,7 +128,7 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding WeekNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv evt. Uge nr. Fx 12">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.Regex="^([1-9]|[1-4][0-9]|5[0-2])$" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding WeekNoIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv evt. Uge nr. Fx 12">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemFrontpageCommand, ElementName=WorkPageName}" CommandParameter="{Binding ProcessOrder_No}"/>
@@ -158,18 +160,12 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.ProcessOrderNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" />
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
-
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.FinishedProductNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.ColunmIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.ProcessOrderNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" />
+                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.DateTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.FinishedProductNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.ColunmIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.Note, Mode=TwoWay}"/>
-
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.WeekNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.Regex="^([1-9]|[1-4][0-9]|5[0-2])$" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.FrontpageMethod.NewFrontpagesToAdd.WeekNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                 </StackPanel>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
@@ -241,28 +237,28 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrderNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrderNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"  ToolTipService.ToolTip="Skriv tidspunkt fx TT:MM">
+                                                    <TextBox extensions:TextBoxMask.Mask="99:99" Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderTimeSpan, ElementName=WorkPageName}" Text="{Binding TimeStringHelper, Mode=TwoWay}"  ToolTipService.ToolTip="Skriv tidspunkt fx TT:MM">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}"  ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
+                                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ProductionsDateStringHelper, Mode=TwoWay}"  ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ExpiryDateStringHelper, Mode=TwoWay}"  ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
+                                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding ExpiryDateStringHelper, Mode=TwoWay}"  ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
@@ -276,24 +272,24 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <!-- Find en løsning til knappen med at få selecteditem frem -->
                                                     <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}" ToolTipService.ToolTip="Klik for at vælge">
                                                         <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}" />
                                                     </Button>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EtiquetteNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
+                                                    <!-- Find løsning til Binding -->
                                                     <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding KegSize, Mode=TwoWay}">
                                                         <ComboBoxItem Content="20L"/>
                                                         <ComboBoxItem Content="25L"/>
@@ -304,13 +300,6 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </ComboBox>
-                                                    <!--<TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding KegSize, Mode=TwoWay}"  ToolTipService.ToolTip="Vælg størrelse på fustage">
-                                                        <Custom:Interaction.Behaviors>
-                                                            <Custom1:EventTriggerBehavior EventName="GotFocus">
-                                                                <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
-                                                            </Custom1:EventTriggerBehavior>
-                                                        </Custom:Interaction.Behaviors>
-                                                    </TextBox>-->
                                                     <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Signature, Mode=TwoWay}" ToolTipService.ToolTip="Skriv initialer">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
@@ -318,14 +307,15 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
+                                                    <!--Hvorfor er denne ikke readOnly?-->
+                                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
+                                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column_2.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding LastPalletDepalletizingStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}"/>
@@ -356,37 +346,25 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ControlRegistrationIdIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ProcessOrderNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ExpiryDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" IsReadOnly="True"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ControlRegistrationIdIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ProcessOrderNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="99:99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ExpiryDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}" IsReadOnly="True"/>
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.CommentsOnChangedDate, Mode=TwoWay}"/>
-                                    
                                     <Button Height="40" Width="110" Background="Transparent" BorderThickness="1,2,1,1" BorderBrush="#16503F" Command="{Binding DataContext.ControlledClickCommand2, ElementName=WorkPageName}">
                                         <Image Source="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}"/>
                                     </Button>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.CapNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.EtiquetteNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.CapNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.EtiquetteNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding Column_2.ControlRegistrationMethod.KegSize, Mode=TwoWay}" BorderThickness="1,2,1,1">
                                         <ComboBoxItem Content="20L"/>
                                         <ComboBoxItem Content="25L"/>
-                                        <ComboBoxItem Content="30L"/>
+                                        <ComboBoxItem Content="30L"/> 
                                     </ComboBox>
-                                    
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.FirstPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.LastPalletDepalletizingStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
                                     
                                 </StackPanel>
 
@@ -450,28 +428,28 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlSchedule_ID, Mode=TwoWay}" IsReadOnly="True">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ControlScheduleIdIntHelper, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrderNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt fx TT:MM">
+                                                    <TextBox  extensions:TextBoxMask.Mask="99:99" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt fx TT:MM">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding WeightColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 37.60">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding WeightDoubleHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding WeightColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 37.60">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
@@ -485,14 +463,14 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding LudKoncentrationColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 1.5">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding LudKoncentrationDoubleHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding LudKoncentrationColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 1.5">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding MipMaColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 26.5">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding MipMaDoubleHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding MipMaColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv kommatal fx 26.5">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemControlScheduleCommand, ElementName=WorkPageName}" CommandParameter="{Binding ControlSchedule_ID}"/>
@@ -537,24 +515,15 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ControlSchedule_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Weight, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ControlSchedule_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="99:99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Weight, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}"/>
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.KegTest, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.LudKoncentration, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.MipMA, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.LudKoncentration, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.MipMA, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDouble}"/>
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Signature, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}"/>
-                                    
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlScheduleMethod.NewControlSchedules.Note, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString, Mode=TwoWay}"/>
-                                    
                                 </StackPanel>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Width="40" Height="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddControlScheduleTable}">
@@ -615,56 +584,56 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Production_ID, Mode=TwoWay}" IsReadOnly="True" >
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProductionIdIntHelper, Mode=TwoWay}" IsReadOnly="True" >
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrderNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletPutInStock0001IntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Tapmachine, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TapmachineIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPallet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalKegsPrPalletIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Counter, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CounterIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding PalletCounterIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDateStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
+                                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BatchDateStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductionCommand, ElementName=WorkPageName}" CommandParameter="{Binding Production_ID}"/>
@@ -696,21 +665,13 @@
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Production_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletPutInStock0001, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Tapmachine, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.TotalKegsPrPallet, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Counter, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletCounter, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.BatchDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletPutInStock0001, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Tapmachine, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.TotalKegsPrPallet, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Counter, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletCounter, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.BatchDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
                                 </StackPanel>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddProductionTable}">
                                     <Image Source="Images/AddButton.png"/>
@@ -770,49 +731,49 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ShiftRegistration_ID, Mode=TwoWay}" IsReadOnly="True">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ShiftRegistrationIdIntHelper, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrderNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding StartTimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt TT:MM">
+                                                    <TextBox extensions:TextBoxMask.Mask="99:99" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding StartTimeStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt TT:MM">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EndDateStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt TT:MM">
+                                                    <TextBox extensions:TextBoxMask.Mask="99:99" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding EndDateStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv tidspunkt TT:MM">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Breaks, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BreaksIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalHours, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TotalHoursIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Staff, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding StaffIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemShiftRegistrationCommand, ElementName=WorkPageName}" CommandParameter="{Binding ShiftRegistration_ID}"/>
@@ -851,21 +812,13 @@
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.ShiftRegistration_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.StartTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.EndDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Breaks, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.TotalHours, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Staff, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="99:99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.StartTimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
+                                    <TextBox extensions:TextBoxMask.Mask="99:99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.EndDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Breaks, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.TotalHours, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Staff, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Initials, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}"/>
-                                    
                                 </StackPanel>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddShiftRegistrationTable}">
                                     <Image Source="Images/AddButton.png"/>
@@ -928,77 +881,77 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TU_ID, Mode=TwoWay}" IsReadOnly="True">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding TuIdIntHelper, Mode=TwoWay}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrder_No, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProcessOrderNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStart_TU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayStartTuIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEnd_TU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayEndTuIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDay_Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FirstDayTotalIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStart_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStartTuIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEnd_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEndTuIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDay_Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayTotalIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStart_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStartTuIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEnd_TU, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEndTuIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDay_Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayTotalIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
@@ -1029,28 +982,17 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.TU_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDay_Total, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDay_Total, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayStart_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayEnd_TU, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
-                                    <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDay_Total, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.TuIdIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ProcessOrderNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayStartTuIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayEndTuIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.FirstDayTotalIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayStartTuIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayEndTuIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.SecoundDayTotalIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayStartTuIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayEndTuIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayTotalIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                 </StackPanel>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddTUTable}">
                                     <Image Source="Images/AddButton.png"/>

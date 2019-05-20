@@ -22,7 +22,7 @@ namespace UniBase.Model.K2
             Type tModelType = type.GetType();
             PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
 
-            //ToDo Finish This.
+            //TODO Finish This.
             foreach (PropertyInfo property in arrayPropertyInfos)
             {
                 var prop = type.GetType().GetProperty(property.Name, BindingFlags.Public | BindingFlags.Instance);
@@ -32,7 +32,11 @@ namespace UniBase.Model.K2
                 {
                     if (prop.Name.Contains("StringHelper"))
                     {
-                        if (propertyValue.ToString().Length >= 5)
+                        if (propertyValue.ToString() == null)
+                        {
+                            datesAndTimeSpanStrings.Add("Null");
+                        }
+                        else if (propertyValue.ToString().Length >= 5)
                         {
                             datesAndTimeSpanStrings.Add(propertyValue.ToString());
                         }
@@ -46,11 +50,13 @@ namespace UniBase.Model.K2
                     {
                         try
                         {
-                            if (propertyValue.ToString().Contains(","))
+                            if (propertyValue.ToString().Contains("."))
                             {
-                                prop.SetValue(type, propertyValue.ToString().Replace(",",".") , null);
+                                string temp = propertyValue.ToString().Replace(".", ",");
+                                double.TryParse(temp, out double i);
+                                intsAndDoubleStrings.Add(i);
                             }
-                            if (double.TryParse(propertyValue.ToString(), out double i))
+                            else if (double.TryParse(propertyValue.ToString(), out double i))
                             {
                                 intsAndDoubleStrings.Add(i);
                             }
@@ -64,19 +70,6 @@ namespace UniBase.Model.K2
                         {
                             //error
                             Debug.WriteLine("Failed");
-                        }
-                    }
-                    else if (propertyValue == null)
-                    {
-                        if (property.Name == "Note" || property.Name == "CommentsOnChangedDate")
-                        {
-                            prop.SetValue(type, " ", null);
-                        }
-                        else
-                        {
-                            //error
-                            Debug.WriteLine("Failed");
-
                         }
                     }
                 }

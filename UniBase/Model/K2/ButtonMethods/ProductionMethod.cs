@@ -71,7 +71,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _productionIdTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[0].Name, _productionIdTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[0].Name, _productionIdTextBoxOutput, Initialize);
             }
         }
 
@@ -82,7 +82,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput, Initialize);
             }
         }
 
@@ -93,7 +93,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _palletPutInStock0001TextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[2].Name, _palletPutInStock0001TextBoxOutput, Initialize);
+                //_genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[2].Name, _palletPutInStock0001TextBoxOutput, Initialize);
             }
         }
 
@@ -104,7 +104,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _tapmachineTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[3].Name, _tapmachineTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[3].Name, _tapmachineTextBoxOutput, Initialize);
             }
         }
 
@@ -115,7 +115,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _totalKegsPrPalletTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[4].Name, _totalKegsPrPalletTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[4].Name, _totalKegsPrPalletTextBoxOutput, Initialize);
             }
         }
 
@@ -126,7 +126,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _counterTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[5].Name, _counterTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[5].Name, _counterTextBoxOutput, Initialize);
             }
         }
 
@@ -137,7 +137,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _palletCounterTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[6].Name, _palletCounterTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[6].Name, _palletCounterTextBoxOutput, Initialize);
             }
         }
 
@@ -148,7 +148,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _batchDateTextBoxOutput = value;
 
-                _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[7].Name, _batchDateTextBoxOutput, Initialize);
+                //_genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[7].Name, _batchDateTextBoxOutput, Initialize);
             }
         }
 
@@ -188,6 +188,13 @@ namespace UniBase.Model.K2.ButtonMethods
             Parallel.ForEach(ProductionsList, production =>
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
+                production.ProcessOrderNoIntHelper = production.ProcessOrder_No.ToString();
+                production.CounterIntHelper = production.Counter.ToString();
+                production.PalletCounterIntHelper = production.PalletCounter.ToString();
+                production.PalletPutInStock0001IntHelper = production.PalletPutInStock0001.ToString();
+                production.ProductionIdIntHelper = production.Production_ID.ToString();
+                production.TapmachineIntHelper = production.Tapmachine.ToString();
+                production.TotalKegsPrPalletIntHelper = production.TotalKegsPrPallet.ToString();
             });
         }
         public void RefreshAll()
@@ -277,21 +284,21 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.ProductionsHeaderList[0].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList,PropertyInfos[0].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList,PropertyInfos[0 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[1].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[1].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[1 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[2].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[2].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[2 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[3].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[3].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[3 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[4].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[4].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[4 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[5].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[5].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[5 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[6].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[6].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[6 + 8].Name);
             else if (id.ToString() == _xamlBindings.ProductionsHeaderList[7].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[7].Name);
+                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[7 + 8].Name);
             else
                 Debug.WriteLine("Error");
         }

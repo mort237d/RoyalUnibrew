@@ -57,7 +57,7 @@ namespace UniBase
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    //Todo change this bla
+                    //TODO change this to LoginPage
                     rootFrame.Navigate(typeof(WorkPage), e.Arguments);
                 }
                 // Ensure the current window is active
