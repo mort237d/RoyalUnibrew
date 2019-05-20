@@ -204,6 +204,13 @@ namespace UniBase.Model.K2.ButtonMethods
             Parallel.ForEach(ProductionsList, production =>
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
+                production.ProcessOrderNoIntHelper = production.ProcessOrder_No.ToString();
+                production.CounterIntHelper = production.Counter.ToString();
+                production.PalletCounterIntHelper = production.PalletCounter.ToString();
+                production.PalletPutInStock0001IntHelper = production.PalletPutInStock0001.ToString();
+                production.ProductionIdIntHelper = production.Production_ID.ToString();
+                production.TapmachineIntHelper = production.Tapmachine.ToString();
+                production.TotalKegsPrPalletIntHelper = production.TotalKegsPrPallet.ToString();
             });
             _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
@@ -215,6 +222,13 @@ namespace UniBase.Model.K2.ButtonMethods
             Parallel.ForEach(ProductionsList, production =>
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
+                production.ProcessOrderNoIntHelper = production.ProcessOrder_No.ToString();
+                production.CounterIntHelper = production.Counter.ToString();
+                production.PalletCounterIntHelper = production.PalletCounter.ToString();
+                production.PalletPutInStock0001IntHelper = production.PalletPutInStock0001.ToString();
+                production.ProductionIdIntHelper = production.Production_ID.ToString();
+                production.TapmachineIntHelper = production.Tapmachine.ToString();
+                production.TotalKegsPrPalletIntHelper = production.TotalKegsPrPallet.ToString();
             });
             _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
@@ -223,10 +237,10 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             ProductionsList = ModelGenerics.GetAll(new Productions());
 
-            Parallel.ForEach(ProductionsList, production =>
-            {
-                InputValidator.CheckIfInputsAreValid(ref production);
-            });
+            //Parallel.ForEach(ProductionsList, production =>
+            //{
+            //    InputValidator.CheckIfInputsAreValid(ref production);
+            //});
 
             Parallel.ForEach(ProductionsList, production =>
             {
@@ -251,7 +265,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewItem()
         {
             var ObjectToAdd = NewProductions;
-            InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
+            //InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
 
             //Autofills
 

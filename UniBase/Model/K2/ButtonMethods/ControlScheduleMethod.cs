@@ -248,10 +248,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
-            {
-                InputValidator.CheckIfInputsAreValid(ref controleSchedule);
-            });
+            //Parallel.ForEach(ControlSchedulesList, controleSchedule =>
+            //{
+            //    InputValidator.CheckIfInputsAreValid(ref controleSchedule);
+            //});
             Parallel.ForEach(ControlSchedulesList, controlSchedules =>
             {
                 ModelGenerics.UpdateByObjectAndId((int)controlSchedules.ControlSchedule_ID, controlSchedules);
@@ -275,7 +275,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewItem()
         {
             var objectToAdd = NewControlSchedules;
-            InputValidator.CheckIfInputsAreValid(ref objectToAdd);
+            //InputValidator.CheckIfInputsAreValid(ref objectToAdd);
             
            
             if (ModelGenerics.CreateByObject(objectToAdd))

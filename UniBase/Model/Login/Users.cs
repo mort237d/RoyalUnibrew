@@ -4,7 +4,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.Login
 {
-    class User : INotifyPropertyChanged
+    class Users : INotifyPropertyChanged
     {
         #region Field
 
@@ -14,7 +14,7 @@ namespace UniBase.Model.Login
 
         #region Constructors
         //TODO Admin skal ændres til en int eller andet.
-        public User(string name, string email, string telephoneNumber, string password, string imageSource)
+        public Users(string name, string email, string telephoneNumber, string password, string imageSource)
         {
             Name = name;
             Email = email;
@@ -23,7 +23,7 @@ namespace UniBase.Model.Login
             ImageSource = imageSource;
         }
 
-        public User()
+        public Users()
         {
 
         }

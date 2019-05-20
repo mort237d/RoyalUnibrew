@@ -56,6 +56,7 @@ namespace UniBase.ViewModel
 
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
+        public RelayCommand ChangeUserCommand { get; set; }
         
         public RelayCommand<object> ControlledClickCommand { get; set; }
         public RelayCommand ControlledClickCommand2 { get; set; }
@@ -158,9 +159,10 @@ namespace UniBase.ViewModel
             AddTUTable = new RelayCommand(Column_2.TuMethod.AddNewItem);
             DeleteTUTable = new RelayCommand(Column_2.TuMethod.DeleteItem);
 
-            //User
+            //Users
             AddUserCommand = new RelayCommand(ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
+            ChangeUserCommand = new RelayCommand(ManageUser.ChangeSelectedUser);
 
             //Sort
             SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);

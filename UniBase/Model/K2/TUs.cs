@@ -64,6 +64,13 @@ namespace UniBase.Model.K2
             get { return _tuIdIntHelper; }
             set
             {
+                if (_tuIdIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        TU_ID = i;
+                    }
+                }
                 _tuIdIntHelper = value;
                 OnPropertyChanged();
             }
@@ -74,6 +81,13 @@ namespace UniBase.Model.K2
             get { return _processOrderNoIntHelper; }
             set
             {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
                 _processOrderNoIntHelper = value;
                 OnPropertyChanged();
             }
@@ -84,6 +98,13 @@ namespace UniBase.Model.K2
             get { return _firstDayStartTuIntHelper; }
             set
             {
+                if (_firstDayStartTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        FirstDayStart_TU = i;
+                    }
+                }
                 _firstDayStartTuIntHelper = value;
                 OnPropertyChanged();
 
@@ -96,6 +117,13 @@ namespace UniBase.Model.K2
             get { return _firstDayEndTuIntHelper; }
             set
             {
+                if (_firstDayEndTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        FirstDayEnd_TU = i;
+                    }
+                }
                 _firstDayEndTuIntHelper = value; 
                 OnPropertyChanged();
                 FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
@@ -107,6 +135,13 @@ namespace UniBase.Model.K2
             get { return _firstDayTotalIntHelper; }
             set
             {
+                if (_firstDayTotalIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        FirstDay_Total = i;
+                    }
+                }
                 _firstDayTotalIntHelper = value; 
                 OnPropertyChanged();
             }
@@ -117,6 +152,13 @@ namespace UniBase.Model.K2
             get { return _secoundDayStartTuIntHelper; }
             set
             {
+                if (_secoundDayStartTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        SecoundDayStart_TU = i;
+                    }
+                }
                 _secoundDayStartTuIntHelper = value; 
                 OnPropertyChanged();
             }
@@ -127,6 +169,13 @@ namespace UniBase.Model.K2
             get { return _secoundDayEndTuIntHelper; }
             set
             {
+                if (_secoundDayEndTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        SecoundDayEnd_TU = i;
+                    }
+                }
                 _secoundDayEndTuIntHelper = value; 
                 OnPropertyChanged();
             }
@@ -137,6 +186,13 @@ namespace UniBase.Model.K2
             get { return _secoundDayTotalIntHelper; }
             set
             {
+                if (_secoundDayTotalIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        SecoundDay_Total = i;
+                    }
+                }
                 _secoundDayTotalIntHelper = value; 
                 OnPropertyChanged();
             }
@@ -147,6 +203,13 @@ namespace UniBase.Model.K2
             get { return _thirdDayStartTuIntHelper; }
             set
             {
+                if (_thirdDayStartTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ThirdDayStart_TU = i;
+                    }
+                }
                 _thirdDayStartTuIntHelper = value;
                 OnPropertyChanged();
             }
@@ -157,6 +220,13 @@ namespace UniBase.Model.K2
             get { return _thirdDayEndTuIntHelper; }
             set
             {
+                if (_thirdDayEndTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ThirdDayEnd_TU = i;
+                    }
+                }
                 _thirdDayEndTuIntHelper = value;
                 OnPropertyChanged();
             }
@@ -167,6 +237,13 @@ namespace UniBase.Model.K2
             get { return _thirdDayTotalIntHelper; }
             set
             {
+                if (_thirdDayTotalIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ThirdDay_Total = i;
+                    }
+                }
                 _thirdDayTotalIntHelper = value;
                 OnPropertyChanged();
             }

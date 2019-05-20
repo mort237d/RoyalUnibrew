@@ -200,10 +200,10 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         public void SaveAll()
         {
-            Parallel.ForEach(FrontpagesList, frontpage =>
-            {
-                InputValidator.CheckIfInputsAreValid(ref frontpage);
-            });
+            //Parallel.ForEach(FrontpagesList, frontpage =>
+            //{
+            //    InputValidator.CheckIfInputsAreValid(ref frontpage);
+            //});
 
             Parallel.ForEach(FrontpagesList, frontpage =>
             {
@@ -277,19 +277,14 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewItem()
         {
             var instanceNewFrontpagesToAdd = NewFrontpagesToAdd;
-            InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
+            //InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
 
-            //Autofills
-            instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd.Date);
-
-            Debug.WriteLine(instanceNewFrontpagesToAdd);
             
             if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {
                 Initialize();
 
                 NewFrontpagesToAdd = new Frontpages();
-                NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd.Date);
             }
             else
             {
@@ -299,18 +294,6 @@ namespace UniBase.Model.K2.ButtonMethods
 
         #endregion
 
-        public int FindWeekNumber(DateTime time)
-        {
-            // https://stackoverflow.com/questions/11154673/get-the-correct-week-number-of-a-given-date
-            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-            {
-                time = time.AddDays(3);
-            }
-
-            // Return the week of our adjusted day
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-        }
 
         public void SelectParentItem(object obj)
         {

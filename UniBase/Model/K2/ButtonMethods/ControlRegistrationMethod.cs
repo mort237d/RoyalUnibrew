@@ -25,6 +25,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
 
         private ComboBoxItem _kegSize = new ComboBoxItem();
+        private int _kegSizeIndex = 0;
 
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
 
@@ -235,6 +236,16 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
+        public int KegSizeIndex
+        {
+            get => _kegSizeIndex;
+            set
+            {
+                _kegSizeIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<ControlRegistrations> ControlRegistrationsList
         {
             get { return _controlRegistrationsList; }
@@ -320,10 +331,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            Parallel.ForEach(ControlRegistrationsList, controlRegistration =>
-            {
-                InputValidator.CheckIfInputsAreValid(ref controlRegistration);
-            });
+            //Parallel.ForEach(ControlRegistrationsList, controlRegistration =>
+            //{
+            //    InputValidator.CheckIfInputsAreValid(ref controlRegistration);
+            //});
 
             Parallel.ForEach(ControlRegistrationsList, controlRegistration =>
             {
@@ -335,7 +346,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewItem()
         {
             var instanceNewControlRegistrationsToAdd = NewControlRegistrationsToAdd;
-            InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
+            //InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
 
             //TODO Find  fix for expiry date
             int finishedProductNo = ModelGenerics.GetById(new Frontpages(), instanceNewControlRegistrationsToAdd.ProcessOrder_No).FinishedProduct_No;
@@ -355,6 +366,19 @@ namespace UniBase.Model.K2.ButtonMethods
                     ControlAlcoholSpearDispenser = false,
                     Production_Date = ControlRegistrationsList.Last().Production_Date,
                 };
+                KegSize.Content = ControlRegistrationsList.Last().KegSize;
+                if (ControlRegistrationsList.Last().KegSize == "20L")
+                {
+                    KegSize.TabIndex = 0;
+                }
+                else if (ControlRegistrationsList.Last().KegSize == "25L")
+                {
+                    KegSize.TabIndex = 1;
+                }
+                else if (ControlRegistrationsList.Last().KegSize == "30L")
+                {
+                    KegSize.TabIndex = 2;
+                }
 
             }
             else
