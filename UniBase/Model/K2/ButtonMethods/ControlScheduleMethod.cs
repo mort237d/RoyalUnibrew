@@ -194,68 +194,41 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[propIndex].Name, textBox, Initialize, Helpers);
+            _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[propIndex].Name, _noteTextBoxOutput, Initialize, FillStringHelpers);
         }
 
         public void Initialize()
         {
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-            Helpers();
-        }
+            FillStringHelpers();
 
-        private void Helpers()
-        {
-            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
+            NewControlSchedules = new ControlSchedules
             {
-                FillStringHelpers(controleSchedule);
-                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
-                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("0.####");
-                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
-                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
-                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
-            });
+                ControlScheduleIdIntHelper = (ControlSchedulesList.Last().ControlSchedule_ID + 1).ToString(),
+                ProcessOrderNoIntHelper = ControlSchedulesList.Last().ProcessOrder_No.ToString()
+            };
         }
 
         public void RefreshAll()
         {
             ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
-            {
-                FillStringHelpers(controleSchedule);
-                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
-                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("0.####");
-                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
-                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
-                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
-            });
+            FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
         {
             ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
-            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
-            {
-                FillStringHelpers(controleSchedule);
-                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
-                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("0.####");
-                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
-                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
-                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
-            });
+            FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
 
         public void SaveAll()
         {
-            //Parallel.ForEach(ControlSchedulesList, controleSchedule =>
-            //{
-            //    InputValidator.CheckIfInputsAreValid(ref controleSchedule);
-            //});
-            Parallel.ForEach(ControlSchedulesList, controlSchedules =>
+            foreach (var controlSchedules in ControlSchedulesList)
             {
                 ModelGenerics.UpdateByObjectAndId((int)controlSchedules.ControlSchedule_ID, controlSchedules);
-            });
+            }
             _message.ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
         }
 
@@ -274,22 +247,19 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
-            var objectToAdd = NewControlSchedules;
-            //InputValidator.CheckIfInputsAreValid(ref objectToAdd);
-            
-           
-            if (ModelGenerics.CreateByObject(objectToAdd))
+            if (ModelGenerics.CreateByObject(NewControlSchedules))
             {
                 Initialize();
 
                 NewControlSchedules = new ControlSchedules
                 {
-                    ProcessOrder_No = ControlSchedulesList.Last().ProcessOrder_No
+                    ControlScheduleIdIntHelper = (ControlSchedulesList.Last().ControlSchedule_ID + 1).ToString(),
+                    ProcessOrderNoIntHelper = ControlSchedulesList.Last().ProcessOrder_No.ToString()
                 };
             }
             else
             {
-                //error
+                _message.ShowToastNotification("Fejl", "Forsøg venligst igen og gennemkig eventuelt for tastefejl");
             }
         }
 
@@ -306,28 +276,40 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[0].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[0 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[0].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[1].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[1 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[1].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[2].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[2 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[2].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[3].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[3 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[3].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[4].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[4 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[4].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[5].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[5 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[5].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[6].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[6 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[6].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[7].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[7 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[7].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[8].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[8 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[8].Name);
             else
                 Debug.WriteLine("Error");
         }
 
-        private void FillStringHelpers(ControlSchedules controlSchedules)
+        private void FillStringHelpers()
+        {
+            foreach (var controleSchedule in ControlSchedulesList)
+            {
+                FillStringHelpersHelper(controleSchedule);
+                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
+                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString();
+                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString();
+                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString();
+                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString();
+            }
+        }
+        private void FillStringHelpersHelper(ControlSchedules controlSchedules)
         {
             string temp, temp2;
             if (controlSchedules.Time.Hour < 10) temp = "0" + controlSchedules.Time.Hour;

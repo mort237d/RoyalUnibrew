@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 using UniBase.Model.Login;
@@ -12,7 +13,7 @@ namespace UniBase.Model
         #region Field
 
         private static Message _message;
-        //BrowseImages _browseImages = new BrowseImages();
+        //BrowseImage _browseImages = new BrowseImage();
 
         public readonly string StandardImage = "UserImages/Profile-icon.png";
 
@@ -138,11 +139,6 @@ namespace UniBase.Model
 
             //CurrentUsers = UsersList[0];
 
-            foreach (var u in UsersList)
-            {
-                Debug.WriteLine(u.TelephoneNumber, "Tlf");
-            }
-
             _message = new Message(this);
         }
 
@@ -164,15 +160,14 @@ namespace UniBase.Model
 
         #endregion
 
-        
+
 
         #region ButtonMethods
 
-//        public async void BrowseImageButton()
-//        {
-//            ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
-//            ShowAddUserPopUpMethod();
-//        }
+        public async void BrowseImageButton()
+        {
+            //ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
+        }
 
         public async void AddUser()
         {
@@ -184,8 +179,9 @@ namespace UniBase.Model
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (string.IsNullOrEmpty(ImageTb)) UsersList.Add(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
-                            else UsersList.Add(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb,
+                                    "e"));
 
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
                         }
@@ -196,6 +192,11 @@ namespace UniBase.Model
                 else await _message.Error("Forkert email", "Du skal bruge en \".dk\" eller en \".com\" mail.");
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
+
+            foreach (var user in UsersList)
+            {
+                Debug.WriteLine(user.Password, "Password");
+            }
         }
 
         public async void RemoveUser()
@@ -210,14 +211,14 @@ namespace UniBase.Model
         public async void ChangeSelectedUser()
         {
             if (SelectedUsers.Name == NameTb || SelectedUsers.Email == EmailTb ||
-                SelectedUsers.TelephoneNumber == TelephoneNumberTb || SelectedUsers.ImageSource == ImageTb ||
+                SelectedUsers.Telephone_No == TelephoneNumberTb || SelectedUsers.ImageSource == ImageTb ||
                 SelectedUsers.Password == PasswordTb)
             {
                 if (PasswordTb == ConfirmPasswordTb)
                 {
                     SelectedUsers.Name = NameTb;
                     SelectedUsers.Email = EmailTb;
-                    SelectedUsers.TelephoneNumber = TelephoneNumberTb;
+                    SelectedUsers.Telephone_No = TelephoneNumberTb;
                     SelectedUsers.ImageSource = ImageTb;
                     SelectedUsers.Password = PasswordTb;
                 }
@@ -237,6 +238,8 @@ namespace UniBase.Model
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
         #endregion
+
+
 
         #region INotify
 

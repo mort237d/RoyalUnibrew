@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Newtonsoft.Json;
 using UniBase.Annotations;
@@ -35,6 +36,7 @@ namespace UniBase.Model.K2
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
         private string _expiryDateStringHelper;
+        private ComboBoxItem _kegSizeItem = new ComboBoxItem();
 
         private SolidColorBrush _controlRegistrationIdColor = new SolidColorBrush(Colors.White);
         private SolidColorBrush _commentsOnChangedDatecolor = new SolidColorBrush(Colors.LightSalmon);
@@ -76,22 +78,169 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
+        public int ControlRegistration_ID
+        {
+            get => _controlRegistrationId;
+            set
+            {
+                _controlRegistrationId = value;
+            }
+        }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                _processOrderNo = value;
+            }
+        }
+        public TimeSpan Time
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+            }
+        }
+        public DateTime Production_Date
+        {
+            get => _productionDate;
+            set
+            {
+                _productionDate = value;
+            }
+        }
+
+        public DateTime Expiry_Date
+        {
+            get => _expiryDate;
+            set
+            {
+                _expiryDate = value;
+            }
+        }
+
+        public string CommentsOnChangedDate
+        {
+            get => _commentsOnChangedDate;
+            set
+            {
+                if (value == _commentsOnChangedDate) return;
+                _commentsOnChangedDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public bool ControlAlcoholSpearDispenser
+        {
+            get => _controlAlcoholSpearDispenser;
+            set
+            {
+                //if (value == _controlAlcoholSpearDispenser) return;
+                _controlAlcoholSpearDispenser = value;
+
+                OnPropertyChanged();
+
+                if (ControlAlcoholSpearDispenser)
+                {
+                    ControlRegistrationAlcoholSpearDispenserControlled = "Images/CheckedCheckbox.png";
+                }
+                else
+                {
+                    ControlRegistrationAlcoholSpearDispenserControlled = "Images/UnCheckedCheckbox.png";
+                }
+            }
+        }
+
+        public int CapNo
+        {
+            get => _capNo;
+            set
+            {
+                _capNo = value;
+            }
+        }
+
+        public int EtiquetteNo
+        {
+            get => _etiquetteNo;
+            set
+            {
+                if (value == _etiquetteNo) return;
+                _etiquetteNo = value;
+            }
+        }
+
+        public string KegSize
+        {
+            get => _kegSize;
+            set
+            {
+                if (value.Equals(_kegSize)) return;
+                _kegSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Signature
+        {
+            get => _signature;
+            set
+            {
+                if (value == _signature) return;
+                _signature = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public DateTime FirstPalletDepalletizing
+        {
+            get => _firstPalletDepalletizing;
+            set
+            {
+                if (value.Equals(_firstPalletDepalletizing)) return;
+                _firstPalletDepalletizing = value;
+            }
+        }
+
+        public DateTime LastPalletDepalletizing
+        {
+            get => _lastPalletDepalletizing;
+            set
+            {
+                if (value.Equals(_lastPalletDepalletizing)) return;
+                _lastPalletDepalletizing = value;
+            }
+        }
+
+        public string ControlRegistrationAlcoholSpearDispenserControlled
+        {
+            get { return _controlRegistrationAlcoholSpearDispenserControlled; }
+            set
+            {
+                _controlRegistrationAlcoholSpearDispenserControlled = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region StringHelpers
         [JsonIgnore]
-        public  string ControlRegistrationIdIntHelper
+        public string ControlRegistrationIdIntHelper
         {
             get { return _controlRegistrationIdIntHelper; }
             set
             {
                 if (_controlRegistrationIdIntHelper != value)
                 {
-                    if(int.TryParse(value, out int i))
+                    if (int.TryParse(value, out int i))
                     {
                         ControlRegistration_ID = i;
                     }
                 }
                 _controlRegistrationIdIntHelper = value;
-                
+
                 OnPropertyChanged();
             }
         }
@@ -141,10 +290,15 @@ namespace UniBase.Model.K2
                     if (DateTime.TryParse(value, out DateTime t))
                     {
                         Production_Date = t;
+
+                        int frontpage = ModelGenerics.GetById(new Frontpages(), ProcessOrder_No).FinishedProduct_No;
+                        int experationDateLength = ModelGenerics.GetById(new Products(), frontpage ).BestBeforeDateLength;
+                        Expiry_Date = t.AddDays(experationDateLength);
+                        ExpiryDateStringHelper = Expiry_Date.ToString("yyyy/MM/dd");
                     }
                 }
                 _productionsDateStringHelper = value;
-                
+
                 OnPropertyChanged();
             }
         }
@@ -334,7 +488,6 @@ namespace UniBase.Model.K2
             get => _kegSize;
             set
             {
-                if (value.Equals(_kegSize)) return;
                 _kegSize = value;
                 OnPropertyChanged();
             }
@@ -382,13 +535,9 @@ namespace UniBase.Model.K2
             }
         }
 
-
-        
         
 
         public virtual Frontpages Frontpage { get; set; }
-
-
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

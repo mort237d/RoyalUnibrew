@@ -43,127 +43,6 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        #region Helpers
-        [JsonIgnore]
-        public string ShiftRegistrationIdIntHelper
-        {
-            get { return _shiftRegistrationIdIntHelper; }
-            set
-            {
-                if (_shiftRegistrationIdIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ShiftRegistration_ID = i;
-                    }
-                }
-                _shiftRegistrationIdIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                if (_processOrderNoIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ProcessOrder_No = i;
-                    }
-                }
-                _processOrderNoIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string StartTimeStringHelper
-        {
-            get { return _startTimeStringHelper; }
-            set
-            {
-                if (_startTimeStringHelper != value)
-                {
-                    if (DateTime.TryParse(value, out DateTime time))
-                    {
-                        Start_Time = time;
-                    }
-                }
-                _startTimeStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string EndDateStringHelper
-        {
-            get { return _endDateStringHelper; }
-            set
-            {
-                if (_endDateStringHelper != value)
-                {
-                    if (DateTime.TryParse(value, out DateTime time))
-                    {
-                        End_Date = time;
-                    }
-                }
-                _endDateStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string BreaksIntHelper
-        {
-            get { return _breaksIntHelper; }
-            set
-            {
-                if (_breaksIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        Breaks = i;
-                    }
-                }
-                _breaksIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string TotalHoursIntHelper
-        {
-            get { return _totalHoursIntHelper; }
-            set
-            {
-                if (_totalHoursIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        TotalHours = i;
-                    }
-                }
-                _totalHoursIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string StaffIntHelper
-        {
-            get { return _staffIntHelper; }
-            set
-            {
-                if (_staffIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        Staff = i;
-                    }
-                }
-                _staffIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        #endregion
         public int ShiftRegistration_ID
         {
             get => _shiftRegistrationId;
@@ -236,7 +115,129 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-        
+
+        #region Helpers
+        [JsonIgnore]
+        public string ShiftRegistrationIdIntHelper
+        {
+            get { return _shiftRegistrationIdIntHelper; }
+            set
+            {
+                if (_shiftRegistrationIdIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ShiftRegistration_ID = i;
+                    }
+                }
+                _shiftRegistrationIdIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string StartTimeStringHelper
+        {
+            get { return _startTimeStringHelper; }
+            set
+            {
+                if (_startTimeStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime time))
+                    {
+                        Start_Time = time;
+                    }
+                }
+                _startTimeStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string EndDateStringHelper
+        {
+            get { return _endDateStringHelper; }
+            set
+            {
+                if (_endDateStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime time))
+                    {
+                        End_Date = time;
+                    }
+                }
+                _endDateStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string BreaksIntHelper
+        {
+            get { return _breaksIntHelper; }
+            set
+            {
+                if (_breaksIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        Breaks = i;
+                    }
+                }
+                _breaksIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string TotalHoursIntHelper
+        {
+            get { return _totalHoursIntHelper; }
+            set
+            {
+                if (_totalHoursIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        TotalHours = i;
+                    }
+                }
+                _totalHoursIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string StaffIntHelper
+        {
+            get { return _staffIntHelper; }
+            set
+            {
+                if (_staffIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        Staff = i;
+                    }
+                }
+                _staffIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         public virtual Frontpages Frontpage { get; set; }
 
 

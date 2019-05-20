@@ -57,198 +57,6 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        #region Helpers
-        [JsonIgnore]
-        public string TuIdIntHelper
-        {
-            get { return _tuIdIntHelper; }
-            set
-            {
-                if (_tuIdIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        TU_ID = i;
-                    }
-                }
-                _tuIdIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                if (_processOrderNoIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ProcessOrder_No = i;
-                    }
-                }
-                _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string FirstDayStartTuIntHelper
-        {
-            get { return _firstDayStartTuIntHelper; }
-            set
-            {
-                if (_firstDayStartTuIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        FirstDayStart_TU = i;
-                    }
-                }
-                _firstDayStartTuIntHelper = value;
-                OnPropertyChanged();
-
-                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
-            }
-        }
-        [JsonIgnore]
-        public string FirstDayEndTuIntHelper
-        {
-            get { return _firstDayEndTuIntHelper; }
-            set
-            {
-                if (_firstDayEndTuIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        FirstDayEnd_TU = i;
-                    }
-                }
-                _firstDayEndTuIntHelper = value; 
-                OnPropertyChanged();
-                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
-            }
-        }
-        [JsonIgnore]
-        public string FirstDayTotalIntHelper
-        {
-            get { return _firstDayTotalIntHelper; }
-            set
-            {
-                if (_firstDayTotalIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        FirstDay_Total = i;
-                    }
-                }
-                _firstDayTotalIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string SecoundDayStartTuIntHelper
-        {
-            get { return _secoundDayStartTuIntHelper; }
-            set
-            {
-                if (_secoundDayStartTuIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        SecoundDayStart_TU = i;
-                    }
-                }
-                _secoundDayStartTuIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string SecoundDayEndTuIntHelper
-        {
-            get { return _secoundDayEndTuIntHelper; }
-            set
-            {
-                if (_secoundDayEndTuIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        SecoundDayEnd_TU = i;
-                    }
-                }
-                _secoundDayEndTuIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string SecoundDayTotalIntHelper
-        {
-            get { return _secoundDayTotalIntHelper; }
-            set
-            {
-                if (_secoundDayTotalIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        SecoundDay_Total = i;
-                    }
-                }
-                _secoundDayTotalIntHelper = value; 
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ThirdDayStartTuIntHelper
-        {
-            get { return _thirdDayStartTuIntHelper; }
-            set
-            {
-                if (_thirdDayStartTuIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ThirdDayStart_TU = i;
-                    }
-                }
-                _thirdDayStartTuIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ThirdDayEndTuIntHelper
-        {
-            get { return _thirdDayEndTuIntHelper; }
-            set
-            {
-                if (_thirdDayEndTuIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ThirdDayEnd_TU = i;
-                    }
-                }
-                _thirdDayEndTuIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ThirdDayTotalIntHelper
-        {
-            get { return _thirdDayTotalIntHelper; }
-            set
-            {
-                if (_thirdDayTotalIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ThirdDay_Total = i;
-                    }
-                }
-                _thirdDayTotalIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
         public int TU_ID
         {
             get => _tuId;
@@ -349,6 +157,303 @@ namespace UniBase.Model.K2
             }
         }
 
+        #region Helpers
+        [JsonIgnore]
+        public string TuIdIntHelper
+        {
+            get { return _tuIdIntHelper; }
+            set
+            {
+                if (_tuIdIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        TU_ID = i;
+                    }
+                }
+                _tuIdIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string FirstDayStartTuIntHelper
+        {
+            get { return _firstDayStartTuIntHelper; }
+            set
+            {
+                if (_firstDayStartTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        FirstDayStart_TU = i;
+                    }
+                }
+                _firstDayStartTuIntHelper = value;
+                OnPropertyChanged();
+
+                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
+            }
+        }
+        [JsonIgnore]
+        public string FirstDayEndTuIntHelper
+        {
+            get { return _firstDayEndTuIntHelper; }
+            set
+            {
+                if (_firstDayEndTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        FirstDayEnd_TU = i;
+                    }
+                }
+                _firstDayEndTuIntHelper = value;
+                OnPropertyChanged();
+                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
+            }
+        }
+        [JsonIgnore]
+        public string FirstDayTotalIntHelper
+        {
+            get { return _firstDayTotalIntHelper; }
+            set
+            {
+                if (_firstDayTotalIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        FirstDay_Total = i;
+                    }
+                }
+                _firstDayTotalIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string SecoundDayStartTuIntHelper
+        {
+            get { return _secoundDayStartTuIntHelper; }
+            set
+            {
+                if (_secoundDayStartTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        SecoundDayStart_TU = i;
+                    }
+                }
+                _secoundDayStartTuIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string SecoundDayEndTuIntHelper
+        {
+            get { return _secoundDayEndTuIntHelper; }
+            set
+            {
+                if (_secoundDayEndTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        SecoundDayEnd_TU = i;
+                    }
+                }
+                _secoundDayEndTuIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string SecoundDayTotalIntHelper
+        {
+            get { return _secoundDayTotalIntHelper; }
+            set
+            {
+                if (_secoundDayTotalIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        SecoundDay_Total = i;
+                    }
+                }
+                _secoundDayTotalIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ThirdDayStartTuIntHelper
+        {
+            get { return _thirdDayStartTuIntHelper; }
+            set
+            {
+                if (_thirdDayStartTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ThirdDayStart_TU = i;
+                    }
+                }
+                _thirdDayStartTuIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ThirdDayEndTuIntHelper
+        {
+            get { return _thirdDayEndTuIntHelper; }
+            set
+            {
+                if (_thirdDayEndTuIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ThirdDayEnd_TU = i;
+                    }
+                }
+                _thirdDayEndTuIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ThirdDayTotalIntHelper
+        {
+            get { return _thirdDayTotalIntHelper; }
+            set
+            {
+                if (_thirdDayTotalIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ThirdDay_Total = i;
+                    }
+                }
+                _thirdDayTotalIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        public int TU_ID
+        {
+            get => _tuId;
+            set
+            {
+                _tuId = value;
+            }
+        }
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+
+                _processOrderNo = value;
+            }
+        }
+        public int FirstDayStart_TU
+        {
+            get => _firstDayStartTu;
+            set
+            {
+                _firstDayStartTu = value;
+            }
+        }
+        public int FirstDayEnd_TU
+        {
+            get => _firstDayEndTu;
+            set
+            {
+                _firstDayEndTu = value;
+            }
+        }
+        public int FirstDay_Total
+        {
+            get => _firstDayTotal;
+            set
+            {
+                _firstDayTotal = value;
+                OnPropertyChanged();
+                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
+            }
+        }
+        public int SecoundDayStart_TU
+        {
+            get => _secoundDayStartTu;
+            set
+            {
+                _secoundDayStartTu = value;
+            }
+        }
+        public int SecoundDayEnd_TU
+        {
+            get => _secoundDayEndTu;
+            set
+            {
+                _secoundDayEndTu = value;
+            }
+        }
+        public int SecoundDay_Total
+        {
+            get => _secoundDayTotal;
+            set
+            {
+                _secoundDayTotal = value;
+                OnPropertyChanged();
+                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
+            }
+        }
+        public int ThirdDayStart_TU
+        {
+            get => _thirdDayStartTu;
+            set
+            {
+                _thirdDayStartTu = value;
+            }
+        }
+        public int ThirdDayEnd_TU
+        {
+            get => _thirdDayEndTu;
+            set
+            {
+                _thirdDayEndTu = value;
+            }
+        }
+        public int ThirdDay_Total
+        {
+            get => _thirdDayTotal;
+            set
+            {
+                OnPropertyChanged();
+                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
+            }
+        }
+
+//        public int ProcessOrder_No
+//        {
+//            get => _processOrderNo;
+//            set
+//            {
+//                if (value == _processOrderNo) return;
+//                _processOrderNo = value;
+//                OnPropertyChanged();
+//            }
+//        }
 
         public virtual Frontpages Frontpage { get; set; }
         
