@@ -194,7 +194,19 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Helpers()
         {
-            Parallel.ForEach(ProductionsList, production =>
+            //Parallel.ForEach(ProductionsList, production =>
+            //{
+            //    production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
+            //    production.ProcessOrderNoIntHelper = production.ProcessOrder_No.ToString();
+            //    production.CounterIntHelper = production.Counter.ToString();
+            //    production.PalletCounterIntHelper = production.PalletCounter.ToString();
+            //    production.PalletPutInStock0001IntHelper = production.PalletPutInStock0001.ToString();
+            //    production.ProductionIdIntHelper = production.Production_ID.ToString();
+            //    production.TapmachineIntHelper = production.Tapmachine.ToString();
+            //    production.TotalKegsPrPalletIntHelper = production.TotalKegsPrPallet.ToString();
+            //});
+
+            foreach (var production in ProductionsList)
             {
                 production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
                 production.ProcessOrderNoIntHelper = production.ProcessOrder_No.ToString();
@@ -204,7 +216,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 production.ProductionIdIntHelper = production.Production_ID.ToString();
                 production.TapmachineIntHelper = production.Tapmachine.ToString();
                 production.TotalKegsPrPalletIntHelper = production.TotalKegsPrPallet.ToString();
-            });
+            }
         }
 
         public void RefreshAll()

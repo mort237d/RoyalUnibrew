@@ -205,7 +205,17 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Helpers()
         {
-            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
+            //Parallel.ForEach(ControlSchedulesList, controleSchedule =>
+            //{
+            //    FillStringHelpers(controleSchedule);
+            //    controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
+            //    controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("0.####");
+            //    controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
+            //    controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
+            //    controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
+            //});
+
+            foreach (var controleSchedule in ControlSchedulesList)
             {
                 FillStringHelpers(controleSchedule);
                 controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
@@ -213,7 +223,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
                 controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
                 controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
-            });
+            }
         }
 
         public void RefreshAll()

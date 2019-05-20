@@ -196,7 +196,17 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Helpers()
         {
-            Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
+            //Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
+            //{
+            //    shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+            //    shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+            //    shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+            //    shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+            //    shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
+            //    FillStringHelpers(shiftRegistration);
+            //});
+
+            foreach (var shiftRegistration in ShiftRegistrationsList)
             {
                 shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
                 shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
@@ -204,7 +214,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
                 shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
                 FillStringHelpers(shiftRegistration);
-            });
+            }
         }
 
         public void RefreshAll()

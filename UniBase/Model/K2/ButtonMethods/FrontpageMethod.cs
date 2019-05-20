@@ -162,14 +162,22 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Helpers()
         {
-            Parallel.ForEach(FrontpagesList, frontpage =>
+            //Parallel.ForEach(FrontpagesList, frontpage =>
+            //{
+            //    frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+            //    frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
+            //    frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
+            //    frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
+            //    frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
+            //});
+            foreach (var frontpage in FrontpagesList)
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
                 frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
                 frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
                 frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
                 frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
-            });
+            }
         }
 
         public void RefreshAll()

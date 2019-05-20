@@ -284,7 +284,20 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Helpers()
         {
-            Parallel.ForEach(ControlRegistrationsList, controlregistration =>
+            //Parallel.ForEach(ControlRegistrationsList, controlregistration =>
+            //{
+            //    controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+            //    controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+            //    controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+            //    controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
+            //    controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
+            //    controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
+            //    controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
+            //    controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
+            //    FillStringHelpers(controlregistration);
+            //});
+
+            foreach (var controlregistration in ControlRegistrationsList)
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
                 controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
@@ -295,7 +308,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
                 controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpers(controlregistration);
-            });
+            }
         }
 
         public void RefreshAll()

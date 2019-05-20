@@ -230,7 +230,22 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Helpers()
         {
-            Parallel.ForEach(TuList, Tu =>
+            //Parallel.ForEach(TuList, Tu =>
+            //{
+            //    Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
+            //    Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
+            //    Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
+            //    Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
+            //    Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
+            //    Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
+            //    Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
+            //    Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+            //    Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+            //    Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
+            //    Tu.TuIdIntHelper = Tu.TU_ID.ToString();
+            //});
+
+            foreach (var Tu in TuList)
             {
                 Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
                 Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
@@ -243,7 +258,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
                 Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
                 Tu.TuIdIntHelper = Tu.TU_ID.ToString();
-            });
+            }
         }
 
         public void RefreshAll()
