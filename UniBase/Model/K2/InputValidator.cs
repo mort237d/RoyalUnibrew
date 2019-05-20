@@ -5,8 +5,22 @@ using System.Reflection;
 
 namespace UniBase.Model.K2
 {
+    
     public static class InputValidator
     {
+        public static int CheckIntValid(string input)
+        {
+            if (int.TryParse(input, out int parsedInput))
+            {
+
+                return parsedInput;
+            }
+
+            return -1;
+        }
+
+
+
         /// <summary>
         /// Rækkefølge på properties i klasser er vigtige!
         /// </summary>

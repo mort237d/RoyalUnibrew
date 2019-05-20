@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
@@ -47,6 +48,13 @@ namespace UniBase.Model.K2
             get { return _processOrderNoIntHelper; }
             set
             {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
                 _processOrderNoIntHelper = value;
                 OnPropertyChanged();
             }
@@ -57,6 +65,13 @@ namespace UniBase.Model.K2
             get { return _finishedProductNoIntHelper; }
             set
             {
+                if (_finishedProductNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        FinishedProduct_No = i;
+                    }
+                }
                 _finishedProductNoIntHelper = value;
                 OnPropertyChanged();
             }
@@ -67,6 +82,13 @@ namespace UniBase.Model.K2
             get { return _colunmIntHelper; }
             set
             {
+                if (_colunmIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        Colunm = i;
+                    }
+                }
                 _colunmIntHelper = value;
                 OnPropertyChanged();
             }
@@ -77,8 +99,8 @@ namespace UniBase.Model.K2
             get { return _weekNoIntHelper; }
             set
             {
+                
                 _weekNoIntHelper = value;
-
                 OnPropertyChanged();
             }
         }
@@ -88,7 +110,25 @@ namespace UniBase.Model.K2
             get => _dateStringHelper;
             set
             {
-                if (value == _dateStringHelper) return;
+                if (_dateStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime time))
+                    {
+                        Date = time;
+
+                        
+                        DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+                        if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+                        {
+                            time = time.AddDays(3);
+                        }
+
+                        // Return the week of our adjusted day
+                        Week_No = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+                        WeekNoIntHelper = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday).ToString();
+
+                    }
+                }
                 _dateStringHelper = value;
                 OnPropertyChanged();
             }

@@ -229,10 +229,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            Parallel.ForEach(ShiftRegistrationsList, shiftRegistrations =>
-            {
-                InputValidator.CheckIfInputsAreValid(ref shiftRegistrations);
-            });
+            //Parallel.ForEach(ShiftRegistrationsList, shiftRegistrations =>
+            //{
+            //    InputValidator.CheckIfInputsAreValid(ref shiftRegistrations);
+            //});
             Parallel.ForEach(ShiftRegistrationsList, shiftRegistrations =>
             {
                 ModelGenerics.UpdateByObjectAndId((int)shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
@@ -256,7 +256,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewItem()
         {
             var ObjectToAdd = NewShiftRegistrations;
-            InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
+            //InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
 
             //Autofills
 

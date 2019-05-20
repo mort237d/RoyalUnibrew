@@ -278,10 +278,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            Parallel.ForEach(TuList, tus =>
-            {
-                InputValidator.CheckIfInputsAreValid(ref tus);
-            });
+            //Parallel.ForEach(TuList, tus =>
+            //{
+            //    InputValidator.CheckIfInputsAreValid(ref tus);
+            //});
             Parallel.ForEach(TuList, tus =>
             {
                 ModelGenerics.UpdateByObjectAndId((int)tus.TU_ID, tus);
@@ -305,7 +305,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewItem()
         {
             var ObjectToAdd = NewTUs;
-            InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
+            //InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
 
             //Autofills
 

@@ -73,11 +73,11 @@ namespace UniBase.Model.Login
         public void CheckLogin()
         {
             bool temp = false;
-            foreach (var user in _manageUser.Users)
+            foreach (var user in _manageUser.UsersList)
             {
                 if (user.Password == PassWord)
                 {
-                    _manageUser.CurrentUser = user;
+                    _manageUser.CurrentUsers = user;
 
                     _manageUser.ButtonVisibility(user);
 
