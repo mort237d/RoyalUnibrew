@@ -8,17 +8,17 @@ namespace UniBase.Model.Login
     {
         #region Field
 
-        private string _name, _email, _telephoneNumber, _password, _imageSource;
+        private string _name, _email, _telephoneNo, _password, _imageSource;
 
         #endregion
 
         #region Constructors
         //TODO Admin skal ændres til en int eller andet.
-        public Users(string name, string email, string telephoneNumber, string password, string imageSource)
+        public Users(string name, string email, string telephoneNo, string password, string imageSource)
         {
             Name = name;
             Email = email;
-            TelephoneNumber = telephoneNumber;
+            Telephone_No = telephoneNo;
             Password = password;
             ImageSource = imageSource;
         }
@@ -52,12 +52,12 @@ namespace UniBase.Model.Login
                 OnPropertyChanged();
             }
         }
-        public string TelephoneNumber
+        public string Telephone_No
         {
-            get => _telephoneNumber;
+            get => _telephoneNo;
             set
             {
-                _telephoneNumber = value;
+                _telephoneNo = value;
                 OnPropertyChanged();
             }
         }

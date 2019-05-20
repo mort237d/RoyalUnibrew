@@ -41,6 +41,68 @@ namespace UniBase.Model.K2
             Week_No = week_No;
         }
 
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {
+                _processOrderNo = value;
+            }
+        }
+
+        public DateTime Date
+        {
+            get => _date;
+            set
+            {
+                _date = value;
+            }
+        }
+
+        public int FinishedProduct_No
+        {
+            get => _finishedProductNo;
+            set
+            {
+                _finishedProductNo = value;
+            }
+        }
+
+        public int Colunm
+        {
+            get => _colunm;
+            set
+            {
+                _colunm = value;
+            }
+        }
+
+        public string Note
+        {
+            get => _note;
+            set
+            {
+                if (value == _note) return;
+                _note = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Week_No
+        {
+            get => _weekNo;
+            set
+            {
+                _weekNo = value;
+            }
+        }
+        
+        public virtual Products Product
+        {
+            get { return _product; }
+            set { _product = value; }
+        }
+        
         #region PropertyHelpers
         [JsonIgnore]
         public string ProcessOrderNoIntHelper
@@ -99,7 +161,7 @@ namespace UniBase.Model.K2
             get { return _weekNoIntHelper; }
             set
             {
-                
+
                 _weekNoIntHelper = value;
                 OnPropertyChanged();
             }
@@ -134,72 +196,6 @@ namespace UniBase.Model.K2
             }
         }
         #endregion
-        
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                _processOrderNo = value;
-            }
-        }
-
-        public DateTime Date
-        {
-            get => _date;
-            set
-            {
-                _date = value;
-            }
-        }
-
-        public int FinishedProduct_No
-        {
-            get => _finishedProductNo;
-            set
-            {
-                _finishedProductNo = value;
-            }
-        }
-
-        public int Colunm
-        {
-            get => _colunm;
-            set
-            {
-                _colunm = value;
-            }
-        }
-
-        public string Note
-        {
-            get => _note;
-            set
-            {
-                if (value == _note) return;
-                _note = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int Week_No
-        {
-            get => _weekNo;
-            set
-            {
-                _weekNo = value;
-            }
-        }
-
-
-        public virtual Products Product
-        {
-            get { return _product; }
-            set { _product = value; }
-        }
-
-        
-
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

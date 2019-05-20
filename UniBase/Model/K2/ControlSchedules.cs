@@ -53,6 +53,102 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
+        public int ControlSchedule_ID
+        {
+            get => _controlScheduleId;
+            set
+            {
+                _controlScheduleId = value;
+            }
+        }
+
+        public int ProcessOrder_No
+        {
+            get => _processOrderNo;
+            set
+            {_processOrderNo = value;
+            }
+        }
+
+        public DateTime Time
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+            }
+        }
+
+        public double Weight
+        {
+            get => _weight;
+            set
+            {
+                _weight = value;
+                //if (_weight != null)
+                //{
+                //    WeightColorBrush = ofBoundColorChange.ChangeListViewColor((double)_weight, constantValues.MinWeight, constantValues.MaxWeight);
+                //}
+            }
+        }
+
+        public string KegTest
+        {
+            get => _kegTest;
+            set
+            {
+                if (value == _kegTest) return;
+                _kegTest = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double LudKoncentration
+        {
+            get => _ludKoncentration;
+            set
+            {
+                _ludKoncentration = value;
+                //if (_ludKoncentration != null)
+                //{
+                //    LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
+                //}
+            }
+        }
+
+        public double MipMA
+        {
+            get => _mipMa;
+            set
+            {
+                _mipMa = value;
+                //if (_mipMa != null) //todo fix this
+                //{
+                //    MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
+                //}
+            }
+        }
+
+        public string Signature
+        {
+            get => _signature;
+            set
+            {
+                _signature = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Note
+        {
+            get => _note;
+            set
+            {
+                _note = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Helpers
         [JsonIgnore]
         public string ControlScheduleIdIntHelper
@@ -208,102 +304,6 @@ namespace UniBase.Model.K2
             }
         }
         #endregion
-
-        public int ControlSchedule_ID
-        {
-            get => _controlScheduleId;
-            set
-            {
-                _controlScheduleId = value;
-            }
-        }
-
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {_processOrderNo = value;
-            }
-        }
-
-        public DateTime Time
-        {
-            get => _time;
-            set
-            {
-                _time = value;
-            }
-        }
-
-        public double Weight
-        {
-            get => _weight;
-            set
-            {
-                _weight = value;
-                //if (_weight != null)
-                //{
-                //    WeightColorBrush = ofBoundColorChange.ChangeListViewColor((double)_weight, constantValues.MinWeight, constantValues.MaxWeight);
-                //}
-            }
-        }
-
-        public string KegTest
-        {
-            get => _kegTest;
-            set
-            {
-                if (value == _kegTest) return;
-                _kegTest = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public double LudKoncentration
-        {
-            get => _ludKoncentration;
-            set
-            {
-                _ludKoncentration = value;
-                //if (_ludKoncentration != null)
-                //{
-                //    LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
-                //}
-            }
-        }
-
-        public double MipMA
-        {
-            get => _mipMa;
-            set
-            {
-                _mipMa = value;
-                //if (_mipMa != null) //todo fix this
-                //{
-                //    MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
-                //}
-            }
-        }
-
-        public string Signature
-        {
-            get => _signature;
-            set
-            {
-                _signature = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Note
-        {
-            get => _note;
-            set
-            {
-                _note = value;
-                OnPropertyChanged();
-            }
-        }
 
         public virtual Frontpages Frontpage { get; set; }
         
