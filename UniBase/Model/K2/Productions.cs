@@ -26,6 +26,8 @@ namespace UniBase.Model.K2
         private string _counterIntHelper;
         private string _palletCounterIntHelper;
         private string _processOrderNoIntHelper;
+        private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
+
         private string _batchDateStringHelper;
 
 
@@ -67,6 +69,7 @@ namespace UniBase.Model.K2
             {
                 _processOrderNoIntHelper = value;
                 OnPropertyChanged();
+                PalletCounter = CalculateProductions.CalculatePalletCounter();
             }
         }
         [JsonIgnore]
@@ -87,6 +90,7 @@ namespace UniBase.Model.K2
             {
                 _tapmachineIntHelper = value; 
                 OnPropertyChanged();
+                //TotalKegs = _calculateTuTotal.CalculateTotalKegs(TotalKegsPrPallet, PalletCounter);
             }
         }
         [JsonIgnore]
@@ -117,6 +121,7 @@ namespace UniBase.Model.K2
             {
                 _palletCounterIntHelper = value; 
                 OnPropertyChanged();
+                //TotalKegs = _calculateTuTotal.CalculateTotalKegs(TotalKegsPrPallet, PalletCounter);
             }
         }
         [JsonIgnore]
