@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using UniBase.Annotations;
 using UniBase.Model;
 using UniBase.Model.K2;
+using UniBase.Model.Login;
 using UniBase.View;
 
 namespace UniBase.ViewModel
@@ -58,6 +59,7 @@ namespace UniBase.ViewModel
         public RelayCommand DeleteUserCommand { get; set; }
         public RelayCommand ChangeUserCommand { get; set; }
         public RelayCommand UserImageBrowserCommand { get; set; }
+        public RelayCommand LogOffCommand { get; set; }
 
 
         public RelayCommand<object> ControlledClickCommand { get; set; }
@@ -76,13 +78,14 @@ namespace UniBase.ViewModel
         public PredefinedColors PredefinedColors { get; set; }
 
         public ManageUser ManageUser { get; set; }
+        public ManageLogin Login { get; set; }
         
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
             PredefinedColors = new PredefinedColors();
             ManageUser = new ManageUser();
-            
+            Login = new ManageLogin();
 
             #region Update(SavedForLater)
 
@@ -166,6 +169,8 @@ namespace UniBase.ViewModel
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
             ChangeUserCommand = new RelayCommand(ManageUser.ChangeSelectedUser);
             UserImageBrowserCommand = new RelayCommand(ManageUser.BrowseImageButton);
+            LogOffCommand = new RelayCommand(Login.LogOffMethod);
+
 
             //Sort
             SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);

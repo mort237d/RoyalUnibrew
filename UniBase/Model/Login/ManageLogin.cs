@@ -7,7 +7,7 @@ using UniBase.View;
 
 namespace UniBase.Model.Login
 {
-    class ManageLogin : INotifyPropertyChanged
+    public class ManageLogin : INotifyPropertyChanged
     {
         #region Field
         public string PassWord { get; set; }
@@ -40,7 +40,7 @@ namespace UniBase.Model.Login
 
         #endregion
 
-        private ManageLogin()
+        public ManageLogin()
         {
 
         }

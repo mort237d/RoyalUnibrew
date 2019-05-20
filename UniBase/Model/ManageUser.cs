@@ -183,8 +183,9 @@ namespace UniBase.Model
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (string.IsNullOrEmpty(ImageTb)) UsersList.Add(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
-                            else UsersList.Add(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                                UsersList.Add(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                                ModelGenerics.CreateByObject(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb,
+                                    ImageTb));
 
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
                         }
