@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
@@ -40,61 +41,6 @@ namespace UniBase.Model.K2
             Week_No = week_No;
         }
 
-        #region PropertyHelpers
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string FinishedProductNoIntHelper
-        {
-            get { return _finishedProductNoIntHelper; }
-            set
-            {
-                _finishedProductNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ColunmIntHelper
-        {
-            get { return _colunmIntHelper; }
-            set
-            {
-                _colunmIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string WeekNoIntHelper
-        {
-            get { return _weekNoIntHelper; }
-            set
-            {
-                _weekNoIntHelper = value;
-
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string DateTimeStringHelper
-        {
-            get => _dateStringHelper;
-            set
-            {
-                if (value == _dateStringHelper) return;
-                _dateStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
-        
         public int ProcessOrder_No
         {
             get => _processOrderNo;
@@ -150,16 +96,106 @@ namespace UniBase.Model.K2
                 _weekNo = value;
             }
         }
-
-
+        
         public virtual Products Product
         {
             get { return _product; }
             set { _product = value; }
         }
-
         
+        #region PropertyHelpers
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string FinishedProductNoIntHelper
+        {
+            get { return _finishedProductNoIntHelper; }
+            set
+            {
+                if (_finishedProductNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        FinishedProduct_No = i;
+                    }
+                }
+                _finishedProductNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ColunmIntHelper
+        {
+            get { return _colunmIntHelper; }
+            set
+            {
+                if (_colunmIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        Colunm = i;
+                    }
+                }
+                _colunmIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string WeekNoIntHelper
+        {
+            get { return _weekNoIntHelper; }
+            set
+            {
 
+                _weekNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string DateTimeStringHelper
+        {
+            get => _dateStringHelper;
+            set
+            {
+                if (_dateStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime time))
+                    {
+                        Date = time;
+
+
+                        DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+                        if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+                        {
+                            time = time.AddDays(3);
+                        }
+
+                        // Return the week of our adjusted day
+                        Week_No = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+                        WeekNoIntHelper = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday).ToString();
+
+                    }
+                }
+                _dateStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

@@ -92,7 +92,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlScheduleIdTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[0].Name, _controlScheduleIdTextBoxOutput, Initialize);
+                Filter(0, _controlScheduleIdTextBoxOutput);
             }
         }
 
@@ -103,7 +103,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[1].Name, _processOrderNoTextBoxOutput, Initialize);
+                Filter(1, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -114,7 +114,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _timeTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[2].Name, _timeTextBoxOutput, Initialize);
+                Filter(2, _timeTextBoxOutput);
             }
         }
 
@@ -125,7 +125,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weightTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[3].Name, _weightTextBoxOutput, Initialize);
+                Filter(3, _weightTextBoxOutput);
             }
         }
 
@@ -136,7 +136,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _kegTestTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[4].Name, _kegTestTextBoxOutput, Initialize);
+                Filter(4, _kegTestTextBoxOutput);
             }
         }
 
@@ -147,7 +147,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _ludKoncentrationTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[5].Name, _ludKoncentrationTextBoxOutput, Initialize);
+                Filter(5, _ludKoncentrationTextBoxOutput);
             }
         }
 
@@ -158,7 +158,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _mipMaTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[6].Name, _mipMaTextBoxOutput, Initialize);
+                Filter(6, _mipMaTextBoxOutput);
             }
         }
 
@@ -169,7 +169,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _signatureTextBoxOutput = value;
 
-                Filter(7);
+                Filter(7, _signatureTextBoxOutput);
             }
         }
 
@@ -180,7 +180,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                Filter(8);
+                Filter(8, _noteTextBoxOutput);
             }
         }
 
@@ -192,9 +192,9 @@ namespace UniBase.Model.K2.ButtonMethods
 
         #endregion
 
-        private void Filter(int propIndex)
+        private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[propIndex].Name, _noteTextBoxOutput, Initialize, Helpers);
+            _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[propIndex].Name, textBox, Initialize, Helpers);
         }
 
         public void Initialize()
@@ -205,7 +205,17 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Helpers()
         {
-            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
+            //Parallel.ForEach(ControlSchedulesList, controleSchedule =>
+            //{
+            //    FillStringHelpers(controleSchedule);
+            //    controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
+            //    controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("0.####");
+            //    controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
+            //    controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
+            //    controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
+            //});
+
+            foreach (var controleSchedule in ControlSchedulesList)
             {
                 FillStringHelpers(controleSchedule);
                 controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
@@ -213,7 +223,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("0.####");
                 controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString("0.####");
                 controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("0.####");
-            });
+            }
         }
 
         public void RefreshAll()
@@ -248,10 +258,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            Parallel.ForEach(ControlSchedulesList, controleSchedule =>
-            {
-                InputValidator.CheckIfInputsAreValid(ref controleSchedule);
-            });
+            //Parallel.ForEach(ControlSchedulesList, controleSchedule =>
+            //{
+            //    InputValidator.CheckIfInputsAreValid(ref controleSchedule);
+            //});
             Parallel.ForEach(ControlSchedulesList, controlSchedules =>
             {
                 ModelGenerics.UpdateByObjectAndId((int)controlSchedules.ControlSchedule_ID, controlSchedules);
@@ -275,7 +285,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewItem()
         {
             var objectToAdd = NewControlSchedules;
-            InputValidator.CheckIfInputsAreValid(ref objectToAdd);
+            //InputValidator.CheckIfInputsAreValid(ref objectToAdd);
             
            
             if (ModelGenerics.CreateByObject(objectToAdd))
@@ -306,23 +316,23 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SortButtonClick(object id)
         {
             if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[0].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[0 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[0].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[1].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[1 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[1].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[2].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[2 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[2].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[3].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[3 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[3].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[4].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[4 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[4].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[5].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[5 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[5].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[6].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[6 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[6].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[7].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[7 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[7].Name);
             else if (id.ToString() == _xamlBindings.ControlSchedulesHeaderList[8].Header)
-                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[8 + 9].Name);
+                ControlSchedulesList = _genericMethod.Sort<ControlSchedules>(ControlSchedulesList,PropertyInfos[8].Name);
             else
                 Debug.WriteLine("Error");
         }

@@ -88,7 +88,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                Filter(0 + 5);
+                Filter(0, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -99,7 +99,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _dateTextBoxOutput = value;
 
-                Filter(1 + 5);
+                Filter(1, _dateTextBoxOutput);
             }
         }
 
@@ -110,7 +110,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _finishedProductNoTextBoxOutput = value;
 
-                Filter(2 + 5);
+                Filter(2, _finishedProductNoTextBoxOutput);
             }
         }
 
@@ -121,7 +121,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _columnTextBoxOutput = value;
 
-                Filter(3 + 5);
+                Filter(3, _columnTextBoxOutput);
             }
         }
 
@@ -132,7 +132,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                Filter(4 + 5);
+                Filter(4, _noteTextBoxOutput);
             }
         }
 
@@ -143,14 +143,14 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weekNoTextBoxOutput = value;
 
-                Filter(5+5);
+                Filter(5, _weekNoTextBoxOutput);
             }
         }
         #endregion
 
-        private void Filter(int propIndex)
+        private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, _weekNoTextBoxOutput, Initialize, Helpers);
+            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, textBox, Initialize, Helpers);
         }
 
         #region ButtonMethods
@@ -162,14 +162,22 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Helpers()
         {
-            Parallel.ForEach(FrontpagesList, frontpage =>
+            //Parallel.ForEach(FrontpagesList, frontpage =>
+            //{
+            //    frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+            //    frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
+            //    frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
+            //    frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
+            //    frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
+            //});
+            foreach (var frontpage in FrontpagesList)
             {
                 frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
                 frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
                 frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
                 frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
                 frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
-            });
+            }
         }
 
         public void RefreshAll()
@@ -200,10 +208,10 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         public void SaveAll()
         {
-            Parallel.ForEach(FrontpagesList, frontpage =>
-            {
-                InputValidator.CheckIfInputsAreValid(ref frontpage);
-            });
+            //Parallel.ForEach(FrontpagesList, frontpage =>
+            //{
+            //    InputValidator.CheckIfInputsAreValid(ref frontpage);
+            //});
 
             Parallel.ForEach(FrontpagesList, frontpage =>
             {
@@ -277,19 +285,14 @@ namespace UniBase.Model.K2.ButtonMethods
         public void AddNewItem()
         {
             var instanceNewFrontpagesToAdd = NewFrontpagesToAdd;
-            InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
+            //InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
 
-            //Autofills
-            instanceNewFrontpagesToAdd.Week_No = FindWeekNumber(instanceNewFrontpagesToAdd.Date);
-
-            Debug.WriteLine(instanceNewFrontpagesToAdd);
             
             if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
             {
                 Initialize();
 
                 NewFrontpagesToAdd = new Frontpages();
-                NewFrontpagesToAdd.Week_No = FindWeekNumber(NewFrontpagesToAdd.Date);
             }
             else
             {
@@ -299,18 +302,6 @@ namespace UniBase.Model.K2.ButtonMethods
 
         #endregion
 
-        public int FindWeekNumber(DateTime time)
-        {
-            // https://stackoverflow.com/questions/11154673/get-the-correct-week-number-of-a-given-date
-            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-            {
-                time = time.AddDays(3);
-            }
-
-            // Return the week of our adjusted day
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-        }
 
         public void SelectParentItem(object obj)
         {
@@ -326,17 +317,17 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             Debug.WriteLine(id.ToString(), "ID");
             if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0 + 5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[1].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[1 + 5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[2].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[2 + 5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[3].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[3 + 5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[4].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[4 + 5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
             else if (id.ToString() == _xamlBindings.FrontPageHeaderList[5].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5 + 5].Name);
+                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
             else
                 Debug.WriteLine("Error");
         }
