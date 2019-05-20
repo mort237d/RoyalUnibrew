@@ -55,6 +55,13 @@ namespace UniBase.Model.K2
             get { return _productionIdIntHelper; }
             set
             {
+                if (_productionIdIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        Production_ID = i;
+                    }
+                }
                 _productionIdIntHelper = value; 
                 OnPropertyChanged();
             }
@@ -65,6 +72,13 @@ namespace UniBase.Model.K2
             get { return _processOrderNoIntHelper; }
             set
             {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
                 _processOrderNoIntHelper = value;
                 OnPropertyChanged();
             }
@@ -75,6 +89,13 @@ namespace UniBase.Model.K2
             get { return _palletPutInStock0001IntHelper; }
             set
             {
+                if (_palletPutInStock0001IntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        PalletPutInStock0001 = i;
+                    }
+                }
                 _palletPutInStock0001IntHelper = value; 
                 OnPropertyChanged();
             }
@@ -85,6 +106,13 @@ namespace UniBase.Model.K2
             get { return _tapmachineIntHelper; }
             set
             {
+                if (_tapmachineIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        Tapmachine = i;
+                    }
+                }
                 _tapmachineIntHelper = value; 
                 OnPropertyChanged();
             }
@@ -95,6 +123,13 @@ namespace UniBase.Model.K2
             get { return _totalKegsPrPalletIntHelper; }
             set
             {
+                if (_totalKegsPrPalletIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        TotalKegsPrPallet = i;
+                    }
+                }
                 _totalKegsPrPalletIntHelper = value;
                 OnPropertyChanged();
             }
@@ -105,6 +140,13 @@ namespace UniBase.Model.K2
             get { return _counterIntHelper; }
             set
             {
+                if (_counterIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        Counter = i;
+                    }
+                }
                 _counterIntHelper = value; 
                 OnPropertyChanged();
             }
@@ -115,6 +157,13 @@ namespace UniBase.Model.K2
             get { return _palletCounterIntHelper; }
             set
             {
+                if (_palletCounterIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        PalletCounter = i;
+                    }
+                }
                 _palletCounterIntHelper = value; 
                 OnPropertyChanged();
             }
@@ -125,6 +174,13 @@ namespace UniBase.Model.K2
             get { return _batchDateStringHelper; }
             set
             {
+                if (_batchDateStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime time))
+                    {
+                        BatchDate = time;
+                    }
+                }
                 _batchDateStringHelper = value; 
                 OnPropertyChanged();
             }

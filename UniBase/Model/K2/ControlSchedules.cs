@@ -60,6 +60,13 @@ namespace UniBase.Model.K2
             get { return _controlScheduleIdIntHelper; }
             set
             {
+                if (_controlScheduleIdIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ControlSchedule_ID = i;
+                    }
+                }
                 _controlScheduleIdIntHelper = value;
                 OnPropertyChanged();
             }
@@ -70,6 +77,13 @@ namespace UniBase.Model.K2
             get { return _processOrderNoIntHelper; }
             set
             {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
                 _processOrderNoIntHelper = value;
                 OnPropertyChanged();
             }
@@ -80,6 +94,13 @@ namespace UniBase.Model.K2
             get { return _timeStringHelper; }
             set
             {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime t))
+                    {
+                        Time = t;
+                    }
+                }
                 _timeStringHelper = value;
                 OnPropertyChanged();
             }
@@ -90,6 +111,13 @@ namespace UniBase.Model.K2
             get { return _weightDoubleHelper; }
             set
             {
+                if (_weightDoubleHelper != value)
+                {
+                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    {
+                        Weight = i;
+                    }
+                }
                 _weightDoubleHelper = value;
                 OnPropertyChanged();
             }
@@ -100,6 +128,13 @@ namespace UniBase.Model.K2
             get { return _ludKoncentrationDoubleHelper; }
             set
             {
+                if (_ludKoncentrationDoubleHelper != value)
+                {
+                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    {
+                        LudKoncentration = i;
+                    }
+                }
                 _ludKoncentrationDoubleHelper = value;
                 OnPropertyChanged();
             }
@@ -110,6 +145,13 @@ namespace UniBase.Model.K2
             get { return _mipMaDoubleHelper; }
             set
             {
+                if (_mipMaDoubleHelper != value)
+                {
+                    if (Double.TryParse(value.Replace('.',','), out Double i))
+                    {
+                        MipMA = i;
+                    }
+                }
                 _mipMaDoubleHelper = value;
                 OnPropertyChanged();
             }
@@ -159,8 +201,7 @@ namespace UniBase.Model.K2
         {
             get => _processOrderNo;
             set
-            {
-                _processOrderNo = value;
+            {_processOrderNo = value;
             }
         }
 
@@ -203,10 +244,10 @@ namespace UniBase.Model.K2
             set
             {
                 _ludKoncentration = value;
-                if (_ludKoncentration != null)
-                {
-                    LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
-                }
+                //if (_ludKoncentration != null)
+                //{
+                //    LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
+                //}
             }
         }
 
