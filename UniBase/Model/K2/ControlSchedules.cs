@@ -53,141 +53,6 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        #region Helpers
-        [JsonIgnore]
-        public string ControlScheduleIdIntHelper
-        {
-            get { return _controlScheduleIdIntHelper; }
-            set
-            {
-                if (_controlScheduleIdIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ControlSchedule_ID = i;
-                    }
-                }
-                _controlScheduleIdIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                if (_processOrderNoIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ProcessOrder_No = i;
-                    }
-                }
-                _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string TimeStringHelper
-        {
-            get { return _timeStringHelper; }
-            set
-            {
-                if (_processOrderNoIntHelper != value)
-                {
-                    if (DateTime.TryParse(value, out DateTime t))
-                    {
-                        Time = t;
-                    }
-                }
-                _timeStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string WeightDoubleHelper
-        {
-            get { return _weightDoubleHelper; }
-            set
-            {
-                if (_weightDoubleHelper != value)
-                {
-                    if (Double.TryParse(value.Replace('.', ','), out Double i))
-                    {
-                        Weight = i;
-                    }
-                }
-                _weightDoubleHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string LudKoncentrationDoubleHelper
-        {
-            get { return _ludKoncentrationDoubleHelper; }
-            set
-            {
-                if (_ludKoncentrationDoubleHelper != value)
-                {
-                    if (Double.TryParse(value.Replace('.', ','), out Double i))
-                    {
-                        LudKoncentration = i;
-                    }
-                }
-                _ludKoncentrationDoubleHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string MipMaDoubleHelper
-        {
-            get { return _mipMaDoubleHelper; }
-            set
-            {
-                if (_mipMaDoubleHelper != value)
-                {
-                    if (Double.TryParse(value.Replace('.',','), out Double i))
-                    {
-                        MipMA = i;
-                    }
-                }
-                _mipMaDoubleHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public SolidColorBrush WeightColorBrush
-        {
-            get { return weightColorBrush; }
-            set
-            {
-                weightColorBrush = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public SolidColorBrush MipMaColorBrush
-        {
-            get { return mipMaColorBrush; }
-            set
-            {
-                mipMaColorBrush = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public SolidColorBrush LudKoncentrationColorBrush
-        {
-            get { return ludKoncentrationColorBrush; }
-            set
-            {
-                ludKoncentrationColorBrush = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
-
         public int ControlSchedule_ID
         {
             get => _controlScheduleId;
@@ -283,6 +148,141 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+
+        #region Helpers
+        [JsonIgnore]
+        public string ControlScheduleIdIntHelper
+        {
+            get { return _controlScheduleIdIntHelper; }
+            set
+            {
+                if (_controlScheduleIdIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ControlSchedule_ID = i;
+                    }
+                }
+                _controlScheduleIdIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string TimeStringHelper
+        {
+            get { return _timeStringHelper; }
+            set
+            {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime t))
+                    {
+                        Time = t;
+                    }
+                }
+                _timeStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string WeightDoubleHelper
+        {
+            get { return _weightDoubleHelper; }
+            set
+            {
+                if (_weightDoubleHelper != value)
+                {
+                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    {
+                        Weight = i;
+                    }
+                }
+                _weightDoubleHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string LudKoncentrationDoubleHelper
+        {
+            get { return _ludKoncentrationDoubleHelper; }
+            set
+            {
+                if (_ludKoncentrationDoubleHelper != value)
+                {
+                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    {
+                        LudKoncentration = i;
+                    }
+                }
+                _ludKoncentrationDoubleHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string MipMaDoubleHelper
+        {
+            get { return _mipMaDoubleHelper; }
+            set
+            {
+                if (_mipMaDoubleHelper != value)
+                {
+                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    {
+                        MipMA = i;
+                    }
+                }
+                _mipMaDoubleHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public SolidColorBrush WeightColorBrush
+        {
+            get { return weightColorBrush; }
+            set
+            {
+                weightColorBrush = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public SolidColorBrush MipMaColorBrush
+        {
+            get { return mipMaColorBrush; }
+            set
+            {
+                mipMaColorBrush = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public SolidColorBrush LudKoncentrationColorBrush
+        {
+            get { return ludKoncentrationColorBrush; }
+            set
+            {
+                ludKoncentrationColorBrush = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
 
         public virtual Frontpages Frontpage { get; set; }
         

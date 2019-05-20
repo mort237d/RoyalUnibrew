@@ -76,165 +76,6 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        #region StringHelpers
-        [JsonIgnore]
-        public  string ControlRegistrationIdIntHelper
-        {
-            get { return _controlRegistrationIdIntHelper; }
-            set
-            {
-                if (_controlRegistrationIdIntHelper != value)
-                {
-                    if(int.TryParse(value, out int i))
-                    {
-                        ControlRegistration_ID = i;
-                    }
-                }
-                _controlRegistrationIdIntHelper = value;
-                
-                OnPropertyChanged();
-            }
-        }
-
-        [JsonIgnore]
-        public string ProcessOrderNoIntHelper
-        {
-            get { return _processOrderNoIntHelper; }
-            set
-            {
-                if (_processOrderNoIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        ProcessOrder_No = i;
-                    }
-                }
-                _processOrderNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string TimeStringHelper
-        {
-            get { return _timeStringHelper; }
-            set
-            {
-                if (_timeStringHelper != value)
-                {
-                    if (TimeSpan.TryParse(value, out TimeSpan t))
-                    {
-                        Time = t;
-                    }
-                }
-                _timeStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ProductionsDateStringHelper
-        {
-            get { return _productionsDateStringHelper; }
-            set
-            {
-                if (_productionsDateStringHelper != value)
-                {
-                    if (DateTime.TryParse(value, out DateTime t))
-                    {
-                        Production_Date = t;
-                    }
-                }
-                _productionsDateStringHelper = value;
-                
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string ExpiryDateStringHelper
-        {
-            get { return _expiryDateStringHelper; }
-            set
-            {
-                if (_expiryDateStringHelper != value)
-                {
-                    if (DateTime.TryParse(value, out DateTime t))
-                    {
-                        Expiry_Date = t;
-                    }
-                }
-                _expiryDateStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string CapNoIntHelper
-        {
-            get { return _capNoIntHelper; }
-            set
-            {
-                if (_capNoIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        CapNo = i;
-                    }
-                }
-                _capNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string EtiquetteNoIntHelper
-        {
-            get { return _etiquetteNoIntHelper; }
-            set
-            {
-                if (_etiquetteNoIntHelper != value)
-                {
-                    if (int.TryParse(value, out int i))
-                    {
-                        EtiquetteNo = i;
-                    }
-                }
-                _etiquetteNoIntHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string FirstPalletDepalletizingStringHelper
-        {
-            get { return _firstPalletDepalletizingStringHelper; }
-            set
-            {
-                if (_firstPalletDepalletizingStringHelper != value)
-                {
-                    if (DateTime.TryParse(value, out DateTime t))
-                    {
-                        FirstPalletDepalletizing = t;
-                    }
-                }
-                _firstPalletDepalletizingStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        [JsonIgnore]
-        public string LastPalletDepalletizingStringHelper
-        {
-            get { return _lastPalletDepalletizingStringHelper; }
-            set
-            {
-                if (_lastPalletDepalletizingStringHelper != value)
-                {
-                    if (DateTime.TryParse(value, out DateTime t))
-                    {
-                        LastPalletDepalletizing = t;
-                    }
-                }
-                _lastPalletDepalletizingStringHelper = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
-
         public int ControlRegistration_ID
         {
             get => _controlRegistrationId;
@@ -248,7 +89,6 @@ namespace UniBase.Model.K2
             get => _processOrderNo;
             set
             {
-                if (value == _processOrderNo) return;
                 _processOrderNo = value;
             }
         }
@@ -288,6 +128,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+
 
         public bool ControlAlcoholSpearDispenser
         {
@@ -382,13 +223,166 @@ namespace UniBase.Model.K2
             }
         }
 
+        #region StringHelpers
+        [JsonIgnore]
+        public string ControlRegistrationIdIntHelper
+        {
+            get { return _controlRegistrationIdIntHelper; }
+            set
+            {
+                if (_controlRegistrationIdIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ControlRegistration_ID = i;
+                    }
+                }
+                _controlRegistrationIdIntHelper = value;
 
-        
-        
+                OnPropertyChanged();
+            }
+        }
+
+        [JsonIgnore]
+        public string ProcessOrderNoIntHelper
+        {
+            get { return _processOrderNoIntHelper; }
+            set
+            {
+                if (_processOrderNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        ProcessOrder_No = i;
+                    }
+                }
+                _processOrderNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string TimeStringHelper
+        {
+            get { return _timeStringHelper; }
+            set
+            {
+                if (_timeStringHelper != value)
+                {
+                    if (TimeSpan.TryParse(value, out TimeSpan t))
+                    {
+                        Time = t;
+                    }
+                }
+                _timeStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ProductionsDateStringHelper
+        {
+            get { return _productionsDateStringHelper; }
+            set
+            {
+                if (_productionsDateStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime t))
+                    {
+                        Production_Date = t;
+                    }
+                }
+                _productionsDateStringHelper = value;
+
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string ExpiryDateStringHelper
+        {
+            get { return _expiryDateStringHelper; }
+            set
+            {
+                if (_expiryDateStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime t))
+                    {
+                        Expiry_Date = t;
+                    }
+                }
+                _expiryDateStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string CapNoIntHelper
+        {
+            get { return _capNoIntHelper; }
+            set
+            {
+                if (_capNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        CapNo = i;
+                    }
+                }
+                _capNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string EtiquetteNoIntHelper
+        {
+            get { return _etiquetteNoIntHelper; }
+            set
+            {
+                if (_etiquetteNoIntHelper != value)
+                {
+                    if (int.TryParse(value, out int i))
+                    {
+                        EtiquetteNo = i;
+                    }
+                }
+                _etiquetteNoIntHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string FirstPalletDepalletizingStringHelper
+        {
+            get { return _firstPalletDepalletizingStringHelper; }
+            set
+            {
+                if (_firstPalletDepalletizingStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime t))
+                    {
+                        FirstPalletDepalletizing = t;
+                    }
+                }
+                _firstPalletDepalletizingStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonIgnore]
+        public string LastPalletDepalletizingStringHelper
+        {
+            get { return _lastPalletDepalletizingStringHelper; }
+            set
+            {
+                if (_lastPalletDepalletizingStringHelper != value)
+                {
+                    if (DateTime.TryParse(value, out DateTime t))
+                    {
+                        LastPalletDepalletizing = t;
+                    }
+                }
+                _lastPalletDepalletizingStringHelper = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
 
         public virtual Frontpages Frontpage { get; set; }
-
-
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
