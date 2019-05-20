@@ -150,7 +150,7 @@
     <Compile Include="Model\GenericMethod.cs" />
     <Compile Include="Model\TrendAdminstrator.cs" />
     <Compile Include="Model\Trends.cs" />
-    <Compile Include="Model\Login\User.cs" />
+    <Compile Include="Model\Login\Users.cs" />
     <Compile Include="Model\XamlBindings.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

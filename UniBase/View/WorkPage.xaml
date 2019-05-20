@@ -13,7 +13,9 @@
 
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
 
-    xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core" x:Name="WorkPageName"
+    xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:login="using:UniBase.Model.Login"
+    x:Name="WorkPageName"
     x:Class="UniBase.View.WorkPage"
 
     mc:Ignorable="d"
@@ -1053,18 +1055,21 @@
             </PivotItem>
             <PivotItem Header="Brugere">
 
-                <StackPanel Orientation="Horizontal">
-                    <GridView ItemsSource="{Binding ManageUser.Users}" SelectedItem="{Binding ManageUser.SelectedUser, Mode=TwoWay}" Margin="10,10,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUsers, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
-                            <DataTemplate x:DataType="model:ManageUser">
+                            <DataTemplate x:DataType="login:Users">
                                 <StackPanel Orientation="Horizontal" Margin="10">
-                                    <Image Source="{Binding ImageTb}" Width="100" Height="100"/>
+                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
                                     <StackPanel>
-                                        <Image Height="60" Width="40" Source="Images/AddButton.png"></Image>
-                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding NameTb, Mode=TwoWay}"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding EmailTb, Mode=TwoWay}"/>
-                                            <TextBlock Text="{Binding TelephoneNumberTb, Mode=TwoWay}"/>
+                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Email, Mode=TwoWay}"/>
+                                            <TextBlock Text="{Binding TelephoneNumber, Mode=TwoWay}"/>
                                         </StackPanel>
 
                                     </StackPanel>
@@ -1072,19 +1077,19 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    <StackPanel>
-                        <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}"></TextBox>
-                        <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}"></TextBox>
-                        <TextBox PlaceholderText="TelephoneNumber" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}"></TextBox>
-                        <PasswordBox PlaceholderText="Password" Visibility="Visible" Password="{Binding ManageUser.PasswordTb, Mode=TwoWay}"></PasswordBox>
-                        <PasswordBox PlaceholderText="Confirm password" Visibility="Visible" Password="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}"></PasswordBox>
-                        <TextBox PlaceholderText="Billedetest" Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"></TextBox>
+                    <StackPanel Grid.Column="1">
+                        <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                        <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                        <TextBox PlaceholderText="TelephoneNumber" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                        <PasswordBox PlaceholderText="Password" Visibility="Visible" Password="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></PasswordBox>
+                        <PasswordBox PlaceholderText="Confirm password" Visibility="Visible" Password="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></PasswordBox>
+                        <TextBox PlaceholderText="Billedetest" Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <Button HorizontalAlignment="Left" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Left" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button HorizontalAlignment="Center" Content="Ændre bruger" Visibility="Visible" Command="{Binding}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Left" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                     </StackPanel>
 
-                </StackPanel>
+                </Grid>
 
             </PivotItem>
         </Pivot>
