@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 using UniBase.Model.Login;
@@ -20,8 +21,8 @@ namespace UniBase.Model
 
         private string _visible;
 
-        private ObservableCollection<User> _users;
-        private User _selectedUser, _currentUser;
+        private ObservableCollection<Users> _usersList;
+        private Users _selectedUsers, _currentUsers;
 
         #endregion
 
@@ -87,32 +88,32 @@ namespace UniBase.Model
             }
         }
 
-        public ObservableCollection<User> Users
+        public ObservableCollection<Users> UsersList
         {
-            get => _users;
+            get => _usersList;
             set
             {
-                _users = value;
+                _usersList = value;
                 OnPropertyChanged();
             }
         }
 
-        public User SelectedUser
+        public Users SelectedUsers
         {
-            get => _selectedUser;
+            get => _selectedUsers;
             set
             {
-                _selectedUser = value;
+                _selectedUsers = value;
                 OnPropertyChanged();
             }
         }
 
-        public User CurrentUser
+        public Users CurrentUsers
         {
-            get { return _currentUser; }
+            get { return _currentUsers; }
             set
             {
-                _currentUser = value;
+                _currentUsers = value;
                 OnPropertyChanged();
             }
         }
@@ -131,11 +132,16 @@ namespace UniBase.Model
 
         public ManageUser()
         {
-            Users = new ObservableCollection<User>();
-            Users.Add(new User("1", "1", "1", "1", "1"));
-            Users.Add(new User("HEJ", "@hej.dk", "12340", "1", "1"));
+            UsersList = ModelGenerics.GetAll(new Users());
+            //UsersList.Add(new Users("1", "1", "1", "1", "Images/AddButton.png"));
+            //UsersList.Add(new Users("HEJ", "@hej.dk", "12340", "1", "Images/AddButton.png"));
 
-            CurrentUser = Users[0];
+            //CurrentUsers = UsersList[0];
+
+            foreach (var u in UsersList)
+            {
+                Debug.WriteLine(u.TelephoneNumber, "Tlf");
+            }
 
             _message = new Message(this);
         }
@@ -178,8 +184,8 @@ namespace UniBase.Model
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
-                            else Users.Add(new User(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                            if (string.IsNullOrEmpty(ImageTb)) UsersList.Add(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                            else UsersList.Add(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
 
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
                         }
@@ -194,21 +200,40 @@ namespace UniBase.Model
 
         public async void RemoveUser()
         {
-            if (SelectedUser != CurrentUser)
+            if (SelectedUsers != CurrentUsers)
             {
-                if (SelectedUser != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
+                if (SelectedUsers != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUsers.Name + "?");
                 else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
             }
         }
 
-        public void ButtonVisibility(User userToCheck)
+        public async void ChangeSelectedUser()
         {
-            Visible = userToCheck is Administrator ? "Visible" : "Collapsed";
+            if (SelectedUsers.Name == NameTb || SelectedUsers.Email == EmailTb ||
+                SelectedUsers.TelephoneNumber == TelephoneNumberTb || SelectedUsers.ImageSource == ImageTb ||
+                SelectedUsers.Password == PasswordTb)
+            {
+                if (PasswordTb == ConfirmPasswordTb)
+                {
+                    SelectedUsers.Name = NameTb;
+                    SelectedUsers.Email = EmailTb;
+                    SelectedUsers.TelephoneNumber = TelephoneNumberTb;
+                    SelectedUsers.ImageSource = ImageTb;
+                    SelectedUsers.Password = PasswordTb;
+                }
+                else await _message.Error("Forkert kodeord", "kodeord stemmer ikke overens");
+            }
+             else await _message.Error("Fejl", "Intet er ændret prøv igen");
+        }
+
+        public void ButtonVisibility(Users usersToCheck)
+        {
+            Visible = usersToCheck is Administrator ? "Visible" : "Collapsed";
         }
 
         public async void ChangeAdmin()
         {
-            if (SelectedUser != null) await _message.YesNo("Giv admin videre", "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
+            if (SelectedUsers != null) await _message.YesNo("Giv admin videre", "Er du sikker på at du vil give admin videre til " + SelectedUsers.Name + "?");
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
         #endregion

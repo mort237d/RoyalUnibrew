@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Model\ConstantValues.cs" />
     <Compile Include="Model\HeaderAndToolTip.cs" />
+    <Compile Include="Model\K2\ButtonMethods\CalculateProductions.cs" />
     <Compile Include="Model\K2\ButtonMethods\CalculateTUTotal.cs" />
     <Compile Include="Model\K2\ButtonMethods\ControlRegistrationMethod.cs" />
     <Compile Include="Model\K2\ButtonMethods\ControlScheduleMethod.cs" />
@@ -149,7 +150,7 @@
     <Compile Include="Model\GenericMethod.cs" />
     <Compile Include="Model\TrendAdminstrator.cs" />
     <Compile Include="Model\Trends.cs" />
-    <Compile Include="Model\Login\User.cs" />
+    <Compile Include="Model\Login\Users.cs" />
     <Compile Include="Model\XamlBindings.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

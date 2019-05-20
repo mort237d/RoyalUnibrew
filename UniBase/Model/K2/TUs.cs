@@ -33,8 +33,8 @@ namespace UniBase.Model.K2
         private string _thirdDayTotalIntHelper;
         private string _processOrderNoIntHelper;
 
-        //private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
-        //private Productions _productions = new Productions();
+        private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
+        private Productions _productions = new Productions();
         public TUs()
         {
             
@@ -284,6 +284,8 @@ namespace UniBase.Model.K2
             set
             {
                 _firstDayTotal = value;
+                OnPropertyChanged();
+                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
             }
         }
         public int SecoundDayStart_TU
@@ -308,6 +310,8 @@ namespace UniBase.Model.K2
             set
             {
                 _secoundDayTotal = value;
+                OnPropertyChanged();
+                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
             }
         }
         public int ThirdDayStart_TU
@@ -332,8 +336,21 @@ namespace UniBase.Model.K2
             set
             {
                 _thirdDayTotal = value;
+                OnPropertyChanged();
+                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
             }
         }
+
+//        public int ProcessOrder_No
+//        {
+//            get => _processOrderNo;
+//            set
+//            {
+//                if (value == _processOrderNo) return;
+//                _processOrderNo = value;
+//                OnPropertyChanged();
+//            }
+//        }
 
         public virtual Frontpages Frontpage { get; set; }
         

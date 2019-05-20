@@ -71,7 +71,7 @@ namespace UniBase.Model
             if (command == yesCommand)
             {
                 
-                if (title == "Slet bruger") _manageUser.Users.Remove(_manageUser.SelectedUser);
+                if (title == "Slet bruger") _manageUser.UsersList.Remove(_manageUser.SelectedUsers);
                 
             }
             else if (command == noCommand)
