@@ -69,7 +69,7 @@ namespace UniBase.Model.K2
             {
                 _processOrderNoIntHelper = value;
                 OnPropertyChanged();
-                PalletCounter = CalculateProductions.CalculatePalletCounter();
+                //PalletCounter = CalculateProductions.CalculatePalletCounter();
             }
         }
         [JsonIgnore]
