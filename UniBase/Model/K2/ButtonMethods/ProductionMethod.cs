@@ -178,7 +178,13 @@ namespace UniBase.Model.K2.ButtonMethods
             set { _completeProductionsList = value; }
         }
 
+
         #endregion
+
+        private void Filter(int propIndex, string textBox)
+        {
+            _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
+        }
 
         #region ButtonMethods
         public void Initialize()

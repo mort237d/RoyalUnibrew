@@ -8,7 +8,6 @@ namespace UniBase.Model.K2
 {
     public class TUs : INotifyPropertyChanged
     {
-        private int _tuId;
         private int _firstDayStartTu;
         private int _firstDayEndTu;
         private int _firstDayTotal;
@@ -18,7 +17,6 @@ namespace UniBase.Model.K2
         private int _thirdDayStartTu;
         private int _thirdDayEndTu;
         private int _thirdDayTotal;
-        private int _processOrderNo;
 
         //Helpers
         private string _tuIdIntHelper;
@@ -57,23 +55,10 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int TU_ID
-        {
-            get => _tuId;
-            set
-            {
-                _tuId = value;
-            }
-        }
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
+        public int TU_ID { get; set; }
 
-                _processOrderNo = value;
-            }
-        }
+        public int ProcessOrder_No { get; set; }
+
         public int FirstDayStart_TU
         {
             get => _firstDayStartTu;
@@ -349,111 +334,6 @@ namespace UniBase.Model.K2
             }
         }
         #endregion
-        public int TU_ID
-        {
-            get => _tuId;
-            set
-            {
-                _tuId = value;
-            }
-        }
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-
-                _processOrderNo = value;
-            }
-        }
-        public int FirstDayStart_TU
-        {
-            get => _firstDayStartTu;
-            set
-            {
-                _firstDayStartTu = value;
-            }
-        }
-        public int FirstDayEnd_TU
-        {
-            get => _firstDayEndTu;
-            set
-            {
-                _firstDayEndTu = value;
-            }
-        }
-        public int FirstDay_Total
-        {
-            get => _firstDayTotal;
-            set
-            {
-                _firstDayTotal = value;
-                OnPropertyChanged();
-                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
-            }
-        }
-        public int SecoundDayStart_TU
-        {
-            get => _secoundDayStartTu;
-            set
-            {
-                _secoundDayStartTu = value;
-            }
-        }
-        public int SecoundDayEnd_TU
-        {
-            get => _secoundDayEndTu;
-            set
-            {
-                _secoundDayEndTu = value;
-            }
-        }
-        public int SecoundDay_Total
-        {
-            get => _secoundDayTotal;
-            set
-            {
-                _secoundDayTotal = value;
-                OnPropertyChanged();
-                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
-            }
-        }
-        public int ThirdDayStart_TU
-        {
-            get => _thirdDayStartTu;
-            set
-            {
-                _thirdDayStartTu = value;
-            }
-        }
-        public int ThirdDayEnd_TU
-        {
-            get => _thirdDayEndTu;
-            set
-            {
-                _thirdDayEndTu = value;
-            }
-        }
-        public int ThirdDay_Total
-        {
-            get => _thirdDayTotal;
-            set
-            {
-                OnPropertyChanged();
-                _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
-            }
-        }
-
-//        public int ProcessOrder_No
-//        {
-//            get => _processOrderNo;
-//            set
-//            {
-//                if (value == _processOrderNo) return;
-//                _processOrderNo = value;
-//                OnPropertyChanged();
-//            }
-//        }
 
         public virtual Frontpages Frontpage { get; set; }
         

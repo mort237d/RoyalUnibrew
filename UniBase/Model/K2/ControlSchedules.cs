@@ -10,16 +10,10 @@ namespace UniBase.Model.K2
 {
     public class ControlSchedules : INotifyPropertyChanged
     {
-        private double _weight;
-        private double _ludKoncentration;
-        private double _mipMa;
-        private int _controlScheduleId;
         private string _kegTest;
-        private int _processOrderNo;
         private string _note;
         private string _signature;
-        private DateTime _time;
-        
+
         //Helpers
         private string _weightDoubleHelper;
         private string _ludKoncentrationDoubleHelper;
@@ -28,8 +22,6 @@ namespace UniBase.Model.K2
         private string _processOrderNoIntHelper;
         private string _timeStringHelper;
         
-        private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
-        private ConstantValues constantValues = new ConstantValues();
         private SolidColorBrush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private SolidColorBrush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private SolidColorBrush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
@@ -53,81 +45,27 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int ControlSchedule_ID
-        {
-            get => _controlScheduleId;
-            set
-            {
-                _controlScheduleId = value;
-            }
-        }
+        public int ControlSchedule_ID { get; set; }
 
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {_processOrderNo = value;
-            }
-        }
+        public int ProcessOrder_No { get; set; }
 
-        public DateTime Time
-        {
-            get => _time;
-            set
-            {
-                _time = value;
-            }
-        }
+        public DateTime Time { get; set; }
 
-        public double Weight
-        {
-            get => _weight;
-            set
-            {
-                _weight = value;
-                //if (_weight != null)
-                //{
-                //    WeightColorBrush = ofBoundColorChange.ChangeListViewColor((double)_weight, constantValues.MinWeight, constantValues.MaxWeight);
-                //}
-            }
-        }
+        public double Weight { get; set; }
 
         public string KegTest
         {
             get => _kegTest;
             set
             {
-                if (value == _kegTest) return;
                 _kegTest = value;
                 OnPropertyChanged();
             }
         }
 
-        public double LudKoncentration
-        {
-            get => _ludKoncentration;
-            set
-            {
-                _ludKoncentration = value;
-                //if (_ludKoncentration != null)
-                //{
-                //    LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
-                //}
-            }
-        }
+        public double LudKoncentration { get; set; }
 
-        public double MipMA
-        {
-            get => _mipMa;
-            set
-            {
-                _mipMa = value;
-                //if (_mipMa != null) //todo fix this
-                //{
-                //    MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
-                //}
-            }
-        }
+        public double MipMA { get; set; }
 
         public string Signature
         {

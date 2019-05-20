@@ -186,18 +186,14 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[propIndex].Name, textBox, Initialize, Helpers);
+            _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
         public void Initialize()
         {
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-            
-            
-            foreach (var VARIABLE in ShiftRegistrationsList)
-            {
-                
-            }
+
+            FillStringHelpers();
 
             NewShiftRegistrations = new ShiftRegistrations
             {
@@ -209,43 +205,23 @@ namespace UniBase.Model.K2.ButtonMethods
         public void RefreshAll()
         {
             ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
-            Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
-                {
-                    shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
-                    shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
-                    shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
-                    shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
-                    shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
-                    FillStringHelpers(shiftRegistration);
-                });
+            FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
         {
             ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
-            Parallel.ForEach(ShiftRegistrationsList, shiftRegistration =>
-            {
-                shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
-                shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
-                shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
-                shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
-                shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
-                FillStringHelpers(shiftRegistration);
-            });
+            FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
         public void SaveAll()
         {
-            //Parallel.ForEach(ShiftRegistrationsList, shiftRegistrations =>
-            //{
-            //    InputValidator.CheckIfInputsAreValid(ref shiftRegistrations);
-            //});
-            Parallel.ForEach(ShiftRegistrationsList, shiftRegistrations =>
+            foreach (var shiftRegistration in ShiftRegistrationsList)
             {
-                ModelGenerics.UpdateByObjectAndId((int)shiftRegistrations.ShiftRegistration_ID, shiftRegistrations);
-            });
+                ModelGenerics.UpdateByObjectAndId((int)shiftRegistration.ShiftRegistration_ID, shiftRegistration);
+            }
             _message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
         }
 
@@ -264,12 +240,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
-            var ObjectToAdd = NewShiftRegistrations;
-            //InputValidator.CheckIfInputsAreValid(ref ObjectToAdd);
-
-            //Autofills
-
-            if (ModelGenerics.CreateByObject(ObjectToAdd))
+            if (ModelGenerics.CreateByObject(NewShiftRegistrations))
             {
                 Initialize();
 
@@ -317,7 +288,20 @@ namespace UniBase.Model.K2.ButtonMethods
                 Debug.WriteLine("Error");
         }
 
-        private void FillStringHelpers(ShiftRegistrations shiftRegistration)
+        private void FillStringHelpers()
+        {
+            foreach (var shiftRegistration in ShiftRegistrationsList)
+            {
+                shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+                shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+                shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+                shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+                shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
+                FillStringHelpersHelper(shiftRegistration);
+            }
+        }
+
+        private void FillStringHelpersHelper(ShiftRegistrations shiftRegistration)
         {
             string temp, temp2, temp3, temp4;
             if (shiftRegistration.Start_Time.Hour < 10) temp = "0" + shiftRegistration.Start_Time.Hour;
@@ -338,6 +322,7 @@ namespace UniBase.Model.K2.ButtonMethods
             shiftRegistration.StartTimeStringHelper = string.Format("{0}:{1}", temp, temp2);
             shiftRegistration.EndDateStringHelper = string.Format("{0}:{1}", temp3, temp4);
         }
+
 
         #region SingleTon
         private static ShiftRegistrationMethod _instance;
