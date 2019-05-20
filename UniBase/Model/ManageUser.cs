@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 using UniBase.Model.Login;
@@ -12,7 +13,7 @@ namespace UniBase.Model
         #region Field
 
         private static Message _message;
-        BrowseImage _browseImages = new BrowseImage();
+        //BrowseImage _browseImages = new BrowseImage();
 
         public readonly string StandardImage = "UserImages/Profile-icon.png";
 
@@ -138,11 +139,6 @@ namespace UniBase.Model
 
             //CurrentUsers = UsersList[0];
 
-            foreach (var u in UsersList)
-            {
-                Debug.WriteLine(u.Telephone_No, "Tlf");
-            }
-
             _message = new Message(this);
         }
 
@@ -183,9 +179,9 @@ namespace UniBase.Model
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                                UsersList.Add(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
-                                ModelGenerics.CreateByObject(new Users(NameTb, EmailTb, TelephoneNumberTb, PasswordTb,
-                                    ImageTb));
+                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb,
+                                    "e"));
 
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
                         }
@@ -196,6 +192,11 @@ namespace UniBase.Model
                 else await _message.Error("Forkert email", "Du skal bruge en \".dk\" eller en \".com\" mail.");
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
+
+            foreach (var user in UsersList)
+            {
+                Debug.WriteLine(user.Password, "Password");
+            }
         }
 
         public async void RemoveUser()
@@ -237,6 +238,8 @@ namespace UniBase.Model
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
         #endregion
+
+
 
         #region INotify
 

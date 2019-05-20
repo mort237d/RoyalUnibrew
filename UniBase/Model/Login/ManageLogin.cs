@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -38,12 +40,14 @@ namespace UniBase.Model.Login
             }
         }
 
+
         #endregion
 
         public ManageLogin()
         {
 
         }
+
 
         #region Singleton
 
@@ -72,6 +76,10 @@ namespace UniBase.Model.Login
 
         public void CheckLogin()
         {
+            foreach (var user in _manageUser.UsersList)
+            {
+                Debug.WriteLine(user.Password, "Password");
+            }
             bool temp = false;
             foreach (var user in _manageUser.UsersList)
             {
