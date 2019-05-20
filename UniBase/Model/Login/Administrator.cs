@@ -2,7 +2,7 @@
 {
     class Administrator : Users
     {
-        public Administrator(string name, string email, string telephoneNo, string password, string imageSource) : base(name, email, telephoneNo, password, imageSource)
+        public Administrator(int user_ID, string name, string email, string telephoneNo, string password, string imageSource) : base(user_ID, name, email, telephoneNo, password, imageSource)
         {
 
         }
