@@ -116,7 +116,7 @@ namespace UniBase.Model.K2
                     {
                         Date = time;
 
-                        
+                        //https://stackoverflow.com/questions/11154673/get-the-correct-week-number-of-a-given-date
                         DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
                         if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
                         {

@@ -113,8 +113,15 @@ namespace UniBase.Model.K2
             {
                 if (_weightDoubleHelper != value)
                 {
-                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    if (value.Contains("."))
                     {
+                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        Weight = i;
+
+                    }
+                    else 
+                    {
+                        Double.TryParse(value, out Double i);
                         Weight = i;
                     }
                 }
@@ -130,8 +137,15 @@ namespace UniBase.Model.K2
             {
                 if (_ludKoncentrationDoubleHelper != value)
                 {
-                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    if (value.Contains("."))
                     {
+                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        LudKoncentration = i;
+
+                    }
+                    else
+                    {
+                        Double.TryParse(value, out Double i);
                         LudKoncentration = i;
                     }
                 }
@@ -147,8 +161,15 @@ namespace UniBase.Model.K2
             {
                 if (_mipMaDoubleHelper != value)
                 {
-                    if (Double.TryParse(value.Replace('.',','), out Double i))
+                    if (value.Contains("."))
                     {
+                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        MipMA = i;
+
+                    }
+                    else
+                    {
+                        Double.TryParse(value, out Double i);
                         MipMA = i;
                     }
                 }

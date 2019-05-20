@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Newtonsoft.Json;
 using UniBase.Annotations;
@@ -35,6 +36,7 @@ namespace UniBase.Model.K2
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
         private string _expiryDateStringHelper;
+        private ComboBoxItem _kegSizeItem = new ComboBoxItem();
 
         private SolidColorBrush _controlRegistrationIdColor = new SolidColorBrush(Colors.White);
         private SolidColorBrush _commentsOnChangedDatecolor = new SolidColorBrush(Colors.LightSalmon);
@@ -141,6 +143,11 @@ namespace UniBase.Model.K2
                     if (DateTime.TryParse(value, out DateTime t))
                     {
                         Production_Date = t;
+
+                        int frontpage = ModelGenerics.GetById(new Frontpages(), ProcessOrder_No).FinishedProduct_No;
+                        int experationDateLength = ModelGenerics.GetById(new Products(), frontpage ).BestBeforeDateLength;
+                        Expiry_Date = t.AddDays(experationDateLength);
+                        ExpiryDateStringHelper = Expiry_Date.ToString("yyyy/MM/dd");
                     }
                 }
                 _productionsDateStringHelper = value;
@@ -334,7 +341,6 @@ namespace UniBase.Model.K2
             get => _kegSize;
             set
             {
-                if (value.Equals(_kegSize)) return;
                 _kegSize = value;
                 OnPropertyChanged();
             }
@@ -382,13 +388,9 @@ namespace UniBase.Model.K2
             }
         }
 
-
-        
         
 
         public virtual Frontpages Frontpage { get; set; }
-
-
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

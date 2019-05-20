@@ -335,7 +335,6 @@ namespace UniBase.Model.K2
             get => _thirdDayTotal;
             set
             {
-                _thirdDayTotal = value;
                 OnPropertyChanged();
                 _productions.PalletCounter = CalculateProductions.CalculatePalletCounter();
             }

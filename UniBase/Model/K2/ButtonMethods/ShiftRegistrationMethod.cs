@@ -195,6 +195,16 @@ namespace UniBase.Model.K2.ButtonMethods
                 shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
                 FillStringHelpers(shiftRegistration);
             });
+            foreach (var VARIABLE in ShiftRegistrationsList)
+            {
+                
+            }
+
+            NewShiftRegistrations = new ShiftRegistrations
+            {
+                ShiftRegistrationIdIntHelper = (ShiftRegistrationsList.Last().ShiftRegistration_ID + 1).ToString(),
+                ProcessOrderNoIntHelper = ShiftRegistrationsList.Last().ProcessOrder_No.ToString()
+            };
         }
 
         public void RefreshAll()

@@ -234,6 +234,9 @@ namespace UniBase.Model.K2.ButtonMethods
                 Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
                 Tu.TuIdIntHelper = Tu.TU_ID.ToString();
             });
+            NewTUs = new TUs();
+            NewTUs.TuIdIntHelper = (TuList.Last().TU_ID + 1).ToString();
+            NewTUs.ProcessOrderNoIntHelper = TuList.Last().ProcessOrder_No.ToString();
         }
 
         public void RefreshAll()
