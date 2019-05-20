@@ -1069,7 +1069,7 @@
                                         <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
                                         <StackPanel>
                                             <TextBlock Text="{Binding Email, Mode=TwoWay}"/>
-                                            <TextBlock Text="{Binding TelephoneNumber, Mode=TwoWay}"/>
+                                            <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
                                         </StackPanel>
 
                                     </StackPanel>
@@ -1080,10 +1080,13 @@
                     <StackPanel Grid.Column="1">
                         <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                        <TextBox PlaceholderText="TelephoneNumber" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                        <TextBox PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <PasswordBox PlaceholderText="Password" Visibility="Visible" Password="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></PasswordBox>
                         <PasswordBox PlaceholderText="Confirm password" Visibility="Visible" Password="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></PasswordBox>
-                        <TextBox PlaceholderText="Billedetest" Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Margin="2" PlaceholderText="Billede" Width="100" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"/>
+                            <Button Content="..." Width="auto" Command="{Binding UserImageBrowserCommand}"/>
+                        </StackPanel>
                         <Button HorizontalAlignment="Left" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Left" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Left" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>

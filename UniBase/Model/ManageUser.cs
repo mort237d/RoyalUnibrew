@@ -12,7 +12,7 @@ namespace UniBase.Model
         #region Field
 
         private static Message _message;
-        //BrowseImages _browseImages = new BrowseImages();
+        BrowseImage _browseImages = new BrowseImage();
 
         public readonly string StandardImage = "UserImages/Profile-icon.png";
 
@@ -140,7 +140,7 @@ namespace UniBase.Model
 
             foreach (var u in UsersList)
             {
-                Debug.WriteLine(u.TelephoneNumber, "Tlf");
+                Debug.WriteLine(u.Telephone_No, "Tlf");
             }
 
             _message = new Message(this);
@@ -164,15 +164,14 @@ namespace UniBase.Model
 
         #endregion
 
-        
+
 
         #region ButtonMethods
 
-//        public async void BrowseImageButton()
-//        {
-//            ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
-//            ShowAddUserPopUpMethod();
-//        }
+        public async void BrowseImageButton()
+        {
+            //ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
+        }
 
         public async void AddUser()
         {
@@ -210,14 +209,14 @@ namespace UniBase.Model
         public async void ChangeSelectedUser()
         {
             if (SelectedUsers.Name == NameTb || SelectedUsers.Email == EmailTb ||
-                SelectedUsers.TelephoneNumber == TelephoneNumberTb || SelectedUsers.ImageSource == ImageTb ||
+                SelectedUsers.Telephone_No == TelephoneNumberTb || SelectedUsers.ImageSource == ImageTb ||
                 SelectedUsers.Password == PasswordTb)
             {
                 if (PasswordTb == ConfirmPasswordTb)
                 {
                     SelectedUsers.Name = NameTb;
                     SelectedUsers.Email = EmailTb;
-                    SelectedUsers.TelephoneNumber = TelephoneNumberTb;
+                    SelectedUsers.Telephone_No = TelephoneNumberTb;
                     SelectedUsers.ImageSource = ImageTb;
                     SelectedUsers.Password = PasswordTb;
                 }

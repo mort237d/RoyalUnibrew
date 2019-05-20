@@ -2,7 +2,7 @@
 {
     class Leader : Users
     {
-        public Leader(string name, string email, string telephoneNumber, string password, string imageSource) : base(name, email, telephoneNumber, password, imageSource)
+        public Leader(string name, string email, string telephoneNo, string password, string imageSource) : base(name, email, telephoneNo, password, imageSource)
         {
 
         }
