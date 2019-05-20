@@ -218,14 +218,15 @@
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="View\Images\AddButton.png" />
-    <Content Include="View\Images\CheckedCheckbox.png" />
-    <Content Include="View\Images\DeleteButton.png" />
-    <Content Include="View\Images\GetAll.png" />
-    <Content Include="View\Images\GetLastTen.png" />
-    <Content Include="View\Images\SaveButton.png" />
-    <Content Include="View\Images\RefreshButton.png" />
-    <Content Include="View\Images\UnCheckedCheckbox.png" />
+    <Content Include="View\Images\Buttons\AddButton.png" />
+    <Content Include="View\Images\CheckBox\CheckedCheckbox.png" />
+    <Content Include="View\Images\Buttons\DeleteButton.png" />
+    <Content Include="View\Images\Buttons\GetAll.png" />
+    <Content Include="View\Images\Buttons\GetLastTen.png" />
+    <Content Include="View\Images\Buttons\SaveButton.png" />
+    <Content Include="View\Images\Buttons\RefreshButton.png" />
+    <Content Include="View\Images\CheckBox\UnCheckedCheckbox.png" />
+    <Content Include="View\Images\User.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
