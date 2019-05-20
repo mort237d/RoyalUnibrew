@@ -397,7 +397,7 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
                                 <StackPanel>
-                                    <ListView SelectedIndex="{Binding Column_2.ControlScheduleMethod.SelectedControlScheduleId, Mode=TwoWay}" Width="994"
+                                    <ListView Width="994"
                                       Style="{StaticResource ButtonListViewStyle}" 
                                       ItemsSource="{Binding Column_2.XamlBindings.ControlSchedulesHeaderList}"
                                               SelectedItem="{Binding Column_2.ControlScheduleMethod.SelectedControlSchedule, Mode=TwoWay}">
