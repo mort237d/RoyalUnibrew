@@ -25,6 +25,9 @@ namespace UniBase.Model.K2
         private SolidColorBrush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private SolidColorBrush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private SolidColorBrush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private double _mipMa;
+        private double _weight;
+        private double _ludKoncentration;
 
         public ControlSchedules()
         {
@@ -51,7 +54,16 @@ namespace UniBase.Model.K2
 
         public DateTime Time { get; set; }
 
-        public double Weight { get; set; }
+        public double Weight
+        {
+            get => _weight;
+            set
+            {
+                _weight = value;
+                WeightColorBrush = OutOfBoundColorChange.ChangeListViewColor(_weight, ConstantValues.MinWeight, ConstantValues.MaxWeight);
+                OnPropertyChanged();
+            }
+        }
 
         public string KegTest
         {
@@ -63,9 +75,28 @@ namespace UniBase.Model.K2
             }
         }
 
-        public double LudKoncentration { get; set; }
+        public double LudKoncentration
+        {
+            get => _ludKoncentration;
+            set
+            {
+                _ludKoncentration = value;
+                LudKoncentrationColorBrush = OutOfBoundColorChange.ChangeListViewColor(_ludKoncentration, ConstantValues.MinLudkoncentration, ConstantValues.MaxLudkoncentration);
+                OnPropertyChanged();
+            }
 
-        public double MipMA { get; set; }
+        }
+
+        public double MipMA
+        {
+            get => _mipMa;
+            set
+            {
+                _mipMa = value;
+                MipMaColorBrush = OutOfBoundColorChange.ChangeListViewColor(_mipMa, ConstantValues.MinMipMa, ConstantValues.MaxMipMa);
+                OnPropertyChanged();
+            }
+        }
 
         public string Signature
         {
