@@ -67,128 +67,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _controlRegistrationIdTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[5].Name, _controlRegistrationIdTextBoxOutput, Initialize);
-            }
-        }
-
-        public string TimeTextBoxOutput
-        {
-            get { return _timeTextBoxOutput; }
-            set
-            {
-                _timeTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[6].Name, _timeTextBoxOutput, Initialize);
-            }
-        }
-
-        public string ProductionDateTextBoxOutput
-        {
-            get { return _productionDateTextBoxOutput; }
-            set
-            {
-                _productionDateTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[7].Name, _productionDateTextBoxOutput, Initialize);
-            }
-        }
-
-        public string ExpiryTextBoxOutput
-        {
-            get { return _expiryTextBoxOutput; }
-            set
-            {
-                _expiryTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[4].Name, _expiryTextBoxOutput, Initialize);
-            }
-        }
-
-        public string CommentsOnChangedDateTextBoxOutput
-        {
-            get { return _commentsOnChangedDateTextBoxOutput; }
-            set
-            {
-                _commentsOnChangedDateTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[9].Name, _commentsOnChangedDateTextBoxOutput, Initialize);
-            }
-        }
-
-        public string ControlAlcoholSpearDispenserTextBoxOutput
-        {
-            get { return _controlAlcoholSpearDispenserTextBoxOutput; }
-            set
-            {
-                _controlAlcoholSpearDispenserTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[10].Name, _controlAlcoholSpearDispenserTextBoxOutput, Initialize);
-            }
-        }
-
-        public string CapNoTextBoxOutput
-        {
-            get { return _capNoTextBoxOutput; }
-            set
-            {
-                _capNoTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[11].Name, _capNoTextBoxOutput, Initialize);
-            }
-        }
-
-        public string EtiquetteNoTextBoxOutput
-        {
-            get { return _etiquetteNoTextBoxOutput; }
-            set
-            {
-                _etiquetteNoTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[12].Name, _etiquetteNoTextBoxOutput, Initialize);
-            }
-        }
-
-        public string KegSizeTextBoxOutput
-        {
-            get { return _kegSizeTextBoxOutput; }
-            set
-            {
-                _kegSizeTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[13].Name, _kegSizeTextBoxOutput, Initialize);
-            }
-        }
-
-        public string SignatureTextBoxOutput
-        {
-            get { return _signatureTextBoxOutput; }
-            set
-            {
-                _signatureTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[14].Name, _signatureTextBoxOutput, Initialize);
-            }
-        }
-
-        public string FirstPalletDepalletizingTextBoxOutput
-        {
-            get { return _firstPalletDepalletizingTextBoxOutput; }
-            set
-            {
-                _firstPalletDepalletizingTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[15].Name, _firstPalletDepalletizingTextBoxOutput, Initialize);
-            }
-        }
-
-        public string LastPalletDepalletizingTextBoxOutput
-        {
-            get { return _lastPalletDepalletizingTextBoxOutput; }
-            set
-            {
-                _lastPalletDepalletizingTextBoxOutput = value;
-
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[16].Name, _lastPalletDepalletizingTextBoxOutput, Initialize);
+                Filter(5,_controlRegistrationIdTextBoxOutput);
             }
         }
 
@@ -199,7 +78,128 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                //_genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[17].Name, _processOrderNoTextBoxOutput, Initialize);
+                Filter(17, _processOrderNoTextBoxOutput);
+            }
+        }
+
+        public string TimeTextBoxOutput
+        {
+            get { return _timeTextBoxOutput; }
+            set
+            {
+                _timeTextBoxOutput = value;
+
+                Filter(6,_timeTextBoxOutput);
+            }
+        }
+
+        public string ProductionDateTextBoxOutput
+        {
+            get { return _productionDateTextBoxOutput; }
+            set
+            {
+                _productionDateTextBoxOutput = value;
+
+                Filter(7,_productionDateTextBoxOutput);
+            }
+        }
+
+        public string ExpiryTextBoxOutput
+        {
+            get { return _expiryTextBoxOutput; }
+            set
+            {
+                _expiryTextBoxOutput = value;
+
+                Filter(8,_expiryTextBoxOutput);
+            }
+        }
+
+        public string CommentsOnChangedDateTextBoxOutput
+        {
+            get { return _commentsOnChangedDateTextBoxOutput; }
+            set
+            {
+                _commentsOnChangedDateTextBoxOutput = value;
+
+                Filter(9,_commentsOnChangedDateTextBoxOutput);
+            }
+        }
+
+        public string ControlAlcoholSpearDispenserTextBoxOutput
+        {
+            get { return _controlAlcoholSpearDispenserTextBoxOutput; }
+            set
+            {
+                _controlAlcoholSpearDispenserTextBoxOutput = value;
+
+                Filter(10,_controlAlcoholSpearDispenserTextBoxOutput);
+            }
+        }
+
+        public string CapNoTextBoxOutput
+        {
+            get { return _capNoTextBoxOutput; }
+            set
+            {
+                _capNoTextBoxOutput = value;
+
+                Filter(11,_capNoTextBoxOutput);
+            }
+        }
+
+        public string EtiquetteNoTextBoxOutput
+        {
+            get { return _etiquetteNoTextBoxOutput; }
+            set
+            {
+                _etiquetteNoTextBoxOutput = value;
+
+                Filter(12, _etiquetteNoTextBoxOutput);
+            }
+        }
+
+        public string KegSizeTextBoxOutput
+        {
+            get { return _kegSizeTextBoxOutput; }
+            set
+            {
+                _kegSizeTextBoxOutput = value;
+
+                Filter(13, _kegSizeTextBoxOutput);
+            }
+        }
+
+        public string SignatureTextBoxOutput
+        {
+            get { return _signatureTextBoxOutput; }
+            set
+            {
+                _signatureTextBoxOutput = value;
+
+                Filter(14, _signatureTextBoxOutput);
+            }
+        }
+
+        public string FirstPalletDepalletizingTextBoxOutput
+        {
+            get { return _firstPalletDepalletizingTextBoxOutput; }
+            set
+            {
+                _firstPalletDepalletizingTextBoxOutput = value;
+
+                Filter(15, _firstPalletDepalletizingTextBoxOutput);
+            }
+        }
+
+        public string LastPalletDepalletizingTextBoxOutput
+        {
+            get { return _lastPalletDepalletizingTextBoxOutput; }
+            set
+            {
+                _lastPalletDepalletizingTextBoxOutput = value;
+
+                Filter(16, _lastPalletDepalletizingTextBoxOutput);
             }
         }
         #endregion
@@ -257,9 +257,28 @@ namespace UniBase.Model.K2.ButtonMethods
         #endregion
 
         #region ButtonMethods
+        private void Filter(int propIndex, string textBox)
+        {
+            _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[propIndex].Name, _processOrderNoTextBoxOutput, Initialize, Helpers);
+        }
+
         public void Initialize()
         {
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            Helpers();
+
+            NewControlRegistrationsToAdd = new ControlRegistrations
+            {
+                CapNo = ControlRegistrationsList.Last().CapNo,
+                EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo,
+                KegSize = ControlRegistrationsList.Last().KegSize,
+                ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No,
+                ControlAlcoholSpearDispenser = false
+            };
+        }
+
+        private void Helpers()
+        {
             Parallel.ForEach(ControlRegistrationsList, controlregistration =>
             {
                 controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
@@ -272,16 +291,8 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpers(controlregistration);
             });
-
-            NewControlRegistrationsToAdd = new ControlRegistrations
-            {
-                CapNo = ControlRegistrationsList.Last().CapNo,
-                EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo,
-                KegSize = ControlRegistrationsList.Last().KegSize,
-                ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No,
-                ControlAlcoholSpearDispenser = false
-            };
         }
+
         public void RefreshAll()
         {
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());

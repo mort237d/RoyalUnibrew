@@ -88,7 +88,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                Filter(0 + 5);
+                Filter(0 + 5, _processOrderNoTextBoxOutput);
             }
         }
 
@@ -99,7 +99,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _dateTextBoxOutput = value;
 
-                Filter(1 + 5);
+                Filter(1 + 5, _dateTextBoxOutput);
             }
         }
 
@@ -110,7 +110,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _finishedProductNoTextBoxOutput = value;
 
-                Filter(2 + 5);
+                Filter(2 + 5, _finishedProductNoTextBoxOutput);
             }
         }
 
@@ -121,7 +121,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _columnTextBoxOutput = value;
 
-                Filter(3 + 5);
+                Filter(3 + 5, _columnTextBoxOutput);
             }
         }
 
@@ -132,7 +132,7 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _noteTextBoxOutput = value;
 
-                Filter(4 + 5);
+                Filter(4 + 5, _noteTextBoxOutput);
             }
         }
 
@@ -143,14 +143,14 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _weekNoTextBoxOutput = value;
 
-                Filter(5+5);
+                Filter(5+5, _weekNoTextBoxOutput);
             }
         }
         #endregion
 
-        private void Filter(int propIndex)
+        private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, _weekNoTextBoxOutput, Initialize, Helpers);
+            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, textBox, Initialize, Helpers);
         }
 
         #region ButtonMethods
