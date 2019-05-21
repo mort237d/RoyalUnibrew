@@ -292,7 +292,7 @@
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
                                                     <!-- Find løsning til Binding -->
-                                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding KegSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedIndex="{Binding KegSizeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                         <ComboBoxItem Content="20L"/>
                                                         <ComboBoxItem Content="25L"/>
                                                         <ComboBoxItem Content="30L"/>
@@ -359,7 +359,7 @@
                                     </Button>
                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.CapNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.EtiquetteNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding Column_2.ControlRegistrationMethod.KegSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1,2,1,1">
+                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedIndex="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.KegSizeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1,2,1,1">
                                         <ComboBoxItem Content="20L"/>
                                         <ComboBoxItem Content="25L"/>
                                         <ComboBoxItem Content="30L"/> 

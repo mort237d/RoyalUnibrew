@@ -27,6 +27,7 @@ namespace UniBase.Model.K2
         private string _lastPalletDepalletizingStringHelper;
         private string _expiryDateStringHelper;
         private int _kegSizeIndex;
+        private string _controlRegistrationAlcoholSpearDispenserControlled;
 
         public ControlRegistrations()
         {
@@ -109,6 +110,28 @@ namespace UniBase.Model.K2
             }
         }
 
+        public int KegSizeIndex
+        {
+            get => _kegSizeIndex;
+            set
+            {
+                _kegSizeIndex = value;
+                if (value == 0)
+                {
+                    KegSize = "20L";
+                }
+                else if (value == 1)
+                {
+                    KegSize = "25L";
+                }
+                else if (value == 2)
+                {
+                    KegSize = "30L";
+                }
+                OnPropertyChanged();
+            }
+        }
+
         public string Signature
         {
             get => _signature;
@@ -124,7 +147,15 @@ namespace UniBase.Model.K2
 
         public DateTime LastPalletDepalletizing { get; set; }
 
-        public string ControlRegistrationAlcoholSpearDispenserControlled { get; set; }
+        public string ControlRegistrationAlcoholSpearDispenserControlled
+        {
+            get => _controlRegistrationAlcoholSpearDispenserControlled;
+            set
+            {
+                _controlRegistrationAlcoholSpearDispenserControlled = value; 
+                OnPropertyChanged();
+            }
+        }
 
         #region StringHelpers
         [JsonIgnore]
