@@ -239,9 +239,7 @@ namespace UniBase.Model.K2.ButtonMethods
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
-
         
-
         public void RefreshLastTen()
         {
             TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
