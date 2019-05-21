@@ -292,7 +292,7 @@
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
                                                     <!-- Find løsning til Binding -->
-                                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding KegSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedIndex="{Binding KegSizeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                         <ComboBoxItem Content="20L"/>
                                                         <ComboBoxItem Content="25L"/>
                                                         <ComboBoxItem Content="30L"/>
@@ -359,7 +359,7 @@
                                     </Button>
                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.CapNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.EtiquetteNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding Column_2.ControlRegistrationMethod.KegSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1,2,1,1">
+                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedIndex="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.KegSizeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1,2,1,1">
                                         <ComboBoxItem Content="20L"/>
                                         <ComboBoxItem Content="25L"/>
                                         <ComboBoxItem Content="30L"/> 
@@ -918,14 +918,14 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStartTuIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayStartTuIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEndTuIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding SecoundDayEndTuIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
@@ -939,14 +939,14 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStartTuIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayStartTuIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEndTuIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
+                                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ThirdDayEndTuIntHelper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv sidste 6 cifre">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
                                                                 <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemTuCommand, ElementName=WorkPageName}" CommandParameter="{Binding TU_ID}"/>

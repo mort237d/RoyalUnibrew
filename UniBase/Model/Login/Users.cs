@@ -103,6 +103,20 @@ namespace UniBase.Model.Login
 
         #endregion
 
+        public override bool Equals(object obj)
+        {
+            Users userToCompare = obj as Users;
+            if (obj == null)
+            {
+                return false;
+            }
+            return userToCompare.User_ID == User_ID && 
+                   userToCompare.Password == Password &&
+                   userToCompare.Email == Email && 
+                   userToCompare.Name == Name &&
+                   userToCompare.Telephone_No == Telephone_No;
+        }
+
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
