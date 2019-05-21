@@ -16,7 +16,7 @@ namespace UniBase.Model.K2.ButtonMethods
             Initialize();
         }
         #region Fields
-        private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+        private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList;
 
         private ObservableCollection<ShiftRegistrations> _shiftRegistrationsList;
 
@@ -189,11 +189,13 @@ namespace UniBase.Model.K2.ButtonMethods
             _genericMethod.Filter(new ShiftRegistrations(), ShiftRegistrationsList, CompleteShiftRegistrationsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
-        public void Initialize()
+        public async void Initialize()
         {
-            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
+            ShiftRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
 
             FillStringHelpers();
+
+            _completeShiftRegistrationsList = await ModelGenerics.GetAll(new ShiftRegistrations());
 
             NewShiftRegistrations = new ShiftRegistrations
             {
@@ -202,16 +204,16 @@ namespace UniBase.Model.K2.ButtonMethods
             };
         }
 
-        public void RefreshAll()
+        public async void RefreshAll()
         {
-            ShiftRegistrationsList = ModelGenerics.GetAll(new ShiftRegistrations());
+            ShiftRegistrationsList = await ModelGenerics.GetAll(new ShiftRegistrations());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
-        public void RefreshLastTen()
+        public async void RefreshLastTen()
         {
-            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
+            ShiftRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
