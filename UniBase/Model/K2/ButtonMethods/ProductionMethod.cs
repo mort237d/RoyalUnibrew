@@ -253,24 +253,14 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SortButtonClick(object id)
         {
-            if (id.ToString() == _xamlBindings.ProductionsHeaderList[0].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList,PropertyInfos[0].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[1].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[1].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[2].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[2].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[3].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[3].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[4].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[4].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[5].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[5].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[6].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[6].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[7].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[7].Name);
-            else
-                Debug.WriteLine("Error");
+            for (int i = 0; i <= 7; i++)
+            {
+                if (id.ToString() == _xamlBindings.ProductionsHeaderList[i].Header)
+                {
+                    ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[i].Name);
+                    break;
+                }
+            }
         }
 
         private void FillStringHelpers()

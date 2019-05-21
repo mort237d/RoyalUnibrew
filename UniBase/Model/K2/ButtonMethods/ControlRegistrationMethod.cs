@@ -342,34 +342,14 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SortButtonClick(object id)
         {
-            if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[0].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[0].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[1].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[1].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[2].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[2].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[3].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[3].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[4].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[4].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[5].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[5].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[6].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[6].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[7].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[7].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[8].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[8].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[9].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[9].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[10].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[10].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[11].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[11].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[12].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[12].Name);
-            else
-                Debug.WriteLine("Error");
+            for (int i = 0; i <= 12; i++)
+            {
+                if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[i].Header)
+                {
+                    ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList, PropertyInfos[i].Name);
+                    break;
+                }
+            }
         }
 
         public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
