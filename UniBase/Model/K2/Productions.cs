@@ -25,7 +25,7 @@ namespace UniBase.Model.K2
             
         }
 
-        public Productions(int production_ID, int palletPutInStock0001, int tapmachine, int totalKegsPrPallet, int counter, int palletCounter, DateTime batchDate, int processOrder_No, Frontpages frontpage)
+        public Productions(int production_ID, int palletPutInStock0001, int tapmachine, int totalKegsPrPallet, int counter, int palletCounter, DateTime batchDate, int processOrder_No)
         {
             Production_ID = production_ID;
             PalletPutInStock0001 = palletPutInStock0001;
@@ -35,7 +35,6 @@ namespace UniBase.Model.K2
             PalletCounter = palletCounter;
             BatchDate = batchDate;
             ProcessOrder_No = processOrder_No;
-            Frontpage = frontpage;
         }
 
         public int Production_ID { get; set; }

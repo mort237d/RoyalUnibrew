@@ -159,11 +159,19 @@ namespace UniBase.Model.K2
             get { return _timeStringHelper; }
             set
             {
-                if (_processOrderNoIntHelper != value)
+                if (_timeStringHelper != value)
                 {
-                    if (DateTime.TryParse(value, out DateTime t))
+                    if (DateTime.TryParse(value, out DateTime parsedDateTime))
                     {
-                        Time = t;
+                        if (Time == DateTime.MinValue)
+                        {
+                            Time = parsedDateTime;
+                        }
+                        else
+                        {
+                            TimeSpan priorTimeSpan = new TimeSpan(parsedDateTime.Hour, parsedDateTime.Minute, 0);
+                            Time = Time.Date + priorTimeSpan;
+                        }
                     }
                 }
                 _timeStringHelper = value;

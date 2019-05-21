@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight.Command;
 using UniBase.Annotations;
@@ -90,15 +91,16 @@ namespace UniBase.ViewModel
 
             #region Update(SavedForLater)
 
-//            int month = 6;
-//            int day = 11;
-//            int year = 2018;
-//            double weight = 0;
-//            double mipMa = 0;
-//            double ludKoncentration = 0;
-//            int processordernext = 1;
-//            //Udfyld controlschdual.
-//            Random random = new Random();
+            int month = 4;
+            int day = 29;
+            int year = 2019;
+            int hour = 1;
+            double weight = 0;
+            double mipMa = 0;
+            double ludKoncentration = 0;
+            int processordernext = 1;
+            //Udfyld controlschdual.
+            Random random = new Random();
 //            for (int i = 0; i < 310; i++)
 //            {
 //                weight = random.NextDouble() * 1.7 + 36.9;
@@ -124,25 +126,33 @@ namespace UniBase.ViewModel
 ////            }
 //            foreach (var VARIABLE in Column_2.ControlScheduleMethod.CompleteControlSchedulesList)
 //            {
+//                if (VARIABLE.Time > new DateTime(2019,4,28,0,0,0))
+//                {
 //                
-//                VARIABLE.Time = new DateTime(year, month, day, random.Next(0,23), random.Next(0,59), 0);
-//                VARIABLE.Weight = random.NextDouble()* 1.7 + 36.9;
-//                VARIABLE.MipMA = random.NextDouble() * 2.7 + 23.9;
-//                VARIABLE.LudKoncentration = random.NextDouble() * 1.2 + 0.9;
-//                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
-//                day++;
-//                if (day == 29)
-//                {
-//                    month++;
-//                    day = 1;
+//                    VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0,59), 0);
+////                    VARIABLE.Weight = random.NextDouble()* 1.7 + 36.9;
+////                    VARIABLE.MipMA = random.NextDouble() * 2.7 + 23.9;
+////                    VARIABLE.LudKoncentration = random.NextDouble() * 1.2 + 0.9;
+//                    ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
+//                    hour += 3;
+//                    if (hour > 9)
+//                    {
+//                        hour = 1;
+//                        day++;
+//                    }
+//                    if (day == 29)
+//                    {
+//                        month++;
+//                        day = 1;
+//                    }
+//                
+//                    if (month > 11)
+//                    {
+//                        year++;
+//                        month = 1;
+//                    }
+//                    Debug.Write("| ID: "+ VARIABLE.ControlSchedule_ID + ", date: " + VARIABLE.Time);
 //                }
-//            
-//                if (month > 11)
-//                {
-//                    year++;
-//                    month = 1;
-//                }
-//            
 //            }
 
             #endregion
