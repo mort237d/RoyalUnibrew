@@ -220,11 +220,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var shiftRegistration in ShiftRegistrationsList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)shiftRegistration.ShiftRegistration_ID, shiftRegistration);
-            }
-            _message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
+            _genericMethod.SaveAll(ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrerings");
         }
 
         public void DeleteItem()

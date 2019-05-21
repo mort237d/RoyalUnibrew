@@ -278,12 +278,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var controlRegistration in ControlRegistrationsList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)controlRegistration.ControlRegistration_ID, controlRegistration);
-            }
-
-            _message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
+            _genericMethod.SaveAll(ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrerings");
         }
 
         public void AddNewItem()

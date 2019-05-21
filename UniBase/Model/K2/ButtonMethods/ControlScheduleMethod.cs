@@ -228,11 +228,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var controlSchedules in ControlSchedulesList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)controlSchedules.ControlSchedule_ID, controlSchedules);
-            }
-            _message.ShowToastNotification("Gemt", "Kontrol Skema-tabellen er gemt");
+            _genericMethod.SaveAll(ControlSchedulesList, "ControlSchedule_ID", "Kontrol Skema");
         }
 
         public void DeleteItem()

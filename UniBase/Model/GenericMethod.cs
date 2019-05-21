@@ -109,6 +109,17 @@ namespace UniBase.Model
             }
         }
 
+        public void SaveAll<T>(ObservableCollection<T> list, string property, string tableName)
+        {
+            PropertyInfo prop = typeof(T).GetProperty(property);
+
+            foreach (var item in list)
+            {
+                ModelGenerics.UpdateByObjectAndId((int)prop.GetValue(item, null), item);
+            }
+            _message.ShowToastNotification("Gemt", tableName + "-tabellen er gemt");
+        }
+
         public async void RefreshAll<T>(T type, ObservableCollection<T> listViewList, Action fillStringHelpers, string tableName)
         {
             listViewList = await ModelGenerics.GetAll(type);

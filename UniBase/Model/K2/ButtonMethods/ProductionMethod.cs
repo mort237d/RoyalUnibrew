@@ -219,11 +219,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var production in ProductionsList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)production.Production_ID, production);
-            }
-            _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            _genericMethod.SaveAll(ProductionsList, "Production_ID", "Produktions");
         }
 
         public void DeleteItem()

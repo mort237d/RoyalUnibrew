@@ -180,11 +180,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         public void SaveAll()
         {
-            foreach (var frontpage in FrontpagesList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
-            }
-            _message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+            _genericMethod.SaveAll(FrontpagesList, "ProcessOrder_No", "Forside");
         }
 
         public void DeleteItem()

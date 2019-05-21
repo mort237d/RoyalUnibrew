@@ -252,11 +252,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var tus in TuList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)tus.TU_ID, tus);
-            }
-            _message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
+            _genericMethod.SaveAll(TuList, "TU_ID", "TU");
         }
 
         public void DeleteItem()
