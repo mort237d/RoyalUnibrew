@@ -37,7 +37,7 @@ namespace UniBase.Model.K2
         public ControlRegistrations(int controlRegistration_ID, TimeSpan time, DateTime production_Date,
             DateTime expiry_Date, string commentsOnChangedDate, bool controlAlcoholSpearDispenser, int capNo,
             int etiquetteNo, string kegSize, string signature, DateTime firstPalletDepalletizing,
-            DateTime lastPalletDepalletizing, int processOrder_No, Frontpages frontpage)
+            DateTime lastPalletDepalletizing, int processOrder_No)
         {
             ControlRegistration_ID = controlRegistration_ID;
             Time = time;
@@ -52,7 +52,6 @@ namespace UniBase.Model.K2
             FirstPalletDepalletizing = firstPalletDepalletizing;
             LastPalletDepalletizing = lastPalletDepalletizing;
             ProcessOrder_No = processOrder_No;
-            Frontpage = frontpage;
         }
 
         public int ControlRegistration_ID { get; set; }
