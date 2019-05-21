@@ -1094,20 +1094,20 @@
                                 <TextBlock Height="33" Text="Bekræft kodeord:"/>
                             </StackPanel>
                             <StackPanel Margin="5,0,0,0">
-                                <TextBox Height="33" PlaceholderText="Navn" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox Height="33" PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox Height="33" PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox Height="33" PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox Height="33" PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Navn" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <!--<TextBox Margin="2" PlaceholderText="Billede" Width="100" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"/>
                             <Button Content="..." Width="auto" Command="{Binding UserImageBrowserCommand}"/>-->
                         </StackPanel>
-                        <Button HorizontalAlignment="Left" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button HorizontalAlignment="Left" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button HorizontalAlignment="Left" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                     </StackPanel>
 
                 </Grid>
