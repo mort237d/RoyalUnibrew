@@ -28,7 +28,6 @@ namespace UniBase.Model.K2
         private string _expiryDateStringHelper;
         private string _controlRegistrationAlcoholSpearDispenserControlled;
         private int _kegSizeIndex;
-        private string _controlRegistrationAlcoholSpearDispenserControlled;
 
         public ControlRegistrations()
         {
