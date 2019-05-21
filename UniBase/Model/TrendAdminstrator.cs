@@ -20,7 +20,6 @@ namespace UniBase.Model
         private List<Trends> _tempTrendList = new List<Trends>();
         private ObservableCollection<Trends> _trendGraphList = new ObservableCollection<Trends>();
 
-        private ObservableCollection<ControlSchedules> CompleteControlSchedulesList = ControlScheduleMethod.Instance.CompleteControlSchedulesList;
 
         public TrendAdminstrator()
         {GraphType.Content = "Vægt";
@@ -78,6 +77,8 @@ namespace UniBase.Model
 
         public void CreateGraph(string comboboxInput, string timePeriod)
         {
+            ObservableCollection<ControlSchedules> CompleteControlSchedulesList = ControlScheduleMethod.Instance.CompleteControlSchedulesList;
+
             TempTrendList.Clear();
             DateTime tempDayOfScheduleList = CompleteControlSchedulesList[0].Time;
             int timeHorizon = 0;
@@ -184,7 +185,7 @@ namespace UniBase.Model
                             maxValue = ConstantValues.MaxLudkoncentration;
                         }
 
-                        return;
+                        goto overhere;
                     }
 
                     if (amountOfItemsWithSameDate != 0)
@@ -202,7 +203,7 @@ namespace UniBase.Model
                     }
                 
                 }
-
+                overhere: ;
             });
             if (amountOfItemsWithSameDate != 0)
             {

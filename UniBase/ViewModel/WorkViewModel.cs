@@ -90,7 +90,7 @@ namespace UniBase.ViewModel
 
             #region Update(SavedForLater)
 
-//            int month = 7;
+//            int month = 6;
 //            int day = 11;
 //            int year = 2018;
 //            double weight = 0;
@@ -120,30 +120,30 @@ namespace UniBase.ViewModel
 //                {
 //                    year++;
 //                    month = 1;
+////                }
+////            }
+//            foreach (var VARIABLE in Column_2.ControlScheduleMethod.CompleteControlSchedulesList)
+//            {
+//                
+//                VARIABLE.Time = new DateTime(year, month, day, random.Next(0,23), random.Next(0,59), 0);
+//                VARIABLE.Weight = random.NextDouble()* 1.7 + 36.9;
+//                VARIABLE.MipMA = random.NextDouble() * 2.7 + 23.9;
+//                VARIABLE.LudKoncentration = random.NextDouble() * 1.2 + 0.9;
+//                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
+//                day++;
+//                if (day == 29)
+//                {
+//                    month++;
+//                    day = 1;
 //                }
+//            
+//                if (month > 11)
+//                {
+//                    year++;
+//                    month = 1;
+//                }
+//            
 //            }
-            //            foreach (var VARIABLE in Column_2.ControlScheduleMethod.CompleteControlSchedulesList)
-            //            {
-            //                
-            //                VARIABLE.Time = new DateTime(year, month, day, random.Next(0,23), random.Next(0,59), 0);
-            //                VARIABLE.Weight = random.NextDouble()* 1.7 + 36.9;
-            //                VARIABLE.MipMA = random.NextDouble() * 2.7 + 23.9;
-            //                VARIABLE.LudKoncentration = random.NextDouble() * 1.2 + 0.9;
-            //                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
-            //                day++;
-            //                if (day == 29)
-            //                {
-            //                    month++;
-            //                    day = 1;
-            //                }
-            //
-            //                if (month > 11)
-            //                {
-            //                    year++;
-            //                    month = 1;
-            //                }
-            //
-            //            }
 
             #endregion
 
