@@ -146,16 +146,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshFrontpageTable}">
-                                        <Image Source="View/Images/Buttons/GetAll.png"/>
+                                        <Image Source="Images/Button/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenFrontpageTable}">
-                                        <Image Source="View/Images/Buttons/GetLastTen.png"/>
+                                        <Image Source="Images/Button/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveFrontpageTable}">
-                                        <Image Source="View/Images/Buttons/SaveButton.png"/>
+                                        <Image Source="Images/Button/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteFrontpageTable}">
-                                        <Image Source="View/Images/Buttons/DeleteButton.png"/>
+                                        <Image Source="Images/Button/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -171,7 +171,7 @@
                                 </StackPanel>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddFrontpageTable}">
-                                    <Image Source="View/Images/Buttons/AddButton.png"/>
+                                    <Image Source="Images/Button/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -332,23 +332,23 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshControlRegistrationTable}">
-                                        <Image Source="View/Images/Buttons/GetAll.png"/>
+                                        <Image Source="Images/Button/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenControlRegistrationTable}">
-                                        <Image Source="View/Images/Buttons/GetLastTen.png"/>
+                                        <Image Source="Images/Button/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlRegistrationTable}">
-                                        <Image Source="View/Images/Buttons/SaveButton.png"/>
+                                        <Image Source="Images/Button/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteControlRegistrationTable}">
-                                        <Image Source="View/Images/Buttons/DeleteButton.png"/>
+                                        <Image Source="Images/Button/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
-                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ControlRegistrationIdIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" BorderBrush="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ControlRegistrationIdColor}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ControlRegistrationIdIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ProcessOrderNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <TextBox extensions:TextBoxMask.Mask="99:99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.TimeStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderTime}"/>
                                     <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.ProductionsDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
@@ -371,7 +371,7 @@
                                 </StackPanel>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddControlRegistrationsTable}">
-                                    <Image Source="View/Images/Buttons/AddButton.png"/>
+                                    <Image Source="Images/Button/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -501,16 +501,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshControlScheduleTable}">
-                                        <Image Source="View/Images/Buttons/GetAll.png"/>
+                                        <Image Source="Images/Button/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenControlScheduleTable}">
-                                        <Image Source="View/Images/Buttons/GetLastTen.png"/>
+                                        <Image Source="Images/Button/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveControlScheduleTable}">
-                                        <Image Source="View/Images/Buttons/SaveButton.png"/>
+                                        <Image Source="Images/Button/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteControlScheduleTable}">
-                                        <Image Source="View/Images/Buttons/DeleteButton.png"/>
+                                        <Image Source="Images/Button/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -529,7 +529,7 @@
                                 </StackPanel>
 
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Width="40" Height="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddControlScheduleTable}">
-                                    <Image Source="View/Images/Buttons/AddButton.png"/>
+                                    <Image Source="Images/Button/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -650,16 +650,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshProductionTable}">
-                                        <Image Source="View/Images/Buttons/GetAll.png"/>
+                                        <Image Source="Images/Button/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenProductionTable}">
-                                        <Image Source="View/Images/Buttons/GetLastTen.png"/>
+                                        <Image Source="Images/Button/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveProductionTable}">
-                                        <Image Source="View/Images/Buttons/SaveButton.png"/>
+                                        <Image Source="Images/Button/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteProductionTable}">
-                                        <Image Source="View/Images/Buttons/DeleteButton.png"/>
+                                        <Image Source="Images/Button/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -676,7 +676,7 @@
                                     <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.BatchDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
                                 </StackPanel>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddProductionTable}">
-                                    <Image Source="View/Images/Buttons/AddButton.png"/>
+                                    <Image Source="Images/Button/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -797,16 +797,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshShiftRegistrationTable}">
-                                        <Image Source="View/Images/Buttons/GetAll.png"/>
+                                        <Image Source="Images/Button/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenShiftRegistrationTable}">
-                                        <Image Source="View/Images/Buttons/GetLastTen.png"/>
+                                        <Image Source="Images/Button/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveShiftRegistrationTable}">
-                                        <Image Source="View/Images/Buttons/SaveButton.png"/>
+                                        <Image Source="Images/Button/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteShiftRegistrationTable}">
-                                        <Image Source="View/Images/Buttons/DeleteButton.png"/>
+                                        <Image Source="Images/Button/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -823,7 +823,7 @@
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ShiftRegistrationMethod.NewShiftRegistrations.Initials, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceholderString}"/>
                                 </StackPanel>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddShiftRegistrationTable}">
-                                    <Image Source="View/Images/Buttons/AddButton.png"/>
+                                    <Image Source="Images/Button/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
@@ -968,16 +968,16 @@
 
                                 <StackPanel>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshTUTable}">
-                                        <Image Source="View/Images/Buttons/GetAll.png"/>
+                                        <Image Source="Images/Button/GetAll.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenTUTable}">
-                                        <Image Source="View/Images/Buttons/GetLastTen.png"/>
+                                        <Image Source="Images/Button/GetLastTen.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveTUTable}">
-                                        <Image Source="View/Images/Buttons/SaveButton.png"/>
+                                        <Image Source="Images/Button/SaveButton.png"/>
                                     </Button>
                                     <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteTUTable}">
-                                        <Image Source="View/Images/Buttons/DeleteButton.png"/>
+                                        <Image Source="Images/Button/DeleteButton.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
@@ -997,7 +997,7 @@
                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.TuMethod.NewTUs.ThirdDayTotalIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                 </StackPanel>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddTUTable}">
-                                    <Image Source="View/Images/Buttons/AddButton.png"/>
+                                    <Image Source="Images/Button/AddButton.png"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
