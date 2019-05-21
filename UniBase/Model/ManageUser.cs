@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Windows.Web.Http.Headers;
 using UniBase.Annotations;
 using UniBase.Model.Login;
 
@@ -134,10 +135,6 @@ namespace UniBase.Model
         public ManageUser()
         {
             UsersList = ModelGenerics.GetAll(new Users());
-            //UsersList.Add(new Users("1", "1", "1", "1", "Images/AddButton.png"));
-            //UsersList.Add(new Users("HEJ", "@hej.dk", "12340", "1", "Images/AddButton.png"));
-
-            //CurrentUsers = UsersList[0];
 
             _message = new Message(this);
         }
@@ -173,6 +170,10 @@ namespace UniBase.Model
         {
             if ((NameTb ?? EmailTb ?? TelephoneNumberTb ?? PasswordTb) != null)
             {
+                //if ()
+                //{
+                    
+                //}
                 if (EmailTb.Contains(".dk") || EmailTb.Contains(".com"))
                 {
                     if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
@@ -192,18 +193,17 @@ namespace UniBase.Model
                 else await _message.Error("Forkert email", "Du skal bruge en \".dk\" eller en \".com\" mail.");
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
-
-            foreach (var user in UsersList)
-            {
-                Debug.WriteLine(user.Password, "Password");
-            }
         }
 
         public async void RemoveUser()
         {
             if (SelectedUsers != CurrentUsers)
             {
-                if (SelectedUsers != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUsers.Name + "?");
+                if (SelectedUsers != null)
+                {
+                    string hje = SelectedUsers.Name;
+                    await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + hje + "?");
+                }
                 else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
             }
         }
@@ -216,6 +216,7 @@ namespace UniBase.Model
             {
                 if (PasswordTb == ConfirmPasswordTb)
                 {
+                    ModelGenerics.UpdateByObjectAndId(_selectedUsers.User_ID, _selectedUsers);
                     SelectedUsers.Name = NameTb;
                     SelectedUsers.Email = EmailTb;
                     SelectedUsers.Telephone_No = TelephoneNumberTb;

@@ -70,8 +70,13 @@ namespace UniBase.Model
 
             if (command == yesCommand)
             {
-                
-                if (title == "Slet bruger") _manageUser.UsersList.Remove(_manageUser.SelectedUsers);
+
+                if (title == "Slet bruger")
+                {
+                    ModelGenerics.DeleteById(_manageUser.SelectedUsers, _manageUser.SelectedUsers.User_ID);
+                    _manageUser.UsersList.Remove(_manageUser.SelectedUsers);
+                }
+
                 
             }
             else if (command == noCommand)

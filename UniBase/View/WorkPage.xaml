@@ -32,7 +32,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <CommandBar Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
+        <!--Få current user navn frem-->
+        <CommandBar Content="{Binding ManageUser.CurrentUsers.Name.Length}" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
             <CommandBar.SecondaryCommands>
                 <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
                 <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
@@ -1020,35 +1021,31 @@
                             <ComboBoxItem Content="MipMa"/>
                             <ComboBoxItem Content="Lud Koncentration"/>
                         </ComboBox>
-
                         <ComboBox x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
                             <ComboBoxItem Content="En Uge"/>
                             <ComboBoxItem Content="En Måned"/>
                             <ComboBoxItem Content="Et Kvartal"/>
                             <ComboBoxItem Content="Et År"/>
-
                         </ComboBox>
                     </StackPanel>
 
-                    <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1100" Height="500"  >
-                        <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
+                    <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="1500">
+                        <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="2000" Height="500"  >
+                            <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="SelectedCategory"
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
-                        <charting:LineSeries Title="Min værdi" 
+                            <charting:LineSeries Title="Min værdi" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="MinValue"
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
-                        <charting:LineSeries Title="Max værdi" 
+                            <charting:LineSeries Title="Max værdi" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="MaxValue"
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
-                    </charting:Chart>
-
-
-
+                        </charting:Chart>
+                    </ScrollViewer>
                 </StackPanel>
-
             </PivotItem>
             <PivotItem Header="Brugere">
 
@@ -1067,6 +1064,7 @@
                                         <StackPanel>
                                             <TextBlock Text="{Binding Email, Mode=TwoWay}"/>
                                             <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
+                                            <TextBlock Text="{Binding Password, Mode=TwoWay}"/>
                                         </StackPanel>
 
                                     </StackPanel>
@@ -1078,8 +1076,8 @@
                         <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <TextBox PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                        <PasswordBox PlaceholderText="Password" Visibility="Visible" Password="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></PasswordBox>
-                        <PasswordBox PlaceholderText="Confirm password" Visibility="Visible" Password="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></PasswordBox>
+                        <TextBox PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                        <TextBox PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <StackPanel Orientation="Horizontal">
                             <TextBox Margin="2" PlaceholderText="Billede" Width="100" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"/>
                             <Button Content="..." Width="auto" Command="{Binding UserImageBrowserCommand}"/>
