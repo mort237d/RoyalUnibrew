@@ -32,6 +32,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!--Få current user navn frem-->
         <CommandBar Content="{Binding ManageUser.CurrentUsers.Name.Length}" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
             <CommandBar.SecondaryCommands>
                 <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
@@ -1020,37 +1021,33 @@
                             <ComboBoxItem Content="MipMa"/>
                             <ComboBoxItem Content="Lud Koncentration"/>
                         </ComboBox>
-
                         <ComboBox x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
                             <ComboBoxItem Content="En Uge"/>
                             <ComboBoxItem Content="En Måned"/>
                             <ComboBoxItem Content="Et Kvartal"/>
                             <ComboBoxItem Content="Et År"/>
-
                         </ComboBox>
                     </StackPanel>
                     <TextBlock x:Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
                     <TextBlock x:Name="TbTimeperiodCombobox" Text="{Binding GraphTimeperiodCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
 
-                    <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="1100" Height="500"  >
-                        <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
+                    <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="1500">
+                        <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="2000" Height="500"  >
+                            <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="SelectedCategory"
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
-                        <charting:LineSeries Title="Min værdi" 
+                            <charting:LineSeries Title="Min værdi" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="MinValue"
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
-                        <charting:LineSeries Title="Max værdi" 
+                            <charting:LineSeries Title="Max værdi" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="MaxValue"
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
-                    </charting:Chart>
-
-
-
+                        </charting:Chart>
+                    </ScrollViewer>
                 </StackPanel>
-
             </PivotItem>
             <PivotItem Header="Brugere">
 
