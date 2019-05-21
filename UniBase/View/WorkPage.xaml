@@ -1039,15 +1039,15 @@
                             <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="SelectedCategory"
-                                                 ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
+                                                 ItemsSource="{Binding Column_2.TrendAdminstrator.TrendGraphList, Mode=TwoWay}"/>
                             <charting:LineSeries Title="Min værdi" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="MinValue"
-                                                 ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
+                                                 ItemsSource="{Binding Column_2.TrendAdminstrator.TrendGraphList, Mode=TwoWay}"/>
                             <charting:LineSeries Title="Max værdi" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="MaxValue"
-                                                 ItemsSource="{Binding Column_2.TrendAdminstrator.TrendList, Mode=TwoWay}"/>
+                                                 ItemsSource="{Binding Column_2.TrendAdminstrator.TrendGraphList, Mode=TwoWay}"/>
                         </charting:Chart>
                     </ScrollViewer>
                 </StackPanel>
