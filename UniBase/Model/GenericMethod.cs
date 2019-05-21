@@ -11,7 +11,18 @@ namespace UniBase.Model
     {
         private bool sorted = true;
 
-        public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut, Action method, Action methodHelper)
+        /// <summary>
+        /// Filter er en generisk metode til at filtrere i en bestemt kolonne af tabellen, så man hurtigt og effektivt kan få fat i de rigtige oplysninger
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type">Typen af den ønskede liste</param>
+        /// <param name="list">Listen som vises i lisviewet</param>
+        /// <param name="completeList">Liste af alle elementer i databasen</param>
+        /// <param name="property">Propertien, som der skal søges i</param>
+        /// <param name="textBoxOutPut">Textboxen, som der skal søges igennem</param>
+        /// <param name="initializeAction">Initialize metode, som skal eksekveres for at opdatere tabellen</param>
+        /// <param name="helperAction">Hjælper metode, som skal eksekveres for at få alle properties til at aggere rigtigt</param>
+        public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut, Action initializeAction, Action helperAction)
         {
             list.Clear();
 
@@ -25,14 +36,21 @@ namespace UniBase.Model
                 }
             }
 
-            methodHelper();
+            helperAction();
 
             if (string.IsNullOrEmpty(textBoxOutPut))
             {
-                method();
+                initializeAction();
             }
         }
         
+        /// <summary>
+        /// Sort er en generisk metode til at sortere en bestemt kolonne af tabellen ud fra en property
+        /// </summary>
+        /// <typeparam name="T">Typen af listen</typeparam>
+        /// <param name="input">Liste, som skal sorteres</param>
+        /// <param name="property">Property som der skal søges efter</param>
+        /// <returns></returns>
         public ObservableCollection<T> Sort<T>(ObservableCollection<T> input, string property)
         {
             var tempList = new ObservableCollection<T>();
@@ -52,6 +70,15 @@ namespace UniBase.Model
             return tempList;
         }
 
+        /// <summary>
+        /// DeleteSelected er en generisk metode til at slette det valgte element
+        /// </summary>
+        /// <typeparam name="T">Typen, som skal slettes</typeparam>
+        /// <param name="selectedItem">Det valgte element fra listen</param>
+        /// <param name="type">Typen</param>
+        /// <param name="completeList">Liste af alle elementer i databasen</param>
+        /// <param name="list">Listen som vises i lisviewet</param>
+        /// <param name="property">Propertien, som der skal angive id</param>
         public void DeleteSelected<T>(T selectedItem, T type, ObservableCollection<T> completeList, ObservableCollection<T> list, string property)
         {
             if (selectedItem != null)
