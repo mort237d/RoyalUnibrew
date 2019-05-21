@@ -22,7 +22,8 @@ namespace UniBase.Model
 
 
         public TrendAdminstrator()
-        {GraphType.Content = "Vægt";
+        {
+            GraphType.Content = "Vægt";
             GraphTimePeriod.Content = "En Uge";
             CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
         }
