@@ -10,16 +10,10 @@ namespace UniBase.Model.K2
 {
     public class ControlSchedules : INotifyPropertyChanged
     {
-        private double _weight;
-        private double _ludKoncentration;
-        private double _mipMa;
-        private int _controlScheduleId;
         private string _kegTest;
-        private int _processOrderNo;
         private string _note;
         private string _signature;
-        private DateTime _time;
-        
+
         //Helpers
         private string _weightDoubleHelper;
         private string _ludKoncentrationDoubleHelper;
@@ -28,11 +22,12 @@ namespace UniBase.Model.K2
         private string _processOrderNoIntHelper;
         private string _timeStringHelper;
         
-        private OutOfBoundColorChange ofBoundColorChange = new OutOfBoundColorChange();
-        private ConstantValues constantValues = new ConstantValues();
         private SolidColorBrush weightColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private SolidColorBrush mipMaColorBrush = new SolidColorBrush(Colors.LightSalmon);
         private SolidColorBrush ludKoncentrationColorBrush = new SolidColorBrush(Colors.LightSalmon);
+        private double _mipMa;
+        private double _weight;
+        private double _ludKoncentration;
 
         public ControlSchedules()
         {
@@ -53,31 +48,11 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int ControlSchedule_ID
-        {
-            get => _controlScheduleId;
-            set
-            {
-                _controlScheduleId = value;
-            }
-        }
+        public int ControlSchedule_ID { get; set; }
 
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {_processOrderNo = value;
-            }
-        }
+        public int ProcessOrder_No { get; set; }
 
-        public DateTime Time
-        {
-            get => _time;
-            set
-            {
-                _time = value;
-            }
-        }
+        public DateTime Time { get; set; }
 
         public double Weight
         {
@@ -85,10 +60,8 @@ namespace UniBase.Model.K2
             set
             {
                 _weight = value;
-                //if (_weight != null)
-                //{
-                //    WeightColorBrush = ofBoundColorChange.ChangeListViewColor((double)_weight, constantValues.MinWeight, constantValues.MaxWeight);
-                //}
+                WeightColorBrush = OutOfBoundColorChange.ChangeListViewColor(_weight, ConstantValues.MinWeight, ConstantValues.MaxWeight);
+                OnPropertyChanged();
             }
         }
 
@@ -97,7 +70,6 @@ namespace UniBase.Model.K2
             get => _kegTest;
             set
             {
-                if (value == _kegTest) return;
                 _kegTest = value;
                 OnPropertyChanged();
             }
@@ -109,11 +81,10 @@ namespace UniBase.Model.K2
             set
             {
                 _ludKoncentration = value;
-                //if (_ludKoncentration != null)
-                //{
-                //    LudKoncentrationColorBrush = ofBoundColorChange.ChangeListViewColor((double)_ludKoncentration, constantValues.MinLudkoncentration, constantValues.MaxLudkoncentration);
-                //}
+                LudKoncentrationColorBrush = OutOfBoundColorChange.ChangeListViewColor(_ludKoncentration, ConstantValues.MinLudkoncentration, ConstantValues.MaxLudkoncentration);
+                OnPropertyChanged();
             }
+
         }
 
         public double MipMA
@@ -122,10 +93,8 @@ namespace UniBase.Model.K2
             set
             {
                 _mipMa = value;
-                //if (_mipMa != null) //todo fix this
-                //{
-                //    MipMaColorBrush = ofBoundColorChange.ChangeListViewColor((double)_mipMa, constantValues.MinMipMa, constantValues.MaxMipMa);
-                //}
+                MipMaColorBrush = OutOfBoundColorChange.ChangeListViewColor(_mipMa, ConstantValues.MinMipMa, ConstantValues.MaxMipMa);
+                OnPropertyChanged();
             }
         }
 
@@ -209,8 +178,15 @@ namespace UniBase.Model.K2
             {
                 if (_weightDoubleHelper != value)
                 {
-                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    if (value.Contains("."))
                     {
+                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        Weight = i;
+
+                    }
+                    else 
+                    {
+                        Double.TryParse(value, out Double i);
                         Weight = i;
                     }
                 }
@@ -226,8 +202,15 @@ namespace UniBase.Model.K2
             {
                 if (_ludKoncentrationDoubleHelper != value)
                 {
-                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    if (value.Contains("."))
                     {
+                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        LudKoncentration = i;
+
+                    }
+                    else
+                    {
+                        Double.TryParse(value, out Double i);
                         LudKoncentration = i;
                     }
                 }
@@ -243,8 +226,15 @@ namespace UniBase.Model.K2
             {
                 if (_mipMaDoubleHelper != value)
                 {
-                    if (Double.TryParse(value.Replace('.', ','), out Double i))
+                    if (value.Contains("."))
                     {
+                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        MipMA = i;
+
+                    }
+                    else
+                    {
+                        Double.TryParse(value, out Double i);
                         MipMA = i;
                     }
                 }

@@ -150,73 +150,38 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, textBox, Initialize, Helpers);
+            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, _weekNoTextBoxOutput, Initialize, FillStringHelpers);
         }
 
         #region ButtonMethods
         public void Initialize()
         {
             FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-            Helpers();
+            FillStringHelpers();
+
+            NewFrontpagesToAdd = new Frontpages();
         }
 
-        private void Helpers()
-        {
-            //Parallel.ForEach(FrontpagesList, frontpage =>
-            //{
-            //    frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
-            //    frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
-            //    frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
-            //    frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
-            //    frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
-            //});
-            foreach (var frontpage in FrontpagesList)
-            {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
-                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
-                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
-                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
-                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
-            }
-        }
+        
 
         public void RefreshAll()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
-            Parallel.ForEach(FrontpagesList, frontpage =>
-            {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
-                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
-                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
-                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
-                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
-            });
+            FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void RefreshLastTen()
         {
             FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
-            foreach (var frontpage in FrontpagesList)
-            {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
-                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
-                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
-                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
-                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
-            }
+            FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveAll()
         {
-            //Parallel.ForEach(FrontpagesList, frontpage =>
-            //{
-            //    InputValidator.CheckIfInputsAreValid(ref frontpage);
-            //});
-
-            Parallel.ForEach(FrontpagesList, frontpage =>
+            foreach (var frontpage in FrontpagesList)
             {
                 ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
-            });
+            }
             _message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
         }
 
@@ -284,11 +249,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
-            var instanceNewFrontpagesToAdd = NewFrontpagesToAdd;
-            //InputValidator.CheckIfInputsAreValid(ref instanceNewFrontpagesToAdd);
-
-            
-            if (ModelGenerics.CreateByObject(instanceNewFrontpagesToAdd))
+            if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
             {
                 Initialize();
 
@@ -296,13 +257,11 @@ namespace UniBase.Model.K2.ButtonMethods
             }
             else
             {
-                //error
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede forside, for at slette");
             }
         }
 
         #endregion
-
-
         public void SelectParentItem(object obj)
         {
             int id = (int)obj;
@@ -312,7 +271,6 @@ namespace UniBase.Model.K2.ButtonMethods
 
             SelectedFrontpageId = index;
         }
-
         public void SortButtonClick(object id)
         {
             Debug.WriteLine(id.ToString(), "ID");
@@ -330,6 +288,17 @@ namespace UniBase.Model.K2.ButtonMethods
                 FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
             else
                 Debug.WriteLine("Error");
+        }
+        private void FillStringHelpers()
+        {
+            foreach (var frontpage in FrontpagesList)
+            {
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
+                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
+                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
+                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
+            }
         }
 
         #region SingleTon

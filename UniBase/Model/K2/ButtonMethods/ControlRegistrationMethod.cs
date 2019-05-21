@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -20,7 +21,6 @@ namespace UniBase.Model.K2.ButtonMethods
         #region Fields
 
         private ComboBoxItem _kegSize = new ComboBoxItem();
-        private int _kegSizeIndex = 0;
 
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
 
@@ -224,18 +224,8 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             get { return _kegSize; }
             set
-           {
-                _kegSize = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public int KegSizeIndex
-        {
-            get => _kegSizeIndex;
-            set
             {
-                _kegSizeIndex = value;
+                _kegSize = value;
                 OnPropertyChanged();
             }
         }
@@ -264,140 +254,52 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[propIndex].Name, _processOrderNoTextBoxOutput, Initialize, Helpers);
+            _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[propIndex].Name, _processOrderNoTextBoxOutput, Initialize, FillStringHelpers);
         }
 
         public void Initialize()
         {
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-            Helpers();
 
-            NewControlRegistrationsToAdd = new ControlRegistrations
-            {
-                CapNo = ControlRegistrationsList.Last().CapNo,
-                EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo,
-                KegSize = ControlRegistrationsList.Last().KegSize,
-                ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No,
-                ControlAlcoholSpearDispenser = false
-            };
+            FillStringHelpers();
+            GenerateNewControlRegistrationToAdd();
         }
-
-        private void Helpers()
-        {
-            //Parallel.ForEach(ControlRegistrationsList, controlregistration =>
-            //{
-            //    controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
-            //    controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-            //    controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
-            //    controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
-            //    controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
-            //    controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
-            //    controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
-            //    controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
-            //    FillStringHelpers(controlregistration);
-            //});
-
-            foreach (var controlregistration in ControlRegistrationsList)
-            {
-                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
-                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
-                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
-                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
-                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
-                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
-                FillStringHelpers(controlregistration);
-            }
-        }
-
+        
         public void RefreshAll()
         {
             ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
-            Parallel.ForEach(ControlRegistrationsList, controlregistration =>
-            {
-                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
-                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
-                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
-                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
-                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
-                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
-                FillStringHelpers(controlregistration);
-            });
+            
+            FillStringHelpers();
+
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
 
         public void RefreshLastTen()
         {
             ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
-            Parallel.ForEach(ControlRegistrationsList, controlregistration =>
-            {
-                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
-                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
-                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
-                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
-                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
-                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
-                FillStringHelpers(controlregistration);
-            });
+            
+            FillStringHelpers();
+
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
 
         public void SaveAll()
         {
-            //Parallel.ForEach(ControlRegistrationsList, controlRegistration =>
-            //{
-            //    InputValidator.CheckIfInputsAreValid(ref controlRegistration);
-            //});
-
-            Parallel.ForEach(ControlRegistrationsList, controlRegistration =>
+            foreach (var controlRegistration in ControlRegistrationsList)
             {
                 ModelGenerics.UpdateByObjectAndId((int)controlRegistration.ControlRegistration_ID, controlRegistration);
-            });
+            }
+
             _message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
         }
 
         public void AddNewItem()
         {
-            var instanceNewControlRegistrationsToAdd = NewControlRegistrationsToAdd;
-            //InputValidator.CheckIfInputsAreValid(ref instanceNewControlRegistrationsToAdd);
-
-            //TODO Find  fix for expiry date
-            int finishedProductNo = ModelGenerics.GetById(new Frontpages(), instanceNewControlRegistrationsToAdd.ProcessOrder_No).FinishedProduct_No;
-            instanceNewControlRegistrationsToAdd.Expiry_Date = instanceNewControlRegistrationsToAdd.Production_Date.AddDays(ModelGenerics.GetById(new Products(), finishedProductNo).BestBeforeDateLength);
-            
-
-            if (ModelGenerics.CreateByObject(instanceNewControlRegistrationsToAdd))
+            if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
             {
                 Initialize();
 
-                NewControlRegistrationsToAdd = new ControlRegistrations
-                {
-                    CapNo = ControlRegistrationsList.Last().CapNo,
-                    EtiquetteNo = ControlRegistrationsList.Last().EtiquetteNo,
-                    KegSize = ControlRegistrationsList.Last().KegSize,
-                    ProcessOrder_No = ControlRegistrationsList.Last().ProcessOrder_No,
-                    ControlAlcoholSpearDispenser = false,
-                    Production_Date = ControlRegistrationsList.Last().Production_Date,
-                };
-                KegSize.Content = ControlRegistrationsList.Last().KegSize;
-                if (ControlRegistrationsList.Last().KegSize == "20L")
-                {
-                    KegSize.TabIndex = 0;
-                }
-                else if (ControlRegistrationsList.Last().KegSize == "25L")
-                {
-                    KegSize.TabIndex = 1;
-                }
-                else if (ControlRegistrationsList.Last().KegSize == "30L")
-                {
-                    KegSize.TabIndex = 2;
-                }
-
+                GenerateNewControlRegistrationToAdd();
             }
             else
             {
@@ -503,7 +405,23 @@ namespace UniBase.Model.K2.ButtonMethods
             set { _completeControlRegistrationsList = value; }
         }
 
-        private void FillStringHelpers(ControlRegistrations controlRegistrations)
+        
+        private void FillStringHelpers()
+        {
+            foreach (var controlregistration in ControlRegistrationsList)
+            {
+                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
+                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
+                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
+                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
+                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
+                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
+                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
+                FillStringHelpersHelper(controlregistration);
+            }
+        }
+        private void FillStringHelpersHelper(ControlRegistrations controlRegistrations)
         {
             string temp, temp2;
             if (controlRegistrations.Time.Hours < 10) temp = "0" + controlRegistrations.Time.Hours;
@@ -514,6 +432,18 @@ namespace UniBase.Model.K2.ButtonMethods
             else temp2 = controlRegistrations.Time.Minutes.ToString();
 
             controlRegistrations.TimeStringHelper = string.Format("{0}:{1}", temp, temp2);
+        }
+        private void GenerateNewControlRegistrationToAdd()
+        {
+            NewControlRegistrationsToAdd = new ControlRegistrations
+            {
+                ControlRegistrationIdIntHelper = (ControlRegistrationsList.Last().ControlRegistration_ID + 1).ToString(),
+                CapNoIntHelper = ControlRegistrationsList.Last().CapNo.ToString(),
+                EtiquetteNoIntHelper = ControlRegistrationsList.Last().EtiquetteNo.ToString(),
+                KegSize = ControlRegistrationsList.Last().KegSize,
+                ProcessOrderNoIntHelper = ControlRegistrationsList.Last().ProcessOrder_No.ToString(),
+                ControlAlcoholSpearDispenser = false
+            };
         }
 
         #region SingleTon

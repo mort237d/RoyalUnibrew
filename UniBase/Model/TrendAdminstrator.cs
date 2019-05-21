@@ -75,7 +75,6 @@ namespace UniBase.Model
             int timeHorizon = 0;
             int timeHorizonDivider = 0;
             DateTime currentItemDate = DateTime.Now;
-            ConstantValues constantValues = new ConstantValues();
             double minValue = 0;
             double maxValue = 0;
 
@@ -119,21 +118,21 @@ namespace UniBase.Model
                         if (comboboxInput == "Vægt")
                         { //TODO check om weight er null selvom den ikke burde være
                             tempTotalValue += (double)CompleteControlSchedulesList[i].Weight;
-                            minValue = constantValues.MinWeight;
-                            maxValue = constantValues.MaxWeight;
+                            minValue = ConstantValues.MinWeight;
+                            maxValue = ConstantValues.MaxWeight;
 
                         }
                         else if (comboboxInput == "MipMa")
                         {
                             tempTotalValue += (double)CompleteControlSchedulesList[i].MipMA;
-                            minValue = constantValues.MinMipMa;
-                            maxValue = constantValues.MaxMipMa;
+                            minValue = ConstantValues.MinMipMa;
+                            maxValue = ConstantValues.MaxMipMa;
                         }
                         else if (comboboxInput == "Lud Koncentration")
                         {
                             tempTotalValue += (double)CompleteControlSchedulesList[i].LudKoncentration;
-                            minValue = constantValues.MinLudkoncentration;
-                            maxValue = constantValues.MaxLudkoncentration;
+                            minValue = ConstantValues.MinLudkoncentration;
+                            maxValue = ConstantValues.MaxLudkoncentration;
                         }
 
                         continue;

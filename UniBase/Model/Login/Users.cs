@@ -4,60 +4,77 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.Login
 {
-    class Users : INotifyPropertyChanged
+    public class Users : INotifyPropertyChanged
     {
         #region Field
 
-        private string _name, _email, _telephoneNumber, _password, _imageSource;
+        private int _userId;
+        private string _name;
+        private string _imageSource;
+        private string _password;
+        private string _telephoneNo;
+        private string _email;
 
-        #endregion
-
-        #region Constructors
-        //TODO Admin skal ændres til en int eller andet.
-        public Users(string name, string email, string telephoneNumber, string password, string imageSource)
-        {
-            Name = name;
-            Email = email;
-            TelephoneNumber = telephoneNumber;
-            Password = password;
-            ImageSource = imageSource;
-        }
 
         public Users()
         {
+            
+        }
 
+        public Users(int user_ID, string name, string email, string telephone_No, string password, string imageSource)
+        {
+            User_ID = user_ID;
+            Name = name;
+            Email = email;
+            Telephone_No = telephone_No;
+            Password = password;
+            ImageSource = imageSource;
         }
 
         #endregion
 
         #region Properties
 
+        public int User_ID
+        {
+            get => _userId;
+            set
+            {
+                if (value == _userId) return;
+                _userId = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Name
         {
             get => _name;
             set
             {
+                if (value == _name) return;
                 _name = value;
                 OnPropertyChanged();
             }
         }
-       
-      
+
         public string Email
         {
             get => _email;
             set
             {
+                if (value == _email) return;
                 _email = value;
                 OnPropertyChanged();
             }
         }
-        public string TelephoneNumber
+
+        public string Telephone_No
         {
-            get => _telephoneNumber;
+            get => _telephoneNo;
             set
             {
-                _telephoneNumber = value;
+                if (value == _telephoneNo) return;
+                _telephoneNo = value;
                 OnPropertyChanged();
             }
         }
@@ -67,6 +84,7 @@ namespace UniBase.Model.Login
             get => _password;
             set
             {
+                if (value == _password) return;
                 _password = value;
                 OnPropertyChanged();
             }
@@ -77,6 +95,7 @@ namespace UniBase.Model.Login
             get => _imageSource;
             set
             {
+                if (value == _imageSource) return;
                 _imageSource = value;
                 OnPropertyChanged();
             }
@@ -84,8 +103,7 @@ namespace UniBase.Model.Login
 
         #endregion
 
-        #region INotify
-
+        #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -93,7 +111,6 @@ namespace UniBase.Model.Login
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         #endregion
     }
 }

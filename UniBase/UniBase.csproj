@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\BrowseImage.cs" />
     <Compile Include="Model\ConstantValues.cs" />
     <Compile Include="Model\HeaderAndToolTip.cs" />
     <Compile Include="Model\K2\ButtonMethods\CalculateProductions.cs" />
@@ -138,7 +139,7 @@
     <Compile Include="Model\K2\Products.cs" />
     <Compile Include="Model\K2\ShiftRegistrations.cs" />
     <Compile Include="Model\K2\TUs.cs" />
-    <Compile Include="Model\K2\Users.cs" />
+    <Compile Include="Model\Login\Users.cs" />
     <Compile Include="Model\Login\Administrator.cs" />
     <Compile Include="Model\Login\Leader.cs" />
     <Compile Include="Model\K2\ManageTables.cs" />
@@ -150,7 +151,6 @@
     <Compile Include="Model\GenericMethod.cs" />
     <Compile Include="Model\TrendAdminstrator.cs" />
     <Compile Include="Model\Trends.cs" />
-    <Compile Include="Model\Login\Users.cs" />
     <Compile Include="Model\XamlBindings.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

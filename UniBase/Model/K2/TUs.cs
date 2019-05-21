@@ -8,7 +8,6 @@ namespace UniBase.Model.K2
 {
     public class TUs : INotifyPropertyChanged
     {
-        private int _tuId;
         private int _firstDayStartTu;
         private int _firstDayEndTu;
         private int _firstDayTotal;
@@ -18,7 +17,6 @@ namespace UniBase.Model.K2
         private int _thirdDayStartTu;
         private int _thirdDayEndTu;
         private int _thirdDayTotal;
-        private int _processOrderNo;
 
         //Helpers
         private string _tuIdIntHelper;
@@ -34,7 +32,7 @@ namespace UniBase.Model.K2
         private string _processOrderNoIntHelper;
 
         private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
-//        private CalculateProductions _calculateProductions = new CalculateProductions();
+        //private CalculateProductions _calculateProductions = new CalculateProductions();
         private Productions _productions = new Productions();
         public TUs()
         {
@@ -57,23 +55,10 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int TU_ID
-        {
-            get => _tuId;
-            set
-            {
-                _tuId = value;
-            }
-        }
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
+        public int TU_ID { get; set; }
 
-                _processOrderNo = value;
-            }
-        }
+        public int ProcessOrder_No { get; set; }
+
         public int FirstDayStart_TU
         {
             get => _firstDayStartTu;
