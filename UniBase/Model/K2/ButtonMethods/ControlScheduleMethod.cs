@@ -303,10 +303,10 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 FillStringHelpersHelper(controleSchedule);
                 controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
-                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString();
-                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString();
+                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("F");
+                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("F");
                 controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString();
-                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString();
+                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("F");
             }
         }
         private void FillStringHelpersHelper(ControlSchedules controlSchedules)
