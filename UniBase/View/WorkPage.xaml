@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <!--Få current user navn frem-->
-        <CommandBar Content="{Binding ManageUser.CurrentUsers.Name}" FontSize="20" FontWeight="Bold" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
+        <CommandBar Content="{Binding ManageUser.CurrentUserName}" FontSize="20" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
             <CommandBar.SecondaryCommands>
                 <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
                 <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
@@ -1076,7 +1076,7 @@
                     </GridView>
                     <StackPanel Grid.Column="1">
                         <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                        <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                        <TextBox extensions:TextBoxRegex.ValidationType="Email" extensions:TextBoxRegex.ValidationMode="Dynamic" PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <TextBox PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <TextBox PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <TextBox PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
