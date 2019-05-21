@@ -180,13 +180,13 @@ namespace UniBase.Model.K2
                 {
                     if (value.Contains("."))
                     {
-                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        Double.TryParse(value.Replace('.', ','), NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         Weight = i;
 
                     }
                     else 
                     {
-                        Double.TryParse(value, out Double i);
+                        Double.TryParse(value, NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         Weight = i;
                     }
                 }
@@ -204,13 +204,13 @@ namespace UniBase.Model.K2
                 {
                     if (value.Contains("."))
                     {
-                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        Double.TryParse(value.Replace('.', ','), NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         LudKoncentration = i;
 
                     }
                     else
                     {
-                        Double.TryParse(value, out Double i);
+                        Double.TryParse(value, NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         LudKoncentration = i;
                     }
                 }
