@@ -1026,6 +1026,8 @@
                             <ComboBoxItem Content="En Måned"/>
                             <ComboBoxItem Content="Et Kvartal"/>
                             <ComboBoxItem Content="Et År"/>
+                            <ComboBoxItem Content="Et Kvartal (Detaljeret)"/>
+                            <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
                     </StackPanel>
 

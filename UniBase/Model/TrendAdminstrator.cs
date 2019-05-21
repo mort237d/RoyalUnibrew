@@ -23,7 +23,7 @@ namespace UniBase.Model
 
             GraphType.Content = "Vægt";
             GraphTimePeriod.Content = "En Uge";
-            GraphComboboxSelectedMethod(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+            CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
         }
 
         public ObservableCollection<Trends> TrendList
@@ -39,10 +39,9 @@ namespace UniBase.Model
             {
                 _graphType = value;
                 OnPropertyChanged();
-                GraphComboboxSelectedMethod(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
             }
         }
-
 
         public ComboBoxItem GraphTimePeriod
         {
@@ -51,7 +50,7 @@ namespace UniBase.Model
             {
                 _graphTimePeriod = value; 
                 OnPropertyChanged();
-                GraphComboboxSelectedMethod(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
             }
         }
 
@@ -61,13 +60,6 @@ namespace UniBase.Model
             set { _completeControlSchedulesList = value; }
         }
 
-
-        public void GraphComboboxSelectedMethod(string comboboxInput, string comboboxTimeInput)
-        {
-
-            CreateGraph(comboboxInput, comboboxTimeInput);
-
-        }
         public void CreateGraph(string comboboxInput, string timePeriod)
         {
             TrendList.Clear();
@@ -116,11 +108,10 @@ namespace UniBase.Model
                     {
                         amountOfItemsWithSameDate++;
                         if (comboboxInput == "Vægt")
-                        { //TODO check om weight er null selvom den ikke burde være
+                        { 
                             tempTotalValue += (double)CompleteControlSchedulesList[i].Weight;
                             minValue = ConstantValues.MinWeight;
                             maxValue = ConstantValues.MaxWeight;
-
                         }
                         else if (comboboxInput == "MipMa")
                         {
