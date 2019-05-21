@@ -26,6 +26,7 @@ namespace UniBase.Model.K2
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
         private string _expiryDateStringHelper;
+        private string _controlRegistrationAlcoholSpearDispenserControlled;
 
         public ControlRegistrations()
         {
@@ -123,7 +124,15 @@ namespace UniBase.Model.K2
 
         public DateTime LastPalletDepalletizing { get; set; }
 
-        public string ControlRegistrationAlcoholSpearDispenserControlled { get; set; }
+        public string ControlRegistrationAlcoholSpearDispenserControlled
+        {
+            get => _controlRegistrationAlcoholSpearDispenserControlled;
+            set
+            {
+                _controlRegistrationAlcoholSpearDispenserControlled = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region StringHelpers
         [JsonIgnore]
