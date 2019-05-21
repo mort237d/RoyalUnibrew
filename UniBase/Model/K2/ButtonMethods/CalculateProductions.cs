@@ -13,9 +13,13 @@ namespace UniBase.Model.K2.ButtonMethods
         private ObservableCollection<Productions> _productionList;
         public CalculateProductions()
         {
+            Load();
+        }
 
-            _tUlist = ModelGenerics.GetAll(new TUs());
-            _productionList = ModelGenerics.GetAll(new Productions());
+        private async void Load()
+        {
+            _tUlist = await ModelGenerics.GetAll(new TUs());
+            _productionList = await ModelGenerics.GetAll(new Productions());
         }
 
         public int CalculatePalletCounter(int processOrderNr)
