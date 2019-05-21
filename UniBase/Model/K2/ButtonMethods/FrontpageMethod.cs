@@ -158,12 +158,9 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
             FillStringHelpers();
-
             NewFrontpagesToAdd = new Frontpages();
         }
-
         
-
         public void RefreshAll()
         {
             FrontpagesList = ModelGenerics.GetAll(new Frontpages());
