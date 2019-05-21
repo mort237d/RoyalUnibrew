@@ -410,11 +410,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
                 controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpersHelper(controlregistration);
-                FillJegSize(controlregistration);
+                FillKegSize(controlregistration);
             }
         }
 
-        private static void FillJegSize(ControlRegistrations controlregistration)
+        private static void FillKegSize(ControlRegistrations controlregistration)
         {
             if (controlregistration.KegSize == "20L")
             {
