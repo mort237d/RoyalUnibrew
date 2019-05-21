@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Windows.Web.Http.Headers;
 using UniBase.Annotations;
 using UniBase.Model.Login;
 
@@ -173,6 +174,10 @@ namespace UniBase.Model
         {
             if ((NameTb ?? EmailTb ?? TelephoneNumberTb ?? PasswordTb) != null)
             {
+                //if ()
+                //{
+                    
+                //}
                 if (EmailTb.Contains(".dk") || EmailTb.Contains(".com"))
                 {
                     if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
@@ -203,7 +208,11 @@ namespace UniBase.Model
         {
             if (SelectedUsers != CurrentUsers)
             {
-                if (SelectedUsers != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUsers.Name + "?");
+                if (SelectedUsers != null)
+                {
+                    string hje = SelectedUsers.Name;
+                    await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + hje + "?");
+                }
                 else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
             }
         }
@@ -216,6 +225,7 @@ namespace UniBase.Model
             {
                 if (PasswordTb == ConfirmPasswordTb)
                 {
+                    ModelGenerics.UpdateByObjectAndId(_selectedUsers.User_ID, _selectedUsers);
                     SelectedUsers.Name = NameTb;
                     SelectedUsers.Email = EmailTb;
                     SelectedUsers.Telephone_No = TelephoneNumberTb;
