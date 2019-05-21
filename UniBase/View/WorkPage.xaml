@@ -292,7 +292,7 @@
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
                                                     <!-- Find løsning til Binding -->
-                                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding KegSize, Mode=TwoWay}">
+                                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding KegSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                         <ComboBoxItem Content="20L"/>
                                                         <ComboBoxItem Content="25L"/>
                                                         <ComboBoxItem Content="30L"/>
@@ -359,7 +359,7 @@
                                     </Button>
                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.CapNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ControlRegistrationMethod.NewControlRegistrationsToAdd.EtiquetteNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding Column_2.ControlRegistrationMethod.KegSize, Mode=TwoWay}" BorderThickness="1,2,1,1">
+                                    <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedItem="{Binding Column_2.ControlRegistrationMethod.KegSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1,2,1,1">
                                         <ComboBoxItem Content="20L"/>
                                         <ComboBoxItem Content="25L"/>
                                         <ComboBoxItem Content="30L"/> 
@@ -1030,8 +1030,6 @@
                             <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
                     </StackPanel>
-                    <TextBlock x:Name="TbCombobox" Text="{Binding GraphCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
-                    <TextBlock x:Name="TbTimeperiodCombobox" Text="{Binding GraphTimeperiodCombobox, Mode=TwoWay}" Visibility="Collapsed"/>
 
                     <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="1500">
                         <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="2000" Height="500"  >

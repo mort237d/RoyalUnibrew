@@ -223,7 +223,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         public void Initialize()
         {
-            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            TuList = ModelGenerics.GetLastTenInDatabase(new TUs());
 
             FillStringHelpers();
             NewTUs = new TUs
@@ -242,7 +242,7 @@ namespace UniBase.Model.K2.ButtonMethods
         
         public void RefreshLastTen()
         {
-            TuList = ModelGenerics.GetLastTenInDatabasae(new TUs());
+            TuList = ModelGenerics.GetLastTenInDatabase(new TUs());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
