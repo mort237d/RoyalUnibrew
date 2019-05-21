@@ -254,7 +254,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[propIndex].Name, _processOrderNoTextBoxOutput, Initialize, FillStringHelpers);
+            _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
         public void Initialize()

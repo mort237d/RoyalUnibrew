@@ -150,7 +150,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, _weekNoTextBoxOutput, Initialize, FillStringHelpers);
+            _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
         #region ButtonMethods

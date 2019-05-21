@@ -194,7 +194,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         private void Filter(int propIndex, string textBox)
         {
-            _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[propIndex].Name, _noteTextBoxOutput, Initialize, FillStringHelpers);
+            _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
         public void Initialize()

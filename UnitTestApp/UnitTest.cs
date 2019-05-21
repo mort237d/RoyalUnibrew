@@ -12,7 +12,16 @@ namespace UnitTestApp
     [TestClass]
     public class UnitTest1
     {
-
+        
+        [UITestMethod]
+        public void TestFindWeekNumber()
+        {
+            FrontpageMethod fm = new FrontpageMethod();
+            Frontpages frontpages = new Frontpages(0, new DateTime(2019, 1, 25), 0, 0, "hej", 1);
+            //int weekNumber = fm.FindWeekNumber(frontpages.Date);
+            //Assert.AreEqual(4, weekNumber);
+            
+        }
    
         [UITestMethod]
         public void TestChangeListViewColor()
