@@ -20,8 +20,6 @@ namespace UniBase.Model.K2.ButtonMethods
 
         #region Fields
 
-        private ComboBoxItem _kegSize = new ComboBoxItem();
-
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
 
         private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
@@ -220,15 +218,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public ComboBoxItem KegSize
-        {
-            get { return _kegSize; }
-            set
-            {
-                _kegSize = value;
-                OnPropertyChanged();
-            }
-        }
+       
 
         public ObservableCollection<ControlRegistrations> ControlRegistrationsList
         {
@@ -259,7 +249,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void Initialize()
         {
-            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
 
             FillStringHelpers();
             GenerateNewControlRegistrationToAdd();
@@ -276,7 +266,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshLastTen()
         {
-            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
             
             FillStringHelpers();
 
@@ -298,8 +288,6 @@ namespace UniBase.Model.K2.ButtonMethods
             if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
             {
                 Initialize();
-
-                GenerateNewControlRegistrationToAdd();
             }
             else
             {
@@ -419,8 +407,26 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
                 controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpersHelper(controlregistration);
+                FillJegSize(controlregistration);
             }
         }
+
+        private static void FillJegSize(ControlRegistrations controlregistration)
+        {
+            if (controlregistration.KegSize == "20L")
+            {
+                controlregistration.KegSizeIndex = 0;
+            }
+            else if (controlregistration.KegSize == "25L")
+            {
+                controlregistration.KegSizeIndex = 1;
+            }
+            else if (controlregistration.KegSize == "30L")
+            {
+                controlregistration.KegSizeIndex = 2;
+            }
+        }
+
         private void FillStringHelpersHelper(ControlRegistrations controlRegistrations)
         {
             string temp, temp2;

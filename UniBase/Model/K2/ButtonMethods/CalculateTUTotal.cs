@@ -2,8 +2,6 @@
 {
     public class CalculateTUTotal
     {
-        
-
         public int CalculateTUDayTotal(int dayStart, int dayEnd)
         {
             int result = (dayEnd / 10) - (dayStart / 10) + 1;

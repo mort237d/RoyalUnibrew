@@ -191,7 +191,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void Initialize()
         {
-            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
 
             FillStringHelpers();
 
@@ -211,7 +211,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshLastTen()
         {
-            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ShiftRegistrations());
+            ShiftRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
