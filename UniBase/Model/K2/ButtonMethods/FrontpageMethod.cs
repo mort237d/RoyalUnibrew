@@ -6,7 +6,9 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
@@ -15,7 +17,7 @@ namespace UniBase.Model.K2.ButtonMethods
     {
         #region Fields
         private ObservableCollection<Frontpages> _frontpagesList;
-        private ObservableCollection<Frontpages> _completeFrontpagesList = ModelGenerics.GetAll(new Frontpages());
+        private ObservableCollection<Frontpages> _completeFrontpagesList;
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
         private Message _message = new Message();
@@ -154,22 +156,25 @@ namespace UniBase.Model.K2.ButtonMethods
         }
 
         #region ButtonMethods
-        public void Initialize()
+        public async void Initialize()
         {
-            FrontpagesList = ModelGenerics.GetLastTenInDatabase(new Frontpages());
+            FrontpagesList = await ModelGenerics.GetLastTenInDatabase(new Frontpages());
             FillStringHelpers();
+
+            _completeFrontpagesList = await ModelGenerics.GetAll(new Frontpages());
+
             NewFrontpagesToAdd = new Frontpages();
         }
         
-        public void RefreshAll()
+        public async void RefreshAll()
         {
-            FrontpagesList = ModelGenerics.GetAll(new Frontpages());
+            FrontpagesList = await ModelGenerics.GetAll(new Frontpages());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
-        public void RefreshLastTen()
+        public async void RefreshLastTen()
         {
-            FrontpagesList = ModelGenerics.GetLastTenInDatabase(new Frontpages());
+            FrontpagesList = await ModelGenerics.GetLastTenInDatabase(new Frontpages());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }

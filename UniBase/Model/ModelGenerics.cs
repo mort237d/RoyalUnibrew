@@ -47,7 +47,7 @@ namespace UniBase.Model
         /// <typeparam name="T">The specific type</typeparam>
         /// <param name="type">The type name</param>
         /// <returns></returns>
-        public static ObservableCollection<T> GetAll<T>(T type)
+        public static async Task<ObservableCollection<T>> GetAll<T>(T type)
         {
             int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
@@ -75,7 +75,7 @@ namespace UniBase.Model
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static ObservableCollection<T> GetLastTenInDatabase<T>(T type)
+        public static async Task<ObservableCollection<T>> GetLastTenInDatabase<T>(T type)
         {
             int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');

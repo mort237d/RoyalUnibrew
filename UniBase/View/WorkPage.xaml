@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <!--Få current user navn frem-->
-        <CommandBar Content="{Binding ManageUser.CurrentUsers.Name.Length}" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
+        <CommandBar Content="{Binding ManageUser.CurrentUsers.Name}" FontSize="20" FontWeight="Bold" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
             <CommandBar.SecondaryCommands>
                 <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
                 <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
@@ -1007,8 +1007,8 @@
             </PivotItem>
             <!--#endregion-->
             <PivotItem Header="K3"/>
-            <PivotItem Header="K4"/>
-            <PivotItem Header="K5"/>
+            <!--<PivotItem Header="K4"/>
+            <PivotItem Header="K5"/>-->
             <PivotItem Header="Grafer" Visibility="Visible" >
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  Margin="3">
@@ -1056,7 +1056,7 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUsers, Mode=TwoWay}" Margin="10,10,10,0">
@@ -1064,12 +1064,19 @@
                             <DataTemplate x:DataType="login:Users">
                                 <StackPanel Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
-                                    <StackPanel>
+                                    <StackPanel Orientation="Vertical">
                                         <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Email, Mode=TwoWay}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                        <StackPanel Margin="0,0,0,0">
+                                            <TextBlock Text="Email: "/>
+                                            <TextBlock Text="Telefon Nr: "/>
+                                            <TextBlock Text="Kodeord: "/>
+                                        </StackPanel>
+                                        <StackPanel Margin="5,0,0,0">
+                                            <TextBlock Text="{Binding Email, Mode=TwoWay}"/> 
                                             <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
                                             <TextBlock Text="{Binding Password, Mode=TwoWay}"/>
+                                        </StackPanel>
                                         </StackPanel>
 
                                     </StackPanel>
@@ -1078,18 +1085,29 @@
                         </GridView.ItemTemplate>
                     </GridView>
                     <StackPanel Grid.Column="1">
-                        <TextBox PlaceholderText="Name" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                        <TextBox PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                        <TextBox PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                        <TextBox PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                        <TextBox PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                         <StackPanel Orientation="Horizontal">
-                            <TextBox Margin="2" PlaceholderText="Billede" Width="100" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"/>
-                            <Button Content="..." Width="auto" Command="{Binding UserImageBrowserCommand}"/>
+                            <StackPanel>
+                                <TextBlock Margin="0,2,0,0" Height="33" Text="Navn:"/>
+                                <TextBlock Margin="0,2,0,0" Height="33" Text="Email:"/>
+                                <TextBlock Height="33" Text="Telefon Nr:"/>
+                                <TextBlock Height="33" Text="Kodeord:"/>
+                                <TextBlock Height="33" Text="Bekræft kodeord:"/>
+                            </StackPanel>
+                            <StackPanel Margin="5,0,0,0">
+                                <TextBox Height="33" PlaceholderText="Navn" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox Height="33" PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox Height="33" PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox Height="33" PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox Height="33" PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                            </StackPanel>
                         </StackPanel>
-                        <Button HorizontalAlignment="Left" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button HorizontalAlignment="Left" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button HorizontalAlignment="Left" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<TextBox Margin="2" PlaceholderText="Billede" Width="100" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"/>
+                            <Button Content="..." Width="auto" Command="{Binding UserImageBrowserCommand}"/>-->
+                        </StackPanel>
+                        <Button HorizontalAlignment="Left" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Left" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Left" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                     </StackPanel>
 
                 </Grid>

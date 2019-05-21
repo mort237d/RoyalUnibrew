@@ -20,7 +20,9 @@ namespace UniBase.Model.K2.ButtonMethods
 
         #region Fields
 
-        private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+        private ComboBoxItem _kegSize = new ComboBoxItem();
+
+        private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList;
 
         private ObservableCollection<ControlRegistrations> _controlRegistrationsList;
 
@@ -247,26 +249,27 @@ namespace UniBase.Model.K2.ButtonMethods
             _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
-        public void Initialize()
+        public async void Initialize()
         {
-            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
+            ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
+            _completeControlRegistrationsList = await ModelGenerics.GetAll(new ControlRegistrations());
 
             FillStringHelpers();
             GenerateNewControlRegistrationToAdd();
         }
         
-        public void RefreshAll()
+        public async void RefreshAll()
         {
-            ControlRegistrationsList = ModelGenerics.GetAll(new ControlRegistrations());
+            ControlRegistrationsList = await ModelGenerics.GetAll(new ControlRegistrations());
             
             FillStringHelpers();
 
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
 
-        public void RefreshLastTen()
+        public async void RefreshLastTen()
         {
-            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
+            ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
             
             FillStringHelpers();
 
