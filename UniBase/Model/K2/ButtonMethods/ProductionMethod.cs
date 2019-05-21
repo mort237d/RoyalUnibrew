@@ -228,15 +228,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            if (SelectedProduction != null)
-            {
-                _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID");
-                _message.ShowToastNotification("Slettet", "Produktion slettet");
-            }
-            else
-            {
-                _message.ShowToastNotification("Fejl", "Marker venligst ønskede produktion, for at slette");
-            }
+            _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID", "Produktion");
         }
 
         public void AddNewItem()

@@ -239,9 +239,7 @@ namespace UniBase.Model.K2.ButtonMethods
                         Debug.WriteLine("\t \n TU_ID: " + i.TU_ID, "DELETE");
                     }
                 }
-                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
-
-                _message.ShowToastNotification("Slettet","Forside slettet");
+                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No", "Forside");
             }
             else
             {

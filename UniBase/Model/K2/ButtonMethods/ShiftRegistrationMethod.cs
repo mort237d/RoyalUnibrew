@@ -229,15 +229,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            if (SelectedShiftRegistration != null)
-            {
-                _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID");
-                _message.ShowToastNotification("Slettet", "Vagt Registrering slettet");
-            }
-            else
-            {
-                _message.ShowToastNotification("Fejl", "Marker venligst ønskede Vagt Registrering, for at slette");
-            }
+            _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrering");
         }
 
         public void AddNewItem()

@@ -4,11 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using UniBase.Model.K2;
 
 namespace UniBase.Model
 {
     public class GenericMethod
     {
+        private Message _message = new Message();
         private bool sorted = true;
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace UniBase.Model
         /// <param name="completeList">Liste af alle elementer i databasen</param>
         /// <param name="list">Listen som vises i lisviewet</param>
         /// <param name="property">Propertien, som der skal angive id</param>
-        public void DeleteSelected<T>(T selectedItem, T type, ObservableCollection<T> completeList, ObservableCollection<T> list, string property)
+        public void DeleteSelected<T>(T selectedItem, T type, ObservableCollection<T> completeList, ObservableCollection<T> list, string property, string tableName)
         {
             if (selectedItem != null)
             {
@@ -99,7 +101,19 @@ namespace UniBase.Model
                 }
 
                 list.Remove(selectedItem);
+                _message.ShowToastNotification("Slettet", tableName + " slettet");
             }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Marker venligst ønskede " + tableName.ToLower() + ", for at slette");
+            }
+        }
+
+        public async void RefreshAll<T>(T type, ObservableCollection<T> listViewList, Action fillStringHelpers, string tableName)
+        {
+            listViewList = await ModelGenerics.GetAll(type);
+            fillStringHelpers();
+            _message.ShowToastNotification("Opdateret", tableName + "-tabellen er opdateret");
         }
     }
 }

@@ -237,15 +237,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            if (SelectedControlSchedule != null)
-            {
-                _genericMethod.DeleteSelected(SelectedControlSchedule, new ControlSchedules(), CompleteControlSchedulesList, ControlSchedulesList, "ControlSchedule_ID");
-                _message.ShowToastNotification("Slettet", "Kontrol Skema slettet");
-            }
-            else
-            {
-                _message.ShowToastNotification("Fejl", "Marker venligst ønskede Kontrol Skema, for at slette");
-            }
+            _genericMethod.DeleteSelected(SelectedControlSchedule, new ControlSchedules(), CompleteControlSchedulesList, ControlSchedulesList, "ControlSchedule_ID", "Kontrol Skema");
         }
 
         public void AddNewItem()
