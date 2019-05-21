@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight.Command;
 using UniBase.Annotations;
@@ -89,35 +90,59 @@ namespace UniBase.ViewModel
 
             #region Update(SavedForLater)
 
-            //int month = 2;
-            //int day = 11;
-            //Udfyld controlschdual.
-            //Random radnom = new Random();
-            //            for (int i = 0; i < 120; i++)
+//            int month = 7;
+//            int day = 11;
+//            int year = 2018;
+//            double weight = 0;
+//            double mipMa = 0;
+//            double ludKoncentration = 0;
+//            int processordernext = 1;
+//            //Udfyld controlschdual.
+//            Random random = new Random();
+//            for (int i = 0; i < 310; i++)
+//            {
+//                weight = random.NextDouble() * 1.7 + 36.9;
+//                mipMa = random.NextDouble() * 2.7 + 23.9;
+//                ludKoncentration = random.NextDouble() * 1.2 + 0.9;
+//                ModelGenerics.CreateByObject(new ControlSchedules(i+17, new DateTime(year, month, day),weight, "hej", ludKoncentration, mipMa, "mig", "Very good",processordernext));
+//                day++;
+//                processordernext++;
+//                if (processordernext > 37)
+//                {
+//                    processordernext = 1;
+//                }
+//                if (day == 29)
+//                {
+//                    month++;
+//                    day = 1;
+//                }
+//                if (month > 11)
+//                {
+//                    year++;
+//                    month = 1;
+//                }
+//            }
+            //            foreach (var VARIABLE in Column_2.ControlScheduleMethod.CompleteControlSchedulesList)
             //            {
-            //                ModelGenerics.CreateByObject(new ControlSchedules(i+39, new DateHelper(2019, month, day),radnom.NextDouble()*100, "hej", radnom.NextDouble() * 100, radnom.NextDouble() * 100, "mig", "Very good"));
+            //                
+            //                VARIABLE.Time = new DateTime(year, month, day, random.Next(0,23), random.Next(0,59), 0);
+            //                VARIABLE.Weight = random.NextDouble()* 1.7 + 36.9;
+            //                VARIABLE.MipMA = random.NextDouble() * 2.7 + 23.9;
+            //                VARIABLE.LudKoncentration = random.NextDouble() * 1.2 + 0.9;
+            //                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
             //                day++;
             //                if (day == 29)
             //                {
             //                    month++;
             //                    day = 1;
             //                }
-            //            }
-            //            foreach (var VARIABLE in Column_2.ControlSchedulesList)
-            //            {
-            //                
-            //                VARIABLE.Time = new DateHelper(2019, month, day);
-            //                VARIABLE.Weight = radnom.NextDouble()* 1.7 + 36.9;
-            //                VARIABLE.MipMA = radnom.NextDouble() * 2.7 + 23.9;
-            //                VARIABLE.LudKoncentration = radnom.NextDouble() * 1.2 + 0.9;
-            //                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
-            //                day++;
-            //                if (day > 30)
+            //
+            //                if (month > 11)
             //                {
-            //                    month++;
-            //                    day = 1;
+            //                    year++;
+            //                    month = 1;
             //                }
-            //            
+            //
             //            }
 
             #endregion
