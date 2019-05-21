@@ -111,7 +111,7 @@ namespace UniBase.Model.K2
                         else
                         {
                             TimeSpan priorTimeSpan = new TimeSpan(parsedDateTime.Hour, parsedDateTime.Minute, 0);
-                            Start_Time = parsedDateTime.Date + priorTimeSpan;
+                            Start_Time = Start_Time.Date + priorTimeSpan;
                         }
                     }
                 }
@@ -136,7 +136,7 @@ namespace UniBase.Model.K2
                         else
                         {
                             TimeSpan priorTimeSpan = new TimeSpan(parsedDateTime.Hour, parsedDateTime.Minute, 0);
-                            End_Date = parsedDateTime.Date + priorTimeSpan;
+                            End_Date = End_Date.Date + priorTimeSpan;
                         }
                     }
                 }

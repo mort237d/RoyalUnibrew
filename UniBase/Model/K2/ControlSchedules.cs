@@ -170,7 +170,7 @@ namespace UniBase.Model.K2
                         else
                         {
                             TimeSpan priorTimeSpan = new TimeSpan(parsedDateTime.Hour, parsedDateTime.Minute, 0);
-                            Time = parsedDateTime.Date + priorTimeSpan;
+                            Time = Time.Date + priorTimeSpan;
                         }
                     }
                 }
