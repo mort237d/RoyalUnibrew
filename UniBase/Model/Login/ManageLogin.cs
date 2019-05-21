@@ -15,6 +15,7 @@ namespace UniBase.Model.Login
         public string PassWord { get; set; }
         private string _wrongLogin, _wrongLoginColor;
         private ManageUser _manageUser = ManageUser.Instance;
+        private Message _message = Message.Instance;
 
         #endregion
 
@@ -90,13 +91,15 @@ namespace UniBase.Model.Login
                     _manageUser.ButtonVisibility(user);
 
                     PassWord = null;
-
+                    WrongLogin = null;
                     temp = true;
                     break;
                 }
             }
+
             if (temp)
             {
+                
                 Frame currentFrame = Window.Current.Content as Frame;
                 currentFrame?.Navigate(typeof(WorkPage));
             }
