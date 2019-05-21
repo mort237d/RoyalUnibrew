@@ -172,36 +172,43 @@ namespace UniBase.Model
 
         public async void AddUser()
         {
-            if ((NameTb ?? EmailTb ?? TelephoneNumberTb ?? PasswordTb) != null)
-            {
-                //if ()
-                //{
-                    
-                //}
-                if (EmailTb.Contains(".dk") || EmailTb.Contains(".com"))
-                {
-                    if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
-                    {
-                        if (PasswordTb == ConfirmPasswordTb)
-                        {
-                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
-                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb,
-                                    "e"));
-
-                            NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
-                        }
-                        else await _message.Error("Uoverensstemmelser", "kodeord stemmer ikke overens med bekræft kodeord");
-                    }
-                    else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
-                }
-                else await _message.Error("Forkert email", "Du skal bruge en \".dk\" eller en \".com\" mail.");
-            }
-            else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
-
+            bool passwordExists = false;
             foreach (var user in UsersList)
             {
-                Debug.WriteLine(user.Password, "Password");
+                if (PasswordTb == user.Password)
+                {
+                    passwordExists = true;
+                    break;
+                }
             }
+
+            if ((NameTb ?? EmailTb ?? TelephoneNumberTb ?? PasswordTb) != null)
+            {
+                if (!passwordExists)
+                {
+                    if (EmailTb.Contains(".dk") || EmailTb.Contains(".com"))
+                    {
+                        if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
+                        {
+                            if (PasswordTb == ConfirmPasswordTb)
+                            {
+                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb,
+                                    TelephoneNumberTb, PasswordTb, ImageTb));
+                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb,
+                                    TelephoneNumberTb, PasswordTb,
+                                    "e"));
+
+                                NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
+                            }
+                            else await _message.Error("Uoverensstemmelser","kodeord stemmer ikke overens med bekræft kodeord");
+                        }
+                        else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
+                    }
+                    else await _message.Error("Forkert email", "Du skal bruge en \".dk\" eller en \".com\" mail.");
+                }
+                else await _message.Error("Kodeordet eksisterer allerede", "Vælg et andet kodeord");
+            }
+            else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }
 
         public async void RemoveUser()
@@ -210,8 +217,8 @@ namespace UniBase.Model
             {
                 if (SelectedUsers != null)
                 {
-                    string hje = SelectedUsers.Name;
-                    await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + hje + "?");
+                    string temp = SelectedUsers.Name;
+                    await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + temp + "?");
                 }
                 else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
             }
