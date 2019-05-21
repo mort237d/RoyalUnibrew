@@ -199,7 +199,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void Initialize()
         {
-            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
             FillStringHelpers();
 
             NewControlSchedules = new ControlSchedules
@@ -218,7 +218,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshLastTen()
         {
-            ControlSchedulesList = ModelGenerics.GetLastTenInDatabasae(new ControlSchedules());
+            ControlSchedulesList = ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }

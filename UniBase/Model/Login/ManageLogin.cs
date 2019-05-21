@@ -48,8 +48,7 @@ namespace UniBase.Model.Login
         {
 
         }
-
-
+        
         #region Singleton
 
         private static ManageLogin _instance;
@@ -77,17 +76,13 @@ namespace UniBase.Model.Login
 
         public void CheckLogin()
         {
-            foreach (var user in _manageUser.UsersList)
-            {
-                Debug.WriteLine(user.Password, "Password");
-            }
             bool temp = false;
             foreach (var user in _manageUser.UsersList)
             {
                 if (user.Password == PassWord)
                 {
                     _manageUser.CurrentUsers = user;
-
+                    Debug.WriteLine(_manageUser.CurrentUsers.Name);
                     _manageUser.ButtonVisibility(user);
 
                     PassWord = null;

@@ -135,10 +135,6 @@ namespace UniBase.Model
         public ManageUser()
         {
             UsersList = ModelGenerics.GetAll(new Users());
-            //UsersList.Add(new Users("1", "1", "1", "1", "Images/AddButton.png"));
-            //UsersList.Add(new Users("HEJ", "@hej.dk", "12340", "1", "Images/AddButton.png"));
-
-            //CurrentUsers = UsersList[0];
 
             _message = new Message(this);
         }

@@ -189,7 +189,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         public void Initialize()
         {
-            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+            ProductionsList = ModelGenerics.GetLastTenInDatabase(new Productions());
 
             FillStringHelpers();
 
@@ -211,7 +211,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshLastTen()
         {
-            ProductionsList = ModelGenerics.GetLastTenInDatabasae(new Productions());
+            ProductionsList = ModelGenerics.GetLastTenInDatabase(new Productions());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
