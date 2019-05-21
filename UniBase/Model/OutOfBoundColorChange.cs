@@ -3,11 +3,11 @@ using Windows.UI.Xaml.Media;
 
 namespace UniBase.Model
 {
-    public class OutOfBoundColorChange
+    public static class OutOfBoundColorChange
     {
-        private SolidColorBrush colorBrush;
+        private static SolidColorBrush colorBrush;
 
-        public SolidColorBrush ChangeListViewColor(double textValue, double minValue, double maxValue)
+        public static SolidColorBrush ChangeListViewColor(double textValue, double minValue, double maxValue)
         {
             if (textValue < minValue || textValue > maxValue)
             {

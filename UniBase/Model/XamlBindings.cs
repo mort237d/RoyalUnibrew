@@ -9,7 +9,7 @@ namespace UniBase.Model
         public string PlaceHolderTimeSpan { get; set; } = "00:00:00";
         public string PlaceholderString { get; set; } = "Tekst";
         public int PlaceHolderInt { get; set; } = 0;
-        public double PlaceHolderDouble { get; set; } = 0.00;
+        public double PlaceHolderDouble { get; set; } = 0.00f;
         public string PlaceHolderTime { get; set; } = "00:00";
         #endregion
 
@@ -134,9 +134,5 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Tredje dag TU i alt", "Sorter efter Tredje dag TU i alt")
             };
         }
-
-
-
-
     }
 }

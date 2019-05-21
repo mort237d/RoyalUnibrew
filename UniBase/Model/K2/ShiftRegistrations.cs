@@ -8,14 +8,7 @@ namespace UniBase.Model.K2
 {
     public class ShiftRegistrations : INotifyPropertyChanged
     {
-        private int _shiftRegistrationId;
-        private int _breaks;
-        private int _processOrderNo;
         private string _initials;
-        private int _staff;
-        private int _totalHours;
-        private DateTime _startTime;
-        private DateTime _endDate;
 
         private string _shiftRegistrationIdIntHelper;
         private string _breaksIntHelper;
@@ -43,68 +36,19 @@ namespace UniBase.Model.K2
             Frontpage = frontpage;
         }
 
-        public int ShiftRegistration_ID
-        {
-            get => _shiftRegistrationId;
-            set
-            {
-                _shiftRegistrationId = value;
-            }
-        }
+        public int ShiftRegistration_ID { get; set; }
 
-        public int ProcessOrder_No
-        {
-            get => _processOrderNo;
-            set
-            {
-                _processOrderNo = value;
-            }
-        }
+        public int ProcessOrder_No { get; set; }
 
-        public DateTime Start_Time
-        {
-            get => _startTime;
-            set
-            {
-                _startTime = value;
-            }
-        }
+        public DateTime Start_Time { get; set; }
 
-        public DateTime End_Date
-        {
-            get => _endDate;
-            set
-            {
-                _endDate = value;
-            }
-        }
+        public DateTime End_Date { get; set; }
 
-        public int Breaks
-        {
-            get => _breaks;
-            set
-            {
-                _breaks = value;
-            }
-        }
+        public int Breaks { get; set; }
 
-        public int TotalHours
-        {
-            get => _totalHours;
-            set
-            {
-                _totalHours = value;
-            }
-        }
+        public int TotalHours { get; set; }
 
-        public int Staff
-        {
-            get => _staff;
-            set
-            {
-                _staff = value;
-            }
-        }
+        public int Staff { get; set; }
 
         public string Initials
         {
