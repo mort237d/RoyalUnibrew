@@ -8,6 +8,7 @@
             return result;
         }
 
+        //den Total fustager som vi ikke har i databasen
         public int CalculateTotalKegs(int totalKegsPrPallet, int palletCounter)
         {
             int result = (totalKegsPrPallet * palletCounter);

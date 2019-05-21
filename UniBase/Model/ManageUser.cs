@@ -24,7 +24,7 @@ namespace UniBase.Model
         private string _visible;
 
         private ObservableCollection<Users> _usersList;
-        private Users _selectedUsers, _currentUsers;
+        private static Users _selectedUsers, _currentUsers;
 
         #endregion
 
@@ -168,45 +168,59 @@ namespace UniBase.Model
 
         public async void AddUser()
         {
+            bool passwordExists = false;
+            foreach (var user in UsersList)
+            {
+                if (PasswordTb == user.Password)
+                {
+                    passwordExists = true;
+                    break;
+                }
+            }
+
             if ((NameTb ?? EmailTb ?? TelephoneNumberTb ?? PasswordTb) != null)
             {
-                //if ()
-                //{
-                    
-                //}
-                if (EmailTb.Contains(".dk") || EmailTb.Contains(".com"))
+                if (!passwordExists)
                 {
-                    if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
+                    if (EmailTb.Contains(".dk") || EmailTb.Contains(".com"))
                     {
-                        if (PasswordTb == ConfirmPasswordTb)
+                        if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
                         {
-                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
-                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb,
+                            if (PasswordTb == ConfirmPasswordTb)
+                            {
+                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb,
+                                    TelephoneNumberTb, PasswordTb, ImageTb));
+                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb,
+                                    TelephoneNumberTb, PasswordTb,
                                     "e"));
 
-                            NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
+                                NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
+                            }
+                            else await _message.Error("Uoverensstemmelser","kodeord stemmer ikke overens med bekræft kodeord");
                         }
-                        else await _message.Error("Uoverensstemmelser", "kodeord stemmer ikke overens med bekræft kodeord");
+                        else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
                     }
-                    else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
+                    else await _message.Error("Forkert email", "Du skal bruge en \".dk\" eller en \".com\" mail.");
                 }
-                else await _message.Error("Forkert email", "Du skal bruge en \".dk\" eller en \".com\" mail.");
+                else await _message.Error("Kodeordet eksisterer allerede", "Vælg et andet kodeord");
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }
 
         public async void RemoveUser()
         {
-            if (SelectedUsers != CurrentUsers)
+            if (_selectedUsers != null)
             {
-                if (SelectedUsers != null)
+                if (!_selectedUsers.Equals(_currentUsers))
                 {
-                    string hje = SelectedUsers.Name;
-                    await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + hje + "?");
+                    string temp = SelectedUsers.Name;
+                    await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + temp + "?");
                 }
-                else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
+                else await _message.Error("Fejl", "Du kan ikke slette dig selv");
             }
+            else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
+
 
         public async void ChangeSelectedUser()
         {
