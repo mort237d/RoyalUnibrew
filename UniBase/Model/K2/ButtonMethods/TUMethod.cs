@@ -29,7 +29,7 @@ namespace UniBase.Model.K2.ButtonMethods
         private int _selectedTuId;
         private TUs _selectedTu;
 
-        private ObservableCollection<TUs> _completeTUsList = ModelGenerics.GetAll(new TUs());
+        private ObservableCollection<TUs> _completeTUsList;
         private string _tuIdTextBoxOutput;
         private string _firstDayStartTuTextBoxOutput;
         private string _firstDayEndTuTextBoxOutput;
@@ -221,11 +221,14 @@ namespace UniBase.Model.K2.ButtonMethods
         #endregion
         
         #region ButtonMethods
-        public void Initialize()
+        public async void Initialize()
         {
-            TuList = ModelGenerics.GetLastTenInDatabase(new TUs());
+            TuList = await ModelGenerics.GetLastTenInDatabase(new TUs());
 
             FillStringHelpers();
+
+            _completeTUsList = await ModelGenerics.GetAll(new TUs());
+
             NewTUs = new TUs
             {
                 TuIdIntHelper = (TuList.Last().TU_ID + 1).ToString(),
@@ -233,16 +236,16 @@ namespace UniBase.Model.K2.ButtonMethods
             };
         }
 
-        public void RefreshAll()
+        public async void RefreshAll()
         {
-            TuList = ModelGenerics.GetAll(new TUs());
+            TuList = await ModelGenerics.GetAll(new TUs());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
         
-        public void RefreshLastTen()
+        public async void RefreshLastTen()
         {
-            TuList = ModelGenerics.GetLastTenInDatabase(new TUs());
+            TuList = await ModelGenerics.GetLastTenInDatabase(new TUs());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }

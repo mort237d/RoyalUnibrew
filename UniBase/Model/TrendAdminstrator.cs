@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 using UniBase.Model.K2;
+using UniBase.Model.K2.ButtonMethods;
 
 namespace UniBase.Model
 {
@@ -15,13 +16,10 @@ namespace UniBase.Model
         
         public ObservableCollection<Trends> _trendList = new ObservableCollection<Trends>();
 
-        private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
+        private ObservableCollection<ControlSchedules> CompleteControlSchedulesList = ControlScheduleMethod.Instance.CompleteControlSchedulesList;
 
         public TrendAdminstrator()
-        {
-            _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
-
-            GraphType.Content = "Vægt";
+        {GraphType.Content = "Vægt";
             GraphTimePeriod.Content = "En Uge";
             CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
         }
@@ -52,12 +50,6 @@ namespace UniBase.Model
                 OnPropertyChanged();
                 CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
             }
-        }
-
-        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList
-        {
-            get { return _completeControlSchedulesList; }
-            set { _completeControlSchedulesList = value; }
         }
 
         public void CreateGraph(string comboboxInput, string timePeriod)

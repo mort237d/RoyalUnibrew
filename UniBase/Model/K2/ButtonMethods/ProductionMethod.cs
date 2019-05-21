@@ -16,7 +16,8 @@ namespace UniBase.Model.K2.ButtonMethods
             Initialize();
         }
         #region Fields
-        private ObservableCollection<Productions> _completeProductionsList = ModelGenerics.GetAll(new Productions());
+
+        private ObservableCollection<Productions> _completeProductionsList;
 
         private ObservableCollection<Productions> _productionsList;
 
@@ -187,11 +188,13 @@ namespace UniBase.Model.K2.ButtonMethods
         }
 
         #region ButtonMethods
-        public void Initialize()
+        public async void Initialize()
         {
-            ProductionsList = ModelGenerics.GetLastTenInDatabase(new Productions());
+            ProductionsList = await ModelGenerics.GetLastTenInDatabase(new Productions());
 
             FillStringHelpers();
+
+            _completeProductionsList = await ModelGenerics.GetAll(new Productions());
 
             NewProductions = new Productions
             {
@@ -199,26 +202,23 @@ namespace UniBase.Model.K2.ButtonMethods
                 ProductionIdIntHelper = (ProductionsList.Last().Production_ID + 1).ToString()
             };
         }
-
         
-
-        public void RefreshAll()
+        public async void RefreshAll()
         {
-            ProductionsList = ModelGenerics.GetAll(new Productions());
+            ProductionsList = await ModelGenerics.GetAll(new Productions());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
-        public void RefreshLastTen()
+        public async void RefreshLastTen()
         {
-            ProductionsList = ModelGenerics.GetLastTenInDatabase(new Productions());
+            ProductionsList = await ModelGenerics.GetLastTenInDatabase(new Productions());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
         public void SaveAll()
         {
-            ProductionsList = ModelGenerics.GetAll(new Productions());
             foreach (var production in ProductionsList)
             {
                 ModelGenerics.UpdateByObjectAndId((int)production.Production_ID, production);

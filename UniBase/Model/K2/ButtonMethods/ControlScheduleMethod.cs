@@ -16,7 +16,8 @@ namespace UniBase.Model.K2.ButtonMethods
             Initialize();
         }
         #region Fields
-        private ObservableCollection<ControlSchedules> _completeControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+
+        private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
 
         private ObservableCollection<ControlSchedules> _controlSchedulesList;
 
@@ -197,10 +198,12 @@ namespace UniBase.Model.K2.ButtonMethods
             _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
-        public void Initialize()
+        public async void Initialize()
         {
-            ControlSchedulesList = ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
+            ControlSchedulesList = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
             FillStringHelpers();
+
+            _completeControlSchedulesList = await ModelGenerics.GetAll(new ControlSchedules());
 
             NewControlSchedules = new ControlSchedules
             {
@@ -209,16 +212,16 @@ namespace UniBase.Model.K2.ButtonMethods
             };
         }
 
-        public void RefreshAll()
+        public async void RefreshAll()
         {
-            ControlSchedulesList = ModelGenerics.GetAll(new ControlSchedules());
+            ControlSchedulesList = await ModelGenerics.GetAll(new ControlSchedules());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
 
-        public void RefreshLastTen()
+        public async void RefreshLastTen()
         {
-            ControlSchedulesList = ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
+            ControlSchedulesList = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }

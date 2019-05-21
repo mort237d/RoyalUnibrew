@@ -134,9 +134,14 @@ namespace UniBase.Model
 
         public ManageUser()
         {
-            UsersList = ModelGenerics.GetAll(new Users());
+            Load();
 
             _message = new Message(this);
+        }
+
+        private async void Load()
+        {
+            UsersList = await ModelGenerics.GetAll(new Users());
         }
 
         #region Singleton
