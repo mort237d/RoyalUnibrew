@@ -1022,17 +1022,20 @@
                             <ComboBoxItem Content="Lud Koncentration"/>
                         </ComboBox>
                         <ComboBox x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
+                            <ComboBoxItem Content="Idag"/>
                             <ComboBoxItem Content="En Uge"/>
                             <ComboBoxItem Content="En Måned"/>
                             <ComboBoxItem Content="Et Kvartal"/>
                             <ComboBoxItem Content="Et År"/>
+                            <ComboBoxItem Content="En Uge (Detaljeret)"/>
+                            <ComboBoxItem Content="En Måned (Detaljeret)"/>
                             <ComboBoxItem Content="Et Kvartal (Detaljeret)"/>
                             <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
                     </StackPanel>
 
-                    <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="1500">
-                        <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="2000" Height="500"  >
+                    <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="auto" >
+                        <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="{Binding Column_2.TrendAdminstrator.GraphScrollLenght}" Height="500"  >
                             <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="SelectedCategory"
