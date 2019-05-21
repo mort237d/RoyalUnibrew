@@ -260,12 +260,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #endregion
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            Frontpages del = FrontpagesList.First(d => d.ProcessOrder_No == id);
-            int index = FrontpagesList.IndexOf(del);
-
-            SelectedFrontpageId = index;
+            SelectedFrontpageId = _genericMethod.SelectParentItem((int)obj, FrontpagesList, "ProcessOrder_No");
         }
         public void SortButtonClick(object id)
         {

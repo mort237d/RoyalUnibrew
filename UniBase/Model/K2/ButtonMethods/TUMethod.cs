@@ -277,12 +277,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            TUs del = TuList.First(d => d.TU_ID == id);
-            int index = TuList.IndexOf(del);
-
-            SelectedTuId = index;
+            SelectedTuId = _genericMethod.SelectParentItem((int)obj, TuList, "TU_ID");
         }
 
         public void SortButtonClick(object id)

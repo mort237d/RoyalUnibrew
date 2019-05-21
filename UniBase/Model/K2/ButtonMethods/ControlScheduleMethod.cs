@@ -256,12 +256,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            ControlSchedules del = ControlSchedulesList.First(d => d.ControlSchedule_ID == id);
-            int index = ControlSchedulesList.IndexOf(del);
-
-            SelectedControlScheduleId = index;
+            SelectedControlScheduleId = _genericMethod.SelectParentItem((int)obj, ControlSchedulesList, "ControlSchedule_ID");
         }
 
         public void SortButtonClick(object id)

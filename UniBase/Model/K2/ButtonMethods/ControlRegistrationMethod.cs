@@ -337,12 +337,7 @@ namespace UniBase.Model.K2.ButtonMethods
         
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            ControlRegistrations del = ControlRegistrationsList.First(d => d.ControlRegistration_ID == id);
-            int index = ControlRegistrationsList.IndexOf(del);
-
-            SelectedControlRegistrationId = index;
+            SelectedControlRegistrationId = _genericMethod.SelectParentItem((int)obj, ControlRegistrationsList, "ControlRegistration_ID");
         }
 
         public void SortButtonClick(object id)

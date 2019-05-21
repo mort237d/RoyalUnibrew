@@ -120,6 +120,16 @@ namespace UniBase.Model
             _message.ShowToastNotification("Gemt", tableName + "-tabellen er gemt");
         }
 
+        public int SelectParentItem<T>(int obj, ObservableCollection<T> list, string property)
+        {
+            int id = obj;
+            PropertyInfo prop = typeof(T).GetProperty(property);
+            
+            int index = list.IndexOf(list.First(d => (int) prop.GetValue(d, null) == id));
+
+            return index;    
+        }
+
         public async void RefreshAll<T>(T type, ObservableCollection<T> listViewList, Action fillStringHelpers, string tableName)
         {
             listViewList = await ModelGenerics.GetAll(type);

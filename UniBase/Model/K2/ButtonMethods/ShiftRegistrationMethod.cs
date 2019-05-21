@@ -248,12 +248,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            ShiftRegistrations del = ShiftRegistrationsList.First(d => d.ShiftRegistration_ID == id);
-            int index = ShiftRegistrationsList.IndexOf(del);
-
-            SelectedShiftRegistrationId = index;
+            SelectedShiftRegistrationId = _genericMethod.SelectParentItem((int) obj, ShiftRegistrationsList, "ShiftRegistration_ID");
         }
 
         public void SortButtonClick(object id)
