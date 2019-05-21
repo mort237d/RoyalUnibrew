@@ -65,6 +65,7 @@ namespace UniBase.Model.K2
             set
             {
                 _firstDayStartTu = value;
+                FirstDayTotalIntHelper = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU).ToString();
             }
         }
         public int FirstDayEnd_TU
@@ -73,6 +74,7 @@ namespace UniBase.Model.K2
             set
             {
                 _firstDayEndTu = value;
+                FirstDayTotalIntHelper = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU).ToString();
             }
         }
         public int FirstDay_Total
@@ -82,7 +84,7 @@ namespace UniBase.Model.K2
             {
                 _firstDayTotal = value;
                 OnPropertyChanged();
-                //_productions.PalletCounter = _calculateProductions.CalculatePalletCounter(ProcessOrder_No);
+                //_productions.PalletCounter = _calculateProductions.CalculatePalletCounter(1);
             }
         }
         public int SecoundDayStart_TU
@@ -91,7 +93,7 @@ namespace UniBase.Model.K2
             set
             {
                 _secoundDayStartTu = value;
-                SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
+                SecoundDayTotalIntHelper = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU).ToString();
             }
         }
         public int SecoundDayEnd_TU
@@ -100,7 +102,7 @@ namespace UniBase.Model.K2
             set
             {
                 _secoundDayEndTu = value;
-                SecoundDay_Total = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU);
+                SecoundDayTotalIntHelper = _calculateTuTotal.CalculateTUDayTotal(SecoundDayStart_TU, SecoundDayEnd_TU).ToString();
             }
         }
         public int SecoundDay_Total
@@ -119,7 +121,7 @@ namespace UniBase.Model.K2
             set
             {
                 _thirdDayStartTu = value;
-                ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
+                ThirdDayTotalIntHelper = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU).ToString();
             }
         }
         public int ThirdDayEnd_TU
@@ -128,7 +130,7 @@ namespace UniBase.Model.K2
             set
             {
                 _thirdDayEndTu = value;
-                ThirdDay_Total = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU);
+                ThirdDayTotalIntHelper = _calculateTuTotal.CalculateTUDayTotal(ThirdDayStart_TU, ThirdDayEnd_TU).ToString();
             }
         }
         public int ThirdDay_Total
@@ -193,7 +195,6 @@ namespace UniBase.Model.K2
                 _firstDayStartTuIntHelper = value;
                 OnPropertyChanged();
 
-                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
             }
         }
         [JsonIgnore]
@@ -211,7 +212,6 @@ namespace UniBase.Model.K2
                 }
                 _firstDayEndTuIntHelper = value;
                 OnPropertyChanged();
-                FirstDay_Total = _calculateTuTotal.CalculateTUDayTotal(FirstDayStart_TU, FirstDayEnd_TU);
             }
         }
         [JsonIgnore]
