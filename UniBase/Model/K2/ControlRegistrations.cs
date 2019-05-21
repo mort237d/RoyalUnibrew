@@ -26,6 +26,7 @@ namespace UniBase.Model.K2
         private string _firstPalletDepalletizingStringHelper;
         private string _lastPalletDepalletizingStringHelper;
         private string _expiryDateStringHelper;
+        private int _kegSizeIndex;
 
         public ControlRegistrations()
         {

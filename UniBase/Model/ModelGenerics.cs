@@ -14,16 +14,17 @@ namespace UniBase.Model
         private static HttpClient client = new HttpClient();
 
         /// <summary>
-        /// Generic method to call a specific type from its ID
+        /// Generic method to GET a specific type, from its ID, from the Database through the REST-service.
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
-        /// <param name="type">The type name</param>
+        /// <param name="type">The specific type </param>
         /// <param name="id">The ID of the type</param>
         /// <returns></returns>
         public static T GetById<T>(T type, int id)
         {
+            int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[3] + "/" + id;
+            string httpUrl = URI + typeName[typeNamePosistionInNamespace] + "/" + id;
             
             var endResult = type;
             try
@@ -41,15 +42,16 @@ namespace UniBase.Model
         }
 
         /// <summary>
-        /// Generic method to call a specific type from its ID
+        /// Generic method to GET all of a specific type from the Database through the REST-service.
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
         /// <param name="type">The type name</param>
         /// <returns></returns>
         public static ObservableCollection<T> GetAll<T>(T type)
         {
+            int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[3];
+            string httpUrl = URI + typeName[typeNamePosistionInNamespace];
             Task<string> resTask = null;
             
             ObservableCollection<T> ifFailed = new ObservableCollection<T>();
@@ -65,32 +67,37 @@ namespace UniBase.Model
             }
 
             return ifFailed;
-        }
-
-        public static ObservableCollection<T> GetLastTenInDatabasae<T>(T type)
-        {
-            String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[3] + "/range/";
-            Task<string> resTask = null;
-
-            ObservableCollection<T> ifFailed = new ObservableCollection<T>();
-
-            try
-            {
-                resTask = client.GetStringAsync(httpUrl);
-                return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-            }
-
-            return ifFailed;
-            
         }
 
         /// <summary>
-        /// /// Generic method to delete a specific type from its ID
+        /// Generic method to GET the latest ten of a specific type from the Database through the REST-service.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static ObservableCollection<T> GetLastTenInDatabase<T>(T type)
+        {
+            int typeNamePosistionInNamespace = 3;
+            String[] typeName = type.ToString().Split('.');
+            string httpUrl = URI + typeName[typeNamePosistionInNamespace] + "/range/";
+
+            ObservableCollection<T> result = new ObservableCollection<T>();
+
+            try
+            {
+                var resTask = client.GetStringAsync(httpUrl);
+                result = JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// /// Generic method to delete a specific type, from its ID, from the Database through the REST-service.
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
         /// <param name="type">The type name</param>
@@ -98,8 +105,9 @@ namespace UniBase.Model
         /// <returns></returns>
         public static bool DeleteById<T>(T type, int id)
         {
+            int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[3] + "/" + id;
+            string httpUrl = URI + typeName[typeNamePosistionInNamespace] + "/" + id;
 
             try
             {
@@ -120,15 +128,16 @@ namespace UniBase.Model
         }
 
         /// <summary>
-        /// Generic method to create a specific type
+        /// Generic method to create a specific type through the REST-service to add to the Database.
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
         /// <param name="type">The object of the type you want to create</param>
         /// <returns></returns>
         public static bool CreateByObject<T>(T type)
         {
+            int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[3];
+            string httpUrl = URI + typeName[typeNamePosistionInNamespace];
 
             try
             {
@@ -152,7 +161,7 @@ namespace UniBase.Model
         }
 
         /// <summary>
-        /// Generic method to update a specific type by its ID
+        /// Generic method to update a specific type, by its ID, in the Database through the REST-service.
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
         /// <param name="id">The ID of the type</param>
@@ -160,8 +169,9 @@ namespace UniBase.Model
         /// <returns></returns>
         public static bool UpdateByObjectAndId<T>(int id, T type)
         {
+            int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[3] + "/" + id;
+            string httpUrl = URI + typeName[typeNamePosistionInNamespace] + "/" + id;
 
             try
             {

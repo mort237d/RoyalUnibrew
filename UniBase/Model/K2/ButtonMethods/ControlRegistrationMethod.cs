@@ -259,7 +259,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void Initialize()
         {
-            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
 
             FillStringHelpers();
             GenerateNewControlRegistrationToAdd();
@@ -276,7 +276,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void RefreshLastTen()
         {
-            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabasae(new ControlRegistrations());
+            ControlRegistrationsList = ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
             
             FillStringHelpers();
 

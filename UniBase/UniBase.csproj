@@ -134,7 +134,6 @@
     <Compile Include="Model\K2\ControlSchedules.cs" />
     <Compile Include="Model\K2\ButtonMethods\FrontpageMethod.cs" />
     <Compile Include="Model\K2\Frontpages.cs" />
-    <Compile Include="Model\K2\InputValidator.cs" />
     <Compile Include="Model\K2\Productions.cs" />
     <Compile Include="Model\K2\Products.cs" />
     <Compile Include="Model\K2\ShiftRegistrations.cs" />

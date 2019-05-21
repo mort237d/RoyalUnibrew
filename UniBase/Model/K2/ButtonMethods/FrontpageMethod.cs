@@ -156,7 +156,7 @@ namespace UniBase.Model.K2.ButtonMethods
         #region ButtonMethods
         public void Initialize()
         {
-            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            FrontpagesList = ModelGenerics.GetLastTenInDatabase(new Frontpages());
             FillStringHelpers();
 
             NewFrontpagesToAdd = new Frontpages();
@@ -172,7 +172,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         public void RefreshLastTen()
         {
-            FrontpagesList = ModelGenerics.GetLastTenInDatabasae(new Frontpages());
+            FrontpagesList = ModelGenerics.GetLastTenInDatabase(new Frontpages());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }

@@ -9,9 +9,6 @@ namespace UniBase.Model.K2.ButtonMethods
 {
     public class CalculateProductions
     {
-        
-       
-
         public int CalculatePalletCounter(int processOrderNr)
         {
             int palletCounterResult = 0;

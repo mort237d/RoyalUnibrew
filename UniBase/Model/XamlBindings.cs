@@ -8,8 +8,8 @@ namespace UniBase.Model
         public string PlaceHolderDate { get; set; } = "2000/01/01";
         public string PlaceHolderTimeSpan { get; set; } = "00:00:00";
         public string PlaceholderString { get; set; } = "Tekst";
-        public int PlaceHolderInt { get; set; } = 0;
-        public double PlaceHolderDouble { get; set; } = 0.00f;
+        public string PlaceHolderInt { get; set; } = "0";
+        public string PlaceHolderDouble { get; set; } = "0,00";
         public string PlaceHolderTime { get; set; } = "00:00";
         #endregion
 
