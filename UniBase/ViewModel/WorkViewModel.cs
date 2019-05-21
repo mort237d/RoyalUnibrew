@@ -205,7 +205,7 @@ namespace UniBase.ViewModel
             ChangeUserCommand = new RelayCommand(ManageUser.ChangeSelectedUser);
             UserImageBrowserCommand = new RelayCommand(ManageUser.BrowseImageButton);
             LogOffCommand = new RelayCommand(Login.LogOffMethod);
-
+            ClearTbCommand = new RelayCommand(ManageUser.ClearTb);
 
             //Sort
             SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);
@@ -227,7 +227,9 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
-        
+
+        public RelayCommand ClearTbCommand { get; set; }
+
         #region Properties
         
 

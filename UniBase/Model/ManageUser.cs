@@ -108,8 +108,30 @@ namespace UniBase.Model
             set
             {
                 _selectedUsers = value;
+                FillTbWithSelectedUserInfo();
+
                 OnPropertyChanged();
             }
+        }
+
+        private void FillTbWithSelectedUserInfo()
+        {
+            NameTb = SelectedUsers.Name;
+            EmailTb = SelectedUsers.Email;
+            TelephoneNumberTb = SelectedUsers.Telephone_No;
+            PasswordTb = SelectedUsers.Password;
+            ConfirmPasswordTb = SelectedUsers.Password;
+            ImageTb = SelectedUsers.ImageSource;
+        }
+
+        public void ClearTb()
+        {
+            NameTb = null;
+            EmailTb = null;
+            TelephoneNumberTb = null;
+            PasswordTb = null;
+            ConfirmPasswordTb = null;
+            ImageTb = null;
         }
 
         public Users CurrentUsers

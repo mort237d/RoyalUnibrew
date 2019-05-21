@@ -1108,6 +1108,7 @@
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Visibility="Visible" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                     </StackPanel>
 
                 </Grid>
