@@ -84,6 +84,11 @@ namespace UniBase.Model
             }
         }
 
+        /// <summary>
+        /// Method to show different Toastnotifications various places in the program when an action i succesfull. Usually used where some sort of CRUD is used.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="stringContent"></param>
         public void ShowToastNotification(string title, string stringContent)
         {
             ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
@@ -99,7 +104,6 @@ namespace UniBase.Model
             toast.ExpirationTime = DateTime.Now.AddSeconds(4);
             toastNotifier.Show(toast);
         }
-
         #endregion
     }
 }

@@ -204,7 +204,9 @@ namespace UniBase.Model
         {
             //ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
         }
-
+        /// <summary>
+        /// Adds user to local list and then adds to the database with the ModelGenerics class.
+        /// </summary>
         public async void AddUser()
         {
             bool passwordExists = false;
@@ -249,7 +251,10 @@ namespace UniBase.Model
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }
-
+        
+        /// <summary>
+        /// Removes the user from the database and then from the local list via the Message class.
+        /// </summary>
         public async void RemoveUser()
         {
             if (_selectedUsers != null)
@@ -264,7 +269,9 @@ namespace UniBase.Model
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
 
-
+        /// <summary>
+        /// Updates the user in the database and then from the local list.
+        /// </summary>
         public async void ChangeSelectedUser()
         {
             if (SelectedUsers.Name == NameTb || SelectedUsers.Email == EmailTb ||
