@@ -32,7 +32,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!--Få current user navn frem-->
         <CommandBar Content="{Binding Column2FacadePath.ManageUser.CurrentUserName}" Height="35" FontSize="20" FontWeight="Bold" Foreground="White" Background="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}">
             <AppBarButton extensions:Mouse.Cursor="Hand" Icon="Back" Label="Log af" Foreground="White" Command="{Binding LogOffCommand}" ToolTipService.ToolTip="Log af"/>
         </CommandBar>
@@ -285,7 +284,6 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <!-- Find løsning til Binding -->
                                                     <ComboBox Style="{StaticResource CustomComboBoxTableStyle}" SelectedIndex="{Binding KegSizeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                         <ComboBoxItem Content="20L"/>
                                                         <ComboBoxItem Content="25L"/>
@@ -303,7 +301,6 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <!--Hvorfor er denne ikke readOnly?-->
                                                     <TextBox extensions:TextBoxMask.Mask="2099/99/99" Style="{StaticResource CustomTextBoxTableStyle}" PlaceholderText="{Binding DataContext.Column2FacadePath.XamlBindings.PlaceHolderDate, ElementName=WorkPageName}" Text="{Binding FirstPalletDepalletizingStringHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv dato fx ÅÅÅÅ/MM/DD">
                                                         <Custom:Interaction.Behaviors>
                                                             <Custom1:EventTriggerBehavior EventName="GotFocus">
