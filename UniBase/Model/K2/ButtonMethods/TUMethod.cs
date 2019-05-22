@@ -291,7 +291,9 @@ namespace UniBase.Model.K2.ButtonMethods
                 }
             }
         }
-
+        /// <summary>
+        /// Puts the stringhelpers, which are bound to the view, with their respective values.
+        /// </summary>
         private void FillStringHelpers()
         {
             foreach (var Tu in TuList)

@@ -1033,7 +1033,9 @@
                             <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
                     </StackPanel>
+                    <StackPanel Width="1000">
 
+                    
                     <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="auto" >
                         <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="{Binding Column_2.TrendAdminstrator.GraphScrollLenght}" Height="500"  >
                             <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
@@ -1050,16 +1052,16 @@
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendGraphList, Mode=TwoWay}"/>
                         </charting:Chart>
                     </ScrollViewer>
+                    </StackPanel>
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Brugere">
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUsers, Mode=TwoWay}" Margin="10,10,10,0">
+                    <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUser, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="login:Users">
                                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -1070,12 +1072,12 @@
                                         <StackPanel Margin="0,0,0,0">
                                             <TextBlock Text="Email: "/>
                                             <TextBlock Text="Telefon Nr: "/>
-                                            <TextBlock Text="Kodeord: "/>
+                                            <TextBlock Visibility="Collapsed" Text="Kodeord: "/>
                                         </StackPanel>
                                         <StackPanel Margin="5,0,0,0">
                                             <TextBlock Text="{Binding Email, Mode=TwoWay}"/> 
                                             <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
-                                            <TextBlock Text="{Binding Password, Mode=TwoWay}"/>
+                                            <TextBlock Visibility="Visible" Text="{Binding Password, Mode=TwoWay}"/>
                                         </StackPanel>
                                         </StackPanel>
 
@@ -1085,7 +1087,9 @@
                         </GridView.ItemTemplate>
                     </GridView>
                     <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image Height="200" Width="200" Margin="10" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
+                        <Border BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Margin="10">
+                            <Image Height="200" Width="200" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
+                        </Border>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <TextBlock Margin="0,2,0,0" Height="33" Text="Navn:"/>
@@ -1104,18 +1108,13 @@
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="135" HorizontalAlignment="Left"></TextBox>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <!--<TextBox Margin="2" PlaceholderText="Billede" Width="100" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"/>
-                            <Button Content="..." Width="auto" Command="{Binding UserImageBrowserCommand}"/>-->
-                        </StackPanel>
+                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Giv admin" Visibility="Visible" Command="{Binding ChangeAdminCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135" ></Button>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Visibility="Visible" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                     </StackPanel>
-
                 </Grid>
-
             </PivotItem>
         </Pivot>
     </Grid>

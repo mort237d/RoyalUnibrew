@@ -62,6 +62,7 @@ namespace UniBase.ViewModel
         public RelayCommand ChangeUserCommand { get; set; }
         public RelayCommand UserImageBrowserCommand { get; set; }
         public RelayCommand LogOffCommand { get; set; }
+        public RelayCommand ChangeAdminCommand { get; set; }
 
 
         public RelayCommand<object> ControlledClickCommand { get; set; }
@@ -212,6 +213,9 @@ namespace UniBase.ViewModel
             UserImageBrowserCommand = new RelayCommand(ManageUser.BrowseImageButton);
             LogOffCommand = new RelayCommand(Login.LogOffMethod);
             ClearTbCommand = new RelayCommand(ManageUser.ClearTb);
+            ChangeAdminCommand = new RelayCommand(ManageUser.ChangeAdmin);
+
+
 
             //Sort
             SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);

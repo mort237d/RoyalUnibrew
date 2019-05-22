@@ -73,8 +73,9 @@ namespace UniBase.Model
 
                 if (title == "Slet bruger")
                 {
-                    ModelGenerics.DeleteById(_manageUser.SelectedUsers, _manageUser.SelectedUsers.User_ID);
-                    _manageUser.UsersList.Remove(_manageUser.SelectedUsers);
+                    ModelGenerics.DeleteById(_manageUser.SelectedUser, _manageUser.SelectedUser.User_ID);
+                    ShowToastNotification("Slettet", _manageUser.SelectedUser.Name + " er blevet slettet.");
+                    _manageUser.UsersList.Remove(_manageUser.SelectedUser);
                 }
 
                 
@@ -84,6 +85,11 @@ namespace UniBase.Model
             }
         }
 
+        /// <summary>
+        /// Method to show different Toastnotifications various places in the program when an action i succesfull. Usually used where some sort of CRUD is used.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="stringContent"></param>
         public void ShowToastNotification(string title, string stringContent)
         {
             ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
@@ -99,7 +105,6 @@ namespace UniBase.Model
             toast.ExpirationTime = DateTime.Now.AddSeconds(4);
             toastNotifier.Show(toast);
         }
-
         #endregion
     }
 }

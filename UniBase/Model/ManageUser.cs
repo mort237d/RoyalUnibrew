@@ -26,7 +26,7 @@ namespace UniBase.Model
         private string _visible;
 
         private ObservableCollection<Users> _usersList;
-        private static Users _selectedUsers, _currentUsers;
+        private static Users _selectedUser, _currentUsers;
 
         #endregion
 
@@ -102,12 +102,12 @@ namespace UniBase.Model
             }
         }
 
-        public Users SelectedUsers
+        public Users SelectedUser
         {
-            get => _selectedUsers;
+            get => _selectedUser;
             set
             {
-                _selectedUsers = value;
+                _selectedUser = value;
                 FillTbWithSelectedUserInfo();
 
                 OnPropertyChanged();
@@ -116,12 +116,12 @@ namespace UniBase.Model
 
         private void FillTbWithSelectedUserInfo()
         {
-            NameTb = SelectedUsers.Name;
-            EmailTb = SelectedUsers.Email;
-            TelephoneNumberTb = SelectedUsers.Telephone_No;
-            PasswordTb = SelectedUsers.Password;
-            ConfirmPasswordTb = SelectedUsers.Password;
-            ImageTb = SelectedUsers.ImageSource;
+            NameTb = SelectedUser.Name;
+            EmailTb = SelectedUser.Email;
+            TelephoneNumberTb = SelectedUser.Telephone_No;
+            PasswordTb = SelectedUser.Password;
+            ConfirmPasswordTb = SelectedUser.Password;
+            ImageTb = SelectedUser.ImageSource;
         }
 
         public void ClearTb()
@@ -132,6 +132,8 @@ namespace UniBase.Model
             PasswordTb = null;
             ConfirmPasswordTb = null;
             ImageTb = null;
+
+            SelectedUser = null;
         }
 
         public Users CurrentUsers
@@ -204,7 +206,9 @@ namespace UniBase.Model
         {
             //ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
         }
-
+        /// <summary>
+        /// Adds user to local list and then adds to the database with the ModelGenerics class.
+        /// </summary>
         public async void AddUser()
         {
             bool passwordExists = false;
@@ -237,6 +241,7 @@ namespace UniBase.Model
                                     UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
                                     ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
                                 }
+                                _message.ShowToastNotification("Tilføjet", NameTb + " er blevet tilføjet.");
                                 NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
                             }
                             else await _message.Error("Uoverensstemmelser","kodeord stemmer ikke overens med bekræft kodeord");
@@ -249,14 +254,17 @@ namespace UniBase.Model
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }
-
+        
+        /// <summary>
+        /// Removes the user from the database and then from the local list via the Message class.
+        /// </summary>
         public async void RemoveUser()
         {
-            if (_selectedUsers != null)
+            if (_selectedUser != null)
             {
-                if (!_selectedUsers.Equals(_currentUsers))
+                if (!_selectedUser.Equals(_currentUsers))
                 {
-                    string temp = SelectedUsers.Name;
+                    string temp = SelectedUser.Name;
                     await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + temp + "?");
                 }
                 else await _message.Error("Fejl", "Du kan ikke slette dig selv");
@@ -264,21 +272,25 @@ namespace UniBase.Model
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
 
-
+        /// <summary>
+        /// Updates the user in the database and then from the local list.
+        /// </summary>
         public async void ChangeSelectedUser()
         {
-            if (SelectedUsers.Name == NameTb || SelectedUsers.Email == EmailTb ||
-                SelectedUsers.Telephone_No == TelephoneNumberTb || SelectedUsers.ImageSource == ImageTb ||
-                SelectedUsers.Password == PasswordTb)
+            if (SelectedUser.Name == NameTb || SelectedUser.Email == EmailTb ||
+                SelectedUser.Telephone_No == TelephoneNumberTb || SelectedUser.ImageSource == ImageTb ||
+                SelectedUser.Password == PasswordTb)
             {
                 if (PasswordTb == ConfirmPasswordTb)
                 {
-                    ModelGenerics.UpdateByObjectAndId(_selectedUsers.User_ID, _selectedUsers);
-                    SelectedUsers.Name = NameTb;
-                    SelectedUsers.Email = EmailTb;
-                    SelectedUsers.Telephone_No = TelephoneNumberTb;
-                    SelectedUsers.ImageSource = ImageTb;
-                    SelectedUsers.Password = PasswordTb;
+                    ModelGenerics.UpdateByObjectAndId(SelectedUser.User_ID, SelectedUser);
+                    SelectedUser.Name = NameTb;
+                    SelectedUser.Email = EmailTb;
+                    SelectedUser.Telephone_No = TelephoneNumberTb;
+                    SelectedUser.ImageSource = ImageTb;
+                    SelectedUser.Password = PasswordTb;
+
+                    _message.ShowToastNotification("Opdateret", SelectedUser.Name + " er opdateret.");
                 }
                 else await _message.Error("Forkert kodeord", "kodeord stemmer ikke overens");
             }
@@ -292,7 +304,7 @@ namespace UniBase.Model
 
         public async void ChangeAdmin()
         {
-            if (SelectedUsers != null) await _message.YesNo("Giv admin videre", "Er du sikker på at du vil give admin videre til " + SelectedUsers.Name + "?");
+            if (SelectedUser != null) await _message.YesNo("Giv admin videre", "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
         #endregion
