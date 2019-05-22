@@ -112,6 +112,13 @@ namespace UniBase.Model
             }
         }
 
+        /// <summary>
+        /// SaveAll er en generisk metode til at gemme alle elementer
+        /// </summary>
+        /// <typeparam name="T">Typen, der skal gemmes</typeparam>
+        /// <param name="list">Listen, som der skal gemmes fra</param>
+        /// <param name="property">Propertien som skal gemmes</param>
+        /// <param name="tableName">Navn på tabellen til toast notification</param>
         public void SaveAll<T>(ObservableCollection<T> list, string property, string tableName)
         {
             PropertyInfo prop = typeof(T).GetProperty(property);
@@ -123,6 +130,14 @@ namespace UniBase.Model
             _message.ShowToastNotification("Gemt", tableName + "-tabellen er gemt");
         }
 
+        /// <summary>
+        /// SelectParentItem er en generisk metode til at udpege listviewets item
+        /// </summary>
+        /// <typeparam name="T">Typen af listen</typeparam>
+        /// <param name="obj">Det medfølgende object fra command parameter</param>
+        /// <param name="list">Listen der skal søges igennem</param>
+        /// <param name="property">Propertien</param>
+        /// <returns></returns>
         public int SelectParentItem<T>(int obj, ObservableCollection<T> list, string property)
         {
             PropertyInfo prop = typeof(T).GetProperty(property);
@@ -130,13 +145,6 @@ namespace UniBase.Model
             int index = list.IndexOf(list.First(d => (int) prop.GetValue(d, null) == obj));
 
             return index;    
-        }
-
-        public async void RefreshAll<T>(T type, ObservableCollection<T> listViewList, Action fillStringHelpers, string tableName)
-        {
-            listViewList = await ModelGenerics.GetAll(type);
-            fillStringHelpers();
-            _message.ShowToastNotification("Opdateret", tableName + "-tabellen er opdateret");
         }
     }
 }
