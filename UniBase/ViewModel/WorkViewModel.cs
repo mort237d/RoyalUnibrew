@@ -91,27 +91,33 @@ namespace UniBase.ViewModel
 
             #region Update(SavedForLater)
 
-            int month = 4;
-            int day = 29;
-            int year = 2019;
-            int hour = 1;
-            double weight = 0;
-            double mipMa = 0;
-            double ludKoncentration = 0;
-            int processordernext = 1;
-            //Udfyld controlschdual.
-            Random random = new Random();
-//            for (int i = 0; i < 310; i++)
+//            int month = 4;
+//            int day = 5;
+//            int year = 2019;
+//            int hour = 1;
+//            double weight = 0;
+//            double mipMa = 0;
+//            double ludKoncentration = 0;
+//            int processordernext = 1;
+//            //Udfyld controlschdual.
+//            Random random = new Random();
+//            for (int i = 0; i < 70; i++)
 //            {
 //                weight = random.NextDouble() * 1.7 + 36.9;
 //                mipMa = random.NextDouble() * 2.7 + 23.9;
 //                ludKoncentration = random.NextDouble() * 1.2 + 0.9;
-//                ModelGenerics.CreateByObject(new ControlSchedules(i+17, new DateTime(year, month, day),weight, "hej", ludKoncentration, mipMa, "mig", "Very good",processordernext));
-//                day++;
+//                ModelGenerics.CreateByObject(new ControlSchedules(i+330, new DateTime(year, month, day),weight, "hej", ludKoncentration, mipMa, "mig", "Very good",processordernext));
+//                
 //                processordernext++;
 //                if (processordernext > 37)
 //                {
 //                    processordernext = 1;
+//                }
+//                hour += 3;
+//                if (hour > 9)
+//                {
+//                    hour = 1;
+//                    day++;
 //                }
 //                if (day == 29)
 //                {
@@ -122,37 +128,34 @@ namespace UniBase.ViewModel
 //                {
 //                    year++;
 //                    month = 1;
-////                }
-////            }
+//                }
+//            }
 //            foreach (var VARIABLE in Column_2.ControlScheduleMethod.CompleteControlSchedulesList)
 //            {
-//                if (VARIABLE.Time > new DateTime(2019,4,28,0,0,0))
+//                    
+//                VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0,59), 0);
+//                VARIABLE.Weight = random.NextDouble()* 2 + 36.8;
+//                VARIABLE.MipMA = random.NextDouble() * 3 + 23.8;
+//                VARIABLE.LudKoncentration = random.NextDouble() * 1.5 + 0.8;
+//                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
+//                hour += 3;
+//                if (hour > 9)
 //                {
-//                
-//                    VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0,59), 0);
-////                    VARIABLE.Weight = random.NextDouble()* 1.7 + 36.9;
-////                    VARIABLE.MipMA = random.NextDouble() * 2.7 + 23.9;
-////                    VARIABLE.LudKoncentration = random.NextDouble() * 1.2 + 0.9;
-//                    ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
-//                    hour += 3;
-//                    if (hour > 9)
-//                    {
-//                        hour = 1;
-//                        day++;
-//                    }
-//                    if (day == 29)
-//                    {
-//                        month++;
-//                        day = 1;
-//                    }
-//                
-//                    if (month > 11)
-//                    {
-//                        year++;
-//                        month = 1;
-//                    }
-//                    Debug.Write("| ID: "+ VARIABLE.ControlSchedule_ID + ", date: " + VARIABLE.Time);
+//                    hour = 1;
+//                    day++;
 //                }
+//                if (day == 29)
+//                {
+//                    month++;
+//                    day = 1;
+//                }
+//             
+//                if (month > 11)
+//                {
+//                    year++;
+//                    month = 1;
+//                }
+//               
 //            }
 
             #endregion
