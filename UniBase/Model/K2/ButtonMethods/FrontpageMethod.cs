@@ -199,19 +199,19 @@ namespace UniBase.Model.K2.ButtonMethods
             _genericMethod.SaveAll(FrontpagesList, "ProcessOrder_No", "Forside");
         }
 
-        public void DeleteItem()
+        public async void DeleteItem()
         {
-            var CRM = ControlRegistrationMethod.Instance;
-            var CSM = ControlScheduleMethod.Instance;
-            var PM = ProductionMethod.Instance;
-            var SRM = ShiftRegistrationMethod.Instance;
-            var TM = TuMethod.Instance;
+            var ControlRegistrationList = await ModelGenerics.GetAll(new ControlRegistrations());
+            var ControlScheduleList = await ModelGenerics.GetAll(new ControlSchedules());
+            var ProductionList = await ModelGenerics.GetAll(new Productions());
+            var ShiftRegistrationList = await ModelGenerics.GetAll(new ShiftRegistrations());
+            var TuList = await ModelGenerics.GetAll(new TUs());
             
 
             //TODO Update all lists!!!
             if (SelectedFrontpage != null)
             {
-                foreach (var i in CRM.CompleteControlRegistrationsList)
+                foreach (var i in ControlRegistrationList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
@@ -219,7 +219,7 @@ namespace UniBase.Model.K2.ButtonMethods
                         Debug.WriteLine("\t \n ControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
                     }
                 }
-                foreach (var i in CSM.CompleteControlSchedulesList)
+                foreach (var i in ControlScheduleList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
@@ -227,7 +227,7 @@ namespace UniBase.Model.K2.ButtonMethods
                         Debug.WriteLine("\t \n ControlSchedule_ID: " + i.ControlSchedule_ID, "DELETE");
                     }
                 }
-                foreach (var i in PM.CompleteProductionsList)
+                foreach (var i in ProductionList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
@@ -235,7 +235,7 @@ namespace UniBase.Model.K2.ButtonMethods
                         Debug.WriteLine("\t \n Production_ID: " + i.Production_ID, "DELETE");
                     }
                 }
-                foreach (var i in SRM.CompleteShiftRegistrationsList)
+                foreach (var i in ShiftRegistrationList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
@@ -243,7 +243,7 @@ namespace UniBase.Model.K2.ButtonMethods
                         Debug.WriteLine("\t \n ShiftRegistration_ID: " + i.ShiftRegistration_ID, "DELETE");
                     }
                 }
-                foreach (var i in TM.CompleteTUsList)
+                foreach (var i in TuList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
