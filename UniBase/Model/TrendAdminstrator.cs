@@ -19,6 +19,7 @@ namespace UniBase.Model
         
         private List<Trends> _tempTrendList = new List<Trends>();
         private ObservableCollection<Trends> _trendGraphList = new ObservableCollection<Trends>();
+        private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
 
 
         public TrendAdminstrator()
@@ -75,13 +76,19 @@ namespace UniBase.Model
             }
         }
 
+        public ObservableCollection<ControlSchedules> CompleteControlSchedulesList
+        {
+            get { return _completeControlSchedulesList; }
+            set { _completeControlSchedulesList = value; }
+        }
+
 
         public void CreateGraph(string comboboxInput, string timePeriod)
         {
-            ObservableCollection<ControlSchedules> completeControlSchedulesList = ControlScheduleMethod.Instance.CompleteControlSchedulesList;
+            _completeControlSchedulesList = ControlScheduleMethod.Instance.CompleteControlSchedulesList;
 
             TempTrendList.Clear();
-            DateTime tempDayOfScheduleList = completeControlSchedulesList[0].Time;
+            DateTime tempDayOfScheduleList = _completeControlSchedulesList[0].Time;
             int timeHorizon = 0;
             int timeHorizonDivider = 0;
             DateTime currentItemDate = DateTime.Now;
@@ -135,18 +142,18 @@ namespace UniBase.Model
             {
                 timeHorizon = 91;
                 timeHorizonDivider = 1;
-                GraphScrollLenght = 5000;
+                GraphScrollLenght = 4000;
             }
             else if (timePeriod == "Et År (Detaljeret)")
             {
                 timeHorizon = 365;
                 timeHorizonDivider = 1;
-                GraphScrollLenght = 10000;
+                GraphScrollLenght = 11000;
             }
 
             int amountOfItemsWithSameDate = 0;
             double tempTotalValue = 0;
-            Parallel.ForEach(completeControlSchedulesList, scheduleItem =>
+            foreach (var scheduleItem in _completeControlSchedulesList)
             {           
                 if (scheduleItem.Time >= DateTime.Now - new TimeSpan(timeHorizon, 0, 0, 0) && scheduleItem.Time <= DateTime.Now)
                 {
@@ -159,7 +166,7 @@ namespace UniBase.Model
                         if (comboboxInput == "Vægt") TempTrendList.Add(new Trends(scheduleItem.Weight, scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" + scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" + scheduleItem.Time.Minute, ConstantValues.MinWeight, ConstantValues.MaxWeight));
                         if (comboboxInput == "MipMa") TempTrendList.Add(new Trends(scheduleItem.MipMA, scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" + scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" + scheduleItem.Time.Minute, ConstantValues.MinMipMa, ConstantValues.MaxMipMa));
                         if (comboboxInput == "Lud Koncentration") TempTrendList.Add(new Trends(scheduleItem.LudKoncentration, scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" + scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" + scheduleItem.Time.Minute, ConstantValues.MinLudkoncentration, ConstantValues.MaxLudkoncentration));
-                        goto continueHere;
+                        continue;
                     }
 
                 here:
@@ -186,12 +193,12 @@ namespace UniBase.Model
                             maxValue = ConstantValues.MaxLudkoncentration;
                         }
 
-                        goto continueHere;
+                        continue;
                     }
 
                     if (amountOfItemsWithSameDate != 0)
                     {
-                        TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + currentItemDate.Day, minValue, maxValue));
+                        TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, tempDayOfScheduleList.Year + "/" + tempDayOfScheduleList.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
                     }
 
                     tempTotalValue = 0;
@@ -204,8 +211,8 @@ namespace UniBase.Model
                     }
                 
                 }
-                continueHere: ;
-            });
+                
+            }
             if (amountOfItemsWithSameDate != 0)
             {
                 TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + currentItemDate.Day, minValue, maxValue));
