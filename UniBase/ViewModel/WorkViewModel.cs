@@ -214,8 +214,7 @@ namespace UniBase.ViewModel
             LogOffCommand = new RelayCommand(Login.LogOffMethod);
             ClearTbCommand = new RelayCommand(ManageUser.ClearTb);
             ChangeAdminCommand = new RelayCommand(ManageUser.ChangeAdmin);
-
-
+            AdminCheckClickCommand = new RelayCommand(ManageUser.AdminCheckClick);
 
             //Sort
             SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);
@@ -237,6 +236,8 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
+
+        public RelayCommand AdminCheckClickCommand { get; set; }
 
         public RelayCommand ClearTbCommand { get; set; }
 

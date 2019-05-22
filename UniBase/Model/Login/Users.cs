@@ -14,14 +14,14 @@ namespace UniBase.Model.Login
         private string _password;
         private string _telephoneNo;
         private string _email;
-
+        private bool _administratorStatus;
 
         public Users()
         {
             
         }
 
-        public Users(int user_ID, string name, string email, string telephone_No, string password, string imageSource)
+        public Users(int user_ID, string name, string email, string telephone_No, string password, string imageSource, bool administratorStatus)
         {
             User_ID = user_ID;
             Name = name;
@@ -29,6 +29,7 @@ namespace UniBase.Model.Login
             Telephone_No = telephone_No;
             Password = password;
             ImageSource = imageSource;
+            AdministratorStatus = administratorStatus;
         }
 
         #endregion
@@ -99,6 +100,12 @@ namespace UniBase.Model.Login
                 _imageSource = value;
                 OnPropertyChanged();
             }
+        }
+
+        public bool AdministratorStatus
+        {
+            get { return _administratorStatus; }
+            set { _administratorStatus = value; }
         }
 
         #endregion
