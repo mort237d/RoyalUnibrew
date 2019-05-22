@@ -41,9 +41,9 @@ namespace UniBase.Model.K2.ButtonMethods
         {
             Initialize();
 
-            foreach (var p in PropertyInfos)
+            for (int i = 0; i < PropertyInfos.Length; i++)
             {
-                Debug.WriteLine(p.Name, "prop");
+                Debug.WriteLine(PropertyInfos[i].Name, i.ToString());
             }
         }
 
