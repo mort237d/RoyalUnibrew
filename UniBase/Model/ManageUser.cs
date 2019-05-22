@@ -105,6 +105,9 @@ namespace UniBase.Model
             }
         }
 
+        /// <summary>
+        /// Fills the Textboxes that are used when changing the user's information with the user's current information.
+        /// </summary>
         private void FillTbWithSelectedUserInfo()
         {
             if (SelectedUser != null)
@@ -119,6 +122,9 @@ namespace UniBase.Model
             }
         }
 
+        /// <summary>
+        /// Clears the Textboxes that are used when changing the user's information.
+        /// </summary>
         public void ClearTb()
         {
             SelectedUser = null;
@@ -228,35 +234,7 @@ namespace UniBase.Model
         {
             //ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
         }
-
-        /// <summary>
-        /// Fills the Textboxes that are used when changing the user's information with the user's current information.
-        /// </summary>
-        private void FillTbWithSelectedUserInfo()
-        {
-            NameTb = SelectedUser.Name;
-            EmailTb = SelectedUser.Email;
-            TelephoneNumberTb = SelectedUser.Telephone_No;
-            PasswordTb = SelectedUser.Password;
-            ConfirmPasswordTb = SelectedUser.Password;
-            ImageTb = SelectedUser.ImageSource;
-        }
-
-        /// <summary>
-        /// Clears the Textboxes that are used when changing the user's information.
-        /// </summary>
-        public void ClearTb()
-        {
-            NameTb = null;
-            EmailTb = null;
-            TelephoneNumberTb = null;
-            PasswordTb = null;
-            ConfirmPasswordTb = null;
-            ImageTb = null;
-
-            SelectedUser = null;
-        }
-
+        
         /// <summary>
         /// Adds user to local list and then adds to the database with the ModelGenerics class.
         /// </summary>
