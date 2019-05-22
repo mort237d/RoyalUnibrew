@@ -34,7 +34,9 @@ namespace UniBase.Model
             CreateShiftRegistrationHeader();
             CreateTUHeader();
         }
-
+        /// <summary>
+        /// Creates a list of Headers for Frontpage.
+        /// </summary>
         public void CreateFrontpageHeader()
         {
             FrontPageHeaderList = new List<HeaderAndToolTip>
@@ -47,7 +49,9 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Uge Nr", "Sorter efter Uge Nr")
             };
         }
-
+        /// <summary>
+        /// Creates a list of Headers for ControlRegistration.
+        /// </summary>
         public void CreateControlRegistrationHeader()
         {
             ControlRegistrationsHeaderList = new List<HeaderAndToolTip>
@@ -68,7 +72,9 @@ namespace UniBase.Model
 
             };
         }
-
+        /// <summary>
+        /// Creates a list of Headers for ControlSchedule.
+        /// </summary>
         public void CreateControlSchedulesHeader()
         {
             ControlSchedulesHeaderList = new List<HeaderAndToolTip>
@@ -86,7 +92,9 @@ namespace UniBase.Model
 
             };
         }
-
+        /// <summary>
+        /// Creates a list of Headers for Production.
+        /// </summary>
         public void CreateProductionsHeader()
         {
             ProductionsHeaderList = new List<HeaderAndToolTip>
@@ -101,7 +109,9 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Batchdato", "Sorter efter Batchdato")
             };
         }
-
+        /// <summary>
+        /// Creates a list of Headers for ShiftRegistration.
+        /// </summary>
         public void CreateShiftRegistrationHeader()
         {
             ShiftRegistrationHeaderList = new List<HeaderAndToolTip>
@@ -116,7 +126,9 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Initialer", "Sorter efter Initialer")
             };
         }
-
+        /// <summary>
+        /// Creates a list of Headers for TU.
+        /// </summary>
         public void CreateTUHeader()
         {
             TUHeaderList = new List<HeaderAndToolTip>
