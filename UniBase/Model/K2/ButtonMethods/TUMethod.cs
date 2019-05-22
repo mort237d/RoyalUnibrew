@@ -269,15 +269,13 @@ namespace UniBase.Model.K2.ButtonMethods
             _genericMethod.DeleteSelected(SelectedTu, new TUs(), CompleteTUsList, TuList, "TU_ID", "TU");
         }
 
-        public void AddNewItem()
+        public async void AddNewItem()
         {
-            NewTUs.TU_ID = ModelGenerics.GetLastTenInDatabase(new TUs()).Result.Last().TU_ID + 1;
-
+            var latestTU = await ModelGenerics.GetLastTenInDatabase(new TUs());
+            NewTUs.TU_ID = latestTU.Last().TU_ID + 1;
             if (ModelGenerics.CreateByObject(NewTUs))
             {
                 Initialize();
-
-                NewTUs = new TUs();
             }
             else
             {

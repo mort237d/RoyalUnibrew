@@ -236,10 +236,11 @@ namespace UniBase.Model.K2.ButtonMethods
             _genericMethod.DeleteSelected(SelectedControlSchedule, new ControlSchedules(), CompleteControlSchedulesList, ControlSchedulesList, "ControlSchedule_ID", "Kontrol Skema");
         }
 
-        public void AddNewItem()
+        public async void AddNewItem()
         {
-            NewControlSchedules.ControlSchedule_ID = ModelGenerics.GetLastTenInDatabase(new ControlSchedules()).Result.Last().ControlSchedule_ID + 1;
-
+            var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
+            NewControlSchedules.ControlSchedule_ID = latestControlSchedule.Last().ControlSchedule_ID + 1;
+            
             if (ModelGenerics.CreateByObject(NewControlSchedules))
             {
                 Initialize();

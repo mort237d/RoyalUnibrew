@@ -243,13 +243,11 @@ namespace UniBase.Model.K2.ButtonMethods
             }
         }
 
-        public void AddNewItem()
+        public async void AddNewItem()
         {
             if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
             {
                 Initialize();
-
-                NewFrontpagesToAdd = new Frontpages();
             }
             else
             {

@@ -288,10 +288,10 @@ namespace UniBase.Model.K2.ButtonMethods
 
         }
 
-        public void AddNewItem()
+        public async void AddNewItem()
         {
-            NewControlRegistrationsToAdd.ControlRegistration_ID = ModelGenerics.GetLastTenInDatabase(new ControlRegistrations()).Result.Last().ControlRegistration_ID + 1;
-
+            var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
+            NewControlRegistrationsToAdd.ControlRegistration_ID = latestControlSchedule.Last().ControlRegistration_ID + 1;
             if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
             {
                 Initialize();

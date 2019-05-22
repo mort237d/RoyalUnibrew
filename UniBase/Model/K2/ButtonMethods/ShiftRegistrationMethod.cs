@@ -228,17 +228,13 @@ namespace UniBase.Model.K2.ButtonMethods
             _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrering");
         }
 
-        public void AddNewItem()
+        public async void AddNewItem()
         {
-            NewShiftRegistrations.ShiftRegistration_ID = ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations()).Result.Last().ShiftRegistration_ID + 1;
+            var lastestShiftRegistration = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
+            NewShiftRegistrations.ShiftRegistration_ID = lastestShiftRegistration.Last().ShiftRegistration_ID + 1;
             if (ModelGenerics.CreateByObject(NewShiftRegistrations))
             {
                 Initialize();
-
-                NewShiftRegistrations = new ShiftRegistrations()
-                {
-                    
-                };
             }
             else
             {

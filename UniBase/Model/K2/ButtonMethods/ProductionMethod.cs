@@ -227,18 +227,13 @@ namespace UniBase.Model.K2.ButtonMethods
             _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID", "Produktion");
         }
 
-        public void AddNewItem()
+        public async void AddNewItem()
         {
-            NewProductions.Production_ID = ModelGenerics.GetLastTenInDatabase(new Productions()).Result.Last().Production_ID + 1;
+            var latestProduction = await ModelGenerics.GetLastTenInDatabase(new Productions());
+            NewProductions.Production_ID = latestProduction.Last().Production_ID + 1;
             if (ModelGenerics.CreateByObject(NewProductions))
             {
                 Initialize();
-
-                NewProductions = new Productions
-                {
-                    ProcessOrderNoIntHelper = ProductionsList.Last().ProcessOrder_No.ToString(),
-                    ProductionIdIntHelper = (ProductionsList.Last().Production_ID + 1).ToString()
-                };
             }
             else
             {
