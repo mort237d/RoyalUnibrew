@@ -1033,7 +1033,9 @@
                             <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
                     </StackPanel>
+                    <StackPanel Width="1000">
 
+                    
                     <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="auto" >
                         <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="{Binding Column_2.TrendAdminstrator.GraphScrollLenght}" Height="500"  >
                             <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
@@ -1050,6 +1052,7 @@
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendGraphList, Mode=TwoWay}"/>
                         </charting:Chart>
                     </ScrollViewer>
+                    </StackPanel>
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Brugere">
