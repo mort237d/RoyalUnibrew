@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 using UniBase.Model.K2;
-using UniBase.Model.K2.ButtonMethods;
 
 namespace UniBase.Model
 {

@@ -1,13 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight.Command;
 using UniBase.Annotations;
-using UniBase.Model;
 using UniBase.Model.K2;
-using UniBase.Model.Login;
-using UniBase.View;
 
 namespace UniBase.ViewModel
 {

@@ -1,10 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Windows.System;
-using Windows.Web.Http.Headers;
 using UniBase.Annotations;
 using UniBase.Model.Login;
 
