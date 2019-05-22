@@ -16,6 +16,11 @@ namespace UniBase.Model.K2.ButtonMethods
         public ControlRegistrationMethod()
         {
             Initialize();
+
+            for (int i = 0; i < PropertyInfos.Length; i++)
+            {
+                Debug.WriteLine(PropertyInfos[i].Name, i.ToString());
+            }
         }
 
         #region Fields
