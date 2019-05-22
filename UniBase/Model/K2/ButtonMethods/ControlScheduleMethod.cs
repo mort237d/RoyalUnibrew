@@ -238,6 +238,8 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
+            NewControlSchedules.ControlSchedule_ID = ModelGenerics.GetLastTenInDatabase(new ControlSchedules()).Result.Last().ControlSchedule_ID + 1;
+
             if (ModelGenerics.CreateByObject(NewControlSchedules))
             {
                 Initialize();

@@ -8,9 +8,10 @@
             return result;
         }
 
-        //den Total fustager som vi ikke har i databasen
+        //Calculates TotalKegs when a textbox is changed that is used to calculate it. Not in use
         public int CalculateTotalKegs(int totalKegsPrPallet, int palletCounter)
         {
+            //Gets the TotalKegsPrPallet times PalletCounter and returns it to TotalKegs.
             int result = (totalKegsPrPallet * palletCounter);
             return result;
         }
