@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 
 namespace UniBase.Model.K2.ButtonMethods
@@ -87,6 +89,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         #region Filter
         private PropertyInfo[] PropertyInfos = typeof(Frontpages).GetProperties();
+        //private PropertyInfo[] PropertyTextBoxInfos = typeof(FrontpageMethod).GetProperties();
 
         public string ProcessOrderNoTextBoxOutput
         {
@@ -95,7 +98,14 @@ namespace UniBase.Model.K2.ButtonMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
+                //for (int i = 0; i < PropertyTextBoxInfos.Length; i++)
+                //{
+                //    Debug.WriteLine(PropertyTextBoxInfos[i].Name, i.ToString());
+                //}
+
                 Filter(0, _processOrderNoTextBoxOutput);
+                //FinishedProductNoTextBoxOutput = "";
+                //OnPropertyChanged();
             }
         }
 
@@ -118,6 +128,7 @@ namespace UniBase.Model.K2.ButtonMethods
                 _finishedProductNoTextBoxOutput = value;
 
                 Filter(2, _finishedProductNoTextBoxOutput);
+                //OnPropertyChanged();
             }
         }
 

@@ -31,10 +31,13 @@ namespace UniBase.Model
             PropertyInfo prop = typeof(T).GetProperty(property);
             foreach (var f in completeList)
             {
-                var v = prop.GetValue(f, null).ToString().ToLower();
-                if (v.Contains(textBoxOutPut.ToLower()))
+                if (prop.GetValue(f,null) != null)
                 {
-                    list.Add(f);
+                    var v = prop.GetValue(f, null).ToString().ToLower();
+                    if (v.Contains(textBoxOutPut.ToLower()))
+                    {
+                        list.Add(f);
+                    }
                 }
             }
 
@@ -122,10 +125,9 @@ namespace UniBase.Model
 
         public int SelectParentItem<T>(int obj, ObservableCollection<T> list, string property)
         {
-            int id = obj;
             PropertyInfo prop = typeof(T).GetProperty(property);
             
-            int index = list.IndexOf(list.First(d => (int) prop.GetValue(d, null) == id));
+            int index = list.IndexOf(list.First(d => (int) prop.GetValue(d, null) == obj));
 
             return index;    
         }
