@@ -60,7 +60,6 @@ namespace UniBase.ViewModel
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
         public RelayCommand ChangeUserCommand { get; set; }
-        public RelayCommand UserImageBrowserCommand { get; set; }
         public RelayCommand LogOffCommand { get; set; }
 
         public RelayCommand<object> ControlledClickCommand { get; set; }
@@ -208,7 +207,6 @@ namespace UniBase.ViewModel
             AddUserCommand = new RelayCommand(ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
             ChangeUserCommand = new RelayCommand(ManageUser.ChangeSelectedUser);
-            UserImageBrowserCommand = new RelayCommand(ManageUser.BrowseImageButton);
             LogOffCommand = new RelayCommand(Login.LogOffMethod);
             ClearTbCommand = new RelayCommand(ManageUser.ClearTb);
             AdminCheckClickCommand = new RelayCommand(ManageUser.AdminCheckClick);

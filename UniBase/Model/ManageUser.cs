@@ -229,11 +229,6 @@ namespace UniBase.Model
                 Admin = true;
             }
         }
-
-        public async void BrowseImageButton()
-        {
-            //ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
-        }
         
         /// <summary>
         /// Adds user to local list and then adds to the database with the ModelGenerics class.
@@ -260,16 +255,18 @@ namespace UniBase.Model
                         {
                             if (string.IsNullOrEmpty(ImageTb))
                             {
-                                UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, Admin));
-                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, Admin));
+                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, Admin));
+                                ModelGenerics.CreateByObject(UsersList.Last());
                             }
                             else
                             {
-                                UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin));
-                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin));
+                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin));
+                                ModelGenerics.CreateByObject(UsersList.Last());
                             }
                             _message.ShowToastNotification("Tilføjet", NameTb + " er blevet tilføjet.");
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = null;
+                            Admin = false;
+                            AdminCheckBoxImage = "Images/Box/UnCheckedCheckBox.png";
                         }
                         else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
                     }
@@ -306,13 +303,13 @@ namespace UniBase.Model
                 SelectedUser.Telephone_No == TelephoneNumberTb || SelectedUser.ImageSource == ImageTb ||
                 SelectedUser.Password == PasswordTb)
             {
-                ModelGenerics.UpdateByObjectAndId(SelectedUser.User_ID, SelectedUser);
                 SelectedUser.Name = NameTb;
                 SelectedUser.Email = EmailTb;
                 SelectedUser.Telephone_No = TelephoneNumberTb;
                 SelectedUser.ImageSource = ImageTb;
                 SelectedUser.Password = PasswordTb;
                 SelectedUser.AdministratorStatus = Admin;
+                ModelGenerics.UpdateByObjectAndId(SelectedUser.User_ID, SelectedUser);
 
                 _message.ShowToastNotification("Opdateret", SelectedUser.Name + " er opdateret.");
             }
