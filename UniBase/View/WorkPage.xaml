@@ -1098,6 +1098,7 @@
                                 <TextBlock Height="33" Text="Kodeord:"/>
                                 <TextBlock Height="33" Text="Bekræft kodeord:"/>
                                 <TextBlock Height="33" Text="Billede dest.:"/>
+                                <TextBlock Height="33" Text="Admin:"/>
                             </StackPanel>
                             <StackPanel Margin="5,0,0,0">
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Navn" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
@@ -1106,13 +1107,19 @@
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <Button extensions:Mouse.Cursor="Hand" BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Background="Transparent" Height="50" Width="135" Command="{Binding }">
+                                    <Image Height="33" Width="33" Source="{Binding ManageUser.Admin, Mode=TwoWay}"/>
+                                </Button>
+                                <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}" ToolTipService.ToolTip="Klik for at vælge">
+                                    <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}" />
+                                </Button>
                             </StackPanel>
                         </StackPanel>
-                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Giv admin" Visibility="Visible" Command="{Binding ChangeAdminCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135" ></Button>
-                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Visibility="Visible" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Giv admin" Visibility="Visible" Command="{Binding ChangeAdminCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135" ></Button>
+                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Visibility="Visible" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                     </StackPanel>
                 </Grid>
             </PivotItem>

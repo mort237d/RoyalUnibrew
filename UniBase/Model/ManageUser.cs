@@ -20,6 +20,7 @@ namespace UniBase.Model
 
         private string _nameTb, _emailTb, _telephoneNumberTb, _passwordTb, _confirmPasswordTb;
         private string _imageTb = "";
+        private bool _admin;
 
         private static string _currentUserName;
 
@@ -177,11 +178,29 @@ namespace UniBase.Model
             }
         }
 
+        public bool Admin
+        {
+            get { return _admin; }
+            set { _admin = value; }
+        }
+
         #endregion
 
 
 
         #region ButtonMethods
+
+        public void AdminCheckClick()
+        {
+            if (Admin)
+            {
+                Admin = false;
+            }
+            else
+            {
+                Admin = true;
+            }
+        }
 
         public async void BrowseImageButton()
         {

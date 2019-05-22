@@ -93,7 +93,7 @@ namespace UniBase.ViewModel
             #region Update(SavedForLater)
 
 //            int month = 4;
-//            int day = 5;
+//            int day = 27;
 //            int year = 2019;
 //            int hour = 1;
 //            double weight = 0;
@@ -133,6 +133,8 @@ namespace UniBase.ViewModel
 //            }
 //            foreach (var VARIABLE in Column_2.ControlScheduleMethod.CompleteControlSchedulesList)
 //            {
+//                if (VARIABLE.Time > new DateTime(2019,4,25))
+//                {
 //                    
 //                VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0,59), 0);
 //                VARIABLE.Weight = random.NextDouble()* 2 + 36.8;
@@ -157,6 +159,7 @@ namespace UniBase.ViewModel
 //                    month = 1;
 //                }
 //               
+//                }
 //            }
 
             #endregion
@@ -211,8 +214,7 @@ namespace UniBase.ViewModel
             LogOffCommand = new RelayCommand(Login.LogOffMethod);
             ClearTbCommand = new RelayCommand(ManageUser.ClearTb);
             ChangeAdminCommand = new RelayCommand(ManageUser.ChangeAdmin);
-
-
+            AdminCheckClickCommand = new RelayCommand(ManageUser.AdminCheckClick);
 
             //Sort
             SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);
@@ -234,6 +236,8 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
+
+        public RelayCommand AdminCheckClickCommand { get; set; }
 
         public RelayCommand ClearTbCommand { get; set; }
 

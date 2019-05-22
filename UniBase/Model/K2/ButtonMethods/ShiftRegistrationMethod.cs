@@ -230,6 +230,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
+            NewShiftRegistrations.ShiftRegistration_ID = ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations()).Result.Last().ShiftRegistration_ID + 1;
             if (ModelGenerics.CreateByObject(NewShiftRegistrations))
             {
                 Initialize();
