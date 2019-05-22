@@ -29,5 +29,7 @@ namespace RestService.Models
         [Required]
         [StringLength(50)]
         public string ImageSource { get; set; }
+
+        public bool administratorStatus { get; set; }
     }
 }
