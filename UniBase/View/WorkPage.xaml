@@ -33,14 +33,8 @@
         </Grid.RowDefinitions>
 
         <!--Få current user navn frem-->
-        <CommandBar Content="{Binding ManageUser.CurrentUserName}" FontSize="20" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
-            <CommandBar.SecondaryCommands>
-                <!--AppBarButton Label="Konto indstillinger" Command="{Binding ShowAccountPopUp}"/-->
-                <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
-            </CommandBar.SecondaryCommands>
-            <AppBarSeparator/>
-            <AppBarButton Icon="Help" Label="Help"/>
-            <!--Command="{Binding GoToHelpPageCommand}"/>-->
+        <CommandBar Content="{Binding ManageUser.CurrentUserName}" Height="35" FontSize="20" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
+            <AppBarButton extensions:Mouse.Cursor="Hand" Icon="Back" Label="Log af" Foreground="White" Command="{Binding LogOffCommand}" ToolTipService.ToolTip="Log af"/>
         </CommandBar>
 
         <Pivot Grid.Row="1" x:Name="ColumnPivot" SelectedIndex="0">
@@ -1016,12 +1010,12 @@
                         <TextBlock FontWeight="SemiBold" Text="Vælg tidsperiode"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox  x:Name="SelectGraphCombobox" PlaceholderText="Vægt" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphType, Mode=TwoWay}">
+                        <ComboBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectGraphCombobox" PlaceholderText="Vægt" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphType, Mode=TwoWay}">
                             <ComboBoxItem Content="Vægt"/>
                             <ComboBoxItem Content="MipMa"/>
                             <ComboBoxItem Content="Lud Koncentration"/>
                         </ComboBox>
-                        <ComboBox x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
+                        <ComboBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
                             <ComboBoxItem Content="Idag"/>
                             <ComboBoxItem Content="En Uge"/>
                             <ComboBoxItem Content="En Måned"/>

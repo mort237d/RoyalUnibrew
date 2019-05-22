@@ -46,7 +46,7 @@ namespace UniBase.Model.Login
 
         public ManageLogin()
         {
-
+            WrongLogin = null;
         }
         
         #region Singleton
@@ -98,7 +98,6 @@ namespace UniBase.Model.Login
 
             if (temp)
             {
-                
                 Frame currentFrame = Window.Current.Content as Frame;
                 currentFrame?.Navigate(typeof(WorkPage));
             }
