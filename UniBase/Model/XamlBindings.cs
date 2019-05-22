@@ -34,7 +34,7 @@ namespace UniBase.Model
             CreateShiftRegistrationHeader();
             CreateTUHeader();
         }
-
+        //Creates a list of Headers for Frontpage
         public void CreateFrontpageHeader()
         {
             FrontPageHeaderList = new List<HeaderAndToolTip>
@@ -47,7 +47,7 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Uge Nr", "Sorter efter Uge Nr")
             };
         }
-
+        //Creates a list of Headers for ControlRegistration
         public void CreateControlRegistrationHeader()
         {
             ControlRegistrationsHeaderList = new List<HeaderAndToolTip>
@@ -68,7 +68,7 @@ namespace UniBase.Model
 
             };
         }
-
+        //Creates a list of Headers for ControlSchedule
         public void CreateControlSchedulesHeader()
         {
             ControlSchedulesHeaderList = new List<HeaderAndToolTip>
@@ -86,7 +86,7 @@ namespace UniBase.Model
 
             };
         }
-
+        //Creates a list of Headers for Production
         public void CreateProductionsHeader()
         {
             ProductionsHeaderList = new List<HeaderAndToolTip>
@@ -101,7 +101,7 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Batchdato", "Sorter efter Batchdato")
             };
         }
-
+        //Creates a list of Headers for ShiftRegistration
         public void CreateShiftRegistrationHeader()
         {
             ShiftRegistrationHeaderList = new List<HeaderAndToolTip>
@@ -116,7 +116,7 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Initialer", "Sorter efter Initialer")
             };
         }
-
+        //Creates a list of Headers for TU
         public void CreateTUHeader()
         {
             TUHeaderList = new List<HeaderAndToolTip>

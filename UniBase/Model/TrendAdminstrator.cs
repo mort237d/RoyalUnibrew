@@ -24,6 +24,7 @@ namespace UniBase.Model
 
         public TrendAdminstrator()
         {
+            //Choose the default value for the comboboxes.
             GraphType.Content = "Vægt";
             GraphTimePeriod.Content = "En Uge";
             CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
@@ -82,7 +83,12 @@ namespace UniBase.Model
             set { _completeControlSchedulesList = value; }
         }
 
-
+        /// <summary>
+        /// Takes an imput from two comboboxes that decides the timeperiod and type og graph to show.
+        /// Goes through the list of controlschedules and depending on the comboboxes, puts the data into another list.
+        /// </summary>
+        /// <param name="comboboxInput"></param>
+        /// <param name="timePeriod"></param>
         public void CreateGraph(string comboboxInput, string timePeriod)
         {
             _completeControlSchedulesList = ControlScheduleMethod.Instance.CompleteControlSchedulesList;
@@ -95,7 +101,7 @@ namespace UniBase.Model
             double minValue = 0;
             double maxValue = 0;
             
-
+            //checks the parameter for what is selected in the combobox
             if (timePeriod == "Idag")
             {
                 timeHorizon = 1;
@@ -155,12 +161,13 @@ namespace UniBase.Model
             double tempTotalValue = 0;
             foreach (var scheduleItem in _completeControlSchedulesList)
             {           
+                //checks the item date and only if the date is between the selected timeperiod and now, the data is put in the list.
                 if (scheduleItem.Time >= DateTime.Now - new TimeSpan(timeHorizon, 0, 0, 0) && scheduleItem.Time <= DateTime.Now)
                 {
                     currentItemDate = scheduleItem.Time.Subtract(new TimeSpan(0,
                         scheduleItem.Time.Hour, scheduleItem.Time.Minute,
                         scheduleItem.Time.Second));
-
+                    //if timehorizonDivider == 0 we want all data directly in the list and not the average of the day.
                     if (timeHorizonDivider == 0)
                     {
                         if (comboboxInput == "Vægt") TempTrendList.Add(new Trends(scheduleItem.Weight, scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" + scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" + scheduleItem.Time.Minute, ConstantValues.MinWeight, ConstantValues.MaxWeight));
@@ -170,9 +177,10 @@ namespace UniBase.Model
                     }
 
                 here:
-
+                    //checks if the date is within the time horizon of how many days we want the avarage.
                     if (tempDayOfScheduleList <= currentItemDate + new TimeSpan(timeHorizonDivider, 0, 0, 0) && tempDayOfScheduleList >= currentItemDate)
                     {
+                        //adds the values to a tempTotalValue for each item that is within the same time horizon.
                         amountOfItemsWithSameDate++;
                         if (comboboxInput == "Vægt")
                         { 
@@ -195,15 +203,15 @@ namespace UniBase.Model
 
                         continue;
                     }
-
+                    //Adds the average from the time horizon to the list
                     if (amountOfItemsWithSameDate != 0)
                     {
                         TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, tempDayOfScheduleList.Year + "/" + tempDayOfScheduleList.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
                     }
-
+                    //Resets values
                     tempTotalValue = 0;
                     amountOfItemsWithSameDate = 0;
-
+                    //Only changes the tempDayOfScheduleList if it has proceeded the timeHorizonDivider
                     if (new TimeSpan(timeHorizonDivider,0,0,0) <= currentItemDate - tempDayOfScheduleList)
                     {
                         tempDayOfScheduleList = currentItemDate;
@@ -213,11 +221,12 @@ namespace UniBase.Model
                 }
                 
             }
+            //Adds the last tempTotalValue to the list
             if (amountOfItemsWithSameDate != 0)
             {
                 TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + currentItemDate.Day, minValue, maxValue));
             }
-
+            //Gives the list to a new observableCollection, so the graph doesn't use the list while it is changing.
             TrendGraphList = new ObservableCollection<Trends> (TempTrendList);
 
         }

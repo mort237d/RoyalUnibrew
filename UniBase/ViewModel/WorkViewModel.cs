@@ -92,16 +92,16 @@ namespace UniBase.ViewModel
 
             #region Update(SavedForLater)
 
-            int month = 4;
-            int day = 27;
-            int year = 2019;
-            int hour = 1;
-            double weight = 0;
-            double mipMa = 0;
-            double ludKoncentration = 0;
-            int processordernext = 1;
-            //Udfyld controlschdual.
-            Random random = new Random();
+//            int month = 4;
+//            int day = 27;
+//            int year = 2019;
+//            int hour = 1;
+//            double weight = 0;
+//            double mipMa = 0;
+//            double ludKoncentration = 0;
+//            int processordernext = 1;
+//            //Udfyld controlschdual.
+//            Random random = new Random();
 //            for (int i = 0; i < 70; i++)
 //            {
 //                weight = random.NextDouble() * 1.7 + 36.9;
