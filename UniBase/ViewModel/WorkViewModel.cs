@@ -74,11 +74,11 @@ namespace UniBase.ViewModel
         
         #endregion
 
-        public ManageTables Column_2 { get; set; }
+        public Column2Facade Column2FacadePath { get; set; }
         
         public WorkViewModel()
         {
-            Column_2 = ManageTables.Instance;
+            Column2FacadePath = Column2Facade.Instance;
 
             //TODO Delete?
             #region Update(SavedForLater)
@@ -122,7 +122,7 @@ namespace UniBase.ViewModel
 //                    month = 1;
 //                }
 //            }
-//            foreach (var VARIABLE in Column_2.ControlScheduleMethod.CompleteControlSchedulesList)
+//            foreach (var VARIABLE in Column2FacadePath.ControlScheduleMethod.CompleteControlSchedulesList)
 //            {
 //                if (VARIABLE.Time > new DateTime(2019,4,25))
 //                {
@@ -156,74 +156,74 @@ namespace UniBase.ViewModel
             #endregion
 
             //Frontpage
-            RefreshFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshAll);
-            RefreshLastTenFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.RefreshLastTen);
-            SaveFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.SaveAll);
-            AddFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.AddNewItem);
-            DeleteFrontpageTable = new RelayCommand(Column_2.FrontpageMethod.DeleteItem);
+            RefreshFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.RefreshAll);
+            RefreshLastTenFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.RefreshLastTen);
+            SaveFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.SaveAll);
+            AddFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.AddNewItem);
+            DeleteFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.DeleteItem);
 
             //ControlRegistration
-            RefreshControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshAll);
-            RefreshLastTenControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.RefreshLastTen);
-            SaveControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.SaveAll);
-            AddControlRegistrationsTable = new RelayCommand(Column_2.ControlRegistrationMethod.AddNewItem);
-            DeleteControlRegistrationTable = new RelayCommand(Column_2.ControlRegistrationMethod.DeleteItem);
+            RefreshControlRegistrationTable = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.RefreshAll);
+            RefreshLastTenControlRegistrationTable = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.RefreshLastTen);
+            SaveControlRegistrationTable = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.SaveAll);
+            AddControlRegistrationsTable = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.AddNewItem);
+            DeleteControlRegistrationTable = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.DeleteItem);
 
             //ControlSchedule
-            RefreshControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshAll);
-            RefreshLastTenControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.RefreshLastTen);
-            SaveControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.SaveAll);
-            AddControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.AddNewItem);
-            DeleteControlScheduleTable = new RelayCommand(Column_2.ControlScheduleMethod.DeleteItem);
+            RefreshControlScheduleTable = new RelayCommand(Column2FacadePath.ControlScheduleMethod.RefreshAll);
+            RefreshLastTenControlScheduleTable = new RelayCommand(Column2FacadePath.ControlScheduleMethod.RefreshLastTen);
+            SaveControlScheduleTable = new RelayCommand(Column2FacadePath.ControlScheduleMethod.SaveAll);
+            AddControlScheduleTable = new RelayCommand(Column2FacadePath.ControlScheduleMethod.AddNewItem);
+            DeleteControlScheduleTable = new RelayCommand(Column2FacadePath.ControlScheduleMethod.DeleteItem);
 
             //Production
-            RefreshProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshAll);
-            RefreshLastTenProductionTable = new RelayCommand(Column_2.ProductionMethod.RefreshLastTen);
-            SaveProductionTable = new RelayCommand(Column_2.ProductionMethod.SaveAll);
-            AddProductionTable = new RelayCommand(Column_2.ProductionMethod.AddNewItem);
-            DeleteProductionTable = new RelayCommand(Column_2.ProductionMethod.DeleteItem);
+            RefreshProductionTable = new RelayCommand(Column2FacadePath.ProductionMethod.RefreshAll);
+            RefreshLastTenProductionTable = new RelayCommand(Column2FacadePath.ProductionMethod.RefreshLastTen);
+            SaveProductionTable = new RelayCommand(Column2FacadePath.ProductionMethod.SaveAll);
+            AddProductionTable = new RelayCommand(Column2FacadePath.ProductionMethod.AddNewItem);
+            DeleteProductionTable = new RelayCommand(Column2FacadePath.ProductionMethod.DeleteItem);
 
             //ShiftRegistration
-            RefreshShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshAll);
-            RefreshLastTenShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.RefreshLastTen);
-            SaveShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.SaveAll);
-            AddShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.AddNewItem);
-            DeleteShiftRegistrationTable = new RelayCommand(Column_2.ShiftRegistrationMethod.DeleteItem);
+            RefreshShiftRegistrationTable = new RelayCommand(Column2FacadePath.ShiftRegistrationMethod.RefreshAll);
+            RefreshLastTenShiftRegistrationTable = new RelayCommand(Column2FacadePath.ShiftRegistrationMethod.RefreshLastTen);
+            SaveShiftRegistrationTable = new RelayCommand(Column2FacadePath.ShiftRegistrationMethod.SaveAll);
+            AddShiftRegistrationTable = new RelayCommand(Column2FacadePath.ShiftRegistrationMethod.AddNewItem);
+            DeleteShiftRegistrationTable = new RelayCommand(Column2FacadePath.ShiftRegistrationMethod.DeleteItem);
 
             //TU
-            RefreshTUTable = new RelayCommand(Column_2.TuMethod.RefreshAll);
-            RefreshLastTenTUTable = new RelayCommand(Column_2.TuMethod.RefreshLastTen);
-            SaveTUTable = new RelayCommand(Column_2.TuMethod.SaveAll);
-            AddTUTable = new RelayCommand(Column_2.TuMethod.AddNewItem);
-            DeleteTUTable = new RelayCommand(Column_2.TuMethod.DeleteItem);
+            RefreshTUTable = new RelayCommand(Column2FacadePath.TuMethod.RefreshAll);
+            RefreshLastTenTUTable = new RelayCommand(Column2FacadePath.TuMethod.RefreshLastTen);
+            SaveTUTable = new RelayCommand(Column2FacadePath.TuMethod.SaveAll);
+            AddTUTable = new RelayCommand(Column2FacadePath.TuMethod.AddNewItem);
+            DeleteTUTable = new RelayCommand(Column2FacadePath.TuMethod.DeleteItem);
 
             //Users
-            AddUserCommand = new RelayCommand(Column_2.ManageUser.AddUser);
-            DeleteUserCommand = new RelayCommand(Column_2.ManageUser.RemoveUser);
-            ChangeUserCommand = new RelayCommand(Column_2.ManageUser.ChangeSelectedUser);
-            ClearTbCommand = new RelayCommand(Column_2.ManageUser.ClearTb);
-            AdminCheckClickCommand = new RelayCommand(Column_2.ManageUser.AdminCheckClick);
-            LogOffCommand = new RelayCommand(Column_2.ManageLogin.LogOffMethod);
+            AddUserCommand = new RelayCommand(Column2FacadePath.ManageUser.AddUser);
+            DeleteUserCommand = new RelayCommand(Column2FacadePath.ManageUser.RemoveUser);
+            ChangeUserCommand = new RelayCommand(Column2FacadePath.ManageUser.ChangeSelectedUser);
+            ClearTbCommand = new RelayCommand(Column2FacadePath.ManageUser.ClearTb);
+            AdminCheckClickCommand = new RelayCommand(Column2FacadePath.ManageUser.AdminCheckClick);
+            LogOffCommand = new RelayCommand(Column2FacadePath.ManageLogin.LogOffMethod);
 
             //Sort
-            SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);
-            SortControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SortButtonClick);
-            SortControlScheduleCommand = new RelayCommand<object>(Column_2.ControlScheduleMethod.SortButtonClick);
-            SortProductionCommand = new RelayCommand<object>(Column_2.ProductionMethod.SortButtonClick);
-            SortShiftRegistrationCommand = new RelayCommand<object>(Column_2.ShiftRegistrationMethod.SortButtonClick);
-            SortTuCommand = new RelayCommand<object>(Column_2.TuMethod.SortButtonClick);
+            SortFrontpageCommand = new RelayCommand<object>(Column2FacadePath.FrontpageMethod.SortButtonClick);
+            SortControlRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ControlRegistrationMethod.SortButtonClick);
+            SortControlScheduleCommand = new RelayCommand<object>(Column2FacadePath.ControlScheduleMethod.SortButtonClick);
+            SortProductionCommand = new RelayCommand<object>(Column2FacadePath.ProductionMethod.SortButtonClick);
+            SortShiftRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ShiftRegistrationMethod.SortButtonClick);
+            SortTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SortButtonClick);
 
-            ControlledClickCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.ControlledClick);
+            ControlledClickCommand = new RelayCommand<object>(Column2FacadePath.ControlRegistrationMethod.ControlledClick);
 
             //SelectParent
-            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SelectParentItem);
-            SelectParentItemControlRegistrationCommand = new RelayCommand<object>(Column_2.ControlRegistrationMethod.SelectParentItem);
-            SelectParentItemControlScheduleCommand = new RelayCommand<object>(Column_2.ControlScheduleMethod.SelectParentItem);
-            SelectParentItemProductionCommand = new RelayCommand<object>(Column_2.ProductionMethod.SelectParentItem);
-            SelectParentItemShiftRegistrationCommand = new RelayCommand<object>(Column_2.ShiftRegistrationMethod.SelectParentItem);
-            SelectParentItemTuCommand = new RelayCommand<object>(Column_2.TuMethod.SelectParentItem);
+            SelectParentItemFrontpageCommand = new RelayCommand<object>(Column2FacadePath.FrontpageMethod.SelectParentItem);
+            SelectParentItemControlRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ControlRegistrationMethod.SelectParentItem);
+            SelectParentItemControlScheduleCommand = new RelayCommand<object>(Column2FacadePath.ControlScheduleMethod.SelectParentItem);
+            SelectParentItemProductionCommand = new RelayCommand<object>(Column2FacadePath.ProductionMethod.SelectParentItem);
+            SelectParentItemShiftRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ShiftRegistrationMethod.SelectParentItem);
+            SelectParentItemTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SelectParentItem);
 
-            ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
+            ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.ControlledClickAdd);
         }
 
         public RelayCommand AdminCheckClickCommand { get; set; }

@@ -139,7 +139,7 @@
     <Compile Include="Model\K2\ShiftRegistrations.cs" />
     <Compile Include="Model\K2\TUs.cs" />
     <Compile Include="Model\Login\Users.cs" />
-    <Compile Include="Model\K2\ManageTables.cs" />
+    <Compile Include="Model\K2\Column2Facade.cs" />
     <Compile Include="Model\ModelGenerics.cs" />
     <Compile Include="Model\Login\ManageLogin.cs" />
     <Compile Include="Model\ManageUser.cs" />

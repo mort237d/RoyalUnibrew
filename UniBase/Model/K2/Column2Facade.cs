@@ -9,7 +9,7 @@ using UniBase.View;
 
 namespace UniBase.Model.K2
 {
-    public class ManageTables
+    public class Column2Facade
     {
         #region Properties
         public ControlRegistrationMethod ControlRegistrationMethod { get; private set; }
@@ -36,7 +36,7 @@ namespace UniBase.Model.K2
         public List<string> ControlScheduleProps { get; set; }
         #endregion
 
-        public ManageTables()
+        public Column2Facade()
         {
             InitializeObservableCollections();
         }
@@ -59,10 +59,10 @@ namespace UniBase.Model.K2
         }
 
         #region SingleTon
-        private static ManageTables _instance;
+        private static Column2Facade _instance;
         private static object syncLock = new object();
 
-        public static ManageTables Instance
+        public static Column2Facade Instance
         {
             get
             {
@@ -72,7 +72,7 @@ namespace UniBase.Model.K2
                     {
                         if (_instance == null)
                         {
-                            _instance = new ManageTables();
+                            _instance = new Column2Facade();
                         }
                     }
                 }
