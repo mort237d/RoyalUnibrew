@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <!--Få current user navn frem-->
-        <CommandBar Content="{Binding ManageUser.CurrentUserName}" Height="35" FontSize="20" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}">
+        <CommandBar Content="{Binding Column_2.ManageUser.CurrentUserName}" Height="35" FontSize="20" FontWeight="Bold" Foreground="White" Background="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}">
             <AppBarButton extensions:Mouse.Cursor="Hand" Icon="Back" Label="Log af" Foreground="White" Command="{Binding LogOffCommand}" ToolTipService.ToolTip="Log af"/>
         </CommandBar>
 
@@ -268,7 +268,7 @@
                                                             </Custom1:EventTriggerBehavior>
                                                         </Custom:Interaction.Behaviors>
                                                     </TextBox>
-                                                    <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}" ToolTipService.ToolTip="Klik for at vælge">
+                                                    <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.Column_2.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}" ToolTipService.ToolTip="Klik for at vælge">
                                                         <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}" />
                                                     </Button>
                                                     <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding CapNoIntHelper, Mode=TwoWay}" ToolTipService.ToolTip="Skriv heltal">
@@ -1010,12 +1010,12 @@
                         <TextBlock FontWeight="SemiBold" Text="Vælg tidsperiode"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectGraphCombobox" PlaceholderText="Vægt" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphType, Mode=TwoWay}">
+                        <ComboBox BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectGraphCombobox" PlaceholderText="Vægt" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphType, Mode=TwoWay}">
                             <ComboBoxItem Content="Vægt"/>
                             <ComboBoxItem Content="MipMa"/>
                             <ComboBoxItem Content="Lud Koncentration"/>
                         </ComboBox>
-                        <ComboBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
+                        <ComboBox BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column_2.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
                             <ComboBoxItem Content="Idag"/>
                             <ComboBoxItem Content="En Uge"/>
                             <ComboBoxItem Content="En Måned"/>
@@ -1055,7 +1055,7 @@
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUser, Mode=TwoWay}" Margin="10" HorizontalAlignment="Center">
+                    <GridView ItemsSource="{Binding Column_2.ManageUser.UsersList}" SelectedItem="{Binding Column_2.ManageUser.SelectedUser, Mode=TwoWay}" Margin="10" HorizontalAlignment="Center">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="login:Users">
                                 <StackPanel Width="300" Orientation="Horizontal" Margin="10">
@@ -1069,12 +1069,12 @@
                                             <StackPanel Margin="0,0,0,0">
                                                 <TextBlock Text="Email: "/>
                                                 <TextBlock Text="Telefon Nr: "/>
-                                                <TextBlock Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Text="Kodeord: "/>
+                                                <TextBlock Visibility="{Binding DataContext.Column_2.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Text="Kodeord: "/>
                                             </StackPanel>
                                             <StackPanel Margin="5,0,0,0">
                                                 <TextBlock Text="{Binding Email, Mode=TwoWay}"/> 
                                                 <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
-                                                <TextBlock Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Text="{Binding Password, Mode=TwoWay}"/>
+                                                <TextBlock Visibility="{Binding DataContext.Column_2.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Text="{Binding Password, Mode=TwoWay}"/>
                                             </StackPanel>
                                         </StackPanel>
 
@@ -1083,9 +1083,9 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    <StackPanel Margin="0,0,30,0" Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Grid.Column="1" VerticalAlignment="Center">
-                        <Border BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}"  Margin="0,0,0,10">
-                            <Image Height="300" Width="300" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
+                    <StackPanel Margin="0,0,30,0" Visibility="{Binding DataContext.Column_2.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Grid.Column="1" VerticalAlignment="Center">
+                        <Border BorderThickness="2" BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}"  Margin="0,0,0,10">
+                            <Image Height="300" Width="300" Source="{Binding Column_2.ManageUser.ImageTb, Mode=TwoWay}"></Image>
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
@@ -1097,23 +1097,23 @@
                                 <TextBlock Width="150" Margin="0,10,0,0" Height="33" Text="AdminCheckBoxImage:"/>
                             </StackPanel>
                             <StackPanel Margin="5,0,0,0">
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Navn" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Email" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Telefonnummer" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Kodeord" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Text="{Binding ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left"></TextBox>
-                                <Button extensions:Mouse.Cursor="Hand" BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Background="Transparent" Height="50" Width="150" Command="{Binding AdminCheckClickCommand}">
-                                    <Image Height="33" Width="33" Source="{Binding ManageUser.AdminCheckBoxImage, Mode=TwoWay}"/>
+                                <TextBox BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Navn" Text="{Binding Column_2.ManageUser.NameTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Email" Text="{Binding Column_2.ManageUser.EmailTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Telefonnummer" Text="{Binding Column_2.ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Kodeord" Text="{Binding Column_2.ManageUser.PasswordTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Text="{Binding Column_2.ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <Button extensions:Mouse.Cursor="Hand" BorderThickness="2" BorderBrush="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Background="Transparent" Height="50" Width="150" Command="{Binding AdminCheckClickCommand}">
+                                    <Image Height="33" Width="33" Source="{Binding Column_2.ManageUser.AdminCheckBoxImage, Mode=TwoWay}"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
-                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
+                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
+                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
-                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
+                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
+                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding Column_2.PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

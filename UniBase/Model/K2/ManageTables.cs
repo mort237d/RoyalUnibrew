@@ -3,11 +3,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 using UniBase.Model.K2.ButtonMethods;
+using UniBase.Model.Login;
+using UniBase.View;
 
 
 namespace UniBase.Model.K2
 {
-    public class ManageTables :INotifyPropertyChanged
+    public class ManageTables
     {
         #region Properties
         public ControlRegistrationMethod ControlRegistrationMethod { get; private set; }
@@ -19,6 +21,9 @@ namespace UniBase.Model.K2
         public XamlBindings XamlBindings { get; set; }
         public TrendAdminstrator TrendAdminstrator { get; set; }
         public GenericMethod GenericMethod { get; set; }
+        public PredefinedColors PredefinedColors { get; set; }
+        public ManageUser ManageUser { get; set; }
+        public ManageLogin ManageLogin { get; set; }
         #endregion
 
         #region PropLists
@@ -34,9 +39,6 @@ namespace UniBase.Model.K2
         public ManageTables()
         {
             InitializeObservableCollections();
-            
-
-            
         }
 
         public void InitializeObservableCollections()
@@ -51,10 +53,10 @@ namespace UniBase.Model.K2
             XamlBindings = new XamlBindings();
             TrendAdminstrator = new TrendAdminstrator();
             GenericMethod = new GenericMethod();
+            PredefinedColors = new PredefinedColors();
+            ManageUser = new ManageUser();
+            ManageLogin = new ManageLogin();
         }
-        
-        
-
 
         #region SingleTon
         private static ManageTables _instance;
@@ -77,18 +79,6 @@ namespace UniBase.Model.K2
 
                 return _instance;
             }
-        }
-
-        #endregion
-
-        #region INotifyPropertiesChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

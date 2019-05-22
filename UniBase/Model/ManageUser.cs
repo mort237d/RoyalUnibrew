@@ -10,7 +10,7 @@ using UniBase.Model.Login;
 
 namespace UniBase.Model
 {
-    class ManageUser : INotifyPropertyChanged
+    public class ManageUser : INotifyPropertyChanged
     {
         #region Field
 

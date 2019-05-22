@@ -75,18 +75,12 @@ namespace UniBase.ViewModel
         #endregion
 
         public ManageTables Column_2 { get; set; }
-        public PredefinedColors PredefinedColors { get; set; }
-
-        public ManageUser ManageUser { get; set; }
-        public ManageLogin Login { get; set; }
         
         public WorkViewModel()
         {
             Column_2 = ManageTables.Instance;
-            PredefinedColors = new PredefinedColors();
-            ManageUser = new ManageUser();
-            Login = new ManageLogin();
 
+            //TODO Delete?
             #region Update(SavedForLater)
 
 //            int month = 4;
@@ -204,12 +198,12 @@ namespace UniBase.ViewModel
             DeleteTUTable = new RelayCommand(Column_2.TuMethod.DeleteItem);
 
             //Users
-            AddUserCommand = new RelayCommand(ManageUser.AddUser);
-            DeleteUserCommand = new RelayCommand(ManageUser.RemoveUser);
-            ChangeUserCommand = new RelayCommand(ManageUser.ChangeSelectedUser);
-            LogOffCommand = new RelayCommand(Login.LogOffMethod);
-            ClearTbCommand = new RelayCommand(ManageUser.ClearTb);
-            AdminCheckClickCommand = new RelayCommand(ManageUser.AdminCheckClick);
+            AddUserCommand = new RelayCommand(Column_2.ManageUser.AddUser);
+            DeleteUserCommand = new RelayCommand(Column_2.ManageUser.RemoveUser);
+            ChangeUserCommand = new RelayCommand(Column_2.ManageUser.ChangeSelectedUser);
+            ClearTbCommand = new RelayCommand(Column_2.ManageUser.ClearTb);
+            AdminCheckClickCommand = new RelayCommand(Column_2.ManageUser.AdminCheckClick);
+            LogOffCommand = new RelayCommand(Column_2.ManageLogin.LogOffMethod);
 
             //Sort
             SortFrontpageCommand = new RelayCommand<object>(Column_2.FrontpageMethod.SortButtonClick);
