@@ -258,6 +258,9 @@ namespace UniBase.Model.K2.ButtonMethods
             GenerateNewControlRegistrationToAdd();
         }
         
+        /// <summary>
+        /// Gets all controlregistrations from the Database and fills their respective stringhelpers.
+        /// </summary>
         public async void RefreshAll()
         {
             ControlRegistrationsList = await ModelGenerics.GetAll(new ControlRegistrations());
@@ -267,6 +270,9 @@ namespace UniBase.Model.K2.ButtonMethods
             _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
         }
 
+        /// <summary>
+        /// Gets the ten latest controlregistrations from the Database and fills their repsctive stringhelpers.
+        /// </summary>
         public async void RefreshLastTen()
         {
             ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
@@ -279,6 +285,7 @@ namespace UniBase.Model.K2.ButtonMethods
         public void SaveAll()
         {
             _genericMethod.SaveAll(ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrerings");
+
         }
 
         public void AddNewItem()
