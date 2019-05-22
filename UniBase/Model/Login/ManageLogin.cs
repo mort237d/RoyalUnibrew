@@ -82,8 +82,6 @@ namespace UniBase.Model.Login
                 if (user.Password == PassWord)
                 {
                     _manageUser.CurrentUsers = user;
-                    Debug.WriteLine(_manageUser.CurrentUsers.Name);
-                    _manageUser.ButtonVisibility(user);
 
                     PassWord = null;
                     WrongLogin = null;

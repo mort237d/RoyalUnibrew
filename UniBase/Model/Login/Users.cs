@@ -15,6 +15,7 @@ namespace UniBase.Model.Login
         private string _telephoneNo;
         private string _email;
         private bool _administratorStatus;
+        private string _adminstratorText;
 
         public Users()
         {
@@ -105,7 +106,22 @@ namespace UniBase.Model.Login
         public bool AdministratorStatus
         {
             get { return _administratorStatus; }
-            set { _administratorStatus = value; }
+            set
+            {
+                _administratorStatus = value;
+                AdminstratorText = value ? "Admin" : null;
+                OnPropertyChanged();
+            }
+        }
+
+        public string AdminstratorText
+        {
+            get { return _adminstratorText; }
+            set
+            {
+                _adminstratorText = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion

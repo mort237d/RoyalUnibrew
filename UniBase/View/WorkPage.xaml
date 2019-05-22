@@ -1009,7 +1009,7 @@
             <PivotItem Header="K3"/>
             <!--<PivotItem Header="K4"/>
             <PivotItem Header="K5"/>-->
-            <PivotItem Header="Grafer" Visibility="Visible" >
+            <PivotItem Header="Grafer" >
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  Margin="3">
                         <TextBlock FontWeight="SemiBold" Text="Vælg type graf" Margin="5,0,105,0"/>
@@ -1059,26 +1059,29 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUser, Mode=TwoWay}" Margin="10,10,10,0">
+                    <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUser, Mode=TwoWay}" Margin="10" HorizontalAlignment="Center">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="login:Users">
-                                <StackPanel Orientation="Horizontal" Margin="10">
+                                <StackPanel Width="300" Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
                                         <StackPanel Orientation="Horizontal">
-                                        <StackPanel Margin="0,0,0,0">
-                                            <TextBlock Text="Email: "/>
-                                            <TextBlock Text="Telefon Nr: "/>
-                                            <TextBlock Visibility="Collapsed" Text="Kodeord: "/>
+                                            <TextBlock FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
+                                            <TextBlock Margin="5,0,0,0" Text="{Binding AdminstratorText, Mode=TwoWay}"/>
                                         </StackPanel>
-                                        <StackPanel Margin="5,0,0,0">
-                                            <TextBlock Text="{Binding Email, Mode=TwoWay}"/> 
-                                            <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
-                                            <TextBlock Visibility="Visible" Text="{Binding Password, Mode=TwoWay}"/>
-                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel Margin="0,0,0,0">
+                                                <TextBlock Text="Email: "/>
+                                                <TextBlock Text="Telefon Nr: "/>
+                                                <TextBlock Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, ElementName=WorkPageName}" Text="Kodeord: "/>
+                                            </StackPanel>
+                                            <StackPanel Margin="5,0,0,0">
+                                                <TextBlock Text="{Binding Email, Mode=TwoWay}"/> 
+                                                <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
+                                                <TextBlock Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, ElementName=WorkPageName}" Text="{Binding Password, Mode=TwoWay}"/>
+                                            </StackPanel>
                                         </StackPanel>
 
                                     </StackPanel>
@@ -1086,40 +1089,38 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Border BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Margin="10">
-                            <Image Height="200" Width="200" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
+                    <StackPanel Margin="0,0,30,0" Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, ElementName=WorkPageName}" Grid.Column="1" VerticalAlignment="Center">
+                        <Border BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}"  Margin="0,0,0,10">
+                            <Image Height="300" Width="300" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
-                                <TextBlock Margin="0,2,0,0" Height="33" Text="Navn:"/>
-                                <TextBlock Margin="0,2,0,0" Height="33" Text="Email:"/>
-                                <TextBlock Height="33" Text="Telefon Nr:"/>
-                                <TextBlock Height="33" Text="Kodeord:"/>
-                                <TextBlock Height="33" Text="Bekræft kodeord:"/>
-                                <TextBlock Height="33" Text="Billede dest.:"/>
-                                <TextBlock Height="33" Text="Admin:"/>
+                                <TextBlock Width="150" Margin="0,2,0,0" Height="33" Text="Navn:"/>
+                                <TextBlock Width="150" Margin="0,2,0,0" Height="33" Text="Email:"/>
+                                <TextBlock Width="150" Height="33" Text="Telefon Nr:"/>
+                                <TextBlock Width="150" Height="33" Text="Kodeord:"/>
+                                <TextBlock Width="150" Height="33" Text="Billede dest.:"/>
+                                <TextBlock Width="150" Margin="0,10,0,0" Height="33" Text="AdminCheckBoxImage:"/>
                             </StackPanel>
                             <StackPanel Margin="5,0,0,0">
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Navn" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Email" Visibility="Visible" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="135" HorizontalAlignment="Left"></TextBox>
-                                <Button extensions:Mouse.Cursor="Hand" BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Background="Transparent" Height="50" Width="135" Command="{Binding }">
-                                    <Image Height="33" Width="33" Source="{Binding ManageUser.Admin, Mode=TwoWay}"/>
-                                </Button>
-                                <Button Width="110" Height="40" Background="Transparent" BorderThickness="1" BorderBrush="{Binding DataContext.PredefinedColors.RoyalUniBrewOriginalGreen, ElementName=WorkPageName}" CommandParameter="{Binding ControlRegistration_ID}" Command="{Binding DataContext.ControlledClickCommand, ElementName=WorkPageName}" ToolTipService.ToolTip="Klik for at vælge">
-                                    <Image Source="{Binding ControlRegistrationAlcoholSpearDispenserControlled, Mode=TwoWay}" />
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Navn" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Email" Text="{Binding ManageUser.EmailTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Telefonnummer" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Kodeord" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Text="{Binding ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left"></TextBox>
+                                <Button extensions:Mouse.Cursor="Hand" BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Background="Transparent" Height="50" Width="150" Command="{Binding AdminCheckClickCommand}">
+                                    <Image Height="33" Width="33" Source="{Binding ManageUser.AdminCheckBoxImage, Mode=TwoWay}"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
-                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Giv admin" Visibility="Visible" Command="{Binding ChangeAdminCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135" ></Button>
-                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                        <Button extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Visibility="Visible" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
+                        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
+                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
+                            <Button BorderThickness="1" BorderBrush="Black" extensions:Mouse.Cursor="Hand" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="153"/>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </PivotItem>

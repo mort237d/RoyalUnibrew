@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Windows.System;
 using Windows.Web.Http.Headers;
 using UniBase.Annotations;
 using UniBase.Model.Login;
@@ -18,13 +19,12 @@ namespace UniBase.Model
 
         public readonly string StandardImage = "Images/User.png";
 
-        private string _nameTb, _emailTb, _telephoneNumberTb, _passwordTb, _confirmPasswordTb;
+        private string _nameTb, _emailTb, _telephoneNumberTb, _passwordTb;
         private string _imageTb = "";
+        private string _adminCheckBoxImage = "Images/Box/UnCheckedCheckbox.png";
         private bool _admin;
 
         private static string _currentUserName;
-
-        private string _visible;
 
         private ObservableCollection<Users> _usersList;
         private static Users _selectedUser, _currentUsers;
@@ -83,16 +83,6 @@ namespace UniBase.Model
             }
         }
 
-        public string ConfirmPasswordTb
-        {
-            get => _confirmPasswordTb;
-            set
-            {
-                _confirmPasswordTb = value;
-                OnPropertyChanged();
-            }
-        }
-
         public ObservableCollection<Users> UsersList
         {
             get => _usersList;
@@ -117,24 +107,30 @@ namespace UniBase.Model
 
         private void FillTbWithSelectedUserInfo()
         {
-            NameTb = SelectedUser.Name;
-            EmailTb = SelectedUser.Email;
-            TelephoneNumberTb = SelectedUser.Telephone_No;
-            PasswordTb = SelectedUser.Password;
-            ConfirmPasswordTb = SelectedUser.Password;
-            ImageTb = SelectedUser.ImageSource;
+            if (SelectedUser != null)
+            {
+                NameTb = SelectedUser.Name;
+                EmailTb = SelectedUser.Email;
+                TelephoneNumberTb = SelectedUser.Telephone_No;
+                PasswordTb = SelectedUser.Password;
+                ImageTb = SelectedUser.ImageSource;
+
+                AdminCheckBoxImage = SelectedUser.AdministratorStatus ? "Images/Box/CheckedCheckBox.png" : "Images/Box/UnCheckedCheckBox.png";
+            }
         }
 
         public void ClearTb()
         {
+            SelectedUser = null;
+
             NameTb = null;
             EmailTb = null;
             TelephoneNumberTb = null;
             PasswordTb = null;
-            ConfirmPasswordTb = null;
             ImageTb = null;
 
-            SelectedUser = null;
+            AdminCheckBoxImage = "Images/Box/UnCheckedCheckBox.png";
+            Admin = false;
         }
 
         public Users CurrentUsers
@@ -144,16 +140,6 @@ namespace UniBase.Model
             {
                 _currentUsers = value;
                 CurrentUserName = "  Bruger: " + _currentUsers.Name;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Visible
-        {
-            get { return _visible; }
-            set
-            {
-                _visible = value;
                 OnPropertyChanged();
             }
         }
@@ -197,26 +183,40 @@ namespace UniBase.Model
             }
         }
 
+        public string AdminCheckBoxImage
+        {
+            get { return _adminCheckBoxImage; }
+            set
+            {
+                _adminCheckBoxImage = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool Admin
         {
             get { return _admin; }
-            set { _admin = value; }
+            set
+            {
+                _admin = value;
+                OnPropertyChanged();
+            }
         }
-
         #endregion
 
 
 
         #region ButtonMethods
-
         public void AdminCheckClick()
         {
             if (Admin)
             {
+                AdminCheckBoxImage = "Images/Box/UnCheckedCheckbox.png";
                 Admin = false;
             }
             else
             {
+                AdminCheckBoxImage = "Images/Box/CheckedCheckbox.png";
                 Admin = true;
             }
         }
@@ -248,22 +248,18 @@ namespace UniBase.Model
                     {
                         if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
                         {
-                            if (PasswordTb == ConfirmPasswordTb)
+                            if (string.IsNullOrEmpty(ImageTb))
                             {
-                                if (string.IsNullOrEmpty(ImageTb))
-                                {
-                                    UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage));
-                                    ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage));
-                                }
-                                else
-                                {
-                                    UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
-                                    ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
-                                }
-                                _message.ShowToastNotification("Tilføjet", NameTb + " er blevet tilføjet.");
-                                NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
+                                UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, Admin));
+                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, Admin));
                             }
-                            else await _message.Error("Uoverensstemmelser","kodeord stemmer ikke overens med bekræft kodeord");
+                            else
+                            {
+                                UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin));
+                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin));
+                            }
+                            _message.ShowToastNotification("Tilføjet", NameTb + " er blevet tilføjet.");
+                            NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = null;
                         }
                         else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
                     }
@@ -300,31 +296,17 @@ namespace UniBase.Model
                 SelectedUser.Telephone_No == TelephoneNumberTb || SelectedUser.ImageSource == ImageTb ||
                 SelectedUser.Password == PasswordTb)
             {
-                if (PasswordTb == ConfirmPasswordTb)
-                {
-                    ModelGenerics.UpdateByObjectAndId(SelectedUser.User_ID, SelectedUser);
-                    SelectedUser.Name = NameTb;
-                    SelectedUser.Email = EmailTb;
-                    SelectedUser.Telephone_No = TelephoneNumberTb;
-                    SelectedUser.ImageSource = ImageTb;
-                    SelectedUser.Password = PasswordTb;
+                ModelGenerics.UpdateByObjectAndId(SelectedUser.User_ID, SelectedUser);
+                SelectedUser.Name = NameTb;
+                SelectedUser.Email = EmailTb;
+                SelectedUser.Telephone_No = TelephoneNumberTb;
+                SelectedUser.ImageSource = ImageTb;
+                SelectedUser.Password = PasswordTb;
+                SelectedUser.AdministratorStatus = Admin;
 
-                    _message.ShowToastNotification("Opdateret", SelectedUser.Name + " er opdateret.");
-                }
-                else await _message.Error("Forkert kodeord", "kodeord stemmer ikke overens");
+                _message.ShowToastNotification("Opdateret", SelectedUser.Name + " er opdateret.");
             }
              else await _message.Error("Fejl", "Intet er ændret prøv igen");
-        }
-
-        public void ButtonVisibility(Users usersToCheck)
-        {
-            Visible = usersToCheck is Administrator ? "Visible" : "Collapsed";
-        }
-
-        public async void ChangeAdmin()
-        {
-            if (SelectedUser != null) await _message.YesNo("Giv admin videre", "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
-            else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
         #endregion
 
