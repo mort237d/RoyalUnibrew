@@ -140,8 +140,8 @@ namespace UniBase.Model
             set
             {
                 _currentUsers = value;
-                OnPropertyChanged();
                 CurrentUserName = "  Bruger: " + _currentUsers.Name;
+                OnPropertyChanged();
             }
         }
 

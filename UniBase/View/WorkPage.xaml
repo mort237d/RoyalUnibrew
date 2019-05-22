@@ -1084,7 +1084,8 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    <StackPanel Grid.Column="1">
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Height="200" Width="200" Margin="10" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <TextBlock Margin="0,2,0,0" Height="33" Text="Navn:"/>
@@ -1092,6 +1093,7 @@
                                 <TextBlock Height="33" Text="Telefon Nr:"/>
                                 <TextBlock Height="33" Text="Kodeord:"/>
                                 <TextBlock Height="33" Text="Bekræft kodeord:"/>
+                                <TextBlock Height="33" Text="Billede dest.:"/>
                             </StackPanel>
                             <StackPanel Margin="5,0,0,0">
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Navn" Visibility="Visible" Text="{Binding ManageUser.NameTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
@@ -1099,6 +1101,7 @@
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Telefonnummer" Visibility="Visible" Text="{Binding ManageUser.TelephoneNumberTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Kodeord" Visibility="Visible" Text="{Binding ManageUser.PasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Bekræft kodeord" Visibility="Visible" Text="{Binding ManageUser.ConfirmPasswordTb, Mode=TwoWay}" Width="135" HorizontalAlignment="Left"></TextBox>
+                                <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="135" HorizontalAlignment="Left"></TextBox>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
