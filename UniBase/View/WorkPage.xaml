@@ -661,12 +661,12 @@
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
                                     <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Production_ID, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}" IsReadOnly="True"/>
-                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.ProcessOrder_No, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletPutInStock0001, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Tapmachine, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.TotalKegsPrPallet, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.Counter, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
-                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletCounter, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.ProcessOrderNoIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletPutInStock0001IntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.TapmachineIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.TotalKegsPrPalletIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.CounterIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
+                                    <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.PalletCounterIntHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderInt}"/>
                                     <TextBox extensions:TextBoxMask.Mask="2099/99/99" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column_2.ProductionMethod.NewProductions.BatchDateStringHelper, Mode=TwoWay}" PlaceholderText="{Binding Column_2.XamlBindings.PlaceHolderDate}"/>
                                 </StackPanel>
                                 <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddProductionTable}">
@@ -1032,7 +1032,7 @@
                     
                     <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="auto" >
                         <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="{Binding Column_2.TrendAdminstrator.GraphScrollLenght}" Height="500"  >
-                            <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
+                            <charting:LineSeries Title="{Binding Column_2.TrendAdminstrator.GraphType.Content, Mode=TwoWay}" 
                                                  IndependentValuePath="Date"
                                                  DependentValuePath="SelectedCategory"
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendGraphList, Mode=TwoWay}"/>
@@ -1069,12 +1069,12 @@
                                             <StackPanel Margin="0,0,0,0">
                                                 <TextBlock Text="Email: "/>
                                                 <TextBlock Text="Telefon Nr: "/>
-                                                <TextBlock Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, ElementName=WorkPageName}" Text="Kodeord: "/>
+                                                <TextBlock Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Text="Kodeord: "/>
                                             </StackPanel>
                                             <StackPanel Margin="5,0,0,0">
                                                 <TextBlock Text="{Binding Email, Mode=TwoWay}"/> 
                                                 <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
-                                                <TextBlock Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, ElementName=WorkPageName}" Text="{Binding Password, Mode=TwoWay}"/>
+                                                <TextBlock Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Text="{Binding Password, Mode=TwoWay}"/>
                                             </StackPanel>
                                         </StackPanel>
 
@@ -1083,7 +1083,7 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    <StackPanel Margin="0,0,30,0" Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, ElementName=WorkPageName}" Grid.Column="1" VerticalAlignment="Center">
+                    <StackPanel Margin="0,0,30,0" Visibility="{Binding DataContext.ManageUser.CurrentUsers.AdministratorStatus, Mode=TwoWay, ElementName=WorkPageName}" Grid.Column="1" VerticalAlignment="Center">
                         <Border BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}"  Margin="0,0,0,10">
                             <Image Height="300" Width="300" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
                         </Border>

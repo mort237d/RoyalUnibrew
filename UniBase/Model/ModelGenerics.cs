@@ -53,14 +53,14 @@ namespace UniBase.Model
             int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
             string httpUrl = URI + typeName[typeNamePosistionInNamespace];
-            Task<string> resTask = null;
+            string resTask = null;
             
             ObservableCollection<T> ifFailed = new ObservableCollection<T>();
 
             try
             {
-                resTask = client.GetStringAsync(httpUrl);
-                return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
+                resTask = await client.GetStringAsync(httpUrl);
+                return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask);
             }
             catch (Exception e)
             {
@@ -86,8 +86,8 @@ namespace UniBase.Model
 
             try
             {
-                var resTask = client.GetStringAsync(httpUrl);
-                result = JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
+                var resTask = await client.GetStringAsync(httpUrl);
+                result = JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask);
             }
             catch (Exception e)
             {
