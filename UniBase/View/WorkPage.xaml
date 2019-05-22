@@ -1056,13 +1056,12 @@
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Brugere">
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUsers, Mode=TwoWay}" Margin="10,10,10,0">
+                    <GridView ItemsSource="{Binding ManageUser.UsersList}" SelectedItem="{Binding ManageUser.SelectedUser, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="login:Users">
                                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -1088,8 +1087,9 @@
                         </GridView.ItemTemplate>
                     </GridView>
                     <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image Height="200" Width="200" Margin="10" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
-                    <StackPanel Visibility="Visible" Grid.Column="1">
+                        <Border BorderThickness="2" BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Margin="10">
+                            <Image Height="200" Width="200" Source="{Binding ManageUser.ImageTb, Mode=TwoWay}"></Image>
+                        </Border>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <TextBlock Margin="0,2,0,0" Height="33" Text="Navn:"/>
@@ -1108,16 +1108,11 @@
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="135" HorizontalAlignment="Left"></TextBox>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <!--<TextBox Margin="2" PlaceholderText="Billede" Width="100" Text="{Binding ManageUser.ImageTb, Mode=TwoWay}"/>
-                            <Button Content="..." Width="auto" Command="{Binding UserImageBrowserCommand}"/>-->
-                        </StackPanel>
-                            <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Giv admin" Visibility="Visible" Command="{Binding ChangeAdminCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135" ></Button>
+                        <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Giv admin" Visibility="Visible" Command="{Binding ChangeAdminCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135" ></Button>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Visibility="Visible" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
-                    </StackPanel>
                     </StackPanel>
                 </Grid>
             </PivotItem>
