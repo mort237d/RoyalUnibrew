@@ -38,6 +38,11 @@ namespace UniBase.Model.K2.ButtonMethods
         public FrontpageMethod()
         {
             Initialize();
+
+            foreach (var p in PropertyInfos)
+            {
+                Debug.WriteLine(p.Name, "prop");
+            }
         }
 
         public int SelectedFrontpageId

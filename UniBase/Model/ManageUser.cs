@@ -119,6 +119,7 @@ namespace UniBase.Model
                 ImageTb = SelectedUser.ImageSource;
 
                 AdminCheckBoxImage = SelectedUser.AdministratorStatus ? "Images/Box/CheckedCheckBox.png" : "Images/Box/UnCheckedCheckBox.png";
+                Admin = SelectedUser.AdministratorStatus;
             }
         }
 

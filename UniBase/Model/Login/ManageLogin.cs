@@ -80,9 +80,11 @@ namespace UniBase.Model.Login
         /// <summary>
         /// A method to check if your login credentials are correct. Here we only use the password because P.O. requested a system to be able to log in fast so the production was not halted. We navigate from the LoginPage to the WorkPage.
         /// </summary>
-        public void CheckLogin()
+        public async void CheckLogin()
         {
             bool temp = false;
+            _manageUser.UsersList = await ModelGenerics.GetAll(new Users());
+
             foreach (var user in _manageUser.UsersList)
             {
                 if (user.Password == PassWord)

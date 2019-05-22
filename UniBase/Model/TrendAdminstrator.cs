@@ -89,9 +89,9 @@ namespace UniBase.Model
         /// </summary>
         /// <param name="comboboxInput"></param>
         /// <param name="timePeriod"></param>
-        public void CreateGraph(string comboboxInput, string timePeriod)
+        public async void CreateGraph(string comboboxInput, string timePeriod)
         {
-            _completeControlSchedulesList = ControlScheduleMethod.Instance.CompleteControlSchedulesList;
+            _completeControlSchedulesList = await ModelGenerics.GetAll(new ControlSchedules());
 
             TempTrendList.Clear();
             DateTime tempDayOfScheduleList = _completeControlSchedulesList[0].Time;
