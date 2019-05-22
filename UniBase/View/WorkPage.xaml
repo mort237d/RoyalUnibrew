@@ -1033,7 +1033,9 @@
                             <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
                     </StackPanel>
+                    <StackPanel Width="1000">
 
+                    
                     <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="auto" >
                         <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="{Binding Column_2.TrendAdminstrator.GraphScrollLenght}" Height="500"  >
                             <charting:LineSeries Title="{Binding GraphCombobox, Mode=TwoWay}" 
@@ -1050,6 +1052,7 @@
                                                  ItemsSource="{Binding Column_2.TrendAdminstrator.TrendGraphList, Mode=TwoWay}"/>
                         </charting:Chart>
                     </ScrollViewer>
+                    </StackPanel>
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Brugere">
@@ -1069,12 +1072,12 @@
                                         <StackPanel Margin="0,0,0,0">
                                             <TextBlock Text="Email: "/>
                                             <TextBlock Text="Telefon Nr: "/>
-                                            <TextBlock Text="Kodeord: "/>
+                                            <TextBlock Visibility="Collapsed" Text="Kodeord: "/>
                                         </StackPanel>
                                         <StackPanel Margin="5,0,0,0">
                                             <TextBlock Text="{Binding Email, Mode=TwoWay}"/> 
                                             <TextBlock Text="{Binding Telephone_No, Mode=TwoWay}"/>
-                                            <TextBlock Text="{Binding Password, Mode=TwoWay}"/>
+                                            <TextBlock Visibility="Visible" Text="{Binding Password, Mode=TwoWay}"/>
                                         </StackPanel>
                                         </StackPanel>
 
@@ -1105,14 +1108,14 @@
                                 <TextBox BorderBrush="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Visibility="Visible" Text="{Binding ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="135" HorizontalAlignment="Left"></TextBox>
                             </StackPanel>
                         </StackPanel>
+                            <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Giv admin" Visibility="Visible" Command="{Binding ChangeAdminCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135" ></Button>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Tilføj bruger" Visibility="Visible" Command="{Binding AddUserCommand, Mode=TwoWay}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Slet bruger" Visibility="Visible" Command="{Binding DeleteUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ændre bruger" Visibility="Visible" Command="{Binding ChangeUserCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                         <Button HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Background="{Binding PredefinedColors.RoyalUniBrewOriginalGreen}" Content="Ryd data" Visibility="Visible" Command="{Binding ClearTbCommand}" Margin="0,0,0,0" VerticalAlignment="Center" Width="135"/>
                     </StackPanel>
-
+                    </StackPanel>
                 </Grid>
-
             </PivotItem>
         </Pivot>
     </Grid>

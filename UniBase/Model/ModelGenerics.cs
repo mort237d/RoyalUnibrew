@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -150,6 +151,18 @@ namespace UniBase.Model
                 if (resp.IsSuccessStatusCode)
                 {
                     return true;
+                }
+                else if(resp.StatusCode == HttpStatusCode.Conflict)
+                {
+                    Debug.WriteLine("Id already exists");
+                }
+                else if(resp.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    Debug.WriteLine("Dafuq did you do?");
+                }
+                else if (resp.StatusCode == HttpStatusCode.BadGateway)
+                {
+
                 }
             }
             catch (Exception e)
