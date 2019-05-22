@@ -290,6 +290,8 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
+            NewControlRegistrationsToAdd.ControlRegistration_ID = ModelGenerics.GetLastTenInDatabase(new ControlRegistrations()).Result.Last().ControlRegistration_ID + 1;
+
             if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
             {
                 Initialize();

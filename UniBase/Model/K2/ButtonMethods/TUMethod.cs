@@ -262,6 +262,8 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
+            NewTUs.TU_ID = ModelGenerics.GetLastTenInDatabase(new TUs()).Result.Last().TU_ID + 1;
+
             if (ModelGenerics.CreateByObject(NewTUs))
             {
                 Initialize();

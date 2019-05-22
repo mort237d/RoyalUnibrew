@@ -229,6 +229,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void AddNewItem()
         {
+            NewProductions.Production_ID = ModelGenerics.GetLastTenInDatabase(new Productions()).Result.Last().Production_ID + 1;
             if (ModelGenerics.CreateByObject(NewProductions))
             {
                 Initialize();
