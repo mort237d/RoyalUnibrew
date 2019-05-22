@@ -1024,10 +1024,10 @@
                             <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Width="1000">
+                    <StackPanel Width="{Binding Column2FacadePath.TrendAdminstrator.ScreenWidth}">
 
-                    
-                    <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="auto" >
+
+                        <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" Width="{Binding Column2FacadePath.TrendAdminstrator.ScreenWidth}" >
                         <charting:Chart  x:Name="LineChart" HorizontalAlignment="Center" Margin="5" Width="{Binding Column2FacadePath.TrendAdminstrator.GraphScrollLenght}" Height="500"  >
                             <charting:LineSeries Title="{Binding Column2FacadePath.TrendAdminstrator.GraphType.Content, Mode=TwoWay}" 
                                                  IndependentValuePath="Date"

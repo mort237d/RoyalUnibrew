@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 using UniBase.Model.K2;
@@ -28,6 +31,8 @@ namespace UniBase.Model
             GraphType.Content = "Vægt";
             GraphTimePeriod.Content = "En Uge";
             CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+            
+            _screenWidth = ApplicationView.GetForCurrentView().VisibleBounds.Width;
         }
 
         public List<Trends> TempTrendList
@@ -81,6 +86,17 @@ namespace UniBase.Model
         {
             get { return _completeControlSchedulesList; }
             set { _completeControlSchedulesList = value; }
+        }
+
+        private double _screenWidth;
+        public double ScreenWidth
+        {
+            get { return _screenWidth; }
+            set
+            {
+                _screenWidth = value;
+                
+            }
         }
 
         /// <summary>
