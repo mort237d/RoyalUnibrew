@@ -236,6 +236,9 @@ namespace UniBase.Model.K2.ButtonMethods
             };
         }
 
+        /// <summary>
+        /// Uses the GetAll method from the ModelGenerics class to update the entire table.
+        /// </summary>
         public async void RefreshAll()
         {
             TuList = await ModelGenerics.GetAll(new TUs());
@@ -243,6 +246,9 @@ namespace UniBase.Model.K2.ButtonMethods
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
         
+        /// <summary>
+        /// Uses the GetLastTenInDatabase method from the ModelGenerics class to update the last ten in the table.
+        /// </summary>
         public async void RefreshLastTen()
         {
             TuList = await ModelGenerics.GetLastTenInDatabase(new TUs());
@@ -250,6 +256,9 @@ namespace UniBase.Model.K2.ButtonMethods
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
 
+        /// <summary>
+        /// Uses the SaveAll method from the GenericMethod class to save the table.
+        /// </summary>
         public void SaveAll()
         {
             _genericMethod.SaveAll(TuList, "TU_ID", "TU");

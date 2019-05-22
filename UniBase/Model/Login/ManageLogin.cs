@@ -68,12 +68,18 @@ namespace UniBase.Model.Login
 
         #region ButtonMethods
 
+        /// <summary>
+        /// A method to log out of the current user, we simply navigate back to the LoginPage.
+        /// </summary>
         public void LogOffMethod()
         {
             Frame currentFrame = Window.Current.Content as Frame;
             currentFrame?.Navigate(typeof(LoginPage));
         }
 
+        /// <summary>
+        /// A method to check if your login credentials are correct. Here we only use the password because P.O. requested a system to be able to log in fast so the production was not halted. We navigate from the LoginPage to the WorkPage.
+        /// </summary>
         public void CheckLogin()
         {
             bool temp = false;

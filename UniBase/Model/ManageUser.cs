@@ -114,28 +114,6 @@ namespace UniBase.Model
             }
         }
 
-        private void FillTbWithSelectedUserInfo()
-        {
-            NameTb = SelectedUser.Name;
-            EmailTb = SelectedUser.Email;
-            TelephoneNumberTb = SelectedUser.Telephone_No;
-            PasswordTb = SelectedUser.Password;
-            ConfirmPasswordTb = SelectedUser.Password;
-            ImageTb = SelectedUser.ImageSource;
-        }
-
-        public void ClearTb()
-        {
-            NameTb = null;
-            EmailTb = null;
-            TelephoneNumberTb = null;
-            PasswordTb = null;
-            ConfirmPasswordTb = null;
-            ImageTb = null;
-
-            SelectedUser = null;
-        }
-
         public Users CurrentUsers
         {
             get { return _currentUsers; }
@@ -166,6 +144,9 @@ namespace UniBase.Model
             _message = new Message(this);
         }
 
+         /// <summary>
+         /// Loads all the users from the database and puts the users into the local list.
+         /// </summary>
         private async void Load()
         {
             UsersList = await ModelGenerics.GetAll(new Users());
@@ -206,6 +187,35 @@ namespace UniBase.Model
         {
             //ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
         }
+
+        /// <summary>
+        /// Fills the Textboxes that are used when changing the user's information with the user's current information.
+        /// </summary>
+        private void FillTbWithSelectedUserInfo()
+        {
+            NameTb = SelectedUser.Name;
+            EmailTb = SelectedUser.Email;
+            TelephoneNumberTb = SelectedUser.Telephone_No;
+            PasswordTb = SelectedUser.Password;
+            ConfirmPasswordTb = SelectedUser.Password;
+            ImageTb = SelectedUser.ImageSource;
+        }
+
+        /// <summary>
+        /// Clears the Textboxes that are used when changing the user's information.
+        /// </summary>
+        public void ClearTb()
+        {
+            NameTb = null;
+            EmailTb = null;
+            TelephoneNumberTb = null;
+            PasswordTb = null;
+            ConfirmPasswordTb = null;
+            ImageTb = null;
+
+            SelectedUser = null;
+        }
+
         /// <summary>
         /// Adds user to local list and then adds to the database with the ModelGenerics class.
         /// </summary>
@@ -308,9 +318,7 @@ namespace UniBase.Model
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
         #endregion
-
-
-
+        
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;

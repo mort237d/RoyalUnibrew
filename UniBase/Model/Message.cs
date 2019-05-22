@@ -43,12 +43,23 @@ namespace UniBase.Model
         #endregion
 
         #region Methods
-
+        /// <summary>
+        /// Displays an error message if the content is not written correct or the user makes an error which they should not.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public async Task Error(string title, string content)
         {
             await new MessageDialog(content, title).ShowAsync();
         }
 
+        /// <summary>
+        /// Displays a dialog box where it asks you if are sure you want to do that action because the action is often irreversible.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public async Task YesNo(string title, string content)
         {
             var yesCommand = new UICommand("Ja", cmd => { });
@@ -70,15 +81,12 @@ namespace UniBase.Model
 
             if (command == yesCommand)
             {
-
                 if (title == "Slet bruger")
                 {
                     ModelGenerics.DeleteById(_manageUser.SelectedUser, _manageUser.SelectedUser.User_ID);
                     ShowToastNotification("Slettet", _manageUser.SelectedUser.Name + " er blevet slettet.");
                     _manageUser.UsersList.Remove(_manageUser.SelectedUser);
                 }
-
-                
             }
             else if (command == noCommand)
             {
