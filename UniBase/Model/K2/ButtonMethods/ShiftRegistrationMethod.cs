@@ -220,24 +220,12 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var shiftRegistration in ShiftRegistrationsList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)shiftRegistration.ShiftRegistration_ID, shiftRegistration);
-            }
-            _message.ShowToastNotification("Gemt", "Vagt Registrerings-tabellen er gemt");
+            _genericMethod.SaveAll(ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrerings");
         }
 
         public void DeleteItem()
         {
-            if (SelectedShiftRegistration != null)
-            {
-                _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID");
-                _message.ShowToastNotification("Slettet", "Vagt Registrering slettet");
-            }
-            else
-            {
-                _message.ShowToastNotification("Fejl", "Marker venligst ønskede Vagt Registrering, for at slette");
-            }
+            _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrering");
         }
 
         public void AddNewItem()
@@ -260,34 +248,19 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            ShiftRegistrations del = ShiftRegistrationsList.First(d => d.ShiftRegistration_ID == id);
-            int index = ShiftRegistrationsList.IndexOf(del);
-
-            SelectedShiftRegistrationId = index;
+            SelectedShiftRegistrationId = _genericMethod.SelectParentItem((int) obj, ShiftRegistrationsList, "ShiftRegistration_ID");
         }
 
         public void SortButtonClick(object id)
         {
-            if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[0].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[0].Name);
-            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[1].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[1].Name);
-            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[2].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[2].Name);
-            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[3].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[3].Name);
-            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[4].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[4].Name);
-            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[5].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[5].Name);
-            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[6].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[6].Name);
-            else if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[7].Header)
-                ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[7].Name);
-            else
-                Debug.WriteLine("Error");
+            for (int i = 0; i <= 7; i++)
+            {
+                if (id.ToString() == _xamlBindings.ShiftRegistrationHeaderList[i].Header)
+                {
+                    ShiftRegistrationsList = _genericMethod.Sort<ShiftRegistrations>(ShiftRegistrationsList, PropertyInfos[i].Name);
+                    break;
+                }
+            }
         }
 
         private void FillStringHelpers()

@@ -23,7 +23,7 @@ namespace UniBase.Model.K2
             
         }
 
-        public ShiftRegistrations(int shiftRegistration_ID, DateTime start_Time, DateTime end_Date, int breaks, int totalHours, int staff, string initials, int processOrder_No, Frontpages frontpage)
+        public ShiftRegistrations(int shiftRegistration_ID, DateTime start_Time, DateTime end_Date, int breaks, int totalHours, int staff, string initials, int processOrder_No)
         {
             ShiftRegistration_ID = shiftRegistration_ID;
             Start_Time = start_Time;
@@ -33,7 +33,6 @@ namespace UniBase.Model.K2
             Staff = staff;
             Initials = initials;
             ProcessOrder_No = processOrder_No;
-            Frontpage = frontpage;
         }
 
         public int ShiftRegistration_ID { get; set; }
@@ -103,9 +102,17 @@ namespace UniBase.Model.K2
             {
                 if (_startTimeStringHelper != value)
                 {
-                    if (DateTime.TryParse(value, out DateTime time))
+                    if (DateTime.TryParse(value, out DateTime parsedDateTime))
                     {
-                        Start_Time = time;
+                        if (Start_Time == DateTime.MinValue)
+                        {
+                            Start_Time = parsedDateTime;
+                        }
+                        else
+                        {
+                            TimeSpan priorTimeSpan = new TimeSpan(parsedDateTime.Hour, parsedDateTime.Minute, 0);
+                            Start_Time = Start_Time.Date + priorTimeSpan;
+                        }
                     }
                 }
                 _startTimeStringHelper = value;
@@ -120,9 +127,17 @@ namespace UniBase.Model.K2
             {
                 if (_endDateStringHelper != value)
                 {
-                    if (DateTime.TryParse(value, out DateTime time))
+                    if (DateTime.TryParse(value, out DateTime parsedDateTime))
                     {
-                        End_Date = time;
+                        if (End_Date == DateTime.MinValue)
+                        {
+                            End_Date = parsedDateTime;
+                        }
+                        else
+                        {
+                            TimeSpan priorTimeSpan = new TimeSpan(parsedDateTime.Hour, parsedDateTime.Minute, 0);
+                            End_Date = End_Date.Date + priorTimeSpan;
+                        }
                     }
                 }
                 _endDateStringHelper = value;

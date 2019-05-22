@@ -252,24 +252,12 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var tus in TuList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)tus.TU_ID, tus);
-            }
-            _message.ShowToastNotification("Gemt", "TU-tabellen er gemt");
+            _genericMethod.SaveAll(TuList, "TU_ID", "TU");
         }
 
         public void DeleteItem()
         {
-            if (SelectedTu != null)
-            {
-                _genericMethod.DeleteSelected(SelectedTu, new TUs(), CompleteTUsList, TuList, "TU_ID");
-                _message.ShowToastNotification("Slettet", "TU slettet");
-            }
-            else
-            {
-                _message.ShowToastNotification("Fejl", "Marker venligst ønskede TU, for at slette");
-            }
+            _genericMethod.DeleteSelected(SelectedTu, new TUs(), CompleteTUsList, TuList, "TU_ID", "TU");
         }
 
         public void AddNewItem()
@@ -289,40 +277,19 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            TUs del = TuList.First(d => d.TU_ID == id);
-            int index = TuList.IndexOf(del);
-
-            SelectedTuId = index;
+            SelectedTuId = _genericMethod.SelectParentItem((int)obj, TuList, "TU_ID");
         }
 
         public void SortButtonClick(object id)
         {
-            if (id.ToString() == _xamlBindings.TUHeaderList[0].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[0].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[1].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[1].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[2].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[2].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[3].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[3].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[4].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[4].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[5].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[5].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[6].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[6].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[7].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[7].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[8].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[8].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[9].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[9].Name);
-            else if (id.ToString() == _xamlBindings.TUHeaderList[10].Header)
-                TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[10].Name);
-            else
-                Debug.WriteLine("Error");
+            for (int i = 0; i <= 10; i++)
+            {
+                if (id.ToString() == _xamlBindings.TUHeaderList[i].Header)
+                {
+                    TuList = _genericMethod.Sort<TUs>(TuList, PropertyInfos[i].Name);
+                    break;
+                }
+            }
         }
 
         private void FillStringHelpers()

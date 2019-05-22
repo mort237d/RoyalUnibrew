@@ -278,12 +278,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var controlRegistration in ControlRegistrationsList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)controlRegistration.ControlRegistration_ID, controlRegistration);
-            }
-
-            _message.ShowToastNotification("Gemt", "Kontrol Registrerings-tabellen er gemt");
+            _genericMethod.SaveAll(ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrerings");
         }
 
         public void AddNewItem()
@@ -301,15 +296,7 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void DeleteItem()
         {
-            if (SelectedControlRegistration != null)
-            {
-                _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID");
-                _message.ShowToastNotification("Slettet", "Kontrol Registrering slettet");
-            }
-            else
-            {
-                _message.ShowToastNotification("Fejl", "Marker venligst ønskede Kontrol Registrering, for at slette");
-            }
+            _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrering");
         }
         #endregion
 
@@ -350,44 +337,19 @@ namespace UniBase.Model.K2.ButtonMethods
         
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            ControlRegistrations del = ControlRegistrationsList.First(d => d.ControlRegistration_ID == id);
-            int index = ControlRegistrationsList.IndexOf(del);
-
-            SelectedControlRegistrationId = index;
+            SelectedControlRegistrationId = _genericMethod.SelectParentItem((int)obj, ControlRegistrationsList, "ControlRegistration_ID");
         }
 
         public void SortButtonClick(object id)
         {
-            if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[0].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[0].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[1].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[1].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[2].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[2].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[3].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[3].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[4].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[4].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[5].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[5].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[6].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[6].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[7].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[7].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[8].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[8].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[9].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[9].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[10].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[10].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[11].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[11].Name);
-            else if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[12].Header)
-                ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList,PropertyInfos[12].Name);
-            else
-                Debug.WriteLine("Error");
+            for (int i = 0; i <= 12; i++)
+            {
+                if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[i].Header)
+                {
+                    ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList, PropertyInfos[i].Name);
+                    break;
+                }
+            }
         }
 
         public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
@@ -410,11 +372,11 @@ namespace UniBase.Model.K2.ButtonMethods
                 controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
                 controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
                 FillStringHelpersHelper(controlregistration);
-                FillJegSize(controlregistration);
+                FillKegSize(controlregistration);
             }
         }
 
-        private static void FillJegSize(ControlRegistrations controlregistration)
+        private static void FillKegSize(ControlRegistrations controlregistration)
         {
             if (controlregistration.KegSize == "20L")
             {

@@ -180,11 +180,7 @@ namespace UniBase.Model.K2.ButtonMethods
         }
         public void SaveAll()
         {
-            foreach (var frontpage in FrontpagesList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)frontpage.ProcessOrder_No, frontpage);
-            }
-            _message.ShowToastNotification("Gemt", "Forside-tabellen er gemt");
+            _genericMethod.SaveAll(FrontpagesList, "ProcessOrder_No", "Forside");
         }
 
         public void DeleteItem()
@@ -239,9 +235,7 @@ namespace UniBase.Model.K2.ButtonMethods
                         Debug.WriteLine("\t \n TU_ID: " + i.TU_ID, "DELETE");
                     }
                 }
-                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No");
-
-                _message.ShowToastNotification("Slettet","Forside slettet");
+                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No", "Forside");
             }
             else
             {
@@ -266,30 +260,18 @@ namespace UniBase.Model.K2.ButtonMethods
         #endregion
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            Frontpages del = FrontpagesList.First(d => d.ProcessOrder_No == id);
-            int index = FrontpagesList.IndexOf(del);
-
-            SelectedFrontpageId = index;
+            SelectedFrontpageId = _genericMethod.SelectParentItem((int)obj, FrontpagesList, "ProcessOrder_No");
         }
         public void SortButtonClick(object id)
         {
-            Debug.WriteLine(id.ToString(), "ID");
-            if (id.ToString() == _xamlBindings.FrontPageHeaderList[0].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[0].Name);
-            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[1].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[1].Name);
-            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[2].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[2].Name);
-            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[3].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[3].Name);
-            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[4].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[4].Name);
-            else if (id.ToString() == _xamlBindings.FrontPageHeaderList[5].Header)
-                FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[5].Name);
-            else
-                Debug.WriteLine("Error");
+            for (int i = 0; i <= 5; i++)
+            {
+                if (id.ToString() == _xamlBindings.FrontPageHeaderList[i].Header)
+                {
+                    FrontpagesList = _genericMethod.Sort<Frontpages>(FrontpagesList, PropertyInfos[i].Name);
+                    break;
+                }
+            }
         }
         private void FillStringHelpers()
         {

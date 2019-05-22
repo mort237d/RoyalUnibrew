@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight.Command;
 using UniBase.Annotations;
@@ -90,36 +92,72 @@ namespace UniBase.ViewModel
 
             #region Update(SavedForLater)
 
-            //int month = 2;
-            //int day = 11;
-            //Udfyld controlschdual.
-            //Random radnom = new Random();
-            //            for (int i = 0; i < 120; i++)
-            //            {
-            //                ModelGenerics.CreateByObject(new ControlSchedules(i+39, new DateHelper(2019, month, day),radnom.NextDouble()*100, "hej", radnom.NextDouble() * 100, radnom.NextDouble() * 100, "mig", "Very good"));
-            //                day++;
-            //                if (day == 29)
-            //                {
-            //                    month++;
-            //                    day = 1;
-            //                }
-            //            }
-            //            foreach (var VARIABLE in Column_2.ControlSchedulesList)
-            //            {
-            //                
-            //                VARIABLE.Time = new DateHelper(2019, month, day);
-            //                VARIABLE.Weight = radnom.NextDouble()* 1.7 + 36.9;
-            //                VARIABLE.MipMA = radnom.NextDouble() * 2.7 + 23.9;
-            //                VARIABLE.LudKoncentration = radnom.NextDouble() * 1.2 + 0.9;
-            //                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
-            //                day++;
-            //                if (day > 30)
-            //                {
-            //                    month++;
-            //                    day = 1;
-            //                }
-            //            
-            //            }
+//            int month = 4;
+//            int day = 5;
+//            int year = 2019;
+//            int hour = 1;
+//            double weight = 0;
+//            double mipMa = 0;
+//            double ludKoncentration = 0;
+//            int processordernext = 1;
+//            //Udfyld controlschdual.
+//            Random random = new Random();
+//            for (int i = 0; i < 70; i++)
+//            {
+//                weight = random.NextDouble() * 1.7 + 36.9;
+//                mipMa = random.NextDouble() * 2.7 + 23.9;
+//                ludKoncentration = random.NextDouble() * 1.2 + 0.9;
+//                ModelGenerics.CreateByObject(new ControlSchedules(i+330, new DateTime(year, month, day),weight, "hej", ludKoncentration, mipMa, "mig", "Very good",processordernext));
+//                
+//                processordernext++;
+//                if (processordernext > 37)
+//                {
+//                    processordernext = 1;
+//                }
+//                hour += 3;
+//                if (hour > 9)
+//                {
+//                    hour = 1;
+//                    day++;
+//                }
+//                if (day == 29)
+//                {
+//                    month++;
+//                    day = 1;
+//                }
+//                if (month > 11)
+//                {
+//                    year++;
+//                    month = 1;
+//                }
+//            }
+//            foreach (var VARIABLE in Column_2.ControlScheduleMethod.CompleteControlSchedulesList)
+//            {
+//                    
+//                VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0,59), 0);
+//                VARIABLE.Weight = random.NextDouble()* 2 + 36.8;
+//                VARIABLE.MipMA = random.NextDouble() * 3 + 23.8;
+//                VARIABLE.LudKoncentration = random.NextDouble() * 1.5 + 0.8;
+//                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
+//                hour += 3;
+//                if (hour > 9)
+//                {
+//                    hour = 1;
+//                    day++;
+//                }
+//                if (day == 29)
+//                {
+//                    month++;
+//                    day = 1;
+//                }
+//             
+//                if (month > 11)
+//                {
+//                    year++;
+//                    month = 1;
+//                }
+//               
+//            }
 
             #endregion
 
@@ -171,6 +209,7 @@ namespace UniBase.ViewModel
             ChangeUserCommand = new RelayCommand(ManageUser.ChangeSelectedUser);
             UserImageBrowserCommand = new RelayCommand(ManageUser.BrowseImageButton);
             LogOffCommand = new RelayCommand(Login.LogOffMethod);
+            ClearTbCommand = new RelayCommand(ManageUser.ClearTb);
             ChangeAdminCommand = new RelayCommand(ManageUser.ChangeAdmin);
 
 
@@ -195,7 +234,9 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand2 = new RelayCommand(Column_2.ControlRegistrationMethod.ControlledClickAdd);
         }
-        
+
+        public RelayCommand ClearTbCommand { get; set; }
+
         #region Properties
         
 

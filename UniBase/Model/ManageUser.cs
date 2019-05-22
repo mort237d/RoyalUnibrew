@@ -16,10 +16,12 @@ namespace UniBase.Model
         private static Message _message;
         //BrowseImage _browseImages = new BrowseImage();
 
-        public readonly string StandardImage = "UserImages/Profile-icon.png";
+        public readonly string StandardImage = "Images/User.png";
 
         private string _nameTb, _emailTb, _telephoneNumberTb, _passwordTb, _confirmPasswordTb;
         private string _imageTb = "";
+
+        private static string _currentUserName;
 
         private string _visible;
 
@@ -106,8 +108,30 @@ namespace UniBase.Model
             set
             {
                 _selectedUsers = value;
+                FillTbWithSelectedUserInfo();
+
                 OnPropertyChanged();
             }
+        }
+
+        private void FillTbWithSelectedUserInfo()
+        {
+            NameTb = SelectedUsers.Name;
+            EmailTb = SelectedUsers.Email;
+            TelephoneNumberTb = SelectedUsers.Telephone_No;
+            PasswordTb = SelectedUsers.Password;
+            ConfirmPasswordTb = SelectedUsers.Password;
+            ImageTb = SelectedUsers.ImageSource;
+        }
+
+        public void ClearTb()
+        {
+            NameTb = null;
+            EmailTb = null;
+            TelephoneNumberTb = null;
+            PasswordTb = null;
+            ConfirmPasswordTb = null;
+            ImageTb = null;
         }
 
         public Users CurrentUsers
@@ -116,6 +140,7 @@ namespace UniBase.Model
             set
             {
                 _currentUsers = value;
+                CurrentUserName = "  Bruger: " + _currentUsers.Name;
                 OnPropertyChanged();
             }
         }
@@ -160,6 +185,15 @@ namespace UniBase.Model
             }
         }
 
+        public string CurrentUserName
+        {
+            get { return _currentUserName; }
+            set
+            {
+                _currentUserName = value;
+            }
+        }
+
         #endregion
 
 
@@ -193,12 +227,16 @@ namespace UniBase.Model
                         {
                             if (PasswordTb == ConfirmPasswordTb)
                             {
-                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb,
-                                    TelephoneNumberTb, PasswordTb, ImageTb));
-                                ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb,
-                                    TelephoneNumberTb, PasswordTb,
-                                    "e"));
-
+                                if (string.IsNullOrEmpty(ImageTb))
+                                {
+                                    UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage));
+                                    ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage));
+                                }
+                                else
+                                {
+                                    UsersList.Add(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                                    ModelGenerics.CreateByObject(new Users(_usersList.Last().User_ID, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb));
+                                }
                                 NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
                             }
                             else await _message.Error("Uoverensstemmelser","kodeord stemmer ikke overens med bekræft kodeord");

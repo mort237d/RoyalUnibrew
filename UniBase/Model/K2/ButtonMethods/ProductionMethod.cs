@@ -219,24 +219,12 @@ namespace UniBase.Model.K2.ButtonMethods
 
         public void SaveAll()
         {
-            foreach (var production in ProductionsList)
-            {
-                ModelGenerics.UpdateByObjectAndId((int)production.Production_ID, production);
-            }
-            _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
+            _genericMethod.SaveAll(ProductionsList, "Production_ID", "Produktions");
         }
 
         public void DeleteItem()
         {
-            if (SelectedProduction != null)
-            {
-                _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID");
-                _message.ShowToastNotification("Slettet", "Produktion slettet");
-            }
-            else
-            {
-                _message.ShowToastNotification("Fejl", "Marker venligst ønskede produktion, for at slette");
-            }
+            _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID", "Produktion");
         }
 
         public void AddNewItem()
@@ -260,34 +248,19 @@ namespace UniBase.Model.K2.ButtonMethods
         
         public void SelectParentItem(object obj)
         {
-            int id = (int)obj;
-
-            Productions del = ProductionsList.First(d => d.Production_ID == id);
-            int index = ProductionsList.IndexOf(del);
-
-            SelectedProductionId = index;
+            SelectedProductionId = _genericMethod.SelectParentItem((int)obj, ProductionsList, "Production_ID");
         }
 
         public void SortButtonClick(object id)
         {
-            if (id.ToString() == _xamlBindings.ProductionsHeaderList[0].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList,PropertyInfos[0].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[1].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[1].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[2].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[2].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[3].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[3].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[4].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[4].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[5].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[5].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[6].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[6].Name);
-            else if (id.ToString() == _xamlBindings.ProductionsHeaderList[7].Header)
-                ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[7].Name);
-            else
-                Debug.WriteLine("Error");
+            for (int i = 0; i <= 7; i++)
+            {
+                if (id.ToString() == _xamlBindings.ProductionsHeaderList[i].Header)
+                {
+                    ProductionsList = _genericMethod.Sort<Productions>(ProductionsList, PropertyInfos[i].Name);
+                    break;
+                }
+            }
         }
 
         private void FillStringHelpers()

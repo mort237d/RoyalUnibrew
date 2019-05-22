@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
@@ -34,7 +35,7 @@ namespace UniBase.Model.K2
 
         }
 
-        public ControlSchedules(int controlSchedule_ID, DateTime time, double weight, string kegTest, double ludKoncentration, double mipMA, string signature, string note, int processOrder_No, Frontpages frontpage)
+        public ControlSchedules(int controlSchedule_ID, DateTime time, double weight, string kegTest, double ludKoncentration, double mipMA, string signature, string note, int processOrder_No)
         {
             ControlSchedule_ID = controlSchedule_ID;
             Time = time;
@@ -45,7 +46,6 @@ namespace UniBase.Model.K2
             Signature = signature;
             Note = note;
             ProcessOrder_No = processOrder_No;
-            Frontpage = frontpage;
         }
 
         public int ControlSchedule_ID { get; set; }
@@ -159,11 +159,19 @@ namespace UniBase.Model.K2
             get { return _timeStringHelper; }
             set
             {
-                if (_processOrderNoIntHelper != value)
+                if (_timeStringHelper != value)
                 {
-                    if (DateTime.TryParse(value, out DateTime t))
+                    if (DateTime.TryParse(value, out DateTime parsedDateTime))
                     {
-                        Time = t;
+                        if (Time == DateTime.MinValue)
+                        {
+                            Time = parsedDateTime;
+                        }
+                        else
+                        {
+                            TimeSpan priorTimeSpan = new TimeSpan(parsedDateTime.Hour, parsedDateTime.Minute, 0);
+                            Time = Time.Date + priorTimeSpan;
+                        }
                     }
                 }
                 _timeStringHelper = value;
@@ -180,13 +188,13 @@ namespace UniBase.Model.K2
                 {
                     if (value.Contains("."))
                     {
-                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        Double.TryParse(value.Replace('.', ','), NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         Weight = i;
 
                     }
                     else 
                     {
-                        Double.TryParse(value, out Double i);
+                        Double.TryParse(value, NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         Weight = i;
                     }
                 }
@@ -204,13 +212,13 @@ namespace UniBase.Model.K2
                 {
                     if (value.Contains("."))
                     {
-                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        Double.TryParse(value.Replace('.', ','), NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         LudKoncentration = i;
 
                     }
                     else
                     {
-                        Double.TryParse(value, out Double i);
+                        Double.TryParse(value, NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         LudKoncentration = i;
                     }
                 }
@@ -228,13 +236,13 @@ namespace UniBase.Model.K2
                 {
                     if (value.Contains("."))
                     {
-                        Double.TryParse(value.Replace('.', ','), out Double i);
+                        Double.TryParse(value.Replace('.', ','), NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         MipMA = i;
 
                     }
                     else
                     {
-                        Double.TryParse(value, out Double i);
+                        Double.TryParse(value, NumberStyles.Number, CultureInfo.CreateSpecificCulture("da-DK"), out Double i);
                         MipMA = i;
                     }
                 }
