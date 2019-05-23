@@ -28,12 +28,10 @@ namespace UnitTestApp
         {
             SolidColorBrush whiteColorBrush = new SolidColorBrush(Colors.White);
             SolidColorBrush salmonColorBrush = new SolidColorBrush(Colors.LightSalmon);
-            OutOfBoundColorChange outOfBound = new OutOfBoundColorChange();
-            SolidColorBrush returnOutOfRangeColor = outOfBound.ChangeListViewColor(1, 3, 9);
-            SolidColorBrush returnInRangeColor = outOfBound.ChangeListViewColor(29, 14, 200);
+            SolidColorBrush returnOutOfRangeColor = OutOfBoundColorChange.ChangeListViewColor(1, 3, 9);
+            SolidColorBrush returnInRangeColor = OutOfBoundColorChange.ChangeListViewColor(29, 14, 200);
             Assert.AreEqual(salmonColorBrush.Color, returnOutOfRangeColor.Color);
             Assert.AreEqual(whiteColorBrush.Color, returnInRangeColor.Color);
-            
         }
     }
 }
