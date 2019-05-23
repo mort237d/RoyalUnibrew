@@ -301,7 +301,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
             else
             {
-                //error
+                _message.ShowToastNotification("Fejl", "Forsøg venligst igen og gennemkig eventuelt for tastefejl");
             }
         }
 
