@@ -259,7 +259,7 @@ namespace UniBase.Model.K2.ButtonMethods
             }
             else
             {
-                _message.ShowToastNotification("Fejl", "Marker venligst ønskede forside, for at slette");
+                _message.ShowToastNotification("Fejl", "Forsøg venligst igen og gennemkig eventuelt for tastefejl");
             }
         }
 
