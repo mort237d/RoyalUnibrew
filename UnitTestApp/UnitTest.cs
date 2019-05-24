@@ -22,7 +22,7 @@ namespace UnitTestApp
             //Assert.AreEqual(4, weekNumber);
             
         }
-   
+
         [UITestMethod]
         public void TestChangeListViewColor()
         {
@@ -32,6 +32,27 @@ namespace UnitTestApp
             SolidColorBrush returnInRangeColor = OutOfBoundColorChange.ChangeListViewColor(29, 14, 200);
             Assert.AreEqual(salmonColorBrush.Color, returnOutOfRangeColor.Color);
             Assert.AreEqual(whiteColorBrush.Color, returnInRangeColor.Color);
+        }
+
+        [UITestMethod]
+        public async void TestSort()
+        {
+            GenericMethod _genericMethod = new GenericMethod();
+
+            var list = await ModelGenerics.GetLastTenInDatabase(new Frontpages());
+            _genericMethod.Sort(list, "ProcessOrder_No");
+
+            Frontpages frontpage = list[0];
+
+            foreach (var f in list)
+            {
+                if (frontpage.ProcessOrder_No > f.ProcessOrder_No)
+                {
+                    frontpage = f;
+                }
+            }
+
+            Assert.Equals(list[0], frontpage);
         }
     }
 }
