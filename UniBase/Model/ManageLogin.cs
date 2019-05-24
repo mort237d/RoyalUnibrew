@@ -14,7 +14,6 @@ namespace UniBase.Model
         public string PassWord { get; set; }
         private string _wrongLogin, _wrongLoginColor;
         private ManageUser _manageUser = ManageUser.Instance;
-        private Message _message = Message.Instance;
 
         #endregion
 
