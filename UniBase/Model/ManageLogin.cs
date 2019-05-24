@@ -3,9 +3,10 @@ using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
+using UniBase.Model.K2;
 using UniBase.View;
 
-namespace UniBase.Model.Login
+namespace UniBase.Model
 {
     public class ManageLogin : INotifyPropertyChanged
     {
