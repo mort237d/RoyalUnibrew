@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.AppContainer;
 using UniBase.Model;
 using UniBase.Model.K2;
-using UniBase.Model.K2.ButtonMethods;
+using UniBase.Model.K2.TableMethods;
 
 namespace UnitTestApp
 {

@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using UniBase.Annotations;
-using UniBase.Model.K2.ButtonMethods;
+using UniBase.Model.K2.TableMethods;
 
 namespace UniBase.Model.K2
 {
