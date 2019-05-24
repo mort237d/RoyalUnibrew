@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 
-namespace UniBase.Model.Login
+namespace UniBase.Model.K2
 {
     public class Users : INotifyPropertyChanged
     {
