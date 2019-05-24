@@ -66,7 +66,10 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
         public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
         public RelayCommand<object> SelectParentItemTuCommand { get; set; }
-        
+
+        public RelayCommand AdminCheckClickCommand { get; set; }
+
+        public RelayCommand ClearTbCommand { get; set; }
         #endregion
 
         public Column2Facade Column2FacadePath { get; set; }
@@ -220,15 +223,6 @@ namespace UniBase.ViewModel
 
             ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.ControlledClickAdd);
         }
-
-        public RelayCommand AdminCheckClickCommand { get; set; }
-
-        public RelayCommand ClearTbCommand { get; set; }
-
-        #region Properties
-        
-
-        #endregion
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
