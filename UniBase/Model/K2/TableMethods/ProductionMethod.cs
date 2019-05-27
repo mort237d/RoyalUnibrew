@@ -21,7 +21,7 @@ namespace UniBase.Model.K2.TableMethods
 
         private Productions _newProductions = new Productions();
 
-        private Message _message = new Message();
+        private Message _message = Message.Instance;
 
         private XamlBindings _xamlBindings = new XamlBindings();
         private GenericMethod _genericMethod = new GenericMethod();

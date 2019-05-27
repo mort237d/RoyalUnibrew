@@ -7,7 +7,7 @@ namespace UniBase.Model
 {
     public class GenericMethod
     {
-        private Message _message = new Message();
+        private Message _message = Message.Instance;
         private bool sorted = true;
 
         /// <summary>

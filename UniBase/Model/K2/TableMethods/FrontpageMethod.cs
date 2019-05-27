@@ -14,7 +14,7 @@ namespace UniBase.Model.K2.TableMethods
         private ObservableCollection<Frontpages> _completeFrontpagesList;
 
         private Frontpages _newFrontpagesToAdd = new Frontpages();
-        private Message _message = new Message();
+        private Message _message = Message.Instance;
         private GenericMethod _genericMethod = new GenericMethod();
         private XamlBindings _xamlBindings = new XamlBindings();
         
