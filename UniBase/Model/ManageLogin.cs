@@ -3,9 +3,10 @@ using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
+using UniBase.Model.K2;
 using UniBase.View;
 
-namespace UniBase.Model.Login
+namespace UniBase.Model
 {
     public class ManageLogin : INotifyPropertyChanged
     {
@@ -13,7 +14,6 @@ namespace UniBase.Model.Login
         public string PassWord { get; set; }
         private string _wrongLogin, _wrongLoginColor;
         private ManageUser _manageUser = ManageUser.Instance;
-        private Message _message = Message.Instance;
 
         #endregion
 

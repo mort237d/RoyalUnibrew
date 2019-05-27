@@ -18,7 +18,7 @@
                 <StackPanel>
                     <PasswordBox BorderBrush="#16503F" Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Password" PasswordChar="*" Password="{Binding ManageLogin.PassWord,Mode=TwoWay}"/>
                 </StackPanel>
-                <Button Background="#16503F" Foreground="White" Content="ManageLogin" FontSize="25"  Width="100" Height="50" Command="{Binding LoginRelayCommand}"/>
+                <Button Background="#16503F" Foreground="White" Content="Login" FontSize="25"  Width="100" Height="50" Command="{Binding LoginRelayCommand}"/>
             </StackPanel>
             <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding ManageLogin.WrongLogin,Mode=TwoWay}" Foreground="Red"/>
         </StackPanel>

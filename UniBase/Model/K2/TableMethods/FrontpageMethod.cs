@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 
-namespace UniBase.Model.K2.ButtonMethods
+namespace UniBase.Model.K2.TableMethods
 {
     public class FrontpageMethod : IManageButtonMethods
     {

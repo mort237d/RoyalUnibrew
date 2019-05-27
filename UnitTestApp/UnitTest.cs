@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.AppContainer;
 using UniBase.Model;
 using UniBase.Model.K2;
-using UniBase.Model.K2.ButtonMethods;
+using UniBase.Model.K2.TableMethods;
 
 namespace UnitTestApp
 {
@@ -22,18 +22,37 @@ namespace UnitTestApp
             //Assert.AreEqual(4, weekNumber);
             
         }
-   
+
         [UITestMethod]
         public void TestChangeListViewColor()
         {
             SolidColorBrush whiteColorBrush = new SolidColorBrush(Colors.White);
             SolidColorBrush salmonColorBrush = new SolidColorBrush(Colors.LightSalmon);
-            OutOfBoundColorChange outOfBound = new OutOfBoundColorChange();
-            SolidColorBrush returnOutOfRangeColor = outOfBound.ChangeListViewColor(1, 3, 9);
-            SolidColorBrush returnInRangeColor = outOfBound.ChangeListViewColor(29, 14, 200);
+            SolidColorBrush returnOutOfRangeColor = OutOfBoundColorChange.ChangeListViewColor(1, 3, 9);
+            SolidColorBrush returnInRangeColor = OutOfBoundColorChange.ChangeListViewColor(29, 14, 200);
             Assert.AreEqual(salmonColorBrush.Color, returnOutOfRangeColor.Color);
             Assert.AreEqual(whiteColorBrush.Color, returnInRangeColor.Color);
-            
+        }
+
+        [UITestMethod]
+        public async void TestSort()
+        {
+            GenericMethod _genericMethod = new GenericMethod();
+
+            var list = await ModelGenerics.GetLastTenInDatabase(new Frontpages());
+            _genericMethod.Sort(list, "ProcessOrder_No");
+
+            Frontpages frontpage = list[0];
+
+            foreach (var f in list)
+            {
+                if (frontpage.ProcessOrder_No > f.ProcessOrder_No)
+                {
+                    frontpage = f;
+                }
+            }
+
+            Assert.Equals(list[0], frontpage);
         }
     }
 }

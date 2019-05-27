@@ -122,26 +122,26 @@
     <Compile Include="Model\BrowseImage.cs" />
     <Compile Include="Model\ConstantValues.cs" />
     <Compile Include="Model\HeaderAndToolTip.cs" />
-    <Compile Include="Model\K2\ButtonMethods\CalculateProductions.cs" />
-    <Compile Include="Model\K2\ButtonMethods\CalculateTUTotal.cs" />
-    <Compile Include="Model\K2\ButtonMethods\ControlRegistrationMethod.cs" />
-    <Compile Include="Model\K2\ButtonMethods\ControlScheduleMethod.cs" />
-    <Compile Include="Model\K2\ButtonMethods\IManageButtonMethods.cs" />
-    <Compile Include="Model\K2\ButtonMethods\ProductionMethod.cs" />
-    <Compile Include="Model\K2\ButtonMethods\ShiftRegistrationMethod.cs" />
-    <Compile Include="Model\K2\ButtonMethods\TUMethod.cs" />
+    <Compile Include="Model\K2\TableMethods\CalculateProductions.cs" />
+    <Compile Include="Model\K2\TableMethods\CalculateTUTotal.cs" />
+    <Compile Include="Model\K2\TableMethods\ControlRegistrationMethod.cs" />
+    <Compile Include="Model\K2\TableMethods\ControlScheduleMethod.cs" />
+    <Compile Include="Model\K2\TableMethods\IManageButtonMethods.cs" />
+    <Compile Include="Model\K2\TableMethods\ProductionMethod.cs" />
+    <Compile Include="Model\K2\TableMethods\ShiftRegistrationMethod.cs" />
+    <Compile Include="Model\K2\TableMethods\TUMethod.cs" />
     <Compile Include="Model\K2\ControlRegistrations.cs" />
     <Compile Include="Model\K2\ControlSchedules.cs" />
-    <Compile Include="Model\K2\ButtonMethods\FrontpageMethod.cs" />
+    <Compile Include="Model\K2\TableMethods\FrontpageMethod.cs" />
     <Compile Include="Model\K2\Frontpages.cs" />
     <Compile Include="Model\K2\Productions.cs" />
     <Compile Include="Model\K2\Products.cs" />
     <Compile Include="Model\K2\ShiftRegistrations.cs" />
     <Compile Include="Model\K2\TUs.cs" />
-    <Compile Include="Model\Login\Users.cs" />
+    <Compile Include="Model\K2\Users.cs" />
     <Compile Include="Model\K2\Column2Facade.cs" />
     <Compile Include="Model\ModelGenerics.cs" />
-    <Compile Include="Model\Login\ManageLogin.cs" />
+    <Compile Include="Model\ManageLogin.cs" />
     <Compile Include="Model\ManageUser.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\OutOfBoundColorChange.cs" />
@@ -153,7 +153,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\WorkViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\PredefinedColors.cs" />
+    <Compile Include="Model\PredefinedColors.cs" />
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

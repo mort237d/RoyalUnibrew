@@ -14,7 +14,6 @@
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
 
     xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:login="using:UniBase.Model.Login"
     x:Name="WorkPageName"
     x:Class="UniBase.View.WorkPage"
 
@@ -1054,7 +1053,7 @@
                     </Grid.ColumnDefinitions>
                     <GridView ItemsSource="{Binding Column2FacadePath.ManageUser.UsersList}" SelectedItem="{Binding Column2FacadePath.ManageUser.SelectedUser, Mode=TwoWay}" Margin="10" HorizontalAlignment="Center">
                         <GridView.ItemTemplate>
-                            <DataTemplate x:DataType="login:Users">
+                            <DataTemplate x:DataType="k2:Users">
                                 <StackPanel Width="300" Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
                                     <StackPanel Orientation="Vertical">

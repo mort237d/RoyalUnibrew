@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
 
-namespace UniBase.Model.K2.ButtonMethods
+namespace UniBase.Model.K2.TableMethods
 {
     public class ControlRegistrationMethod : IManageButtonMethods
     {

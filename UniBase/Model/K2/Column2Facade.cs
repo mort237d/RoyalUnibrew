@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using UniBase.Model.K2.ButtonMethods;
-using UniBase.Model.Login;
+using UniBase.Model.K2.TableMethods;
 using UniBase.View;
 
 

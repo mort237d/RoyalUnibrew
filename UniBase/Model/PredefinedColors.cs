@@ -1,4 +1,4 @@
-﻿namespace UniBase.View
+﻿namespace UniBase.Model
 {
     public class PredefinedColors
     {
