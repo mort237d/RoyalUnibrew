@@ -155,6 +155,11 @@ namespace UniBase.Model.K2
                     if (int.TryParse(value, out int i))
                     {
                         Breaks = i;
+                        TimeSpan t = End_Date.Subtract(Start_Time);
+                        var j = t.TotalMinutes;
+                        var e = j - Breaks;
+                        TimeSpan ee = TimeSpan.FromMinutes(e);
+                        TotalHoursIntHelper = ee.TotalHours.ToString("F");
                     }
                 }
                 _breaksIntHelper = value;
