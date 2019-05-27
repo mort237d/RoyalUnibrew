@@ -81,14 +81,14 @@ namespace UniBase.Model
         /// <param name="completeList">Liste af alle elementer i databasen</param>
         /// <param name="list">Listen som vises i lisviewet</param>
         /// <param name="property">Propertien, som der skal angive id</param>
-        public void DeleteSelected<T>(T selectedItem, T type, ObservableCollection<T> completeList, ObservableCollection<T> list, string property, string tableName)
+        public void DeleteSelected<T>(T selectedItem, T type, ObservableCollection<T> completeList, ObservableCollection<T> list, string property, string tableName, string primaryKeyNameDanish)
         {
             if (selectedItem != null)
             {
                 PropertyInfo prop = typeof(T).GetProperty(property);
                 var id = prop.GetValue(selectedItem, null);
 
-                ModelGenerics.DeleteById(type, (int)id);
+                ModelGenerics.DeleteById(type, (int)id, property, primaryKeyNameDanish);
 
                 foreach (var item in completeList)
                 {
@@ -116,13 +116,13 @@ namespace UniBase.Model
         /// <param name="list">Listen, som der skal gemmes fra</param>
         /// <param name="property">Propertien som skal gemmes</param>
         /// <param name="tableName">Navn på tabellen til toast notification</param>
-        public void SaveAll<T>(ObservableCollection<T> list, string property, string tableName)
+        public void SaveAll<T>(ObservableCollection<T> list, string property, string tableName, string primaryKeyNameDanish)
         {
             PropertyInfo prop = typeof(T).GetProperty(property);
 
             foreach (var item in list)
             {
-                ModelGenerics.UpdateByObjectAndId((int)prop.GetValue(item, null), item);
+                ModelGenerics.UpdateByObjectAndId((int)prop.GetValue(item, null), item, property, primaryKeyNameDanish);
             }
             _message.ShowToastNotification("Gemt", tableName + "-tabellen er gemt");
         }

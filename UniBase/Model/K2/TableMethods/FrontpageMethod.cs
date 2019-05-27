@@ -152,7 +152,7 @@ namespace UniBase.Model.K2.TableMethods
         #region ButtonMethods
         public async void Initialize()
         {
-            FrontpagesList = await ModelGenerics.GetLastTenInDatabase(new Frontpages());
+            FrontpagesList = await ModelGenerics.GetLastTenInDatabase(new Frontpages(), "ProcessOrder_No", "ProcessOrdre Nr");
             FillStringHelpers();
 
             _completeFrontpagesList = await ModelGenerics.GetAll(new Frontpages());
@@ -168,13 +168,13 @@ namespace UniBase.Model.K2.TableMethods
         }
         public async void RefreshLastTen()
         {
-            FrontpagesList = await ModelGenerics.GetLastTenInDatabase(new Frontpages());
+            FrontpagesList = await ModelGenerics.GetLastTenInDatabase(new Frontpages(), "ProcessOrder_No", "ProcessOrdre Nr");
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
         public void SaveAll()
         {
-            _genericMethod.SaveAll(FrontpagesList, "ProcessOrder_No", "Forside");
+            _genericMethod.SaveAll(FrontpagesList, "ProcessOrder_No", "Forside", "ProcessOrdre Nr");
         }
 
         public async void DeleteItem()
@@ -193,38 +193,38 @@ namespace UniBase.Model.K2.TableMethods
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new ControlRegistrations(), i.ControlRegistration_ID);
+                        ModelGenerics.DeleteById(new ControlRegistrations(), i.ControlRegistration_ID, "ControlRegistration_ID", "Kontrol Registrerings");
                     }
                 }
                 foreach (var i in ControlScheduleList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new ControlSchedules(), i.ControlSchedule_ID);
+                        ModelGenerics.DeleteById(new ControlSchedules(), i.ControlSchedule_ID, "ControlSchedule_ID", "Kontrol Skema");
                     }
                 }
                 foreach (var i in ProductionList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new Productions(), i.Production_ID);
+                        ModelGenerics.DeleteById(new Productions(), i.Production_ID, "Production_ID", "Produktion");
                     }
                 }
                 foreach (var i in ShiftRegistrationList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new ShiftRegistrations(), i.ShiftRegistration_ID);
+                        ModelGenerics.DeleteById(new ShiftRegistrations(), i.ShiftRegistration_ID, "ShiftRegistration_ID", "Vagt Registrerings");
                     }
                 }
                 foreach (var i in TuList)
                 {
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
-                        ModelGenerics.DeleteById(new TUs(), i.TU_ID);
+                        ModelGenerics.DeleteById(new TUs(), i.TU_ID, "TU_ID", "TU");
                     }
                 }
-                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No", "Forside");
+                _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No", "Forside", "ProcessOrdre Nr");
             }
             else
             {

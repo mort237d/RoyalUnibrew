@@ -76,7 +76,7 @@ namespace UniBase.Model
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static async Task<ObservableCollection<T>> GetLastTenInDatabase<T>(T type)
+        public static async Task<ObservableCollection<T>> GetLastTenInDatabase<T>(T type, string primaryKeyName, string primaryKeyNameDanish)
         {
             int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
@@ -88,6 +88,12 @@ namespace UniBase.Model
             {
                 var resTask = await client.GetStringAsync(httpUrl);
                 result = JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask);
+
+                Task<HttpResponseMessage> deleteAsync = client.GetAsync(httpUrl);
+
+                HttpResponseMessage resp = deleteAsync.Result;
+
+                ErrorMessage(type, primaryKeyName, primaryKeyNameDanish, typeNamePosistionInNamespace, typeName, resp);
             }
             catch (Exception e)
             {
@@ -104,7 +110,7 @@ namespace UniBase.Model
         /// <param name="type">The type name</param>
         /// <param name="id">The ID of the type</param>
         /// <returns></returns>
-        public static bool DeleteById<T>(T type, int id)
+        public static bool DeleteById<T>(T type, int id, string primaryKeyName, string primaryKeyNameDanish)
         {
             int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
@@ -115,17 +121,14 @@ namespace UniBase.Model
                 Task<HttpResponseMessage> deleteAsync = client.DeleteAsync(httpUrl);
                 
                 HttpResponseMessage resp = deleteAsync.Result;
-                if (resp.IsSuccessStatusCode)
-                {
-                    return true; 
-                }
+                
+                return ErrorMessage(type, primaryKeyName, primaryKeyNameDanish, typeNamePosistionInNamespace, typeName, resp);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 return false;
             }
-            return false;
         }
 
         /// <summary>
@@ -158,9 +161,53 @@ namespace UniBase.Model
                 Debug.WriteLine(e);
                 return false;
             }
-            return false;
         }
 
+
+        /// <summary>
+        /// Generic method to update a specific type, by its ID, in the Database through the REST-service.
+        /// </summary>
+        /// <typeparam name="T">The specific type</typeparam>
+        /// <param name="id">The ID of the type</param>
+        /// <param name="type">The object of the type you want to create</param>
+        /// <param name="primaryKeyName"></param>
+        /// <param name="primaryKeyNameDanish"></param>
+        /// <returns></returns>
+        public static bool UpdateByObjectAndId<T>(int id, T type, string primaryKeyName, string primaryKeyNameDanish)
+        {
+            int typeNamePosistionInNamespace = 3;
+            String[] typeName = type.ToString().Split('.');
+            string httpUrl = URI + typeName[typeNamePosistionInNamespace] + "/" + id;
+
+            try
+            {
+                String jsonStr = JsonConvert.SerializeObject(type);
+                StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
+
+                Task<HttpResponseMessage> putAsync = client.PutAsync(httpUrl, content);
+
+                HttpResponseMessage resp = putAsync.Result;
+
+                return ErrorMessage(type, primaryKeyName, primaryKeyNameDanish, typeNamePosistionInNamespace, typeName, resp);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks status code, provides message and returns whether or not the Httprequrest was succesfull.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type"></param>
+        /// <param name="primaryKeyName"></param>
+        /// <param name="primaryKeyNameDanish"></param>
+        /// <param name="typeNamePosistionInNamespace"></param>
+        /// <param name="typeName"></param>
+        /// <param name="resp"></param>
+        /// <returns></returns>
         private static bool ErrorMessage<T>(T type, string primaryKeyName, string primaryKeyNameDanish, int typeNamePosistionInNamespace, string[] typeName, HttpResponseMessage resp)
         {
             var primaryKeyId = typeof(T).GetProperty(primaryKeyName).GetValue(type);
@@ -168,6 +215,9 @@ namespace UniBase.Model
             switch (resp.StatusCode)
             {
                 case HttpStatusCode.OK:
+                    return true;
+                case HttpStatusCode.Created:
+                    Message.Instance.ShowToastNotification(typeName[typeNamePosistionInNamespace] + " oprettet", "Succes");
                     return true;
                 case HttpStatusCode.Conflict:
                     Message.Instance.ShowToastNotification("Konflikt", typeName[typeNamePosistionInNamespace] + " med " + primaryKeyNameDanish + " " + primaryKeyId + " eksistere allerede (409)");
@@ -187,40 +237,6 @@ namespace UniBase.Model
                 default:
                     return false;
             }
-        }
-
-        /// <summary>
-        /// Generic method to update a specific type, by its ID, in the Database through the REST-service.
-        /// </summary>
-        /// <typeparam name="T">The specific type</typeparam>
-        /// <param name="id">The ID of the type</param>
-        /// <param name="type">The object of the type you want to create</param>
-        /// <returns></returns>
-        public static bool UpdateByObjectAndId<T>(int id, T type)
-        {
-            int typeNamePosistionInNamespace = 3;
-            String[] typeName = type.ToString().Split('.');
-            string httpUrl = URI + typeName[typeNamePosistionInNamespace] + "/" + id;
-
-            try
-            {
-                String jsonStr = JsonConvert.SerializeObject(type);
-                StringContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
-
-                Task<HttpResponseMessage> putAsync = client.PutAsync(httpUrl, content);
-
-                HttpResponseMessage resp = putAsync.Result;
-                if (resp.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                return false;
-            }
-            return false;
         }
     }
 }

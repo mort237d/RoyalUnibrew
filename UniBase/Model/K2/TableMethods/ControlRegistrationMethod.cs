@@ -249,7 +249,7 @@ namespace UniBase.Model.K2.TableMethods
 
         public async void Initialize()
         {
-            ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
+            ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations(), "ControlRegistration_ID", "Kontrol Registrerings");
             _completeControlRegistrationsList = await ModelGenerics.GetAll(new ControlRegistrations());
 
             FillStringHelpers();
@@ -273,7 +273,7 @@ namespace UniBase.Model.K2.TableMethods
         /// </summary>
         public async void RefreshLastTen()
         {
-            ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
+            ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations(), "ControlRegistration_ID", "Kontrol Registrerings");
             
             FillStringHelpers();
 
@@ -282,13 +282,13 @@ namespace UniBase.Model.K2.TableMethods
 
         public void SaveAll()
         {
-            _genericMethod.SaveAll(ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrerings");
+            _genericMethod.SaveAll(ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrerings", "Kontrol Registrering ID");
 
         }
 
         public async void AddNewItem()
         {
-            var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
+            var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations(), "ControlRegistration_ID", "Kontrol Registrerings");
             NewControlRegistrationsToAdd.ControlRegistration_ID = latestControlSchedule.Last().ControlRegistration_ID + 1;
             if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd, "ControlRegistration_ID", "Kontrol Registrering ID"))
             {
@@ -303,7 +303,7 @@ namespace UniBase.Model.K2.TableMethods
 
         public void DeleteItem()
         {
-            _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrering");
+            _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrering", "Kontrol Registrering ID");
         }
         #endregion
 
