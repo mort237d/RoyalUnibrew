@@ -189,7 +189,7 @@ namespace UniBase.Model.K2.TableMethods
 
         public async void Initialize()
         {
-            ShiftRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
+            ShiftRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations(), "ShiftRegistration_ID", "Vagt Registrerings");
 
             FillStringHelpers();
 
@@ -211,24 +211,24 @@ namespace UniBase.Model.K2.TableMethods
 
         public async void RefreshLastTen()
         {
-            ShiftRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
+            ShiftRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations(), "ShiftRegistration_ID", "Vagt Registrerings");
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Vagt Registrerings-tabellen er opdateret");
         }
 
         public void SaveAll()
         {
-            _genericMethod.SaveAll(ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrerings");
+            _genericMethod.SaveAll(ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrerings", "Vagt Registrerings ID");
         }
 
         public void DeleteItem()
         {
-            _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrering");
+            _genericMethod.DeleteSelected(SelectedShiftRegistration, new ShiftRegistrations(), CompleteShiftRegistrationsList, ShiftRegistrationsList, "ShiftRegistration_ID", "Vagt Registrering", "Vagt Registrerings ID");
         }
 
         public async void AddNewItem()
         {
-            var lastestShiftRegistration = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
+            var lastestShiftRegistration = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations(), "ShiftRegistration_ID", "Vagt Registrerings");
             NewShiftRegistrations.ShiftRegistration_ID = lastestShiftRegistration.Last().ShiftRegistration_ID + 1;
             if (ModelGenerics.CreateByObject(NewShiftRegistrations, "ShiftRegistration_ID", "Vagt Registrerings ID"))
             {

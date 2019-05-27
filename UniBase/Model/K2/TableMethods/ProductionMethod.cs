@@ -188,7 +188,7 @@ namespace UniBase.Model.K2.TableMethods
         #region ButtonMethods
         public async void Initialize()
         {
-            ProductionsList = await ModelGenerics.GetLastTenInDatabase(new Productions());
+            ProductionsList = await ModelGenerics.GetLastTenInDatabase(new Productions(), "Production_ID", "Produktions ID");
 
             FillStringHelpers();
 
@@ -210,24 +210,24 @@ namespace UniBase.Model.K2.TableMethods
 
         public async void RefreshLastTen()
         {
-            ProductionsList = await ModelGenerics.GetLastTenInDatabase(new Productions());
+            ProductionsList = await ModelGenerics.GetLastTenInDatabase(new Productions(), "Production_ID", "Produktions ID");
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Produktions-tabellen er opdateret");
         }
 
         public void SaveAll()
         {
-            _genericMethod.SaveAll(ProductionsList, "Production_ID", "Produktions");
+            _genericMethod.SaveAll(ProductionsList, "Production_ID", "Produktions", "Produktions ID");
         }
 
         public void DeleteItem()
         {
-            _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID", "Produktion");
+            _genericMethod.DeleteSelected(SelectedProduction, new Productions(), CompleteProductionsList, ProductionsList, "Production_ID", "Produktion", "Produktions ID");
         }
 
         public async void AddNewItem()
         {
-            var latestProduction = await ModelGenerics.GetLastTenInDatabase(new Productions());
+            var latestProduction = await ModelGenerics.GetLastTenInDatabase(new Productions(), "Production_ID", "Produktions ID");
             NewProductions.Production_ID = latestProduction.Last().Production_ID + 1;
             if (ModelGenerics.CreateByObject(NewProductions, "Production_ID", "Produktions ID"))
             {

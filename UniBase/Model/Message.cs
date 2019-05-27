@@ -83,7 +83,7 @@ namespace UniBase.Model
             {
                 if (title == "Slet bruger")
                 {
-                    ModelGenerics.DeleteById(_manageUser.SelectedUser, _manageUser.SelectedUser.User_ID);
+                    ModelGenerics.DeleteById(_manageUser.SelectedUser, _manageUser.SelectedUser.User_ID, "User_ID", "Bruger ID");
                     ShowToastNotification("Slettet", _manageUser.SelectedUser.Name + " er blevet slettet.");
                     _manageUser.UsersList.Remove(_manageUser.SelectedUser);
                 }

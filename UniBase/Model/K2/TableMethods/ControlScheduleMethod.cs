@@ -198,7 +198,7 @@ namespace UniBase.Model.K2.TableMethods
 
         public async void Initialize()
         {
-            ControlSchedulesList = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
+            ControlSchedulesList = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules(), "ControlSchedule_ID", "Kontrol Skema");
             FillStringHelpers();
 
             _completeControlSchedulesList = await ModelGenerics.GetAll(new ControlSchedules());
@@ -219,24 +219,24 @@ namespace UniBase.Model.K2.TableMethods
 
         public async void RefreshLastTen()
         {
-            ControlSchedulesList = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
+            ControlSchedulesList = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules(), "ControlSchedule_ID", "Kontrol Skema");
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Kontrol Skema-tabellen er opdateret");
         }
 
         public void SaveAll()
         {
-            _genericMethod.SaveAll(ControlSchedulesList, "ControlSchedule_ID", "Kontrol Skema");
+            _genericMethod.SaveAll(ControlSchedulesList, "ControlSchedule_ID", "Kontrol Skema", "Kontrol Skema ID");
         }
 
         public void DeleteItem()
         {
-            _genericMethod.DeleteSelected(SelectedControlSchedule, new ControlSchedules(), CompleteControlSchedulesList, ControlSchedulesList, "ControlSchedule_ID", "Kontrol Skema");
+            _genericMethod.DeleteSelected(SelectedControlSchedule, new ControlSchedules(), CompleteControlSchedulesList, ControlSchedulesList, "ControlSchedule_ID", "Kontrol Skema", "Kontrol Skema ID");
         }
 
         public async void AddNewItem()
         {
-            var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
+            var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules(), "ControlSchedule_ID", "Kontrol Skema");
             NewControlSchedules.ControlSchedule_ID = latestControlSchedule.Last().ControlSchedule_ID + 1;
             
             if (ModelGenerics.CreateByObject(NewControlSchedules, "ControlSchedule_ID", "Kontrol Skema ID"))

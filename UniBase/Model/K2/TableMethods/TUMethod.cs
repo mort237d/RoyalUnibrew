@@ -221,7 +221,7 @@ namespace UniBase.Model.K2.TableMethods
         #region ButtonMethods
         public async void Initialize()
         {
-            TuList = await ModelGenerics.GetLastTenInDatabase(new TUs());
+            TuList = await ModelGenerics.GetLastTenInDatabase(new TUs(), "TU_ID", "TU");
 
             FillStringHelpers();
 
@@ -249,7 +249,7 @@ namespace UniBase.Model.K2.TableMethods
         /// </summary>
         public async void RefreshLastTen()
         {
-            TuList = await ModelGenerics.GetLastTenInDatabase(new TUs());
+            TuList = await ModelGenerics.GetLastTenInDatabase(new TUs(), "TU_ID", "TU");
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "TU-tabellen er opdateret");
         }
@@ -259,17 +259,17 @@ namespace UniBase.Model.K2.TableMethods
         /// </summary>
         public void SaveAll()
         {
-            _genericMethod.SaveAll(TuList, "TU_ID", "TU");
+            _genericMethod.SaveAll(TuList, "TU_ID", "TU", "TU ID");
         }
 
         public void DeleteItem()
         {
-            _genericMethod.DeleteSelected(SelectedTu, new TUs(), CompleteTUsList, TuList, "TU_ID", "TU");
+            _genericMethod.DeleteSelected(SelectedTu, new TUs(), CompleteTUsList, TuList, "TU_ID", "TU", "TU ID");
         }
 
         public async void AddNewItem()
         {
-            var latestTU = await ModelGenerics.GetLastTenInDatabase(new TUs());
+            var latestTU = await ModelGenerics.GetLastTenInDatabase(new TUs(), "TU_ID", "TU");
             NewTUs.TU_ID = latestTU.Last().TU_ID + 1;
             if (ModelGenerics.CreateByObject(NewTUs, "TU_ID", "TU ID"))
             {

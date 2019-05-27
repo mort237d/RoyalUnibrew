@@ -307,7 +307,7 @@ namespace UniBase.Model
                 SelectedUser.ImageSource = ImageTb;
                 SelectedUser.Password = PasswordTb;
                 SelectedUser.AdministratorStatus = Admin;
-                ModelGenerics.UpdateByObjectAndId(SelectedUser.User_ID, SelectedUser);
+                ModelGenerics.UpdateByObjectAndId(SelectedUser.User_ID, SelectedUser, "User_ID", "Bruger ID");
 
                 _message.ShowToastNotification("Opdateret", SelectedUser.Name + " er opdateret.");
             }
