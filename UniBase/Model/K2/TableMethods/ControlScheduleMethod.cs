@@ -239,7 +239,7 @@ namespace UniBase.Model.K2.TableMethods
             var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules());
             NewControlSchedules.ControlSchedule_ID = latestControlSchedule.Last().ControlSchedule_ID + 1;
             
-            if (ModelGenerics.CreateByObject(NewControlSchedules))
+            if (ModelGenerics.CreateByObject(NewControlSchedules, "ControlSchedule_ID", "Kontrol Skema ID"))
             {
                 Initialize();
 

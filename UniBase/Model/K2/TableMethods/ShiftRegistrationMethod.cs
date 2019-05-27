@@ -230,7 +230,7 @@ namespace UniBase.Model.K2.TableMethods
         {
             var lastestShiftRegistration = await ModelGenerics.GetLastTenInDatabase(new ShiftRegistrations());
             NewShiftRegistrations.ShiftRegistration_ID = lastestShiftRegistration.Last().ShiftRegistration_ID + 1;
-            if (ModelGenerics.CreateByObject(NewShiftRegistrations))
+            if (ModelGenerics.CreateByObject(NewShiftRegistrations, "ShiftRegistration_ID", "Vagt Registrerings ID"))
             {
                 Initialize();
             }

@@ -254,12 +254,12 @@ namespace UniBase.Model
                             if (string.IsNullOrEmpty(ImageTb))
                             {
                                 UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, Admin));
-                                ModelGenerics.CreateByObject(UsersList.Last());
+                                ModelGenerics.CreateByObject(UsersList.Last(), "User_ID", "Bruger ID");
                             }
                             else
                             {
                                 UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin));
-                                ModelGenerics.CreateByObject(UsersList.Last());
+                                ModelGenerics.CreateByObject(UsersList.Last(), "User_ID", "Bruger ID");
                             }
                             _message.ShowToastNotification("Tilføjet", NameTb + " er blevet tilføjet.");
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = null;

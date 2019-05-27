@@ -133,8 +133,10 @@ namespace UniBase.Model
         /// </summary>
         /// <typeparam name="T">The specific type</typeparam>
         /// <param name="type">The object of the type you want to create</param>
+        /// <param name="primaryKeyName">The name of the primary key in the database</param>
+        /// <param name="primaryKeyNameDanish">The name of the primary key in the database in danish</param>
         /// <returns></returns>
-        public static bool CreateByObject<T>(T type)
+        public static bool CreateByObject<T>(T type, string primaryKeyName, string primaryKeyNameDanish)
         {
             int typeNamePosistionInNamespace = 3;
             String[] typeName = type.ToString().Split('.');
@@ -148,22 +150,8 @@ namespace UniBase.Model
                 Task<HttpResponseMessage> postAsync = client.PostAsync(httpUrl, content);
 
                 HttpResponseMessage resp = postAsync.Result;
-                if (resp.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-                else if(resp.StatusCode == HttpStatusCode.Conflict)
-                {
-                    Debug.WriteLine("Id already exists");
-                }
-                else if(resp.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    Debug.WriteLine("Dafuq did you do?");
-                }
-                else if (resp.StatusCode == HttpStatusCode.BadGateway)
-                {
 
-                }
+                return ErrorMessage(type, primaryKeyName, primaryKeyNameDanish, typeNamePosistionInNamespace, typeName, resp);
             }
             catch (Exception e)
             {
@@ -171,6 +159,34 @@ namespace UniBase.Model
                 return false;
             }
             return false;
+        }
+
+        private static bool ErrorMessage<T>(T type, string primaryKeyName, string primaryKeyNameDanish, int typeNamePosistionInNamespace, string[] typeName, HttpResponseMessage resp)
+        {
+            var primaryKeyId = typeof(T).GetProperty(primaryKeyName).GetValue(type);
+
+            switch (resp.StatusCode)
+            {
+                case HttpStatusCode.OK:
+                    return true;
+                case HttpStatusCode.Conflict:
+                    Message.Instance.ShowToastNotification("Konflikt", typeName[typeNamePosistionInNamespace] + " med " + primaryKeyNameDanish + " " + primaryKeyId + " eksistere allerede (409)");
+                    return false;
+                case HttpStatusCode.BadRequest:
+                    Message.Instance.ShowToastNotification("Forkert syntakst", "Syntaksten er ikke rigtig (400)");
+                    return false;
+                case HttpStatusCode.BadGateway:
+                    Message.Instance.ShowToastNotification("Mislykket forbindelse", "Der kan ikke forbindes til data basen (404)");
+                    return false;
+                case HttpStatusCode.InternalServerError:
+                    Message.Instance.ShowToastNotification("Noget gik galt", "Prøv igen lidt senere, eller kontakt IT afdelingen (500)");
+                    return false;
+                case HttpStatusCode.ServiceUnavailable:
+                    Message.Instance.ShowToastNotification("Kan ikke få adgang til serveren", "Tjek internet forbindelsen eller kontakt IT afdelingen (503)");
+                    return false;
+                default:
+                    return false;
+            }
         }
 
         /// <summary>

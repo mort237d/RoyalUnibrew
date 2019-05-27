@@ -271,7 +271,7 @@ namespace UniBase.Model.K2.TableMethods
         {
             var latestTU = await ModelGenerics.GetLastTenInDatabase(new TUs());
             NewTUs.TU_ID = latestTU.Last().TU_ID + 1;
-            if (ModelGenerics.CreateByObject(NewTUs))
+            if (ModelGenerics.CreateByObject(NewTUs, "TU_ID", "TU ID"))
             {
                 Initialize();
             }

@@ -229,7 +229,7 @@ namespace UniBase.Model.K2.TableMethods
         {
             var latestProduction = await ModelGenerics.GetLastTenInDatabase(new Productions());
             NewProductions.Production_ID = latestProduction.Last().Production_ID + 1;
-            if (ModelGenerics.CreateByObject(NewProductions))
+            if (ModelGenerics.CreateByObject(NewProductions, "Production_ID", "Produktions ID"))
             {
                 Initialize();
             }

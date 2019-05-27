@@ -32,11 +32,6 @@ namespace UniBase.Model.K2.TableMethods
         public FrontpageMethod()
         {
             Initialize();
-
-            for (int i = 0; i < PropertyInfos.Length; i++)
-            {
-                Debug.WriteLine(PropertyInfos[i].Name, i.ToString());
-            }
         }
 
         public int SelectedFrontpageId
@@ -81,7 +76,6 @@ namespace UniBase.Model.K2.TableMethods
 
         #region Filter
         private PropertyInfo[] PropertyInfos = typeof(Frontpages).GetProperties();
-        //private PropertyInfo[] PropertyTextBoxInfos = typeof(FrontpageMethod).GetProperties();
 
         public string ProcessOrderNoTextBoxOutput
         {
@@ -90,14 +84,7 @@ namespace UniBase.Model.K2.TableMethods
             {
                 _processOrderNoTextBoxOutput = value;
 
-                //for (int i = 0; i < PropertyTextBoxInfos.Length; i++)
-                //{
-                //    Debug.WriteLine(PropertyTextBoxInfos[i].Name, i.ToString());
-                //}
-
                 Filter(0, _processOrderNoTextBoxOutput);
-                //FinishedProductNoTextBoxOutput = "";
-                //OnPropertyChanged();
             }
         }
 
@@ -120,7 +107,6 @@ namespace UniBase.Model.K2.TableMethods
                 _finishedProductNoTextBoxOutput = value;
 
                 Filter(2, _finishedProductNoTextBoxOutput);
-                //OnPropertyChanged();
             }
         }
 
@@ -208,7 +194,6 @@ namespace UniBase.Model.K2.TableMethods
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
                         ModelGenerics.DeleteById(new ControlRegistrations(), i.ControlRegistration_ID);
-                        Debug.WriteLine("\t \n ControlRegistration_ID: " + i.ControlRegistration_ID, "DELETE");
                     }
                 }
                 foreach (var i in ControlScheduleList)
@@ -216,7 +201,6 @@ namespace UniBase.Model.K2.TableMethods
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
                         ModelGenerics.DeleteById(new ControlSchedules(), i.ControlSchedule_ID);
-                        Debug.WriteLine("\t \n ControlSchedule_ID: " + i.ControlSchedule_ID, "DELETE");
                     }
                 }
                 foreach (var i in ProductionList)
@@ -224,7 +208,6 @@ namespace UniBase.Model.K2.TableMethods
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
                         ModelGenerics.DeleteById(new Productions(), i.Production_ID);
-                        Debug.WriteLine("\t \n Production_ID: " + i.Production_ID, "DELETE");
                     }
                 }
                 foreach (var i in ShiftRegistrationList)
@@ -232,7 +215,6 @@ namespace UniBase.Model.K2.TableMethods
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
                         ModelGenerics.DeleteById(new ShiftRegistrations(), i.ShiftRegistration_ID);
-                        Debug.WriteLine("\t \n ShiftRegistration_ID: " + i.ShiftRegistration_ID, "DELETE");
                     }
                 }
                 foreach (var i in TuList)
@@ -240,7 +222,6 @@ namespace UniBase.Model.K2.TableMethods
                     if (SelectedFrontpage.ProcessOrder_No == i.ProcessOrder_No)
                     {
                         ModelGenerics.DeleteById(new TUs(), i.TU_ID);
-                        Debug.WriteLine("\t \n TU_ID: " + i.TU_ID, "DELETE");
                     }
                 }
                 _genericMethod.DeleteSelected(SelectedFrontpage, new Frontpages(), _completeFrontpagesList, FrontpagesList, "ProcessOrder_No", "Forside");
@@ -253,7 +234,7 @@ namespace UniBase.Model.K2.TableMethods
 
         public async void AddNewItem()
         {
-            if (ModelGenerics.CreateByObject(NewFrontpagesToAdd))
+            if (ModelGenerics.CreateByObject(NewFrontpagesToAdd, "ProcessOrder_No", "ProcessOrdre Nr"))
             {
                 Initialize();
             }

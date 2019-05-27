@@ -14,11 +14,6 @@ namespace UniBase.Model.K2.TableMethods
         public ControlRegistrationMethod()
         {
             Initialize();
-
-            for (int i = 0; i < PropertyInfos.Length; i++)
-            {
-                Debug.WriteLine(PropertyInfos[i].Name, i.ToString());
-            }
         }
 
         #region Fields
@@ -295,7 +290,7 @@ namespace UniBase.Model.K2.TableMethods
         {
             var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations());
             NewControlRegistrationsToAdd.ControlRegistration_ID = latestControlSchedule.Last().ControlRegistration_ID + 1;
-            if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd))
+            if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd, "ControlRegistration_ID", "Kontrol Registrering ID"))
             {
                 Initialize();
             }
