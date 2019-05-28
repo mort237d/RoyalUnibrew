@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -17,8 +16,6 @@ namespace UniBase.Model.K2.TableMethods
         }
 
         #region Fields
-
-        private ComboBoxItem _kegSize = new ComboBoxItem();
 
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList;
 

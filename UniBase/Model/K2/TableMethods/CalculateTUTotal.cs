@@ -1,10 +1,21 @@
-﻿namespace UniBase.Model.K2.TableMethods
+﻿using System;
+
+namespace UniBase.Model.K2.TableMethods
 {
     public class CalculateTUTotal
     {
         public int CalculateTUDayTotal(int dayStart, int dayEnd)
         {
-            int result = (dayEnd / 10) - (dayStart / 10) + 1;
+            int result;
+            //if % 1 = 0 then the integer can be divided
+            if (Math.Abs(((double)dayEnd / 10 - ((double)dayStart / 10)) % 1) < 0.49)
+            {
+                result = dayEnd / 10 - dayStart / 10 + 1;
+            }
+            else //else we added 1 more to round up
+            {
+                result = dayEnd / 10 - dayStart / 10 + 1 + 1;
+            }
             return result;
         }
 
