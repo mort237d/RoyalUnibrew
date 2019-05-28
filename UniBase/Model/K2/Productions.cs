@@ -8,6 +8,8 @@ namespace UniBase.Model.K2
 {
     public class Productions : INotifyPropertyChanged
     {
+        #region Fields
+
         private string _productionIdIntHelper;
         private string _palletPutInStock0001IntHelper;
         private string _tapmachineIntHelper;
@@ -18,6 +20,9 @@ namespace UniBase.Model.K2
 
         private string _batchDateStringHelper;
 
+        #endregion
+
+        #region Constructors
 
         public Productions()
         {
@@ -36,6 +41,10 @@ namespace UniBase.Model.K2
             ProcessOrder_No = processOrder_No;
         }
 
+        #endregion
+
+        #region Properties
+
         public int Production_ID { get; set; }
 
         public int ProcessOrder_No { get; set; }
@@ -52,8 +61,7 @@ namespace UniBase.Model.K2
 
         public DateTime BatchDate { get; set; }
 
-
-        #region Helpers
+        #region StringHelpers
         [JsonIgnore]
         public string ProductionIdIntHelper
         {
@@ -196,8 +204,10 @@ namespace UniBase.Model.K2
         #endregion
 
         public virtual Frontpages Frontpage { get; set; }
+
+        #endregion
         
-        #region InotifyPropertyChanged
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

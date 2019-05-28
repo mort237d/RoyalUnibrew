@@ -7,12 +7,8 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class ControlScheduleMethod : IManageButtonMethods
+    public class ControlScheduleMethod : IManageTableMethods
     {
-        public ControlScheduleMethod()
-        {
-            Initialize();
-        }
         #region Fields
 
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
@@ -40,6 +36,11 @@ namespace UniBase.Model.K2.TableMethods
         private string _noteTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
         #endregion
+
+        public ControlScheduleMethod()
+        {
+            Initialize();
+        }
 
         #region Properties
         public int SelectedControlScheduleId
@@ -81,7 +82,6 @@ namespace UniBase.Model.K2.TableMethods
                 OnPropertyChanged();
             }
         }
-        #endregion
 
         #region Filters
         public string ControlScheduleIdTextBoxOutput
@@ -190,7 +190,8 @@ namespace UniBase.Model.K2.TableMethods
         }
 
         #endregion
-
+        #endregion
+        
         private void Filter(int propIndex, string textBox)
         {
             _genericMethod.Filter(new ControlSchedules(), ControlSchedulesList, CompleteControlSchedulesList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
@@ -209,6 +210,33 @@ namespace UniBase.Model.K2.TableMethods
                 ProcessOrderNoIntHelper = ControlSchedulesList.Last().ProcessOrder_No.ToString()
             };
         }
+        
+        private void FillStringHelpers()
+        {
+            foreach (var controleSchedule in ControlSchedulesList)
+            {
+                FillStringHelpersHelper(controleSchedule);
+                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
+                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("F");
+                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("F");
+                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString();
+                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("F");
+            }
+        }
+        private void FillStringHelpersHelper(ControlSchedules controlSchedules)
+        {
+            string temp, temp2;
+            if (controlSchedules.Time.Hour < 10) temp = "0" + controlSchedules.Time.Hour;
+            else temp = controlSchedules.Time.Hour.ToString();
+
+            if (controlSchedules.Time.Minute == 0) temp2 = "00";
+            else if (controlSchedules.Time.Minute < 10) temp2 = "0" + controlSchedules.Time.Minute;
+            else temp2 = controlSchedules.Time.Minute.ToString();
+
+            controlSchedules.TimeStringHelper = string.Format("{0}:{1}", temp, temp2);
+        }
+
+        #region RelayCommandMethods
 
         public async void RefreshAll()
         {
@@ -272,30 +300,7 @@ namespace UniBase.Model.K2.TableMethods
             }
         }
 
-        private void FillStringHelpers()
-        {
-            foreach (var controleSchedule in ControlSchedulesList)
-            {
-                FillStringHelpersHelper(controleSchedule);
-                controleSchedule.ControlScheduleIdIntHelper = controleSchedule.ControlSchedule_ID.ToString();
-                controleSchedule.LudKoncentrationDoubleHelper = controleSchedule.LudKoncentration.ToString("F");
-                controleSchedule.MipMaDoubleHelper = controleSchedule.MipMA.ToString("F");
-                controleSchedule.ProcessOrderNoIntHelper = controleSchedule.ProcessOrder_No.ToString();
-                controleSchedule.WeightDoubleHelper = controleSchedule.Weight.ToString("F");
-            }
-        }
-        private void FillStringHelpersHelper(ControlSchedules controlSchedules)
-        {
-            string temp, temp2;
-            if (controlSchedules.Time.Hour < 10) temp = "0" + controlSchedules.Time.Hour;
-            else temp = controlSchedules.Time.Hour.ToString();
-
-            if (controlSchedules.Time.Minute == 0) temp2 = "00";
-            else if (controlSchedules.Time.Minute < 10) temp2 = "0" + controlSchedules.Time.Minute;
-            else temp2 = controlSchedules.Time.Minute.ToString();
-
-            controlSchedules.TimeStringHelper = string.Format("{0}:{1}", temp, temp2);
-        }
+        #endregion
 
         #region SingleTon
         private static ControlScheduleMethod _instance;

@@ -141,7 +141,7 @@ namespace UniBase.ViewModel
             SortShiftRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ShiftRegistrationMethod.SortButtonClick);
             SortTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SortButtonClick);
 
-            ControlledClickCommand = new RelayCommand<object>(Column2FacadePath.ControlRegistrationMethod.ControlledClick);
+            ControlledClickCommand = new RelayCommand<object>(Column2FacadePath.ControlRegistrationMethod.CheckBoxClick);
 
             //SelectParent
             SelectParentItemFrontpageCommand = new RelayCommand<object>(Column2FacadePath.FrontpageMethod.SelectParentItem);
@@ -244,7 +244,9 @@ namespace UniBase.ViewModel
                     }
                 }
             }
+            ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.CheckBoxClickAdd);
         }
+
 
         #region InotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
