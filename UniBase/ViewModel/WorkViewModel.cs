@@ -1,7 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using GalaSoft.MvvmLight.Command;
 using UniBase.Annotations;
+using UniBase.Model;
 using UniBase.Model.K2;
 
 namespace UniBase.ViewModel
@@ -78,80 +82,6 @@ namespace UniBase.ViewModel
         {
             Column2FacadePath = Column2Facade.Instance;
 
-            //TODO Delete?
-            #region Update(SavedForLater)
-
-//            int month = 4;
-//            int day = 27;
-//            int year = 2019;
-//            int hour = 1;
-//            double weight = 0;
-//            double mipMa = 0;
-//            double ludKoncentration = 0;
-//            int processordernext = 1;
-//            //Udfyld controlschdual.
-//            Random random = new Random();
-//            for (int i = 0; i < 70; i++)
-//            {
-//                weight = random.NextDouble() * 1.7 + 36.9;
-//                mipMa = random.NextDouble() * 2.7 + 23.9;
-//                ludKoncentration = random.NextDouble() * 1.2 + 0.9;
-//                ModelGenerics.CreateByObject(new ControlSchedules(i+330, new DateTime(year, month, day),weight, "hej", ludKoncentration, mipMa, "mig", "Very good",processordernext));
-//                
-//                processordernext++;
-//                if (processordernext > 37)
-//                {
-//                    processordernext = 1;
-//                }
-//                hour += 3;
-//                if (hour > 9)
-//                {
-//                    hour = 1;
-//                    day++;
-//                }
-//                if (day == 29)
-//                {
-//                    month++;
-//                    day = 1;
-//                }
-//                if (month > 11)
-//                {
-//                    year++;
-//                    month = 1;
-//                }
-//            }
-//            foreach (var VARIABLE in Column2FacadePath.ControlScheduleMethod.CompleteControlSchedulesList)
-//            {
-//                if (VARIABLE.Time > new DateTime(2019,4,25))
-//                {
-//                    
-//                VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0,59), 0);
-//                VARIABLE.Weight = random.NextDouble()* 2 + 36.8;
-//                VARIABLE.MipMA = random.NextDouble() * 3 + 23.8;
-//                VARIABLE.LudKoncentration = random.NextDouble() * 1.5 + 0.8;
-//                ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE);
-//                hour += 3;
-//                if (hour > 9)
-//                {
-//                    hour = 1;
-//                    day++;
-//                }
-//                if (day == 29)
-//                {
-//                    month++;
-//                    day = 1;
-//                }
-//             
-//                if (month > 11)
-//                {
-//                    year++;
-//                    month = 1;
-//                }
-//               
-//                }
-//            }
-
-            #endregion
 
             //Frontpage
             RefreshFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.RefreshAll);
@@ -222,6 +152,98 @@ namespace UniBase.ViewModel
             SelectParentItemTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SelectParentItem);
 
             ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.ControlledClickAdd);
+
+
+            //Test stuff
+            //AddFrontpageTable = new RelayCommand(UpdateListsblaaa);
+        }
+
+        private async void UpdateListsblaaa()
+        {
+            bool add = true;
+            int month = 05;
+            int day = 17;
+            int year = 2019;
+            int hour = 1;
+            double weight = 0;
+            double mipMa = 0;
+            double ludKoncentration = 0;
+            int processordernext = 1;
+            int start = 1;
+            int amountToAdd = 55;
+            var listi = await ModelGenerics.GetLastTenInDatabase(new ControlSchedules(), "ControlSchedule_ID", "Kontrol Skema");
+            var processOrderNo = listi.Last().ControlSchedule_ID;
+            //Udfyld controlschdual.
+            Random random = new Random();
+            if (add)
+            {
+                for (int i = start; i < amountToAdd; i++)
+                {
+                    weight = Math.Round((random.NextDouble() * 1.65 + 36.92), 2);
+                    mipMa = Math.Round((random.NextDouble() * 2.65 + 23.92), 2);
+                    ludKoncentration = Math.Round((random.NextDouble() * 1.15 + 0.92), 2);
+                    ModelGenerics.CreateByObject(
+                        new ControlSchedules(i + processOrderNo, new DateTime(year, month, day, hour, 30, 0), weight, "OK",
+                            ludKoncentration, mipMa, "IEO", "", processordernext), "ControlSchedule_ID",
+                        "Kontrol Skema");
+
+                    processordernext++;
+                    if (processordernext > 19)
+                    {
+                        processordernext = 1;
+                    }
+
+                    hour += 2;
+                    if (hour > 9)
+                    {
+                        hour = 1;
+                        day++;
+                    }
+
+                    if (day == 29)
+                    {
+                        month++;
+                        day = 1;
+                    }
+
+                    if (month > 11)
+                    {
+                        year++;
+                        month = 1;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var VARIABLE in Column2FacadePath.ControlScheduleMethod.CompleteControlSchedulesList)
+                {
+                    if (VARIABLE.Time > new DateTime(2019, 05, 17))
+                    {
+                        VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0, 59), 0);
+                        VARIABLE.Weight = Math.Round((random.NextDouble() * 1.65 + 36.92), 2);
+                        VARIABLE.MipMA = Math.Round((random.NextDouble() * 2.65 + 23.92), 2);
+                        VARIABLE.LudKoncentration = Math.Round((random.NextDouble() * 1.15 + 0.92), 2);
+                        ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE, "ControlSchedule_ID", "Kontrol Skema");
+                        hour += 2;
+                        if (hour > 9)
+                        {
+                            hour = 1;
+                            day++;
+                        }
+                        if (day == 29)
+                        {
+                            month++;
+                            day = 1;
+                        }
+
+                        if (month > 11)
+                        {
+                            year++;
+                            month = 1;
+                        }
+                    }
+                }
+            }
         }
 
         #region InotifyPropertyChanged
