@@ -10,7 +10,7 @@ using UniBase.Model.K2;
 
 namespace UniBase.ViewModel
 {
-    class WorkViewModel : INotifyPropertyChanged
+    class WorkViewModel
     {
         #region Relaycommands
         public RelayCommand<object> SortFrontpageCommand { get; set; }
@@ -151,7 +151,7 @@ namespace UniBase.ViewModel
             SelectParentItemShiftRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ShiftRegistrationMethod.SelectParentItem);
             SelectParentItemTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SelectParentItem);
 
-            ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.ControlledClickAdd);
+            ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.CheckBoxClickAdd);
 
 
             //Test stuff
@@ -246,16 +246,5 @@ namespace UniBase.ViewModel
             }
             ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.CheckBoxClickAdd);
         }
-
-
-        #region InotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }
