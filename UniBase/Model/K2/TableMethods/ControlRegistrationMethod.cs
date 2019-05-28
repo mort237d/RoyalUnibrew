@@ -441,7 +441,6 @@ namespace UniBase.Model.K2.TableMethods
         #endregion
 
         #region INotify
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -449,7 +448,6 @@ namespace UniBase.Model.K2.TableMethods
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         #endregion
     }
 }
