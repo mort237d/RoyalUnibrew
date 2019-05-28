@@ -140,7 +140,7 @@ namespace UniBase.Model.K2
                    userToCompare.Telephone_No == Telephone_No;
         }
 
-        #region InotifyPropertyChanged
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

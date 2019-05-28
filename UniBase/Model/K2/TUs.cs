@@ -8,6 +8,8 @@ namespace UniBase.Model.K2
 {
     public class TUs : INotifyPropertyChanged
     {
+        #region Fields
+
         private int _firstDayStartTu;
         private int _firstDayEndTu;
         private int _firstDayTotal;
@@ -34,6 +36,11 @@ namespace UniBase.Model.K2
         private CalculateTUTotal _calculateTuTotal = new CalculateTUTotal();
         //private CalculateProductions _calculateProductions = new CalculateProductions();
         private Productions _productions = new Productions();
+
+        #endregion
+
+        #region Constructors
+
         public TUs()
         {
             
@@ -54,6 +61,10 @@ namespace UniBase.Model.K2
             ProcessOrder_No = processOrder_No;
             Frontpage = frontpage;
         }
+
+        #endregion
+
+        #region Properties
 
         public int TU_ID { get; set; }
 
@@ -144,7 +155,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        #region Helpers
+        #region StringHelpers
         [JsonIgnore]
         public string TuIdIntHelper
         {
@@ -336,8 +347,10 @@ namespace UniBase.Model.K2
         #endregion
 
         public virtual Frontpages Frontpage { get; set; }
+
+        #endregion
         
-        #region InotifyPropertyChanged
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
