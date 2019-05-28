@@ -10,11 +10,6 @@ namespace UniBase.Model.K2.TableMethods
 {
     public class ControlRegistrationMethod : IManageTableMethods
     {
-        public ControlRegistrationMethod()
-        {
-            Initialize();
-        }
-
         #region Fields
 
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList;
@@ -47,9 +42,61 @@ namespace UniBase.Model.K2.TableMethods
         private string _lastPalletDepalletizingTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
         #endregion
+
+        public ControlRegistrationMethod()
+        {
+            Initialize();
+        }
         
+        #region Properties
+        public int SelectedControlRegistrationId
+        {
+            get { return _selectedControlRegistrationId; }
+            set
+            {
+                _selectedControlRegistrationId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ControlRegistrations SelectedControlRegistration
+        {
+            get { return _selectedControlRegistration; }
+            set
+            {
+                _selectedControlRegistration = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public ObservableCollection<ControlRegistrations> ControlRegistrationsList
+        {
+            get { return _controlRegistrationsList; }
+            set
+            {
+                _controlRegistrationsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ControlRegistrations NewControlRegistrationsToAdd
+        {
+            get => _newControlRegistrationsToAdd;
+            set
+            {
+                _newControlRegistrationsToAdd = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
+        {
+            get { return _completeControlRegistrationsList; }
+            set { _completeControlRegistrationsList = value; }
+        }
+
         #region Filter
-      
+
         public string ControlRegistrationIdTextBoxOutput
         {
             get { return _controlRegistrationIdTextBoxOutput; }
@@ -193,52 +240,8 @@ namespace UniBase.Model.K2.TableMethods
             }
         }
         #endregion
-
-        #region Properties
-        public int SelectedControlRegistrationId
-        {
-            get { return _selectedControlRegistrationId; }
-            set
-            {
-                _selectedControlRegistrationId = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ControlRegistrations SelectedControlRegistration
-        {
-            get { return _selectedControlRegistration; }
-            set
-            {
-                _selectedControlRegistration = value;
-                OnPropertyChanged();
-            }
-        }
-
-       
-
-        public ObservableCollection<ControlRegistrations> ControlRegistrationsList
-        {
-            get { return _controlRegistrationsList; }
-            set
-            {
-                _controlRegistrationsList = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ControlRegistrations NewControlRegistrationsToAdd
-        {
-            get => _newControlRegistrationsToAdd;
-            set
-            {
-                _newControlRegistrationsToAdd = value;
-                OnPropertyChanged();
-            }
-        }
         #endregion
 
-        #region ButtonMethods
         private void Filter(int propIndex, string textBox)
         {
             _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
@@ -252,117 +255,7 @@ namespace UniBase.Model.K2.TableMethods
             FillStringHelpers();
             GenerateNewControlRegistrationToAdd();
         }
-        
-        /// <summary>
-        /// Gets all controlregistrations from the Database and fills their respective stringhelpers.
-        /// </summary>
-        public async void RefreshAll()
-        {
-            ControlRegistrationsList = await ModelGenerics.GetAll(new ControlRegistrations());
-            
-            FillStringHelpers();
 
-            _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
-        }
-
-        /// <summary>
-        /// Gets the ten latest controlregistrations from the Database and fills their repsctive stringhelpers.
-        /// </summary>
-        public async void RefreshLastTen()
-        {
-            ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations(), "ControlRegistration_ID", "Kontrol Registrerings");
-            
-            FillStringHelpers();
-
-            _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
-        }
-
-        public void SaveAll()
-        {
-            _genericMethod.SaveAll(ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrerings", "Kontrol Registrering ID");
-
-        }
-
-        public async void AddNewItem()
-        {
-            var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations(), "ControlRegistration_ID", "Kontrol Registrerings");
-            NewControlRegistrationsToAdd.ControlRegistration_ID = latestControlSchedule.Last().ControlRegistration_ID + 1;
-            if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd, "ControlRegistration_ID", "Kontrol Registrering ID"))
-            {
-                Initialize();
-            }
-            else
-            {
-                _message.ShowToastNotification("Fejl", "Forsøg venligst igen og gennemkig eventuelt for tastefejl");
-            }
-        }
-
-
-        public void DeleteItem()
-        {
-            _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrering", "Kontrol Registrering ID");
-        }
-        #endregion
-
-
-        public void ControlledClick(object id)
-        {
-            foreach (var cr in ControlRegistrationsList)
-            {
-                if (cr.ControlRegistration_ID == (int)id)
-                {
-                    if (cr.ControlAlcoholSpearDispenser)
-                    {
-                        cr.ControlAlcoholSpearDispenser = false;
-                        break;
-                    }
-                    else
-                    {
-                        cr.ControlAlcoholSpearDispenser = true;
-                        break;
-                    }
-                }
-            }
-
-            SelectParentItem(id);
-        }
-
-        public void ControlledClickAdd()
-        {
-            if (NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
-            {
-                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
-            }
-            else
-            {
-                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
-            }
-        }
-        
-        public void SelectParentItem(object obj)
-        {
-            SelectedControlRegistrationId = _genericMethod.SelectParentItem((int)obj, ControlRegistrationsList, "ControlRegistration_ID");
-        }
-
-        public void SortButtonClick(object id)
-        {
-            for (int i = 0; i <= 12; i++)
-            {
-                if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[i].Header)
-                {
-                    ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList, PropertyInfos[i].Name);
-                    break;
-                }
-            }
-        }
-
-        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
-        {
-            get { return _completeControlRegistrationsList; }
-            set { _completeControlRegistrationsList = value; }
-        }
-
-        
         private void FillStringHelpers()
         {
             foreach (var controlregistration in ControlRegistrationsList)
@@ -421,6 +314,108 @@ namespace UniBase.Model.K2.TableMethods
             };
         }
 
+        #region RelayCommandMethods
+        /// <summary>
+        /// Gets all controlregistrations from the Database and fills their respective stringhelpers.
+        /// </summary>
+        public async void RefreshAll()
+        {
+            ControlRegistrationsList = await ModelGenerics.GetAll(new ControlRegistrations());
+            
+            FillStringHelpers();
+
+            _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+        }
+
+        /// <summary>
+        /// Gets the ten latest controlregistrations from the Database and fills their repsctive stringhelpers.
+        /// </summary>
+        public async void RefreshLastTen()
+        {
+            ControlRegistrationsList = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations(), "ControlRegistration_ID", "Kontrol Registrerings");
+            
+            FillStringHelpers();
+
+            _message.ShowToastNotification("Opdateret", "Kontrol Registrerings-tabellen er opdateret");
+        }
+
+        public void SaveAll()
+        {
+            _genericMethod.SaveAll(ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrerings", "Kontrol Registrering ID");
+
+        }
+
+        public void DeleteItem()
+        {
+            _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrering", "Kontrol Registrering ID");
+        }
+        
+        public async void AddNewItem()
+        {
+            var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations(), "ControlRegistration_ID", "Kontrol Registrerings");
+            NewControlRegistrationsToAdd.ControlRegistration_ID = latestControlSchedule.Last().ControlRegistration_ID + 1;
+            if (ModelGenerics.CreateByObject(NewControlRegistrationsToAdd, "ControlRegistration_ID", "Kontrol Registrering ID"))
+            {
+                Initialize();
+            }
+            else
+            {
+                _message.ShowToastNotification("Fejl", "Forsøg venligst igen og gennemkig eventuelt for tastefejl");
+            }
+        }
+
+        public void SelectParentItem(object obj)
+        {
+            SelectedControlRegistrationId = _genericMethod.SelectParentItem((int)obj, ControlRegistrationsList, "ControlRegistration_ID");
+        }
+
+        public void SortButtonClick(object id)
+        {
+            for (int i = 0; i <= 12; i++)
+            {
+                if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[i].Header)
+                {
+                    ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList, PropertyInfos[i].Name);
+                    break;
+                }
+            }
+        }
+        
+        public void CheckBoxClick(object id)
+        {
+            foreach (var cr in ControlRegistrationsList)
+            {
+                if (cr.ControlRegistration_ID == (int)id)
+                {
+                    if (cr.ControlAlcoholSpearDispenser)
+                    {
+                        cr.ControlAlcoholSpearDispenser = false;
+                        break;
+                    }
+                    else
+                    {
+                        cr.ControlAlcoholSpearDispenser = true;
+                        break;
+                    }
+                }
+            }
+
+            SelectParentItem(id);
+        }
+
+        public void CheckBoxClickAdd()
+        {
+            if (NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
+            {
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = false;
+            }
+            else
+            {
+                NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser = true;
+            }
+        }
+        #endregion
+        
         #region SingleTon
         private static ControlRegistrationMethod _instance;
         private static object syncLock = new object();

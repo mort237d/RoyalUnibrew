@@ -9,10 +9,6 @@ namespace UniBase.Model.K2.TableMethods
 {
     public class ShiftRegistrationMethod : IManageTableMethods
     {
-        public ShiftRegistrationMethod()
-        {
-            Initialize();
-        }
         #region Fields
         private ObservableCollection<ShiftRegistrations> _completeShiftRegistrationsList;
 
@@ -39,6 +35,11 @@ namespace UniBase.Model.K2.TableMethods
         private string _processOrderNoTextBoxOutput;
 
         #endregion
+
+        public ShiftRegistrationMethod()
+        {
+            Initialize();
+        }
 
         #region Properties
         public int SelectedShiftRegistrationId
@@ -80,7 +81,6 @@ namespace UniBase.Model.K2.TableMethods
                 OnPropertyChanged();
             }
         }
-        #endregion
 
         #region Filters
 
@@ -179,8 +179,7 @@ namespace UniBase.Model.K2.TableMethods
         }
 
         #endregion
-
-        #region ButtonMethods
+        #endregion
 
         private void Filter(int propIndex, string textBox)
         {
@@ -201,7 +200,44 @@ namespace UniBase.Model.K2.TableMethods
                 ProcessOrderNoIntHelper = ShiftRegistrationsList.Last().ProcessOrder_No.ToString()
             };
         }
+        
+        private void FillStringHelpers()
+        {
+            foreach (var shiftRegistration in ShiftRegistrationsList)
+            {
+                shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
+                shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
+                shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
+                shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
+                shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
+                FillStringHelpersHelper(shiftRegistration);
+            }
+        }
 
+        private void FillStringHelpersHelper(ShiftRegistrations shiftRegistration)
+        {
+            string temp, temp2, temp3, temp4;
+            if (shiftRegistration.Start_Time.Hour < 10) temp = "0" + shiftRegistration.Start_Time.Hour;
+            else temp = shiftRegistration.Start_Time.Hour.ToString();
+
+            if (shiftRegistration.Start_Time.Minute == 0) temp2 = "00";
+            else if (shiftRegistration.Start_Time.Minute < 10) temp2 = "0" + shiftRegistration.Start_Time.Minute;
+            else temp2 = shiftRegistration.Start_Time.Minute.ToString();
+
+            if (shiftRegistration.End_Date.Hour < 10) temp3 = "0" + shiftRegistration.End_Date.Hour;
+            else temp3 = shiftRegistration.End_Date.Hour.ToString();
+
+            if (shiftRegistration.End_Date.Minute == 0) temp4 = "00";
+            else if (shiftRegistration.End_Date.Minute < 10) temp4 = "0" + shiftRegistration.End_Date.Minute;
+            else temp4 = shiftRegistration.End_Date.Minute.ToString();
+
+
+            shiftRegistration.StartTimeStringHelper = string.Format("{0}:{1}", temp, temp2);
+            shiftRegistration.EndDateStringHelper = string.Format("{0}:{1}", temp3, temp4);
+        }
+
+        #region RelayCommandMethods
+        
         public async void RefreshAll()
         {
             ShiftRegistrationsList = await ModelGenerics.GetAll(new ShiftRegistrations());
@@ -239,7 +275,6 @@ namespace UniBase.Model.K2.TableMethods
                 _message.ShowToastNotification("Fejl", "Forsøg venligst igen og gennemkig eventuelt for tastefejl");
             }
         }
-        #endregion
 
         public void SelectParentItem(object obj)
         {
@@ -258,41 +293,7 @@ namespace UniBase.Model.K2.TableMethods
             }
         }
 
-        private void FillStringHelpers()
-        {
-            foreach (var shiftRegistration in ShiftRegistrationsList)
-            {
-                shiftRegistration.BreaksIntHelper = shiftRegistration.Breaks.ToString();
-                shiftRegistration.ProcessOrderNoIntHelper = shiftRegistration.ProcessOrder_No.ToString();
-                shiftRegistration.ShiftRegistrationIdIntHelper = shiftRegistration.ShiftRegistration_ID.ToString();
-                shiftRegistration.StaffIntHelper = shiftRegistration.Staff.ToString();
-                shiftRegistration.TotalHoursIntHelper = shiftRegistration.TotalHours.ToString();
-                FillStringHelpersHelper(shiftRegistration);
-            }
-        }
-
-        private void FillStringHelpersHelper(ShiftRegistrations shiftRegistration)
-        {
-            string temp, temp2, temp3, temp4;
-            if (shiftRegistration.Start_Time.Hour < 10) temp = "0" + shiftRegistration.Start_Time.Hour;
-            else temp = shiftRegistration.Start_Time.Hour.ToString();
-
-            if (shiftRegistration.Start_Time.Minute == 0) temp2 = "00";
-            else if (shiftRegistration.Start_Time.Minute < 10) temp2 = "0" + shiftRegistration.Start_Time.Minute;
-            else temp2 = shiftRegistration.Start_Time.Minute.ToString();
-
-            if (shiftRegistration.End_Date.Hour < 10) temp3 = "0" + shiftRegistration.End_Date.Hour;
-            else temp3 = shiftRegistration.End_Date.Hour.ToString();
-
-            if (shiftRegistration.End_Date.Minute == 0) temp4 = "00";
-            else if (shiftRegistration.End_Date.Minute < 10) temp4 = "0" + shiftRegistration.End_Date.Minute;
-            else temp4 = shiftRegistration.End_Date.Minute.ToString();
-
-
-            shiftRegistration.StartTimeStringHelper = string.Format("{0}:{1}", temp, temp2);
-            shiftRegistration.EndDateStringHelper = string.Format("{0}:{1}", temp3, temp4);
-        }
-
+        #endregion
 
         #region SingleTon
         private static ShiftRegistrationMethod _instance;
