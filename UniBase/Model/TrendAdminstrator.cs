@@ -12,6 +12,8 @@ namespace UniBase.Model
 {
     public class TrendAdminstrator : INotifyPropertyChanged
     {
+        #region Fields
+
         private ComboBoxItem _graphType = new ComboBoxItem();
         private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
         private int _graphScrollLenght = 1000;
@@ -20,6 +22,7 @@ namespace UniBase.Model
         private ObservableCollection<Trends> _trendGraphList = new ObservableCollection<Trends>();
         private ObservableCollection<ControlSchedules> _completeControlSchedulesList;
 
+        #endregion
 
         public TrendAdminstrator()
         {
@@ -30,6 +33,8 @@ namespace UniBase.Model
             
             _screenWidth = ApplicationView.GetForCurrentView().VisibleBounds.Width;
         }
+
+        #region Properties
 
         public List<Trends> TempTrendList
         {
@@ -94,6 +99,8 @@ namespace UniBase.Model
                 
             }
         }
+
+        #endregion
 
         /// <summary>
         /// Takes an imput from two comboboxes that decides the timeperiod and type og graph to show.
@@ -240,9 +247,9 @@ namespace UniBase.Model
             }
             //Gives the list to a new observableCollection, so the graph doesn't use the list while it is changing.
             TrendGraphList = new ObservableCollection<Trends> (TempTrendList);
-
         }
-
+        
+        #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -251,5 +258,7 @@ namespace UniBase.Model
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

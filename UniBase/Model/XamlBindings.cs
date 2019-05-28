@@ -4,6 +4,16 @@ namespace UniBase.Model
 {
     public class XamlBindings
     {
+        public XamlBindings()
+        {
+            CreateFrontpageHeader();
+            CreateControlRegistrationHeader();
+            CreateControlSchedulesHeader();
+            CreateProductionsHeader();
+            CreateShiftRegistrationHeader();
+            CreateTUHeader();
+        }
+
         #region Properties
         public string PlaceHolderDate { get; set; } = "2000/01/01";
         public string PlaceHolderTimeSpan { get; set; } = "00:00:00";
@@ -20,20 +30,8 @@ namespace UniBase.Model
         public List<HeaderAndToolTip> ProductionsHeaderList { get; set; }
         public List<HeaderAndToolTip> ShiftRegistrationHeaderList { get; set; }
         public List<HeaderAndToolTip> TUHeaderList { get; set; }
-        
-
-
         #endregion
 
-        public XamlBindings()
-        {
-            CreateFrontpageHeader();
-            CreateControlRegistrationHeader();
-            CreateControlSchedulesHeader();
-            CreateProductionsHeader();
-            CreateShiftRegistrationHeader();
-            CreateTUHeader();
-        }
         /// <summary>
         /// Creates a list of Headers for Frontpage.
         /// </summary>

@@ -10,14 +10,19 @@ namespace UniBase.Model
 {
     public class ManageLogin : INotifyPropertyChanged
     {
-        #region Field
+        #region Fields
         public string PassWord { get; set; }
         private string _wrongLogin, _wrongLoginColor;
         private ManageUser _manageUser = ManageUser.Instance;
 
         #endregion
+        
+        public ManageLogin()
+        {
+            WrongLogin = null;
+        }
 
-        #region Props
+        #region Properties
 
         public string WrongLogin
         {
@@ -41,11 +46,6 @@ namespace UniBase.Model
 
 
         #endregion
-
-        public ManageLogin()
-        {
-            WrongLogin = null;
-        }
         
         #region Singleton
 
@@ -64,7 +64,7 @@ namespace UniBase.Model
 
         #endregion
 
-        #region ButtonMethods
+        #region RelayCommandMethods
 
         /// <summary>
         /// A method to log out of the current user, we simply navigate back to the LoginPage.
