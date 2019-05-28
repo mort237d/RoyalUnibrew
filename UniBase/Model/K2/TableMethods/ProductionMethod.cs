@@ -7,7 +7,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class ProductionMethod : IManageButtonMethods
+    public class ProductionMethod : IManageTableMethods
     {
         public ProductionMethod()
         {

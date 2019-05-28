@@ -7,7 +7,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class TuMethod : IManageButtonMethods
+    public class TuMethod : IManageTableMethods
     {
         public TuMethod()
         {

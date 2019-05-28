@@ -7,7 +7,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class FrontpageMethod : IManageButtonMethods
+    public class FrontpageMethod : IManageTableMethods
     {
         #region Fields
         private ObservableCollection<Frontpages> _frontpagesList;

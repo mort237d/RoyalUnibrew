@@ -7,7 +7,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class ControlScheduleMethod : IManageButtonMethods
+    public class ControlScheduleMethod : IManageTableMethods
     {
         public ControlScheduleMethod()
         {

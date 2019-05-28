@@ -9,7 +9,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class ControlRegistrationMethod : IManageButtonMethods
+    public class ControlRegistrationMethod : IManageTableMethods
     {
         public ControlRegistrationMethod()
         {

@@ -7,7 +7,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class ShiftRegistrationMethod : IManageButtonMethods
+    public class ShiftRegistrationMethod : IManageTableMethods
     {
         public ShiftRegistrationMethod()
         {

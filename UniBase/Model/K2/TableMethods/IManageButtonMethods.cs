@@ -2,7 +2,7 @@
 
 namespace UniBase.Model.K2.TableMethods
 {
-    interface IManageButtonMethods : INotifyPropertyChanged
+    interface IManageTableMethods : INotifyPropertyChanged
     {
         void RefreshAll();
         void RefreshLastTen();
