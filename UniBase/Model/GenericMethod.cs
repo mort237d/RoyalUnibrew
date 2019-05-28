@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Timers;
 
 namespace UniBase.Model
 {
@@ -23,12 +26,54 @@ namespace UniBase.Model
         /// <param name="helperAction">Hjælper metode, som skal eksekveres for at få alle properties til at aggere rigtigt</param>
         public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut, Action initializeAction, Action helperAction)
         {
+            PropertyInfo prop = typeof(T).GetProperty(property);
+
+            if (string.IsNullOrEmpty(textBoxOutPut))
+            {
+                initializeAction();
+            }
+            else if (textBoxOutPut.Length > 1)
+            {
+                var tempList = new List<T>();
+
+                foreach (var i in list)
+                {
+                    tempList.Add(i);
+                }
+                list.Clear();
+
+                foreach (var f in tempList)
+                {
+                    if (prop.GetValue(f, null) != null)
+                    {
+                        var v = prop.GetValue(f, null).ToString().ToLower();
+                        if (v.Contains(textBoxOutPut.ToLower()))
+                        {
+                            list.Add(f);
+                        }
+                    }
+                }
+
+                if (list.Count == 0)
+                {
+                    FilterCompleteList(list, completeList, textBoxOutPut, prop);
+                }
+            }
+            else
+            {
+                FilterCompleteList(list, completeList, textBoxOutPut, prop);
+            }
+
+            helperAction();
+        }
+
+        private static void FilterCompleteList<T>(ObservableCollection<T> list, ObservableCollection<T> completeList, string textBoxOutPut, PropertyInfo prop)
+        {
             list.Clear();
 
-            PropertyInfo prop = typeof(T).GetProperty(property);
             foreach (var f in completeList)
             {
-                if (prop.GetValue(f,null) != null)
+                if (prop.GetValue(f, null) != null)
                 {
                     var v = prop.GetValue(f, null).ToString().ToLower();
                     if (v.Contains(textBoxOutPut.ToLower()))
@@ -37,15 +82,8 @@ namespace UniBase.Model
                     }
                 }
             }
-
-            helperAction();
-
-            if (string.IsNullOrEmpty(textBoxOutPut))
-            {
-                initializeAction();
-            }
         }
-        
+
         /// <summary>
         /// Sort er en generisk metode til at sortere en bestemt kolonne af tabellen ud fra en property
         /// </summary>
