@@ -119,7 +119,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\BrowseImage.cs" />
     <Compile Include="Model\ConstantValues.cs" />
     <Compile Include="Model\HeaderAndToolTip.cs" />
     <Compile Include="Model\K2\TableMethods\CalculateProductions.cs" />
