@@ -7,7 +7,7 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class FrontpageMethod : IManageButtonMethods
+    public class FrontpageMethod : IManageTableMethods
     {
         #region Fields
         private ObservableCollection<Frontpages> _frontpagesList;
@@ -34,6 +34,7 @@ namespace UniBase.Model.K2.TableMethods
             Initialize();
         }
 
+        #region Properties
         public int SelectedFrontpageId
         {
             get { return _selectedFrontpageId; }
@@ -144,13 +145,14 @@ namespace UniBase.Model.K2.TableMethods
         }
         #endregion
 
+        #endregion
+
         private void Filter(int propIndex, string textBox)
         {
             _genericMethod.Filter(new Frontpages(), FrontpagesList, _completeFrontpagesList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
-        #region ButtonMethods
-        public async void Initialize()
+        private async void Initialize()
         {
             FrontpagesList = await ModelGenerics.GetLastTenInDatabase(new Frontpages(), "ProcessOrder_No", "ProcessOrdre Nr");
             FillStringHelpers();
@@ -159,19 +161,34 @@ namespace UniBase.Model.K2.TableMethods
 
             NewFrontpagesToAdd = new Frontpages();
         }
-        
+
+        private void FillStringHelpers()
+        {
+            foreach (var frontpage in FrontpagesList)
+            {
+                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
+                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
+                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
+                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
+                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
+            }
+        }
+
+        #region RelayCommandMethods
         public async void RefreshAll()
         {
             FrontpagesList = await ModelGenerics.GetAll(new Frontpages());
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
+
         public async void RefreshLastTen()
         {
             FrontpagesList = await ModelGenerics.GetLastTenInDatabase(new Frontpages(), "ProcessOrder_No", "ProcessOrdre Nr");
             FillStringHelpers();
             _message.ShowToastNotification("Opdateret", "Forside-tabellen er opdateret");
         }
+
         public void SaveAll()
         {
             _genericMethod.SaveAll(FrontpagesList, "ProcessOrder_No", "Forside", "ProcessOrdre Nr");
@@ -232,7 +249,7 @@ namespace UniBase.Model.K2.TableMethods
             }
         }
 
-        public async void AddNewItem()
+        public void AddNewItem()
         {
             if (ModelGenerics.CreateByObject(NewFrontpagesToAdd, "ProcessOrder_No", "ProcessOrdre Nr"))
             {
@@ -244,11 +261,11 @@ namespace UniBase.Model.K2.TableMethods
             }
         }
 
-        #endregion
         public void SelectParentItem(object obj)
         {
             SelectedFrontpageId = _genericMethod.SelectParentItem((int)obj, FrontpagesList, "ProcessOrder_No");
         }
+
         public void SortButtonClick(object id)
         {
             for (int i = 0; i <= 5; i++)
@@ -260,18 +277,8 @@ namespace UniBase.Model.K2.TableMethods
                 }
             }
         }
-        private void FillStringHelpers()
-        {
-            foreach (var frontpage in FrontpagesList)
-            {
-                frontpage.DateTimeStringHelper = frontpage.Date.ToString("yyyy/MM/dd");
-                frontpage.ColunmIntHelper = frontpage.Colunm.ToString();
-                frontpage.FinishedProductNoIntHelper = frontpage.FinishedProduct_No.ToString();
-                frontpage.ProcessOrderNoIntHelper = frontpage.ProcessOrder_No.ToString();
-                frontpage.WeekNoIntHelper = frontpage.Week_No.ToString();
-            }
-        }
-
+        #endregion
+        
         #region SingleTon
         private static FrontpageMethod _instance;
         private static object syncLock = new object();

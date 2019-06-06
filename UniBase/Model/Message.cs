@@ -7,40 +7,17 @@ namespace UniBase.Model
 {
     class Message
     {
-        #region Field
-
         private static ManageUser _manageUser;
-        
-
-        #endregion
-
-        public Message(ManageUser manageUser)
-        {
-            _manageUser = manageUser;
-        }
 
         public Message()
         {
             
         }
-
-        #region Singleton
-
-        private static Message _instance;
-
-        public static Message Instance
+        
+        public Message(ManageUser manageUser)
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new Message();
-                }
-                return _instance;
-            }
+            _manageUser = manageUser;
         }
-
-        #endregion
 
         #region Methods
         /// <summary>
@@ -110,6 +87,24 @@ namespace UniBase.Model
             toast.ExpirationTime = DateTime.Now.AddSeconds(2);
             toastNotifier.Show(toast);
         }
+        #endregion
+
+        #region Singleton
+
+        private static Message _instance;
+
+        public static Message Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Message();
+                }
+                return _instance;
+            }
+        }
+
         #endregion
     }
 }

@@ -7,12 +7,8 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class ProductionMethod : IManageButtonMethods
+    public class ProductionMethod : IManageTableMethods
     {
-        public ProductionMethod()
-        {
-            Initialize();
-        }
         #region Fields
 
         private ObservableCollection<Productions> _completeProductionsList;
@@ -40,6 +36,11 @@ namespace UniBase.Model.K2.TableMethods
         private string _processOrderNoTextBoxOutput;
         #endregion
 
+        public ProductionMethod()
+        {
+            Initialize();
+        }
+
         #region Properties
         public Productions NewProductions
         {
@@ -60,7 +61,6 @@ namespace UniBase.Model.K2.TableMethods
                 OnPropertyChanged();
             }
         }
-        #endregion
 
         #region Filter
         public string ProductionIdTextBoxOutput
@@ -179,13 +179,13 @@ namespace UniBase.Model.K2.TableMethods
 
 
         #endregion
-
+        #endregion
+        
         private void Filter(int propIndex, string textBox)
         {
             _genericMethod.Filter(new Productions(), ProductionsList, CompleteProductionsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
 
-        #region ButtonMethods
         public async void Initialize()
         {
             ProductionsList = await ModelGenerics.GetLastTenInDatabase(new Productions(), "Production_ID", "Produktions ID");
@@ -200,6 +200,23 @@ namespace UniBase.Model.K2.TableMethods
                 ProductionIdIntHelper = (ProductionsList.Last().Production_ID + 1).ToString()
             };
         }
+        
+        private void FillStringHelpers()
+        {
+            foreach (var production in ProductionsList)
+            {
+                production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
+                production.ProcessOrderNoIntHelper = production.ProcessOrder_No.ToString();
+                production.CounterIntHelper = production.Counter.ToString();
+                production.PalletCounterIntHelper = production.PalletCounter.ToString();
+                production.PalletPutInStock0001IntHelper = production.PalletPutInStock0001.ToString();
+                production.ProductionIdIntHelper = production.Production_ID.ToString();
+                production.TapmachineIntHelper = production.Tapmachine.ToString();
+                production.TotalKegsPrPalletIntHelper = production.TotalKegsPrPallet.ToString();
+            }
+        }
+
+        #region RelayCommandMethods
         
         public async void RefreshAll()
         {
@@ -238,8 +255,7 @@ namespace UniBase.Model.K2.TableMethods
                 _message.ShowToastNotification("Fejl", "Forsøg venligst igen og gennemkig eventuelt for tastefejl");
             }
         }
-        #endregion
-        
+
         public void SelectParentItem(object obj)
         {
             SelectedProductionId = _genericMethod.SelectParentItem((int)obj, ProductionsList, "Production_ID");
@@ -256,21 +272,7 @@ namespace UniBase.Model.K2.TableMethods
                 }
             }
         }
-
-        private void FillStringHelpers()
-        {
-            foreach (var production in ProductionsList)
-            {
-                production.BatchDateStringHelper = production.BatchDate.ToString("yyyy/MM/dd");
-                production.ProcessOrderNoIntHelper = production.ProcessOrder_No.ToString();
-                production.CounterIntHelper = production.Counter.ToString();
-                production.PalletCounterIntHelper = production.PalletCounter.ToString();
-                production.PalletPutInStock0001IntHelper = production.PalletPutInStock0001.ToString();
-                production.ProductionIdIntHelper = production.Production_ID.ToString();
-                production.TapmachineIntHelper = production.Tapmachine.ToString();
-                production.TotalKegsPrPalletIntHelper = production.TotalKegsPrPallet.ToString();
-            }
-        }
+        #endregion
 
         #region SingleTon
         private static ProductionMethod _instance;

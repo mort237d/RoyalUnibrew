@@ -7,12 +7,8 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class TuMethod : IManageButtonMethods
+    public class TuMethod : IManageTableMethods
     {
-        public TuMethod()
-        {
-            Initialize();
-        }
         #region Fields
 
         private ObservableCollection<TUs> _tuList;
@@ -40,7 +36,58 @@ namespace UniBase.Model.K2.TableMethods
         private string _thirdDayTotalTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
         #endregion
+
+        public TuMethod()
+        {
+            Initialize();
+        }
         
+        #region Properties
+        public int SelectedTuId
+        {
+            get { return _selectedTuId; }
+            set
+            {
+                _selectedTuId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TUs SelectedTu
+        {
+            get { return _selectedTu; }
+            set
+            {
+                _selectedTu = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TUs NewTUs
+        {
+            get { return _newTUs; }
+            set
+            {
+                _newTUs = value;
+            }
+        }
+        
+        public ObservableCollection<TUs> TuList
+        {
+            get { return _tuList; }
+            set
+            {
+                _tuList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<TUs> CompleteTUsList
+        {
+            get { return _completeTUsList; }
+            set { _completeTUsList = value; }
+        }
+
         #region Filter
 
         public string TuIdTextBoxOutput
@@ -163,62 +210,14 @@ namespace UniBase.Model.K2.TableMethods
                 Filter(10, _thirdDayTotalTextBoxOutput);
             }
         }
+        #endregion
+        #endregion
 
         private void Filter(int propIndex, string textBox)
         {
             _genericMethod.Filter(new TUs(), TuList, CompleteTUsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
         }
-        #endregion
 
-        #region Properties
-        public int SelectedTuId
-        {
-            get { return _selectedTuId; }
-            set
-            {
-                _selectedTuId = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public TUs SelectedTu
-        {
-            get { return _selectedTu; }
-            set
-            {
-                _selectedTu = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public TUs NewTUs
-        {
-            get { return _newTUs; }
-            set
-            {
-                _newTUs = value;
-            }
-        }
-        
-        public ObservableCollection<TUs> TuList
-        {
-            get { return _tuList; }
-            set
-            {
-                _tuList = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ObservableCollection<TUs> CompleteTUsList
-        {
-            get { return _completeTUsList; }
-            set { _completeTUsList = value; }
-        }
-
-        #endregion
-        
-        #region ButtonMethods
         public async void Initialize()
         {
             TuList = await ModelGenerics.GetLastTenInDatabase(new TUs(), "TU_ID", "TU");
@@ -233,6 +232,29 @@ namespace UniBase.Model.K2.TableMethods
                 ProcessOrderNoIntHelper = TuList.Last().ProcessOrder_No.ToString()
             };
         }
+
+        /// <summary>
+        /// Puts the stringhelpers, which are bound to the view, with their respective values.
+        /// </summary>
+        private void FillStringHelpers()
+        {
+            foreach (var Tu in TuList)
+            {
+                Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
+                Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
+                Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
+                Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
+                Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
+                Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
+                Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
+                Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
+                Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
+                Tu.TuIdIntHelper = Tu.TU_ID.ToString();
+            }
+        }
+
+        #region RelayCommandMethods
 
         /// <summary>
         /// Uses the GetAll method from the ModelGenerics class to update the entire table.
@@ -280,7 +302,6 @@ namespace UniBase.Model.K2.TableMethods
                 _message.ShowToastNotification("Fejl", "Forsøg venligst igen og gennemkig eventuelt for tastefejl");
             }
         }
-        #endregion
 
         public void SelectParentItem(object obj)
         {
@@ -298,26 +319,8 @@ namespace UniBase.Model.K2.TableMethods
                 }
             }
         }
-        /// <summary>
-        /// Puts the stringhelpers, which are bound to the view, with their respective values.
-        /// </summary>
-        private void FillStringHelpers()
-        {
-            foreach (var Tu in TuList)
-            {
-                Tu.ProcessOrderNoIntHelper = Tu.ProcessOrder_No.ToString();
-                Tu.FirstDayEndTuIntHelper = Tu.FirstDayEnd_TU.ToString();
-                Tu.FirstDayStartTuIntHelper = Tu.FirstDayStart_TU.ToString();
-                Tu.FirstDayTotalIntHelper = Tu.FirstDay_Total.ToString();
-                Tu.SecoundDayEndTuIntHelper = Tu.SecoundDayEnd_TU.ToString();
-                Tu.SecoundDayStartTuIntHelper = Tu.SecoundDayStart_TU.ToString();
-                Tu.SecoundDayTotalIntHelper = Tu.SecoundDay_Total.ToString();
-                Tu.ThirdDayEndTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
-                Tu.ThirdDayStartTuIntHelper = Tu.ThirdDayEnd_TU.ToString();
-                Tu.ThirdDayTotalIntHelper = Tu.ThirdDay_Total.ToString();
-                Tu.TuIdIntHelper = Tu.TU_ID.ToString();
-            }
-        }
+
+        #endregion
 
         #region SingleTon
         private static TuMethod _instance;
@@ -345,7 +348,7 @@ namespace UniBase.Model.K2.TableMethods
 
         #endregion
 
-        #region InotifyPropertyChanged
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

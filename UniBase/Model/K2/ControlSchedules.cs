@@ -11,6 +11,8 @@ namespace UniBase.Model.K2
 {
     public class ControlSchedules : INotifyPropertyChanged
     {
+        #region Fields
+
         private string _kegTest;
         private string _note;
         private string _signature;
@@ -30,6 +32,10 @@ namespace UniBase.Model.K2
         private double _weight;
         private double _ludKoncentration;
 
+        #endregion
+
+        #region Constructors
+
         public ControlSchedules()
         {
 
@@ -47,6 +53,10 @@ namespace UniBase.Model.K2
             Note = note;
             ProcessOrder_No = processOrder_No;
         }
+
+        #endregion
+
+        #region Properties
 
         public int ControlSchedule_ID { get; set; }
 
@@ -118,7 +128,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        #region Helpers
+        #region StringHelpers
         [JsonIgnore]
         public string ControlScheduleIdIntHelper
         {
@@ -283,8 +293,10 @@ namespace UniBase.Model.K2
         #endregion
 
         public virtual Frontpages Frontpage { get; set; }
-        
-        #region InotifyPropertyChanged
+
+        #endregion
+
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

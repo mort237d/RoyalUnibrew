@@ -58,7 +58,7 @@ namespace UniBase
                     // configuring the new page by passing required information as a navigation
                     // parameter
                     //TODO change this to LoginPage
-                    rootFrame.Navigate(typeof(WorkPage), e.Arguments);
+                    rootFrame.Navigate(typeof(LoginPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
