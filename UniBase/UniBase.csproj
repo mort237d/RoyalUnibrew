@@ -130,6 +130,7 @@
     <Compile Include="Model\K2\TableMethods\ControlScheduleMethod.cs" />
     <Compile Include="Model\K2\TableMethods\IManageButtonMethods.cs" />
     <Compile Include="Model\K2\TableMethods\ProductionMethod.cs" />
+    <Compile Include="Model\K2\TableMethods\ProductMethod.cs" />
     <Compile Include="Model\K2\TableMethods\ShiftRegistrationMethod.cs" />
     <Compile Include="Model\K2\TableMethods\TUMethod.cs" />
     <Compile Include="Model\K2\ControlRegistrations.cs" />
