@@ -1022,6 +1022,9 @@
                             <ComboBoxItem Content="Et Kvartal (Detaljeret)"/>
                             <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
+                        
+                        <CheckBox x:Name="GraphCheckBox" Content="Vis alle" IsChecked="{Binding Column2FacadePath.TrendAdminstrator.GraphCheckBox}" Margin="50,0,0,0" />
+                        <TextBox BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphProcessOrderNo" Width="200" Text="{Binding Column2FacadePath.TrendAdminstrator.GraphProcessOrderNo, Mode=TwoWay}" PlaceholderText="Process Order No."/>
                     </StackPanel>
                     <StackPanel Width="{Binding Column2FacadePath.TrendAdminstrator.ScreenWidth}">
 
