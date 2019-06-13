@@ -9,22 +9,28 @@ namespace RestService
 
     public partial class Context : DbContext
     {
-        public Context() : base("name=Context10")
+        public Context() : base("name=Context11")
         {
             base.Configuration.ProxyCreationEnabled = false;
         }
 
+        public virtual DbSet<ConstantValue> ConstantValues { get; set; }
         public virtual DbSet<ControlRegistration> ControlRegistrations { get; set; }
         public virtual DbSet<ControlSchedule> ControlSchedules { get; set; }
         public virtual DbSet<Frontpage> Frontpages { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Production> Productions { get; set; }
         public virtual DbSet<ShiftRegistration> ShiftRegistrations { get; set; }
+        public virtual DbSet<StandardValue> StandardValues { get; set; }
         public virtual DbSet<TU> TUs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ConstantValue>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
             modelBuilder.Entity<ControlRegistration>()
                 .Property(e => e.CommentsOnChangedDate)
                 .IsUnicode(false);
@@ -89,6 +95,10 @@ namespace RestService
 
             modelBuilder.Entity<ShiftRegistration>()
                 .Property(e => e.Initials)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<StandardValue>()
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()

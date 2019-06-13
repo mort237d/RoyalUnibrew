@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -9,16 +8,9 @@ using UniBase.Annotations;
 
 namespace UniBase.Model.K2.TableMethods
 {
-    public class ControlRegistrationMethod : IManageButtonMethods
+    public class ControlRegistrationMethod : IManageTableMethods
     {
-        public ControlRegistrationMethod()
-        {
-            Initialize();
-        }
-
         #region Fields
-
-        private ComboBoxItem _kegSize = new ComboBoxItem();
 
         private ObservableCollection<ControlRegistrations> _completeControlRegistrationsList;
 
@@ -50,9 +42,61 @@ namespace UniBase.Model.K2.TableMethods
         private string _lastPalletDepalletizingTextBoxOutput;
         private string _processOrderNoTextBoxOutput;
         #endregion
+
+        public ControlRegistrationMethod()
+        {
+            Initialize();
+        }
         
+        #region Properties
+        public int SelectedControlRegistrationId
+        {
+            get { return _selectedControlRegistrationId; }
+            set
+            {
+                _selectedControlRegistrationId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ControlRegistrations SelectedControlRegistration
+        {
+            get { return _selectedControlRegistration; }
+            set
+            {
+                _selectedControlRegistration = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public ObservableCollection<ControlRegistrations> ControlRegistrationsList
+        {
+            get { return _controlRegistrationsList; }
+            set
+            {
+                _controlRegistrationsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ControlRegistrations NewControlRegistrationsToAdd
+        {
+            get => _newControlRegistrationsToAdd;
+            set
+            {
+                _newControlRegistrationsToAdd = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
+        {
+            get { return _completeControlRegistrationsList; }
+            set { _completeControlRegistrationsList = value; }
+        }
+
         #region Filter
-      
+
         public string ControlRegistrationIdTextBoxOutput
         {
             get { return _controlRegistrationIdTextBoxOutput; }
@@ -196,52 +240,8 @@ namespace UniBase.Model.K2.TableMethods
             }
         }
         #endregion
-
-        #region Properties
-        public int SelectedControlRegistrationId
-        {
-            get { return _selectedControlRegistrationId; }
-            set
-            {
-                _selectedControlRegistrationId = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ControlRegistrations SelectedControlRegistration
-        {
-            get { return _selectedControlRegistration; }
-            set
-            {
-                _selectedControlRegistration = value;
-                OnPropertyChanged();
-            }
-        }
-
-       
-
-        public ObservableCollection<ControlRegistrations> ControlRegistrationsList
-        {
-            get { return _controlRegistrationsList; }
-            set
-            {
-                _controlRegistrationsList = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ControlRegistrations NewControlRegistrationsToAdd
-        {
-            get => _newControlRegistrationsToAdd;
-            set
-            {
-                _newControlRegistrationsToAdd = value;
-                OnPropertyChanged();
-            }
-        }
         #endregion
 
-        #region ButtonMethods
         private void Filter(int propIndex, string textBox)
         {
             _genericMethod.Filter(new ControlRegistrations(), ControlRegistrationsList, CompleteControlRegistrationsList, PropertyInfos[propIndex].Name, textBox, Initialize, FillStringHelpers);
@@ -256,6 +256,7 @@ namespace UniBase.Model.K2.TableMethods
             GenerateNewControlRegistrationToAdd();
         }
         
+        #region RelayCommandMethods
         /// <summary>
         /// Gets all controlregistrations from the Database and fills their respective stringhelpers.
         /// </summary>
@@ -286,6 +287,11 @@ namespace UniBase.Model.K2.TableMethods
 
         }
 
+        public void DeleteItem()
+        {
+            _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrering", "Kontrol Registrering ID");
+        }
+        
         public async void AddNewItem()
         {
             var latestControlSchedule = await ModelGenerics.GetLastTenInDatabase(new ControlRegistrations(), "ControlRegistration_ID", "Kontrol Registrerings");
@@ -300,15 +306,9 @@ namespace UniBase.Model.K2.TableMethods
             }
         }
 
-
-        public void DeleteItem()
-        {
-            _genericMethod.DeleteSelected(SelectedControlRegistration, new ControlRegistrations(), CompleteControlRegistrationsList, ControlRegistrationsList, "ControlRegistration_ID", "Kontrol Registrering", "Kontrol Registrering ID");
-        }
-        #endregion
-
-
-        public void ControlledClick(object id)
+        
+        
+        public void CheckBoxClick(object id)
         {
             foreach (var cr in ControlRegistrationsList)
             {
@@ -330,7 +330,7 @@ namespace UniBase.Model.K2.TableMethods
             SelectParentItem(id);
         }
 
-        public void ControlledClickAdd()
+        public void CheckBoxClickAdd()
         {
             if (NewControlRegistrationsToAdd.ControlAlcoholSpearDispenser)
             {
@@ -358,13 +358,6 @@ namespace UniBase.Model.K2.TableMethods
                 }
             }
         }
-
-        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
-        {
-            get { return _completeControlRegistrationsList; }
-            set { _completeControlRegistrationsList = value; }
-        }
-
         
         private void FillStringHelpers()
         {
@@ -416,14 +409,13 @@ namespace UniBase.Model.K2.TableMethods
             NewControlRegistrationsToAdd = new ControlRegistrations
             {
                 ControlRegistrationIdIntHelper = (ControlRegistrationsList.Last().ControlRegistration_ID + 1).ToString(),
-                CapNoIntHelper = ControlRegistrationsList.Last().CapNo.ToString(),
-                EtiquetteNoIntHelper = ControlRegistrationsList.Last().EtiquetteNo.ToString(),
                 KegSize = ControlRegistrationsList.Last().KegSize,
                 ProcessOrderNoIntHelper = ControlRegistrationsList.Last().ProcessOrder_No.ToString(),
                 ControlAlcoholSpearDispenser = false
             };
         }
-
+        #endregion
+        
         #region SingleTon
         private static ControlRegistrationMethod _instance;
         private static object syncLock = new object();
@@ -449,7 +441,6 @@ namespace UniBase.Model.K2.TableMethods
         #endregion
 
         #region INotify
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -457,7 +448,6 @@ namespace UniBase.Model.K2.TableMethods
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         #endregion
     }
 }
