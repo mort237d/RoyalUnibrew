@@ -16,6 +16,8 @@ namespace UniBase.Model
 
         private ComboBoxItem _graphType = new ComboBoxItem();
         private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
+        private string _graphProcessOrderNo;
+        private bool _graphCheckBox = true;
         private int _graphScrollLenght = 1000;
         
         private List<Trends> _tempTrendList = new List<Trends>();
@@ -29,7 +31,7 @@ namespace UniBase.Model
             //Choose the default value for the comboboxes.
             GraphType.Content = "Vægt";
             GraphTimePeriod.Content = "En Uge";
-            CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+            CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
             
             _screenWidth = ApplicationView.GetForCurrentView().VisibleBounds.Width;
         }
@@ -58,7 +60,7 @@ namespace UniBase.Model
             {
                 _graphType = value;
                 OnPropertyChanged();
-                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
             }
         }
 
@@ -69,7 +71,29 @@ namespace UniBase.Model
             {
                 _graphTimePeriod = value; 
                 OnPropertyChanged();
-                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString());
+                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
+            }
+        }
+
+        public string GraphProcessOrderNo
+        {
+            get { return _graphProcessOrderNo; }
+            set
+            {
+                _graphProcessOrderNo = value;
+                OnPropertyChanged();
+                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
+            }
+        }
+        
+        public bool GraphCheckBox
+        {
+            get { return _graphCheckBox; }
+            set
+            {
+                _graphCheckBox = value; 
+                OnPropertyChanged();
+                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
             }
         }
 
@@ -108,9 +132,11 @@ namespace UniBase.Model
         /// </summary>
         /// <param name="comboboxInput"></param>
         /// <param name="timePeriod"></param>
-        public async void CreateGraph(string comboboxInput, string timePeriod)
+        /// <param name="graphProcessOrderNo"></param>
+        /// <param name="graphCheckBox"></param>
+        public void CreateGraph(string comboboxInput, string timePeriod, string graphProcessOrderNo, bool graphCheckBox)
         {
-            _completeControlSchedulesList = await ModelGenerics.GetAll(new ControlSchedules());
+            _completeControlSchedulesList = ModelGenerics.GetAllsync(new ControlSchedules());
 
             TempTrendList.Clear();
             DateTime tempDayOfScheduleList = _completeControlSchedulesList[0].Time;
@@ -179,66 +205,87 @@ namespace UniBase.Model
             int amountOfItemsWithSameDate = 0;
             double tempTotalValue = 0;
             foreach (var scheduleItem in _completeControlSchedulesList)
-            {           
-                //checks the item date and only if the date is between the selected timeperiod and now, the data is put in the list.
-                if (scheduleItem.Time >= DateTime.Now - new TimeSpan(timeHorizon, 0, 0, 0) && scheduleItem.Time <= DateTime.Now)
+            {
+                if (graphCheckBox == true || graphProcessOrderNo == scheduleItem.ProcessOrder_No.ToString())
                 {
-                    currentItemDate = scheduleItem.Time.Subtract(new TimeSpan(0,
-                        scheduleItem.Time.Hour, scheduleItem.Time.Minute,
-                        scheduleItem.Time.Second));
-                    //if timehorizonDivider == 0 we want all data directly in the list and not the average of the day.
-                    if (timeHorizonDivider == 0)
+                    //checks the item date and only if the date is between the selected timeperiod and now, the data is put in the list.
+                    if (scheduleItem.Time >= DateTime.Now - new TimeSpan(timeHorizon, 0, 0, 0) &&
+                        scheduleItem.Time <= DateTime.Now)
                     {
-                        if (comboboxInput == "Vægt") TempTrendList.Add(new Trends(scheduleItem.Weight, scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" + scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" + scheduleItem.Time.Minute, ConstantValues.MinWeight, ConstantValues.MaxWeight));
-                        if (comboboxInput == "MipMa") TempTrendList.Add(new Trends(scheduleItem.MipMA, scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" + scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" + scheduleItem.Time.Minute, ConstantValues.MinMipMa, ConstantValues.MaxMipMa));
-                        if (comboboxInput == "Lud Koncentration") TempTrendList.Add(new Trends(scheduleItem.LudKoncentration, scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" + scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" + scheduleItem.Time.Minute, ConstantValues.MinLudkoncentration, ConstantValues.MaxLudkoncentration));
-                        continue;
-                    }
-
-                here:
-                    //checks if the date is within the time horizon of how many days we want the avarage.
-                    if (tempDayOfScheduleList <= currentItemDate + new TimeSpan(timeHorizonDivider, 0, 0, 0) && tempDayOfScheduleList >= currentItemDate)
-                    {
-                        //adds the values to a tempTotalValue for each item that is within the same time horizon.
-                        amountOfItemsWithSameDate++;
-                        if (comboboxInput == "Vægt")
-                        { 
-                            tempTotalValue += (double)scheduleItem.Weight;
-                            minValue = ConstantValues.MinWeight;
-                            maxValue = ConstantValues.MaxWeight;
-                        }
-                        else if (comboboxInput == "MipMa")
+                        currentItemDate = scheduleItem.Time.Subtract(new TimeSpan(0,
+                            scheduleItem.Time.Hour, scheduleItem.Time.Minute,
+                            scheduleItem.Time.Second));
+                        //if timehorizonDivider == 0 we want all data directly in the list and not the average of the day.
+                        if (timeHorizonDivider == 0)
                         {
-                            tempTotalValue += (double)scheduleItem.MipMA;
-                            minValue = ConstantValues.MinMipMa;
-                            maxValue = ConstantValues.MaxMipMa;
-                        }
-                        else if (comboboxInput == "Lud Koncentration")
-                        {
-                            tempTotalValue += (double)scheduleItem.LudKoncentration;
-                            minValue = ConstantValues.MinLudkoncentration;
-                            maxValue = ConstantValues.MaxLudkoncentration;
+                            if (comboboxInput == "Vægt")
+                                TempTrendList.Add(new Trends(scheduleItem.Weight,
+                                    scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" +
+                                    scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" +
+                                    scheduleItem.Time.Minute, ConstantValues.MinWeight, ConstantValues.MaxWeight));
+                            if (comboboxInput == "MipMa")
+                                TempTrendList.Add(new Trends(scheduleItem.MipMA,
+                                    scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" +
+                                    scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" +
+                                    scheduleItem.Time.Minute, ConstantValues.MinMipMa, ConstantValues.MaxMipMa));
+                            if (comboboxInput == "Lud Koncentration")
+                                TempTrendList.Add(new Trends(scheduleItem.LudKoncentration,
+                                    scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" +
+                                    scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" +
+                                    scheduleItem.Time.Minute, ConstantValues.MinLudkoncentration,
+                                    ConstantValues.MaxLudkoncentration));
+                            continue;
                         }
 
-                        continue;
+                        here:
+                        //checks if the date is within the time horizon of how many days we want the avarage.
+                        if (tempDayOfScheduleList <= currentItemDate + new TimeSpan(timeHorizonDivider, 0, 0, 0) &&
+                            tempDayOfScheduleList >= currentItemDate)
+                        {
+                            //adds the values to a tempTotalValue for each item that is within the same time horizon.
+                            amountOfItemsWithSameDate++;
+                            if (comboboxInput == "Vægt")
+                            {
+                                tempTotalValue += (double) scheduleItem.Weight;
+                                minValue = ConstantValues.MinWeight;
+                                maxValue = ConstantValues.MaxWeight;
+                            }
+                            else if (comboboxInput == "MipMa")
+                            {
+                                tempTotalValue += (double) scheduleItem.MipMA;
+                                minValue = ConstantValues.MinMipMa;
+                                maxValue = ConstantValues.MaxMipMa;
+                            }
+                            else if (comboboxInput == "Lud Koncentration")
+                            {
+                                tempTotalValue += (double) scheduleItem.LudKoncentration;
+                                minValue = ConstantValues.MinLudkoncentration;
+                                maxValue = ConstantValues.MaxLudkoncentration;
+                            }
+
+                            continue;
+                        }
+
+                        //Adds the average from the time horizon to the list
+                        if (amountOfItemsWithSameDate != 0)
+                        {
+                            TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate,
+                                tempDayOfScheduleList.Year + "/" + tempDayOfScheduleList.Month + "/" +
+                                tempDayOfScheduleList.Day, minValue, maxValue));
+                        }
+
+                        //Resets values
+                        tempTotalValue = 0;
+                        amountOfItemsWithSameDate = 0;
+                        //Only changes the tempDayOfScheduleList if it has proceeded the timeHorizonDivider
+                        if (new TimeSpan(timeHorizonDivider, 0, 0, 0) <= currentItemDate - tempDayOfScheduleList)
+                        {
+                            tempDayOfScheduleList = currentItemDate;
+                            goto here;
+                        }
+
                     }
-                    //Adds the average from the time horizon to the list
-                    if (amountOfItemsWithSameDate != 0)
-                    {
-                        TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, tempDayOfScheduleList.Year + "/" + tempDayOfScheduleList.Month + "/" + tempDayOfScheduleList.Day, minValue, maxValue));
-                    }
-                    //Resets values
-                    tempTotalValue = 0;
-                    amountOfItemsWithSameDate = 0;
-                    //Only changes the tempDayOfScheduleList if it has proceeded the timeHorizonDivider
-                    if (new TimeSpan(timeHorizonDivider,0,0,0) <= currentItemDate - tempDayOfScheduleList)
-                    {
-                        tempDayOfScheduleList = currentItemDate;
-                        goto here;
-                    }
-                
                 }
-                
             }
             //Adds the last tempTotalValue to the list
             if (amountOfItemsWithSameDate != 0)

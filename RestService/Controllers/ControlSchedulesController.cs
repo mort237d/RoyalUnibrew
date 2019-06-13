@@ -14,7 +14,7 @@ namespace RestService.Controllers
         // GET: api/ControlSchedules
         public IQueryable<Models.ControlSchedule> GetControlSchedules()
         {
-            return db.ControlSchedules;
+            return db.ControlSchedules.OrderBy(x => x.Time);
         }
 
         // GET: api/ControlSchedules/5

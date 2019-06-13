@@ -857,7 +857,7 @@
                                                     <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortTuCommand, ElementName=WorkPageName}">
                                                         <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
                                                     </Button>
-                                                    
+
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -997,8 +997,107 @@
             </PivotItem>
             <!--#endregion-->
             <PivotItem Header="K3"/>
-            <!--<PivotItem Header="K4"/>
-            <PivotItem Header="K5"/>-->
+            <PivotItem Header="K4"/>
+            <PivotItem Header="Produkter">
+                <StackPanel HorizontalAlignment="Center">
+                    <StackPanel HorizontalAlignment="left">
+                        <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column2FacadePath.XamlBindings.ProductHeaderList[0].Header}"  Text="{Binding Column2FacadePath.ProductMethod.FinishedProductNoTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column2FacadePath.XamlBindings.ProductHeaderList[1].Header}"  Text="{Binding Column2FacadePath.ProductMethod.ProductNameTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource CustomTextBoxTableStyle}" TextWrapping="Wrap" PlaceholderText="{Binding Column2FacadePath.XamlBindings.ProductHeaderList[2].Header}"  Text="{Binding Column2FacadePath.ProductMethod.BestBeforeDateLengthTextBoxOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                        <StackPanel>
+                            <ListView Width="331"
+                                      Style="{StaticResource ButtonListViewStyle}" 
+                                      ItemsSource="{Binding Column2FacadePath.XamlBindings.ProductHeaderList}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Style="{StaticResource ButtonPropertyStyle}" CommandParameter="{Binding Header}" Command="{Binding DataContext.SortProductCommand, ElementName=WorkPageName}">
+                                                <TextBlock Text="{Binding Header}" TextWrapping="Wrap" ToolTipService.ToolTip="{Binding ToolTip}"/>
+                                            </Button>
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView SelectedIndex="{Binding Column2FacadePath.ProductMethod.SelectedProductId, Mode=TwoWay}" SelectedItem="{Binding Column2FacadePath.ProductMethod.SelectedProduct, Mode=TwoWay}" MaxHeight="400" Width="331" ItemsSource="{Binding Column2FacadePath.ProductMethod.ProductList}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding FinishedProduct_No, Mode=TwoWay}" IsReadOnly="True">
+                                                <Custom:Interaction.Behaviors>
+                                                    <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                        <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductCommand, ElementName=WorkPageName}" CommandParameter="{Binding FinishedProduct_No}"/>
+                                                    </Custom1:EventTriggerBehavior>
+                                                </Custom:Interaction.Behaviors>
+                                            </TextBox>
+                                            <TextBox Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding ProductName, Mode=TwoWay}" ToolTipService.ToolTip="Skriv navnet">
+                                                <Custom:Interaction.Behaviors>
+                                                    <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                        <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductCommand, ElementName=WorkPageName}" CommandParameter="{Binding FinishedProduct_No}"/>
+                                                    </Custom1:EventTriggerBehavior>
+                                                </Custom:Interaction.Behaviors>
+                                            </TextBox>
+                                            <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding BestBeforeDateLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTipService.ToolTip="Skriv heltal">
+                                                <Custom:Interaction.Behaviors>
+                                                    <Custom1:EventTriggerBehavior EventName="GotFocus">
+                                                        <Custom1:InvokeCommandAction Command="{Binding DataContext.SelectParentItemProductCommand, ElementName=WorkPageName}" CommandParameter="{Binding FinishedProduct_No}"/>
+                                                    </Custom1:EventTriggerBehavior>
+                                                </Custom:Interaction.Behaviors>
+                                            </TextBox>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få alle data" Command="{Binding RefreshProductTable}">
+                                <Image Source="Images/Button/GetAll.png"/>
+                            </Button>
+                            <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Få seneste data" Command="{Binding RefreshLastTenProductTable}">
+                                <Image Source="Images/Button/GetLastTen.png"/>
+                            </Button>
+                            <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Gem" Command="{Binding SaveProductTable}">
+                                <Image Source="Images/Button/SaveButton.png"/>
+                            </Button>
+                            <Button Style="{StaticResource ButtonTransparentHoverStyle}" ToolTipService.ToolTip="Slet" Command="{Binding DeleteProductTable}">
+                                <Image Source="Images/Button/DeleteButton.png"/>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Background="#16503F" Opacity="0.8">
+                            <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column2FacadePath.ProductMethod.NewProducts.FinishedProduct_No, Mode=TwoWay}" PlaceholderText="{Binding Column2FacadePath.XamlBindings.PlaceHolderInt}"/>
+                            <TextBox BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column2FacadePath.ProductMethod.NewProducts.ProductName, Mode=TwoWay}" PlaceholderText="{Binding Column2FacadePath.XamlBindings.PlaceHolderInt}"/>
+                            <TextBox extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Number" BorderThickness="1,2,1,1" Style="{StaticResource CustomTextBoxTableStyle}" Text="{Binding Column2FacadePath.ProductMethod.NewProducts.BestBeforeDateLength, Mode=TwoWay}" PlaceholderText="{Binding Column2FacadePath.XamlBindings.PlaceHolderInt}"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource ButtonTransparentHoverStyle}" Height="40" Width="40" ToolTipService.ToolTip="Tilføj" Command="{Binding AddProductTable}">
+                            <Image Source="Images/Button/AddButton.png"/>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </PivotItem>
             <PivotItem Header="Grafer" >
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  Margin="3">
@@ -1022,6 +1121,9 @@
                             <ComboBoxItem Content="Et Kvartal (Detaljeret)"/>
                             <ComboBoxItem Content="Et År (Detaljeret)"/>
                         </ComboBox>
+                        
+                        <CheckBox x:Name="GraphCheckBox" Content="Vis alle" IsChecked="{Binding Column2FacadePath.TrendAdminstrator.GraphCheckBox, Mode=TwoWay}" Margin="50,0,0,0" />
+                        <TextBox BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphProcessOrderNo" Width="200" Text="{Binding Column2FacadePath.TrendAdminstrator.GraphProcessOrderNo, Mode=TwoWay}" PlaceholderText="Process Order No."/>
                     </StackPanel>
                     <StackPanel Width="{Binding Column2FacadePath.TrendAdminstrator.ScreenWidth}">
 
