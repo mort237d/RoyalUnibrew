@@ -3,7 +3,6 @@
     public static class ConstantValues
     {
         #region Fields
-
         private static double minWeight = 37;
         private static double maxWeight = 38.5;
         private static double minMipMa = 24;
