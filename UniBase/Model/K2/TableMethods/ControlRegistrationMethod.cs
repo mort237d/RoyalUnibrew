@@ -416,8 +416,6 @@ namespace UniBase.Model.K2.TableMethods
             NewControlRegistrationsToAdd = new ControlRegistrations
             {
                 ControlRegistrationIdIntHelper = (ControlRegistrationsList.Last().ControlRegistration_ID + 1).ToString(),
-                CapNoIntHelper = ControlRegistrationsList.Last().CapNo.ToString(),
-                EtiquetteNoIntHelper = ControlRegistrationsList.Last().EtiquetteNo.ToString(),
                 KegSize = ControlRegistrationsList.Last().KegSize,
                 ProcessOrderNoIntHelper = ControlRegistrationsList.Last().ProcessOrder_No.ToString(),
                 ControlAlcoholSpearDispenser = false

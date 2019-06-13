@@ -42,6 +42,29 @@ namespace UniBase.Model
             return endResult;
         }
 
+        //public static T GetById<T>(T type, int id, out bool isSuccesfull)
+        //{
+        //    int typeNamePosistionInNamespace = 3;
+        //    String[] typeName = type.ToString().Split('.');
+        //    string httpUrl = URI + typeName[typeNamePosistionInNamespace] + "/" + id;
+
+        //    var endResult = type;
+        //    isSuccesfull = true;
+        //    try
+        //    {
+        //        Task<string> resTask = client.GetStringAsync(httpUrl);
+        //        string result = resTask.Result;
+        //        endResult = JsonConvert.DeserializeObject<T>(result);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        isSuccesfull = false;
+        //        Debug.WriteLine(e);
+        //    }
+
+        //    return endResult;
+        //}
+
         /// <summary>
         /// Generic method to GET all of a specific type from the Database through the REST-service.
         /// </summary>
