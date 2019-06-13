@@ -19,6 +19,7 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SortProductionCommand { get; set; }
         public RelayCommand<object> SortShiftRegistrationCommand { get; set; }
         public RelayCommand<object> SortTuCommand { get; set; }
+        public RelayCommand<object> SortProductCommand { get; set; }
 
         public RelayCommand RefreshFrontpageTable { get; set; }
         public RelayCommand RefreshLastTenControlRegistrationTable { get; set; }
@@ -56,6 +57,12 @@ namespace UniBase.ViewModel
         public RelayCommand DeleteTUTable { get; set; }
         public RelayCommand AddTUTable { get; set; }
 
+        public RelayCommand RefreshProductTable { get; set; }
+        public RelayCommand RefreshLastTenProductTable { get; set; }
+        public RelayCommand SaveProductTable { get; set; }
+        public RelayCommand AddProductTable { get; set; }
+        public RelayCommand DeleteProductTable { get; set; }
+        
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
         public RelayCommand ChangeUserCommand { get; set; }
@@ -70,8 +77,10 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
         public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
         public RelayCommand<object> SelectParentItemTuCommand { get; set; }
+        public RelayCommand<object> SelectParentItemProductCommand { get; set; }
 
         public RelayCommand AdminCheckClickCommand { get; set; }
+        public RelayCommand LeaderCheckClickCommand { get; set; }
 
         public RelayCommand ClearTbCommand { get; set; }
         #endregion
@@ -81,8 +90,7 @@ namespace UniBase.ViewModel
         public WorkViewModel()
         {
             Column2FacadePath = Column2Facade.Instance;
-
-
+            
             //Frontpage
             RefreshFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.RefreshAll);
             RefreshLastTenFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.RefreshLastTen);
@@ -125,12 +133,20 @@ namespace UniBase.ViewModel
             AddTUTable = new RelayCommand(Column2FacadePath.TuMethod.AddNewItem);
             DeleteTUTable = new RelayCommand(Column2FacadePath.TuMethod.DeleteItem);
 
+            //Product
+            RefreshProductTable = new RelayCommand(Column2FacadePath.ProductMethod.RefreshAll);
+            RefreshLastTenProductTable = new RelayCommand(Column2FacadePath.ProductMethod.RefreshLastTen);
+            SaveProductTable = new RelayCommand(Column2FacadePath.ProductMethod.SaveAll);
+            AddProductTable = new RelayCommand(Column2FacadePath.ProductMethod.AddNewItem);
+            DeleteProductTable = new RelayCommand(Column2FacadePath.ProductMethod.DeleteItem);
+
             //Users
             AddUserCommand = new RelayCommand(Column2FacadePath.ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(Column2FacadePath.ManageUser.RemoveUser);
             ChangeUserCommand = new RelayCommand(Column2FacadePath.ManageUser.ChangeSelectedUser);
             ClearTbCommand = new RelayCommand(Column2FacadePath.ManageUser.ClearTb);
             AdminCheckClickCommand = new RelayCommand(Column2FacadePath.ManageUser.AdminCheckClick);
+            LeaderCheckClickCommand = new RelayCommand(Column2FacadePath.ManageUser.LeaderCheckCLick);
             LogOffCommand = new RelayCommand(Column2FacadePath.ManageLogin.LogOffMethod);
 
             //Sort
@@ -140,6 +156,7 @@ namespace UniBase.ViewModel
             SortProductionCommand = new RelayCommand<object>(Column2FacadePath.ProductionMethod.SortButtonClick);
             SortShiftRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ShiftRegistrationMethod.SortButtonClick);
             SortTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SortButtonClick);
+            SortProductCommand = new RelayCommand<object>(Column2FacadePath.ProductMethod.SortButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column2FacadePath.ControlRegistrationMethod.CheckBoxClick);
 
@@ -150,18 +167,20 @@ namespace UniBase.ViewModel
             SelectParentItemProductionCommand = new RelayCommand<object>(Column2FacadePath.ProductionMethod.SelectParentItem);
             SelectParentItemShiftRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ShiftRegistrationMethod.SelectParentItem);
             SelectParentItemTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SelectParentItem);
+            SelectParentItemProductCommand = new RelayCommand<object>(Column2FacadePath.ProductMethod.SelectParentItem);
 
             ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.CheckBoxClickAdd);
 
 
             //Test stuff
             //AddFrontpageTable = new RelayCommand(UpdateListsblaaa);
+
         }
 
         private async void UpdateListsblaaa()
         {
-            bool add = true;
-            int month = 05;
+            bool add = false;
+            int month = 01;
             int day = 17;
             int year = 2019;
             int hour = 1;
@@ -217,14 +236,14 @@ namespace UniBase.ViewModel
             {
                 foreach (var VARIABLE in Column2FacadePath.ControlScheduleMethod.CompleteControlSchedulesList)
                 {
-                    if (VARIABLE.Time > new DateTime(2019, 05, 17))
-                    {
+//                    if (VARIABLE.Time > new DateTime(2019, 05, 17))
+//                    {
                         VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0, 59), 0);
                         VARIABLE.Weight = Math.Round((random.NextDouble() * 1.65 + 36.92), 2);
                         VARIABLE.MipMA = Math.Round((random.NextDouble() * 2.65 + 23.92), 2);
                         VARIABLE.LudKoncentration = Math.Round((random.NextDouble() * 1.15 + 0.92), 2);
                         ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE, "ControlSchedule_ID", "Kontrol Skema");
-                        hour += 2;
+                        hour += 5;
                         if (hour > 9)
                         {
                             hour = 1;
@@ -241,7 +260,7 @@ namespace UniBase.ViewModel
                             year++;
                             month = 1;
                         }
-                    }
+//                    }
                 }
             }
             ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.CheckBoxClickAdd);

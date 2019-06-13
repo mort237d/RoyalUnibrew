@@ -227,7 +227,7 @@ namespace UniBase.Model.K2
                         Production_Date = t;
 
                         int frontpage = ModelGenerics.GetById(new Frontpages(), ProcessOrder_No).FinishedProduct_No;
-                        int experationDateLength = ModelGenerics.GetById(new Products(), frontpage ).BestBeforeDateLength;
+                        int experationDateLength = int.Parse(ModelGenerics.GetById(new Products(), frontpage ).BestBeforeDateLength);
                         Expiry_Date = t.AddDays(experationDateLength);
                         ExpiryDateStringHelper = Expiry_Date.ToString("yyyy/MM/dd");
                     }

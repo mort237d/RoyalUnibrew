@@ -12,6 +12,7 @@ namespace UniBase.Model
             CreateProductionsHeader();
             CreateShiftRegistrationHeader();
             CreateTUHeader();
+            CreateProductHeader();
         }
 
         #region Properties
@@ -30,6 +31,8 @@ namespace UniBase.Model
         public List<HeaderAndToolTip> ProductionsHeaderList { get; set; }
         public List<HeaderAndToolTip> ShiftRegistrationHeaderList { get; set; }
         public List<HeaderAndToolTip> TUHeaderList { get; set; }
+
+        public List<HeaderAndToolTip> ProductHeaderList { get; set; }
         #endregion
 
         /// <summary>
@@ -142,6 +145,19 @@ namespace UniBase.Model
                 new HeaderAndToolTip("Tredje dag start TU", "Sorter efter Tredje dag start TU"),
                 new HeaderAndToolTip("Tredje dag slut TU", "Sorter efter Tredje dag slut TU"),
                 new HeaderAndToolTip("Tredje dag TU i alt", "Sorter efter Tredje dag TU i alt")
+            };
+        }
+
+        /// <summary>
+        /// Creates a list of Headers for Product.
+        /// </summary>
+        public void CreateProductHeader()
+        {
+            ProductHeaderList = new List<HeaderAndToolTip>
+            {
+                new HeaderAndToolTip("Færdigt Produkt Nr", "Sorter efter Færdigt Produkt Nr"),
+                new HeaderAndToolTip("Navn", "Sorter efter Navn"),
+                new HeaderAndToolTip("Holdbarhed (antal dage)", "Sorter efter Holdbarhed")
             };
         }
     }

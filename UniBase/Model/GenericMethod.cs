@@ -67,6 +67,47 @@ namespace UniBase.Model
             helperAction();
         }
 
+        public void Filter<T>(T type, ObservableCollection<T> list, ObservableCollection<T> completeList, string property, string textBoxOutPut, Action initializeAction)
+        {
+            PropertyInfo prop = typeof(T).GetProperty(property);
+
+            if (string.IsNullOrEmpty(textBoxOutPut))
+            {
+                initializeAction();
+            }
+            else if (textBoxOutPut.Length > 1)
+            {
+                var tempList = new List<T>();
+
+                foreach (var i in list)
+                {
+                    tempList.Add(i);
+                }
+                list.Clear();
+
+                foreach (var f in tempList)
+                {
+                    if (prop.GetValue(f, null) != null)
+                    {
+                        var v = prop.GetValue(f, null).ToString().ToLower();
+                        if (v.Contains(textBoxOutPut.ToLower()))
+                        {
+                            list.Add(f);
+                        }
+                    }
+                }
+
+                if (list.Count == 0)
+                {
+                    FilterCompleteList(list, completeList, textBoxOutPut, prop);
+                }
+            }
+            else
+            {
+                FilterCompleteList(list, completeList, textBoxOutPut, prop);
+            }
+        }
+
         private static void FilterCompleteList<T>(ObservableCollection<T> list, ObservableCollection<T> completeList, string textBoxOutPut, PropertyInfo prop)
         {
             list.Clear();
@@ -126,7 +167,7 @@ namespace UniBase.Model
                 PropertyInfo prop = typeof(T).GetProperty(property);
                 var id = prop.GetValue(selectedItem, null);
 
-                ModelGenerics.DeleteById(type, (int)id, property, primaryKeyNameDanish);
+                ModelGenerics.DeleteById(type, int.Parse(id.ToString()), property, primaryKeyNameDanish);
 
                 foreach (var item in completeList)
                 {
@@ -160,7 +201,7 @@ namespace UniBase.Model
 
             foreach (var item in list)
             {
-                ModelGenerics.UpdateByObjectAndId((int)prop.GetValue(item, null), item, property, primaryKeyNameDanish);
+                ModelGenerics.UpdateByObjectAndId(int.Parse(prop.GetValue(item, null).ToString()), item, property, primaryKeyNameDanish);
             }
             _message.ShowToastNotification("Gemt", tableName + "-tabellen er gemt");
         }
@@ -177,7 +218,7 @@ namespace UniBase.Model
         {
             PropertyInfo prop = typeof(T).GetProperty(property);
             
-            int index = list.IndexOf(list.First(d => (int) prop.GetValue(d, null) == obj));
+            int index = list.IndexOf(list.First(d => int.Parse(prop.GetValue(d, null).ToString()) == obj));
 
             return index;    
         }
