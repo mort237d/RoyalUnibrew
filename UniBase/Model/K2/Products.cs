@@ -6,9 +6,20 @@ namespace UniBase.Model.K2
 {
     public class Products : INotifyPropertyChanged
     {
+        #region Fields
+
         private int _finishedProductNo;
         private string _productName;
         private int _bestBeforeDateLength;
+
+        #endregion
+
+        #region Constructors
+
+        public Products()
+        {
+            
+        }
 
         public Products(int finishedProduct_No, string productName, int bestBeforeDateLength)
         {
@@ -17,10 +28,9 @@ namespace UniBase.Model.K2
             BestBeforeDateLength = bestBeforeDateLength;
         }
 
-        public Products()
-        {
-            
-        }
+        #endregion
+
+        #region Properties
 
         public int FinishedProduct_No
         {
@@ -55,7 +65,9 @@ namespace UniBase.Model.K2
             }
         }
 
-        #region InotifyPropertyChanged
+        #endregion
+
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

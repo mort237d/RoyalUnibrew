@@ -8,6 +8,8 @@ namespace UniBase.Model.K2
 {
     public class ControlRegistrations : INotifyPropertyChanged
     {
+        #region Fields
+
         private string _commentsOnChangedDate;
         private bool _controlAlcoholSpearDispenser = false;
         private string _kegSize;
@@ -24,6 +26,10 @@ namespace UniBase.Model.K2
         private string _expiryDateStringHelper;
         private string _controlRegistrationAlcoholSpearDispenserControlled;
         private int _kegSizeIndex;
+
+        #endregion
+
+        #region Constructors
 
         public ControlRegistrations()
         {
@@ -50,6 +56,10 @@ namespace UniBase.Model.K2
             ProcessOrder_No = processOrder_No;
         }
 
+        #endregion
+        
+        #region Properties
+
         public int ControlRegistration_ID { get; set; }
 
         public int ProcessOrder_No { get; set; }
@@ -69,8 +79,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
-
+        
         public bool ControlAlcoholSpearDispenser
         {
             get => _controlAlcoholSpearDispenser;
@@ -114,8 +123,7 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
-
-
+        
         public DateTime FirstPalletDepalletizing { get; set; }
 
         public DateTime LastPalletDepalletizing { get; set; }
@@ -317,8 +325,9 @@ namespace UniBase.Model.K2
         #endregion
 
         public virtual Frontpages Frontpage { get; set; }
-
-        #region InotifyPropertyChanged
+        #endregion
+        
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

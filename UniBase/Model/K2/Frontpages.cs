@@ -9,6 +9,8 @@ namespace UniBase.Model.K2
 {
     public class Frontpages : INotifyPropertyChanged
     {
+        #region Fields
+
         private string _note;
 
         //Helpers
@@ -17,6 +19,10 @@ namespace UniBase.Model.K2
         private string _colunmIntHelper;
         private string _finishedProductNoIntHelper;
         private string _dateStringHelper;
+
+        #endregion
+
+        #region Constructors
 
         public Frontpages()
         {
@@ -32,6 +38,10 @@ namespace UniBase.Model.K2
             Note = note;
             Week_No = week_No;
         }
+
+        #endregion
+
+        #region Properties
 
         public int ProcessOrder_No { get; set; }
 
@@ -55,7 +65,7 @@ namespace UniBase.Model.K2
 
         public virtual Products Product { get; set; }
 
-        #region PropertyHelpers
+        #region StringHelpers
         [JsonIgnore]
         public string ProcessOrderNoIntHelper
         {
@@ -147,9 +157,11 @@ namespace UniBase.Model.K2
                 OnPropertyChanged();
             }
         }
+#endregion
+
         #endregion
 
-        #region InotifyPropertyChanged
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

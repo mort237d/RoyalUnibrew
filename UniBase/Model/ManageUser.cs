@@ -9,10 +9,9 @@ namespace UniBase.Model
 {
     public class ManageUser : INotifyPropertyChanged
     {
-        #region Field
+        #region Fields
 
         private static Message _message;
-        //BrowseImage _browseImages = new BrowseImage();
 
         public readonly string StandardImage = "Images/User.png";
 
@@ -28,7 +27,14 @@ namespace UniBase.Model
 
         #endregion
 
-        #region Props
+        public ManageUser()
+        {
+            Load();
+
+            _message = new Message(this);
+        }
+        
+        #region Properties
 
         public string NameTb
         {
@@ -150,70 +156,15 @@ namespace UniBase.Model
 
         #endregion
 
-        public ManageUser()
-        {
-            Load();
-
-            _message = new Message(this);
-        }
-
-         /// <summary>
-         /// Loads all the users from the database and puts the users into the local list.
-         /// </summary>
+        /// <summary>
+        /// Loads all the users from the database and puts the users into the local list.
+        /// </summary>
         private async void Load()
         {
             UsersList = await ModelGenerics.GetAll(new Users());
         }
 
-        #region Singleton
-
-        private static ManageUser _instance;
-
-        public static ManageUser Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new ManageUser();
-                }
-                return _instance;
-            }
-        }
-
-        public string CurrentUserName
-        {
-            get { return _currentUserName; }
-            set
-            {
-                _currentUserName = value;
-            }
-        }
-
-        public string AdminCheckBoxImage
-        {
-            get { return _adminCheckBoxImage; }
-            set
-            {
-                _adminCheckBoxImage = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool Admin
-        {
-            get { return _admin; }
-            set
-            {
-                _admin = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
-
-
-
-        #region ButtonMethods
+        #region RelayCommandMethods
         public void AdminCheckClick()
         {
             if (Admin)
@@ -312,6 +263,52 @@ namespace UniBase.Model
                 _message.ShowToastNotification("Opdateret", SelectedUser.Name + " er opdateret.");
             }
              else await _message.Error("Fejl", "Intet er ændret prøv igen");
+        }
+        #endregion
+
+        #region Singleton
+
+        private static ManageUser _instance;
+
+        public static ManageUser Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ManageUser();
+                }
+                return _instance;
+            }
+        }
+
+        public string CurrentUserName
+        {
+            get { return _currentUserName; }
+            set
+            {
+                _currentUserName = value;
+            }
+        }
+
+        public string AdminCheckBoxImage
+        {
+            get { return _adminCheckBoxImage; }
+            set
+            {
+                _adminCheckBoxImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool Admin
+        {
+            get { return _admin; }
+            set
+            {
+                _admin = value;
+                OnPropertyChanged();
+            }
         }
         #endregion
         

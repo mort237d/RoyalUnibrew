@@ -8,6 +8,8 @@ namespace UniBase.Model.K2
 {
     public class ShiftRegistrations : INotifyPropertyChanged
     {
+        #region Fields
+
         private string _initials;
 
         private string _shiftRegistrationIdIntHelper;
@@ -17,6 +19,10 @@ namespace UniBase.Model.K2
         private string _totalHoursIntHelper;
         private string _startTimeStringHelper;
         private string _endDateStringHelper;
+
+        #endregion
+
+        #region Constructors
 
         public ShiftRegistrations()
         {
@@ -34,6 +40,10 @@ namespace UniBase.Model.K2
             Initials = initials;
             ProcessOrder_No = processOrder_No;
         }
+
+        #endregion
+
+        #region Properties
 
         public int ShiftRegistration_ID { get; set; }
 
@@ -59,7 +69,7 @@ namespace UniBase.Model.K2
             }
         }
 
-        #region Helpers
+        #region StringHelpers
         [JsonIgnore]
         public string ShiftRegistrationIdIntHelper
         {
@@ -204,8 +214,9 @@ namespace UniBase.Model.K2
 
         public virtual Frontpages Frontpage { get; set; }
 
+        #endregion
 
-        #region InotifyPropertyChanged
+        #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
