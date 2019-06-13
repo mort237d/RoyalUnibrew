@@ -94,7 +94,6 @@ namespace UniBase.Model
                 _graphCheckBox = value; 
                 OnPropertyChanged();
                 CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
-
             }
         }
 
