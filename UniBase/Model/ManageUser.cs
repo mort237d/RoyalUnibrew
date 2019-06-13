@@ -245,7 +245,7 @@ namespace UniBase.Model
             }
             else
             {
-                LeaderCheckBoxImage = "Images/Box/UnCheckedCheckbox.png";
+                LeaderCheckBoxImage = "Images/Box/CheckedCheckbox.png";
                 Leader = true;
             }
         }

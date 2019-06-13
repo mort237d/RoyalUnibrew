@@ -1162,6 +1162,8 @@
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
                                             <TextBlock Margin="5,0,0,0" Text="{Binding AdminstratorText, Mode=TwoWay}"/>
+                                            <TextBlock Margin="5,0,0,0" Text="{Binding LeaderText, Mode=TwoWay}"/>
+
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Margin="0,0,0,0">
