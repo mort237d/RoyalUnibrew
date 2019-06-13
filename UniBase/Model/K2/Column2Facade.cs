@@ -14,6 +14,7 @@ namespace UniBase.Model.K2
         public ProductionMethod ProductionMethod { get; set; }
         public ShiftRegistrationMethod ShiftRegistrationMethod { get; set; }
         public TuMethod TuMethod { get; set; }
+        public ProductMethod ProductMethod { get; set; }
         public XamlBindings XamlBindings { get; set; }
         public TrendAdminstrator TrendAdminstrator { get; set; }
         public GenericMethod GenericMethod { get; set; }
@@ -45,6 +46,7 @@ namespace UniBase.Model.K2
             ProductionMethod = new ProductionMethod();
             ShiftRegistrationMethod = new ShiftRegistrationMethod();
             TuMethod = new TuMethod();
+            ProductMethod = new ProductMethod();
 
             XamlBindings = new XamlBindings();
             TrendAdminstrator = new TrendAdminstrator();

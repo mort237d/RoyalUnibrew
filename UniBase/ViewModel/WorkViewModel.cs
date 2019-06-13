@@ -19,6 +19,7 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SortProductionCommand { get; set; }
         public RelayCommand<object> SortShiftRegistrationCommand { get; set; }
         public RelayCommand<object> SortTuCommand { get; set; }
+        public RelayCommand<object> SortProductCommand { get; set; }
 
         public RelayCommand RefreshFrontpageTable { get; set; }
         public RelayCommand RefreshLastTenControlRegistrationTable { get; set; }
@@ -56,6 +57,12 @@ namespace UniBase.ViewModel
         public RelayCommand DeleteTUTable { get; set; }
         public RelayCommand AddTUTable { get; set; }
 
+        public RelayCommand RefreshProductTable { get; set; }
+        public RelayCommand RefreshLastTenProductTable { get; set; }
+        public RelayCommand SaveProductTable { get; set; }
+        public RelayCommand AddProductTable { get; set; }
+        public RelayCommand DeleteProductTable { get; set; }
+        
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
         public RelayCommand ChangeUserCommand { get; set; }
@@ -70,6 +77,7 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SelectParentItemProductionCommand { get; set; }
         public RelayCommand<object> SelectParentItemShiftRegistrationCommand { get; set; }
         public RelayCommand<object> SelectParentItemTuCommand { get; set; }
+        public RelayCommand<object> SelectParentItemProductCommand { get; set; }
 
         public RelayCommand AdminCheckClickCommand { get; set; }
 
@@ -81,8 +89,7 @@ namespace UniBase.ViewModel
         public WorkViewModel()
         {
             Column2FacadePath = Column2Facade.Instance;
-
-
+            
             //Frontpage
             RefreshFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.RefreshAll);
             RefreshLastTenFrontpageTable = new RelayCommand(Column2FacadePath.FrontpageMethod.RefreshLastTen);
@@ -125,6 +132,13 @@ namespace UniBase.ViewModel
             AddTUTable = new RelayCommand(Column2FacadePath.TuMethod.AddNewItem);
             DeleteTUTable = new RelayCommand(Column2FacadePath.TuMethod.DeleteItem);
 
+            //Product
+            RefreshProductTable = new RelayCommand(Column2FacadePath.ProductMethod.RefreshAll);
+            RefreshLastTenProductTable = new RelayCommand(Column2FacadePath.ProductMethod.RefreshLastTen);
+            SaveProductTable = new RelayCommand(Column2FacadePath.ProductMethod.SaveAll);
+            AddProductTable = new RelayCommand(Column2FacadePath.ProductMethod.AddNewItem);
+            DeleteProductTable = new RelayCommand(Column2FacadePath.ProductMethod.DeleteItem);
+
             //Users
             AddUserCommand = new RelayCommand(Column2FacadePath.ManageUser.AddUser);
             DeleteUserCommand = new RelayCommand(Column2FacadePath.ManageUser.RemoveUser);
@@ -140,6 +154,7 @@ namespace UniBase.ViewModel
             SortProductionCommand = new RelayCommand<object>(Column2FacadePath.ProductionMethod.SortButtonClick);
             SortShiftRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ShiftRegistrationMethod.SortButtonClick);
             SortTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SortButtonClick);
+            SortProductCommand = new RelayCommand<object>(Column2FacadePath.ProductMethod.SortButtonClick);
 
             ControlledClickCommand = new RelayCommand<object>(Column2FacadePath.ControlRegistrationMethod.CheckBoxClick);
 
@@ -150,6 +165,7 @@ namespace UniBase.ViewModel
             SelectParentItemProductionCommand = new RelayCommand<object>(Column2FacadePath.ProductionMethod.SelectParentItem);
             SelectParentItemShiftRegistrationCommand = new RelayCommand<object>(Column2FacadePath.ShiftRegistrationMethod.SelectParentItem);
             SelectParentItemTuCommand = new RelayCommand<object>(Column2FacadePath.TuMethod.SelectParentItem);
+            SelectParentItemProductCommand = new RelayCommand<object>(Column2FacadePath.ProductMethod.SelectParentItem);
 
             ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.CheckBoxClickAdd);
 

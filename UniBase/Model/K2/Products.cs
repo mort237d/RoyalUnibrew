@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using UniBase.Annotations;
 
@@ -13,32 +14,19 @@ namespace UniBase.Model.K2
         private int _bestBeforeDateLength;
 
         #endregion
-
-        #region Constructors
-
-        public Products()
-        {
-            
-        }
-
-        public Products(int finishedProduct_No, string productName, int bestBeforeDateLength)
-        {
-            FinishedProduct_No = finishedProduct_No;
-            ProductName = productName;
-            BestBeforeDateLength = bestBeforeDateLength;
-        }
-
-        #endregion
-
+        
         #region Properties
 
-        public int FinishedProduct_No
+        public string FinishedProduct_No
         {
-            get => _finishedProductNo;
+            get
+            {
+                if (_finishedProductNo != 0) return _finishedProductNo.ToString();
+                else return string.Empty;
+            }
             set
             {
-                if (value == _finishedProductNo) return;
-                _finishedProductNo = value;
+                _finishedProductNo = Convert.ToInt32(value);
                 OnPropertyChanged();
             }
         }
@@ -48,19 +36,21 @@ namespace UniBase.Model.K2
             get => _productName;
             set
             {
-                if (value == _productName) return;
                 _productName = value;
                 OnPropertyChanged();
             }
         }
 
-        public int BestBeforeDateLength
+        public string BestBeforeDateLength
         {
-            get => _bestBeforeDateLength;
+            get
+            {
+                if (_bestBeforeDateLength != 0) return _bestBeforeDateLength.ToString();
+                else return string.Empty;
+            }
             set
             {
-                if (value == _bestBeforeDateLength) return;
-                _bestBeforeDateLength = value;
+                _bestBeforeDateLength = Convert.ToInt32(value);
                 OnPropertyChanged();
             }
         }
