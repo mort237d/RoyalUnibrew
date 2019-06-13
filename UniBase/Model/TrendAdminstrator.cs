@@ -82,7 +82,7 @@ namespace UniBase.Model
             {
                 _graphProcessOrderNo = value;
                 OnPropertyChanged();
-
+                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
             }
         }
         
@@ -93,6 +93,8 @@ namespace UniBase.Model
             {
                 _graphCheckBox = value; 
                 OnPropertyChanged();
+                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
+
             }
         }
 
@@ -123,7 +125,7 @@ namespace UniBase.Model
             }
         }
 
-
+        #endregion
 
         /// <summary>
         /// Takes an imput from two comboboxes that decides the timeperiod and type og graph to show.
@@ -133,9 +135,9 @@ namespace UniBase.Model
         /// <param name="timePeriod"></param>
         /// <param name="graphProcessOrderNo"></param>
         /// <param name="graphCheckBox"></param>
-        public async void CreateGraph(string comboboxInput, string timePeriod, string graphProcessOrderNo, bool graphCheckBox)
+        public void CreateGraph(string comboboxInput, string timePeriod, string graphProcessOrderNo, bool graphCheckBox)
         {
-            _completeControlSchedulesList = await ModelGenerics.GetAll(new ControlSchedules());
+            _completeControlSchedulesList = ModelGenerics.GetAllsync(new ControlSchedules());
 
             TempTrendList.Clear();
             DateTime tempDayOfScheduleList = _completeControlSchedulesList[0].Time;

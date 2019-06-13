@@ -93,6 +93,28 @@ namespace UniBase.Model
             return ifFailed;
         }
 
+        public static ObservableCollection<T> GetAllsync<T>(T type)
+        {
+            int typeNamePosistionInNamespace = 3;
+            String[] typeName = type.ToString().Split('.');
+            string httpUrl = URI + typeName[typeNamePosistionInNamespace];
+            Task<string> resTask = null;
+
+            ObservableCollection<T> ifFailed = new ObservableCollection<T>();
+
+            try
+            {
+                resTask = client.GetStringAsync(httpUrl);
+                return JsonConvert.DeserializeObject<ObservableCollection<T>>(resTask.Result);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+
+            return ifFailed;
+        }
+
         /// <summary>
         /// Generic method to GET the latest ten of a specific type from the Database through the REST-service.
         /// </summary>
