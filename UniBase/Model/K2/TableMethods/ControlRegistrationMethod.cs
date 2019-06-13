@@ -255,65 +255,7 @@ namespace UniBase.Model.K2.TableMethods
             FillStringHelpers();
             GenerateNewControlRegistrationToAdd();
         }
-
-        private void FillStringHelpers()
-        {
-            foreach (var controlregistration in ControlRegistrationsList)
-            {
-                controlregistration.FirstPalletDepalletizingStringHelper = controlregistration.FirstPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.LastPalletDepalletizingStringHelper = controlregistration.LastPalletDepalletizing.ToString("yyyy/MM/dd");
-                controlregistration.ProductionsDateStringHelper = controlregistration.Production_Date.ToString("yyyy/MM/dd");
-                controlregistration.ExpiryDateStringHelper = controlregistration.Expiry_Date.ToString("yyyy/MM/dd");
-                controlregistration.CapNoIntHelper = controlregistration.CapNo.ToString();
-                controlregistration.EtiquetteNoIntHelper = controlregistration.EtiquetteNo.ToString();
-                controlregistration.ControlRegistrationIdIntHelper = controlregistration.ControlRegistration_ID.ToString();
-                controlregistration.ProcessOrderNoIntHelper = controlregistration.ProcessOrder_No.ToString();
-                FillStringHelpersHelper(controlregistration);
-                FillKegSize(controlregistration);
-            }
-        }
-
-        private static void FillKegSize(ControlRegistrations controlregistration)
-        {
-            if (controlregistration.KegSize == "20L")
-            {
-                controlregistration.KegSizeIndex = 0;
-            }
-            else if (controlregistration.KegSize == "25L")
-            {
-                controlregistration.KegSizeIndex = 1;
-            }
-            else if (controlregistration.KegSize == "30L")
-            {
-                controlregistration.KegSizeIndex = 2;
-            }
-        }
-
-        private void FillStringHelpersHelper(ControlRegistrations controlRegistrations)
-        {
-            string temp, temp2;
-            if (controlRegistrations.Time.Hours < 10) temp = "0" + controlRegistrations.Time.Hours;
-            else temp = controlRegistrations.Time.Hours.ToString();
-
-            if (controlRegistrations.Time.Minutes == 0) temp2 = "00";
-            else if (controlRegistrations.Time.Minutes < 10) temp2 = "0" + controlRegistrations.Time.Minutes;
-            else temp2 = controlRegistrations.Time.Minutes.ToString();
-
-            controlRegistrations.TimeStringHelper = string.Format("{0}:{1}", temp, temp2);
-        }
-        private void GenerateNewControlRegistrationToAdd()
-        {
-            NewControlRegistrationsToAdd = new ControlRegistrations
-            {
-                ControlRegistrationIdIntHelper = (ControlRegistrationsList.Last().ControlRegistration_ID + 1).ToString(),
-                CapNoIntHelper = ControlRegistrationsList.Last().CapNo.ToString(),
-                EtiquetteNoIntHelper = ControlRegistrationsList.Last().EtiquetteNo.ToString(),
-                KegSize = ControlRegistrationsList.Last().KegSize,
-                ProcessOrderNoIntHelper = ControlRegistrationsList.Last().ProcessOrder_No.ToString(),
-                ControlAlcoholSpearDispenser = false
-            };
-        }
-
+        
         #region RelayCommandMethods
         /// <summary>
         /// Gets all controlregistrations from the Database and fills their respective stringhelpers.
@@ -364,22 +306,7 @@ namespace UniBase.Model.K2.TableMethods
             }
         }
 
-        public void SelectParentItem(object obj)
-        {
-            SelectedControlRegistrationId = _genericMethod.SelectParentItem((int)obj, ControlRegistrationsList, "ControlRegistration_ID");
-        }
-
-        public void SortButtonClick(object id)
-        {
-            for (int i = 0; i <= 12; i++)
-            {
-                if (id.ToString() == _xamlBindings.ControlRegistrationsHeaderList[i].Header)
-                {
-                    ControlRegistrationsList = _genericMethod.Sort<ControlRegistrations>(ControlRegistrationsList, PropertyInfos[i].Name);
-                    break;
-                }
-            }
-        }
+        
         
         public void CheckBoxClick(object id)
         {
@@ -431,13 +358,6 @@ namespace UniBase.Model.K2.TableMethods
                 }
             }
         }
-
-        public ObservableCollection<ControlRegistrations> CompleteControlRegistrationsList
-        {
-            get { return _completeControlRegistrationsList; }
-            set { _completeControlRegistrationsList = value; }
-        }
-
         
         private void FillStringHelpers()
         {
