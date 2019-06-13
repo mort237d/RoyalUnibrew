@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Timers;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using UniBase.Annotations;
@@ -18,6 +21,7 @@ namespace UniBase.Model
         private ComboBoxItem _graphTimePeriod = new ComboBoxItem();
         private string _graphProcessOrderNo;
         private bool _graphCheckBox = true;
+        private bool _isEnabled = false;
         private int _graphScrollLenght = 1000;
         
         private List<Trends> _tempTrendList = new List<Trends>();
@@ -28,6 +32,7 @@ namespace UniBase.Model
 
         public TrendAdminstrator()
         {
+            
             //Choose the default value for the comboboxes.
             GraphType.Content = "Vægt";
             GraphTimePeriod.Content = "En Uge";
@@ -60,7 +65,12 @@ namespace UniBase.Model
             {
                 _graphType = value;
                 OnPropertyChanged();
-                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
+                if (GraphCheckBox)
+                {
+                    CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
+
+                }
+                else CreateProcessOrderNoGraph(int.Parse(GraphProcessOrderNo), GraphType.Content.ToString());
             }
         }
 
@@ -71,10 +81,15 @@ namespace UniBase.Model
             {
                 _graphTimePeriod = value; 
                 OnPropertyChanged();
+                if (GraphCheckBox)
+                {
                 CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
+                    
+                }
             }
         }
 
+        private int j = 0;
         public string GraphProcessOrderNo
         {
             get { return _graphProcessOrderNo; }
@@ -82,10 +97,13 @@ namespace UniBase.Model
             {
                 _graphProcessOrderNo = value;
                 OnPropertyChanged();
-                CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
+                CreateProcessOrderNoGraph(int.Parse(GraphProcessOrderNo), GraphType.Content.ToString());
+                
             }
         }
+
         
+
         public bool GraphCheckBox
         {
             get { return _graphCheckBox; }
@@ -94,7 +112,24 @@ namespace UniBase.Model
                 _graphCheckBox = value; 
                 OnPropertyChanged();
                 CreateGraph(GraphType.Content.ToString(), GraphTimePeriod.Content.ToString(), GraphProcessOrderNo, GraphCheckBox);
+                if (GraphCheckBox)
+                {
+                    IsEnabled = false;
+                }
+                else
+                {
+                    IsEnabled = true;
+                }
+            }
+        }
 
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set
+            {
+                _isEnabled = value; 
+                OnPropertyChanged();
             }
         }
 
@@ -126,6 +161,38 @@ namespace UniBase.Model
         }
 
         #endregion
+
+        public void CreateProcessOrderNoGraph(int processordernumber, string comboboxInput)
+        {
+            _completeControlSchedulesList = ModelGenerics.GetAllsync(new ControlSchedules());
+            TrendGraphList.Clear();
+            GraphScrollLenght = 4000;
+
+            foreach (var controlSchedule in CompleteControlSchedulesList)
+            {
+                if (controlSchedule.ProcessOrder_No == processordernumber)
+                {
+                    if (comboboxInput == "Vægt")
+                        TrendGraphList.Add(new Trends(controlSchedule.Weight,
+                            controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
+                            controlSchedule.Time.Day + "/" + controlSchedule.Time.Hour + ":" +
+                            controlSchedule.Time.Minute, ConstantValues.MinWeight, ConstantValues.MaxWeight));
+                    if (comboboxInput == "MipMa")
+                        TrendGraphList.Add(new Trends(controlSchedule.MipMA,
+                            controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
+                            controlSchedule.Time.Day + "/" + controlSchedule.Time.Hour + ":" +
+                            controlSchedule.Time.Minute, ConstantValues.MinMipMa, ConstantValues.MaxMipMa));
+                    if (comboboxInput == "Lud Koncentration")
+                        TrendGraphList.Add(new Trends(controlSchedule.LudKoncentration,
+                            controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
+                            controlSchedule.Time.Day + "/" + controlSchedule.Time.Hour + ":" +
+                            controlSchedule.Time.Minute, ConstantValues.MinLudkoncentration,
+                            ConstantValues.MaxLudkoncentration));
+                }
+            }
+
+            GraphScrollLenght = TrendGraphList.Count*150;
+        }
 
         /// <summary>
         /// Takes an imput from two comboboxes that decides the timeperiod and type og graph to show.
@@ -207,8 +274,7 @@ namespace UniBase.Model
             double tempTotalValue = 0;
             foreach (var scheduleItem in _completeControlSchedulesList)
             {
-                if (graphCheckBox == true || graphProcessOrderNo == scheduleItem.ProcessOrder_No.ToString())
-                {
+                
                     //checks the item date and only if the date is between the selected timeperiod and now, the data is put in the list.
                     if (scheduleItem.Time >= DateTime.Now - new TimeSpan(timeHorizon, 0, 0, 0) &&
                         scheduleItem.Time <= DateTime.Now)
@@ -286,7 +352,7 @@ namespace UniBase.Model
                         }
 
                     }
-                }
+                
             }
             //Adds the last tempTotalValue to the list
             if (amountOfItemsWithSameDate != 0)
