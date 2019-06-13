@@ -1090,7 +1090,8 @@
                                 <TextBlock Width="150" Height="33" Text="Telefon Nr:"/>
                                 <TextBlock Width="150" Height="33" Text="Kodeord:"/>
                                 <TextBlock Width="150" Height="33" Text="Billede dest.:"/>
-                                <TextBlock Width="150" Margin="0,10,0,0" Height="33" Text="AdminCheckBoxImage:"/>
+                                <TextBlock Width="150" Margin="0,10,0,0" Height="33" Text="Administrator:"/>
+                                <TextBlock Width="150" Margin="0,10,0,0" Height="33" Text="Leder:"/>
                             </StackPanel>
                             <StackPanel Margin="5,0,0,0">
                                 <TextBox BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Navn" Text="{Binding Column2FacadePath.ManageUser.NameTb, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"></TextBox>
@@ -1100,6 +1101,9 @@
                                 <TextBox BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" Height="33" PlaceholderText="Billede dest." Text="{Binding Column2FacadePath.ManageUser.ImageTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left"></TextBox>
                                 <Button extensions:Mouse.Cursor="Hand" BorderThickness="2" BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" Background="Transparent" Height="50" Width="150" Command="{Binding AdminCheckClickCommand}">
                                     <Image Height="33" Width="33" Source="{Binding Column2FacadePath.ManageUser.AdminCheckBoxImage, Mode=TwoWay}"/>
+                                </Button>
+                                <Button extensions:Mouse.Cursor="Hand" BorderThickness="2" BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" Background="Transparent" Height="50" Width="150" Command="{Binding LeaderCheckClickCommand}">
+                                    <Image Height="33" Width="33" Source="{Binding Column2FacadePath.ManageUser.LeaderCheckBoxImage, Mode=TwoWay}"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>

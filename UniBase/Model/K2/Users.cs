@@ -15,14 +15,16 @@ namespace UniBase.Model.K2
         private string _telephoneNo;
         private string _email;
         private bool _administratorStatus;
+        private bool _leaderStatus;
         private string _adminstratorText;
+        private string _leaderText;
 
         public Users()
         {
             
         }
 
-        public Users(int user_ID, string name, string email, string telephone_No, string password, string imageSource, bool administratorStatus)
+        public Users(int user_ID, string name, string email, string telephone_No, string password, string imageSource, bool administratorStatus, bool leaderStatus)
         {
             User_ID = user_ID;
             Name = name;
@@ -31,6 +33,7 @@ namespace UniBase.Model.K2
             Password = password;
             ImageSource = imageSource;
             AdministratorStatus = administratorStatus;
+            LeaderStatus = leaderStatus;
         }
 
         #endregion
@@ -114,12 +117,33 @@ namespace UniBase.Model.K2
             }
         }
 
+        public bool LeaderStatus
+        {
+            get { return _leaderStatus; }
+            set
+            {
+                _leaderStatus = value;
+                LeaderText = value ? "Leader" : null;
+                OnPropertyChanged();
+            }
+        }
+
         public string AdminstratorText
         {
             get { return _adminstratorText; }
             set
             {
                 _adminstratorText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LeaderText
+        {
+            get { return _leaderText; }
+            set
+            {
+                _leaderText = value;
                 OnPropertyChanged();
             }
         }

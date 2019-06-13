@@ -18,7 +18,9 @@ namespace UniBase.Model
         private string _nameTb, _emailTb, _telephoneNumberTb, _passwordTb;
         private string _imageTb = "";
         private string _adminCheckBoxImage = "Images/Box/UnCheckedCheckbox.png";
+        private string _leaderCheckBoxImage = "Images/Box/UnCheckedCheckbox.png";
         private bool _admin;
+        private bool _leader;
 
         private static string _currentUserName;
 
@@ -123,6 +125,9 @@ namespace UniBase.Model
 
                 AdminCheckBoxImage = SelectedUser.AdministratorStatus ? "Images/Box/CheckedCheckBox.png" : "Images/Box/UnCheckedCheckBox.png";
                 Admin = SelectedUser.AdministratorStatus;
+
+                LeaderCheckBoxImage = SelectedUser.LeaderStatus ? "Images/Box/CheckedCheckBox.png" : "Images/Box/UnCheckedCheckBox.png";
+                Leader = SelectedUser.LeaderStatus;
             }
         }
 
@@ -141,6 +146,9 @@ namespace UniBase.Model
 
             AdminCheckBoxImage = "Images/Box/UnCheckedCheckBox.png";
             Admin = false;
+
+            LeaderCheckBoxImage = "Images/Box/UnCheckedCheckBox.png";
+            Leader = false;
         }
 
         public Users CurrentUsers
@@ -150,6 +158,55 @@ namespace UniBase.Model
             {
                 _currentUsers = value;
                 CurrentUserName = "  Bruger: " + _currentUsers.Name;
+                OnPropertyChanged();
+            }
+        }
+
+        public string CurrentUserName
+        {
+            get { return _currentUserName; }
+            set
+            {
+                _currentUserName = value;
+            }
+        }
+
+        public string AdminCheckBoxImage
+        {
+            get { return _adminCheckBoxImage; }
+            set
+            {
+                _adminCheckBoxImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LeaderCheckBoxImage
+        {
+            get { return _leaderCheckBoxImage; }
+            set
+            {
+                _leaderCheckBoxImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool Admin
+        {
+            get { return _admin; }
+            set
+            {
+                _admin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool Leader
+        {
+            get { return _leader; }
+            set
+            {
+                _leader = value;
                 OnPropertyChanged();
             }
         }
@@ -178,6 +235,20 @@ namespace UniBase.Model
                 Admin = true;
             }
         }
+
+        public void LeaderCheckCLick()
+        {
+            if (Leader)
+            {
+                LeaderCheckBoxImage = "Images/Box/UnCheckedCheckbox.png";
+                Leader = false;
+            }
+            else
+            {
+                LeaderCheckBoxImage = "Images/Box/UnCheckedCheckbox.png";
+                Leader = true;
+            }
+        }
         
         /// <summary>
         /// Adds user to local list and then adds to the database with the ModelGenerics class.
@@ -204,18 +275,20 @@ namespace UniBase.Model
                         {
                             if (string.IsNullOrEmpty(ImageTb))
                             {
-                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, Admin));
+                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, StandardImage, Admin, Leader));
                                 ModelGenerics.CreateByObject(UsersList.Last(), "User_ID", "Bruger ID");
                             }
                             else
                             {
-                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin));
+                                UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin, Leader));
                                 ModelGenerics.CreateByObject(UsersList.Last(), "User_ID", "Bruger ID");
                             }
                             _message.ShowToastNotification("Tilføjet", NameTb + " er blevet tilføjet.");
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = null;
                             Admin = false;
                             AdminCheckBoxImage = "Images/Box/UnCheckedCheckBox.png";
+                            Leader = false;
+                            LeaderCheckBoxImage = "Images/Box/UnCheckedCheckBox.png";
                         }
                         else await _message.Error("Forkert input", "Telefonnummert skal være et tal på 8 cifre.");
                     }
@@ -258,6 +331,7 @@ namespace UniBase.Model
                 SelectedUser.ImageSource = ImageTb;
                 SelectedUser.Password = PasswordTb;
                 SelectedUser.AdministratorStatus = Admin;
+                SelectedUser.LeaderStatus = Leader;
                 ModelGenerics.UpdateByObjectAndId(SelectedUser.User_ID, SelectedUser, "User_ID", "Bruger ID");
 
                 _message.ShowToastNotification("Opdateret", SelectedUser.Name + " er opdateret.");
@@ -282,34 +356,7 @@ namespace UniBase.Model
             }
         }
 
-        public string CurrentUserName
-        {
-            get { return _currentUserName; }
-            set
-            {
-                _currentUserName = value;
-            }
-        }
 
-        public string AdminCheckBoxImage
-        {
-            get { return _adminCheckBoxImage; }
-            set
-            {
-                _adminCheckBoxImage = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool Admin
-        {
-            get { return _admin; }
-            set
-            {
-                _admin = value;
-                OnPropertyChanged();
-            }
-        }
         #endregion
         
         #region INotify

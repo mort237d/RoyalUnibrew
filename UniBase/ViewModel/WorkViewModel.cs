@@ -72,6 +72,7 @@ namespace UniBase.ViewModel
         public RelayCommand<object> SelectParentItemTuCommand { get; set; }
 
         public RelayCommand AdminCheckClickCommand { get; set; }
+        public RelayCommand LeaderCheckClickCommand { get; set; }
 
         public RelayCommand ClearTbCommand { get; set; }
         #endregion
@@ -131,6 +132,7 @@ namespace UniBase.ViewModel
             ChangeUserCommand = new RelayCommand(Column2FacadePath.ManageUser.ChangeSelectedUser);
             ClearTbCommand = new RelayCommand(Column2FacadePath.ManageUser.ClearTb);
             AdminCheckClickCommand = new RelayCommand(Column2FacadePath.ManageUser.AdminCheckClick);
+            LeaderCheckClickCommand = new RelayCommand(Column2FacadePath.ManageUser.LeaderCheckCLick);
             LogOffCommand = new RelayCommand(Column2FacadePath.ManageLogin.LogOffMethod);
 
             //Sort
