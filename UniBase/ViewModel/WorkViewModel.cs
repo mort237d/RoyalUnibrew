@@ -174,12 +174,13 @@ namespace UniBase.ViewModel
 
             //Test stuff
             //AddFrontpageTable = new RelayCommand(UpdateListsblaaa);
+
         }
 
         private async void UpdateListsblaaa()
         {
-            bool add = true;
-            int month = 05;
+            bool add = false;
+            int month = 01;
             int day = 17;
             int year = 2019;
             int hour = 1;
@@ -235,14 +236,14 @@ namespace UniBase.ViewModel
             {
                 foreach (var VARIABLE in Column2FacadePath.ControlScheduleMethod.CompleteControlSchedulesList)
                 {
-                    if (VARIABLE.Time > new DateTime(2019, 05, 17))
-                    {
+//                    if (VARIABLE.Time > new DateTime(2019, 05, 17))
+//                    {
                         VARIABLE.Time = new DateTime(year, month, day, hour, random.Next(0, 59), 0);
                         VARIABLE.Weight = Math.Round((random.NextDouble() * 1.65 + 36.92), 2);
                         VARIABLE.MipMA = Math.Round((random.NextDouble() * 2.65 + 23.92), 2);
                         VARIABLE.LudKoncentration = Math.Round((random.NextDouble() * 1.15 + 0.92), 2);
                         ModelGenerics.UpdateByObjectAndId(VARIABLE.ControlSchedule_ID, VARIABLE, "ControlSchedule_ID", "Kontrol Skema");
-                        hour += 2;
+                        hour += 5;
                         if (hour > 9)
                         {
                             hour = 1;
@@ -259,7 +260,7 @@ namespace UniBase.ViewModel
                             year++;
                             month = 1;
                         }
-                    }
+//                    }
                 }
             }
             ControlledClickCommand2 = new RelayCommand(Column2FacadePath.ControlRegistrationMethod.CheckBoxClickAdd);

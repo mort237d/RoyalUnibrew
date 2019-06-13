@@ -1110,7 +1110,7 @@
                             <ComboBoxItem Content="MipMa"/>
                             <ComboBoxItem Content="Lud Koncentration"/>
                         </ComboBox>
-                        <ComboBox BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column2FacadePath.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}">
+                        <ComboBox BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphTimeperiodCB" PlaceholderText="En Uge" Width="200" SelectedItem="{Binding Column2FacadePath.TrendAdminstrator.GraphTimePeriod, Mode=TwoWay}" IsEnabled="{Binding Column2FacadePath.TrendAdminstrator.GraphCheckBox}">
                             <ComboBoxItem Content="Idag"/>
                             <ComboBoxItem Content="En Uge"/>
                             <ComboBoxItem Content="En Måned"/>
@@ -1123,7 +1123,7 @@
                         </ComboBox>
                         
                         <CheckBox x:Name="GraphCheckBox" Content="Vis alle" IsChecked="{Binding Column2FacadePath.TrendAdminstrator.GraphCheckBox, Mode=TwoWay}" Margin="50,0,0,0" />
-                        <TextBox BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphProcessOrderNo" Width="200" Text="{Binding Column2FacadePath.TrendAdminstrator.GraphProcessOrderNo, Mode=TwoWay}" PlaceholderText="Process Order No."/>
+                        <TextBox IsEnabled="{Binding Column2FacadePath.TrendAdminstrator.IsEnabled}" BorderBrush="{Binding Column2FacadePath.PredefinedColors.RoyalUniBrewOriginalGreen}" x:Name="SelectedGraphProcessOrderNo" Width="200" Text="{Binding Column2FacadePath.TrendAdminstrator.GraphProcessOrderNo, Mode=TwoWay}" PlaceholderText="Process Order No."/>
                     </StackPanel>
                     <StackPanel Width="{Binding Column2FacadePath.TrendAdminstrator.ScreenWidth}">
 
