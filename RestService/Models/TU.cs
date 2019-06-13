@@ -16,17 +16,17 @@ namespace RestService.Models
 
         public int FirstDay_Total { get; set; }
 
-        public int SecoundDayStart_TU { get; set; }
+        public int? SecoundDayStart_TU { get; set; }
 
-        public int SecoundDayEnd_TU { get; set; }
+        public int? SecoundDayEnd_TU { get; set; }
 
-        public int SecoundDay_Total { get; set; }
+        public int? SecoundDay_Total { get; set; }
 
-        public int ThirdDayStart_TU { get; set; }
+        public int? ThirdDayStart_TU { get; set; }
 
-        public int ThirdDayEnd_TU { get; set; }
+        public int? ThirdDayEnd_TU { get; set; }
 
-        public int ThirdDay_Total { get; set; }
+        public int? ThirdDay_Total { get; set; }
 
         public int ProcessOrder_No { get; set; }
 
