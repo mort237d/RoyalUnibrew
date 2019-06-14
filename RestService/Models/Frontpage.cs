@@ -11,11 +11,11 @@ namespace RestService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Frontpage()
         {
-            ControlRegistration = new HashSet<ControlRegistration>();
-            ControlSchedule = new HashSet<ControlSchedule>();
-            Production = new HashSet<Production>();
-            ShiftRegistration = new HashSet<ShiftRegistration>();
-            TU = new HashSet<TU>();
+            ControlRegistrations = new HashSet<ControlRegistration>();
+            ControlSchedules = new HashSet<ControlSchedule>();
+            Productions = new HashSet<Production>();
+            ShiftRegistrations = new HashSet<ShiftRegistration>();
+            TUs = new HashSet<TU>();
         }
 
         [Key]
@@ -35,20 +35,20 @@ namespace RestService.Models
         public int Week_No { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ControlRegistration> ControlRegistration { get; set; }
+        public virtual ICollection<ControlRegistration> ControlRegistrations { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ControlSchedule> ControlSchedule { get; set; }
+        public virtual ICollection<ControlSchedule> ControlSchedules { get; set; }
 
         public virtual Product Product { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Production> Production { get; set; }
+        public virtual ICollection<Production> Productions { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShiftRegistration> ShiftRegistration { get; set; }
+        public virtual ICollection<ShiftRegistration> ShiftRegistrations { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TU> TU { get; set; }
+        public virtual ICollection<TU> TUs { get; set; }
     }
 }
