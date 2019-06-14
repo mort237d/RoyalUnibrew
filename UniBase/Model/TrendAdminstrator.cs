@@ -162,38 +162,60 @@ namespace UniBase.Model
 
         #endregion
 
-        
+        private string FillStringHourAndMinute(ControlSchedules controlSchedules)
+        {
+            string hour, minute;
+            if (controlSchedules.Time.Hour < 10) hour = "0" + controlSchedules.Time.Hour;
+            else hour = controlSchedules.Time.Hour.ToString();
+
+            if (controlSchedules.Time.Minute == 0) minute = "00";
+            else if (controlSchedules.Time.Minute < 10) minute = "0" + controlSchedules.Time.Minute;
+            else minute = controlSchedules.Time.Minute.ToString();
+
+            return hour + ":" + minute;
+        }
+
+        private void AddToList(string comboboxInput, ControlSchedules controlSchedule)
+        {
+            FillStringHourAndMinute(controlSchedule);
+            if (comboboxInput == "Vægt")
+                TrendGraphList.Add(new Trends(controlSchedule.Weight,
+                    controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
+                    controlSchedule.Time.Day + "/" + FillStringHourAndMinute(controlSchedule), 
+                    ConstantValues.MinWeight, ConstantValues.MaxWeight));
+            if (comboboxInput == "MipMa")
+                TrendGraphList.Add(new Trends(controlSchedule.MipMA,
+                    controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
+                    controlSchedule.Time.Day + "/" + FillStringHourAndMinute(controlSchedule), 
+                    ConstantValues.MinMipMa, ConstantValues.MaxMipMa));
+            if (comboboxInput == "Lud Koncentration")
+                TrendGraphList.Add(new Trends(controlSchedule.LudKoncentration,
+                    controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
+                    controlSchedule.Time.Day + "/" + FillStringHourAndMinute(controlSchedule), 
+                    ConstantValues.MinLudkoncentration, ConstantValues.MaxLudkoncentration));
+        }
 
         public void CreateProcessOrderNoGraph(int processordernumber, string comboboxInput)
         {
             _completeControlSchedulesList = ModelGenerics.GetAllsync(new ControlSchedules());
             TrendGraphList.Clear();
-            GraphScrollLenght = 4000;
+            
 
             foreach (var controlSchedule in CompleteControlSchedulesList)
             {
                 if (controlSchedule.ProcessOrder_No == processordernumber)
                 {
-                    if (comboboxInput == "Vægt")
-                        TrendGraphList.Add(new Trends(controlSchedule.Weight,
-                            controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
-                            controlSchedule.Time.Day + "/" + controlSchedule.Time.Hour + ":" +
-                            controlSchedule.Time.Minute, ConstantValues.MinWeight, ConstantValues.MaxWeight));
-                    if (comboboxInput == "MipMa")
-                        TrendGraphList.Add(new Trends(controlSchedule.MipMA,
-                            controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
-                            controlSchedule.Time.Day + "/" + controlSchedule.Time.Hour + ":" +
-                            controlSchedule.Time.Minute, ConstantValues.MinMipMa, ConstantValues.MaxMipMa));
-                    if (comboboxInput == "Lud Koncentration")
-                        TrendGraphList.Add(new Trends(controlSchedule.LudKoncentration,
-                            controlSchedule.Time.Year + "/" + controlSchedule.Time.Month + "/" +
-                            controlSchedule.Time.Day + "/" + controlSchedule.Time.Hour + ":" +
-                            controlSchedule.Time.Minute, ConstantValues.MinLudkoncentration,
-                            ConstantValues.MaxLudkoncentration));
+                    AddToList(comboboxInput, controlSchedule);
                 }
             }
-
-            GraphScrollLenght = TrendGraphList.Count*150;
+            if (TrendGraphList.Count > 10)
+            {
+                GraphScrollLenght = TrendGraphList.Count * 115;
+            }
+            else
+            {
+                GraphScrollLenght = 1100;
+            }
         }
 
         /// <summary>
@@ -207,8 +229,8 @@ namespace UniBase.Model
         public void CreateGraph(string comboboxInput, string timePeriod, string graphProcessOrderNo, bool graphCheckBox)
         {
             _completeControlSchedulesList = ModelGenerics.GetAllsync(new ControlSchedules());
-
-            TempTrendList.Clear();
+            TrendGraphList.Clear();
+            
             DateTime tempDayOfScheduleList = _completeControlSchedulesList[0].Time;
             int timeHorizon = 0;
             int timeHorizonDivider = 0;
@@ -287,22 +309,7 @@ namespace UniBase.Model
                         //if timehorizonDivider == 0 we want all data directly in the list and not the average of the day.
                         if (timeHorizonDivider == 0)
                         {
-                            if (comboboxInput == "Vægt")
-                                TempTrendList.Add(new Trends(scheduleItem.Weight,
-                                    scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" +
-                                    scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" +
-                                    scheduleItem.Time.Minute, ConstantValues.MinWeight, ConstantValues.MaxWeight));
-                            if (comboboxInput == "MipMa")
-                                TempTrendList.Add(new Trends(scheduleItem.MipMA,
-                                    scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" +
-                                    scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" +
-                                    scheduleItem.Time.Minute, ConstantValues.MinMipMa, ConstantValues.MaxMipMa));
-                            if (comboboxInput == "Lud Koncentration")
-                                TempTrendList.Add(new Trends(scheduleItem.LudKoncentration,
-                                    scheduleItem.Time.Year + "/" + scheduleItem.Time.Month + "/" +
-                                    scheduleItem.Time.Day + "/" + scheduleItem.Time.Hour + ":" +
-                                    scheduleItem.Time.Minute, ConstantValues.MinLudkoncentration,
-                                    ConstantValues.MaxLudkoncentration));
+                            AddToList(comboboxInput, scheduleItem);
                             continue;
                         }
 
@@ -338,7 +345,7 @@ namespace UniBase.Model
                         //Adds the average from the time horizon to the list
                         if (amountOfItemsWithSameDate != 0)
                         {
-                            TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate,
+                            TrendGraphList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate,
                                 tempDayOfScheduleList.Year + "/" + tempDayOfScheduleList.Month + "/" +
                                 tempDayOfScheduleList.Day, minValue, maxValue));
                         }
@@ -359,13 +366,12 @@ namespace UniBase.Model
             //Adds the last tempTotalValue to the list
             if (amountOfItemsWithSameDate != 0)
             {
-                TempTrendList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + currentItemDate.Day, minValue, maxValue));
+                TrendGraphList.Add(new Trends(tempTotalValue / amountOfItemsWithSameDate, currentItemDate.Year + "/" + currentItemDate.Month + "/" + currentItemDate.Day, minValue, maxValue));
             }
-            //Gives the list to a new observableCollection, so the graph doesn't use the list while it is changing.
-            TrendGraphList = new ObservableCollection<Trends> (TempTrendList);
+            
             if (TrendGraphList.Count > 10)
             {
-            GraphScrollLenght = TrendGraphList.Count*100;
+            GraphScrollLenght = TrendGraphList.Count*115;
             }
             else
             {
