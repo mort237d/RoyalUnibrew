@@ -162,6 +162,8 @@ namespace UniBase.Model
 
         #endregion
 
+        
+
         public void CreateProcessOrderNoGraph(int processordernumber, string comboboxInput)
         {
             _completeControlSchedulesList = ModelGenerics.GetAllsync(new ControlSchedules());
@@ -219,55 +221,55 @@ namespace UniBase.Model
             {
                 timeHorizon = 1;
                 timeHorizonDivider = 0;
-                GraphScrollLenght = 1000;
+                //GraphScrollLenght = 1500;
             }
             if (timePeriod == "En Uge")
             {
                 timeHorizon = 7;
                 timeHorizonDivider = 1;
-                GraphScrollLenght = 1000;
+                //GraphScrollLenght = 1500;
             }
             else if (timePeriod == "En Måned")
             {
                 timeHorizon = 30;
                 timeHorizonDivider = 3;
-                GraphScrollLenght = 1000;
+                //GraphScrollLenght = 1500;
             }
             else if (timePeriod == "Et Kvartal")
             {
                 timeHorizon = 91;
                 timeHorizonDivider = 10;
-                GraphScrollLenght = 1000;
+                //GraphScrollLenght = 1500;
             }
             else if (timePeriod == "Et År")
             {
                 timeHorizon = 365;
                 timeHorizonDivider = 30;
-                GraphScrollLenght = 1000;
+                //GraphScrollLenght = 1500;
             }
             if (timePeriod == "En Uge (Detaljeret)")
             {
                 timeHorizon = 7;
                 timeHorizonDivider = 0;
-                GraphScrollLenght = 4000;
+                //GraphScrollLenght = 4000;
             }
             else if (timePeriod == "En Måned (Detaljeret)")
             {
                 timeHorizon = 30;
                 timeHorizonDivider = 0;
-                GraphScrollLenght = 8000;
+                //GraphScrollLenght = 8000;
             }
             else if (timePeriod == "Et Kvartal (Detaljeret)")
             {
                 timeHorizon = 91;
                 timeHorizonDivider = 1;
-                GraphScrollLenght = 4000;
+                //GraphScrollLenght = 4000;
             }
             else if (timePeriod == "Et År (Detaljeret)")
             {
                 timeHorizon = 365;
                 timeHorizonDivider = 1;
-                GraphScrollLenght = 11000;
+                //GraphScrollLenght = 11000;
             }
 
             int amountOfItemsWithSameDate = 0;
@@ -361,6 +363,14 @@ namespace UniBase.Model
             }
             //Gives the list to a new observableCollection, so the graph doesn't use the list while it is changing.
             TrendGraphList = new ObservableCollection<Trends> (TempTrendList);
+            if (TrendGraphList.Count > 10)
+            {
+            GraphScrollLenght = TrendGraphList.Count*100;
+            }
+            else
+            {
+                GraphScrollLenght = 1100;
+            }
         }
         
         #region INotify
