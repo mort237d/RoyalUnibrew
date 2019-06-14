@@ -60,7 +60,11 @@ namespace UniBase.Model.K2.TableMethods
         public Products NewProducts
         {
             get { return _newProducts; }
-            set { _newProducts = value; }
+            set
+            {
+                _newProducts = value; 
+                OnPropertyChanged();
+            }
         }
 
         public ObservableCollection<Products> ProductList
