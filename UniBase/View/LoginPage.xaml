@@ -15,10 +15,9 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" >
-                <StackPanel>
-                    <PasswordBox BorderBrush="#16503F" Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Password" PasswordChar="*" Password="{Binding ManageLogin.PassWord,Mode=TwoWay}"/>
-                </StackPanel>
+                <PasswordBox BorderBrush="#16503F" Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Password" PasswordChar="*" Password="{Binding ManageLogin.PassWord,Mode=TwoWay}"/>
                 <Button Background="#16503F" Foreground="White" Content="Login" FontSize="25"  Width="100" Height="50" Command="{Binding LoginRelayCommand}"/>
+                <ProgressRing Height="50" Width="50" IsActive="True" Foreground="#16503F" Margin="20,0,0,0"></ProgressRing>
             </StackPanel>
             <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding ManageLogin.WrongLogin,Mode=TwoWay}" Foreground="Red"/>
         </StackPanel>
