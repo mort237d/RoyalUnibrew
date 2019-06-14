@@ -998,7 +998,7 @@
             <!--#endregion-->
             <PivotItem Header="K3"/>
             <PivotItem Header="K4"/>
-            <PivotItem Header="Produkter">
+            <PivotItem Header="Produkter" Visibility="{Binding Column2FacadePath.ManageUser.CurrentUsers.LeaderStatus, Mode=TwoWay}">
                 <StackPanel HorizontalAlignment="Center">
                     <StackPanel HorizontalAlignment="left">
                         <TextBlock Text="Filter" FontSize="30" TextAlignment="Center"/>
