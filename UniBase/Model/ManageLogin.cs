@@ -14,6 +14,7 @@ namespace UniBase.Model
         public string PassWord { get; set; }
         private string _wrongLogin, _wrongLoginColor;
         private ManageUser _manageUser = ManageUser.Instance;
+        private bool _progressActive;
 
         #endregion
         
@@ -44,21 +45,13 @@ namespace UniBase.Model
             }
         }
 
-
-        #endregion
-        
-        #region Singleton
-
-        private static ManageLogin _instance;
-        public static ManageLogin Instance
+        public bool ProgressActive
         {
-            get
+            get { return _progressActive; }
+            set
             {
-                if (_instance == null)
-                {
-                    _instance = new ManageLogin();
-                }
-                return _instance;
+                _progressActive = value;
+                OnPropertyChanged();
             }
         }
 
@@ -71,6 +64,7 @@ namespace UniBase.Model
         /// </summary>
         public void LogOffMethod()
         {
+            WrongLogin = null;
             Frame currentFrame = Window.Current.Content as Frame;
             currentFrame?.Navigate(typeof(LoginPage));
         }
@@ -80,6 +74,8 @@ namespace UniBase.Model
         /// </summary>
         public async void CheckLogin()
         {
+            ProgressActive = true;
+            WrongLogin = null;
             bool temp = false;
             _manageUser.UsersList = await ModelGenerics.GetAll(new Users());
 
@@ -100,13 +96,31 @@ namespace UniBase.Model
             {
                 Frame currentFrame = Window.Current.Content as Frame;
                 currentFrame?.Navigate(typeof(WorkPage));
+                ProgressActive = false;
             }
             else
             {
                 WrongLogin = "Kodeord stemmer ikke overens";
+                ProgressActive = false;
             }
         }
 
+        #endregion
+
+        #region Singleton
+
+        private static ManageLogin _instance;
+        public static ManageLogin Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ManageLogin();
+                }
+                return _instance;
+            }
+        }
         #endregion
 
         #region INotify
