@@ -19,7 +19,7 @@
                 <Button Background="#16503F" Foreground="White" Content="Login" FontSize="25"  Width="100" Height="50" Command="{Binding LoginRelayCommand}"/>
                 <ProgressRing Height="50" Width="50" IsActive="{Binding ManageLogin.ProgressActive}" Foreground="#16503F" Margin="20,0,0,0" ></ProgressRing>
             </StackPanel>
-            <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding ManageLogin.WrongLogin,Mode=TwoWay}" Foreground="Red"/>
+            <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding ManageLogin.WrongLogin,Mode=TwoWay}" Foreground="Red" Visibility="Collapsed"/>
         </StackPanel>
     </Grid>
 
