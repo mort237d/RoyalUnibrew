@@ -1098,7 +1098,7 @@
                     </StackPanel>
                 </StackPanel>
             </PivotItem>
-            <PivotItem Header="Grafer" >
+            <PivotItem Header="Grafer" Visibility="{Binding Column2FacadePath.ManageUser.CurrentUsers.LeaderStatus, Mode=TwoWay}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  Margin="3">
                         <TextBlock FontWeight="SemiBold" Text="Vælg type graf" Margin="5,0,105,0"/>

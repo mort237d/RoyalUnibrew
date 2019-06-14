@@ -225,15 +225,15 @@ namespace UniBase.Model.K2.TableMethods
         }
         private void FillStringHelpersHelper(ControlSchedules controlSchedules)
         {
-            string temp, temp2;
-            if (controlSchedules.Time.Hour < 10) temp = "0" + controlSchedules.Time.Hour;
-            else temp = controlSchedules.Time.Hour.ToString();
+            string hour, minute;
+            if (controlSchedules.Time.Hour < 10) hour = "0" + controlSchedules.Time.Hour;
+            else hour = controlSchedules.Time.Hour.ToString();
 
-            if (controlSchedules.Time.Minute == 0) temp2 = "00";
-            else if (controlSchedules.Time.Minute < 10) temp2 = "0" + controlSchedules.Time.Minute;
-            else temp2 = controlSchedules.Time.Minute.ToString();
+            if (controlSchedules.Time.Minute == 0) minute = "00";
+            else if (controlSchedules.Time.Minute < 10) minute = "0" + controlSchedules.Time.Minute;
+            else minute = controlSchedules.Time.Minute.ToString();
 
-            controlSchedules.TimeStringHelper = string.Format("{0}:{1}", temp, temp2);
+            controlSchedules.TimeStringHelper = string.Format("{0}:{1}", hour, minute);
         }
 
         #region RelayCommandMethods
