@@ -18,16 +18,16 @@ namespace RestService.Controllers
         private Context db = new Context();
 
         // GET: api/ConstantValues
-        public IQueryable<ConstantValue> GetConstantValues()
+        public IQueryable<Models.ConstantValue> GetConstantValues()
         {
             return db.ConstantValues;
         }
 
         // GET: api/ConstantValues/5
-        [ResponseType(typeof(ConstantValue))]
+        [ResponseType(typeof(Models.ConstantValue))]
         public IHttpActionResult GetConstantValue(string id)
         {
-            ConstantValue constantValue = db.ConstantValues.Find(id);
+            Models.ConstantValue constantValue = db.ConstantValues.Find(id);
             if (constantValue == null)
             {
                 return NotFound();
@@ -38,7 +38,7 @@ namespace RestService.Controllers
 
         // PUT: api/ConstantValues/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutConstantValue(string id, ConstantValue constantValue)
+        public IHttpActionResult PutConstantValue(string id, Models.ConstantValue constantValue)
         {
             if (!ModelState.IsValid)
             {
@@ -72,8 +72,8 @@ namespace RestService.Controllers
         }
 
         // POST: api/ConstantValues
-        [ResponseType(typeof(ConstantValue))]
-        public IHttpActionResult PostConstantValue(ConstantValue constantValue)
+        [ResponseType(typeof(Models.ConstantValue))]
+        public IHttpActionResult PostConstantValue(Models.ConstantValue constantValue)
         {
             if (!ModelState.IsValid)
             {
@@ -102,10 +102,10 @@ namespace RestService.Controllers
         }
 
         // DELETE: api/ConstantValues/5
-        [ResponseType(typeof(ConstantValue))]
+        [ResponseType(typeof(Models.ConstantValue))]
         public IHttpActionResult DeleteConstantValue(string id)
         {
-            ConstantValue constantValue = db.ConstantValues.Find(id);
+            Models.ConstantValue constantValue = db.ConstantValues.Find(id);
             if (constantValue == null)
             {
                 return NotFound();

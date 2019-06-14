@@ -9,77 +9,77 @@ namespace RestService
 
     public partial class Context : DbContext
     {
-        public Context() : base("name=Context11")
+        public Context() : base("name=Context15")
         {
             base.Configuration.ProxyCreationEnabled = false;
         }
 
-        public virtual DbSet<ConstantValue> ConstantValues { get; set; }
-        public virtual DbSet<ControlRegistration> ControlRegistrations { get; set; }
-        public virtual DbSet<ControlSchedule> ControlSchedules { get; set; }
-        public virtual DbSet<Frontpage> Frontpages { get; set; }
+        public virtual DbSet<Models.ConstantValue> ConstantValues { get; set; }
+        public virtual DbSet<Models.ControlRegistration> ControlRegistrations { get; set; }
+        public virtual DbSet<Models.ControlSchedule> ControlSchedules { get; set; }
+        public virtual DbSet<Models.Frontpage> Frontpages { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Production> Productions { get; set; }
-        public virtual DbSet<ShiftRegistration> ShiftRegistrations { get; set; }
-        public virtual DbSet<StandardValue> StandardValues { get; set; }
-        public virtual DbSet<TU> TUs { get; set; }
+        public virtual DbSet<Models.Production> Productions { get; set; }
+        public virtual DbSet<Models.ShiftRegistration> ShiftRegistrations { get; set; }
+        public virtual DbSet<Models.StandardValue> StandardValues { get; set; }
+        public virtual DbSet<Models.TU> TUs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ConstantValue>()
+            modelBuilder.Entity<Models.ConstantValue>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ControlRegistration>()
+            modelBuilder.Entity<Models.ControlRegistration>()
                 .Property(e => e.CommentsOnChangedDate)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ControlRegistration>()
+            modelBuilder.Entity<Models.ControlRegistration>()
                 .Property(e => e.KegSize)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ControlRegistration>()
+            modelBuilder.Entity<Models.ControlRegistration>()
                 .Property(e => e.Signature)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ControlSchedule>()
+            modelBuilder.Entity<Models.ControlSchedule>()
                 .Property(e => e.KegTest)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ControlSchedule>()
+            modelBuilder.Entity<Models.ControlSchedule>()
                 .Property(e => e.Signature)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ControlSchedule>()
+            modelBuilder.Entity<Models.ControlSchedule>()
                 .Property(e => e.Note)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Frontpage>()
+            modelBuilder.Entity<Models.Frontpage>()
                 .Property(e => e.Note)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Frontpage>()
+            modelBuilder.Entity<Models.Frontpage>()
                 .HasMany(e => e.ControlRegistrations)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Frontpage>()
+            modelBuilder.Entity<Models.Frontpage>()
                 .HasMany(e => e.ControlSchedules)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Frontpage>()
+            modelBuilder.Entity<Models.Frontpage>()
                 .HasMany(e => e.Productions)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Frontpage>()
+            modelBuilder.Entity<Models.Frontpage>()
                 .HasMany(e => e.ShiftRegistrations)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Frontpage>()
+            modelBuilder.Entity<Models.Frontpage>()
                 .HasMany(e => e.TUs)
                 .WithRequired(e => e.Frontpage)
                 .WillCascadeOnDelete(false);
@@ -93,12 +93,16 @@ namespace RestService
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ShiftRegistration>()
+            modelBuilder.Entity<Models.ShiftRegistration>()
                 .Property(e => e.Initials)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<StandardValue>()
+            modelBuilder.Entity<Models.StandardValue>()
                 .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Models.StandardValue>()
+                .Property(e => e.Value)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()

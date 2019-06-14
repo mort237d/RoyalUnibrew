@@ -18,16 +18,16 @@ namespace RestService.Controllers
         private Context db = new Context();
 
         // GET: api/StandardValues
-        public IQueryable<StandardValue> GetStandardValues()
+        public IQueryable<Models.StandardValue> GetStandardValues()
         {
             return db.StandardValues;
         }
 
         // GET: api/StandardValues/5
-        [ResponseType(typeof(StandardValue))]
+        [ResponseType(typeof(Models.StandardValue))]
         public IHttpActionResult GetStandardValue(string id)
         {
-            StandardValue standardValue = db.StandardValues.Find(id);
+            Models.StandardValue standardValue = db.StandardValues.Find(id);
             if (standardValue == null)
             {
                 return NotFound();
@@ -38,7 +38,7 @@ namespace RestService.Controllers
 
         // PUT: api/StandardValues/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutStandardValue(string id, StandardValue standardValue)
+        public IHttpActionResult PutStandardValue(string id, Models.StandardValue standardValue)
         {
             if (!ModelState.IsValid)
             {
@@ -72,8 +72,8 @@ namespace RestService.Controllers
         }
 
         // POST: api/StandardValues
-        [ResponseType(typeof(StandardValue))]
-        public IHttpActionResult PostStandardValue(StandardValue standardValue)
+        [ResponseType(typeof(Models.StandardValue))]
+        public IHttpActionResult PostStandardValue(Models.StandardValue standardValue)
         {
             if (!ModelState.IsValid)
             {
@@ -102,10 +102,10 @@ namespace RestService.Controllers
         }
 
         // DELETE: api/StandardValues/5
-        [ResponseType(typeof(StandardValue))]
+        [ResponseType(typeof(Models.StandardValue))]
         public IHttpActionResult DeleteStandardValue(string id)
         {
-            StandardValue standardValue = db.StandardValues.Find(id);
+            Models.StandardValue standardValue = db.StandardValues.Find(id);
             if (standardValue == null)
             {
                 return NotFound();

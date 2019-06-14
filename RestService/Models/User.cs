@@ -31,6 +31,7 @@ namespace RestService.Models
         public string ImageSource { get; set; }
 
         public bool administratorStatus { get; set; }
+
         public bool leaderStatus { get; set; }
     }
 }
