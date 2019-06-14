@@ -10,7 +10,7 @@ namespace RestService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            Frontpages = new HashSet<Models.Frontpage>();
+            Frontpage = new HashSet<Frontpage>();
         }
 
         [Key]
@@ -24,6 +24,6 @@ namespace RestService.Models
         public int BestBeforeDateLength { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Models.Frontpage> Frontpages { get; set; }
+        public virtual ICollection<Frontpage> Frontpage { get; set; }
     }
 }
