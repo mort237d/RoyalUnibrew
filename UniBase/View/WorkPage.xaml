@@ -1158,7 +1158,7 @@
                             <DataTemplate x:DataType="k2:Users">
                                 <StackPanel Width="300" Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
-                                    <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Vertical" Margin="10,0,0,0" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
                                             <TextBlock Margin="5,0,0,0" Text="{Binding AdminstratorText, Mode=TwoWay}"/>

@@ -283,7 +283,6 @@ namespace UniBase.Model
                                 UsersList.Add(new Users(_usersList.Last().User_ID + 1, NameTb, EmailTb, TelephoneNumberTb, PasswordTb, ImageTb, Admin, Leader));
                                 ModelGenerics.CreateByObject(UsersList.Last(), "User_ID", "Bruger ID");
                             }
-                            _message.ShowToastNotification("Tilføjet", NameTb + " er blevet tilføjet.");
                             NameTb = EmailTb = TelephoneNumberTb = ImageTb = PasswordTb = null;
                             Admin = false;
                             AdminCheckBoxImage = "Images/Box/UnCheckedCheckBox.png";

@@ -227,6 +227,10 @@
     <Content Include="View\Images\Button\GetLastTen.png" />
     <Content Include="View\Images\Button\RefreshButton.png" />
     <Content Include="View\Images\Button\SaveButton.png" />
+    <Content Include="View\Images\daniel.jpg" />
+    <Content Include="View\Images\jacob.jpg" />
+    <Content Include="View\Images\lucas.jpg" />
+    <Content Include="View\Images\morten.jpg" />
     <Content Include="View\Images\User.png" />
   </ItemGroup>
   <ItemGroup>
